@@ -17,7 +17,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body className={poppins.className}>
+        <body className={`${poppins.className} flex min-h-screen flex-col`}>
           <Main />
           <NextScript />
         </body>

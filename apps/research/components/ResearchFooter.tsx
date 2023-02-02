@@ -9,7 +9,7 @@ interface ResearchFooterProps extends SecondaryFooterProps {}
 
 const ResearchFooter: React.FC<ResearchFooterProps> = ({ categories }) => {
   return (
-    <>
+    <div>
       <SecondaryFooter categories={categories} />
       <div id="k33-footer" className="bg-bg-light-tertiary flex flex-col py-6">
         <div
@@ -48,7 +48,7 @@ const ResearchFooter: React.FC<ResearchFooterProps> = ({ categories }) => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

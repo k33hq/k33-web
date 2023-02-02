@@ -11,8 +11,10 @@ interface MainProps {
 const Main: React.FC<MainProps> = ({ children, categories }) => {
   return (
     <>
-      <ResearchHeader categories={categories} />
-      <main className="flex flex-col">{children}</main>
+      <div className="min-h-screen">
+        <ResearchHeader categories={categories} />
+        <main className="flex flex-col">{children}</main>
+      </div>
       <ResearchFooter categories={categories} />
     </>
   );

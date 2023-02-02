@@ -1,4 +1,4 @@
-export const getUrl = (...slugs: Array<string>) => `${slugs.join('/')}`;
+export const getUrl = (...slugs: Array<string>) => `/${slugs.join('/')}`;
 
 export const colors = {
   systemBlue: 'bg-default-systemBlue-light',
