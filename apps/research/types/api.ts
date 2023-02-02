@@ -11,6 +11,7 @@ import {
   ProductElementsWithArticleElements,
   HomePage,
   CategoriesAndArticles,
+  ArticlePageSlugs,
 } from './domain';
 
 /**
@@ -43,7 +44,7 @@ export interface GetCategoriesAndTheirArticlesResponse {
  * product api types
  */
 export interface GetProductSlugsByCategoryResponse {
-  productWebCollection: {
+  categoryWebCollection: {
     items: ProductSlugs;
   };
 }
@@ -82,6 +83,12 @@ export interface GetArticleSlugsByProductsAndCategoriesResponse {
 export interface GetArticleElementsByProductAndCategoriesResponse {
   articleWebCollection: {
     items: ArticleElements;
+  };
+}
+
+export interface GetArticleSlugsResponse {
+  articleWebCollection: {
+    items: ArticlePageSlugs;
   };
 }
 

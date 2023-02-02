@@ -11,12 +11,17 @@ import {
  * get product slugs based on the category passed
  */
 const GetProductSlugsByCategory = gql`
-  query GetProductSlugByCategory($categorySlug: String!) {
-    productWebCollection(
-      where: { categoryWeb: { categorySlug: $categorySlug } }
-    ) {
+  query {
+    categoryWebCollection {
       items {
-        productSlug
+        categorySlug
+        linkedFrom {
+          productWebCollection {
+            items {
+              productSlug
+            }
+          }
+        }
       }
     }
   }
@@ -121,16 +126,20 @@ const GetProductElementsWithArticleElementsByCategories = gql`
   }
 `;
 
-export const getProductSlugsByCategory = async (categorySlug: string) => {
-  const { productWebCollection } =
+export const getProductSlugsByCategory = async () => {
+  const { categoryWebCollection } =
     await contentful.request<GetProductSlugsByCategoryResponse>(
-      GetProductSlugsByCategory,
-      {
-        categorySlug,
-      }
+      GetProductSlugsByCategory
     );
 
-  return productWebCollection.items;
+  return categoryWebCollection.items.flatMap(({ categorySlug, linkedFrom }) =>
+    linkedFrom.productWebCollection.items
+      .map(({ productSlug }) => ({
+        categorySlug,
+        productSlug,
+      }))
+      .flat()
+  );
 };
 
 // get products belonging to a particular category

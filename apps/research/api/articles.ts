@@ -5,6 +5,7 @@ import {
   GetArticleElementsByProductAndCategoriesResponse,
   GetArticlePageResponse,
   GetArticleSlugsByProductsAndCategoriesResponse,
+  GetArticleSlugsResponse,
 } from '../types';
 
 /**
@@ -23,6 +24,23 @@ const GetArticleSlugsByProductsAndCategories = gql`
     ) {
       items {
         articleSlug
+      }
+    }
+  }
+`;
+
+const GetArticleSlugs = gql`
+  query {
+    articleWebCollection {
+      items {
+        articleSlug
+        category {
+          categorySlug
+        }
+
+        product {
+          productSlug
+        }
       }
     }
   }
@@ -51,11 +69,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
 
         articleSlug
-        thumbnail {
-          url
-          title
-          description
-        }
+
         product {
           productSlug
           branding {
@@ -69,6 +83,11 @@ const GetArticleElementsByProductAndCategories = gql`
           title
           sys {
             firstPublishedAt
+          }
+          thumbnail {
+            url
+            title
+            description
           }
         }
       }
@@ -182,6 +201,12 @@ export const getArticleSlugByProductAndCategories = async (
       GetArticleSlugsByProductsAndCategories,
       { categorySlug, productSlug }
     );
+  return articleWebCollection.items;
+};
+
+export const getArticleSlugs = async () => {
+  const { articleWebCollection } =
+    await contentful.request<GetArticleSlugsResponse>(GetArticleSlugs);
   return articleWebCollection.items;
 };
 

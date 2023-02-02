@@ -76,13 +76,21 @@ export interface Product {
 
 export type Products = ReadonlyArray<Product>;
 
-export interface ProductSlug {
+export interface ProductCoreSlug {
   productSlug: string;
+}
+
+interface ProductSlug extends CategorySlug {
+  linkedFrom: {
+    productWebCollection: {
+      items: ReadonlyArray<ProductCoreSlug>;
+    };
+  };
 }
 
 export type ProductSlugs = ReadonlyArray<ProductSlug>;
 
-export interface ProductElement extends ProductSlug {
+export interface ProductElement extends ProductCoreSlug {
   branding: Brand;
   categoryWeb: CategorySlug;
   product: Pick<Product, 'description' | 'title'>;
@@ -119,6 +127,13 @@ export interface ArticleSlug {
 }
 
 export type ArticleSlugs = ReadonlyArray<ArticleSlug>;
+
+export interface ArticlePageSlug extends ArticleSlug {
+  category: CategorySlug;
+  product: ProductCoreSlug;
+}
+
+export type ArticlePageSlugs = ReadonlyArray<ArticlePageSlug>;
 
 export interface ArticleElement extends ArticleSlug {
   category: CategorySlug;
