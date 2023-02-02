@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "research",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/f36-datetime": "^4.26.0",
+    "@contentful/rich-text-react-renderer": "^15.16.2",
+    "@contentful/rich-text-types": "^16.0.2",
+    "@next/font": "^13.1.6",
+    "firebase": "^9.16.0",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.1.0",
     "next": "^13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -16,12 +23,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "eslint-config-custom": "workspace:*",
-    "eslint": "7.32.0",
-    "tsconfig": "workspace:*",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "autoprefixer": "^10.4.13",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "tsconfig": "workspace:*",
     "typescript": "^4.5.3"
   }
 }
