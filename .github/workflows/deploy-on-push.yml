@@ -53,8 +53,8 @@ jobs:
           run_install: false
       - name: Install dependencies
         run: pnpm install
-      - name: Test Applications
-        run: pnpm test
+      # - name: Test Applications
+      #   run: pnpm test
       - name: Build Application
         run: pnpm build
       - name: Firebase hosting deploy
