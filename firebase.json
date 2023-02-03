@@ -1,0 +1,10 @@
+{
+  "hosting": [
+    {
+      "target": "research",
+      "public": "./apps/research/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "appAssociation": "AUTO"
+    }
+  ]
+}

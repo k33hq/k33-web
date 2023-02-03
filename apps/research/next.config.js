@@ -1,8 +1,8 @@
 module.exports = {
   reactStrictMode: true,
-  basePath: '/research',
   transpilePackages: ['ui'],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
