@@ -19,4 +19,13 @@ interface BasicPromotionProps {
 }
 declare const BasicPromotion: React.FC<BasicPromotionProps>;
 
-export { BasicPromotion };
+interface InputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+}
+declare const Input: React.FC<InputProps>;
+
+interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    children: React.ReactNode;
+}
+declare const Button: React.FC<ButtonProps>;
+
+export { BasicPromotion, Button, Input };

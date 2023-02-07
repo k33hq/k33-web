@@ -19,7 +19,7 @@ export const BasicCards: React.FC<BasicCardsProps> = ({
       className={`ui-flex ui-flex-col ui-gap-4 ui-w-80 ${
         variant === 'secondary'
           ? 'ui-items-center ui-justify-center ui-content-center'
-          : ''
+          : 'ui-items-center ui-justify-center ui-content-center sm:ui-items-start sm:ui-justify-start sm:ui-content-start'
       }`}
     >
       {logo}
@@ -35,7 +35,7 @@ export const BasicCards: React.FC<BasicCardsProps> = ({
       <p
         className={
           variant === 'primary'
-            ? 'ui-text-heading8 ui-text-label-light-tertiary'
+            ? 'ui-text-heading8 ui-text-label-light-tertiary ui-text-center sm:ui-text-start'
             : 'ui-text-body3 ui-text-default-systemGrey-light-1 ui-text-center'
         }
       >

@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
-import { BasicCards, Hero, BasicPromotion } from 'ui';
+import { BasicCards, Hero, BasicPromotion, HorizontleDivider } from 'ui';
 import heroImage from '../assets/hero.svg';
 import bloomberg from '../assets/bloomberg.png';
 import forbes from '../assets/forbes.png';
@@ -13,14 +13,11 @@ import invest from '../assets/invest.svg';
 import promotion1 from '../assets/promotion1.png';
 import promotion2 from '../assets/promotion2.png';
 import promotion3 from '../assets/promotion3.png';
-
 import researchOffer from '../assets/research_offer.svg';
 import adviceOffer from '../assets/advice_offer.svg';
 import marketsOffer from '../assets/markets_offer.svg';
 
-import Companies from 'src/components/Companies';
-
-import { HorizontleDivider } from 'ui';
+import { Companies, SendEmail } from '@/components';
 
 const hero = {
   title: 'Safe. Secure. Digital assets.',
@@ -139,39 +136,43 @@ const offers = [
 
 const Index: NextPage = () => {
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col sm:gap-32 gap-12">
       <Hero
         {...hero}
         bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
       >
-        {null}
+        <SendEmail placeholder="Enter your email" label="Get Early Access" />
       </Hero>
       <Companies {...companies} />
-      <div id="k33-apps" className="flex flex-row items-center justify-around">
+      <div
+        id="k33-apps"
+        className="flex sm:flex-row flex-col items-center gap-8 sm:justify-between sm:content-center sm:w-full"
+      >
         {apps.map((app) => (
           <>
             <BasicCards {...app} key={app.title} />
-            <HorizontleDivider key={app.title} />
           </>
         ))}
       </div>
       <BasicPromotion {...insightPromotion} direction="left" />
-      <BasicPromotion {...tradePromotion} direction="right" />
+      <BasicPromotion {...tradePromotion} direction="right" />\
       <BasicPromotion {...securePromotion} direction="left" />
       <div className="flex flex-col items-center gap-4">
-        <div className="flex flex-col items-center justify-center">
-          <p className="text-heading6 text-brand-light-primary">{call.title}</p>
-          <p className="text-heading6 text-brand-light-primary">
+        <div className="flex flex-col text-center items-center justify-center">
+          <p className="sm:text-heading6 text-heading7 text-brand-light-primary">
+            {call.title}
+          </p>
+          <p className="sm:text-heading6 text-heading7 text-brand-light-primary">
             {call.subtitle}
           </p>
         </div>
         <div className="flex flex-col items-center w-full">
-          <p className="text-heading8 text-brand-light-secondary">
+          <p className="sm:text-heading8 text-body1 text-brand-light-secondary">
             What we offer
           </p>
           <div
             id="k33-offers"
-            className="flex flex-row items-center justify-between pt-14 w-full"
+            className="flex sm:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
           >
             {offers.map((offer) => (
               <BasicCards {...offer} key={offer.title} variant="secondary" />
@@ -179,7 +180,12 @@ const Index: NextPage = () => {
           </div>
         </div>
       </div>
-      <div id="k33-send-email"></div>
+      <div
+        id="k33-send-email"
+        className="sm:w-2/4 w-full sm:pb-32 flex flex-col self-center"
+      >
+        <SendEmail placeholder="Enter your email" label="Get Early Access" />
+      </div>
     </div>
   );
 };
