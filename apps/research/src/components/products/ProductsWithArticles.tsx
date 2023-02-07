@@ -14,7 +14,7 @@ const ProductsWithArticles: React.FC<ProductsWithArticlesProps> = ({
 }) => {
   const { articleWebCollection } = linkedFrom;
   return (
-    <div className="flex flex-col gap-12 h-[576px] min-w-30">
+    <div className="flex flex-col gap-12 w-2/5">
       <ProductElement {...{ product, productSlug, categoryWeb, branding }} />
       <div className="flex flex-row items-center justify-between">
         {articleWebCollection.items.map((article) => (
