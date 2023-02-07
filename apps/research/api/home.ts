@@ -4,7 +4,7 @@ import { GetHomePageElementsResponse } from '../types';
 
 const GetHomePageElements = gql`
   query {
-    homePage(id: "6K7ONN4EGyldIwyvKBYvva") {
+    homePage(id: "1ZbMXiefkGuOYeDaIo7WNX") {
       mainArticle {
         articleSlug
 

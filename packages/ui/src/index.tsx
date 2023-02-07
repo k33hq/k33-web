@@ -6,3 +6,4 @@ export * from './Header';
 export * from './Heros';
 export * from './Cards';
 export * from './Dividers';
+export * from './Promotions';

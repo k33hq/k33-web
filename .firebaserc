@@ -1,9 +1,9 @@
 {
   "projects": {
-    "default": "arcane-platform-dev"
+    "default": "k33-dev"
   },
   "targets": {
-    "arcane-platform-dev": {
+    "k33-dev": {
       "hosting": {
         "research": [
           "k33-research-dev"
