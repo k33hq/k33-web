@@ -50,13 +50,8 @@ const Home: NextPage<HomeProps> = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const {
-    mainArticle = null,
-    subArticle1 = null,
-    subArticle2 = null,
-    subArticle3 = null,
-    subArticle4 = null,
-  } = await getHomePageElements();
+  const { mainArticle, subArticle1, subArticle2, subArticle3, subArticle4 } =
+    await getHomePageElements();
 
   const articles = await getCategoriesAndTheirArticles();
 
