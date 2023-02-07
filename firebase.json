@@ -1,10 +1,44 @@
 {
   "hosting": [
     {
-      "target": "research",
+      "target": "k33-platform-dev",
+      "public": "./apps/platform/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-platform",
+      "public": "./apps/platform/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-research-dev",
       "public": "./apps/research/out",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "appAssociation": "AUTO"
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-research",
+      "public": "./apps/research/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-invest-dev",
+      "public": "./apps/invest/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-invest",
+      "public": "./apps/invest/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-markets-dev",
+      "public": "./apps/markets/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-markets",
+      "public": "./apps/markets/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
 }
