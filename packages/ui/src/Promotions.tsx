@@ -29,7 +29,7 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
         <p className="ui-text-body1 ui-text-label-light-secondary">
           {description}
         </p>
-        <div className="ui-flex ui-flex-col ui-gap-9 ui-pt-7">
+        <div className="ui-flex ui-flex-col ui-gap-9 ui-pt-7 ui-items-center">
           {points.map((point) => (
             <div
               key={point}

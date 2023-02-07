@@ -10,7 +10,8 @@
       "@/components/*": ["components/*"],
       "@/api/*": ["api/*"],
       "@/types/*": ["types/*"],
-      "@/assets/*": ["assets/*"]
+      "@/assets/*": ["assets/*"],
+      "@/*": ["src/*"]
     },
     "skipLibCheck": true,
     "strict": true,

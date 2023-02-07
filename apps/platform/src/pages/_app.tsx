@@ -18,7 +18,7 @@ interface PlatformAppProps extends AppProps {}
 const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
   return (
     <MainLayout
-      logo={<Image src={logo} width={94} height={20} alt="k33-logo" />}
+      logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
     >
       <Component {...pageProps} />{' '}
     </MainLayout>

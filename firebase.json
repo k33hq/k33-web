@@ -32,12 +32,12 @@
     },
     {
       "target": "k33-markets-dev",
-      "public": "./apps/markets/out",
+      "public": "./apps/market/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "k33-markets",
-      "public": "./apps/markets/out",
+      "public": "./apps/market/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
