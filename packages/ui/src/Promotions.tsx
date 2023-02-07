@@ -29,7 +29,7 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
         <p className="ui-text-body1 ui-text-label-light-secondary">
           {description}
         </p>
-        <div className="ui-flex ui-flex-col ui-gap-9 ui-pt-7 ui-items-center">
+        <div className="ui-flex ui-flex-col ui-gap-9 ui-pt-7 ui-justify-center">
           {points.map((point) => (
             <div
               key={point}
@@ -43,7 +43,7 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
                 >
                   <path
                     fill="#AEAEB2"
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M15.03 9c5.65.17 10.42 4.04 12.2 9.53 1.8 5.56.48 11.9-4.17 15.33-4.62 3.4-10.77 2.47-15.45-.86-5-3.57-9-9.32-7.15-15.26C2.33 11.67 8.8 8.82 15.03 9Z"
                     clip-rule="evenodd"
                   />
