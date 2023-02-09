@@ -1,4 +1,6 @@
+/** @type {import("next").NextConfig} */
 module.exports = {
+  basePath: '/research',
   reactStrictMode: true,
   images: {
     unoptimized: true,

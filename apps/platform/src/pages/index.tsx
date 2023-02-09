@@ -52,7 +52,14 @@ const apps = [
 ];
 
 const insightPromotion = {
-  image: <Image src={promotion1} height={744} alt="get real insight" />,
+  image: (
+    <Image
+      src={promotion1}
+      height={744}
+      alt="get real insight"
+      className="md:w-[400px]"
+    />
+  ),
   title: 'Get real insight',
   description:
     'Understand the digital assets industry, gain insight into the markets, and go deep on the protocols that matter.',
@@ -70,7 +77,14 @@ const insightPromotion = {
 };
 
 const tradePromotion = {
-  image: <Image src={promotion2} height={744} alt="Trade with conviction" />,
+  image: (
+    <Image
+      src={promotion2}
+      height={744}
+      alt="Trade with conviction"
+      className="md:w-[400px]"
+    />
+  ),
   title: 'Trade with conviction',
   description:
     'Secure custody, best execution across multiple exchanges, with real time in-person service & support.',
@@ -88,7 +102,14 @@ const tradePromotion = {
 };
 
 const securePromotion = {
-  image: <Image src={promotion3} height={744} alt="Secure your wealth" />,
+  image: (
+    <Image
+      src={promotion3}
+      height={744}
+      alt="Secure your wealth"
+      className="md:w-[400px]"
+    />
+  ),
   title: 'Secure your wealth',
   description:
     'Establish your digital assets investment strategy guided by our experts, with a list of expertly vetted funds.',
@@ -149,13 +170,11 @@ const Index: NextPage = () => {
         className="flex sm:flex-row flex-col items-center gap-8 sm:justify-between sm:content-center sm:w-full"
       >
         {apps.map((app) => (
-          <>
-            <BasicCards {...app} key={app.title} />
-          </>
+          <BasicCards {...app} key={app.title} />
         ))}
       </div>
       <BasicPromotion {...insightPromotion} direction="left" />
-      <BasicPromotion {...tradePromotion} direction="right" />\
+      <BasicPromotion {...tradePromotion} direction="right" />
       <BasicPromotion {...securePromotion} direction="left" />
       <div className="flex flex-col items-center gap-4">
         <div className="flex flex-col text-center items-center justify-center">

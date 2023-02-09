@@ -1,2 +1,2 @@
-export { a as Hero } from './chunk-4UZ56WI2.mjs';
+export { a as Hero } from './chunk-7WS5LCJL.mjs';
 import './chunk-DYNA3PMW.mjs';

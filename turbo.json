@@ -11,6 +11,10 @@
     },
     "dev": {
       "cache": false
+    },
+    "dev:platform": {
+      "outputs": ["out/**", "dist/**", ".next/**"],
+      "env": ["NEXT_PUBLIC_SENDGRID_API_KEY"]
     }
   },
   "globalEnv": [
