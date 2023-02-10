@@ -39,13 +39,13 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
       {state === 'SIGNED_OUT' ? (
         <Modal>
           <div className="flex flex-col gap-6 items-center text-center">
-            <p className="text-heading5 text-label-light-secondary">
+            <p className="md:text-heading5 text-heading7 text-label-light-secondary">
               Welcome to
             </p>
-            <p className="text-heading3 text-label-light-primary">
+            <p className="md:text-heading3 text-heading5 text-label-light-primary">
               K33 Research
             </p>
-            <p className="text-heading8 text-label-light-secondary">
+            <p className="md:text-heading8 text-body1 text-label-light-secondary">
               Sing in for full access to our research archive of articles,
               reports and analysis, and become an expert!
             </p>
