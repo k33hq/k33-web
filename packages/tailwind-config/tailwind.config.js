@@ -18,8 +18,8 @@ module.exports = {
         sm: '5px',
         md: '12px',
         lg: '16px',
-        xl: '96px',
-        full: '24px',
+        xl: '24px',
+        full: '96px',
       },
     },
     container: {

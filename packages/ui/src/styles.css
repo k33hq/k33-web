@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: rgb(var(--color-label-light) / 0.7)
+    rgb(var(--color-label-dark-secondary) / 0.3);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 1px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(var(--color-label-light) / 0.7);
+  border-radius: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-label-dark-secondary) / 0.3);
+  border-radius: 2px;
+  border: 1px solid rgb(var(--color-label-dark-secondary) / 0.3);
+}
+
+@layer base {
+  :root {
+    --color-label-light: 52 58 64;
+    --color-label-dark-secondary: 249 249 253;
+    --color-label-dark-tertiary: 235 235 245;
+
+    /* System colors */
+
+    --color-system-red-light: ;
+    --color-system-orange-light: ;
+    --color-system-yellow-light: ;
+    --color-system-green-light: ;
+    --color-system-teal-light: ;
+    --color-system-blue-light: ;
+    --color-system-indigo-light: ;
+    --color-system-purple-light: ;
+    --color-system-pink-light: ;
+  }
+}

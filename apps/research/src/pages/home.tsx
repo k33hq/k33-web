@@ -1,7 +1,6 @@
-import { getHomePageElements } from 'src/api/home';
 import { GetStaticProps } from 'next';
 import { CategoriesAndArticles, HomePage, NextPageWithLayout } from '@/types';
-import { getCategoriesAndTheirArticles } from '@/api';
+import { getCategoriesAndTheirArticles, getHomePageElements } from '@/api';
 import {
   CategoriesAndArticleElements,
   CoverArticle,
@@ -38,10 +37,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </div>
       </section>
-      <section
-        className="md:container md:pt-32 pt-8 px-2"
-        id="category-articles"
-      >
+      <section className="md:container md:py-32 px-2" id="category-articles">
         {articles.map((category, index) => (
           <>
             <CategoriesAndArticleElements
