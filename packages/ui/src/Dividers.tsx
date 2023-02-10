@@ -9,3 +9,9 @@ export const HorizontleDivider: React.FC = () => {
 export const Dot: React.FC = () => (
   <div className="ui-h-1 ui-w-1 ui-rounded-full ui-inline-block ui-bg-label-light-secondary" />
 );
+
+export const Divider: React.FC = () => {
+  return (
+    <div className="ui-w-auto ui-h-px ui-bg-default-systemGrey-light-2/20" />
+  );
+};
