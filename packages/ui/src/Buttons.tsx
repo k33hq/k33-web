@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { Variant, Size } from './types';
 
-interface BasicButtonProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+export type K33ButtonProps = React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+
+interface BasicButtonProps extends K33ButtonProps {
   children: React.ReactNode;
   variant?: Variant;
   size?: Size;
+  fullWidth?: boolean;
 }
 
 const getSize: Record<Size, string> = {
@@ -29,14 +31,40 @@ export const BasicButton: React.FC<BasicButtonProps> = ({
   children,
   size = 'large',
   variant = 'primary',
+  fullWidth = false,
   ...buttonProps
 }) => {
   return (
     <button
       {...buttonProps}
-      className={`${getSize[size]} ${getVariant[variant]}`}
+      className={`${getSize[size]} ${getVariant[variant]} ${
+        fullWidth ? 'ui-w-full' : ''
+      }`}
     >
       {children}
+    </button>
+  );
+};
+
+interface BrandButtonProps extends K33ButtonProps {
+  logo: React.ReactNode;
+  label: string;
+}
+
+export const BrandButton: React.FC<BrandButtonProps> = ({
+  label,
+  logo,
+  ...props
+}) => {
+  return (
+    <button
+      {...props}
+      className="active:ui-to-brand-light-secondary active:ui-border-none hover:ui-border-none hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-px-4 ui-py-2 ui-text-body1 ui-rounded-lg ui-shadow-md"
+    >
+      <div className="ui-flex ui-flex-row ui-gap-4 ui-text-center ui-justify-center ui-w-full">
+        {logo}
+        {label}
+      </div>
     </button>
   );
 };
