@@ -25,11 +25,11 @@ const Home: NextPageWithLayout<HomeProps> = ({
   return (
     <>
       <section className="w-full bg-bg-light-secondary">
-        <div className="md:container py-16 flex flex-col gap-12">
+        <div className="md:container md:py-16 py-4 flex flex-col md:gap-12 gap-8 px-2">
           {mainArticle ? <CoverArticle {...mainArticle} /> : null}
           <div
             id="secondary-articles-section"
-            className="flex flex-row flex-wrap gap-12 items-center justify-between"
+            className="flex md:flex-row flex-col md:flex-wrap md:gap-12 gap-6 items-center md:justify-between"
           >
             {subArticle1 ? <SubArticle {...subArticle1} /> : null}
             {subArticle2 ? <SubArticle {...subArticle2} /> : null}
@@ -38,7 +38,10 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </div>
       </section>
-      <section className="md:container pt-32" id="category-articles">
+      <section
+        className="md:container md:pt-32 pt-8 px-2"
+        id="category-articles"
+      >
         {articles.map((category, index) => (
           <>
             <CategoriesAndArticleElements
