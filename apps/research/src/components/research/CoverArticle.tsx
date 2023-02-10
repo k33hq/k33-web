@@ -19,15 +19,15 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="shadow-md rounded-3xl bg-bg-light-primary w-full overflow-hidden flex flex-row"
+      className="shadow-md rounded-xl bg-bg-light-primary w-full overflow-hidden flex md:flex-row flex-col"
     >
-      <div className="relative w-2/5 h-80">
+      <div className="relative md:w-2/5 md:h-80 h-40">
         {article.coverPicture ? (
           <Image
             src={article.coverPicture.url}
             fill
             style={{
-              objectFit: 'cover',
+              objectFit: 'contain',
             }}
             alt={article.coverPicture.title}
           />

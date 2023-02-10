@@ -1,7 +1,7 @@
-import { CategoryAndArticle } from '../../types/domain';
+import { CategoryAndArticle } from '@/types';
 import Link from 'next/link';
 import * as React from 'react';
-import { getUrl } from '../../utils';
+import { getUrl } from '@/utils';
 import { ArticleElement } from '../articles';
 import Marker from '../Marker';
 
@@ -13,7 +13,7 @@ const CategoriesAndArticleElements: React.FC<
   if (!(linkedFrom.articleWebCollection.items.length > 0)) return <></>;
 
   return (
-    <div id="category-article" className="flex flex-col gap-10 pb-28">
+    <div id="category-article" className="flex flex-col gap-5">
       <div
         id="category-title"
         className="flex flex-row items-center justify-between"
@@ -28,7 +28,7 @@ const CategoriesAndArticleElements: React.FC<
             }
           />
           <Link
-            className="text-body1 text-label-light-secondary uppercase hover:text-label-light-tertiary"
+            className="md:text-body1 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
             href={getUrl(categorySlug)}
           >
             {category.title}
@@ -43,7 +43,11 @@ const CategoriesAndArticleElements: React.FC<
       </div>
       <div
         id="category-article-list"
-        className="flex flex-row items-center flex-wrap gap-16"
+        className={`flex flex-row md:gap-16 gap-4 pb-20 ${
+          linkedFrom.articleWebCollection.items.length > 1
+            ? 'overflow-auto'
+            : 'overflow-hidden'
+        }`}
       >
         {linkedFrom.articleWebCollection.items.map((article) => (
           <ArticleElement {...article} key={article.articleSlug} />

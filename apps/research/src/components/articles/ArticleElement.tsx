@@ -18,16 +18,19 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   return (
     <div
       id={articleSlug}
-      className="flex flex-col w-64 h-96 rounded-3xl overflow-hidden bg-bg-light-primary shadow-lg"
+      className="flex flex-col w-64 flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-2xl"
     >
       {article.thumbnail ? (
-        <div id={articleSlug + '-thumbnail'} className="relative h-80">
+        <div
+          id={articleSlug + '-thumbnail'}
+          className="relative h-96 flex-shrink-0"
+        >
           <Image
             src={article.thumbnail.url}
             fill
             alt={article.thumbnail.title}
             style={{
-              objectFit: 'cover',
+              objectFit: 'fill',
             }}
           />
         </div>
@@ -47,7 +50,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
           <ArticleDate size="small" published={article.sys.firstPublishedAt} />
         </div>
         <Link
-          className="text-label-light-primary text-body1 hover:text-label-light-secondary truncate"
+          className="text-label-light-primary text-body1 hover:text-label-light-secondary"
           href={getUrl(category.categorySlug, product.productSlug, articleSlug)}
         >
           {article.title}

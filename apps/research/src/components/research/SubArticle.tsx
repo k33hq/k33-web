@@ -18,15 +18,9 @@ const SubArticle: React.FC<SubArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="shadow-md rounded-3xl bg-bg-light-primary overflow-hidden flex flex-col w-80"
+      className="shadow-md rounded-xl bg-bg-light-primary overflow-hidden flex flex-col md:w-80 w-full md:h-80 h-60"
     >
-      <div
-        className={
-          article.coverPicture
-            ? 'relative w-full h-1/2'
-            : 'relative w-full h-40 bg-gradient-to-r from-cyan-500 to-blue-500'
-        }
-      >
+      <div className="relative w-full h-1/2">
         {article.coverPicture ? (
           <Image
             src={article.coverPicture.url}
