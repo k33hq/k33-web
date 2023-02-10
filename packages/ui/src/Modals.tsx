@@ -18,3 +18,17 @@ export const Modal: React.FC<ModalProps> = ({ children }) => {
     </div>
   );
 };
+
+interface PayWallProps extends ModalProps {}
+
+export const PayWall: React.FC<PayWallProps> = ({ children }) => {
+  return (
+    <div
+      id="k33-pay-wall"
+      tabIndex={-1}
+      className="ui-blur-md ui-select-none ui-pointer-events-none"
+    >
+      {children}
+    </div>
+  );
+};

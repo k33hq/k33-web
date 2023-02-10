@@ -1,37 +1,15 @@
-import config from '@/firebase/config';
 import * as React from 'react';
-import { AppStates, getAppState, googleLogin, init, isLoggedIn } from 'core';
 import { Modal, BrandButton, Loading } from 'ui';
 import google from '../assets/google.svg';
 import Image from 'next/image';
+import { useK33App } from '@/hooks';
 
 interface PrivateLayoutProps {
   children: React.ReactNode;
 }
 
 const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
-  const [state, setState] = React.useState<AppStates>('LOADING');
-
-  React.useEffect(() => {
-    init(config);
-  }, []);
-
-  React.useEffect(() => {
-    if (isLoggedIn()) {
-      setState('REGISTRED');
-    } else {
-      setState('SIGNED_OUT');
-    }
-  }, []);
-
-  const handleGoogleLogin = () => {
-    googleLogin(
-      (user) => {
-        setState('REGISTRED');
-      },
-      (err) => console.log(err)
-    );
-  };
+  const [state, googleLogin] = useK33App();
 
   return (
     <>
@@ -60,7 +38,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
                   />
                 }
                 label="Sign in with Google"
-                onClick={handleGoogleLogin}
+                onClick={googleLogin}
               />
             </div>
           </div>

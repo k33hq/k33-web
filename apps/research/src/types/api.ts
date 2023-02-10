@@ -12,6 +12,7 @@ import {
   HomePage,
   CategoriesAndArticles,
   ArticlePageSlugs,
+  Image,
 } from './domain';
 
 /**
@@ -108,4 +109,10 @@ export interface GetArticleElementsByCategoriesResponse {
 
 export interface GetHomePageElementsResponse {
   homePage: HomePage;
+}
+
+// asset api interface
+
+export interface GetAssetByIdResponse {
+  asset: Image;
 }
