@@ -20,11 +20,13 @@ const ArticleTitle: React.FC<ArticleTitleProps> = ({
       <div id="article-meta-title" className="flex flex-row gap-3 items-center">
         <ProductTitle {...product} />
         <Dot />
-        <p className="text-body4 text-label-light-secondary">
+        <p className="md:text-body4 text-small text-label-light-secondary">
           {formatDateAndTime(published, 'day')}
         </p>
       </div>
-      <p className="text-heading7 text-label-light-primary">{title}</p>
+      <p className="md:text-heading7 text-heading8 text-label-light-primary">
+        {title}
+      </p>
     </div>
   );
 };

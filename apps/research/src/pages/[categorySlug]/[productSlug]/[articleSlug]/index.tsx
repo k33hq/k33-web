@@ -9,6 +9,7 @@ import {
   KeyPoints,
   ArticleTitle,
 } from '@/components';
+import Image from 'next/image';
 
 interface ArticleProps {
   articleSlug: string;
@@ -24,14 +25,18 @@ const Article: NextPage<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product } = articlePage;
+  console.log(article);
   return (
     <>
       <Indicator color={product.branding.color} />
-      <div className="pt-16 md:container">
-        <aside className="float-left w-1/4" aria-label="Sidebar">
+      <div className="md:pt-16 pt-12 md:container px-6">
+        <aside
+          className="float-left w-1/4 hidden md:visible"
+          aria-label="Sidebar"
+        >
           <p>Hosted by</p>
         </aside>
-        <div className="flex flex-col justify-center gap-8">
+        <div className="flex flex-col justify-center md:gap-8 gap-6">
           <ArticleTitle
             published={article.sys.firstPublishedAt}
             product={{
@@ -44,6 +49,18 @@ const Article: NextPage<ArticleProps> = ({
           <div className="w-auto h-px bg-default-systemGrey-light-2/20" />
           <NutShell document={article.summary} />
           <KeyPoints points={article.keyPoints} />
+          <div className="px-6">
+            {article.image ? (
+              <Image
+                src={article.image.url}
+                fill
+                alt={article.image.description}
+                style={{
+                  objectFit: 'contain',
+                }}
+              />
+            ) : null}
+          </div>
           <ReportsDownload />
         </div>
       </div>

@@ -1,4 +1,8 @@
-import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
+import {
+  CategoryPage,
+  NextPageWithLayout,
+  ProductElementsWithArticleElements,
+} from '@/types';
 import {
   getProductElementsAndArticleElementsByCategory,
   getAllCategorySlugs,
@@ -6,13 +10,18 @@ import {
 } from '@/api';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ProductsWithArticles } from '@/components';
+import { ReactElement } from 'react';
+import { PrivateLayout } from '@/layouts';
 
 interface CategoryProps {
   category: CategoryPage;
   products: ProductElementsWithArticleElements;
 }
 
-const Category: NextPage<CategoryProps> = ({ category, products }) => {
+const Category: NextPageWithLayout<CategoryProps> = ({
+  category,
+  products,
+}) => {
   return (
     <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 px-2 md:px-0 bg-bg-light-secondary">
       <div
@@ -38,6 +47,10 @@ const Category: NextPage<CategoryProps> = ({ category, products }) => {
       </div>
     </div>
   );
+};
+
+Category.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

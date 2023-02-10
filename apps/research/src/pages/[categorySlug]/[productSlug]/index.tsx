@@ -7,6 +7,7 @@ import {
 import {
   ArticleElements,
   CategorySlug,
+  NextPageWithLayout,
   ProductCoreSlug,
   ProductPage,
 } from '@/types';
@@ -20,13 +21,15 @@ import {
 } from '@/components';
 
 import { getUrl } from '@/utils';
+import { ReactElement } from 'react';
+import { PrivateLayout } from '@/layouts';
 
 interface ProductProps extends CategorySlug, ProductCoreSlug {
   product: ProductPage;
   articles: ArticleElements;
 }
 
-const Product: NextPage<ProductProps> = ({
+const Product: NextPageWithLayout<ProductProps> = ({
   product: rootProduct,
   articles,
   categorySlug,
@@ -49,7 +52,7 @@ const Product: NextPage<ProductProps> = ({
       <Indicator color={branding.color} />
       <section
         id={`k33-${product.sys.id}-reports`}
-        className="md:container flex flex-col pt-20 gap-12"
+        className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-2 md:px-0"
       >
         <div id="k33-research-info" className="flex flex-col gap-2">
           <ProductTitle
@@ -57,13 +60,13 @@ const Product: NextPage<ProductProps> = ({
             branding={branding}
             href={getUrl(categorySlug, productSlug)}
           />
-          <p className="text-body1 text-label-light-secondary">
+          <p className="md:text-body1 text-body2 text-label-light-secondary">
             {product.description}
           </p>
         </div>
         <div
           id={`k33-${product.sys.id}-report-list`}
-          className="flex flex-row gap-12 flex-wrap"
+          className="flex flex-row md:gap-12 gap-6 flex-wrap overflow-auto"
         >
           {articles.map((article) => (
             <ArticleElement key={article.articleSlug} {...article} />
@@ -72,6 +75,10 @@ const Product: NextPage<ProductProps> = ({
       </section>
     </>
   );
+};
+
+Product.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
