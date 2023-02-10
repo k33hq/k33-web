@@ -3,9 +3,11 @@ import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
 import App from 'next/app';
-import { getCategoryElements } from '../api';
-import { CategoryElements } from '../types';
+import { getCategoryElements } from '@/api';
+import { CategoryElements } from '@/types';
 import { MainLayout } from '@/layouts';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -14,8 +16,13 @@ export const poppins = Poppins({
   variable: '--font-poppins',
 });
 
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
 interface ResearchAppProps extends AppProps {
   categories: CategoryElements;
+  Component: NextPageWithLayout;
 }
 
 const ResearchApp = ({
@@ -23,9 +30,11 @@ const ResearchApp = ({
   pageProps,
   categories,
 }: ResearchAppProps) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <MainLayout categories={categories}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </MainLayout>
   );
 };
