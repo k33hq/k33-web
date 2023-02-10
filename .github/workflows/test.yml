@@ -1,10 +1,10 @@
-name: Deploy On Push
-on: workflow_dispatch
-#on:
-#  push:
-#    branches: ['main']
-#  pull_request:
-#    branches: ['main']
+name: Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - "main"
 
 env:
   CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
@@ -22,15 +22,12 @@ env:
   NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
   NEXT_PUBLIC_GOOGLE_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID }}
   NEXT_PUBLIC_GOOGLE_SECRET: ${{ secrets.NEXT_PUBLIC_GOOGLE_SECRET }}
+
 jobs:
-  build:
+  test:
     name: Build and Test
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    # container:
-    #   image: 'node:18-alpine'
-    #   # needed for firebase deploy to create ~/.config folder, whose owner is user `1001`
-    #   options: --user 1001
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -52,15 +49,14 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Test
-        run: pnpm test
-      - name: Firebase hosting deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.GCP_SA_KEY }}'
-          expires: 30d
-          projectId: '${{ secrets.GCP_PROJECT_ID }}'
-          channelId: live
-          # removing target will deploy all targets defined in .firebaserc
-          target: 'research'
+#  TODO joel: add tests
+#      - name: Test
+#        run: pnpm test
+      - name: export platform
+        run: pnpm --dir apps/platform export
+      - name: export research
+        run: pnpm --dir apps/research export
+      - name: export invest
+        run: pnpm --dir apps/invest export
+      - name: export markets
+        run: pnpm --dir apps/market export
