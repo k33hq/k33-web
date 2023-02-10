@@ -8,6 +8,7 @@ import {
   NutShell,
   KeyPoints,
   ArticleTitle,
+  ArticleBody,
 } from '@/components';
 import Image from 'next/image';
 
@@ -25,7 +26,7 @@ const Article: NextPage<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product } = articlePage;
-  console.log(article);
+  console.log(article.body);
   return (
     <>
       <Indicator color={product.branding.color} />
@@ -49,18 +50,20 @@ const Article: NextPage<ArticleProps> = ({
           <div className="w-auto h-px bg-default-systemGrey-light-2/20" />
           <NutShell document={article.summary} />
           <KeyPoints points={article.keyPoints} />
-          <div className="px-6">
+          <div className="w-full h-64 md:h-[423px] relative">
             {article.image ? (
               <Image
                 src={article.image.url}
                 fill
-                alt={article.image.description}
                 style={{
                   objectFit: 'contain',
+                  width: '100%',
                 }}
+                alt={article.image.description}
               />
             ) : null}
           </div>
+          <ArticleBody document={article.body} />
           <ReportsDownload />
         </div>
       </div>
