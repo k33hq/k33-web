@@ -26,7 +26,7 @@ const ProductTitle: React.FC<ProductTitleProps> = ({
         className={`${
           size === 'large'
             ? 'md:text-heading8 text-body1 text-label-light-secondary'
-            : 'text-caption text-label-light-secondary'
+            : 'md:text-caption text-xsmall text-label-light-secondary'
         } hover:text-label-light-tertiary uppercase`}
         href={href}
       >
