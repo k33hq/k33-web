@@ -8,3 +8,4 @@ export * from './Promotions';
 export * from './Inputs';
 export * from './Buttons';
 export * from './Modals';
+export * from './Loading';

@@ -72,7 +72,7 @@ export const init = (config: FirebaseOptions) => {
 // google login stuff
 
 export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
-  const auth = getAuth();
+  const auth = getAuth(getApp(APP_NAME));
   setPersistence(auth, browserLocalPersistence)
     .then(() => {
       const provider = new GoogleAuthProvider();
@@ -113,7 +113,8 @@ export const appleSignInInit = (config: AppleIDConfig) => {
 // check whether logged in
 
 export const isLoggedIn = () => {
-  const auth = getAuth();
+  const auth = getAuth(getApp(APP_NAME));
+  console.log(auth.currentUser);
   return !!auth.currentUser;
 };
 
@@ -259,7 +260,7 @@ export const mutator = async <T extends object>(
 
 // simple function to get id token
 const getIdToken = async (forceRefresh?: boolean) => {
-  const auth = getAuth();
+  const auth = getAuth(getApp(APP_NAME));
   const user = auth.currentUser;
   if (user) {
     return await user.getIdToken(forceRefresh);
