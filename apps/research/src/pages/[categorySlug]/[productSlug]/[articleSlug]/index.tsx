@@ -11,6 +11,7 @@ import {
   ArticleBody,
 } from '@/components';
 import Image from 'next/image';
+import { Divider } from 'ui';
 
 interface ArticleProps {
   articleSlug: string;
@@ -29,7 +30,7 @@ const Article: NextPage<ArticleProps> = ({
   return (
     <>
       <Indicator color={product.branding.color} />
-      <div className="md:pt-16 pt-12 md:container px-6">
+      <div className="md:pt-16 py-12 md:container px-6">
         <aside
           className="float-left w-1/4 hidden md:visible"
           aria-label="Sidebar"
@@ -46,7 +47,7 @@ const Article: NextPage<ArticleProps> = ({
             }}
             title={article.title}
           />
-          <div className="w-auto h-px bg-default-systemGrey-light-2/20" />
+          <Divider />
           <NutShell document={article.summary} />
           <KeyPoints points={article.keyPoints} />
           <div className="w-full h-64 md:h-[423px] relative">
@@ -63,7 +64,12 @@ const Article: NextPage<ArticleProps> = ({
             ) : null}
           </div>
           <ArticleBody document={article.body} />
-          <ReportsDownload />
+          {article.reportDocument ? (
+            <ReportsDownload
+              url={article.reportDocument.url}
+              title={article.reportDocument.title}
+            />
+          ) : null}
         </div>
       </div>
     </>
