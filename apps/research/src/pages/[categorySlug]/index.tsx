@@ -29,7 +29,7 @@ const Category: NextPage<CategoryProps> = ({ category, products }) => {
       <div className="bg-scroll bg-category-products bg-blend-soft-light bg-center bg-no-repeat bg-cover">
         <div
           id="research-category-products"
-          className={`md:pt-20 pt-8 md:px-16 px-4 md:pb-24 pb-12 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full gap-60`}
+          className={`md:pt-20 pt-8 md:px-16 px-4 pb-24 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full md:gap-60 gap-20`}
         >
           {products.map((product) => (
             <ProductsWithArticles key={product.productSlug} {...product} />

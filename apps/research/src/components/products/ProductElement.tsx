@@ -13,7 +13,7 @@ const ProductElement: React.FC<ProductElementProps> = ({
   categoryWeb,
 }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col md:gap-6 gap-2">
       <div
         id="research-category-product"
         className="flex flex-row justify-between content-center items-center"
@@ -30,7 +30,7 @@ const ProductElement: React.FC<ProductElementProps> = ({
           see more
         </Link>
       </div>
-      <p className="text-body1 text-label-light-primary">
+      <p className="md:text-body1 text-body2 text-label-light-primary">
         {product.description}
       </p>
     </div>
