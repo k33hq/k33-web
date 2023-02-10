@@ -1,10 +1,11 @@
 import { AppContext, AppProps } from 'next/app';
-import { Main } from '../components';
 import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
+import 'ui/styles.css';
 import App from 'next/app';
 import { getCategoryElements } from '../api';
 import { CategoryElements } from '../types';
+import { MainLayout } from '@/layouts';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -23,9 +24,9 @@ const ResearchApp = ({
   categories,
 }: ResearchAppProps) => {
   return (
-    <Main categories={categories}>
+    <MainLayout categories={categories}>
       <Component {...pageProps} />
-    </Main>
+    </MainLayout>
   );
 };
 
