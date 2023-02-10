@@ -14,22 +14,22 @@ interface CategoryProps {
 
 const Category: NextPage<CategoryProps> = ({ category, products }) => {
   return (
-    <div className="flex flex-col gap-10 pt-20 bg-bg-light-secondary">
+    <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 px-2 md:px-0 bg-bg-light-secondary">
       <div
-        className="flex flex-col gap-4 md:container"
+        className="flex flex-col md:gap-4 gap-2 md:container"
         id="research-category-banner"
       >
-        <p className="text-heading5 text-label-light-primary">
+        <p className="md:text-heading5 text-heading6 text-label-light-primary">
           {category.category.title}
         </p>
-        <p className="text-heading8 text-label-light-secondary">
+        <p className="md:text-heading8 text-body1 text-label-light-secondary">
           {category.category.description}
         </p>
       </div>
       <div className="bg-scroll bg-category-products bg-blend-soft-light bg-center bg-no-repeat bg-cover">
         <div
           id="research-category-products"
-          className={`pt-20 px-16 pb-24 md:container flex flex-row justify-start flex-wrap w-full gap-60`}
+          className={`md:pt-20 pt-8 md:px-16 px-4 md:pb-24 pb-12 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full gap-60`}
         >
           {products.map((product) => (
             <ProductsWithArticles key={product.productSlug} {...product} />
