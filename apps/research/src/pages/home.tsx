@@ -1,18 +1,20 @@
 import { getHomePageElements } from 'src/api/home';
-import { GetStaticProps, NextPage } from 'next';
-import { CategoriesAndArticles, HomePage } from '@/types';
+import { GetStaticProps } from 'next';
+import { CategoriesAndArticles, HomePage, NextPageWithLayout } from '@/types';
 import { getCategoriesAndTheirArticles } from '@/api';
 import {
   CategoriesAndArticleElements,
   CoverArticle,
   SubArticle,
 } from '@/components';
+import { ReactElement } from 'react';
+import { PrivateLayout } from '@/layouts';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
 }
 
-const Home: NextPage<HomeProps> = ({
+const Home: NextPageWithLayout<HomeProps> = ({
   mainArticle,
   subArticle1,
   subArticle2,
@@ -48,6 +50,10 @@ const Home: NextPage<HomeProps> = ({
       </section>
     </>
   );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export default Home;
