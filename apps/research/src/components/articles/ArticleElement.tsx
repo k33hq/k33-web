@@ -23,7 +23,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
       {article.thumbnail ? (
         <div
           id={articleSlug + '-thumbnail'}
-          className="relative h-96 flex-shrink-0"
+          className="relative h-[372px] flex-shrink-0"
         >
           <Image
             src={article.thumbnail.url}
