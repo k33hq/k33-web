@@ -120,6 +120,18 @@ const GetArticlePage = gql`
           }
           body {
             json
+            links {
+              assets {
+                block {
+                  url
+                  description
+                  title
+                  sys {
+                    id
+                  }
+                }
+              }
+            }
           }
           summary {
             json

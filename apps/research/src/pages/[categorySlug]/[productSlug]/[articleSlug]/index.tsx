@@ -1,4 +1,4 @@
-import { getArticlePage, getArticleSlugs } from 'src/api/articles';
+import { getArticlePage, getArticleSlugs } from '@/api';
 import { ArticlePage } from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getUrl } from '@/utils';
@@ -26,7 +26,6 @@ const Article: NextPage<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product } = articlePage;
-  console.log(article.body);
   return (
     <>
       <Indicator color={product.branding.color} />
