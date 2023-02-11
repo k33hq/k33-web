@@ -30,14 +30,14 @@ const Article: NextPage<ArticleProps> = ({
   return (
     <>
       <Indicator color={product.branding.color} />
-      <div className="md:pt-16 py-12 md:container px-6">
-        <aside
-          className="float-left w-1/4 hidden md:visible"
-          aria-label="Sidebar"
-        >
-          <p>Hosted by</p>
-        </aside>
-        <div className="flex flex-col justify-center md:gap-8 gap-6">
+      <section
+        id="main-article-section"
+        className="flex md:flex-row flex-col-reverse md:container pt-6 md:py-12 md:pt-16 md:gap-6 gap-20"
+      >
+        <div className="md:w-1/3 w-full bg-bg-light-secondary px-6 md:px-0 py-10">
+          <p>Written by</p>
+        </div>
+        <article className="flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0">
           <ArticleTitle
             published={article.sys.firstPublishedAt}
             product={{
@@ -57,7 +57,6 @@ const Article: NextPage<ArticleProps> = ({
                 fill
                 style={{
                   objectFit: 'contain',
-                  width: '100%',
                 }}
                 alt={article.image.description}
               />
@@ -70,8 +69,9 @@ const Article: NextPage<ArticleProps> = ({
               title={article.reportDocument.title}
             />
           ) : null}
-        </div>
-      </div>
+        </article>
+        <div id="article-socials" className="md:w-1/3 md:visible hidden"></div>
+      </section>
     </>
   );
 };
