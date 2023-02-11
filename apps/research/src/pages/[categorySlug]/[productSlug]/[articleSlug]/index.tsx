@@ -28,7 +28,6 @@ const Article: NextPage<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product } = articlePage;
-  console.log(article.authorsCollection.items);
   return (
     <>
       <Indicator color={product.branding.color} />
@@ -75,7 +74,7 @@ const Article: NextPage<ArticleProps> = ({
             />
           ) : null}
         </article>
-        <div id="article-socials" className="md:w-1/3 w-0 h-0"></div>
+        <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
     </>
   );
