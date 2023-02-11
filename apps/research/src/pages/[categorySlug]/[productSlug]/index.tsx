@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import {
   getProductBySlug,
   getProductSlugsByCategory,
@@ -7,7 +7,6 @@ import {
 import {
   ArticleElements,
   CategorySlug,
-  NextPageWithLayout,
   ProductCoreSlug,
   ProductPage,
 } from '@/types';
@@ -19,7 +18,7 @@ import {
   Indicator,
   ProductsWithArticles,
 } from '@/components';
-
+import { NextPageWithLayout } from 'ui';
 import { getUrl } from '@/utils';
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';

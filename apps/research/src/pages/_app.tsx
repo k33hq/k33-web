@@ -6,8 +6,7 @@ import App from 'next/app';
 import { getCategoryElements } from '@/api';
 import { CategoryElements } from '@/types';
 import { MainLayout } from '@/layouts';
-import { NextPage } from 'next';
-import { ReactElement, ReactNode } from 'react';
+import { NextPageWithLayout } from 'ui';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -15,10 +14,6 @@ export const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
 });
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
 
 interface ResearchAppProps extends AppProps {
   categories: CategoryElements;

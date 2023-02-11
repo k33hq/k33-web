@@ -1,21 +1,18 @@
 import * as React from 'react';
 import { BasicButton } from './Buttons';
 
-export interface MainHeaderProps {
+interface HeaderProps {
   logo: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const MainHeader: React.FC<MainHeaderProps> = ({ logo }) => {
+export const Header: React.FC<HeaderProps> = ({ logo, children }) => {
   return (
     <nav className="navbar ui-w-full ui-bg-bg-light-primary">
-      <div className="sm:ui-container ui-items-center ui-justify-between ui-h-20 flex">
+      <div className="sm:ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6 md:ui-px-0">
         {logo}
-        <BasicButton size="medium" variant="secondary">
-          Get Started
-        </BasicButton>
+        <div id="footer-action-section">{children}</div>
       </div>
     </nav>
   );
 };
-
-export default MainHeader;

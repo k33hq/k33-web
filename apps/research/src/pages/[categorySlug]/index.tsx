@@ -1,8 +1,4 @@
-import {
-  CategoryPage,
-  NextPageWithLayout,
-  ProductElementsWithArticleElements,
-} from '@/types';
+import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
 import {
   getProductElementsAndArticleElementsByCategory,
   getAllCategorySlugs,
@@ -12,6 +8,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ProductsWithArticles } from '@/components';
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
+import { NextPageWithLayout } from 'ui';
 
 interface CategoryProps {
   category: CategoryPage;

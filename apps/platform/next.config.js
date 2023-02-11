@@ -14,7 +14,7 @@ const withMDX = require('@next/mdx')({
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  transpilePackages: ['core'],
+  transpilePackages: ['core', 'platform-js'],
   reactStrictMode: true,
   images: {
     unoptimized: true,

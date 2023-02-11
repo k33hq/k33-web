@@ -1,6 +1,6 @@
-import { NextPage } from 'next';
 import Image from 'next/image';
-import { BasicCards, Hero, BasicPromotion, HorizontleDivider } from 'ui';
+import { BasicCards, Hero, BasicPromotion, NextPageWithLayout } from 'ui';
+import { MainLayout } from '@/layouts';
 import heroImage from '../assets/hero.svg';
 import bloomberg from '../assets/bloomberg.png';
 import forbes from '../assets/forbes.png';
@@ -18,6 +18,7 @@ import adviceOffer from '../assets/advice_offer.svg';
 import marketsOffer from '../assets/markets_offer.svg';
 
 import { Companies, SendEmail } from '@/components';
+import { ReactElement } from 'react';
 
 const hero = {
   title: 'Safe. Secure. Digital assets.',
@@ -155,9 +156,9 @@ const offers = [
   },
 ];
 
-const Index: NextPage = () => {
+const Index: NextPageWithLayout = () => {
   return (
-    <div className="flex flex-col sm:gap-32 gap-12">
+    <div className="flex flex-col sm:gap-32 gap-12 px-6 md:px-0">
       <Hero
         {...hero}
         bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
@@ -207,6 +208,10 @@ const Index: NextPage = () => {
       </div>
     </div>
   );
+};
+
+Index.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
 };
 
 export default Index;

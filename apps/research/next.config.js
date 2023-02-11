@@ -1,7 +1,7 @@
 /** @type {import("next").NextConfig} */
 module.exports = {
   basePath: '/research',
-  transpilePackages: ['core'],
+  transpilePackages: ['core', 'platform-js'],
   reactStrictMode: true,
   images: {
     unoptimized: true,

@@ -9,3 +9,5 @@ export * from './Inputs';
 export * from './Buttons';
 export * from './Modals';
 export * from './Loading';
+export * from './Footers';
+export * from './types';
