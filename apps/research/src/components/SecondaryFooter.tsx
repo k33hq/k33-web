@@ -12,10 +12,10 @@ export interface SecondaryFooterProps {
 // TODO: change style when visited
 const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
   return (
-    <div className="bg-bg-dark-secondary h-14">
-      <div className="md:container flex flex-row justify-between items-center py-5">
-        <Image src={researchLogo} width={143} height={16} alt="research" />
-        <div id="research-products" className="flex flex-row gap-4">
+    <div className="bg-bg-dark-secondary md:h-14">
+      <div className="md:container flex flex-col md:flex-row items-center py-6 md:py-4 md:justify-between md:px-0 px-6 md:gap-12 gap-6">
+        <Image src={researchLogo} width={144} alt="research" />
+        <div id="research-products" className="flex md:flex-row flex-col gap-4">
           <p className="text-body1 text-label-dark-primary">Products</p>
           {categories.map((category) => (
             <Link

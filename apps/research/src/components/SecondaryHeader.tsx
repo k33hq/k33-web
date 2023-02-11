@@ -17,8 +17,8 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
 
   return (
     <nav className="navbar w-full bg-bg-light-tertiary">
-      <div className="md:container flex flex-row md:gap-12 gap-6 items-center justify-center h-10 md:px-0 px-2">
-        <Image src={researchLogo} alt="research-logo" width={143} height={16} />
+      <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
+        <Image src={researchLogo} alt="research-logo" width={109} height={12} />
         <div className="flex-1" />
         <Link
           className={`text-body4 ${
