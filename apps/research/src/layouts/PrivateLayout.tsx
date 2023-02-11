@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Modal, BrandButton, Loading } from 'ui';
-import google from '../assets/google.svg';
-import Image from 'next/image';
 import { useK33App } from '@/hooks';
+import { FcGoogle } from 'react-icons/fc';
 
 interface PrivateLayoutProps {
   children: React.ReactNode;
@@ -29,14 +28,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
             </p>
             <div id="login-mechanism" className="flex flex-col pt-10 w-full">
               <BrandButton
-                logo={
-                  <Image
-                    src={google}
-                    width={22}
-                    height={22}
-                    alt="google logo"
-                  />
-                }
+                logo={<FcGoogle width={22} height={22} />}
                 label="Sign in with Google"
                 onClick={googleLogin}
               />

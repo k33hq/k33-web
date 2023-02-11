@@ -126,6 +126,7 @@ importers:
       postcss: ^8.4.21
       react: 18.2.0
       react-dom: 18.2.0
+      react-icons: ^4.7.1
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
@@ -142,6 +143,7 @@ importers:
       platform-js: link:../../packages/platform-js
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.7.1_react@18.2.0
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
@@ -261,7 +263,9 @@ importers:
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       firebase: ^9.16.0
+      next: ^13.1.6
       react: ^18.2.0
+      react-icons: ^4.7.1
       tsconfig: workspace:*
       typescript: ^4.9.4
       ui: workspace:*
@@ -272,7 +276,9 @@ importers:
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
       firebase: 9.16.0
+      next: 13.1.6_react@18.2.0
       react: 18.2.0
+      react-icons: 4.7.1_react@18.2.0
       tsconfig: link:../tsconfig
       typescript: 4.9.5
       ui: link:../ui
@@ -4488,7 +4494,6 @@ packages:
       react: '*'
     dependencies:
       react: 18.2.0
-    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}

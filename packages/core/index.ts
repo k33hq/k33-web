@@ -43,6 +43,7 @@ import type {
 
 export const LOADING = 'LOADING';
 export const SIGNED_OUT = 'SIGNED_OUT';
+export const SIGNED_IN = 'SIGNED_IN';
 export const UNREGISTERED = 'UNREGISTRED';
 export const REGISTRED = 'REGISTRED';
 
@@ -114,7 +115,6 @@ export const appleSignInInit = (config: AppleIDConfig) => {
 
 export const isLoggedIn = () => {
   const auth = getAuth(getApp(APP_NAME));
-  console.log(auth.currentUser);
   return !!auth.currentUser;
 };
 
@@ -188,8 +188,7 @@ interface AppConfig {
 
 export const getAppState = async (config?: AppConfig) => {
   try {
-    const data = await fetcher('https://dev.api.arcane.no/user');
-
+    const data = await fetcher('https://dev.api.k33.no/user');
     if (data.status === 404) {
       return UNREGISTERED;
     } else {
@@ -206,7 +205,7 @@ export const getAppState = async (config?: AppConfig) => {
 
 export const register = async (config?: AppConfig) => {
   try {
-    const data = await mutator('https://dev.api.arcane.no/user', 'POST', {});
+    const data = await mutator('https://dev.api.k33.no/user', 'POST', {});
     const user = await data.json();
     // register analytics
     if (config) {
