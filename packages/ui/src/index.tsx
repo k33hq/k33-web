@@ -11,3 +11,4 @@ export * from './Modals';
 export * from './Loading';
 export * from './Footers';
 export * from './types';
+export * from './Layouts';

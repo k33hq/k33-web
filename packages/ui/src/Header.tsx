@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({ logo, children }) => {
     <nav className="navbar ui-w-full ui-bg-bg-light-primary">
       <div className="sm:ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6 md:ui-px-0">
         {logo}
-        <div id="footer-action-section">{children}</div>
+        <div id="header-action-section">{children}</div>
       </div>
     </nav>
   );

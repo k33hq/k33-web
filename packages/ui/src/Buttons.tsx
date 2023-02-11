@@ -59,9 +59,9 @@ export const BrandButton: React.FC<BrandButtonProps> = ({
   return (
     <button
       {...props}
-      className="active:ui-to-brand-light-secondary active:ui-border-none hover:ui-border-none hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-px-4 ui-py-2 ui-text-body1 ui-rounded-lg ui-shadow-md"
+      className="active:ui-to-brand-light-secondary active:ui-border-none ui-w-full hover:ui-border-none hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-px-4 ui-py-2 ui-text-body1 ui-rounded-lg ui-shadow-md"
     >
-      <div className="ui-flex ui-flex-row ui-gap-4 ui-text-center ui-justify-center ui-w-full">
+      <div className="ui-flex ui-flex-row ui-gap-2 md:ui-gap-4 ui-content-center ui-items-center ui-justify-center ui-w-full">
         {logo}
         {label}
       </div>
