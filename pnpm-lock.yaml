@@ -122,6 +122,7 @@ importers:
       eslint-config-custom: workspace:*
       firebase: ^9.16.0
       next: ^13.1.1
+      platform-js: workspace:*
       postcss: ^8.4.21
       react: 18.2.0
       react-dom: 18.2.0
@@ -138,6 +139,7 @@ importers:
       core: link:../../packages/core
       firebase: 9.16.0
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
+      platform-js: link:../../packages/platform-js
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       ui: link:../../packages/ui
@@ -173,6 +175,7 @@ importers:
       graphql: ^16.6.0
       graphql-request: ^5.1.0
       next: ^13.1.1
+      platform-js: workspace:*
       postcss: ^8.4.21
       react: 18.2.0
       react-dom: 18.2.0
@@ -193,6 +196,7 @@ importers:
       graphql: 16.6.0
       graphql-request: 5.1.0_graphql@16.6.0
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
+      platform-js: link:../../packages/platform-js
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-icons: 4.7.1_react@18.2.0
@@ -248,6 +252,30 @@ importers:
       eslint-plugin-react: 7.31.8_eslint@7.32.0
     devDependencies:
       typescript: 4.9.5
+
+  packages/platform-js:
+    specifiers:
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.7
+      core: workspace:*
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      firebase: ^9.16.0
+      react: ^18.2.0
+      tsconfig: workspace:*
+      typescript: ^4.9.4
+      ui: workspace:*
+    devDependencies:
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      core: link:../core
+      eslint: 7.32.0
+      eslint-config-custom: link:../eslint-config-custom
+      firebase: 9.16.0
+      react: 18.2.0
+      tsconfig: link:../tsconfig
+      typescript: 4.9.5
+      ui: link:../ui
 
   packages/tailwind-config:
     specifiers:

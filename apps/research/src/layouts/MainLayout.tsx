@@ -1,38 +1,21 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { CategoryElements } from '@/types';
+import { ResearchFooter, ResearchHeader } from '@/components';
 
 interface MainLayoutProps {
   children: React.ReactNode;
   categories: CategoryElements;
 }
 
-const DynamicHeader = dynamic(
-  async () => {
-    return await (
-      await import('@/components')
-    ).ResearchHeader;
-  },
-  { ssr: false }
-);
-
-const DynanamicFooter = dynamic(
-  async () => {
-    return await (
-      await import('@/components')
-    ).ResearchFooter;
-  },
-  { ssr: false }
-);
-
 const MainLayout: React.FC<MainLayoutProps> = ({ children, categories }) => {
   return (
     <>
-      <div className="min-h-screen">
-        <DynamicHeader categories={categories} />
+      <div className="min-h-screen pb-12">
+        <ResearchHeader categories={categories} />
         <main className="flex flex-col">{children}</main>
       </div>
-      <DynanamicFooter categories={categories} />
+      <ResearchFooter categories={categories} />
     </>
   );
 };
