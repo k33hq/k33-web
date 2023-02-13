@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { CategoriesAndArticles, HomePage, NextPageWithLayout } from '@/types';
+import { CategoriesAndArticles, HomePage } from '@/types';
 import { getCategoriesAndTheirArticles, getHomePageElements } from '@/api';
 import {
   CategoriesAndArticleElements,
@@ -8,6 +8,7 @@ import {
 } from '@/components';
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
+import { NextPageWithLayout } from 'ui';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;

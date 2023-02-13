@@ -28,6 +28,8 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
     <>
       <AuthHeader
         logo={<Image src={logo} height={24} width={94} alt="company logo" />}
+        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
+        registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'}
         firebaseConfig={config}
       />
       <SecondaryHeader categories={categories} />

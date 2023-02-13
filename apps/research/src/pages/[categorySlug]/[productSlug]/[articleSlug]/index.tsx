@@ -13,7 +13,8 @@ import {
 } from '@/components';
 import Image from 'next/image';
 import { Divider } from 'ui';
-import { useK33App } from '@/hooks';
+import { useAppState } from 'platform-js';
+import config from '@/firebase/config';
 
 interface ArticleProps {
   articleSlug: string;
@@ -29,7 +30,7 @@ const Article: NextPage<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product } = articlePage;
-  const [state] = useK33App();
+  const state = useAppState(config);
   return (
     <>
       <Indicator color={product.branding.color} />
@@ -45,7 +46,9 @@ const Article: NextPage<ArticleProps> = ({
         </div>
         <article
           className={`flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0 ${
-            ['lOADING', 'SIGNED_OUT'].includes(state) ? 'blur-md' : ''
+            ['lOADING', 'SIGNED_OUT', 'UNREGISTRED'].includes(state)
+              ? 'blur-md'
+              : ''
           }`}
         >
           <ArticleTitle
