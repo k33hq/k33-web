@@ -1,7 +1,8 @@
-import { useK33App } from '@/hooks';
 import * as React from 'react';
 import { BasicButton } from 'ui';
 import { GrDocumentLocked } from 'react-icons/gr';
+import { useAppState } from 'platform-js';
+import config from '@/firebase/config';
 
 interface ReportsDownloadProps {
   url: string;
@@ -38,14 +39,14 @@ const ReportsDownload: React.FC<ReportsDownloadProps> = ({ url, title }) => {
       .catch((e) => console.error(e));
   }
 
-  const [state] = useK33App();
+  const state = useAppState(config);
 
   //TODO: people can still disable this and download the report from the console easy fix but okay.
   return (
     <BasicButton
       fullWidth
       onClick={() => downloadResource(url)}
-      disabled={['LOADING', 'SIGNED_OUT'].includes(state)}
+      disabled={['LOADING', 'SIGNED_OUT', 'UNREGISTRED'].includes(state)}
     >
       <div className="flex flex-row items-center justify-center gap-2">
         <GrDocumentLocked className="inherit" />

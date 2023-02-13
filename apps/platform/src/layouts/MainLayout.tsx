@@ -32,6 +32,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <AuthHeader
           firebaseConfig={config}
           logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          authUrl={'/auth'}
+          registrationUrl={'/register'}
         />
         <main className="flex lex-col md:container">{children}</main>
       </div>

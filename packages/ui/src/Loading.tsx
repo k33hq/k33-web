@@ -8,7 +8,10 @@ export const Loading: React.FC = () => {
       aria-hidden="true"
       className="ui-fixed ui-top-0 ui-left-0 ui-right-0 ui-w-full ui-h-full ui-backdrop-blur-sm ui-bg-brand-light-primary/50"
     >
-      <div role="status">
+      <div
+        role="status"
+        className="ui-sr-only ui-container ui-flex ui-flex-col ui-items-center ui-justify-center ui-content-center ui-mx-auto"
+      >
         <svg
           aria-hidden="true"
           className="ui-w-8 ui-h-8 mr-2 ui-text-gray-200 ui-animate-spin dark:ui-text-gray-600 ui-fill-blue-600"
@@ -25,7 +28,6 @@ export const Loading: React.FC = () => {
             fill="currentFill"
           />
         </svg>
-        <span className="ui-sr-only">Loading...</span>
       </div>
     </div>
   );

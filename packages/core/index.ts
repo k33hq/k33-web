@@ -28,6 +28,7 @@ import {
   NextOrObserver,
   User,
   Auth,
+  signOut,
 } from 'firebase/auth';
 import type {
   LoginSuccessCallback,
@@ -80,6 +81,11 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
       signInWithPopup(auth, provider).then(success).catch(error);
     })
     .catch((error) => {});
+};
+
+export const logout = (success: () => void, error: (err: any) => void) => {
+  const auth = getAuth(getApp(APP_NAME));
+  signOut(auth).then(success).catch(error);
 };
 
 // apple id stuff

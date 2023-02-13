@@ -4,25 +4,31 @@ import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
 import { BrandButton, Stack } from 'ui';
 import { FcGoogle } from 'react-icons/fc';
-import { googleLogin } from 'core';
+import { AppStates, googleLogin } from 'core';
 
 interface AuthProps {
   firebaseConfig: FirebaseOptions;
-  home: string;
-  registration: string;
+  registrationUrl: string;
 }
 
-const Auth: React.FC<AuthProps> = ({ firebaseConfig, home, registration }) => {
+const Auth: React.FC<AuthProps> = ({ firebaseConfig, registrationUrl }) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
 
   React.useEffect(() => {
     if (state === 'REGISTRED') {
-      router.push(home);
+      router.push('/');
     } else if (state === 'UNREGISTRED') {
-      router.push(registration);
+      // router.replace('https://dev.k33.com/register', undefined, {
+      //   shallow: true,
+      // });
+      if (registrationUrl.includes('https')) {
+        window.location.href = registrationUrl;
+      } else {
+        router.push(registrationUrl);
+      }
     }
-  }, [state, router, registration, home]);
+  }, [state, router, registrationUrl]);
 
   const google = () => {
     googleLogin(
