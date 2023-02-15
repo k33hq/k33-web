@@ -158,7 +158,7 @@ const offers = [
 
 const Index: NextPageWithLayout = () => {
   return (
-    <div className="flex flex-col sm:gap-32 gap-12 px-6 md:px-0">
+    <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0">
       <Hero
         {...hero}
         bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
@@ -168,7 +168,7 @@ const Index: NextPageWithLayout = () => {
       <Companies {...companies} />
       <div
         id="k33-apps"
-        className="flex sm:flex-row flex-col items-center gap-8 sm:justify-between sm:content-center sm:w-full"
+        className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
       >
         {apps.map((app) => (
           <BasicCards {...app} key={app.title} />
@@ -179,20 +179,20 @@ const Index: NextPageWithLayout = () => {
       <BasicPromotion {...securePromotion} direction="left" />
       <div className="flex flex-col items-center gap-4">
         <div className="flex flex-col text-center items-center justify-center">
-          <p className="sm:text-heading6 text-heading7 text-brand-light-primary">
+          <p className="md:text-heading6 text-heading7 text-brand-light-primary">
             {call.title}
           </p>
-          <p className="sm:text-heading6 text-heading7 text-brand-light-primary">
+          <p className="md:text-heading6 text-heading7 text-brand-light-primary">
             {call.subtitle}
           </p>
         </div>
         <div className="flex flex-col items-center w-full">
-          <p className="sm:text-heading8 text-body1 text-brand-light-secondary">
+          <p className="md:text-heading8 text-body1 text-brand-light-secondary">
             What we offer
           </p>
           <div
             id="k33-offers"
-            className="flex sm:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
+            className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
           >
             {offers.map((offer) => (
               <BasicCards {...offer} key={offer.title} variant="secondary" />
@@ -202,7 +202,7 @@ const Index: NextPageWithLayout = () => {
       </div>
       <div
         id="k33-send-email"
-        className="sm:w-2/4 w-full sm:pb-32 flex flex-col self-center"
+        className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
       >
         <SendEmail placeholder="Enter your email" label="Get Early Access" />
       </div>

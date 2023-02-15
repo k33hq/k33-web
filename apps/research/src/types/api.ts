@@ -13,6 +13,9 @@ import {
   CategoriesAndArticles,
   ArticlePageSlugs,
   Image,
+  Subscriptions,
+  SubscriptionSlugs,
+  SubscriptionPage,
 } from './domain';
 
 /**
@@ -115,4 +118,22 @@ export interface GetHomePageElementsResponse {
 
 export interface GetAssetByIdResponse {
   asset: Image;
+}
+
+export interface GetAllSubscriptionsResponse {
+  subscriptionCollection: {
+    items: Subscriptions;
+  };
+}
+
+export interface GetAllSubscriptionSlugsResponse {
+  subscriptionWebCollection: {
+    items: SubscriptionSlugs;
+  };
+}
+
+export interface GetSubscriptionFromSlugResponse {
+  subscriptionWebCollection: {
+    items: ReadonlyArray<SubscriptionPage>;
+  };
 }

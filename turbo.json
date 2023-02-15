@@ -15,6 +15,14 @@
     "dev:platform": {
       "outputs": ["out/**", "dist/**", ".next/**"],
       "env": ["NEXT_PUBLIC_SENDGRID_API_KEY"]
+    },
+    "dev:research": {
+      "outputs": ["out/**", "dist/**", ".next/**"],
+      "env": [
+        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_SECRET_KEY",
+        "NEXT_PUBLIC_PRICING_TABLE_ID"
+      ]
     }
   },
   "globalEnv": [
@@ -32,6 +40,7 @@
     "CONTENTFUL_PREVIEW_SECRET",
     "CONTENTFUL_ENVIRONMENT",
     "CONTENTFUL_GRAPHQL_ENDPOINT",
-    "NEXT_PUBLIC_PLATFORM_URL"
+    "NEXT_PUBLIC_PLATFORM_URL",
+    "NEXT_PUBLIC_K33_BACKEND_URL"
   ]
 }

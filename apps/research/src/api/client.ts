@@ -1,4 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
+import Stripe from 'stripe';
 
 export const contentful = new GraphQLClient(
   `${process.env.CONTENTFUL_GRAPHQL_ENDPOINT}/content/v1/spaces/${[
@@ -12,3 +13,7 @@ export const contentful = new GraphQLClient(
 );
 
 export const getContentful = async () => contentful;
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: '2022-11-15',
+});

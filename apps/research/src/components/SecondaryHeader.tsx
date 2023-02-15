@@ -40,6 +40,18 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
             {c.category.title}
           </Link>
         ))}
+        <Link
+          className={'text-body4 text-label-light-secondary'}
+          href={getUrl('search')}
+        >
+          Search
+        </Link>
+        <Link
+          className={'text-body4 text-label-light-secondary'}
+          href={getUrl('settings')}
+        >
+          Settings
+        </Link>
         <div className="flex-1" />
       </div>
     </nav>

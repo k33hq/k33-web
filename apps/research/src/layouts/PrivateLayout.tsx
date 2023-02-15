@@ -10,7 +10,7 @@ interface PrivateLayoutProps {
 
 const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
   const state = useAppState(config);
-
+  const router = useRouter();
   const privateStates = ['SIGNED_OUT'];
 
   React.useEffect(() => {
@@ -37,6 +37,9 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
             </p>
             <div id="login-mechanism" className="flex flex-col pt-10 w-full">
               <Auth
+                onSuccessLogin={() => {
+                  router.reload();
+                }}
                 firebaseConfig={config}
                 registrationUrl={
                   process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'

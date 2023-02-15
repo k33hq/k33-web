@@ -14,7 +14,8 @@ interface BasicButtonProps extends K33ButtonProps {
 }
 
 const getSize: Record<Size, string> = {
-  large: 'ui-px-6 ui-py-4 ui-text-heading8 ui-rounded-full ui-shadow-2xl',
+  large:
+    'ui-px-6 ui-py-4 ui-text-body2 md:ui-text-heading8 ui-rounded-full ui-shadow-2xl',
   medium: 'ui-px-4 ui-py-2 ui-text-body1 ui-rounded-lg ui-shadow-2xl',
   small: '',
 };
