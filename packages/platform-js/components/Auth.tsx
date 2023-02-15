@@ -4,14 +4,20 @@ import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
 import { BrandButton, Stack } from 'ui';
 import { FcGoogle } from 'react-icons/fc';
-import { AppStates, googleLogin } from 'core';
+import { googleLogin } from 'core';
+import { UserCredential } from 'firebase/auth';
 
 interface AuthProps {
   firebaseConfig: FirebaseOptions;
   registrationUrl: string;
+  onSuccessLogin: (user: UserCredential) => void;
 }
 
-const Auth: React.FC<AuthProps> = ({ firebaseConfig, registrationUrl }) => {
+const Auth: React.FC<AuthProps> = ({
+  firebaseConfig,
+  registrationUrl,
+  onSuccessLogin,
+}) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
 
@@ -19,9 +25,6 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, registrationUrl }) => {
     if (state === 'REGISTRED') {
       router.push('/');
     } else if (state === 'UNREGISTRED') {
-      // router.replace('https://dev.k33.com/register', undefined, {
-      //   shallow: true,
-      // });
       if (registrationUrl.includes('https')) {
         window.location.href = registrationUrl;
       } else {
@@ -33,7 +36,7 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, registrationUrl }) => {
   const google = () => {
     googleLogin(
       (user) => {
-        router.reload();
+        onSuccessLogin(user);
       },
       (err) => {
         // ignore for now

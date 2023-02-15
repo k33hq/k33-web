@@ -278,3 +278,9 @@ const getIdToken = async (forceRefresh?: boolean) => {
     });
   }
 };
+
+export const getCustomerId = () => {
+  const auth = getAuth(getApp(APP_NAME));
+  const id = auth.currentUser?.uid;
+  return id;
+};

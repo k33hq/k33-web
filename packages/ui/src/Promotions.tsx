@@ -22,22 +22,22 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
   callToAction,
 }) => {
   return (
-    <div className="ui-flex sm:ui-flex-row ui-flex-col sm:ui-gap-20 ui-gap-8 ui-items-center ui-justify-between">
+    <div className="ui-flex md:ui-flex-row ui-flex-col md:ui-gap-20 ui-gap-8 ui-items-center ui-justify-between">
       {direction === 'left' ? image : null}
-      <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center sm:ui-items-start">
-        <p className="ui-text-heading6 sm:ui-text-heading4 ui-text-label-light-primary">
+      <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center md:ui-items-start">
+        <p className="ui-text-heading6 md:ui-text-heading4 ui-text-label-light-primary">
           {title}
         </p>
-        <p className="ui-text-body3 sm:ui-text-body1 ui-text-label-light-secondary">
+        <p className="ui-text-body3 md:ui-text-body1 ui-text-label-light-secondary">
           {description}
         </p>
-        <div className="ui-flex ui-flex-col ui-gap-3 ui-pt-3 sm:ui-gap-9 sm:ui-pt-7 ui-justify-center">
+        <div className="ui-flex ui-flex-col ui-gap-3 ui-pt-3 md:ui-gap-9 md:ui-pt-7 ui-justify-center">
           {points.map((point) => (
             <div
               key={point}
               className="ui-flex ui-flex-row ui-items-center ui-gap-2"
             >
-              <div className="sm:ui-w-10 sm:ui-h-9 ui-w-5 ui-h-4">
+              <div className="md:ui-w-10 md:ui-h-9 ui-w-5 ui-h-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -55,7 +55,7 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
                   />
                 </svg>
               </div>
-              <p className="sm:ui-text-heading8 ui-text-body3 ui-text-label-light-secondary">
+              <p className="md:ui-text-heading8 ui-text-body3 ui-text-label-light-secondary">
                 {point}
               </p>
             </div>

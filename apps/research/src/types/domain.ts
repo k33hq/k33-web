@@ -198,3 +198,36 @@ export interface PromotionElement {
   image: Image;
   points: ReadonlyArray<string>;
 }
+
+export interface Subscription {
+  stripeProductId: string;
+  name: string;
+  description: string;
+  image: Image;
+  features: ReadonlyArray<string>;
+  linkedFrom: {
+    subscriptionWebCollection: {
+      items: SubscriptionWebs;
+    };
+  };
+}
+
+export type Subscriptions = ReadonlyArray<Subscription>;
+
+export interface SubscriptionSlug {
+  subscriptionSlug: string;
+}
+
+export type SubscriptionSlugs = ReadonlyArray<SubscriptionSlug>;
+
+export interface SubscriptionWeb extends SubscriptionSlug {
+  title: string;
+  label: string;
+}
+
+export type SubscriptionWebs = ReadonlyArray<SubscriptionWeb>;
+
+export interface SubscriptionPage {
+  title: string;
+  subscription: Omit<Subscription, 'linkedFrom'>;
+}

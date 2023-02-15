@@ -2,7 +2,6 @@ import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
-import { MainLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
 
 export const poppins = Poppins({

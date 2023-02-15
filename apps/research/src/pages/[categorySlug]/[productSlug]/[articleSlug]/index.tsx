@@ -15,6 +15,8 @@ import Image from 'next/image';
 import { Divider } from 'ui';
 import { useAppState } from 'platform-js';
 import config from '@/firebase/config';
+import { useEffect, useState } from 'react';
+import { fetcher } from 'core';
 
 interface ArticleProps {
   articleSlug: string;
@@ -31,6 +33,18 @@ const Article: NextPage<ArticleProps> = ({
 }) => {
   const { article, product } = articlePage;
   const state = useAppState(config);
+  // check stripe if this user customerID is paid.
+  // TODO: update it later
+  const [proUser, setProUser] = useState<boolean>(false);
+
+  useEffect(() => {
+    fetcher(
+      `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
+    )
+      .catch((data) => setProUser(false))
+      .then((data) => console.log(data));
+  }, [state]);
+
   return (
     <>
       <Indicator color={product.branding.color} />

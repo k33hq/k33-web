@@ -6,9 +6,12 @@ import {
   CoverArticle,
   SubArticle,
 } from '@/components';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { PrivateLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
+import { fetcher } from 'core';
+import { useAppState } from 'platform-js';
+import config from '@/firebase/config';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
@@ -38,6 +41,10 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </div>
       </section>
+      {/* <stripe-pricing-table
+        pricing-table-id="prctbl_1MbMv0LrfjWYG7W51XRtWX1e"
+        publishable-key="pk_test_zKp03y7a9joXn0e0jSrQIimG00rftOWMzH"
+      ></stripe-pricing-table> */}
       <section className="md:container md:py-32 px-2" id="category-articles">
         {articles.map((category, index) => (
           <>

@@ -1,3 +1,6 @@
+export * from './domain';
+export * from './api';
+
 export interface Frontmatter {
   title: string;
   description: string;
@@ -6,7 +9,7 @@ export interface Frontmatter {
   createdAt?: string;
 }
 
-interface Page {
+export interface Page {
   content: string;
   frontmatter: Frontmatter;
 }
