@@ -7,8 +7,8 @@ import Script from 'next/script';
 import { getCategoryElements } from '@/api';
 import { CategoryElements } from '@/types';
 import { MainLayout } from '@/layouts';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NextPageWithLayout } from 'ui';
+import K33App from 'platform-js';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -22,15 +22,6 @@ interface ResearchAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 0,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
 const ResearchApp = ({
   Component,
   pageProps,
@@ -38,14 +29,12 @@ const ResearchApp = ({
 }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
-    <>
+    <K33App>
       <Script async src="https://js.stripe.com/v3/pricing-table.js" />
       <MainLayout categories={categories}>
-        <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />)}
-        </QueryClientProvider>
+        {getLayout(<Component {...pageProps} />)}
       </MainLayout>
-    </>
+    </K33App>
   );
 };
 

@@ -10,7 +10,7 @@ interface ResearchProps {
 const Research: NextPage<ResearchProps> = ({ subscriptions }) => {
   return (
     <div className="md:container px-6 md:px-0 py-20">
-      <p className="text-heading8 md:text-heading7 text-label-light-primary">
+      <div className="text-heading8 md:text-heading7 text-label-light-primary">
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start">
           {subscriptions.map((subscription) => (
             <SubscriptionElement
@@ -19,7 +19,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions }) => {
             />
           ))}
         </div>
-      </p>
+      </div>
     </div>
   );
 };

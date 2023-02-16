@@ -24,7 +24,7 @@ const getVariant: Record<Variant, string> = {
   primary:
     'ui-bg-brand-light-primary ui-text-label-dark-primary active:ui-to-brand-light-secondary hover:ui-to-brand-light-tertiary disabled:ui-bg-default-systemGrey-light-2 disabled:ui-shadow-none focus:ui-shadow-focus',
   secondary:
-    'ui-border-brand-light-primary ui-bg-brand-dark-primary active:ui-to-brand-light-secondary active:ui-border-none hover:ui-border-none hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-border-2',
+    'ui-border-brand-light-primary ui-bg-brand-dark-primary active:ui-to-brand-light-secondary active:ui-border-none hover:ui-border-brand-light-tertiary hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-border-2',
   tertiary: '',
 };
 

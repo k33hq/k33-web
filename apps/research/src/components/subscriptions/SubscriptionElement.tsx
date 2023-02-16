@@ -20,12 +20,14 @@ const SubscriptionElement: React.FC<SubscriptionElementProps> = ({
       id={subscription.stripeProductId}
       className="bg-bg-light-primary flex flex-col items-center shadow-xl px-6 py-10 rounded-xl justify-center content-center gap-8 w-[328px]"
     >
-      <Image
-        src={subscription.image.url}
-        height={135}
-        width={110}
-        alt={subscription.image.title}
-      />
+      <div>
+        <Image
+          src={subscription.image.url}
+          height={135}
+          width={110}
+          alt={subscription.image.title}
+        />
+      </div>
       <div id="product-title" className="flex flex-col gap-3 text-center">
         <p className="text-heading8 text-label-light-primary">
           {subscription.name}
@@ -35,7 +37,6 @@ const SubscriptionElement: React.FC<SubscriptionElementProps> = ({
         </p>
       </div>
       <BasicList data={subscription.features} />
-
       <BasicButton
         onClick={() => {
           router.push(

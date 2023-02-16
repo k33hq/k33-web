@@ -13,3 +13,4 @@ export * from './Footers';
 export * from './types';
 export * from './Layouts';
 export * from './Lists';
+export * from './Menus';
