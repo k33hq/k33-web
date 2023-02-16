@@ -2,12 +2,12 @@ import * as React from 'react';
 import { getAllSubscriptionSlugs, getSubscriptionBySlug } from '@/api';
 import { PrivateLayout } from '@/layouts';
 import { SubscriptionPage } from '@/types';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 import { getCustomerId } from 'core';
-import { checkout } from '@/utils/get-stripejs';
+import { checkout } from '@/utils';
 
 interface SubscriptionProps {
   subscription: SubscriptionPage;

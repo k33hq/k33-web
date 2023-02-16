@@ -2,12 +2,12 @@ import { GraphQLClient } from 'graphql-request';
 import Stripe from 'stripe';
 
 export const contentful = new GraphQLClient(
-  `${process.env.CONTENTFUL_GRAPHQL_ENDPOINT}/content/v1/spaces/${[
-    process.env.CONTENTFUL_SPACE_ID,
-  ]}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
+  `${process.env.NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT}/content/v1/spaces/${[
+    process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+  ]}/environments/${process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}`,
   {
     headers: {
-      Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN}`,
     },
   }
 );

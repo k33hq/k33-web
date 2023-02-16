@@ -22,10 +22,3 @@ export const checkout = async (productId: string, customerId: string) => {
   });
   console.log(result);
 };
-
-export const checkIfCustomerSubscribed = async (
-  productId: string,
-  customerId: string
-) => {
-  const stripe = await getStripe();
-};

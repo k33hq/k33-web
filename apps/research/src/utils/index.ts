@@ -11,3 +11,5 @@ export const colors = {
   systemPurple: 'bg-default-systemPurple-light',
   systemPink: 'bg-default-systemPink-light',
 };
+
+export * from './get-stripejs';
