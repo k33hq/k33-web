@@ -9,3 +9,4 @@ export { default as ResearchHeader } from './ResearchHeader';
 export { default as ResearchFooter } from './ResearchFooter';
 export * from './author';
 export * from './subscriptions';
+export * from './landing';
