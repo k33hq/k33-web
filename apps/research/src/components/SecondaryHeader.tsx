@@ -1,7 +1,5 @@
-'use client';
-
 import * as React from 'react';
-import { CategoryElements, CategorySlugs } from '@/types';
+import { CategoryElements } from '@/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getUrl } from '@/utils';
@@ -17,13 +15,7 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <nav
-      className={`navbar w-full ${
-        router.pathname === '/'
-          ? 'bg-bg-dark-elevated-tertiary'
-          : 'bg-bg-light-tertiary'
-      }`}
-    >
+    <nav className={`navbar w-full bg-bg-light-tertiary`}>
       <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
         <Link href={process.env.NEXT_PUBLIC_RESEARCH_URL as string}>
           <Image

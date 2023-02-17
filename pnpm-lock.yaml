@@ -62,10 +62,7 @@ importers:
   apps/market:
     specifiers:
       '@babel/core': ^7.0.0
-      '@mdx-js/loader': ^2.2.1
-      '@mdx-js/react': ^2.2.1
       '@next/font': ^13.1.6
-      '@next/mdx': ^13.1.6
       '@types/node': ^17.0.12
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
@@ -74,6 +71,7 @@ importers:
       eslint-config-custom: workspace:*
       firebase: ^9.16.0
       next: ^13.1.1
+      platform-js: workspace:*
       postcss: ^8.4.21
       react: 18.2.0
       react-dom: 18.2.0
@@ -83,12 +81,10 @@ importers:
       typescript: ^4.5.3
       ui: workspace:*
     dependencies:
-      '@mdx-js/loader': 2.2.1
-      '@mdx-js/react': 2.2.1_react@18.2.0
       '@next/font': 13.1.6
-      '@next/mdx': 13.1.6_vvg67iglxhejglpl7nsv3pjzui
       firebase: 9.16.0
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
+      platform-js: link:../../packages/platform-js
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       ui: link:../../packages/ui
