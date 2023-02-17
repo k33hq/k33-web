@@ -17,8 +17,10 @@ import researchOffer from '../assets/research_offer.svg';
 import adviceOffer from '../assets/advice_offer.svg';
 import marketsOffer from '../assets/markets_offer.svg';
 
-import { Companies, SendEmail } from '@/components';
+import { Companies } from '@/components';
+
 import { ReactElement } from 'react';
+import { SendEmail } from 'platform-js';
 
 const hero = {
   title: 'Safe. Secure. Digital assets.',
@@ -159,68 +161,76 @@ const offers = [
   },
 ];
 
+//
+
 const Index: NextPageWithLayout = () => {
   return (
-    <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0">
+    <>
       <Hero
         {...hero}
         bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
       >
-        <SendEmail placeholder="Enter your email" label="Get Early Access" />
+        <SendEmail
+          placeholder="Enter your email"
+          label="Get Early Access"
+          listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+        />
       </Hero>
-      <Companies {...companies} />
-      <div
-        id="k33-apps"
-        className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
-      >
-        {apps.map((app) => (
-          <BasicCards {...app} key={app.title}>
-            <a
-              href={app.url}
-              className="ui-text-heading6 hover:underline ui-text-brand-light-primary"
-            >
-              {app.title}
-            </a>
-          </BasicCards>
-        ))}
-      </div>
-      <BasicPromotion {...insightPromotion} direction="left" />
-      <BasicPromotion {...tradePromotion} direction="right" />
-      <BasicPromotion {...securePromotion} direction="left" />
-      <div className="flex flex-col items-center gap-4">
-        <div className="flex flex-col text-center items-center justify-center">
-          <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-            {call.title}
-          </p>
-          <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-            {call.subtitle}
-          </p>
+      <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0 md:container">
+        <Companies {...companies} />
+        <div
+          id="k33-apps"
+          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
+        >
+          {apps.map((app) => (
+            <BasicCards {...app} key={app.title}>
+              <a
+                href={app.url}
+                className="ui-text-heading6 hover:underline ui-text-brand-light-primary"
+              >
+                {app.title}
+              </a>
+            </BasicCards>
+          ))}
         </div>
-        <div className="flex flex-col items-center w-full">
-          <p className="md:text-heading8 text-body1 text-brand-light-secondary">
-            What we offer
-          </p>
-          <div
-            id="k33-offers"
-            className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
-          >
-            {offers.map((offer) => (
-              <BasicCards {...offer} key={offer.title} variant="secondary">
-                <p className="text-heading8 text-label-light-primary">
-                  {offer.title}
-                </p>
-              </BasicCards>
-            ))}
+        <BasicPromotion {...insightPromotion} direction="left" />
+        <BasicPromotion {...tradePromotion} direction="right" />
+        <BasicPromotion {...securePromotion} direction="left" />
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col text-center items-center justify-center">
+            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
+              {call.title}
+            </p>
+            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
+              {call.subtitle}
+            </p>
+          </div>
+          <div className="flex flex-col items-center w-full">
+            <p className="md:text-heading8 text-body1 text-brand-light-secondary">
+              What we offer
+            </p>
+            <div
+              id="k33-offers"
+              className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
+            >
+              {offers.map((offer) => (
+                <BasicCards {...offer} key={offer.title} variant="secondary">
+                  <p className="text-heading8 text-label-light-primary">
+                    {offer.title}
+                  </p>
+                </BasicCards>
+              ))}
+            </div>
           </div>
         </div>
+        <div
+          id="k33-send-email"
+          className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
+        >
+          <SendEmail placeholder="Enter your email" label="Get Early Access" />
+        </div>
       </div>
-      <div
-        id="k33-send-email"
-        className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
-      >
-        <SendEmail placeholder="Enter your email" label="Get Early Access" />
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -56,7 +56,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         >
           {null}
         </SecondaryHeader>
-        <main className="flex lex-col md:container">{children}</main>
+        <main className="flex flex-col">{children}</main>
       </div>
       <div>
         <PlatformFooter

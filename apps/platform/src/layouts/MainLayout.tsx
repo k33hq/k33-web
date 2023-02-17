@@ -41,7 +41,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           authUrl={'/auth'}
           registrationUrl={'/register'}
         />
-        <main className="flex lex-col md:container">{children}</main>
+        <main className="flex flex-col">{children}</main>
       </div>
       <PlatformFooter
         logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
