@@ -3,14 +3,14 @@ import { Variants } from './types';
 
 interface BasicCardsProps {
   logo: React.ReactNode;
-  title: string;
+  children: React.ReactNode;
   description: string;
   variant?: Variants;
 }
 
 export const BasicCards: React.FC<BasicCardsProps> = ({
   logo,
-  title,
+  children,
   description,
   variant = 'primary',
 }) => {
@@ -23,15 +23,8 @@ export const BasicCards: React.FC<BasicCardsProps> = ({
       }`}
     >
       {logo}
-      <p
-        className={
-          variant === 'primary'
-            ? 'ui-text-heading6 ui-text-label-light-primary'
-            : 'ui-text-heading8 ui-text-brand-light-primary'
-        }
-      >
-        {title}
-      </p>
+      
+      <div>{children}</div>
       <p
         className={
           variant === 'primary'

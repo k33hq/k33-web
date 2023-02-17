@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Footer, Header } from 'ui';
+import { Header } from 'ui';
 import logo from '../assets/logo.svg';
 import Image from 'next/image';
 import config from '@/firebase/config';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { PlatformFooter } from 'platform-js';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -31,13 +33,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <div className="min-h-screen pb-12">
         <AuthHeader
           firebaseConfig={config}
-          logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          logo={
+            <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+              <Image src={logo} width={133} height={40} alt="k33-logo" />
+            </Link>
+          }
           authUrl={'/auth'}
           registrationUrl={'/register'}
         />
         <main className="flex lex-col md:container">{children}</main>
       </div>
-      <Footer
+      <PlatformFooter
         logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
       />
     </>

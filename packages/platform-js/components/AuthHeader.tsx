@@ -160,11 +160,25 @@ export const MarketsLogo: React.FC<LogoProps> = ({ active = false }) => {
   );
 };
 
-const apps = [
-  { name: 'Research', url: '', Logo: <ResearchLogo /> },
-  { name: 'Investments', url: '', Logo: <InvestLogo /> },
-  { name: 'Markets', url: '', Logo: <MarketsLogo /> },
-  { name: 'Platform', url: '', Logo: <PlatformLogo /> },
+export const apps = [
+  {
+    name: 'Research',
+    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
+    Logo: ResearchLogo,
+    key: 'research',
+  },
+  {
+    name: 'Investments',
+    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
+    Logo: InvestLogo,
+    key: 'invest',
+  },
+  {
+    name: 'Markets',
+    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
+    Logo: MarketsLogo,
+    key: 'markets',
+  },
 ];
 
 const AuthHeader: React.FC<AuthHeaderProps> = ({
@@ -195,39 +209,19 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
             </AppItem>
           )}
         </AppMenuItem>
-        <AppMenuItem>
-          {(active) => (
-            <AppItem
-              active={active || isResearch}
-              name="Research"
-              url={process.env.NEXT_PUBLIC_RESEARCH_URL as string}
-            >
-              <ResearchLogo active={active || isResearch} />
-            </AppItem>
-          )}
-        </AppMenuItem>
-        <AppMenuItem>
-          {(active) => (
-            <AppItem
-              active={active || isMarkets}
-              name="Markets"
-              url={process.env.NEXT_PUBLIC_MARKETS_URL as string}
-            >
-              <MarketsLogo active={active || isMarkets} />
-            </AppItem>
-          )}
-        </AppMenuItem>
-        <AppMenuItem>
-          {(active) => (
-            <AppItem
-              active={active || isInvestments}
-              name="Investments"
-              url={process.env.NEXT_PUBLIC_INVEST_URL as string}
-            >
-              <InvestLogo active={active || isInvestments} />
-            </AppItem>
-          )}
-        </AppMenuItem>
+        {apps.map(({ key, Logo, name, url }) => (
+          <AppMenuItem key={key}>
+            {(active) => (
+              <AppItem
+                active={active || router.pathname.includes(key)}
+                name={name}
+                url={url}
+              >
+                <Logo active={active || router.pathname.includes(key)} />
+              </AppItem>
+            )}
+          </AppMenuItem>
+        ))}
       </AppDrawer>
       <BasicButton
         variant="secondary"

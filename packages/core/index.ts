@@ -284,3 +284,9 @@ export const getCustomerId = () => {
   const id = auth.currentUser?.uid;
   return id;
 };
+
+export const getCustomerEmail = () => {
+  const auth = getAuth(getApp(APP_NAME));
+  const email = auth.currentUser?.email;
+  return email;
+};
