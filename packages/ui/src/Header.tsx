@@ -30,3 +30,24 @@ export const Header: React.FC<HeaderProps> = ({
     </nav>
   );
 };
+
+interface SecondaryHeaderProps {
+  branding: React.ReactNode;
+  children: React.ReactNode;
+}
+
+export const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({
+  branding,
+  children,
+}) => {
+  return (
+    <nav className={`ui-navbar ui-w-full ui-bg-bg-light-tertiary`}>
+      <div className="md:ui-container ui-flex ui-flex-row md:ui-gap-12 ui-gap-6 ui-items-center md:ui-justify-center ui-h-10 md:ui-px-0 ui-px-6 ui-overflow-auto">
+        {branding}
+        <div className="ui-flex-1" />
+        {children}
+        <div className="ui-flex-1" />
+      </div>
+    </nav>
+  );
+};

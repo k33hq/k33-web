@@ -1,5 +1,4 @@
-'use client';
-import * as React from 'react';
+simport * as React from 'react';
 import SecondaryHeader, { SecondaryHeaderProps } from './SecondaryHeader';
 import logo from '../assets/logo.svg';
 import Image from 'next/image';
@@ -11,6 +10,8 @@ import { useRouter } from 'next/router';
 
 interface ResearchHeaderProps extends SecondaryHeaderProps {}
 
+
+// TODO: upgrade the secondary header here with the ui one
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
   {
@@ -30,18 +31,9 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
   return (
     <>
       <AuthHeader
-        transparent={router.pathname === '/'}
         logo={
           <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
-            <Image
-              src={logo}
-              height={24}
-              width={94}
-              alt="company logo"
-              style={{
-                filter: router.pathname === '/' ? 'invert(100%)' : '',
-              }}
-            />
+            <Image src={logo} height={24} width={94} alt="company logo" />
           </Link>
         }
         authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
