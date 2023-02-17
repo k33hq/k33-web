@@ -3,10 +3,31 @@ import left from '../assets/markets-left-bg.png';
 import right from '../assets/markets-right-bg.png';
 import Image from 'next/image';
 import { SendEmail } from 'platform-js';
+import bespoke from '../assets/bespoke.png';
+import professional from '../assets/professional.png';
+import vault from '../assets/vault.png';
+import { ProductElements } from '@/components';
 
 const hero = {
   title: 'Trade across multiple markets and exchanges',
   body: 'Take the pain away from onboarding, understand what custody solution works best for you, get best execution across multiple exchanges, with real time in-person service & support',
+};
+
+const offerings = {
+  title: 'Choose a product that’s right for you',
+  products: [
+    {
+      logo: vault,
+      title: 'Vault',
+      description:
+        'Hold custody of your private keys in a secure multisig vault',
+      features: [
+        'Built for seamless succession planning',
+        'Enables an easy transition to trading',
+        'Clear transparency and visibility on the blockchain',
+      ],
+    },
+  ],
 };
 
 const Index: NextPage = () => {
@@ -51,6 +72,16 @@ const Index: NextPage = () => {
               listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
             />
           </div>
+        </div>
+      </div>
+      <div className="md:container flex flex-col items-center py-20">
+        <div className="w-[566px] text-center">
+          <h6 className="text-heading6">{offerings.title}</h6>
+        </div>
+        <div>
+          {offerings.products.map((product) => (
+            <ProductElements {...product} key={product.title} />
+          ))}
         </div>
       </div>
     </>
