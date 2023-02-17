@@ -23,7 +23,7 @@ export const BasicCards: React.FC<BasicCardsProps> = ({
       }`}
     >
       {logo}
-      
+
       <div>{children}</div>
       <p
         className={

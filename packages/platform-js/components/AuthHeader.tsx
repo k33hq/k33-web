@@ -10,6 +10,7 @@ interface AuthHeaderProps {
   firebaseConfig: FirebaseOptions;
   authUrl: string;
   registrationUrl: string;
+  transparent?: boolean;
 }
 
 const loginText: Record<AppStates, string> = {
@@ -186,6 +187,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
   firebaseConfig,
   authUrl,
   registrationUrl,
+  transparent = false,
 }) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
@@ -196,7 +198,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
   const isHome = !isResearch && !isMarkets && !isInvestments;
 
   return (
-    <Header logo={logo}>
+    <Header logo={logo} transparent={transparent}>
       <AppDrawer>
         <AppMenuItem>
           {(active) => (
