@@ -6,8 +6,10 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
-import { getCustomerId } from 'core';
+import { getCustomerEmail, getCustomerId } from 'core';
 import { checkout } from '@/utils';
+import { useAppState } from 'platform-js';
+import config from '@/firebase/config';
 
 interface SubscriptionProps {
   subscription: SubscriptionPage;
@@ -16,20 +18,33 @@ interface SubscriptionProps {
 const Subscription: NextPageWithLayout<SubscriptionProps> = ({
   subscription,
 }) => {
-  const router = useRouter();
+  const state = useAppState(config);
+  const route = useRouter();
 
   React.useEffect(() => {
-    const customerID = getCustomerId();
-    if (customerID) {
-      if (subscription.subscription.stripeProductId === 'free') {
-        router.push('/home');
-      } else {
-        checkout(subscription.subscription.stripeProductId, customerID);
+    if (subscription.subscription.stripeProductId === 'free') {
+      route.push('/home');
+    } else {
+      const email = getCustomerEmail();
+      if (email) {
+        checkout(subscription.subscription.stripeProductId, email);
       }
     }
-  }, [router, subscription]);
+  }, [subscription, state, route]);
 
-  return <div id="subscription"></div>;
+  return (
+    <div id="subscription">
+      <div className="w-60 h-24 border-2 rounded-md mx-auto mt-20">
+        <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+          <div className="w-12 bg-gray-300 h-12 rounded-full "></div>
+          <div className="flex flex-col space-y-3">
+            <div className="w-36 bg-gray-300 h-6 rounded-md "></div>
+            <div className="w-24 bg-gray-300 h-6 rounded-md "></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Subscription;
@@ -54,6 +69,7 @@ export const getStaticProps: GetStaticProps<SubscriptionProps> = async (
 ) => {
   const subscriptionSlug = context.params!.subscriptionSlug as string;
   const subscription = await getSubscriptionBySlug(subscriptionSlug);
+
   return {
     props: {
       subscription,

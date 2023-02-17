@@ -32,7 +32,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           {mainArticle ? <CoverArticle {...mainArticle} /> : null}
           <div
             id="secondary-articles-section"
-            className="flex md:flex-row flex-col md:flex-wrap md:gap-12 gap-6 items-center md:justify-between"
+            className="flex md:flex-row flex-col md:flex-wrap md:gap-12 gap-6 md:items-center sm:justify-around md:justify-between"
           >
             {subArticle1 ? <SubArticle {...subArticle1} /> : null}
             {subArticle2 ? <SubArticle {...subArticle2} /> : null}

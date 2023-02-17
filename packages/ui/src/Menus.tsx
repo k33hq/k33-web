@@ -27,7 +27,7 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({ children }) => {
             leaveFrom="ui-transform ui-opacity-100 ui-scale-100"
             leaveTo="ui-transform ui-opacity-0 ui-scale-95"
           >
-            <Menu.Items className="ui-absolute -ui-top-32 ui-translate-y-full -ui-translate-x-44 ui-w-[203px] ui-h-[192px] ui-bg-bg-light-primary ui-rounded-lg ui-shadow-2xl md:ui-px-4 md:ui-py-4 ui-origin-bottom-left ui-flex ui-flex-row ui-flex-wrap">
+            <Menu.Items className="ui-absolute -ui-top-32 ui-translate-y-full -ui-translate-x-40 ui-w-[203px] ui-h-[192px] ui-bg-bg-light-primary ui-rounded-lg ui-shadow-2xl md:ui-px-4 md:ui-py-4 ui-origin-bottom-left ui-flex ui-flex-row ui-flex-wrap ui-ring-0">
               {children}
             </Menu.Items>
           </Transition>

@@ -2,9 +2,10 @@ import * as React from 'react';
 
 interface FooterProps {
   logo: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export const Footer: React.FC<FooterProps> = ({ logo }) => {
+export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
   return (
     <div
       id="k33-footer"
@@ -12,10 +13,10 @@ export const Footer: React.FC<FooterProps> = ({ logo }) => {
     >
       <div
         id="k33-footer-main-content"
-        className="ui-flex md:ui-flex-row ui-flex-col md:ui-container md:ui-pt-8 ui-pt-6 ui-items-center md:ui-justify-between"
+        className="ui-flex md:ui-flex-row ui-flex-col md:ui-container md:ui-pt-8 ui-pt-6 md:ui-items-start md:ui-justify-between"
       >
         {logo}
-        <div id="k33-footer links"></div>
+        <div id="k33-footer links">{children}</div>
       </div>
       <div
         id="footer-end"

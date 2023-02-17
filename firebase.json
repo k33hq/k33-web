@@ -26,21 +26,25 @@
     },
     {
       "target": "k33-invest-dev",
+      "cleanUrls": true,
       "public": "./apps/invest/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "k33-invest",
+      "cleanUrls": true,
       "public": "./apps/invest/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "k33-markets-dev",
+      "cleanUrls": true,
       "public": "./apps/market/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "k33-markets",
+      "cleanUrls": true,
       "public": "./apps/market/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }

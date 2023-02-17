@@ -35,18 +35,21 @@ const apps = [
   {
     logo: <Image src={research} width={108} height={108} alt="research" />,
     title: 'Research',
+    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
     description:
       'Weekly reports on digital asset markets & macro, from industry leading analysts.',
   },
   {
     logo: <Image src={market} width={108} height={108} alt="market" />,
     title: 'Markets',
+    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
     description:
       'Get best execution across multiple exchanges, with a custody solution tailored just for you.',
   },
   {
     logo: <Image src={invest} width={108} height={108} alt="invest" />,
     title: 'Investments',
+    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
     description:
       'Gain long-term managed exposure to digital assets through tailored managed funds.',
   },
@@ -171,7 +174,14 @@ const Index: NextPageWithLayout = () => {
         className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
       >
         {apps.map((app) => (
-          <BasicCards {...app} key={app.title} />
+          <BasicCards {...app} key={app.title}>
+            <a
+              href={app.url}
+              className="ui-text-heading6 hover:underline ui-text-brand-light-primary"
+            >
+              {app.title}
+            </a>
+          </BasicCards>
         ))}
       </div>
       <BasicPromotion {...insightPromotion} direction="left" />
@@ -195,7 +205,11 @@ const Index: NextPageWithLayout = () => {
             className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
           >
             {offers.map((offer) => (
-              <BasicCards {...offer} key={offer.title} variant="secondary" />
+              <BasicCards {...offer} key={offer.title} variant="secondary">
+                <p className="text-heading8 text-label-light-primary">
+                  {offer.title}
+                </p>
+              </BasicCards>
             ))}
           </div>
         </div>

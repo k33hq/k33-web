@@ -6,6 +6,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import config from '@/firebase/config';
 import { Header } from 'ui';
+import Link from 'next/link';
 
 interface ResearchHeaderProps extends SecondaryHeaderProps {}
 
@@ -27,7 +28,11 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
   return (
     <>
       <AuthHeader
-        logo={<Image src={logo} height={24} width={94} alt="company logo" />}
+        logo={
+          <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+            <Image src={logo} height={24} width={94} alt="company logo" />
+          </Link>
+        }
         authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
         registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'}
         firebaseConfig={config}
