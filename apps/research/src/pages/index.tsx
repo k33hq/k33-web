@@ -2,6 +2,7 @@ import { getAllSubscriptions } from '@/api';
 import { ResearchHeader, SubscriptionElement, CitedBy } from '@/components';
 import { Subscriptions } from '@/types';
 import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { BasicButton } from 'ui';
 
 interface ResearchProps {
@@ -9,6 +10,7 @@ interface ResearchProps {
 }
 // TODO: put this on contentful
 const Research: NextPage<ResearchProps> = ({ subscriptions }) => {
+  const router = useRouter();
   return (
     <div className="px-6 md:px-0">
       <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary h-[544px] w-full">
@@ -22,7 +24,14 @@ const Research: NextPage<ResearchProps> = ({ subscriptions }) => {
               from short-term market signals to long-term fundamentals.
             </h5>
           </div>
-          <BasicButton variant="secondary">Get Access Now</BasicButton>
+          <BasicButton
+            onClick={() => {
+              router.push('/home');
+            }}
+            variant="secondary"
+          >
+            Get Access Now
+          </BasicButton>
           <CitedBy />
         </div>
       </div>
