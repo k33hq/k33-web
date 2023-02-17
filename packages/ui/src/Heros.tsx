@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({
   children,
 }) => {
   return (
-    <div className="ui-w-full ui-flex ui-flex-col md:ui-flex-row ui-gap-9 ui-items-center ui-justify-between">
+    <div className="ui-w-full ui-flex ui-flex-col ui-mx-auto md:ui-max-w-[1728px] md:ui-flex-row ui-gap-9 ui-items-center ui-justify-between">
       <div className="ui-flex ui-flex-col ui-gap-4">
         <p className="ui-text-heading4 md:ui-text-heading2">{title}</p>
         <p className="ui-text-brand-light-tertiary md:ui-text-body4 ui-text-body3">
