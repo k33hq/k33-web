@@ -27,6 +27,27 @@ const offerings = {
         'Clear transparency and visibility on the blockchain',
       ],
     },
+    {
+      logo: bespoke,
+      title: 'Bespoke',
+      description: 'Trade any digital asset with 1-on-1 real time support',
+      features: [
+        'Bespoke setup, service and support via chat, call, or in-person',
+        'Market leading rates on USD FX conversion',
+        'Q&A with our market research analysts',
+      ],
+    },
+    {
+      logo: professional,
+      title: 'Professional',
+      description:
+        'Trade 24/7 with products and liquidity from multiple exchanges',
+      features: [
+        'Market leading rates on USD FX conversion',
+        'Q&A with our market research analysts',
+        'Institutional grade portfolio management',
+      ],
+    },
   ],
 };
 
@@ -74,11 +95,11 @@ const Index: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="md:container flex flex-col items-center py-20">
+      <div className="md:container flex flex-col items-center pt-20">
         <div className="w-[566px] text-center">
           <h6 className="text-heading6">{offerings.title}</h6>
         </div>
-        <div>
+        <div className="flex flex-row items-center gap-20 py-20">
           {offerings.products.map((product) => (
             <ProductElements {...product} key={product.title} />
           ))}
