@@ -1,11 +1,9 @@
 import { Subscription } from '@/types';
 import { getUrl } from '@/utils';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { BasicList } from 'ui';
-import { BasicButton } from 'ui';
+import { BasicButton, ListIcon } from 'ui';
 
 interface SubscriptionElementProps {
   subscription: Subscription;
@@ -36,7 +34,14 @@ const SubscriptionElement: React.FC<SubscriptionElementProps> = ({
           {subscription.description}
         </p>
       </div>
-      <BasicList data={subscription.features} />
+      <div className="flex flex-col gap-6">
+        {subscription.features.map((feature) => (
+          <div key={feature} className="flex flex-row gap-2 items-start">
+            <ListIcon />
+            <p className="text-body2 text-label-light-secondary">{feature}</p>
+          </div>
+        ))}
+      </div>
       <BasicButton
         onClick={() => {
           router.push(
