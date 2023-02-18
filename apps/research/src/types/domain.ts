@@ -231,3 +231,20 @@ export interface SubscriptionPage {
   title: string;
   subscription: Omit<Subscription, 'linkedFrom'>;
 }
+
+export interface ProductAdvertElement extends ProductCoreSlug {
+  product: {
+    title: string;
+    caption: string;
+    features: ReadonlyArray<string>;
+    sampleReport: ResearchDocument;
+    image: Image;
+  };
+}
+
+export interface LandingPage {
+  title: string;
+  productsCollection: {
+    items: ReadonlyArray<ProductAdvertElement>;
+  };
+}

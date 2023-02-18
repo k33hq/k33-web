@@ -10,6 +10,8 @@ module.exports = {
       backgroundImage: {
         ...sharedConfig.theme.extend.backgroundImage,
         'category-products': "url('../assets/product.svg')",
+        landing: "url('../assets/landing.svg')",
+        sub: "url('../assets/sub.png')",
       },
     },
   },

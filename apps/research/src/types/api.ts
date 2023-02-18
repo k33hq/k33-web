@@ -16,6 +16,7 @@ import {
   Subscriptions,
   SubscriptionSlugs,
   SubscriptionPage,
+  LandingPage,
 } from './domain';
 
 /**
@@ -135,5 +136,11 @@ export interface GetAllSubscriptionSlugsResponse {
 export interface GetSubscriptionFromSlugResponse {
   subscriptionWebCollection: {
     items: ReadonlyArray<SubscriptionPage>;
+  };
+}
+
+export interface GetResearchLandingPageResponse {
+  researchLandingPageWebCollection: {
+    items: ReadonlyArray<LandingPage>;
   };
 }

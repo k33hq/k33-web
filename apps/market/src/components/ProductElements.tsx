@@ -1,7 +1,6 @@
 import { StaticImageData } from 'next/image';
 import * as React from 'react';
 import Image from 'next/image';
-import { BasicList } from '../../../../packages/ui/dist';
 
 interface ProductElementsProps {
   logo: StaticImageData | string;
