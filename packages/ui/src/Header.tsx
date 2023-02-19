@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
         {logo}
         <div
           id="header-action-section"
-          className="ui-flex ui-flex-row ui-gap-8 ui-items-center "
+          className="ui-flex ui-flex-row md:ui-gap-8 ui-gap-2 ui-items-center ui-transition-all"
         >
           {children}
         </div>

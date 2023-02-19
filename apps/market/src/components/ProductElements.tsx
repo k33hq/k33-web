@@ -16,7 +16,7 @@ const ProductElements: React.FC<ProductElementsProps> = ({
   features,
 }) => {
   return (
-    <div className="shadow-md md:px-6 md:py-10 h-[723px] w-[369px] flex flex-col items-center md:gap-12 rounded-xl">
+    <div className="shadow-md px-6 py-10 md:h-[723px] h-[703px] md:w-[369px] w-[327px] flex flex-col items-center md:gap-12 rounded-xl">
       <div className="bg-default-systemGrey-light-4 px-2 py-1 rounded-lg">
         <p className="text-body2 text-label-light-primary">Coming Soon</p>
       </div>
@@ -37,12 +37,12 @@ const ProductElements: React.FC<ProductElementsProps> = ({
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M12.9607 8.25762C17.8367 8.41036 21.9499 11.9532 23.4783 16.9821C25.0298 22.0868 23.8977 27.8889 19.884 31.0369C15.8998 34.1617 10.5961 33.3017 6.56634 30.2464C2.24972 26.9736 -1.19211 21.7097 0.392951 16.259C2.00934 10.7005 7.59369 8.08951 12.9607 8.25762Z"
                   fill="#AEAEB2"
                 />
-                <g clip-path="url(#clip0_3945_1746)">
+                <g clipPath="url(#clip0_3945_1746)">
                   <path
                     d="M35.1897 5.67637C35.4125 5.9208 35.4125 6.30272 35.1897 6.54715L15.6439 27.3237C15.4139 27.5605 15.0546 27.5605 14.8247 27.3237L4.47973 16.3243C4.25545 16.0799 4.25545 15.698 4.47973 15.4536C4.70465 15.2168 5.06826 15.2168 5.29318 15.4536L15.1696 26.0252L34.3705 5.67637C34.6005 5.43958 34.9598 5.43958 35.1897 5.67637Z"
                     fill="#090A0B"

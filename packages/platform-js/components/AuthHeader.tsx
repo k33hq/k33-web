@@ -182,6 +182,14 @@ export const apps = [
   },
 ];
 
+export const company = [
+  {
+    name: 'About',
+    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'about') as string,
+    key: 'about',
+  },
+];
+
 const AuthHeader: React.FC<AuthHeaderProps> = ({
   logo,
   firebaseConfig,

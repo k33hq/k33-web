@@ -55,7 +55,7 @@ const Index: NextPage = () => {
   return (
     <>
       <div
-        className="relative w-full max-w-[1728px] mx-auto py-8 flex flex-col items-center content-center"
+        className="relative w-full md:max-w-[1728px] px-6 md:px-0 mx-auto py-8 flex flex-col items-center content-center"
         id="markets-hero"
       >
         <div className="md:absolute md:left-0 md:h-[634px] md:w-[238px] hidden md:block">
@@ -80,13 +80,15 @@ const Index: NextPage = () => {
         </div>
         <div
           id="hero-text"
-          className="flex flex-col justify-center items-center content-center text-center gap-4 w-3/5 pt-[123px]"
+          className="flex flex-col md:justify-center items-center content-center md:text-center gap-4 md:w-3/5 md:pt-[123px]"
         >
-          <h2 className="text-heading2 text-brand-light-primary">
+          <h2 className="md:text-heading2 text-heading5 text-brand-light-primary">
             {hero.title}
           </h2>
-          <p className="text-body2 text-brand-light-tertiary">{hero.body}</p>
-          <div className="w-[600px] py-6">
+          <p className="md:text-body2 text-brand-light-tertiary text-small">
+            {hero.body}
+          </p>
+          <div className="md:w-[600px] md:py-6 py-8">
             <SendEmail
               placeholder="Enter your email"
               label="Get Early Access"
@@ -95,11 +97,11 @@ const Index: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="md:container flex flex-col items-center pt-20">
-        <div className="w-[566px] text-center">
-          <h6 className="text-heading6">{offerings.title}</h6>
+      <div className="md:container flex flex-col items-center pt-20 px-6 md:px-0">
+        <div className="md:w-[566px] text-center">
+          <h6 className="md:text-heading6 text-heading8">{offerings.title}</h6>
         </div>
-        <div className="flex flex-row items-center gap-20 py-20">
+        <div className="flex md:flex-row flex-col items-center gap-20 md:py-20 py-12">
           {offerings.products.map((product) => (
             <ProductElements {...product} key={product.title} />
           ))}

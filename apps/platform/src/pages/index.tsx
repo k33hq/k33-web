@@ -227,7 +227,11 @@ const Index: NextPageWithLayout = () => {
           id="k33-send-email"
           className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
         >
-          <SendEmail placeholder="Enter your email" label="Get Early Access" />
+          <SendEmail
+            placeholder="Enter your email"
+            label="Get Early Access"
+            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+          />
         </div>
       </div>
     </>

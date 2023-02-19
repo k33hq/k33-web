@@ -3,7 +3,6 @@ import * as React from 'react';
 import SecondaryFooter, { SecondaryFooterProps } from './SecondaryFooter';
 import Image from 'next/image';
 import logo from '../assets/logo.svg';
-import { Footer } from 'ui';
 import { PlatformFooter } from 'platform-js';
 import { useRouter } from 'next/router';
 
