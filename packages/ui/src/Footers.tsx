@@ -16,7 +16,12 @@ export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
         className="ui-flex ui-flex-col md:px-0 md:ui-gap-0 md:ui-flex-row ui-gap-12 px-6 md:ui-container md:ui-pt-8 ui-pt-6 ui-items-center md:ui-items-start md:ui-justify-between"
       >
         {logo}
-        <div id="k33-footer links">{children}</div>
+        <div
+          id="k33-footer links"
+          className="flex flex-row md:ui-gap-24 ui-gap-14"
+        >
+          {children}
+        </div>
       </div>
       <div
         id="footer-end"
