@@ -160,7 +160,7 @@ export const linkAnonymousUserWithProvider = (
 // remove user id and update the analytics with tag id
 const registerAnalytics = (analyticsId: string, tagId: string) => {
   //@ts-ignore
-  gtag('config', tagId, {
+  window.gtag('config', tagId, {
     user_id: analyticsId,
   });
 };
@@ -169,7 +169,7 @@ export const acceptCookie = () => {
   //@ts-ignore
   localStorage.setItem('showCookies', 'NO');
   //@ts-ignore
-  gtag('consent', 'update', {
+  window.gtag('consent', 'update', {
     ad_storage: 'denied',
     analytics_storage: 'granted',
   });
