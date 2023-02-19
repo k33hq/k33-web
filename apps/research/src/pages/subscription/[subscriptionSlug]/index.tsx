@@ -34,11 +34,11 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
 
   return (
     <div id="subscription">
-      <div className="w-60 h-24 border-2 rounded-md mx-auto mt-20">
+      {/* <div className="w-60 h-24 border-2 rounded-md mx-auto mt-20">
         <p className="md:text-heading4 text-heading8">
           Redirecting to Check Out..
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

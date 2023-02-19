@@ -94,7 +94,7 @@ const Index: NextPage = () => {
             <SendEmail
               placeholder="Enter your email"
               label="Learn More"
-              listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+              listIds={['']}
             />
           </div>
         </div>
@@ -125,7 +125,7 @@ const Index: NextPage = () => {
           <SendEmail
             placeholder="Enter your email"
             label="Get in Touch"
-            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+            listIds={['']}
           />
         </div>
       </div>
