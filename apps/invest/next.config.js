@@ -1,6 +1,6 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  basePath: '/investments',
+  basePath: '/invest',
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transpilePackages: ['core', 'platform-js'],
   reactStrictMode: true,
