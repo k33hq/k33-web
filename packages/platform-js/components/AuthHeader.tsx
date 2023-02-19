@@ -172,7 +172,7 @@ export const apps = [
     name: 'Investments',
     url: process.env.NEXT_PUBLIC_INVEST_URL as string,
     Logo: InvestLogo,
-    key: 'investments',
+    key: 'invest',
   },
   {
     name: 'Markets',
