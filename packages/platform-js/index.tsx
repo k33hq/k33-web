@@ -17,7 +17,7 @@ const K33App: NextPage<K33AppProps> = ({ children }) => {
       <Script
         strategy="afterInteractive"
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
@@ -26,7 +26,7 @@ const K33App: NextPage<K33AppProps> = ({ children }) => {
           window.dataLayer.push(arguments);
         }
   
-        gtag('config', ${process.env.NEXT_PUBLIC_MEASUREMENT_ID});
+        gtag('config', ${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID});
         gtag('consent', 'default', {
           ad_storage: 'denied',
           analytics_storage: 'denied',
