@@ -192,10 +192,10 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
   const state = useAppState(firebaseConfig);
   const router = useRouter();
 
-  const isResearch = router.pathname.includes('research');
-  const isMarkets = router.pathname.includes('markets');
-  const isInvestments = router.pathname.includes('invest');
-  const isHome = !isResearch && !isMarkets && !isInvestments;
+  const isHome =
+    !router.basePath.includes('research') &&
+    !router.basePath.includes('markets') &&
+    !router.basePath.includes('invest');
 
   return (
     <Header logo={logo} transparent={transparent}>
@@ -215,11 +215,11 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
           <AppMenuItem key={key}>
             {(active) => (
               <AppItem
-                active={active || router.pathname.includes(key)}
+                active={active || router.basePath.includes(key)}
                 name={name}
                 url={url}
               >
-                <Logo active={active || router.pathname.includes(key)} />
+                <Logo active={active || router.basePath.includes(key)} />
               </AppItem>
             )}
           </AppMenuItem>

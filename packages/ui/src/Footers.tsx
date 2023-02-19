@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
     >
       <div
         id="k33-footer-main-content"
-        className="ui-flex md:ui-flex-row ui-flex-col md:ui-container md:ui-pt-8 ui-pt-6 md:ui-items-start md:ui-justify-between"
+        className="ui-flex ui-flex-col md:px-0 md:ui-gap-0 md:ui-flex-row ui-gap-12 px-6 md:ui-container md:ui-pt-8 ui-pt-6 ui-items-center md:ui-items-start md:ui-justify-between"
       >
         {logo}
         <div id="k33-footer links">{children}</div>
@@ -50,5 +50,30 @@ export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+interface FooterLinkProps {
+  name: string;
+  url: string;
+  active?: boolean;
+}
+
+export const FooterLink: React.FC<FooterLinkProps> = ({
+  url,
+  name,
+  active = false,
+}) => {
+  return (
+    <a
+      href={url}
+      className={`ui-text-body4 ${
+        active
+          ? 'ui-text-label-light-primary ui-underline'
+          : 'ui-text-label-light-tertiary hover:ui-text-label-light-primary'
+      }`}
+    >
+      {name}
+    </a>
   );
 };
