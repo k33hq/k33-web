@@ -232,14 +232,27 @@ export interface SubscriptionPage {
   subscription: Omit<Subscription, 'linkedFrom'>;
 }
 
+export interface ProductAvert {
+  title: string;
+  caption: string;
+  features: ReadonlyArray<string>;
+  sampleReport: ResearchDocument;
+  image: Image;
+  productImage: Image;
+  landingPageImage: Image;
+}
+
+// TODO: update this mess later on :sigh:
 export interface ProductAdvertElement extends ProductCoreSlug {
-  product: {
-    title: string;
-    caption: string;
-    features: ReadonlyArray<string>;
-    sampleReport: ResearchDocument;
-    image: Image;
+  product: ProductAvert;
+}
+
+export interface ProductLandingPage extends ProductCoreSlug {
+  subscriptionPage: {
+    subscriptionSlug: string;
+    subscription: Omit<Subscription, 'linkedFrom' | 'image'>;
   };
+  product: Omit<ProductAvert, 'image'>;
 }
 
 export interface LandingPage {

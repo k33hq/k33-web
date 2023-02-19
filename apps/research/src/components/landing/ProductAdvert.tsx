@@ -3,6 +3,8 @@ import Image from 'next/image';
 import * as React from 'react';
 import { BasicButton, BasicList } from 'ui';
 import { ReportsDownload } from '../articles';
+import { useRouter } from 'next/router';
+import { downloadResource, getUrl } from '@/utils';
 
 interface ProductAdvertProps extends ProductAdvertElement {}
 
@@ -10,6 +12,7 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
   product,
   productSlug,
 }) => {
+  const router = useRouter();
   return (
     <div
       id={productSlug}
@@ -32,14 +35,17 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
         <BasicList data={product.features} />
         <div>
           {product.sampleReport ? (
-            <ReportsDownload
-              url={product.sampleReport.url}
-              title="Download Sample"
-            />
+            <BasicButton
+              size="medium"
+              onClick={() => downloadResource(product.sampleReport.url)}
+            >
+              Download Sample
+            </BasicButton>
           ) : null}
           <BasicButton
             variant="secondary"
             size="medium"
+            onClick={() => router.push(getUrl('products', productSlug))}
             fullWidth={!product.sampleReport}
           >
             Find out More

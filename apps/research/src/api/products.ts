@@ -5,7 +5,59 @@ import {
   GetProductElementsByCategoryResponse,
   GetProductBySlugResponse,
   GetProductElementsWithArticleElementsByCategoriesResponse,
+  GetProductSlugsResponse,
+  GetProductLandingResponse,
 } from '../types';
+
+/** get all product slugs */
+
+const GetProductSlugs = gql`
+  query {
+    productWebCollection {
+      items {
+        productSlug
+      }
+    }
+  }
+`;
+
+/**
+ * get product landing page values by slug
+ */
+const GetProductAdvertBySlug = gql`
+  query GetProductAdvertBySlug($productSlug: String!) {
+    productWebCollection(where: { productSlug: $productSlug }, limit: 1) {
+      items {
+        productSlug
+        subscriptionPage {
+          subscriptionSlug
+          subscription {
+            name
+            description
+            features
+            stripeProductId
+          }
+        }
+        product {
+          caption
+          features
+          landingPageImage {
+            url
+            title
+          }
+          productImage {
+            url
+            title
+          }
+          sampleReport {
+            url
+            title
+          }
+        }
+      }
+    }
+  }
+`;
 
 /**
  * get product slugs based on the category passed
@@ -125,6 +177,25 @@ const GetProductElementsWithArticleElementsByCategories = gql`
     }
   }
 `;
+
+export const getProductSlugs = async () => {
+  const { productWebCollection } =
+    await contentful.request<GetProductSlugsResponse>(GetProductSlugs);
+
+  return productWebCollection.items;
+};
+
+export const getProductAdvertBySlug = async (productSlug: string) => {
+  const { productWebCollection } =
+    await contentful.request<GetProductLandingResponse>(
+      GetProductAdvertBySlug,
+      {
+        productSlug,
+      }
+    );
+
+  return productWebCollection.items[0];
+};
 
 export const getProductSlugsByCategory = async () => {
   const { categoryWebCollection } =
