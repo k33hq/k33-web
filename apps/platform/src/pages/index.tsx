@@ -77,8 +77,8 @@ const insightPromotion = {
     'Bespoke research & consulting',
   ],
   callToAction: {
-    url: '',
-    label: '',
+    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
+    label: 'Find Out More',
   },
 };
 
@@ -102,8 +102,8 @@ const tradePromotion = {
     'Seamless onboarding',
   ],
   callToAction: {
-    url: '',
-    label: '',
+    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
+    label: 'Find Out More',
   },
 };
 
@@ -127,8 +127,8 @@ const securePromotion = {
     'Fully regulated exposure',
   ],
   callToAction: {
-    url: '',
-    label: '',
+    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
+    label: 'Find Out More',
   },
 };
 

@@ -69,7 +69,7 @@ export const CookieModal: React.FC<CookieModalProps> = ({
   onClose,
 }) => {
   const [showManageCookies, setManageCookies] = React.useState(false);
-  const [enabled, setEnabled] = React.useState(false);
+  const [enabled, setEnabled] = React.useState(true);
 
   const toggleManageCookies = () => {
     setManageCookies((state) => !state);

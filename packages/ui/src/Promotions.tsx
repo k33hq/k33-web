@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Direction, Variants } from './types';
 import { ListIcon } from './components';
+import { BasicButton } from './Buttons';
 
 interface BasicPromotionProps {
   title: string;
@@ -25,7 +26,7 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
   return (
     <div className="ui-flex md:ui-flex-row ui-flex-col md:ui-gap-20 ui-gap-8 ui-items-center ui-justify-between">
       {direction === 'left' ? image : null}
-      <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center md:ui-items-start">
+      <div className="ui-flex ui-flex-col md:ui-gap-6 ui-gap-2 ui-items-center md:ui-items-start">
         <p className="ui-text-heading6 md:ui-text-heading4 ui-text-label-light-primary">
           {title}
         </p>
@@ -45,7 +46,11 @@ export const BasicPromotion: React.FC<BasicPromotionProps> = ({
             </div>
           ))}
         </div>
-        <button className=""></button>
+        {callToAction.url ? (
+          <a href={callToAction.url}>
+            <BasicButton>{callToAction.label}</BasicButton>
+          </a>
+        ) : null}
       </div>
       {direction === 'right' ? image : null}
     </div>
