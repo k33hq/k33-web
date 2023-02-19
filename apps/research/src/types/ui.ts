@@ -15,3 +15,5 @@ declare global {
     }
   }
 }
+
+export type SubscriberType = 'free' | 'pro';

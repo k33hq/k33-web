@@ -1,5 +1,5 @@
 import { getArticlePage, getArticleSlugs } from '@/api';
-import { ArticlePage } from '@/types';
+import { ArticlePage, SubscriberType } from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getUrl } from '@/utils';
 import {
@@ -12,11 +12,13 @@ import {
   Profile,
 } from '@/components';
 import Image from 'next/image';
-import { Divider } from 'ui';
+import { BasicButton, Divider, NextPageWithLayout } from 'ui';
 import { useAppState } from 'platform-js';
 import config from '@/firebase/config';
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { fetcher } from 'core';
+import Link from 'next/link';
+import { PrivateLayout } from '@/layouts';
 
 interface ArticleProps {
   articleSlug: string;
@@ -25,25 +27,23 @@ interface ArticleProps {
   article: ArticlePage;
 }
 
-const Article: NextPage<ArticleProps> = ({
+const Article: NextPageWithLayout<ArticleProps> = ({
   productSlug,
   categorySlug,
   article: articlePage,
   articleSlug,
 }) => {
   const { article, product } = articlePage;
-  const state = useAppState(config);
-  // check stripe if this user customerID is paid.
-  // TODO: update it later
-  const [proUser, setProUser] = useState<boolean>(false);
+  const [subscriber, setSubscriber] = useState<null | SubscriberType>(null);
 
   useEffect(() => {
+    console.log(subscriber);
     fetcher(
       `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
     )
-      .catch((data) => setProUser(false))
-      .then((data) => console.log(data));
-  }, [state]);
+      .catch((data) => setSubscriber('free'))
+      .then((data) => setSubscriber('pro'));
+  }, [subscriber]);
 
   return (
     <>
@@ -58,12 +58,9 @@ const Article: NextPage<ArticleProps> = ({
             <Profile {...author} key={author.name} />
           ))}
         </div>
+
         <article
-          className={`flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0 ${
-            ['lOADING', 'SIGNED_OUT', 'UNREGISTRED'].includes(state)
-              ? 'blur-md'
-              : ''
-          }`}
+          className={`flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0`}
         >
           <ArticleTitle
             published={article.sys.firstPublishedAt}
@@ -89,18 +86,47 @@ const Article: NextPage<ArticleProps> = ({
               />
             ) : null}
           </div>
-          <ArticleBody document={article.body} />
-          {article.reportDocument ? (
-            <ReportsDownload
-              url={article.reportDocument.url}
-              title={article.reportDocument.title}
-            />
-          ) : null}
+          {(subscriber === null || subscriber === 'free') && (
+            <div
+              id="id-subscribe"
+              className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
+            >
+              <p className="md:text-heading7 text-body1 text-label-dark-primary">
+                Upgrade to K33 Research Pro to download all reports
+              </p>
+              <Link
+                href={getUrl(
+                  'subscription',
+                  'professional-k33-research-subscription'
+                )}
+              >
+                <BasicButton variant="secondary">
+                  Start 30-Day Free Trial
+                </BasicButton>
+              </Link>
+            </div>
+          )}
+
+          {subscriber != null && subscriber === 'pro' && (
+            <>
+              <ArticleBody document={article.body} />
+              {article.reportDocument ? (
+                <ReportsDownload
+                  url={article.reportDocument.url}
+                  title={article.reportDocument.title}
+                />
+              ) : null}
+            </>
+          )}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
     </>
   );
+};
+
+Article.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
