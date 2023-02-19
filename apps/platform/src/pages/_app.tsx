@@ -3,6 +3,7 @@ import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
 import { NextPageWithLayout } from 'ui';
+import K33App from 'platform-js';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -17,7 +18,7 @@ interface PlatformAppProps extends AppProps {
 
 const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-  return <>{getLayout(<Component {...pageProps} />)}</>;
+  return <K33App>{getLayout(<Component {...pageProps} />)}</K33App>;
 };
 
 export default PlatformApp;

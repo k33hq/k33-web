@@ -77,7 +77,7 @@ export const CookieModal: React.FC<CookieModalProps> = ({
 
   return (
     <Transition appear show={open} as={React.Fragment}>
-      <Dialog as="div" className="ui-relative ui-z-10" onClose={onClose}>
+      <Dialog as="div" className="ui-relative ui-z-10" onClose={() => {}}>
         <Transition.Child
           as={React.Fragment}
           enter="ui-ease-out ui-duration-300"
@@ -106,26 +106,55 @@ export const CookieModal: React.FC<CookieModalProps> = ({
                   as="h3"
                   className="ui-flex ui-flex-row ui-gap-4 ui-items-center"
                 >
-                  <div className="ui-h-6 ui-w-6">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 32 32"
-                    >
-                      <g fill="#090A0B" clip-path="url(#a)">
-                        <path d="M10.67 19.14c-1.18 0-2.14.96-2.14 2.07 0 1.12.96 2.08 2.14 2.08 1.17 0 2.13-.96 2.13-2.08 0-1.11-.96-2.07-2.13-2.07Zm2.13-10.6c-1.18 0-2.13.95-2.13 2.07 0 1.11.95 2.07 2.13 2.07 1.17 0 2.13-.96 2.13-2.07 0-1.12-.96-2.08-2.13-2.08ZM23.47 17c-1.18 0-2.14.96-2.14 2.07 0 1.12.96 2.07 2.14 2.07 1.17 0 2.13-.95 2.13-2.07 0-1.11-.96-2.07-2.13-2.07Z" />
-                        <path
-                          d="M31.9 16A8 8 0 0 1 24 8a7.99 7.99 0 0 1-8-7.9 8.2 8.2 0 0 0-4.98.8L6.7 3.1a8.33 8.33 0 0 0-3.6 3.6L.92 11a8.29 8.29 0 0 0-.8 5.07l.75 4.76a8.27 8.27 0 0 0 2.32 4.56l3.42 3.42a8.2 8.2 0 0 0 4.55 2.32l4.79.76a8.26 8.26 0 0 0 5.03-.8l4.33-2.2a8.22 8.22 0 0 0 3.6-3.61l2.2-4.3a8.25 8.25 0 0 0 .8-5Zm-21.23 7.4a2.13 2.13 0 0 1-2.14-2.07c0-1.11.96-2.07 2.14-2.07 1.17 0 2.13.96 2.13 2.07 0 1.12-.96 2.08-2.13 2.08Zm2.13-10.6a2.13 2.13 0 0 1-2.13-2.07c0-1.12.95-2.08 2.13-2.08 1.17 0 2.13.96 2.13 2.08 0 1.11-.96 2.07-2.13 2.07Zm10.67 8.47a2.13 2.13 0 0 1-2.14-2.07c0-1.11.96-2.07 2.14-2.07 1.17 0 2.13.96 2.13 2.07 0 1.12-.96 2.07-2.13 2.07Z"
-                          opacity=".4"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="a">
-                          <path fill="#fff" d="M0 0h32v32H0z" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </div>
+                  {showManageCookies ? (
+                    <BasicButton size="small" variant="tertiary">
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_3640_5358)">
+                          <path
+                            d="M13.7417 29.742C13.1556 29.742 12.5693 29.5184 12.1227 29.071L0.670998 17.6193C-0.223666 16.7247 -0.223666 15.2753 0.670998 14.3806L12.1227 2.92893C13.0174 2.03427 14.4667 2.03427 15.3614 2.92893C16.2561 3.8236 16.2561 5.27295 15.3614 6.16762L5.52867 16L15.3628 25.8341C16.2575 26.7288 16.2575 28.1782 15.3628 29.0728C14.9155 29.5202 14.3286 29.742 13.7417 29.742Z"
+                            fill="#090A0B"
+                          />
+                          <path
+                            opacity="0.4"
+                            d="M32.001 15.9999C32.001 17.2668 31.0419 18.2903 29.775 18.2903H7.82354L5.5332 15.9999L7.82354 13.7096H29.775C31.0419 13.7096 32.001 14.7331 32.001 15.9999Z"
+                            fill="#090A0B"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_3640_5358">
+                            <rect width="32" height="32" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </BasicButton>
+                  ) : (
+                    <div className="ui-h-6 ui-w-6">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 32 32"
+                      >
+                        <g fill="#090A0B" clipPath="url(#a)">
+                          <path d="M10.67 19.14c-1.18 0-2.14.96-2.14 2.07 0 1.12.96 2.08 2.14 2.08 1.17 0 2.13-.96 2.13-2.08 0-1.11-.96-2.07-2.13-2.07Zm2.13-10.6c-1.18 0-2.13.95-2.13 2.07 0 1.11.95 2.07 2.13 2.07 1.17 0 2.13-.96 2.13-2.07 0-1.12-.96-2.08-2.13-2.08ZM23.47 17c-1.18 0-2.14.96-2.14 2.07 0 1.12.96 2.07 2.14 2.07 1.17 0 2.13-.95 2.13-2.07 0-1.11-.96-2.07-2.13-2.07Z" />
+                          <path
+                            d="M31.9 16A8 8 0 0 1 24 8a7.99 7.99 0 0 1-8-7.9 8.2 8.2 0 0 0-4.98.8L6.7 3.1a8.33 8.33 0 0 0-3.6 3.6L.92 11a8.29 8.29 0 0 0-.8 5.07l.75 4.76a8.27 8.27 0 0 0 2.32 4.56l3.42 3.42a8.2 8.2 0 0 0 4.55 2.32l4.79.76a8.26 8.26 0 0 0 5.03-.8l4.33-2.2a8.22 8.22 0 0 0 3.6-3.61l2.2-4.3a8.25 8.25 0 0 0 .8-5Zm-21.23 7.4a2.13 2.13 0 0 1-2.14-2.07c0-1.11.96-2.07 2.14-2.07 1.17 0 2.13.96 2.13 2.07 0 1.12-.96 2.08-2.13 2.08Zm2.13-10.6a2.13 2.13 0 0 1-2.13-2.07c0-1.12.95-2.08 2.13-2.08 1.17 0 2.13.96 2.13 2.08 0 1.11-.96 2.07-2.13 2.07Zm10.67 8.47a2.13 2.13 0 0 1-2.14-2.07c0-1.11.96-2.07 2.14-2.07 1.17 0 2.13.96 2.13 2.07 0 1.12-.96 2.07-2.13 2.07Z"
+                            opacity=".4"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="a">
+                            <path fill="#fff" d="M0 0h32v32H0z" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                  )}
 
                   <p className="ui-text-heading7 ui-text-label-light-primary">
                     Cookie Settings
@@ -173,13 +202,24 @@ export const CookieModal: React.FC<CookieModalProps> = ({
                 </div>
 
                 <div className="ui-flex ui-flex-row ui-justify-between ui-items-center ui-pt-4">
-                  <BasicButton
-                    size="small"
-                    variant="tertiary"
-                    onClick={toggleManageCookies}
-                  >
-                    Manage Cookies
-                  </BasicButton>
+                  {showManageCookies ? (
+                    <BasicButton
+                      size="small"
+                      variant="tertiary"
+                      onClick={onClose}
+                    >
+                      Cancel
+                    </BasicButton>
+                  ) : (
+                    <BasicButton
+                      size="small"
+                      variant="tertiary"
+                      onClick={toggleManageCookies}
+                    >
+                      Manage Cookies
+                    </BasicButton>
+                  )}
+
                   <BasicButton size="medium" onClick={acceptCookie}>
                     Allow Cookies
                   </BasicButton>

@@ -1,4 +1,4 @@
-import { isCookie, acceptCookie } from 'core';
+import { isCookie, acceptCookie, denyCookie } from 'core';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { CookieModal } from 'ui';
@@ -14,9 +14,15 @@ const Cookie: React.FC = () => {
 
   return (
     <CookieModal
-      acceptCookie={acceptCookie}
+      acceptCookie={() => {
+        setCookie(false);
+        acceptCookie();
+      }}
       open={showCookie}
-      onClose={() => setCookie(false)}
+      onClose={() => {
+        denyCookie();
+        setCookie(false);
+      }}
     />
   );
 };

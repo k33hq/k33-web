@@ -45,6 +45,7 @@
     "NEXT_PUBLIC_RESEARCH_URL",
     "NEXT_PUBLIC_MARKETS_URL",
     "NEXT_PUBLIC_INVEST_URL",
+    "NEXT_PUBLIC_MEASUREMENT_ID",
     "npm_lifecycle_event"
   ]
 }
