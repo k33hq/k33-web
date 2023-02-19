@@ -1,10 +1,13 @@
 import { getProductAdvertBySlug, getProductSlugs } from '@/api';
 import { ResearchFooter, ResearchHeader } from '@/components';
+import config from '@/firebase/config';
 import { ProductLandingPage } from '@/types';
 import { downloadResource, getUrl } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useAppState } from 'platform-js';
+import { useEffect } from 'react';
 import { BasicButton, BasicList } from 'ui';
 
 interface ProductProps {
@@ -15,6 +18,12 @@ interface ProductProps {
 const Product: NextPage<ProductProps> = ({ product }) => {
   const { subscriptionPage } = product;
   const router = useRouter();
+  const state = useAppState(config);
+  useEffect(() => {
+    if (state === 'REGISTRED') {
+      router.push('/home');
+    }
+  }, [state, router]);
   return (
     <div className="bg-bg-dark-primary">
       <div className="min-h-screen pb-12">

@@ -42,7 +42,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
                 }}
                 firebaseConfig={config}
                 registrationUrl={
-                  process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'
+                  process.env.NEXT_PUBLIC_PLATFORM_URL + 'register'
                 }
               />
             </div>

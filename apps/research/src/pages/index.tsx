@@ -12,9 +12,11 @@ import left from '../assets/research-left-bg.png';
 import right from '../assets/research-right-bg.png';
 import Image from 'next/image';
 import subImage from '../assets/sub.png';
-import { SendEmail } from 'platform-js';
+import { SendEmail, useAppState } from 'platform-js';
 import { BasicButton } from 'ui';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import config from '@/firebase/config';
 
 const hero = {
   title: 'Understand the digital assets industry,',
@@ -28,6 +30,12 @@ interface ResearchProps {
 // TODO: put this on contentful
 const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
   const router = useRouter();
+  const state = useAppState(config);
+  useEffect(() => {
+    if (state === 'REGISTRED') {
+      router.push('/home');
+    }
+  }, [state, router]);
   return (
     <>
       <div className="min-h-screen pb-12">

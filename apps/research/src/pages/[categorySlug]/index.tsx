@@ -20,7 +20,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   products,
 }) => {
   return (
-    <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 px-2 md:px-0 bg-bg-light-secondary">
+    <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 px-6 md:px-0 bg-bg-light-secondary">
       <div
         className="flex flex-col md:gap-4 gap-2 md:container"
         id="research-category-banner"
