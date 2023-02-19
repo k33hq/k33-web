@@ -27,20 +27,28 @@ const AuthHeader = dynamic(
 
 const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
   const router = useRouter();
+  const isLanding =
+    router.pathname.startsWith('/products/') || router.pathname === '/';
   return (
     <>
       <AuthHeader
         logo={
           <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
-            <Image src={logo} height={24} width={94} alt="company logo" />
+            <Image
+              src={logo}
+              height={24}
+              width={94}
+              alt="company logo"
+              style={{
+                filter: isLanding ? 'invert(100%)' : '',
+              }}
+            />
           </Link>
         }
         authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
         registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'}
         firebaseConfig={config}
-        transparent={
-          router.pathname.startsWith('/products/') || router.pathname === '/'
-        }
+        transparent={isLanding}
       />
 
       <SecondaryHeader categories={categories} />
