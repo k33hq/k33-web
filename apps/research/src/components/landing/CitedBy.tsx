@@ -8,8 +8,8 @@ import Image from 'next/image';
 
 const CitedBy: React.FC = () => {
   return (
-    <div className="flex md:flex-row items-center gap-8 mt-16">
-      <p className="text-label-dark-secondary text-body1 mr-10">
+    <div className="flex flex-row flex-wrap justify-center items-center md:gap-8 gap-4 transition-all pb-4">
+      <p className="text-label-dark-secondary md:text-body1 md:mr-10 text-caption">
         Regularly cited by
       </p>
       <Image

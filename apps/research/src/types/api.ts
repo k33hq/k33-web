@@ -17,6 +17,10 @@ import {
   SubscriptionSlugs,
   SubscriptionPage,
   LandingPage,
+  ProductCoreSlug,
+  ProductAdvertElement,
+  ProductAvert,
+  ProductLandingPage,
 } from './domain';
 
 /**
@@ -48,6 +52,13 @@ export interface GetCategoriesAndTheirArticlesResponse {
 /**
  * product api types
  */
+
+export interface GetProductSlugsResponse {
+  productWebCollection: {
+    items: ReadonlyArray<ProductCoreSlug>;
+  };
+}
+
 export interface GetProductSlugsByCategoryResponse {
   categoryWebCollection: {
     items: ProductSlugs;
@@ -63,6 +74,12 @@ export interface GetProductElementsByCategoryResponse {
 export interface GetProductBySlugResponse {
   productWebCollection: {
     items: ProductPages;
+  };
+}
+
+export interface GetProductLandingResponse {
+  productWebCollection: {
+    items: ReadonlyArray<ProductLandingPage>;
   };
 }
 
