@@ -39,8 +39,8 @@ const TempLayout: React.FC<TemplLayoutProps> = ({ children }) => {
               <Image src={logo} width={133} height={40} alt="k33-logo" />
             </Link>
           }
-          authUrl={'/auth'}
-          registrationUrl={'/register'}
+          authUrl={'auth'}
+          registrationUrl={'register'}
         />
         <SecondaryHeader
           branding={

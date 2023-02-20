@@ -38,8 +38,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <Image src={logo} width={133} height={40} alt="k33-logo" />
             </Link>
           }
-          authUrl={'/auth'}
-          registrationUrl={'/register'}
+          authUrl={'auth'}
+          registrationUrl={'register'}
         />
         <main className="flex flex-col">{children}</main>
       </div>
