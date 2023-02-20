@@ -28,6 +28,7 @@ importers:
       postcss: ^8.4.21
       react: 18.2.0
       react-dom: 18.2.0
+      react-icons: ^4.7.1
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
@@ -40,6 +41,7 @@ importers:
       platform-js: link:../../packages/platform-js
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.7.1_react@18.2.0
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
@@ -218,6 +220,7 @@ importers:
 
   packages/core:
     specifiers:
+      '@types/node': ^17.0.12
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.7
       eslint: ^7.32.0
@@ -227,6 +230,7 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.9.4
     devDependencies:
+      '@types/node': 17.0.45
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       eslint: 7.32.0
