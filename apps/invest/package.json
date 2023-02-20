@@ -14,9 +14,10 @@
     "@next/font": "^13.1.6",
     "firebase": "^9.16.0",
     "next": "^13.1.1",
+    "platform-js": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "platform-js": "workspace:*",
+    "react-icons": "^4.7.1",
     "ui": "workspace:*"
   },
   "devDependencies": {

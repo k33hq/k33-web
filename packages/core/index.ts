@@ -194,7 +194,9 @@ interface AppConfig {
 
 export const getAppState = async (config?: AppConfig) => {
   try {
-    const data = await fetcher('https://dev.api.k33.com/user');
+    const data = await fetcher(
+      process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'user'
+    );
     if (data.status === 404) {
       return UNREGISTERED;
     } else {
@@ -211,7 +213,11 @@ export const getAppState = async (config?: AppConfig) => {
 
 export const register = async (config?: AppConfig) => {
   try {
-    const data = await mutator('https://dev.api.k33.com/user', 'POST', {});
+    const data = await mutator(
+      process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'user',
+      'POST',
+      {}
+    );
     const user = await data.json();
     // register analytics
     if (config) {
