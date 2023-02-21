@@ -85,7 +85,6 @@ export const richTextOptions: Options = {
       { data }: Block | Inline,
       children: React.ReactNode
     ) => {
-      console.log(data);
       return (
         <a
           href={data.uri}

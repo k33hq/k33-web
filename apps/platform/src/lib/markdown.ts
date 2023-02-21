@@ -11,7 +11,7 @@ const pagesDirectory = path.join(process.cwd(), 'src', '_pages');
 
 export async function getPageData(page: string) {
   const fullPath = path.join(pagesDirectory, `${page}.md`);
-  console.log(fullPath);
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   const { data, content } = matter(fileContents);
