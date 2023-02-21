@@ -95,12 +95,12 @@ const Page: NextPageWithLayout<PageProps> = ({ page }) => {
           <>
             <ArticleBody document={page.content.publicSnippet} />
             <ArticleBody document={page.content.content} />
-            {page.content.linkToReport ? (
+            {/* {page.content.linkToReport ? (
               <ReportsDownload
                 url={page.content.linkToReport.url}
                 title={page.content.linkToReport.title}
               />
-            ) : null}
+            ) : null} */}
           </>
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>

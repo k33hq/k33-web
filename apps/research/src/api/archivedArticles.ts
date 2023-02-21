@@ -92,29 +92,29 @@ const GetArchivedPage = gql`
                 }
               }
             }
-
-            linkToReport {
-              title
-              subtitle
-              slug
-              image {
-                url
-                description
-              }
-
-              publishDate
-              tagsCollection(limit: 2) {
-                items {
-                  name
-                }
-              }
-            }
           }
         }
       }
     }
   }
 `;
+
+// linkToReport {
+//   title
+//   subtitle
+//   slug
+//   image {
+//     url
+//     description
+//   }
+
+//   publishDate
+//   tagsCollection(limit: 2) {
+//     items {
+//       name
+//     }
+//   }
+// }
 
 export const getArchivedPageSlugs = async () => {
   const { pageCollection } =
