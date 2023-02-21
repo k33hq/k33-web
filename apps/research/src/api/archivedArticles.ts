@@ -4,7 +4,7 @@ import { GetArchivedPageResponse, GetArchivedPageSlugsResponse } from '@/types';
 
 const GetArchivedPageSlugs = gql`
   query {
-    pageCollection {
+    pageCollection(limit: 1000) {
       items {
         slug
       }
@@ -16,18 +16,12 @@ const GetArchivedPage = gql`
     pageCollection(where: { slug: $slug }, limit: 1) {
       items {
         title
-        title
         slug
         seo {
           name
           title
           description
           keywords
-        }
-        sys {
-          id
-          firstPublishedAt
-          publishedAt
         }
         content {
           ... on PageWeeklyUpdate {
@@ -38,7 +32,7 @@ const GetArchivedPage = gql`
               description
             }
             publishDate
-            tagsCollection(limit: 3) {
+            tagsCollection(limit: 10) {
               items {
                 name
               }
@@ -92,29 +86,29 @@ const GetArchivedPage = gql`
                 }
               }
             }
-
-            linkToReport {
-              title
-              subtitle
-              slug
-              image {
-                url
-                description
-              }
-
-              publishDate
-              tagsCollection(limit: 2) {
-                items {
-                  name
-                }
-              }
-            }
           }
         }
       }
     }
   }
 `;
+
+// linkToReport {
+//   title
+//   subtitle
+//   slug
+//   image {
+//     url
+//     description
+//   }
+
+//   publishDate
+//   tagsCollection(limit: 2) {
+//     items {
+//       name
+//     }
+//   }
+// }
 
 export const getArchivedPageSlugs = async () => {
   const { pageCollection } =

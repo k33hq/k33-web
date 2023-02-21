@@ -25,14 +25,18 @@ const Page: NextPageWithLayout<PageProps> = ({ page }) => {
       >
         <div className="w-full md:w-1/3 bg-bg-light-secondary flex flex-col md:bg-bg-light-primary gap-4 px-6 md:px-0 py-10">
           <p className="text-body1 text-label-light-primary">Written by</p>
-          {page.content.authorsCollection.items.map((author) => (
-            <Profile
-              name={author.name}
-              title={author.title}
-              profilePicture={author.image}
-              key={author.name}
-            />
-          ))}
+          {page.content.authorsCollection ? (
+            <>
+              {page.content.authorsCollection.items.map((author) => (
+                <Profile
+                  name={author.name}
+                  title={author.title}
+                  profilePicture={author.image}
+                  key={author.name}
+                />
+              ))}
+            </>
+          ) : null}
         </div>
 
         <article
@@ -51,14 +55,16 @@ const Page: NextPageWithLayout<PageProps> = ({ page }) => {
           {/* <NutShell document={article.summary} />
           <KeyPoints points={article.keyPoints} /> */}
           <div className="w-full h-64 md:h-[423px] relative">
-            <Image
-              src={page.content.image.url}
-              fill
-              style={{
-                objectFit: 'contain',
-              }}
-              alt={page.content.image.description}
-            />
+            {page.content.image ? (
+              <Image
+                src={page.content.image.url}
+                fill
+                style={{
+                  objectFit: 'contain',
+                }}
+                alt={page.content.image.description}
+              />
+            ) : null}
           </div>
           {/* {(subscriber === null || subscriber === 'free') && (
             <div
@@ -95,12 +101,12 @@ const Page: NextPageWithLayout<PageProps> = ({ page }) => {
           <>
             <ArticleBody document={page.content.publicSnippet} />
             <ArticleBody document={page.content.content} />
-            {page.content.linkToReport ? (
+            {/* {page.content.linkToReport ? (
               <ReportsDownload
                 url={page.content.linkToReport.url}
                 title={page.content.linkToReport.title}
               />
-            ) : null}
+            ) : null} */}
           </>
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
