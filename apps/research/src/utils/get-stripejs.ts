@@ -16,8 +16,8 @@ export const checkout = async (productId: string, email: string) => {
   const result = await stripe?.redirectToCheckout({
     lineItems: [{ price: productId, quantity: 1 }],
     mode: 'subscription',
-    successUrl: 'https://dev.k33.com/research/home',
-    cancelUrl: 'https://dev.k33.com/research',
+    successUrl: process.env.NEXT_PUBLIC_PLATFORM_URL + 'home',
+    cancelUrl: process.env.NEXT_PUBLIC_PLATFORM_URL as string,
     customerEmail: email,
   });
   return result;
