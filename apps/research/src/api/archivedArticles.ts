@@ -16,18 +16,12 @@ const GetArchivedPage = gql`
     pageCollection(where: { slug: $slug }, limit: 1) {
       items {
         title
-        title
         slug
         seo {
           name
           title
           description
           keywords
-        }
-        sys {
-          id
-          firstPublishedAt
-          publishedAt
         }
         content {
           ... on PageWeeklyUpdate {
