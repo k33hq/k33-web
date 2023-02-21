@@ -32,7 +32,7 @@ const GetArchivedPage = gql`
               description
             }
             publishDate
-            tagsCollection(limit: 3) {
+            tagsCollection(limit: 10) {
               items {
                 name
               }
