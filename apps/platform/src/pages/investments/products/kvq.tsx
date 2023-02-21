@@ -144,7 +144,7 @@ const KvQ: NextPageWithLayout = () => {
       </div>
       <div
         id="links"
-        className="md:container flex md:flex-row flex-col items-center w-full md:items-start md:w-1/2 md:gap-8 py-12 gap-2 px-6 md:px-0"
+        className="md:container flex md:flex-row flex-col items-center w-full md:items-start md:w-[1056px] md:gap-8 py-12 gap-2 px-6 md:px-0"
       >
         <a
           href="/invest/pdfs/PDF-report-Methodology.pdf"
@@ -194,7 +194,10 @@ const KvQ: NextPageWithLayout = () => {
           <p>Last selection and rebalancing date : February 1st 2023</p>
           <p>Next selection and rebalancing date : May 1st 2023</p>
         </div>
-        <div id="chart" className="flex flex-col items-center md:gap-10 gap-6">
+        <div
+          id="chart"
+          className="flex flex-col items-center md:gap-10 gap-6 md:py-10"
+        >
           <p className="text-heading7 text-label-light-primary">
             Current selection (Number indicates ranking by market cap on January
             25th, 2023)
