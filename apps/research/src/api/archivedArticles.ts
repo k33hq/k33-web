@@ -4,7 +4,7 @@ import { GetArchivedPageResponse, GetArchivedPageSlugsResponse } from '@/types';
 
 const GetArchivedPageSlugs = gql`
   query {
-    pageCollection {
+    pageCollection(limit: 1000) {
       items {
         slug
       }
