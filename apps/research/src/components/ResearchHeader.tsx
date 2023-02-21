@@ -45,8 +45,8 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
             />
           </Link>
         }
-        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
-        registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/register'}
+        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + 'auth'}
+        registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + 'register'}
         firebaseConfig={config}
         transparent={isLanding}
       />

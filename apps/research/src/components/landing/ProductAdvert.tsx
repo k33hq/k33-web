@@ -33,7 +33,7 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
           {product.caption}
         </p>
         <BasicList data={product.features} />
-        <div>
+        <div className="flex flex-row gap-2 md:gap-4 items-center">
           {product.sampleReport ? (
             <BasicButton
               size="medium"

@@ -31,6 +31,14 @@ export interface Author {
   profilePicture: Image;
 }
 
+export interface AuthorSlug {
+  authorSlug: string;
+}
+
+export interface AuthorPage extends AuthorSlug {
+  author: Author;
+}
+
 export interface ResearchDocument {
   url: string;
   title: string;
@@ -259,5 +267,51 @@ export interface LandingPage {
   title: string;
   productsCollection: {
     items: ReadonlyArray<ProductAdvertElement>;
+  };
+}
+
+// archived stuff
+
+export interface ArchivePageSlug {
+  slug: string;
+}
+
+export type ArchivePageSlugs = ReadonlyArray<ArchivePageSlug>;
+
+export interface Seo {
+  name: string;
+  title: string;
+  description: string;
+  keywords: Readonly<string> | null;
+}
+
+export interface Tag {
+  name: string;
+}
+
+export type Tags = ReadonlyArray<Tag>;
+
+export interface ArchivePage extends ArchivePageSlug {
+  title: string;
+  seo: Seo;
+  sys: System;
+  content: {
+    subtitle: string;
+    image: Image;
+    publishDate: string;
+    tagsCollection: {
+      items: Tags;
+    };
+    authorsCollection: {
+      items: ReadonlyArray<{
+        name: string;
+        slug: string;
+        title: string;
+        image: Image;
+      }>;
+    };
+    publicSnippet: RichText;
+    content: RichText;
+    linkToReport: null | ResearchDocument;
   };
 }

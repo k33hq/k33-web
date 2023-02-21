@@ -21,6 +21,8 @@ import {
   ProductAdvertElement,
   ProductAvert,
   ProductLandingPage,
+  ArchivePageSlugs,
+  ArchivePage,
 } from './domain';
 
 /**
@@ -159,5 +161,19 @@ export interface GetSubscriptionFromSlugResponse {
 export interface GetResearchLandingPageResponse {
   researchLandingPageWebCollection: {
     items: ReadonlyArray<LandingPage>;
+  };
+}
+
+// archived stuff
+
+export interface GetArchivedPageSlugsResponse {
+  pageCollection: {
+    items: ArchivePageSlugs;
+  };
+}
+
+export interface GetArchivedPageResponse {
+  pageCollection: {
+    items: ReadonlyArray<ArchivePage>;
   };
 }

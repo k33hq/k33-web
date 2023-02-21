@@ -6,3 +6,4 @@ export * from './assets';
 export * from './payments';
 export * from './subscriptions';
 export * from './landing';
+export * from './archivedArticles';
