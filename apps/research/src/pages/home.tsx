@@ -52,7 +52,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
       <section id="promotion-section" className="bg-bg-dark-elevated-tertiary">
         <div
           id="promotion-section"
-          className="md:container md:px-0 px-6 flex md:flex-row items-center md:py-8 justify-between"
+          className="md:container md:px-0 px-6 flex md:flex-row flex-col py-10 items-center md:py-8 md:justify-between gap-10"
         >
           <div id="promotion-action" className="flex flex-col gap-4">
             <div id="promotion-information" className="flex flex-col gap-2">
@@ -64,12 +64,17 @@ const Home: NextPageWithLayout<HomeProps> = ({
                   K33 Research Pro
                 </p>
               </div>
-              <p className="text-label-dark-primary md:text-heading7">
+              <p className="text-label-dark-primary text-heading7">
                 Get real insight from industry experts
               </p>
             </div>
             <div>
-              <Link href={getUrl('professional-k33-research-subscription')}>
+              <Link
+                href={getUrl(
+                  'subscription',
+                  'professional-k33-research-subscription'
+                )}
+              >
                 <BasicButton variant="secondary" size="medium">
                   Start 30-day Free trial
                 </BasicButton>
@@ -78,11 +83,14 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
           <div
             id="promotion-features"
-            className="md:px-8 md:py-7 rounded-[40px] flex flex-col flex-wrap bg-default-systemGrey-dark-2 md:h-[176px] md:w-[790px]"
+            className="md:px-8 md:py-7 py-2 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full md:flex-wrap gap-2 bg-default-systemGrey-dark-2 md:h-[176px] md:max-w-[762px]"
           >
             {subscription.subscription.features.map((feature) => (
-              <div key={feature} className="flex flex-row items-center gap-2">
-                <div>
+              <div
+                key={feature}
+                className="flex flex-row md:items-center items-start md:gap-2 gap-6 justify-start"
+              >
+                <div className="h-[19px] w-[19.19px] md:w-[35px] md:h-[33px]">
                   <svg
                     width="36"
                     height="33"
@@ -139,9 +147,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
   );
 };
 
-// Home.getLayout = function getLayout(page: ReactElement) {
-//   return <PrivateLayout>{page}</PrivateLayout>;
-// };
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
+};
 
 export default Home;
 
