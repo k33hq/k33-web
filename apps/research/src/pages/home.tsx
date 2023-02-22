@@ -1,6 +1,10 @@
 import { GetStaticProps } from 'next';
-import { CategoriesAndArticles, HomePage } from '@/types';
-import { getCategoriesAndTheirArticles, getHomePageElements } from '@/api';
+import { CategoriesAndArticles, HomePage, SubscriptionPage } from '@/types';
+import {
+  getCategoriesAndTheirArticles,
+  getHomePageElements,
+  getSubscriptionBySlug,
+} from '@/api';
 import {
   CategoriesAndArticleElements,
   CoverArticle,
@@ -8,13 +12,16 @@ import {
 } from '@/components';
 import { ReactElement, useEffect, useState } from 'react';
 import { PrivateLayout } from '@/layouts';
-import { NextPageWithLayout } from 'ui';
+import { BasicButton, NextPageWithLayout } from 'ui';
 import { fetcher } from 'core';
 import { useAppState } from 'platform-js';
 import config from '@/firebase/config';
+import Link from 'next/link';
+import { getUrl } from '@/utils';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
+  subscription: SubscriptionPage;
 }
 
 const Home: NextPageWithLayout<HomeProps> = ({
@@ -24,6 +31,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
   subArticle3,
   subArticle4,
   articles,
+  subscription,
 }) => {
   return (
     <>
@@ -41,10 +49,77 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </div>
       </section>
-      {/* <stripe-pricing-table
-        pricing-table-id="prctbl_1MbMv0LrfjWYG7W51XRtWX1e"
-        publishable-key="pk_test_zKp03y7a9joXn0e0jSrQIimG00rftOWMzH"
-      ></stripe-pricing-table> */}
+      <section id="promotion-section" className="bg-bg-dark-elevated-tertiary">
+        <div
+          id="promotion-section"
+          className="md:container md:px-0 px-6 flex md:flex-row items-center md:py-8 justify-between"
+        >
+          <div id="promotion-action" className="flex flex-col gap-4">
+            <div id="promotion-information" className="flex flex-col gap-2">
+              <div className="flex flex-row gap-1">
+                <p className="text-body3 text-label-dark-secondary">
+                  Upgrade to
+                </p>
+                <p className="text-body1 text-label-dark-primary">
+                  K33 Research Pro
+                </p>
+              </div>
+              <p className="text-label-dark-primary md:text-heading7">
+                Get real insight from industry experts
+              </p>
+            </div>
+            <div>
+              <Link href={getUrl('professional-k33-research-subscription')}>
+                <BasicButton variant="secondary" size="medium">
+                  Start 30-day Free trial
+                </BasicButton>
+              </Link>
+            </div>
+          </div>
+          <div
+            id="promotion-features"
+            className="md:px-8 md:py-7 rounded-[40px] flex flex-col flex-wrap bg-default-systemGrey-dark-2 md:h-[176px] md:w-[790px]"
+          >
+            {subscription.subscription.features.map((feature) => (
+              <div key={feature} className="flex flex-row items-center gap-2">
+                <div>
+                  <svg
+                    width="36"
+                    height="33"
+                    viewBox="0 0 36 33"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12.9607 8.25762C17.8367 8.41036 21.9499 11.9532 23.4783 16.9821C25.0298 22.0868 23.8977 27.8889 19.884 31.0369C15.8998 34.1617 10.5961 33.3017 6.56634 30.2464C2.24972 26.9736 -1.19211 21.7097 0.392951 16.259C2.00934 10.7005 7.59369 8.08951 12.9607 8.25762Z"
+                      fill="#AEAEB2"
+                    />
+                    <g clip-path="url(#clip0_5458_2250)">
+                      <path
+                        d="M35.1897 5.67634C35.4125 5.92077 35.4125 6.30269 35.1897 6.54712L15.6439 27.3237C15.4139 27.5605 15.0546 27.5605 14.8247 27.3237L4.47973 16.3243C4.25545 16.0799 4.25545 15.698 4.47973 15.4535C4.70465 15.2167 5.06826 15.2167 5.29318 15.4535L15.1696 26.0251L34.3705 5.67634C34.6005 5.43955 34.9598 5.43955 35.1897 5.67634Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_5458_2250">
+                        <rect
+                          width="31.0453"
+                          height="33"
+                          fill="white"
+                          transform="translate(4.31152)"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <p className="text-label-dark-primary text-body2">{feature}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section
         className="md:container md:py-32 py-12 md:px-0 px-6"
         id="category-articles"
@@ -64,9 +139,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
   );
 };
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Home.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export default Home;
 
@@ -75,6 +150,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
     await getHomePageElements();
 
   const articles = await getCategoriesAndTheirArticles();
+  // TODO: update this and move any promotion to home page content model in contentful
+  // TODO: also move subscription pitch to home page
+  const subscription = await getSubscriptionBySlug(
+    'professional-k33-research-subscription'
+  );
 
   return {
     props: {
@@ -83,6 +163,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       subArticle2,
       subArticle3,
       subArticle4,
+      subscription,
       articles,
     },
   };
