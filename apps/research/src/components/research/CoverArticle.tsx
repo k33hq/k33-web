@@ -23,14 +23,22 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
     >
       <div className="relative md:w-2/5 md:h-80 h-40">
         {article.coverPicture ? (
-          <Image
-            src={article.coverPicture.url}
-            fill
-            style={{
-              objectFit: 'contain',
-            }}
-            alt={article.coverPicture.title}
-          />
+          <Link
+            href={getUrl(
+              category.categorySlug,
+              product.productSlug,
+              articleSlug
+            )}
+          >
+            <Image
+              src={article.coverPicture.url}
+              fill
+              style={{
+                objectFit: 'contain',
+              }}
+              alt={article.coverPicture.title}
+            />
+          </Link>
         ) : null}
       </div>
       <div id="article-information" className="p-12 flex flex-col gap-4">
