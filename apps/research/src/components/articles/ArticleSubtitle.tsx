@@ -7,7 +7,9 @@ interface ArticleSubtitleProps {
 const ArticleSubtitle: React.FC<ArticleSubtitleProps> = ({ children }) => {
   if (!children) return <></>;
   return (
-    <p className="text-body4 text-label-light-secondary truncate">{children}</p>
+    <p className="text-body4 text-label-light-secondary line-clamp-2 text-ellipsis">
+      {children}
+    </p>
   );
 };
 

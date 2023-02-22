@@ -18,21 +18,29 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   return (
     <div
       id={articleSlug}
-      className="flex flex-col w-64 flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-2xl"
+      className="flex flex-col w-64 flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-xl ring-1 ring-opacity-10 ring-brand-light-tertiary"
     >
       {article.thumbnail ? (
         <div
           id={articleSlug + '-thumbnail'}
-          className="relative h-[372px] flex-shrink-0"
+          className="relative h-[360px] flex-shrink-0"
         >
-          <Image
-            src={article.thumbnail.url}
-            fill
-            alt={article.thumbnail.title}
-            style={{
-              objectFit: 'fill',
-            }}
-          />
+          <Link
+            href={getUrl(
+              category.categorySlug,
+              product.productSlug,
+              articleSlug
+            )}
+          >
+            <Image
+              src={article.thumbnail.url}
+              fill
+              alt={article.thumbnail.title}
+              style={{
+                objectFit: 'fill',
+              }}
+            />
+          </Link>
         </div>
       ) : null}
 

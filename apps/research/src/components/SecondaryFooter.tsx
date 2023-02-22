@@ -19,15 +19,17 @@ const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
         </Link>
         <div id="research-products" className="flex md:flex-row flex-col gap-4">
           <p className="text-body1 text-label-dark-primary">Products</p>
-          {categories.map((category) => (
-            <Link
-              key={category.categorySlug}
-              className="text-body4 text-label-dark-tertiary"
-              href={getUrl(category.categorySlug)}
-            >
-              {category.category.title}
-            </Link>
-          ))}
+          {categories
+            .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
+            .map((category) => (
+              <Link
+                key={category.categorySlug}
+                className="text-body4 text-label-dark-tertiary"
+                href={getUrl(category.categorySlug)}
+              >
+                {category.category.title}
+              </Link>
+            ))}
         </div>
         <div id="social"></div>
       </div>

@@ -22,14 +22,22 @@ const SubArticle: React.FC<SubArticleProps> = ({
     >
       <div className="relative w-full h-1/2">
         {article.coverPicture ? (
-          <Image
-            src={article.coverPicture.url}
-            fill
-            style={{
-              objectFit: 'cover',
-            }}
-            alt={article.coverPicture.title}
-          />
+          <Link
+            href={getUrl(
+              category.categorySlug,
+              product.productSlug,
+              articleSlug
+            )}
+          >
+            <Image
+              src={article.coverPicture.url}
+              fill
+              style={{
+                objectFit: 'cover',
+              }}
+              alt={article.coverPicture.title}
+            />
+          </Link>
         ) : null}
       </div>
 

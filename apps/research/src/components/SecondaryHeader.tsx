@@ -11,6 +11,7 @@ export interface SecondaryHeaderProps {
   categories: CategoryElements;
 }
 
+// TODO: change this logic so bendik can choose what to show and hide even if category web is defined.
 const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
   const router = useRouter();
   const isLanding =
@@ -43,19 +44,21 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
             Home
           </Link>
         )}
-        {categories.map((c) => (
-          <Link
-            className={`text-body4 ${
-              router.pathname.includes(c.categorySlug)
-                ? 'text-label-light-primary'
-                : 'text-label-light-secondary'
-            }`}
-            key={c.categorySlug}
-            href={getUrl(c.categorySlug)}
-          >
-            {c.category.title}
-          </Link>
-        ))}
+        {categories
+          .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
+          .map((c) => (
+            <Link
+              className={`text-body4 ${
+                router.pathname.includes(c.categorySlug)
+                  ? 'text-label-light-primary'
+                  : 'text-label-light-secondary'
+              }`}
+              key={c.categorySlug}
+              href={getUrl(c.categorySlug)}
+            >
+              {c.category.title}
+            </Link>
+          ))}
         {isLanding ? null : (
           <Link
             className={`text-body4 ${

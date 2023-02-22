@@ -13,7 +13,7 @@ const CategoriesAndArticleElements: React.FC<
   if (!(linkedFrom.articleWebCollection.items.length > 0)) return <></>;
 
   return (
-    <div id="category-article" className="flex flex-col gap-5">
+    <div id="category-article" className="flex flex-col gap-8">
       <div
         id="category-title"
         className="flex flex-row items-center justify-between"
@@ -43,11 +43,7 @@ const CategoriesAndArticleElements: React.FC<
       </div>
       <div
         id="category-article-list"
-        className={`flex flex-row md:gap-16 gap-4 pb-20 ${
-          linkedFrom.articleWebCollection.items.length > 1
-            ? 'overflow-auto'
-            : 'overflow-hidden'
-        }`}
+        className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 justify-center items-center md:overflow-hidden overflow-x-auto overflow-y-hidden`}
       >
         {linkedFrom.articleWebCollection.items.map((article) => (
           <ArticleElement {...article} key={article.articleSlug} />
