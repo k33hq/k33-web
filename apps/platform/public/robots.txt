@@ -3,4 +3,5 @@ disallow: /register
 disallow: /research/home
 
 sitemap: https://k33.com/sitemap.xml
+sitemap: https://k33.com/research/sitemap.xml
 sitemap: https://k33.com/research/archive/sitemap.xml

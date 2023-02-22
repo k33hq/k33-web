@@ -25,14 +25,22 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
           id={articleSlug + '-thumbnail'}
           className="relative h-[372px] flex-shrink-0"
         >
-          <Image
-            src={article.thumbnail.url}
-            fill
-            alt={article.thumbnail.title}
-            style={{
-              objectFit: 'fill',
-            }}
-          />
+          <Link
+            href={getUrl(
+              category.categorySlug,
+              product.productSlug,
+              articleSlug
+            )}
+          >
+            <Image
+              src={article.thumbnail.url}
+              fill
+              alt={article.thumbnail.title}
+              style={{
+                objectFit: 'fill',
+              }}
+            />
+          </Link>
         </div>
       ) : null}
 
