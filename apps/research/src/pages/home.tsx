@@ -45,7 +45,10 @@ const Home: NextPageWithLayout<HomeProps> = ({
         pricing-table-id="prctbl_1MbMv0LrfjWYG7W51XRtWX1e"
         publishable-key="pk_test_zKp03y7a9joXn0e0jSrQIimG00rftOWMzH"
       ></stripe-pricing-table> */}
-      <section className="md:container md:py-32 px-2" id="category-articles">
+      <section
+        className="md:container md:py-32 py-12 md:px-0 px-6"
+        id="category-articles"
+      >
         {articles
           .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
           .map((category, index) => (
