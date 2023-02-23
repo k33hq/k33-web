@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Image from 'next/image';
-import network from '../../assets/network.svg';
-import rightNetwork from '../../assets/right-network.svg';
 import analyst from '../../assets/analyst.png';
 import { HiOutlineMail } from 'react-icons/hi';
 
@@ -33,10 +31,13 @@ const AnalystPromotion: React.FC = () => {
             Book a call 1-1 with us. Let us help you understand the digital
             assets industry.
           </p>
-          <button className="flex flex-row items-center border-2 rounded-md px-2 py-1 gap-2 hover:bg-brand-light-tertiary hover:text-label-dark-primary md:mt-2">
+          <a
+            href="mailto:analystcall@k33.com?subject=K33 Research Analyst Call&body=Hi K33 Research team, I would like to setup a call. My main goal of the meeting is"
+            className="flex flex-row items-center border-2 rounded-md px-2 py-1 gap-2 hover:bg-brand-light-tertiary hover:text-label-dark-primary md:mt-2 w-[150px]"
+          >
             <p>Set up a Call</p>
             <HiOutlineMail />
-          </button>
+          </a>
         </div>
       </div>
     </div>
