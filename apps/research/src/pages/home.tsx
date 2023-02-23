@@ -149,9 +149,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
   );
 };
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Home.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export default Home;
 
