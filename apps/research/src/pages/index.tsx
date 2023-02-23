@@ -5,6 +5,7 @@ import {
   CitedBy,
   ProductAdvert,
   ResearchFooter,
+  AnalystPromotion,
 } from '@/components';
 import { LandingPage, Subscriptions } from '@/types';
 import { GetStaticProps, NextPage } from 'next';
@@ -57,7 +58,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
             <CitedBy />
           </div>
         </div>
-        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16">
+        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-32">
           <div
             id="product-heading"
             className="flex flex-col items-center gap-2 justify-center content-center md:w-[624px] text-center"
@@ -78,6 +79,9 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
               <ProductAdvert key={advert.productSlug} {...advert} />
             ))}
           </div>
+        </div>
+        <AnalystPromotion />
+        <div className="px-6 md:container md:px-0">
           <div className="flex flex-col md:flex-row  w-full items-center justify-between py-20 md:py-32">
             <div id="subscription-title" className="relative">
               <Image src={subImage} height={779} width={700} alt="asd" />

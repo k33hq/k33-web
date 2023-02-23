@@ -6,6 +6,7 @@ import {
   getSubscriptionBySlug,
 } from '@/api';
 import {
+  AnalystPromotion,
   CategoriesAndArticleElements,
   CoverArticle,
   SubArticle,
@@ -143,6 +144,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
             </>
           ))}
       </section>
+      <AnalystPromotion />
     </>
   );
 };
