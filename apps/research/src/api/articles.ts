@@ -60,7 +60,7 @@ const GetArticleElementsByProductAndCategories = gql`
         category: { categorySlug: $categorySlug }
         product: { productSlug: $productSlug }
       }
-      order: [sys_firstPublishedAt_DESC]
+      order: [publishedDate_DESC]
       limit: 10
     ) {
       items {
@@ -166,7 +166,7 @@ const GetArticleElementsByCategories = gql`
     articleWebCollection(
       where: { category: { categorySlug: "reports" } }
       limit: 5
-      order: [sys_publishedAt_DESC]
+      order: [publishedDate_DESC]
     ) {
       items {
         category {
