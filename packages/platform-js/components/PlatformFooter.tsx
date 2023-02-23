@@ -23,8 +23,8 @@ const PlatformFooter: React.FC<PlatformFooterProps> = ({ logo }) => {
         ))}
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-body1 text-label-light-primary">Company</p>
-        {company.map((link) => (
+        <p className="text-body1 text-label-light-primary">Connect</p>
+        {social.map((link) => (
           <FooterLink
             name={link.name}
             url={link.url}
@@ -35,7 +35,7 @@ const PlatformFooter: React.FC<PlatformFooterProps> = ({ logo }) => {
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-body1 text-label-light-primary">Company</p>
-        {social.map((link) => (
+        {company.map((link) => (
           <FooterLink
             name={link.name}
             url={link.url}
