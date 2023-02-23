@@ -56,7 +56,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
             />
             <Dot />
             <p className="text-body4 text-label-light-secondary">
-              {formatDateAndTime(article.sys.firstPublishedAt, 'day')}
+              {formatDateAndTime(article.publishedDate, 'day')}
             </p>
           </div>
           <Link

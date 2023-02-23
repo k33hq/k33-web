@@ -81,9 +81,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
         article {
           title
-          sys {
-            firstPublishedAt
-          }
+          publishedDate
           thumbnail {
             url
             title
@@ -115,9 +113,7 @@ const GetArticlePage = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
+          publishedDate
           body {
             json
             links {
@@ -193,9 +189,7 @@ const GetArticleElementsByCategories = gql`
         }
         article {
           title
-          sys {
-            firstPublishedAt
-          }
+          publishedDate
         }
       }
     }

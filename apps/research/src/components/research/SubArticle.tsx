@@ -53,10 +53,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
               branding={product.branding}
               href={getUrl(category.categorySlug, product.productSlug)}
             />
-            <ArticleDate
-              size="small"
-              published={article.sys.firstPublishedAt}
-            />
+            <ArticleDate size="small" published={article.publishedDate} />
           </div>
           <Link
             className="text-label-light-primary text-body1 hover:text-label-light-secondary"

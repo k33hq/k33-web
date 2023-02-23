@@ -127,7 +127,7 @@ export interface Article {
   authorsCollection: {
     items: ReadonlyArray<Author>;
   };
-  sys: Pick<System, 'firstPublishedAt'>;
+  publishedDate: string;
 }
 
 export interface ArticleSlug {
@@ -145,7 +145,10 @@ export type ArticlePageSlugs = ReadonlyArray<ArticlePageSlug>;
 
 export interface ArticleElement extends ArticleSlug {
   category: CategorySlug;
-  article: Pick<Article, 'title' | 'sys' | 'thumbnail' | 'coverPicture'>;
+  article: Pick<
+    Article,
+    'title' | 'publishedDate' | 'thumbnail' | 'coverPicture'
+  >;
   product: Omit<ProductElement, 'categoryWeb'>;
 }
 
@@ -185,7 +188,10 @@ export interface HomePage {
 export interface HomeArticleElement extends ArticleSlug {
   category: CategorySlug;
   product: Omit<ProductElement, 'categoryWeb'>;
-  article: Pick<Article, 'title' | 'subtitle' | 'sys' | 'coverPicture'>;
+  article: Pick<
+    Article,
+    'title' | 'subtitle' | 'publishedDate' | 'coverPicture'
+  >;
 }
 
 export interface CategoryAndArticle extends CategoryElement {

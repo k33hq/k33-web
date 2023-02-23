@@ -80,7 +80,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
           className={`flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0`}
         >
           <ArticleTitle
-            published={article.sys.firstPublishedAt}
+            published={article.publishedDate}
             product={{
               title: product.product.title,
               href: getUrl(categorySlug, productSlug),
