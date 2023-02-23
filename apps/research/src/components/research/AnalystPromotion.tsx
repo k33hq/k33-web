@@ -2,20 +2,28 @@ import * as React from 'react';
 import Image from 'next/image';
 import network from '../../assets/network.svg';
 import rightNetwork from '../../assets/right-network.svg';
-import bendik from '../../assets/bendik.png';
-import anders from '../../assets/anders.png';
-import vetle from '../../assets/vetle.png';
+import analyst from '../../assets/analyst.png';
 
 const AnalystPromotion: React.FC = () => {
   return (
     <div
       id="analyst-promotion-box"
-      className="bg-default-systemGrey-light-5 relative"
+      className="bg-default-systemGrey-light-5 relative md:w-full bg-[url('../assets/network.svg')] bg-scroll bg-no-repeat bg-cover md:bg-contain transition-all"
     >
-      <div id="analyst-promotion" className="md:container flex-row flex">
+      <div
+        id="analyst-promotion"
+        className="md:container flex items-end md:flex-row flex-col-reverse justify-around md:gap-0 md:px-0 px-6"
+      >
+        <Image
+          src={analyst}
+          width={375}
+          height={250}
+          alt=""
+          className="md:mt-5"
+        />
         <div
           id="analyst-information"
-          className="m-auto flex-col gap-2 text-label-light-primary"
+          className="flex-col gap-2 text-label-light-primary self-center py-10"
         >
           <h5 className="md:text-heading5 text-heading7">
             Talk to our analysts
@@ -25,32 +33,6 @@ const AnalystPromotion: React.FC = () => {
             assets industry.
           </p>
         </div>
-      </div>
-      <div
-        id="right-image"
-        className="md:absolute md:h-[240px] h-[408px] md:w-[732px] md:left-0"
-      >
-        <Image
-          fill
-          src={network}
-          alt="analyst"
-          style={{
-            objectFit: 'cover',
-          }}
-        />
-      </div>
-      <div
-        id="right-image"
-        className="md:absolute md:h-[240px] h-[408px] md:w-[632px] md:right-0"
-      >
-        <Image
-          fill
-          src={rightNetwork}
-          alt="analyst"
-          style={{
-            objectFit: 'cover',
-          }}
-        />
       </div>
     </div>
   );
