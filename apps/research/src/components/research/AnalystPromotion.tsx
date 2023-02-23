@@ -3,6 +3,7 @@ import Image from 'next/image';
 import network from '../../assets/network.svg';
 import rightNetwork from '../../assets/right-network.svg';
 import analyst from '../../assets/analyst.png';
+import { HiOutlineMail } from 'react-icons/hi';
 
 const AnalystPromotion: React.FC = () => {
   return (
@@ -32,6 +33,10 @@ const AnalystPromotion: React.FC = () => {
             Book a call 1-1 with us. Let us help you understand the digital
             assets industry.
           </p>
+          <button className="flex flex-row items-center border-2 rounded-md px-2 py-1 gap-2 hover:bg-brand-light-tertiary hover:text-label-dark-primary md:mt-2">
+            <p>Set up a Call</p>
+            <HiOutlineMail />
+          </button>
         </div>
       </div>
     </div>
