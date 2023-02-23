@@ -75,9 +75,7 @@ const GetCategoriesAndTheirArticles = gql`
 
               article {
                 title
-                sys {
-                  firstPublishedAt
-                }
+                publishedDate
                 thumbnail {
                   url
                   title
