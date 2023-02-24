@@ -13,16 +13,24 @@ import {
 } from 'ui';
 
 // TODO: refactor it later and put it in a hook or something
+
+const subscriberData: Record<SubscriberType, ReadonlyArray<string>> = {
+  free: [
+    'Our Friday newsletter delivered to your inbox',
+    'Restricted access to certain free analysis, reports and webinars',
+  ],
+  pro: [
+    'All our reports delivered to your inbox',
+    'Monthly webinars',
+    'Access to our valuation models',
+    'Book a call 1-1 with our analysts',
+    'Complete access to our research archive',
+  ],
+};
 const Settings: NextPageWithLayout = () => {
   const [subscriber, setSubscriber] = useState<null | SubscriberType>(null);
 
   useEffect(() => {
-    // fetcher(
-    //   `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
-    // )
-    //   .catch((data) => setSubscriber('free'))
-    //   .then((data) => setSubscriber('pro'));
-
     const getSubscriber = async () => {
       try {
         const data = await fetcher(
@@ -62,13 +70,7 @@ const Settings: NextPageWithLayout = () => {
           <TabMenuPanel>
             <TabPanel>
               {subscriber ? (
-                <Plan
-                  type={subscriber}
-                  features={[
-                    'Our Friday newsletter delivered to your inbox',
-                    'Restricted access to certain free analysis, reports and webinars',
-                  ]}
-                />
+                <Plan type={subscriber} features={subscriberData[subscriber]} />
               ) : null}
             </TabPanel>
           </TabMenuPanel>
