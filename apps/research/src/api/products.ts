@@ -159,11 +159,9 @@ const GetProductElementsWithArticleElementsByCategories = gql`
                   color
                 }
               }
+              publishedDate
               article {
                 title
-                sys {
-                  firstPublishedAt
-                }
                 thumbnail {
                   url
                   title

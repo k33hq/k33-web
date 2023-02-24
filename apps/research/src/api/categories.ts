@@ -72,12 +72,9 @@ const GetCategoriesAndTheirArticles = gql`
                   title
                 }
               }
-
+              publishedDate
               article {
                 title
-                sys {
-                  firstPublishedAt
-                }
                 thumbnail {
                   url
                   title

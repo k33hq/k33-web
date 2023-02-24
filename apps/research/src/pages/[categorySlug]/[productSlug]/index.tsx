@@ -51,7 +51,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
       <Indicator color={branding.color} />
       <section
         id={`k33-${product.sys.id}-reports`}
-        className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-2 md:px-0"
+        className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-6 md:px-0"
       >
         <div id="k33-research-info" className="flex flex-col gap-2">
           <ProductTitle
@@ -65,7 +65,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
         </div>
         <div
           id={`k33-${product.sys.id}-report-list`}
-          className="flex flex-row md:gap-12 gap-6 flex-wrap overflow-auto"
+          className="flex flex-row md:gap-12 gap-6 flex-wrap items-center justify-center md:justify-start"
         >
           {articles.map((article) => (
             <ArticleElement key={article.articleSlug} {...article} />

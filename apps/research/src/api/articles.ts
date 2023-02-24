@@ -60,7 +60,7 @@ const GetArticleElementsByProductAndCategories = gql`
         category: { categorySlug: $categorySlug }
         product: { productSlug: $productSlug }
       }
-      order: [sys_firstPublishedAt_DESC]
+      order: [publishedDate_DESC]
       limit: 10
     ) {
       items {
@@ -69,7 +69,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
 
         articleSlug
-
+        publishedDate
         product {
           productSlug
           branding {
@@ -81,9 +81,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
         article {
           title
-          sys {
-            firstPublishedAt
-          }
+
           thumbnail {
             url
             title
@@ -112,12 +110,10 @@ const GetArticlePage = gql`
             title
           }
         }
+        publishedDate
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           body {
             json
             links {
@@ -170,7 +166,7 @@ const GetArticleElementsByCategories = gql`
     articleWebCollection(
       where: { category: { categorySlug: "reports" } }
       limit: 5
-      order: [sys_publishedAt_DESC]
+      order: [publishedDate_DESC]
     ) {
       items {
         category {
@@ -191,11 +187,9 @@ const GetArticleElementsByCategories = gql`
             title
           }
         }
+        publishedDate
         article {
           title
-          sys {
-            firstPublishedAt
-          }
         }
       }
     }

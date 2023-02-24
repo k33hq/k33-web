@@ -190,6 +190,19 @@ export const company = [
   },
 ];
 
+export const social = [
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/K33HQ?ref_src=twsrc%5Etfw',
+    key: 'twitter',
+  },
+  {
+    name: 'Email',
+    url: 'mailto:contact@k33.com',
+    key: 'email',
+  },
+];
+
 const AuthHeader: React.FC<AuthHeaderProps> = ({
   logo,
   firebaseConfig,

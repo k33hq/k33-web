@@ -20,9 +20,9 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   products,
 }) => {
   return (
-    <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 px-6 md:px-0 bg-bg-light-secondary">
+    <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 bg-bg-light-secondary">
       <div
-        className="flex flex-col md:gap-4 gap-2 md:container"
+        className="flex flex-col md:gap-4 gap-2 md:container px-6 md:px-0"
         id="research-category-banner"
       >
         <p className="md:text-heading5 text-heading6 text-label-light-primary">
@@ -35,7 +35,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
       <div className="bg-scroll bg-category-products bg-blend-soft-light bg-center bg-no-repeat bg-cover">
         <div
           id="research-category-products"
-          className={`md:pt-20 pt-8 md:px-16 px-4 pb-24 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full md:gap-60 gap-20`}
+          className={`md:py-20 py-8 md:px-16 px-6 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full md:gap-60 gap-20`}
         >
           {products.map((product) => (
             <ProductsWithArticles key={product.productSlug} {...product} />

@@ -15,7 +15,7 @@ interface RichTextElements {
 }
 
 const Text: React.FC<RichTextElements> = ({ children }) => (
-  <p className="text-body2 text-label-light-secondary">{children}</p>
+  <p className="text-body2 text-label-light-primary">{children}</p>
 );
 
 const Heading1: React.FC<RichTextElements> = ({ children }) => (

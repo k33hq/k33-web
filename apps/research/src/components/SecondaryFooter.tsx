@@ -10,6 +10,22 @@ export interface SecondaryFooterProps {
 }
 
 // TODO: change style when visited
+// TODO: put research social links in contentful later
+
+const socials = [
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/K33Research?ref_src=twsrc%5Etfw',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/showcase/arcaneresearch',
+  },
+  {
+    name: 'Email',
+    url: 'mailto:research@k33.com',
+  },
+];
 const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
   return (
     <div className="bg-bg-dark-secondary md:h-14">
@@ -31,7 +47,18 @@ const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
               </Link>
             ))}
         </div>
-        <div id="social"></div>
+        <div id="research-social" className="flex md:flex-row flex-col gap-4">
+          <p className="text-body1 text-label-dark-primary">Connect</p>
+          {socials.map((social) => (
+            <Link
+              key={social.name}
+              className="text-body4 text-label-dark-tertiary"
+              href={social.url}
+            >
+              {social.name}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

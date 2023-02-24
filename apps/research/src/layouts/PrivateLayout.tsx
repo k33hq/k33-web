@@ -23,7 +23,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
     <>
       {children}
       {privateStates.includes(state) ? (
-        <Modal>
+        <Modal open={privateStates.includes(state)} onClose={() => {}}>
           <div className="flex flex-col gap-6 items-center text-center">
             <p className="md:text-heading5 text-heading7 text-label-light-secondary">
               Welcome to

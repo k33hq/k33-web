@@ -8,11 +8,13 @@ interface ModalProps {
   children: React.ReactNode;
   backdrop?: boolean;
   size?: Size;
+  open: boolean;
+  onClose: () => void;
 }
 
 const modal: Record<Size, string> = {
   large:
-    'md:ui-w-[920px] md:ui-rounded-[96px] md:ui-max-h-[600px] md:ui-px-20 ui-px-10 ui-pt-20 md:ui-py-20',
+    'md:ui-w-[920px] md:ui-rounded-[96px] md:ui-max-h-[600px] md:ui-px-20 md:ui-py-20',
   small: '',
   medium:
     'md:ui-w-[482px] md:ui-rounded-xl md:ui-min-h-[288px] md:ui-max-h-[328px] ui-m-auto md:ui-py-8 md:ui-px-11',
@@ -22,24 +24,44 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   backdrop = true,
   size = 'large',
+  open,
 }) => {
   return (
-    <div
-      id="k33-modal"
-      tabIndex={-1}
-      aria-hidden="true"
-      className={`ui-fixed ui-top-0 ui-left-0 ui-right-0 ui-w-full ui-h-full flex h-screen ${
-        backdrop
-          ? 'ui-backdrop-blur-sm ui-bg-brand-light-primary/50'
-          : 'ui-backdrop-blur-0 ui-bg-brand-light-primary/30'
-      }`}
-    >
-      <div
-        className={`ui-bg-brand-dark-primary md:ui-m-auto ui-w-full ui-rounded-t-md ui-mt-auto ui-h-1/2 ${modal[size]}`}
-      >
-        {children}
-      </div>
-    </div>
+    <Transition appear show={open} as={React.Fragment}>
+      <Dialog as="div" className={`ui-relative ui-z-10`} onClose={() => {}}>
+        <Transition.Child
+          as={React.Fragment}
+          enter="ui-ease-out ui-duration-300"
+          enterFrom="ui-opacity-0"
+          enterTo="ui-opacity-100"
+          leave="ui-ease-in ui-duration-200"
+          leaveFrom="ui-opacity-100"
+          leaveTo="ui-opacity-0"
+        >
+          <div className="ui-fixed ui-inset-0 ui-backdrop-blur-sm ui-bg-brand-light-primary/50" />
+        </Transition.Child>
+
+        <div className="ui-fixed ui-inset-0 ui-overflow-y-auto ">
+          <div className="ui-flex ui-min-h-full ui-items-center ui-justify-center ui-p-4 ui-text-center">
+            <Transition.Child
+              as={React.Fragment}
+              enter="ui-ease-out ui-duration-300"
+              enterFrom="ui-opacity-0 ui-scale-95"
+              enterTo="ui-opacity-100 ui-scale-100"
+              leave="ui-ease-in ui-duration-200"
+              leaveFrom="ui-opacity-100 ui-scale-100"
+              leaveTo="ui-opacity-0 ui-scale-95"
+            >
+              <Dialog.Panel
+                className={`${modal[size]} ui-transform ui-overflow-hidden ui-rounded-xl ui-bg-bg-light-primary ui-p-6 ui-text-left ui-align-middle ui-shadow-xl ui-transition-all`}
+              >
+                {children}
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition>
   );
 };
 
@@ -56,6 +78,25 @@ export const PayWall: React.FC<PayWallProps> = ({ children }) => {
     </div>
   );
 };
+
+{
+  /* <div
+id="k33-modal"
+tabIndex={-1}
+aria-hidden="true"
+className={`ui-fixed ui-top-0 ui-left-0 ui-right-0 ui-w-full ui-h-full flex h-screen ${
+  backdrop
+    ? 'ui-backdrop-blur-sm ui-bg-brand-light-primary/50'
+    : 'ui-backdrop-blur-0 ui-bg-brand-light-primary/30'
+}`}
+>
+<div
+  className={`ui-bg-brand-dark-primary md:ui-m-auto ui-w-full ui-rounded-t-md ui-mt-auto ui-h-1/2 ${modal[size]}`}
+>
+  {children}
+</div>
+</div> */
+}
 
 interface CookieModalProps {
   acceptCookie: () => void;
