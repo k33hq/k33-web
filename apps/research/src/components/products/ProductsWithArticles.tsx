@@ -10,6 +10,7 @@ const ProductsWithArticles: React.FC<ProductsWithArticlesProps> = ({
   branding,
   product,
   productSlug,
+
   linkedFrom,
 }) => {
   const { articleWebCollection } = linkedFrom;

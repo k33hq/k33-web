@@ -13,6 +13,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
   article,
   articleSlug,
   product,
+  publishedDate,
   category,
 }) => {
   return (
@@ -53,7 +54,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
               branding={product.branding}
               href={getUrl(category.categorySlug, product.productSlug)}
             />
-            <ArticleDate size="small" published={article.publishedDate} />
+            <ArticleDate size="small" published={publishedDate} />
           </div>
           <Link
             className="text-label-light-primary text-body1 hover:text-label-light-secondary"

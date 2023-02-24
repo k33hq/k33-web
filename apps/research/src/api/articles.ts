@@ -69,7 +69,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
 
         articleSlug
-
+        publishedDate
         product {
           productSlug
           branding {
@@ -81,7 +81,7 @@ const GetArticleElementsByProductAndCategories = gql`
         }
         article {
           title
-          publishedDate
+
           thumbnail {
             url
             title
@@ -110,10 +110,10 @@ const GetArticlePage = gql`
             title
           }
         }
+        publishedDate
         article {
           title
           subtitle
-          publishedDate
           body {
             json
             links {
@@ -187,9 +187,9 @@ const GetArticleElementsByCategories = gql`
             title
           }
         }
+        publishedDate
         article {
           title
-          publishedDate
         }
       }
     }

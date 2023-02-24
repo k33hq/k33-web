@@ -127,7 +127,6 @@ export interface Article {
   authorsCollection: {
     items: ReadonlyArray<Author>;
   };
-  publishedDate: string;
 }
 
 export interface ArticleSlug {
@@ -145,11 +144,9 @@ export type ArticlePageSlugs = ReadonlyArray<ArticlePageSlug>;
 
 export interface ArticleElement extends ArticleSlug {
   category: CategorySlug;
-  article: Pick<
-    Article,
-    'title' | 'publishedDate' | 'thumbnail' | 'coverPicture'
-  >;
+  article: Pick<Article, 'title' | 'thumbnail' | 'coverPicture'>;
   product: Omit<ProductElement, 'categoryWeb'>;
+  publishedDate: string;
 }
 
 export type ArticleElements = ReadonlyArray<ArticleElement>;
@@ -157,6 +154,7 @@ export type ArticleElements = ReadonlyArray<ArticleElement>;
 export interface ArticlePage {
   title: string;
   product: Omit<ProductElement, 'categoryWeb'>;
+  publishedDate: string;
   article: Article;
 }
 
@@ -188,10 +186,8 @@ export interface HomePage {
 export interface HomeArticleElement extends ArticleSlug {
   category: CategorySlug;
   product: Omit<ProductElement, 'categoryWeb'>;
-  article: Pick<
-    Article,
-    'title' | 'subtitle' | 'publishedDate' | 'coverPicture'
-  >;
+  publishedDate: string;
+  article: Pick<Article, 'title' | 'subtitle' | 'coverPicture'>;
 }
 
 export interface CategoryAndArticle extends CategoryElement {
