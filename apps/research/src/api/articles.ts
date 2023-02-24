@@ -164,13 +164,14 @@ const GetArticlePage = gql`
 const GetArticleElementsByCategories = gql`
   query GetArticleElementsByCategories($categorySlug: String!) {
     articleWebCollection(
-      where: { category: { categorySlug: "reports" } }
+      where: { category: { categorySlug: $categorySlug } }
       limit: 5
       order: [publishedDate_DESC]
     ) {
       items {
         category {
           categorySlug
+          title
         }
         articleSlug
         thumbnail {

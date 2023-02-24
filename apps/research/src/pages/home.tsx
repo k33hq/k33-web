@@ -1,6 +1,13 @@
 import { GetStaticProps } from 'next';
-import { CategoriesAndArticles, HomePage, SubscriptionPage } from '@/types';
 import {
+  ArticleElements,
+  CategoriesAndArticles,
+  HomePage,
+  SubscriptionPage,
+} from '@/types';
+import {
+  getAllCategorySlugs,
+  getArticleElementByCategories,
   getCategoriesAndTheirArticles,
   getHomePageElements,
   getSubscriptionBySlug,
@@ -133,16 +140,14 @@ const Home: NextPageWithLayout<HomeProps> = ({
         className="md:container md:py-32 py-12 md:px-0 px-6"
         id="category-articles"
       >
-        {articles
-          .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
-          .map((category, index) => (
-            <>
-              <CategoriesAndArticleElements
-                {...category}
-                key={category.categorySlug}
-              />
-            </>
-          ))}
+        {articles.map((category, index) => (
+          <>
+            <CategoriesAndArticleElements
+              {...category}
+              key={category.categorySlug}
+            />
+          </>
+        ))}
       </section>
       <AnalystPromotion />
     </>
@@ -160,6 +165,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     await getHomePageElements();
 
   const articles = await getCategoriesAndTheirArticles();
+  // const articles = (await getArticleElementByCategories('reports')).map(
+  //   (article) => {
+  //     category: {
+  //       categorySlug: article.category.categorySlug;
+  //     }
+  //     articles: []
+  //   }
+  // );
   // TODO: update this and move any promotion to home page content model in contentful
   // TODO: also move subscription pitch to home page
   const subscription = await getSubscriptionBySlug(
