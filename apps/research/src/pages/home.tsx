@@ -140,14 +140,16 @@ const Home: NextPageWithLayout<HomeProps> = ({
         className="md:container md:py-32 py-12 md:px-0 px-6"
         id="category-articles"
       >
-        {articles.map((category, index) => (
-          <>
-            <CategoriesAndArticleElements
-              {...category}
-              key={category.categorySlug}
-            />
-          </>
-        ))}
+        {articles
+          .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
+          .map((category, index) => (
+            <>
+              <CategoriesAndArticleElements
+                {...category}
+                key={category.categorySlug}
+              />
+            </>
+          ))}
       </section>
       <AnalystPromotion />
     </>
