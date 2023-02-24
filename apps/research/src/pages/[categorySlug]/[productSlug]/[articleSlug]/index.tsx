@@ -19,6 +19,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import { fetcher } from 'core';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
+import { useStripeSubscriber } from '@/hooks';
 
 interface ArticleProps {
   articleSlug: string;
@@ -34,33 +35,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   articleSlug,
 }) => {
   const { article, product, publishedDate } = articlePage;
-  const [subscriber, setSubscriber] = useState<null | SubscriberType>(null);
-
-  useEffect(() => {
-    // fetcher(
-    //   `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
-    // )
-    //   .catch((data) => setSubscriber('free'))
-    //   .then((data) => setSubscriber('pro'));
-
-    const getSubscriber = async () => {
-      try {
-        const data = await fetcher(
-          `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
-        );
-
-        if (data.status === 404) {
-          setSubscriber('free');
-        } else {
-          setSubscriber('pro');
-        }
-      } catch (err) {
-        setSubscriber('free');
-      }
-    };
-
-    getSubscriber();
-  }, [subscriber]);
+  const subscriber = useStripeSubscriber();
 
   return (
     <>
