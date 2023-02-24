@@ -42,6 +42,42 @@ const GetCategoryPage = gql`
           title
           description
         }
+        highlightedProductsCollection {
+          items {
+            categoryWeb {
+              categorySlug
+            }
+            productSlug
+            branding {
+              color
+            }
+            product {
+              title
+              description
+            }
+            linkedFrom {
+              articleWebCollection(limit: 2) {
+                items {
+                  articleSlug
+                  product {
+                    branding {
+                      color
+                    }
+                  }
+                  publishedDate
+                  article {
+                    title
+                    thumbnail {
+                      url
+                      title
+                      description
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

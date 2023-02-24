@@ -71,6 +71,9 @@ export type CategoryElements = ReadonlyArray<CategoryElement>;
 export interface CategoryPage {
   title: string;
   category: Category;
+  highlightedProductsCollection: {
+    items: ReadonlyArray<ProductElementsWithArticleElement>;
+  };
 }
 
 export type CategoryPages = ReadonlyArray<CategoryPage>;

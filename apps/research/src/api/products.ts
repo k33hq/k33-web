@@ -132,6 +132,7 @@ const GetProductBySlug = gql`
 /**
  * get product elements with category
  */
+// TODO: make this into a fragment
 const GetProductElementsWithArticleElementsByCategories = gql`
   query GetProductSlugByCategory($categorySlug: String!) {
     productWebCollection(
@@ -162,6 +163,64 @@ const GetProductElementsWithArticleElementsByCategories = gql`
               publishedDate
               article {
                 title
+                thumbnail {
+                  url
+                  title
+                  description
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const GetProductArticleElementsByCategories = gql`
+  query GetProductSlugByCategory(
+    $categorySlug: String!
+    $productSlugs: [String]
+  ) {
+    productWebCollection(
+      where: {
+        categoryWeb: { categorySlug: $categorySlug }
+        productSlug_not_in: $productSlugs
+      }
+    ) {
+      items {
+        productSlug
+        categoryWeb {
+          categorySlug
+        }
+        branding {
+          color
+        }
+        product {
+          title
+          description
+        }
+        linkedFrom {
+          articleWebCollection(limit: 5) {
+            items {
+              category {
+                categorySlug
+              }
+
+              articleSlug
+              publishedDate
+              product {
+                productSlug
+                branding {
+                  color
+                }
+                product {
+                  title
+                }
+              }
+              article {
+                title
+
                 thumbnail {
                   url
                   title
@@ -242,6 +301,19 @@ export const getProductElementsAndArticleElementsByCategory = async (
     await contentful.request<GetProductElementsWithArticleElementsByCategoriesResponse>(
       GetProductElementsWithArticleElementsByCategories,
       { categorySlug }
+    );
+
+  return productWebCollection.items;
+};
+
+export const getProductArticleElementsByCategories = async (
+  categorySlug: string,
+  productSlugs: ReadonlyArray<string>
+) => {
+  const { productWebCollection } =
+    await contentful.request<GetProductElementsWithArticleElementsByCategoriesResponse>(
+      GetProductArticleElementsByCategories,
+      { categorySlug, productSlugs }
     );
 
   return productWebCollection.items;
