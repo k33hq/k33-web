@@ -5,7 +5,9 @@ import Image from 'next/image';
 import { SendEmail } from 'platform-js';
 import vault from '../assets/vault.png';
 import promotion2 from '../assets/promotion2.png';
-import { BasicPromotion } from 'ui';
+import { BasicPromotion, NextPageWithLayout } from 'ui';
+import { ReactElement } from 'react';
+import { MainLayout } from '@/layouts';
 
 const hero = {
   title: 'Invest in the future of finance',
@@ -53,7 +55,7 @@ const insightPromotion = {
   },
 };
 
-const Index: NextPage = () => {
+const Index: NextPageWithLayout = () => {
   return (
     <>
       <div
@@ -131,6 +133,10 @@ const Index: NextPage = () => {
       </div>
     </>
   );
+};
+
+Index.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
 };
 
 export default Index;

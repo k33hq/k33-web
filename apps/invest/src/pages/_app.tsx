@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import 'ui/styles.css';
 import { MainLayout } from '@/layouts';
 import K33App from 'platform-js';
+import { NextPageWithLayout } from 'ui';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -12,16 +13,13 @@ export const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-interface PlatformAppProps extends AppProps {}
+interface PlatformAppProps extends AppProps {
+  Component: NextPageWithLayout;
+}
 
 const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
-  return (
-    <K33App>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
-    </K33App>
-  );
+  const getLayout = Component.getLayout ?? ((page) => page);
+  return <K33App>{getLayout(<Component {...pageProps} />)}</K33App>;
 };
 
 export default PlatformApp;
