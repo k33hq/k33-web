@@ -81,6 +81,11 @@ const Plan: React.FC<PlanProps> = ({ type, features }) => {
         </div>
         <div id="feature-list">
           <BasicList data={features} />
+          {type === 'pro' && (
+            <p className="text-body1 text-label-light-secondary">
+              Contact us to cancel your subscription at research@k33.com
+            </p>
+          )}
         </div>
       </div>
       <div className="flex flex-col">
