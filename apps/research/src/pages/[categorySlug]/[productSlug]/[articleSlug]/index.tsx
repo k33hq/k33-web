@@ -99,17 +99,19 @@ const Article: NextPageWithLayout<ArticleProps> = ({
             </div>
           )}
 
-          {subscriber != null && subscriber === 'pro' && (
-            <>
-              <ArticleBody document={article.body} />
-              {article.reportDocument ? (
-                <ReportsDownload
-                  url={article.reportDocument.url}
-                  title={article.reportDocument.title}
-                />
-              ) : null}
-            </>
-          )}
+          {subscriber != null &&
+            subscriber === 'pro' &&
+            ['blog', 'analysis'].includes(categorySlug) && (
+              <>
+                <ArticleBody document={article.body} />
+                {article.reportDocument ? (
+                  <ReportsDownload
+                    url={article.reportDocument.url}
+                    title={article.reportDocument.title}
+                  />
+                ) : null}
+              </>
+            )}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
