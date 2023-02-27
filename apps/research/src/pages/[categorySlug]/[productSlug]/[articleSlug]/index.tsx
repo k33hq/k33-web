@@ -99,9 +99,8 @@ const Article: NextPageWithLayout<ArticleProps> = ({
             </div>
           )}
 
-          {subscriber != null &&
-            subscriber === 'pro' &&
-            ['blog', 'analysis'].includes(categorySlug) && (
+          {(subscriber != null && subscriber === 'pro') ||
+            (['blog', 'analysis'].includes(categorySlug) && (
               <>
                 <ArticleBody document={article.body} />
                 {article.reportDocument ? (
@@ -111,7 +110,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
                   />
                 ) : null}
               </>
-            )}
+            ))}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
