@@ -36,7 +36,9 @@ const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
         <div id="research-products" className="flex md:flex-row flex-col gap-4">
           <p className="text-body1 text-label-dark-primary">Products</p>
           {categories
-            .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
+            .filter(
+              (c) => !['opinion', 'analysis', 'blog'].includes(c.categorySlug)
+            )
             .map((category) => (
               <Link
                 key={category.categorySlug}

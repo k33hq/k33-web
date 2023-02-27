@@ -45,7 +45,9 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
           </Link>
         )}
         {categories
-          .filter((c) => !['opinion', 'analysis'].includes(c.categorySlug))
+          .filter(
+            (c) => !['opinion', 'analysis', 'blog'].includes(c.categorySlug)
+          )
           .map((c) => (
             <Link
               className={`text-body4 ${
