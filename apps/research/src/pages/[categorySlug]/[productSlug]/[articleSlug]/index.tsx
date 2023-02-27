@@ -101,7 +101,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
 
           {subscriber != null &&
             subscriber === 'pro' &&
-            categorySlug === 'blog' && (
+            ['blog', 'analysis'].includes(categorySlug) && (
               <>
                 <ArticleBody document={article.body} />
                 {article.reportDocument ? (
