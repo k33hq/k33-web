@@ -152,6 +152,17 @@ export interface ArticleElement extends ArticleSlug {
   publishedDate: string;
 }
 
+export interface ArticleCategoryElements extends ArticleSlug {
+  category: {
+    category: {
+      title: string;
+    };
+  } & CategorySlug;
+  article: Pick<Article, 'title' | 'thumbnail' | 'coverPicture'>;
+  product: Omit<ProductElement, 'categoryWeb'>;
+  publishedDate: string;
+}
+
 export type ArticleElements = ReadonlyArray<ArticleElement>;
 
 export interface ArticlePage {

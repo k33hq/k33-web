@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import {
+  ArticleCategoryElements,
   ArticleElements,
   CategoriesAndArticles,
   HomePage,
@@ -14,8 +15,10 @@ import {
 } from '@/api';
 import {
   AnalystPromotion,
+  ArticleElement,
   CategoriesAndArticleElements,
   CoverArticle,
+  Marker,
   SubArticle,
 } from '@/components';
 import { ReactElement, useEffect, useState } from 'react';
@@ -30,6 +33,7 @@ import { useStripeSubscriber } from '@/hooks';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
+  reportArticles: ArticleCategoryElements[];
   subscription: SubscriptionPage;
 }
 
@@ -41,6 +45,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
   subArticle4,
   articles,
   subscription,
+  reportArticles,
 }) => {
   const subscriber = useStripeSubscriber();
   return (
@@ -146,7 +151,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </section>
       )}
-      <section
+      {/* <section
         className="md:container md:py-32 py-12 md:px-0 px-6"
         id="category-articles"
       >
@@ -160,6 +165,44 @@ const Home: NextPageWithLayout<HomeProps> = ({
               />
             </>
           ))}
+      </section> */}
+      <section
+        className="md:container md:py-32 py-12 md:px-0 px-6"
+        id="category-articles"
+      >
+        <div id="reports" className="flex flex-col gap-8">
+          <div
+            id="category-title"
+            className="flex flex-row items-center justify-between"
+          >
+            <div
+              id="research-product-branding-title"
+              className="flex flex-row gap-1 items-center"
+            >
+              <Marker color={reportArticles[0].product.branding.color} />
+              <Link
+                className="md:text-body1 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
+                href={getUrl(reportArticles[0].category.categorySlug)}
+              >
+                {reportArticles[0].category.category.title}
+              </Link>
+            </div>
+            <Link
+              className="text-caption text-brand-light-primary content-center hover:text-label-light-secondary"
+              href={getUrl(reportArticles[0].category.categorySlug)}
+            >
+              see more
+            </Link>
+          </div>
+          <div
+            id="category-article-list"
+            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 justify-center items-center md:overflow-hidden overflow-x-auto overflow-y-hidden`}
+          >
+            {reportArticles.map((article) => (
+              <ArticleElement {...article} key={article.articleSlug} />
+            ))}
+          </div>
+        </div>
       </section>
       <AnalystPromotion />
     </>
@@ -187,6 +230,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   //     articles: []
   //   }
   // );
+
+  const reportArticles = await getArticleElementByCategories('reports');
   // TODO: update this and move any promotion to home page content model in contentful
   // TODO: also move subscription pitch to home page
   const subscription = await getSubscriptionBySlug(
@@ -202,6 +247,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       subArticle4,
       subscription,
       articles,
+      reportArticles,
     },
   };
 };
