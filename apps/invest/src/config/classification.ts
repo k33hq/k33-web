@@ -1,6 +1,7 @@
 import type { ArcaneFlowConfig } from 'flow';
 
 export type Questions =
+  | 'welcome'
   | 'question1'
   | 'question2'
   | 'question3'
@@ -12,6 +13,9 @@ export type Questions =
 export type Answers = 'yes' | 'no';
 
 const config: ArcaneFlowConfig<Questions, Answers> = {
+  welcome: (val, history) => {
+    return 'question1';
+  },
   question1: (val, history) => {
     if (val === 'yes') return 'warning';
     return 'question2';
