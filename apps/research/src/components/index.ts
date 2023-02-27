@@ -10,3 +10,4 @@ export { default as ResearchFooter } from './ResearchFooter';
 export * from './author';
 export * from './subscriptions';
 export * from './landing';
+export { default as Marker } from './Marker';

@@ -171,14 +171,12 @@ const GetArticleElementsByCategories = gql`
       items {
         category {
           categorySlug
-          title
+          category {
+            title
+          }
         }
+
         articleSlug
-        thumbnail {
-          url
-          title
-          description
-        }
         product {
           productSlug
           branding {
@@ -188,9 +186,15 @@ const GetArticleElementsByCategories = gql`
             title
           }
         }
+
         publishedDate
         article {
           title
+          thumbnail {
+            url
+            title
+            description
+          }
         }
       }
     }

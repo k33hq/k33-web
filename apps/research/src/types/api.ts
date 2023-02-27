@@ -23,6 +23,7 @@ import {
   ProductLandingPage,
   ArchivePageSlugs,
   ArchivePage,
+  ArticleCategoryElements,
 } from './domain';
 
 /**
@@ -124,7 +125,7 @@ export interface GetArticlePageResponse {
 
 export interface GetArticleElementsByCategoriesResponse {
   articleWebCollection: {
-    items: ArticleElements;
+    items: ReadonlyArray<ArticleCategoryElements>;
   };
 }
 
