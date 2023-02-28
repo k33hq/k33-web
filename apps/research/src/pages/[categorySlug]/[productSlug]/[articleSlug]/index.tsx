@@ -83,7 +83,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
               branding: product.branding,
             }}
             title={article.title}
-            subtitle={article.subtitle ?? ''}
+            subtitle={article.subtitle ?? undefined}
           />
           <Divider />
           <NutShell document={article.summary} />

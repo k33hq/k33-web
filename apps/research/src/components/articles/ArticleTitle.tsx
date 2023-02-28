@@ -8,7 +8,7 @@ interface ArticleTitleProps {
   product: ProductTitleProps;
   published: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 const ArticleTitle: React.FC<ArticleTitleProps> = ({
@@ -29,9 +29,11 @@ const ArticleTitle: React.FC<ArticleTitleProps> = ({
       <p className="md:text-heading7 text-heading8 text-label-light-primary">
         {title}
       </p>
-      <p className="md:text-body2 text-small  md:text-label-light-primary text-label-light-secondary">
-        {subtitle}
-      </p>
+      {subtitle && (
+        <p className="md:text-body2 text-small  md:text-label-light-primary text-label-light-secondary">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 };
