@@ -8,12 +8,14 @@ interface ArticleTitleProps {
   product: ProductTitleProps;
   published: string;
   title: string;
+  subtitle: string;
 }
 
 const ArticleTitle: React.FC<ArticleTitleProps> = ({
   product,
   published,
   title,
+  subtitle,
 }) => {
   return (
     <div className="flex flex-col g-2">
@@ -26,6 +28,9 @@ const ArticleTitle: React.FC<ArticleTitleProps> = ({
       </div>
       <p className="md:text-heading7 text-heading8 text-label-light-primary">
         {title}
+      </p>
+      <p className="md:text-body2 text-small  md:text-label-light-primary text-label-light-secondary">
+        {subtitle}
       </p>
     </div>
   );
