@@ -11,7 +11,7 @@ const nextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transpilePackages: ['core', 'platform-js'],
-  reactStrictMode: true,
+
   images: {
     unoptimized: true,
     remotePatterns: [

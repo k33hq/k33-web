@@ -35,6 +35,7 @@ const ArcaneFlow = <NodeName extends string, Answer>(
   config: ArcaneFlowConfig<NodeName, Answer>
 ) => {
   const history: Array<History<NodeName, Answer>> = [];
+
   const next = (node: NodeName, val: Answer) => {
     const dest = pipe(
       config[node],
@@ -43,7 +44,13 @@ const ArcaneFlow = <NodeName extends string, Answer>(
       O.getOrElse(() => node)
     );
 
+    console.log('dest' + ' : ' + dest);
+    console.log('node' + ' : ' + node);
+
     if (dest !== node) {
+      console.log(history);
+      // history = [...history, { node, answer: val }];
+      //history.push({ node, answer: val });
       history.push({ node: node, answer: val });
     }
     return dest;

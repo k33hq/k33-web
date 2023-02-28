@@ -20,6 +20,7 @@ import { fetcher } from 'core';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
 import { useStripeSubscriber } from '@/hooks';
+import Head from 'next/head';
 
 interface ArticleProps {
   articleSlug: string;
@@ -60,6 +61,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
 
   return (
     <>
+      <Head>
+        <title>{article.title}</title>
+      </Head>
       <Indicator color={product.branding.color} />
       <section
         id="main-article-section"

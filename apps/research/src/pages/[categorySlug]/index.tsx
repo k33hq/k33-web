@@ -15,6 +15,7 @@ import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
 import { getUrl } from '@/utils';
+import Head from 'next/head';
 
 interface CategoryProps extends CategoryPage {
   categorySlug: string;
@@ -29,6 +30,9 @@ const Category: NextPageWithLayout<CategoryProps> = ({
 }) => {
   return (
     <>
+      <Head>
+        <title>{category.title}</title>
+      </Head>
       <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 bg-bg-light-secondary">
         <div
           className="flex flex-col md:gap-4 gap-2 md:container px-6 md:px-0"
