@@ -32,7 +32,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
               K33 Research
             </p>
             <p className="md:text-heading8 text-body1 text-label-light-secondary">
-              Sing in for full access to our research archive of articles,
+              Sign in for full access to our research archive of articles,
               reports and analysis, and become an expert!
             </p>
             <div id="login-mechanism" className="flex flex-col pt-10 w-full">
