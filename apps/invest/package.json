@@ -13,9 +13,10 @@
   "dependencies": {
     "@next/font": "^13.1.6",
     "firebase": "^9.16.0",
+    "flow": "workspace:*",
+    "fp-ts": "^2.13.1",
     "next": "^13.1.1",
     "platform-js": "workspace:*",
-    "flow": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
