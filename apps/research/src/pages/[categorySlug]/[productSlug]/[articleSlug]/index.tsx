@@ -37,6 +37,27 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   const { article, product, publishedDate } = articlePage;
   const subscriber = useStripeSubscriber();
 
+  const mainBody = () => {
+    if (
+      (subscriber != null && subscriber === 'pro') ||
+      ['blog', 'analysis'].includes(categorySlug)
+    ) {
+      return (
+        <>
+          <ArticleBody document={article.body} />
+          {article.reportDocument ? (
+            <ReportsDownload
+              url={article.reportDocument.url}
+              title={article.reportDocument.title}
+            />
+          ) : null}
+        </>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <>
       <Indicator color={product.branding.color} />
@@ -78,6 +99,8 @@ const Article: NextPageWithLayout<ArticleProps> = ({
               />
             ) : null}
           </div>
+
+          {mainBody()}
           {(subscriber === null || subscriber === 'free') && (
             <div
               id="id-subscribe"
@@ -98,19 +121,6 @@ const Article: NextPageWithLayout<ArticleProps> = ({
               </Link>
             </div>
           )}
-
-          {(subscriber != null && subscriber === 'pro') ||
-            (['blog', 'analysis'].includes(categorySlug) && (
-              <>
-                <ArticleBody document={article.body} />
-                {article.reportDocument ? (
-                  <ReportsDownload
-                    url={article.reportDocument.url}
-                    title={article.reportDocument.title}
-                  />
-                ) : null}
-              </>
-            ))}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
