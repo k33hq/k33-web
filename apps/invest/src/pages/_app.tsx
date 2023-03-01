@@ -2,9 +2,10 @@ import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
-import { MainLayout } from '@/layouts';
 import K33App from 'platform-js';
 import { NextPageWithLayout } from 'ui';
+import { Provider } from 'react-redux';
+import { wrapper } from '@/store';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -17,9 +18,14 @@ interface PlatformAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
-const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
+const InvestApp = ({ Component, ...rest }: PlatformAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-  return <K33App>{getLayout(<Component {...pageProps} />)}</K33App>;
+  const { store, props: pageProps } = wrapper.useWrappedStore(rest);
+  return (
+    <Provider store={store}>
+      <K33App>{getLayout(<Component {...pageProps} />)}</K33App>
+    </Provider>
+  );
 };
 
-export default PlatformApp;
+export default InvestApp;

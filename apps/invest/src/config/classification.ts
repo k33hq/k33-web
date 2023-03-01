@@ -1,4 +1,4 @@
-import type { ArcaneFlowConfig } from 'flow';
+import type { ArcaneFlowConfig } from '../hooks';
 
 export const surveyTypes = [
   'question1',

@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
 import investmentLogo from '../assets/investments-logo.png';
+import { useFundRedirection } from '@/hooks';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,

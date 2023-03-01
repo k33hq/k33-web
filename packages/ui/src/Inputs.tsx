@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Switch } from '@headlessui/react';
+import { Switch, Combobox, Transition } from '@headlessui/react';
 
-interface InputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {}
+export type K33InputProps = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>;
+
+interface InputProps extends K33InputProps {}
 
 export const Input: React.FC<InputProps> = (props) => {
   return (

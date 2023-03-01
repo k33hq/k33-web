@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { flow, pipe } from 'fp-ts/lib/function';
 import * as O from 'fp-ts/lib/Option';
+import { useGetFundRegistrationQuery } from '@/services';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 
 interface SurveyQueryPageOptions<T extends string> {
   page: string;
@@ -76,4 +78,17 @@ export const useArcaneFlow = <NodeName extends string, Answer>(
   };
 
   return { next, previous };
+};
+
+export const useFundRedirection = () => {
+  const router = useRouter();
+  const { error, data, isLoading } = useGetFundRegistrationQuery(
+    'k33-assets-i-fund-limited'
+  );
+
+  if (error && (error as FetchBaseQueryError).status === 404) {
+    router.push('/');
+  }
+
+  return { data, isLoading };
 };
