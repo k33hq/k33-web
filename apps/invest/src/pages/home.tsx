@@ -1,3 +1,6 @@
+import { useFundRedirection } from '@/hooks';
+import PrivateLayout from '@/layouts/PrivateLayout';
+import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 
 /**
@@ -5,7 +8,12 @@ import { NextPageWithLayout } from 'ui';
  * @returns
  */
 const Home: NextPageWithLayout = () => {
-  return <div>home</div>;
+  const { data, isLoading } = useFundRedirection();
+  return <>{isLoading ? 'loading' : <h1>home</h1>}</>;
+};
+
+Home.getLayout = (page: ReactElement) => {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export default Home;
