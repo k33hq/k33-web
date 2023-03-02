@@ -2,13 +2,15 @@ import { useFundRedirection } from '@/hooks';
 import { MainLayout } from '@/layouts';
 import PrivateLayout from '@/layouts/PrivateLayout';
 import { ReactElement } from 'react';
-import { Marker } from 'ui';
+import { BasicButton, Marker } from 'ui';
 import { NextPageWithLayout } from 'ui';
 import content from '../assets/Content.png';
 import serviceProviders from '../assets/service_providers.png';
 import fundFact from '../assets/fund_fact.png';
 import Image from 'next/image';
 import { Size } from 'ui';
+import { FundPromotion } from '@/components';
+import { ImDownload2 } from 'react-icons/im';
 
 /**
  *  user-state: [registered, fund-registered]
@@ -43,6 +45,18 @@ const fundCards = {
   },
 };
 
+const promotion = {
+  features: [
+    'Actively managed',
+    'Professional Investors',
+    'Invests in quality projects',
+    'Learn more about the fund',
+    'Book a presentation',
+    'Get the offering documents',
+  ],
+};
+
+// TODO: extract the promotion box
 const Home: NextPageWithLayout = () => {
   //  const { data, isLoading } = useFundRedirection();
   //if (isLoading) return 'loading';
@@ -67,6 +81,83 @@ const Home: NextPageWithLayout = () => {
           >
             <FundBody>{fundCards.position.description}</FundBody>
           </FundCard>
+        </div>
+      </section>
+      <section id="promotion-section" className="bg-bg-dark-elevated-tertiary">
+        <div
+          id="promotion-section"
+          className="md:container md:px-0 px-6 flex md:flex-row flex-col py-10 items-center md:py-8 md:justify-between gap-10"
+        >
+          <div id="promotion-action" className="flex flex-col gap-4">
+            <div id="promotion-information" className="flex flex-col gap-2">
+              <div className="flex flex-row gap-1">
+                <p className="text-body3 text-label-dark-secondary">
+                  Learn about
+                </p>
+                <p className="text-body1 text-label-dark-primary">
+                  K33 Assets Fund
+                </p>
+              </div>
+              <p className="text-label-dark-primary text-heading7">
+                Experts insight on how to invest
+              </p>
+            </div>
+            <div className="flex flex-row md:gap-4">
+              <BasicButton variant="secondary" size="medium">
+                Contact Us Now
+              </BasicButton>
+              <BasicButton variant="secondary" size="medium">
+                <div className="flex flex-row items-center gap-2">
+                  Download PDF <ImDownload2 />
+                </div>
+              </BasicButton>
+            </div>
+          </div>
+          <div
+            id="promotion-features"
+            className="md:px-8 md:py-7 py-2 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full md:flex-wrap gap-2 bg-default-systemGrey-dark-2 md:h-[176px] md:max-w-[762px]"
+          >
+            {promotion.features.map((feature) => (
+              <div
+                key={feature}
+                className="flex flex-row md:items-center items-start md:gap-2 gap-6 justify-start"
+              >
+                <div className="h-[19px] w-[19.19px] md:w-[35px] md:h-[33px]">
+                  <svg
+                    width="36"
+                    height="33"
+                    viewBox="0 0 36 33"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M12.9607 8.25762C17.8367 8.41036 21.9499 11.9532 23.4783 16.9821C25.0298 22.0868 23.8977 27.8889 19.884 31.0369C15.8998 34.1617 10.5961 33.3017 6.56634 30.2464C2.24972 26.9736 -1.19211 21.7097 0.392951 16.259C2.00934 10.7005 7.59369 8.08951 12.9607 8.25762Z"
+                      fill="#AEAEB2"
+                    />
+                    <g clipPath="url(#clip0_5458_2250)">
+                      <path
+                        d="M35.1897 5.67634C35.4125 5.92077 35.4125 6.30269 35.1897 6.54712L15.6439 27.3237C15.4139 27.5605 15.0546 27.5605 14.8247 27.3237L4.47973 16.3243C4.25545 16.0799 4.25545 15.698 4.47973 15.4535C4.70465 15.2167 5.06826 15.2167 5.29318 15.4535L15.1696 26.0251L34.3705 5.67634C34.6005 5.43955 34.9598 5.43955 35.1897 5.67634Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_5458_2250">
+                        <rect
+                          width="31.0453"
+                          height="33"
+                          fill="white"
+                          transform="translate(4.31152)"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <p className="text-label-dark-primary text-body2">{feature}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
       <section className="bg-bg-light-primary md:py-16">
@@ -162,6 +253,7 @@ const Home: NextPageWithLayout = () => {
           </FundCardBody>
         </div>
       </section>
+      <FundPromotion />
     </>
   );
 };
