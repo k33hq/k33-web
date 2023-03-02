@@ -62,8 +62,8 @@ const Home: NextPageWithLayout = () => {
   //if (isLoading) return 'loading';
   return (
     <>
-      <section className="bg-bg-light-secondary md:py-16">
-        <div className="md:container flex md:flex-row flex-col md:gap-16">
+      <section className="bg-bg-light-secondary md:py-16 py-12 px-6 md:px-0">
+        <div className="md:container flex md:flex-row flex-col md:gap-16 gap-8">
           <FundCard
             size="medium"
             title={fundCards.strategy.title}
@@ -102,15 +102,22 @@ const Home: NextPageWithLayout = () => {
                 Experts insight on how to invest
               </p>
             </div>
-            <div className="flex flex-row md:gap-4">
+            <div className="flex flex-row gap-4">
               <BasicButton variant="secondary" size="medium">
                 Contact Us Now
               </BasicButton>
-              <BasicButton variant="secondary" size="medium">
-                <div className="flex flex-row items-center gap-2">
-                  Download PDF <ImDownload2 />
-                </div>
-              </BasicButton>
+              <a
+                href="/invest/home/fund-doc.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <BasicButton variant="secondary" size="medium">
+                  <div className="flex flex-row items-center gap-2">
+                    Download PDF <ImDownload2 />
+                  </div>
+                </BasicButton>
+              </a>
             </div>
           </div>
           <div
@@ -122,7 +129,7 @@ const Home: NextPageWithLayout = () => {
                 key={feature}
                 className="flex flex-row md:items-center items-start md:gap-2 gap-6 justify-start"
               >
-                <div className="h-[19px] w-[19.19px] md:w-[35px] md:h-[33px]">
+                <div className="h-[19px] w-[19px] md:w-[35px] md:h-[33px]">
                   <svg
                     width="36"
                     height="33"
@@ -160,9 +167,9 @@ const Home: NextPageWithLayout = () => {
           </div>
         </div>
       </section>
-      <section className="bg-bg-light-primary md:py-16">
-        <div className="md:container flex flex-col md:gap-10">
-          <div className="flex md:flex-row flex-col md:gap-8">
+      <section className="bg-bg-light-primary md:py-16 py-10 px-6 md:px-0">
+        <div className="md:container flex flex-col md:gap-10 gap-8">
+          <div className="flex md:flex-row flex-col gap-8">
             <FundCard
               size="medium"
               title="Fund Performance"
@@ -171,7 +178,7 @@ const Home: NextPageWithLayout = () => {
               <Image src={content} alt="" />
               <div></div>
             </FundCard>
-            <div className="flex flex-col md:gap-4">
+            <div className="flex flex-col md:gap-4 gap-8">
               <FundCard title="trading summary" date={''}>
                 <FundBold>
                   The objective of the Fund is to provide a diversified exposure
@@ -187,9 +194,9 @@ const Home: NextPageWithLayout = () => {
             </div>
           </div>
           <FundCardBody size="large">
-            <div className="flex flex-row justify-between">
+            <div className="flex md:flex-row md:justify-between flex-col gap-6">
               <FundCardContent title="Fund Terms" date="">
-                <table className="table-auto text-left border-separate border-spacing-2">
+                <table className="table-auto hidden md:block text-left border-separate border-spacing-2">
                   <thead className="text-caption text-label-light-primary">
                     <tr>
                       <th>Minimum Investment</th>
@@ -245,6 +252,98 @@ const Home: NextPageWithLayout = () => {
                     </tr>
                   </tbody>
                 </table>
+                <table className="table-auto block md:hidden text-left">
+                  <thead className="text-small text-label-light-primary">
+                    <tr>
+                      <th>Minimum Investment</th>
+                      <th>Share Class B $100,000</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-label-light-secondary text-xsmall">
+                    <tr>
+                      <td>Investors</td>
+                      <td>Professional (MiFID II)</td>
+                    </tr>
+                    <tr>
+                      <td>Subscriptions</td>
+                      <td>Monthly</td>
+                    </tr>
+                    <tr>
+                      <td>Redemptions</td>
+                      <td className="pr-10">30 days notice period</td>
+                    </tr>
+                    <tr>
+                      <td>Base Currency</td>
+                      <td>USD</td>
+                    </tr>
+                    <tr>
+                      <td>Management Fee</td>
+                      <td>2%</td>
+                    </tr>
+                    <tr>
+                      <td>Performance Fee</td>
+                      <td>20%</td>
+                    </tr>
+                    <tr>
+                      <td>High watermark</td>
+                      <td>Yes</td>
+                    </tr>
+                    <tr>
+                      <td>Redemption Fee</td>
+                      <td>1% (2% first 3 years)</td>
+                    </tr>
+                    <tr>
+                      <td className="pr-10">Recommended Investment Term</td>
+                      <td>Long-term</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table className="table-auto block md:hidden text-left">
+                  <thead className="text-small text-label-light-primary">
+                    <tr>
+                      <th>Minimum Investment</th>
+                      <th>Share Class D $250,000</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-label-light-secondary text-xsmall">
+                    <tr>
+                      <td>Investors</td>
+                      <td>Professional (MiFID II)</td>
+                    </tr>
+                    <tr>
+                      <td>Subscriptions</td>
+                      <td>Monthly</td>
+                    </tr>
+                    <tr>
+                      <td>Redemptions</td>
+                      <td>30 days notice period</td>
+                    </tr>
+                    <tr>
+                      <td>Base Currency</td>
+                      <td>USD</td>
+                    </tr>
+                    <tr>
+                      <td>Management Fee</td>
+                      <td>2%</td>
+                    </tr>
+                    <tr>
+                      <td>Performance Fee</td>
+                      <td>20% (btc benchmark)</td>
+                    </tr>
+                    <tr>
+                      <td>High watermark</td>
+                      <td>Yes</td>
+                    </tr>
+                    <tr>
+                      <td>Redemption Fee</td>
+                      <td>1% (2% first 3 years)</td>
+                    </tr>
+                    <tr>
+                      <td className="pr-10">Recommended Investment Term</td>
+                      <td>Long-term</td>
+                    </tr>
+                  </tbody>
+                </table>
               </FundCardContent>
               <FundCardContent title="Service Providers" date="">
                 <Image src={serviceProviders} alt="service providers" />
@@ -277,16 +376,18 @@ const FundCardContent: React.FC<FundCardContentProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row items-center md:gap-4 md:pb-6">
+      <div className="flex flex-row items-center md:gap-4 gap-2 md:pb-6 pb-4">
         <div className="flex flex-row items-center gap-1">
           <Marker color="brand.black" />
-          <p className="uppercase text-heading8 text-label-light-primary/60">
+          <p className="uppercase md:text-heading8 text-small text-label-light-primary/60">
             {title}
           </p>
         </div>
-        <p className="text-body4 text-label-light-secondary/60">{date}</p>
+        <p className="md:text-body4 text-xsmall text-label-light-secondary/60">
+          {date}
+        </p>
       </div>
-      <div className="flex flex-col md:gap-4">{children}</div>
+      <div className="flex flex-col md:gap-4 gap-2">{children}</div>
     </div>
   );
 };
@@ -308,7 +409,7 @@ const FundCardBody: React.FC<FundCardBodyProps> = ({
 }) => {
   return (
     <div
-      className={`bg-bg-light-primary shadow-lg ring-1 ring-label-light-tertiary/10 md:px-10 md:py-8 rounded-xl ${cardSize[size]}`}
+      className={`bg-bg-light-primary shadow-lg ring-1 ring-label-light-tertiary/10 md:px-10 py-6 px-5 md:py-8 rounded-xl ${cardSize[size]}`}
     >
       {children}
     </div>
@@ -322,15 +423,27 @@ interface FundTextProps {
 interface FundBoldProps extends FundTextProps {}
 
 const FundBold: React.FC<FundBoldProps> = ({ children }) => {
-  return <p className="text-body1 text-label-light-primary">{children}</p>;
+  return (
+    <p className="md:text-body1 text-small text-label-light-primary">
+      {children}
+    </p>
+  );
 };
 
 const FundRegular: React.FC<FundTextProps> = ({ children }) => {
-  return <p className="text-small text-label-light-secondary">{children}</p>;
+  return (
+    <p className="md:text-small text-xsmall text-label-light-secondary">
+      {children}
+    </p>
+  );
 };
 
 const FundBody: React.FC<FundTextProps> = ({ children }) => {
-  return <p className="text-body3 text-label-light-secondary">{children}</p>;
+  return (
+    <p className="md:text-body3 text-small text-label-light-secondary">
+      {children}
+    </p>
+  );
 };
 
 interface FundCardProps
