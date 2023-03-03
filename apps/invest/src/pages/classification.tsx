@@ -18,8 +18,8 @@ const Classification: NextPageWithLayout = () => {
   );
 };
 
-// Classification.getLayout = (page: ReactElement) => {
-//   return <PrivateLayout>{page}</PrivateLayout>;
-// };
+Classification.getLayout = (page: ReactElement) => {
+  return <PrivateLayout>{page}</PrivateLayout>;
+};
 
 export default Classification;
