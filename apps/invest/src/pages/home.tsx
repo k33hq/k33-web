@@ -1,6 +1,4 @@
 import { useFundRedirection } from '@/hooks';
-import { MainLayout } from '@/layouts';
-import PrivateLayout from '@/layouts/PrivateLayout';
 import { ReactElement } from 'react';
 import { BasicButton, Marker } from 'ui';
 import { NextPageWithLayout } from 'ui';
@@ -11,6 +9,7 @@ import Image from 'next/image';
 import { Size } from 'ui';
 import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
+import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 
 /**
  *  user-state: [registered, fund-registered]
@@ -58,8 +57,7 @@ const promotion = {
 
 // TODO: extract the promotion box
 const Home: NextPageWithLayout = () => {
-  //  const { data, isLoading } = useFundRedirection();
-  //if (isLoading) return 'loading';
+  const { data, isLoading } = useFundRedirection();
   return (
     <>
       <section className="bg-bg-light-secondary md:py-16 py-12 px-6 md:px-0">
@@ -358,7 +356,7 @@ const Home: NextPageWithLayout = () => {
 };
 
 Home.getLayout = (page: ReactElement) => {
-  return <MainLayout>{page}</MainLayout>;
+  return <PrivateMainLayout>{page}</PrivateMainLayout>;
 };
 
 export default Home;
