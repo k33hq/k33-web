@@ -67,28 +67,28 @@ const questions: Record<SurveyQuestionTypes, QuestionContent> = {
 const welcome = {
   title: 'Investor Classification',
   description:
-    'Thank you for your interest in our fund. Please answer the following questions to help us determine your eligibility to view more details about the fund, including performance and fund investment strategy, and more.',
+    'Thank you for your interest in our fund. Please answer the following questions to help us determine your eligibility to view more details about the fund, including the performance and fund investment strategy.',
   label: 'Start Classification',
 };
 
 const professionalInvestor = {
   title: 'Investor Classification',
   description:
-    'Congratulations! You are a Professional Investor and therefore are eligible to view details about the fund.',
+    'Congratulations! You are classified as a Professional Investor and are eligible to view details about the fund.',
   label: 'Continue',
 };
 
 const investorUnapproved = {
   title: 'Investor Classification',
   description:
-    'We unfortunately can not offer you a spot in our fund right now. Feel free to contact us if you have any question.',
-  label: 'Visit K33',
+    'Due to regulatory requirements, you are unfortunately not eligible to invest in the fund. Feel free to contact us if you have any questions.',
+  label: 'Back To Investments',
 };
 
 const surveyForm = {
   title: 'User Information',
   description:
-    'In order to complete your registration we need some quick information from you.',
+    'In order to complete your registration we need some personal information about you.',
   label: 'Continue',
 };
 

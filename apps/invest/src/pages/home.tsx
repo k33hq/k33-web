@@ -101,7 +101,7 @@ const Home: NextPageWithLayout = () => {
               </p>
             </div>
             <div className="flex flex-row gap-4">
-              <a>
+              <a href="mailto:invest@k33.com?subject=K33 Assets Fund Info Request&body=Please tell me more about the fund.">
                 <BasicButton variant="secondary" size="medium">
                   Contact Us Now
                 </BasicButton>
