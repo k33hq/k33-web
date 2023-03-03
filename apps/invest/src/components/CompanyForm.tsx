@@ -191,7 +191,7 @@ const CompanyForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
             )}
           />
         </div>
-        <div className="flex flex-row gap-6">
+        <div className="flex md:flex-row flex-col gap-6">
           <div className="flex flex-col">
             <Controller
               control={control}

@@ -3,7 +3,7 @@ import {
   Questions,
   SurveyQuestionTypes,
 } from '@/config/classification';
-import { useSurveyQueryPage } from '@/hooks';
+import { History, useSurveyQueryPage } from '@/hooks';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import SurveyWelcome from './SurveyWelcome';
@@ -11,6 +11,7 @@ import Question from './Question';
 import Terms from './Terms';
 import PersonalForm from './PersonalForm';
 import CompanyForm from './CompanyForm';
+import { BasicButton } from 'ui';
 
 export interface QuestionContent {
   title: string;
@@ -85,9 +86,10 @@ const surveyForm = {
 
 interface SurveyProps {
   next: (question: Questions, answer: Answers) => Questions;
+  prev: () => History<Questions, Answers> | undefined;
 }
 
-const Survey: React.FC<SurveyProps> = ({ next }) => {
+const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
   const router = useRouter();
   const { page, changeRoute } = useSurveyQueryPage<Questions>({
     page: 'classification',
@@ -198,7 +200,34 @@ const Survey: React.FC<SurveyProps> = ({ next }) => {
         return 'loading';
     }
   };
-  return <div>{renderSurvey(page)}</div>;
+  return (
+    <div className="flex items-center justify-center h-screen flex-col">
+      <div className="h-2/3">{renderSurvey(page)}</div>
+      <div className="w-full flex md:justify-between">
+        <div></div>
+        <div className="flex flex-row gap-2">
+          {page !== 'welcome' ? (
+            <BasicButton
+              size="medium"
+              onClick={() => {
+                changeRoute(prev()?.node as Questions);
+              }}
+            >
+              Back
+            </BasicButton>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Survey;
+
+// interface QuestionTemplateProps {
+//   children: React.ReactNode;
+// }
+
+// const QuestionTemplate: React.FC<QuestionTemplateProps> = ({ children }) => {
+//   return <div>{children}</div>;
+// };

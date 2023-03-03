@@ -36,7 +36,7 @@ export const useSurveyQueryPage = <T extends string>({
  */
 export type StringLiteral<T> = T extends `${string & T}` ? T : never;
 
-type History<NodeName extends string, Answer> = {
+export type History<NodeName extends string, Answer> = {
   node: NodeName;
   answer: Answer;
 };
