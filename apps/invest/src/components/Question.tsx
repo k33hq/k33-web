@@ -32,7 +32,7 @@ const Question: React.FC<QuestionProp> = ({
           ))}
         </div>
       </div>
-      <div className="flex flex-col md:gap-2 w-20">
+      <div className="flex flex-col md:gap-2 w-20 gap-4">
         <SurveyButton letter="A" label="Yes" onClick={onPositive} />
         <SurveyButton letter="B" label="No" onClick={onNegative} />
       </div>

@@ -1,45 +1,22 @@
-import { NextPage } from 'next';
-import left from '../assets/left-bg.png';
-import right from '../assets/right-bg.png';
+import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
-import { SendEmail } from 'platform-js';
-import vault from '../assets/vault.png';
+import { SendEmail, useAppState } from 'platform-js';
+import { BasicButton, BasicPromotion } from 'ui';
+
 import promotion2 from '../assets/promotion2.png';
-import { BasicPromotion, NextPageWithLayout } from 'ui';
-import { ReactElement } from 'react';
-import { MainLayout } from '@/layouts';
+import { InvestFooter, InvestHeader } from '@/components';
 
 const hero = {
   title: 'Invest in the future of finance',
-  body: 'Build your wealth by investing in high quality funds and indexes recommended by our experts',
+  body: 'Build your wealth by investing in high quality funds and indexes guided by our experts',
 };
-
-const offerings = {
-  title: 'Our investment philosophy',
-  description:
-    'The market and narratives dominate in the short term, but in the long run fundamentals will prevail. Our industry leading research is a necessary source of information for everyone that’s serious about investing in digital assets.',
-  products: [
-    {
-      logo: vault,
-      title: 'Vault',
-      description:
-        'Hold custody of your private keys in a secure multisig vault',
-      features: [
-        'Built for seamless succession planning',
-        'Enables an easy transition to trading',
-        'Clear transparency and visibility on the blockchain',
-      ],
-    },
-  ],
-};
-
 const insightPromotion = {
   image: (
     <Image
       src={promotion2}
       height={744}
       alt="get real insight"
-      className="md:w-[400px]"
+      className="md:w-[1000px]"
     />
   ),
   title: 'K33 Assets Fund',
@@ -50,93 +27,51 @@ const insightPromotion = {
     'For professional investors',
   ],
   callToAction: {
-    url: '',
-    label: '',
+    url: process.env.NEXT_PUBLIC_INVEST_URL + '/' + 'classification',
+    label: 'Learn More',
   },
 };
 
-const Index: NextPageWithLayout = () => {
+// TODO: put this on contentful
+const Index: NextPage = () => {
   return (
     <>
-      <div
-        className="relative w-full md:max-w-[1728px] px-6 md:px-0 mx-auto py-8 flex flex-col items-center content-center"
-        id="markets-hero"
-      >
-        <div className="md:absolute md:left-0 md:h-[634px] md:w-[238px] hidden md:block">
-          <Image
-            src={left}
-            fill
-            style={{
-              objectFit: 'contain',
-            }}
-            alt="left-market-bg"
-          />
-        </div>
-        <div className="md:absolute md:right-0 md:h-[634px] md:w-[238px] hidden md:block">
-          <Image
-            src={right}
-            fill
-            style={{
-              objectFit: 'contain',
-            }}
-            alt="left-market-bg"
-          />
-        </div>
-        <div
-          id="hero-text"
-          className="flex flex-col md:justify-center items-center content-center md:text-center gap-4 md:w-3/5 md:pt-[123px]"
-        >
-          <h2 className="md:text-heading2 text-heading5 text-brand-light-primary">
-            {hero.title}
-          </h2>
-          <p className="md:text-body2 text-brand-light-tertiary text-small">
-            {hero.body}
-          </p>
-          <div className="md:w-[600px] md:py-6 py-8">
-            <SendEmail
-              placeholder="Enter your email"
-              label="Learn More"
-              listIds={['']}
-            />
+      <div className="min-h-screen pb-12">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[482px] w-full bg-[url('../assets/landing.svg')]">
+          <InvestHeader />
+          <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
+            <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
+              <div className="text-brand-dark-primary flex flex-col md:gap-2">
+                <h5 className="md:text-heading2 text-heading8">{hero.title}</h5>
+                <h6 className="md:text-body2 text-heading8">{hero.body}</h6>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="md:container flex flex-col items-center pt-20 px-6 md:px-0 md:gap-20">
-        <div className="text-center flex flex-col md:gap-10 gap-4">
-          <h6 className="md:text-heading6 text-heading8">{offerings.title}</h6>
-          <p className="md:text-heading8 text-body1 text-label-light-secondary">
-            {offerings.description}
-          </p>
-        </div>
-        <div id="promotions" className="w-full">
-          <BasicPromotion {...insightPromotion} direction="right" />
-        </div>
-        <div id="end-promotion" className="flex flex-col md:gap-10">
+        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-32">
           <div
-            id="end-hero-section"
-            className="md:w-[600px] text-center flex flex-col md:gap-6"
+            id="product-heading"
+            className="flex flex-col items-center gap-2 justify-center content-center text-center"
           >
-            <h2 className="md:text-heading7 text-heading8 text-brand-light-primary">
-              Get professional help defining your digital assets investment
-              strategy
-            </h2>
-            <p className="md:text-body2 text-brand-light-tertiary text-small">
-              Set up a meeting
+            <p className="md:text-heading7 text-label-light-primary text-heading8">
+              Our Investment Philosophy
+            </p>
+            <p className="text-body1 md:text-heading8 text-label-light-secondary">
+              Digital assets represent a new paradigm for finance and is
+              emerging as a distinct asset class. By leveraging deep industry
+              knowledge, combined with technical expertise, we are able to
+              navigate and identity investment opportunities with promising
+              fundamentals and long term viability.
             </p>
           </div>
-          <SendEmail
-            placeholder="Enter your email"
-            label="Get in Touch"
-            listIds={['']}
-          />
+        </div>
+        <div className="px-6 md:container md:px-0">
+          <BasicPromotion {...insightPromotion} direction="left" />
         </div>
       </div>
+      <InvestFooter />
     </>
   );
-};
-
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <MainLayout>{page}</MainLayout>;
 };
 
 export default Index;

@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
 import investmentLogo from '../assets/investments-logo.png';
+import { useFundRedirection } from '@/hooks';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -44,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         />
         <SecondaryHeader
           branding={
-            <Link href={process.env.NEXT_PUBLIC_MARKETS_URL as string}>
+            <Link href={process.env.NEXT_PUBLIC_INVEST_URL as string}>
               <Image
                 src={investmentLogo}
                 alt="k33-investments"

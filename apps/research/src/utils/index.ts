@@ -40,6 +40,7 @@ export const colors = {
 export * from './get-stripejs';
 
 // TODO: put these in some lib
+// TODO: update research use this from platform-js
 export function forceDownload(blob: string, filename?: string | undefined) {
   var a = document.createElement('a');
   //@ts-ignore

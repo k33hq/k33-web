@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Brand } from '../types';
 import { colors } from '../utils';
 
+// TODO: replace it with ui marker component
 interface MarkerProps extends Brand {
   size?: 'large' | 'small';
 }

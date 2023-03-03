@@ -4,7 +4,7 @@
 
 /* Firefox */
 * {
-  scrollbar-width: none;
+  scrollbar-width: 1px;
   scrollbar-color: rgb(var(--color-label-light) / 0.7)
     rgb(var(--color-label-dark-secondary) / 0.3);
 }
@@ -16,12 +16,12 @@
 
 *::-webkit-scrollbar-track {
   background: rgb(var(--color-label-light) / 0.7);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: rgb(var(--color-label-dark-secondary) / 0.3);
-  border-radius: 2px;
+  border-radius: 1px;
   border: 1px solid rgb(var(--color-label-dark-secondary) / 0.3);
 }
 

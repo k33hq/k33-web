@@ -1,4 +1,4 @@
-import type { ArcaneFlowConfig } from 'flow';
+import type { ArcaneFlowConfig } from '../hooks';
 
 export const surveyTypes = [
   'question1',
@@ -25,6 +25,32 @@ export type SurveyQuestionTypes = (typeof surveyTypes)[number];
 export type TermsQuestionTypes = (typeof termsTypes)[number];
 export type FormQuestionTypes = (typeof formTypes)[number];
 export type AppQuestionTypes = (typeof appTypes)[number];
+
+// export const surveyTypes = [
+//   'question1',
+//   'question2',
+//   'question3',
+//   'question4',
+//   'question5',
+//   'question6',
+// ] as const;
+
+// export const termsTypes = ['approved', 'terms', 'unapproved'] as const;
+
+// export const formTypes = [
+//   'welcome-form',
+//   'personal-company',
+//   'personal',
+//   'company',
+//   'registered',
+// ] as const;
+
+// export const appTypes = ['invest', 'home', 'welcome'] as const;
+
+// export type SurveyQuestionTypes = (typeof surveyTypes)[number];
+// export type TermsQuestionTypes = (typeof termsTypes)[number];
+// export type FormQuestionTypes = (typeof formTypes)[number];
+// export type AppQuestionTypes = (typeof appTypes)[number];
 
 export type Questions =
   | SurveyQuestionTypes

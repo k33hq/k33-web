@@ -270,7 +270,7 @@ export const mutator = async <T extends object>(
 };
 
 // simple function to get id token
-const getIdToken = async (forceRefresh?: boolean) => {
+export const getIdToken = async (forceRefresh?: boolean) => {
   const auth = getAuth(getApp(APP_NAME));
   const user = auth.currentUser;
   if (user) {

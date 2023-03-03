@@ -1,26 +1,38 @@
 import { Survey } from '@/components';
 import { classificationConfig } from '@/config';
-import { Answers, Questions } from '@/config/classification';
 import { useArcaneFlow } from '@/hooks';
-import ArcaneFlow from 'flow';
-import { NextPage } from 'next';
+import PrivateLayout from '@/layouts/PrivateLayout';
+import { useGetFundRegistrationQuery } from '@/services';
+import { useRouter } from 'next/router';
+import { ReactElement, useEffect } from 'react';
+import { BasicButton, NextPageWithLayout } from 'ui';
 
 /**
  * user-state: [registered]
  * @returns
  */
-const Classification: NextPage = () => {
-  // const { next, previous } = ArcaneFlow<Questions, Answers>(
-  //   classificationConfig
-  // );
-
+const Classification: NextPageWithLayout = () => {
   const { next, previous } = useArcaneFlow(classificationConfig);
+  const router = useRouter();
+  const { error, data, isLoading, isSuccess } = useGetFundRegistrationQuery(
+    'k33-assets-i-fund-limited'
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push('home');
+    }
+  }, [router, isSuccess]);
 
   return (
-    <div className="md:container px-6 md:px-0 md:h-screen md:w-full md:p-20 md:gap-10">
-      <Survey next={next} />
+    <div className="md:container px-6 md:px-0 h-screen">
+      <Survey prev={previous} next={next} />
     </div>
   );
+};
+
+Classification.getLayout = (page: ReactElement) => {
+  return <PrivateLayout>{page}</PrivateLayout>;
 };
 
 export default Classification;

@@ -14,3 +14,18 @@ export type Size = 'large' | 'medium' | 'small';
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
+
+export type Colors =
+  | 'systemRed'
+  | 'systemOrange'
+  | 'systemYellow'
+  | 'systemGreen'
+  | 'systemTeal'
+  | 'systemBlue'
+  | 'systemIndigo'
+  | 'systemPurple'
+  | 'systemPink'
+  | 'brand.black';
+export interface Brand {
+  color: Colors;
+}
