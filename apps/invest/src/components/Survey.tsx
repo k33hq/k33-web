@@ -92,6 +92,13 @@ const surveyForm = {
   label: 'Continue',
 };
 
+const registrationSuccess = {
+  title: '',
+  description:
+    'Your registration is complete! You will now be redirected to  K33 Investments.',
+  label: 'See Fund Details',
+};
+
 interface SurveyProps {
   next: (question: Questions, answer: Answers) => Questions;
   prev: () => History<Questions, Answers> | undefined;
@@ -106,7 +113,6 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
 
   const onChangePage = (question: Questions, answer: Answers) => {
     const route = next(question, answer);
-    console.log(route);
     changeRoute(route);
   };
 
@@ -123,7 +129,7 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
   };
 
   const routeHomePage = () => {
-    router.push('/home');
+    router.push('home');
   };
 
   const renderSurvey = (page: Questions) => {
@@ -204,8 +210,8 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
         return (
           <SurveyWelcome
             icon={<K33Invest />}
-            description={investorUnapproved.description}
-            label={investorUnapproved.label}
+            description={registrationSuccess.description}
+            label={registrationSuccess.label}
             onNext={routeHomePage}
           />
         );

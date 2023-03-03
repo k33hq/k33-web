@@ -32,8 +32,8 @@ const FundPromotion: React.FC = () => {
             assets industry.
           </p>
           <a
-            href="mailto:analystcall@k33.com?subject=K33 Research Analyst Call&body=Hi K33 Research team, I would like to setup a call. My main goal of the meeting is"
-            className="flex flex-row items-center border-2 rounded-md px-2 py-1 gap-2 hover:bg-brand-light-tertiary hover:text-label-dark-primary md:mt-2 w-[150px]"
+            href="mailto:invest@k33.com?subject=K33 Assets Fund Info Request&body=Please tell me more about the fund."
+            className="flex flex-row items-center border-2 rounded-md px-2 py-1 gap-2 hover:bg-brand-light-tertiary hover:text-label-dark-primary md:mt-2 w-[150px] hover:border-brand-light-tertiary"
           >
             <p>Set up a Call</p>
             <HiOutlineMail />

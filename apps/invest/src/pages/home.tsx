@@ -101,9 +101,11 @@ const Home: NextPageWithLayout = () => {
               </p>
             </div>
             <div className="flex flex-row gap-4">
-              <BasicButton variant="secondary" size="medium">
-                Contact Us Now
-              </BasicButton>
+              <a>
+                <BasicButton variant="secondary" size="medium">
+                  Contact Us Now
+                </BasicButton>
+              </a>
               <a
                 href="/invest/home/fund-doc.pdf"
                 target="_blank"

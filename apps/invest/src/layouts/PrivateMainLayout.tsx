@@ -22,7 +22,6 @@ const PrivateMainLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
     }
   }, [state, router]);
 
-  if (state === 'LOADING') return <>checking login state</>;
   return <MainLayout>{children}</MainLayout>;
 };
 
