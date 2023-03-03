@@ -37,7 +37,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
   const [registerFund, { isLoading, isSuccess, data, error, isError }] =
     useFundRegistrationMutation();
 
-  const handleRegistration = (data: PersonalRegistration) => {
+  const handleRegistration = async (data: PersonalRegistration) => {
     const body: FundInfo = {
       investorType: 'PROFESSIONAL',
       name: data.name,
@@ -47,16 +47,19 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
       },
       countryCode: data.country,
     };
-    registerFund({
-      id: 'k33-assets-i-fund-limited',
-      ...body,
-      fundName: 'K33 Assets I Fund Limited',
-    });
+
+    try {
+      const payload = await registerFund({
+        id: 'k33-assets-i-fund-limited',
+        ...body,
+        fundName: 'K33 Assets I Fund Limited',
+      }).unwrap();
+      onPositive();
+    } catch (error) {
+      console.error('rejected', error);
+    }
   };
 
-  React.useEffect(() => {
-    onPositive();
-  }, [isSuccess, onPositive]);
   return (
     <div>
       <form

@@ -106,6 +106,7 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
 
   const onChangePage = (question: Questions, answer: Answers) => {
     const route = next(question, answer);
+    console.log(route);
     changeRoute(route);
   };
 
@@ -202,7 +203,6 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
       case 'registered':
         return (
           <SurveyWelcome
-            title={''}
             icon={<K33Invest />}
             description={investorUnapproved.description}
             label={investorUnapproved.label}
@@ -246,12 +246,12 @@ const Survey: React.FC<SurveyProps> = ({ next, prev }) => {
   };
 
   return (
-    <div className="flex h-screen flex-col md:gap-10 gap-10 md:py-14 py-6 items-center">
+    <div className="flex flex-col md:gap-10 gap-10 md:py-14 py-6 items-center overflow-scroll">
       <div className="w-full flex items-center justify-center">
         {renderHeader(page)}
       </div>
-      <div className="h-3/4">{renderSurvey(page)}</div>
-      <div className="w-full flex justify-between">
+      <div className="min-h-[400px] md:py-10">{renderSurvey(page)}</div>
+      <div className="w-full flex justify-between md:pt-20">
         {!hidePage.includes(page) && <SurveyLogo />}
         <div className="flex flex-row gap-2">
           {!hidePage.includes(page) && (

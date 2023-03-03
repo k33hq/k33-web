@@ -5,7 +5,7 @@ import { BasicButton } from 'ui';
 interface SurveyWelcomeProps {
   description: string;
   label: string;
-  title: string;
+  title?: string;
   onNext: () => void;
   icon: React.ReactNode;
 }
@@ -21,10 +21,14 @@ const SurveyWelcome: React.FC<SurveyWelcomeProps> = ({
   return (
     <div className="flex flex-col">
       <div className="flex flex-col items-center md:gap-12 gap-10">
-        <div className="flex md:flex-row flex-col items-center md:gap-4 gap-2">
-          <div className="h-[64px] w-[64px]">{icon}</div>
-          <h6 className="md:text-heading6 text-heading8">{title}</h6>
-        </div>
+        {title ? (
+          <div className="flex md:flex-row flex-col items-center md:gap-4 gap-2">
+            <div className="h-[64px] w-[64px]">{icon}</div>
+            <h6 className="md:text-heading6 text-heading8">{title}</h6>
+          </div>
+        ) : (
+          icon
+        )}
         <p className="md:text-heading7 text-body1 text-label-light-secondary text-center">
           {description}
         </p>
