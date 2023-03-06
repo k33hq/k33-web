@@ -118,6 +118,16 @@ const GetProductBySlug = gql`
             title
             description
           }
+          logo {
+            url
+            title
+            description
+          }
+          themeImage {
+            url
+            title
+            description
+          }
           sys {
             id
           }

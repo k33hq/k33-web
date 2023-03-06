@@ -82,6 +82,8 @@ export interface Product {
   title: string;
   description: string;
   image: Image;
+  logo: Image;
+  themeImage: Image;
   sys: System;
 }
 

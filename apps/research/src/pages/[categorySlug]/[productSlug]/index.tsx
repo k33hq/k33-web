@@ -11,7 +11,6 @@ import {
   ProductPage,
 } from '@/types';
 import Image from 'next/image';
-
 import {
   ProductTitle,
   ArticleElement,
@@ -41,16 +40,19 @@ const Product: NextPageWithLayout<ProductProps> = ({
       <Head>
         <title>{product.title}</title>
       </Head>
-      <div className="w-auto relative h-80">
+      <div className="w-auto relative md:h-80 h-44">
         <Image
-          src={product.image.url}
-          alt={product.image.title}
+          src={product.themeImage.url}
+          alt={product.themeImage.title}
           fill
           style={{
-            objectFit: 'contain',
+            objectFit: 'cover',
             top: 0,
           }}
         />
+        <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px]">
+          <Image src={product.logo.url} alt={product.logo.title} fill />
+        </div>
       </div>
       <Indicator color={branding.color} />
       <section
@@ -80,9 +82,9 @@ const Product: NextPageWithLayout<ProductProps> = ({
   );
 };
 
-Product.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Product.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   const products = await getProductSlugsByCategory();
