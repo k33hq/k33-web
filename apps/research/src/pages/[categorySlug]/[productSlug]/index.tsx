@@ -82,9 +82,9 @@ const Product: NextPageWithLayout<ProductProps> = ({
   );
 };
 
-// Product.getLayout = function getLayout(page: ReactElement) {
-//   return <PrivateLayout>{page}</PrivateLayout>;
-// };
+Product.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
+};
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   const products = await getProductSlugsByCategory();
