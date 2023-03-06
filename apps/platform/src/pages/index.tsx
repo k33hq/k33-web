@@ -172,7 +172,7 @@ const Index: NextPageWithLayout = () => {
       >
         <SendEmail
           placeholder="Enter your email"
-          label="Get Early Access"
+          label="Get Started"
           listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
         />
       </Hero>

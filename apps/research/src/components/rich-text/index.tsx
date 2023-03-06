@@ -19,7 +19,7 @@ const Text: React.FC<RichTextElements> = ({ children }) => (
 );
 
 const Heading1: React.FC<RichTextElements> = ({ children }) => (
-  <h1 className="text-label-light-primary md:text-heading7 text-heading3">
+  <h1 className="text-label-light-primary md:text-heading7 text-heading8">
     {children}
   </h1>
 );
