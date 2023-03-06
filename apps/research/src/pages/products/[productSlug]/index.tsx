@@ -29,30 +29,26 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       <div className="min-h-screen pb-12">
         <ResearchHeader categories={[]} />
         <main className="flex flex-col">
-          {/* <div className="w-auto hidden md:inline-block relative h-[300px]">
-            {product.product.landingPageImage ? (
+          <div className="w-full h-[300px] relative bg-label-light-tertiary">
+            <Image
+              src={product.product.themeImage.url}
+              alt={product.product.themeImage.title}
+              fill
+              style={{
+                objectFit: 'cover',
+                filter: 'invert(100%)',
+              }}
+            />
+            <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px] flex flex-col">
               <Image
-                src={product.product.landingPageImage.url}
-                alt={product.product.landingPageImage.title}
+                src={product.product.logo.url}
+                alt={product.product.logo.title}
                 fill
                 style={{
-                  objectFit: 'contain',
-                  top: 0,
+                  filter: 'invert(100%)',
                 }}
               />
-            ) : null}
-          </div> */}
-          <div className="w-full h-[300px] relative">
-            {product.product.landingPageImage ? (
-              <Image
-                src={product.product.landingPageImage.url}
-                alt={product.product.landingPageImage.title}
-                fill
-                style={{
-                  objectFit: 'contain',
-                }}
-              />
-            ) : null}
+            </div>
           </div>
           <div className="flex md:flex-row md:justify-between md:content-center flex-col md:container items-center md:gap-20 py-20 md:py-36 md:px-0 px-6">
             <div

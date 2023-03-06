@@ -45,6 +45,16 @@ const GetProductAdvertBySlug = gql`
             url
             title
           }
+          logo {
+            url
+            title
+            description
+          }
+          themeImage {
+            url
+            title
+            description
+          }
           productImage {
             url
             title
