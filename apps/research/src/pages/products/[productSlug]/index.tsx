@@ -29,7 +29,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       <div className="min-h-screen pb-12">
         <ResearchHeader categories={[]} />
         <main className="flex flex-col">
-          <div className="w-auto hidden md:inline-block relative h-[300px]">
+          {/* <div className="w-auto hidden md:inline-block relative h-[300px]">
             {product.product.landingPageImage ? (
               <Image
                 src={product.product.landingPageImage.url}
@@ -41,17 +41,15 @@ const Product: NextPage<ProductProps> = ({ product }) => {
                 }}
               />
             ) : null}
-          </div>
-          <div className="w-auto md:hidden inline-block relative h-[300px]">
+          </div> */}
+          <div className="w-full h-[300px] relative">
             {product.product.landingPageImage ? (
               <Image
                 src={product.product.landingPageImage.url}
                 alt={product.product.landingPageImage.title}
                 fill
                 style={{
-                  transformOrigin: 'center',
-                  transform: 'scale(2.5)',
-                  top: 0,
+                  objectFit: 'contain',
                 }}
               />
             ) : null}

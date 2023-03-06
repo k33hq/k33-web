@@ -16,17 +16,24 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
   return (
     <div
       id={productSlug}
-      className="flex flex-col md:w-[512px] w-[328px] rounded-xl shadow-xl overflow-hidden"
+      className={
+        'flex flex-col ring-1 ring-brand-light-tertiary/10 md:w-[512px] w-[328px] rounded-xl shadow-xl overflow-hidden'
+      }
     >
-      <div className="relative h-[216px] w-full">
+      <div
+        className={`relative h-[216px] w-full hover:scale-150 transition-all`}
+      >
         <Image
-          src={product.image.url}
+          src={product.themeImage.url}
           fill
-          alt={product.image.description}
+          alt={product.themeImage.description}
           style={{
             objectFit: 'cover',
           }}
         />
+        <div className="m-auto absolute mx-10 top-0 bottom-0 left-0 right-0 hover:scale-50 transition-all">
+          <Image src={product.logo.url} alt={product.logo.title} fill />
+        </div>
       </div>
       <div className="md:px-8 md:py-8 flex flex-col px-2 py-2 transition-all items-center justify-center md:gap-10 gap-6">
         <p className="text-heading8 text-label-light-secondary text-center">

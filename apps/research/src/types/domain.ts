@@ -264,6 +264,8 @@ export interface ProductAvert {
   image: Image;
   productImage: Image;
   landingPageImage: Image;
+  logo: Image;
+  themeImage: Image;
 }
 
 // TODO: update this mess later on :sigh:
