@@ -20,9 +20,7 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
         'flex flex-col ring-1 ring-brand-light-tertiary/10 md:w-[512px] w-[328px] rounded-xl shadow-xl overflow-hidden'
       }
     >
-      <div
-        className={`relative h-[216px] w-full hover:scale-150 transition-all`}
-      >
+      <div className={`relative h-[216px] w-full transition-all`}>
         <Image
           src={product.themeImage.url}
           fill
@@ -31,7 +29,7 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
             objectFit: 'cover',
           }}
         />
-        <div className="m-auto absolute mx-10 top-0 bottom-0 left-0 right-0 hover:scale-50 transition-all">
+        <div className="m-auto absolute mx-10 top-0 bottom-0 left-0 right-0 hover:scale-75 transition-all">
           <Image src={product.logo.url} alt={product.logo.title} fill />
         </div>
       </div>
