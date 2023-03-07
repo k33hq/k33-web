@@ -7,7 +7,7 @@ const GetHomePageElements = gql`
     homePage(id: "1ZbMXiefkGuOYeDaIo7WNX") {
       mainArticle {
         articleSlug
-
+        publishedDate
         category {
           categorySlug
         }
@@ -24,9 +24,6 @@ const GetHomePageElements = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           coverPicture {
             url
             title
@@ -36,6 +33,7 @@ const GetHomePageElements = gql`
 
       subArticle1 {
         articleSlug
+        publishedDate
         category {
           categorySlug
         }
@@ -52,9 +50,6 @@ const GetHomePageElements = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           coverPicture {
             url
             title
@@ -64,6 +59,7 @@ const GetHomePageElements = gql`
 
       subArticle2 {
         articleSlug
+        publishedDate
         category {
           categorySlug
         }
@@ -80,9 +76,6 @@ const GetHomePageElements = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           coverPicture {
             url
             title
@@ -91,7 +84,7 @@ const GetHomePageElements = gql`
       }
       subArticle3 {
         articleSlug
-
+        publishedDate
         category {
           categorySlug
         }
@@ -108,9 +101,6 @@ const GetHomePageElements = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           coverPicture {
             url
             title
@@ -119,6 +109,7 @@ const GetHomePageElements = gql`
       }
       subArticle4 {
         articleSlug
+        publishedDate
         category {
           categorySlug
         }
@@ -135,9 +126,6 @@ const GetHomePageElements = gql`
         article {
           title
           subtitle
-          sys {
-            firstPublishedAt
-          }
           coverPicture {
             url
             title

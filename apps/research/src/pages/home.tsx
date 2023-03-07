@@ -49,6 +49,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
   reportArticles,
 }) => {
   const subscriber = useStripeSubscriber();
+
   return (
     <>
       <Head>
