@@ -41,18 +41,22 @@ const Product: NextPageWithLayout<ProductProps> = ({
         <title>{product.title}</title>
       </Head>
       <div className="w-auto relative md:h-80 h-44">
-        <Image
-          src={product.themeImage.url}
-          alt={product.themeImage.title}
-          fill
-          style={{
-            objectFit: 'cover',
-            top: 0,
-          }}
-        />
-        <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px]">
-          <Image src={product.logo.url} alt={product.logo.title} fill />
-        </div>
+        {product.themeImage && (
+          <Image
+            src={product.themeImage.url}
+            alt={product.themeImage.title}
+            fill
+            style={{
+              objectFit: 'cover',
+              top: 0,
+            }}
+          />
+        )}
+        {product.logo && (
+          <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px]">
+            <Image src={product.logo.url} alt={product.logo.title} fill />
+          </div>
+        )}
       </div>
       <Indicator color={branding.color} />
       <section

@@ -30,25 +30,29 @@ const Product: NextPage<ProductProps> = ({ product }) => {
         <ResearchHeader categories={[]} />
         <main className="flex flex-col">
           <div className="w-full h-[300px] relative bg-label-light-tertiary">
-            <Image
-              src={product.product.themeImage.url}
-              alt={product.product.themeImage.title}
-              fill
-              style={{
-                objectFit: 'cover',
-                filter: 'invert(100%)',
-              }}
-            />
-            <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px] flex flex-col">
+            {product.product.themeImage && (
               <Image
-                src={product.product.logo.url}
-                alt={product.product.logo.title}
+                src={product.product.themeImage.url}
+                alt={product.product.themeImage.title}
                 fill
                 style={{
+                  objectFit: 'cover',
                   filter: 'invert(100%)',
                 }}
               />
-            </div>
+            )}
+            {product.product.logo && (
+              <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px] flex flex-col">
+                <Image
+                  src={product.product.logo.url}
+                  alt={product.product.logo.title}
+                  fill
+                  style={{
+                    filter: 'invert(100%)',
+                  }}
+                />
+              </div>
+            )}
           </div>
           <div className="flex md:flex-row md:justify-between md:content-center flex-col md:container items-center md:gap-20 py-20 md:py-36 md:px-0 px-6">
             <div

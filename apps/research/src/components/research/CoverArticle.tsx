@@ -20,7 +20,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="shadow-md rounded-xl bg-bg-light-primary w-full overflow-hidden flex md:flex-row flex-col"
+      className="shadow-md rounded-xl bg-bg-light-primary w-full overflow-hidden flex md:flex-row flex-col ring-1 ring-brand-light-tertiary/10"
     >
       <div className="relative md:w-2/5 md:h-80 h-40">
         {article.coverPicture ? (
@@ -30,12 +30,13 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
               product.productSlug,
               articleSlug
             )}
+            className="cursor-pointer"
           >
             <Image
               src={article.coverPicture.url}
               fill
               style={{
-                objectFit: 'contain',
+                objectFit: 'cover',
               }}
               alt={article.coverPicture.title}
             />

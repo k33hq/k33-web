@@ -19,7 +19,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="shadow-md rounded-xl bg-bg-light-primary overflow-hidden flex flex-col md:w-80 w-full md:h-80 h-60"
+      className="shadow-md rounded-xl bg-bg-light-primary overflow-hidden flex flex-col min-w-[336px] h-[336px] ring-1 ring-brand-light-tertiary/10"
     >
       <div className="relative w-full h-1/2">
         {article.coverPicture ? (
@@ -29,6 +29,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
               product.productSlug,
               articleSlug
             )}
+            className="cursor-pointer"
           >
             <Image
               src={article.coverPicture.url}

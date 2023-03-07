@@ -51,11 +51,11 @@ const Home: NextPageWithLayout<HomeProps> = ({
   return (
     <>
       <section className="w-full bg-bg-light-secondary">
-        <div className="md:container md:py-16 py-4 flex flex-col md:gap-12 gap-8 px-2">
+        <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8 px-6 md:px-0">
           {mainArticle ? <CoverArticle {...mainArticle} /> : null}
           <div
             id="secondary-articles-section"
-            className="flex md:flex-row flex-col md:flex-wrap md:gap-12 gap-6 md:items-center sm:justify-around md:justify-between"
+            className="flex flex-row gap-12 items-center overflow-x-auto pb-4"
           >
             {subArticle1 ? <SubArticle {...subArticle1} /> : null}
             {subArticle2 ? <SubArticle {...subArticle2} /> : null}
@@ -211,9 +211,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
 
 // TODO: write test cases to show only reports
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Home.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export default Home;
 
