@@ -7,10 +7,15 @@ import ceo from '../../assets/Torbjorn.png';
 import { FiExternalLink } from 'react-icons/fi';
 import { MdOutlineSaveAlt } from 'react-icons/md';
 import chart from '../../assets/k33-vinter-quality-index-selection.svg';
+import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 const KvQ: NextPageWithLayout = () => {
   return (
     <>
+      <Head>
+        <title>{getTitle('Investments', 'KVQ')}</title>
+      </Head>
       <div
         className="relative w-full md:max-w-[1728px] px-6 md:px-0 mx-auto py-8 flex flex-col items-center content-center"
         id="markets-hero"

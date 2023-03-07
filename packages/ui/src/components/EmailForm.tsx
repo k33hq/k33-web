@@ -14,7 +14,7 @@ const EmailForm: React.FC<EmailFormProps> = ({
 }) => {
   return (
     <form
-      className="ui-flex ui-flex-row ui-p-1 ui-border ui-rounded-full ui-bg-bg-light-primary ui-border-default-systemGrey-light-3 md:ui-px-2 md:ui-py-2 ui-px-1 ui-py-1 ui-items-center focus-within:ui-border-brand-light-primary ui-w-full"
+      className="ui-flex ui-flex-row ui-p-1 ui-border ui-rounded-xl ui-bg-bg-light-primary ui-border-default-systemGrey-light-3 ui-px-1 ui-py-1 ui-items-center focus-within:ui-border-brand-light-primary ui-w-full"
       onSubmit={handleSubmit}
     >
       <input

@@ -17,7 +17,12 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="64x64"
+            href="/research/favicon-64x64.png"
+          />
         </Head>
         <body className={`${poppins.className} flex min-h-screen flex-col`}>
           <Main />

@@ -2,11 +2,12 @@ import { NextPage } from 'next';
 import left from '../assets/markets-left-bg.png';
 import right from '../assets/markets-right-bg.png';
 import Image from 'next/image';
-import { SendEmail } from 'platform-js';
+import { SendEmail, getTitle } from 'platform-js';
 import bespoke from '../assets/bespoke.png';
 import professional from '../assets/professional.png';
 import vault from '../assets/vault.png';
 import { ProductElements } from '@/components';
+import Head from 'next/head';
 
 const hero = {
   title: 'Trade across multiple markets and exchanges',
@@ -54,6 +55,9 @@ const offerings = {
 const Index: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>{getTitle('Market')}</title>
+      </Head>
       <div
         className="relative w-full md:max-w-[1728px] px-6 md:px-0 mx-auto py-8 flex flex-col items-center content-center"
         id="markets-hero"

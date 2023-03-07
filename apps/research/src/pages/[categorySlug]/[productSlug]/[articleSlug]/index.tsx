@@ -13,7 +13,7 @@ import {
 } from '@/components';
 import Image from 'next/image';
 import { BasicButton, Divider, NextPageWithLayout } from 'ui';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import { ReactElement, useEffect, useState } from 'react';
 import { fetcher } from 'core';
@@ -62,7 +62,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   return (
     <>
       <Head>
-        <title>{article.title}</title>
+        <title>{getTitle('Research', article.title)}</title>
       </Head>
       <Indicator color={product.branding.color} />
       <section

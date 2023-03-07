@@ -13,11 +13,12 @@ import left from '../assets/research-left-bg.png';
 import right from '../assets/research-right-bg.png';
 import Image from 'next/image';
 import subImage from '../assets/sub.png';
-import { SendEmail, useAppState } from 'platform-js';
+import { SendEmail, getTitle, useAppState } from 'platform-js';
 import { BasicButton } from 'ui';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import config from '@/firebase/config';
+import Head from 'next/head';
 
 const hero = {
   title: 'Understand the digital assets industry,',
@@ -39,6 +40,9 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
   }, [state, router]);
   return (
     <>
+      <Head>
+        <title>{getTitle('Research')}</title>
+      </Head>
       <div className="min-h-screen pb-12">
         <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[544px] w-full">
           <ResearchHeader categories={[]} />

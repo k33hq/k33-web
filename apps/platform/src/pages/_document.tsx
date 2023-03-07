@@ -16,7 +16,14 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="64x64"
+            href="/favicon-64x64.png"
+          />
+        </Head>
         <body className={`${poppins.className} flex min-h-screen flex-col`}>
           <Main />
           <NextScript />

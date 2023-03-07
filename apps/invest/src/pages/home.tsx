@@ -10,6 +10,8 @@ import { Size } from 'ui';
 import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
+import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 /**
  *  user-state: [registered, fund-registered]
@@ -60,6 +62,9 @@ const Home: NextPageWithLayout = () => {
   const { data, isLoading } = useFundRedirection();
   return (
     <>
+      <Head>
+        <title>{getTitle('Investments', 'Home')}</title>
+      </Head>
       <section className="bg-bg-light-secondary md:py-16 py-12 px-6 md:px-0">
         <div className="md:container flex md:flex-row flex-col md:gap-16 gap-8">
           <FundCard

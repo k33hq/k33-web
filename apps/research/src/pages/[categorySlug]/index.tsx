@@ -16,6 +16,7 @@ import { PrivateLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
 import { getUrl } from '@/utils';
 import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 interface CategoryProps extends CategoryPage {
   categorySlug: string;
@@ -31,7 +32,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   return (
     <>
       <Head>
-        <title>{category.title}</title>
+        <title>{getTitle('Research', category.title)}</title>
       </Head>
       <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 bg-bg-light-secondary">
         <div

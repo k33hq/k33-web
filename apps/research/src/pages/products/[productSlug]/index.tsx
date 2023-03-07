@@ -4,9 +4,10 @@ import config from '@/firebase/config';
 import { ProductLandingPage } from '@/types';
 import { downloadResource, getUrl } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import { useEffect } from 'react';
 import { BasicButton, BasicList } from 'ui';
 
@@ -26,6 +27,9 @@ const Product: NextPage<ProductProps> = ({ product }) => {
   }, [state, router]);
   return (
     <div className="bg-bg-dark-primary">
+      <Head>
+        <title>{getTitle('Research', product.product.title)}</title>
+      </Head>
       <div className="min-h-screen pb-12">
         <ResearchHeader categories={[]} />
         <main className="flex flex-col">

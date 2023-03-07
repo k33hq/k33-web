@@ -8,7 +8,9 @@ import {
 } from '@/components';
 import { ArchivePage } from '@/types';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
+import { getTitle } from 'platform-js';
 import { Divider, NextPageWithLayout } from 'ui';
 
 interface PageProps {
@@ -18,6 +20,9 @@ interface PageProps {
 const Page: NextPageWithLayout<PageProps> = ({ page }) => {
   return (
     <>
+      <Head>
+        <title>{getTitle('Research', page.title)}</title>
+      </Head>
       <Indicator color={'systemOrange'} />
       <section
         id="main-article-section"

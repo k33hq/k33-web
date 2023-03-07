@@ -20,7 +20,8 @@ import marketsOffer from '../assets/markets_offer.svg';
 import { Companies } from '@/components';
 
 import { ReactElement } from 'react';
-import { SendEmail } from 'platform-js';
+import { SendEmail, getTitle } from 'platform-js';
+import Head from 'next/head';
 
 const hero = {
   title: 'Safe. Secure. Digital assets.',
@@ -166,6 +167,9 @@ const offers = [
 const Index: NextPageWithLayout = () => {
   return (
     <>
+      <Head>
+        <title>{getTitle(hero.title)}</title>
+      </Head>
       <Hero
         {...hero}
         bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
@@ -223,16 +227,16 @@ const Index: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           id="k33-send-email"
           className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
         >
           <SendEmail
             placeholder="Enter your email"
-            label="Get Early Access"
+            label="Get Started"
             listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

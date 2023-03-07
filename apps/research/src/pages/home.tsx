@@ -25,11 +25,12 @@ import { ReactElement, useEffect, useState } from 'react';
 import { PrivateLayout } from '@/layouts';
 import { BasicButton, NextPageWithLayout } from 'ui';
 import { fetcher } from 'core';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import Link from 'next/link';
 import { getUrl } from '@/utils';
 import { useStripeSubscriber } from '@/hooks';
+import Head from 'next/head';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
@@ -50,6 +51,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
   const subscriber = useStripeSubscriber();
   return (
     <>
+      <Head>
+        <title>{getTitle('Research', 'Home')}</title>
+      </Head>
       <section className="w-full bg-bg-light-secondary">
         <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8 px-6 md:px-0">
           {mainArticle ? <CoverArticle {...mainArticle} /> : null}

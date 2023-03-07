@@ -22,6 +22,7 @@ import { getUrl } from '@/utils';
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
 import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 interface ProductProps extends CategorySlug, ProductCoreSlug {
   product: ProductPage;
@@ -38,7 +39,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
   return (
     <>
       <Head>
-        <title>{product.title}</title>
+        <title>{getTitle('Research', product.title)}</title>
       </Head>
       <div className="w-auto relative md:h-80 h-44">
         {product.themeImage && (

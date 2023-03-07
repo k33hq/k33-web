@@ -8,8 +8,9 @@ import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 import { getCustomerEmail, getCustomerId } from 'core';
 import { checkout } from '@/utils';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
+import Head from 'next/head';
 
 interface SubscriptionProps {
   subscription: SubscriptionPage;
@@ -39,6 +40,9 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
           Redirecting to Check Out..
         </p>
       </div> */}
+      <Head>
+        <title>{getTitle(subscription.title)}</title>
+      </Head>
     </div>
   );
 };

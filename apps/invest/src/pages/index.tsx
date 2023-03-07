@@ -4,6 +4,8 @@ import { BasicButton, ListIcon } from 'ui';
 import promotion from '../assets/promotion.png';
 import { InvestFooter, InvestHeader } from '@/components';
 import { BiRightArrowAlt } from 'react-icons/bi';
+import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 const hero = {
   title: 'Invest in the future of finance',
@@ -35,6 +37,9 @@ const insightPromotion = {
 const Index: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>{getTitle('Investments')}</title>
+      </Head>
       <div className="min-h-screen">
         <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[482px] w-full bg-[url('../assets/landing.svg')]">
           <InvestHeader />
