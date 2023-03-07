@@ -16,7 +16,7 @@ const SubscriptionElement: React.FC<SubscriptionElementProps> = ({
   return (
     <div
       id={subscription.stripeProductId}
-      className="bg-bg-light-primary flex flex-col items-center shadow-xl px-6 py-10 rounded-xl justify-center content-center gap-8 w-[328px]"
+      className="bg-bg-light-primary flex flex-col items-center shadow-xl px-6 py-10 rounded-xl justify-center content-center gap-8 w-[328px] ring-1 ring-brand-light-tertiary/20"
     >
       <div>
         <Image
