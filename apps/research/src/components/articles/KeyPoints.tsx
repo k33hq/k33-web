@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dot from '../Dot';
+import { Dot } from 'ui';
 
 interface KeyPointsProps {
   points: ReadonlyArray<string> | null;
