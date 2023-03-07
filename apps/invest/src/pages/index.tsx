@@ -69,7 +69,7 @@ const Index: NextPage = () => {
             </p>
           </div>
         </div>
-        <div className="px-6 md:container md:px-0">
+        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
           <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
             {insightPromotion.image}
             <div className="flex flex-col md:gap-8 gap-2 items-center md:items-start">
