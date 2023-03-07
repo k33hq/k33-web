@@ -38,7 +38,7 @@ const Heading3: React.FC<RichTextElements> = ({ children }) => (
 
 //
 const Heading4: React.FC<RichTextElements> = ({ children }) => (
-  <h4 className="text-label-light-primary text-[24px] font-[275] leading-8">
+  <h4 className="text-label-light-primary text-[24px] md:font-[275] font-[250] leading-8">
     {children}
   </h4>
 );
