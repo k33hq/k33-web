@@ -17,7 +17,7 @@ const getSize: Record<Size, string> = {
   large:
     'md:ui-px-6 md:ui-py-4 ui-px-4 ui-py-2 ui-text-body2 md:ui-text-heading8 ui-rounded-xl ui-drop-shadow-xl',
   medium:
-    'md:ui-px-4 md:ui-py-2 ui-py-1 ui-px-2 ui-text-body1 ui-rounded-lg ui-shadow-2xl',
+    'md:ui-px-4 md:ui-py-2 ui-py-1 ui-px-2 ui-text-body1 ui-rounded-lg ui-drop-shadow-xl',
   small: '',
 };
 

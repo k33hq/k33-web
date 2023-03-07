@@ -32,3 +32,9 @@ export const Loading: React.FC = () => {
     </div>
   );
 };
+
+export const LoadingButton: React.FC = () => {
+  return (
+    <div className=" ui-bg-default-systemGrey-light-5 ui-animate-pulse ui-rounded-xl ui-w-28 ui-h-10"></div>
+  );
+};
