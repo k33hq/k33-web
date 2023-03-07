@@ -15,7 +15,7 @@ interface BasicButtonProps extends K33ButtonProps {
 
 const getSize: Record<Size, string> = {
   large:
-    'md:ui-px-6 md:ui-py-4 ui-px-4 ui-py-2 ui-text-body2 md:ui-text-heading8 ui-rounded-full ui-shadow-2xl',
+    'md:ui-px-6 md:ui-py-4 ui-px-4 ui-py-2 ui-text-body2 md:ui-text-heading8 ui-rounded-xl ui-drop-shadow-xl',
   medium:
     'md:ui-px-4 md:ui-py-2 ui-py-1 ui-px-2 ui-text-body1 ui-rounded-lg ui-shadow-2xl',
   small: '',
@@ -23,7 +23,7 @@ const getSize: Record<Size, string> = {
 
 const getVariant: Record<Variant, string> = {
   primary:
-    'ui-bg-brand-light-primary ui-text-label-dark-primary active:ui-to-brand-light-secondary hover:ui-to-brand-light-tertiary disabled:ui-bg-default-systemGrey-light-2 disabled:ui-shadow-none focus:ui-shadow-focus',
+    'ui-bg-brand-light-primary ui-text-label-dark-primary active:ui-to-brand-light-secondary hover:ui-bg-brand-light-tertiary disabled:ui-bg-default-systemGrey-light-2 disabled:ui-shadow-none focus:ui-shadow-focus',
   secondary:
     'ui-border-brand-light-primary ui-bg-brand-dark-primary active:ui-to-brand-light-secondary active:ui-border-none hover:ui-border-brand-light-tertiary hover:ui-bg-brand-light-tertiary hover:ui-text-label-dark-primary action:ui-text-label-dark-primary disabled:ui-border-default-systemGrey-light-2 disabled:ui-text-default-systemGrey-light-2 focus:ui-shadow-focus ui-border-2',
   tertiary: '',

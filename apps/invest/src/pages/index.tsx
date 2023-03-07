@@ -1,10 +1,9 @@
 import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
-import { SendEmail, useAppState } from 'platform-js';
-import { BasicButton, BasicPromotion } from 'ui';
-
-import promotion2 from '../assets/promotion2.png';
+import { BasicButton, ListIcon } from 'ui';
+import promotion from '../assets/promotion.png';
 import { InvestFooter, InvestHeader } from '@/components';
+import { BiRightArrowAlt } from 'react-icons/bi';
 
 const hero = {
   title: 'Invest in the future of finance',
@@ -13,10 +12,10 @@ const hero = {
 const insightPromotion = {
   image: (
     <Image
-      src={promotion2}
+      src={promotion}
       height={744}
       alt="get real insight"
-      className="md:w-[1000px]"
+      className="md:w-[768px]"
     />
   ),
   title: 'K33 Assets Fund',
@@ -36,7 +35,7 @@ const insightPromotion = {
 const Index: NextPage = () => {
   return (
     <>
-      <div className="min-h-screen pb-12">
+      <div className="min-h-screen">
         <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[482px] w-full bg-[url('../assets/landing.svg')]">
           <InvestHeader />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
@@ -48,7 +47,7 @@ const Index: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-32">
+        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-[120px]">
           <div
             id="product-heading"
             className="flex flex-col items-center gap-2 justify-center content-center text-center"
@@ -66,7 +65,36 @@ const Index: NextPage = () => {
           </div>
         </div>
         <div className="px-6 md:container md:px-0">
-          <BasicPromotion {...insightPromotion} direction="left" />
+          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+            {insightPromotion.image}
+            <div className="flex flex-col md:gap-8 gap-2 items-center md:items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading6 md:text-heading4 text-label-light-primary">
+                  {insightPromotion.title}
+                </p>
+                <p className="text-body3 md:text-body1 text-label-light-secondary">
+                  {insightPromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {insightPromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body3 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={insightPromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {insightPromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <InvestFooter />
