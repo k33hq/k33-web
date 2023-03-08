@@ -86,9 +86,11 @@ export const useFundRedirection = () => {
     'k33-assets-i-fund-limited'
   );
 
-  if (error && (error as FetchBaseQueryError).status === 404) {
-    router.push('/');
-  }
+  useEffect(() => {
+    if (error && (error as FetchBaseQueryError).status === 404) {
+      router.push('/');
+    }
+  }, [error, router]);
 
   return { data, isLoading };
 };

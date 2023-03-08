@@ -1,5 +1,5 @@
 import { useFundRedirection } from '@/hooks';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
 import { NextPageWithLayout } from 'ui';
 import content from '../assets/Content.png';
@@ -12,6 +12,9 @@ import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
 import { getTitle } from 'platform-js';
+import { useGetFundRegistrationQuery } from '@/services';
+import { isError } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 
 /**
  *  user-state: [registered, fund-registered]
@@ -59,7 +62,20 @@ const promotion = {
 
 // TODO: extract the promotion box
 const Home: NextPageWithLayout = () => {
-  const { data, isLoading } = useFundRedirection();
+  const router = useRouter();
+  const { error, data, isError, isSuccess } = useGetFundRegistrationQuery(
+    'k33-assets-i-fund-limited'
+  );
+
+  useEffect(() => {
+    console.log(error);
+    console.log(isError);
+    console.log(data);
+    if (isError) {
+      router.push('/');
+    }
+  }, [router, isError]);
+
   return (
     <>
       <Head>
