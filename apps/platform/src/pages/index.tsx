@@ -1,5 +1,12 @@
 import Image from 'next/image';
-import { BasicCards, Hero, BasicPromotion, NextPageWithLayout } from 'ui';
+import {
+  BasicCards,
+  Hero,
+  BasicPromotion,
+  NextPageWithLayout,
+  BasicButton,
+  ListIcon,
+} from 'ui';
 import { MainLayout } from '@/layouts';
 import heroImage from '../assets/hero.svg';
 import bloomberg from '../assets/bloomberg.png';
@@ -16,6 +23,7 @@ import promotion3 from '../assets/promotion3.png';
 import researchOffer from '../assets/research_offer.svg';
 import adviceOffer from '../assets/advice_offer.svg';
 import marketsOffer from '../assets/markets_offer.svg';
+import { BiRightArrowAlt } from 'react-icons/bi';
 
 import { Companies } from '@/components';
 
@@ -64,7 +72,7 @@ const insightPromotion = {
       src={promotion1}
       height={744}
       alt="get real insight"
-      className="md:w-[400px]"
+      className="md:w-[768px]"
     />
   ),
   title: 'Get real insight',
@@ -89,7 +97,7 @@ const tradePromotion = {
       src={promotion2}
       height={744}
       alt="Trade with conviction"
-      className="md:w-[400px]"
+      className="md:w-[768px]"
     />
   ),
   title: 'Trade with conviction',
@@ -114,7 +122,7 @@ const securePromotion = {
       src={promotion3}
       height={744}
       alt="Secure your wealth"
-      className="md:w-[400px]"
+      className="md:w-[768px]"
     />
   ),
   title: 'Secure your wealth',
@@ -197,9 +205,102 @@ const Index: NextPageWithLayout = () => {
             </BasicCards>
           ))}
         </div>
-        <BasicPromotion {...insightPromotion} direction="left" />
-        <BasicPromotion {...tradePromotion} direction="right" />
-        <BasicPromotion {...securePromotion} direction="left" />
+        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
+          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+            {insightPromotion.image}
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {insightPromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {insightPromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {insightPromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={insightPromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {insightPromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
+          <div className="flex md:flex-row flex-col-reverse md:gap-10 gap-8 items-center">
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {tradePromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {tradePromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {tradePromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={tradePromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {tradePromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+            {tradePromotion.image}
+          </div>
+        </div>
+        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
+          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+            {securePromotion.image}
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {securePromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {securePromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {securePromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={securePromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {securePromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+          </div>
+        </div>
         {/* <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col text-center items-center justify-center">
             <p className="md:text-heading6 text-heading7 text-brand-light-primary">
