@@ -178,16 +178,25 @@ const Index: NextPageWithLayout = () => {
       <Head>
         <title>{getTitle(hero.title)}</title>
       </Head>
-      <Hero
-        {...hero}
-        bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
-      >
-        <SendEmail
-          placeholder="Enter your email"
-          label="Get Started"
-          listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+      <div className="w-full flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
+        <div className="flex flex-col gap-4 md:px-0 px-6">
+          <p className="text-heading4 md:text-heading2">{hero.title}</p>
+          <p className="text-brand-light-tertiary md:text-body4 text-body3">
+            {hero.subtitle}
+          </p>
+          <SendEmail
+            placeholder="Enter your email"
+            label="Get Started"
+            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+          />
+        </div>
+        <Image
+          src={heroImage}
+          width={863}
+          alt="hero-k33-image"
+          className="md:w-[863px] w-[458px]"
         />
-      </Hero>
+      </div>
       <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0 md:container">
         <Companies {...companies} />
         <div
