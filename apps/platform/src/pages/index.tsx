@@ -72,7 +72,7 @@ const insightPromotion = {
       src={promotion1}
       height={744}
       alt="get real insight"
-      className="md:w-[768px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Get real insight',
@@ -97,7 +97,7 @@ const tradePromotion = {
       src={promotion2}
       height={744}
       alt="Trade with conviction"
-      className="md:w-[768px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Trade with conviction',
@@ -122,7 +122,7 @@ const securePromotion = {
       src={promotion3}
       height={744}
       alt="Secure your wealth"
-      className="md:w-[768px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Secure your wealth',
@@ -178,7 +178,7 @@ const Index: NextPageWithLayout = () => {
       <Head>
         <title>{getTitle(hero.title)}</title>
       </Head>
-      <div className="w-full flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
+      <div className="flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
         <div className="flex flex-col gap-4 md:px-0 px-6">
           <p className="text-heading4 md:text-heading2">{hero.title}</p>
           <p className="text-brand-light-tertiary md:text-body4 text-body3">
@@ -197,11 +197,11 @@ const Index: NextPageWithLayout = () => {
           className="md:w-[863px] w-[458px]"
         />
       </div>
-      <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0 md:container">
+      <div className="flex flex-col md:gap-24 gap-44 px-6 md:px-0 md:container">
         <Companies {...companies} />
         <div
           id="k33-apps"
-          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
+          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full md:pb-20"
         >
           {apps.map((app) => (
             <BasicCards {...app} key={app.title}>
@@ -214,7 +214,7 @@ const Index: NextPageWithLayout = () => {
             </BasicCards>
           ))}
         </div>
-        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
+        <div className="md:container md:px-0 px-6 flex flex-col gap-32 md:gap-52">
           <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
             {insightPromotion.image}
             <div className="flex flex-col gap-8 items-start">
@@ -245,8 +245,6 @@ const Index: NextPageWithLayout = () => {
               </a>
             </div>
           </div>
-        </div>
-        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
           <div className="flex md:flex-row flex-col-reverse md:gap-10 gap-8 items-center">
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
@@ -277,8 +275,6 @@ const Index: NextPageWithLayout = () => {
             </div>
             {tradePromotion.image}
           </div>
-        </div>
-        <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
           <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
             {securePromotion.image}
             <div className="flex flex-col gap-8 items-start">
@@ -310,43 +306,6 @@ const Index: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-        {/* <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-col text-center items-center justify-center">
-            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-              {call.title}
-            </p>
-            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-              {call.subtitle}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-full">
-            <p className="md:text-heading8 text-body1 text-brand-light-secondary">
-              What we offer
-            </p>
-            <div
-              id="k33-offers"
-              className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
-            >
-              {offers.map((offer) => (
-                <BasicCards {...offer} key={offer.title} variant="secondary">
-                  <p className="text-heading8 text-label-light-primary">
-                    {offer.title}
-                  </p>
-                </BasicCards>
-              ))}
-            </div>
-          </div>
-        </div> */}
-        {/* <div
-          id="k33-send-email"
-          className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
-        >
-          <SendEmail
-            placeholder="Enter your email"
-            label="Get Started"
-            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
-          />
-        </div> */}
       </div>
     </>
   );
