@@ -200,7 +200,7 @@ const Index: NextPageWithLayout = () => {
         <BasicPromotion {...insightPromotion} direction="left" />
         <BasicPromotion {...tradePromotion} direction="right" />
         <BasicPromotion {...securePromotion} direction="left" />
-        <div className="flex flex-col items-center gap-4">
+        {/* <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col text-center items-center justify-center">
             <p className="md:text-heading6 text-heading7 text-brand-light-primary">
               {call.title}
@@ -226,7 +226,7 @@ const Index: NextPageWithLayout = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div
           id="k33-send-email"
           className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"

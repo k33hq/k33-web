@@ -19,7 +19,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
 
     // TODO: redirect to login
     if (state === 'SIGNED_OUT') {
-      router.push('/');
+      router.push(process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth');
     }
   }, [state, router]);
 
