@@ -41,7 +41,7 @@ const Index: NextPage = () => {
         <title>{getTitle('Investments')}</title>
       </Head>
       <div className="min-h-screen">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[482px] w-full bg-[url('../assets/landing.svg')]">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary md:min-h-[482px] min-h-[376px] w-full bg-[url('../assets/landing.svg')]">
           <InvestHeader />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
@@ -72,7 +72,7 @@ const Index: NextPage = () => {
         <div className="px-6 md:container md:px-0 md:pb-[120px] pb-[48px]">
           <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
             {insightPromotion.image}
-            <div className="flex flex-col md:gap-8 gap-2 items-center md:items-start">
+            <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
                 <p className="text-heading6 md:text-heading4 text-label-light-primary">
                   {insightPromotion.title}
