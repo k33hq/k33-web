@@ -66,9 +66,9 @@ const Index: NextPage = () => {
         <title>{getTitle('Market')}</title>
       </Head>
       <div className="min-h-screen">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary md:h-[544px] min-h-[376px] w-full bg-[url('../assets/landing.svg')]">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary md:h-[544px] h-[512px] w-full bg-[url('../assets/landing.svg')]">
           <MarketHeader />
-          <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-36 pt-11 md:px-0 px-6">
+          <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-36 pt-20 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
               <div className="text-brand-dark-primary flex flex-col md:gap-2">
                 <h5 className="md:text-heading4 text-heading6">{hero.title}</h5>

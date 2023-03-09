@@ -79,11 +79,11 @@ const ProductElements: React.FC<ProductElementsProps> = ({
         </div>
       )}
       {action && (
-        <div>
-          <button className="text-body1 text-label-light-primary py-2 px-24 md:px-28 ring-2 ring-brand-light-primary drop-shadow-xl rounded-lg hover:text-label-dark-primary hover:bg-brand-light-tertiary hover:ring-brand-light-tertiary">
+        <a href={action.href}>
+          <button className="text-body1 text-label-light-primary py-2 px-20 md:px-28 ring-2 ring-brand-light-primary drop-shadow-xl rounded-lg hover:text-label-dark-primary hover:bg-brand-light-tertiary hover:ring-brand-light-tertiary">
             {action.label}
           </button>
-        </div>
+        </a>
       )}
     </div>
   );
