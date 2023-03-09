@@ -20,34 +20,41 @@ const offerings = {
     {
       logo: vault,
       title: 'Vault',
+      comingSoon: false,
       description:
-        'Hold custody of your private keys in a secure multisig vault',
+        'Hold custody of your private keys in a secure multisig vault.',
       features: [
-        'Built for seamless succession planning',
-        'Enables an easy transition to trading',
-        'Clear transparency and visibility on the blockchain',
+        'Customised withdrawal rules tailored to your needs.',
+        'Segregated wallets with transparency and visibility on the blockchain.',
+        'Partnership with Fireblocks. Institutional provider of custody infrastructure.',
       ],
+      action: {
+        label: 'Get Started',
+        href: '',
+      },
     },
     {
       logo: bespoke,
       title: 'Bespoke',
-      description: 'Trade any digital asset with 1-on-1 real time support',
+      comingSoon: false,
+      description:
+        'Private service for trading digital assets with 1-on-1 real time support.',
       features: [
-        'Bespoke setup, service and support via chat, call, or in-person',
-        'Market leading rates on USD FX conversion',
-        'Q&A with our market research analysts',
+        'Bespoke OTC setup, service and support via chat, call, or in-person.',
+        'Market leading rates against major FIAT currencies.',
+        'Same-day settlements for most digital assets.',
       ],
+      action: {
+        label: 'Get Started',
+        href: '',
+      },
     },
     {
       logo: professional,
       title: 'Professional',
+      comingSoon: true,
       description:
         'Trade 24/7 with products and liquidity from multiple exchanges',
-      features: [
-        'Market leading rates on USD FX conversion',
-        'Q&A with our market research analysts',
-        'Institutional grade portfolio management',
-      ],
     },
   ],
 };
@@ -76,7 +83,7 @@ const Index: NextPage = () => {
               {offerings.title}
             </h6>
           </div>
-          <div className="flex md:flex-row flex-col items-center gap-20 md:py-20 py-12">
+          <div className="flex md:flex-row flex-col items-start gap-20 md:py-20 py-12">
             {offerings.products.map((product) => (
               <ProductElements {...product} key={product.title} />
             ))}
