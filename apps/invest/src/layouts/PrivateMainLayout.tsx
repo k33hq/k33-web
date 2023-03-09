@@ -18,7 +18,7 @@ const PrivateMainLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
     }
 
     if (state === 'SIGNED_OUT') {
-      router.push('/');
+      router.push(process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth');
     }
   }, [state, router]);
 

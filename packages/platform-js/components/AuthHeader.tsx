@@ -1,4 +1,11 @@
-import { BasicButton, Header, AppDrawer, AppMenuItem, AppItem } from 'ui';
+import {
+  BasicButton,
+  Header,
+  AppDrawer,
+  AppMenuItem,
+  AppItem,
+  LoadingButton,
+} from 'ui';
 import * as React from 'react';
 import { FirebaseOptions } from 'firebase/app';
 import { AppStates, init, logout } from 'core';
@@ -14,8 +21,8 @@ interface AuthHeaderProps {
 }
 
 const loginText: Record<AppStates, string> = {
-  LOADING: 'Get Started',
-  SIGNED_OUT: 'Get Started',
+  LOADING: 'Sign In',
+  SIGNED_OUT: 'Sign In',
   UNREGISTRED: 'Register Now',
   REGISTRED: 'Sign Out',
 };
@@ -246,41 +253,45 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
           </AppMenuItem>
         ))}
       </AppDrawer>
-      <BasicButton
-        variant="secondary"
-        size="medium"
-        onClick={() => {
-          switch (state) {
-            case 'SIGNED_OUT':
-              if (authUrl.includes('https://')) {
-                window.location.href = authUrl;
-              } else {
+      {state === 'LOADING' ? (
+        <LoadingButton />
+      ) : (
+        <BasicButton
+          variant="secondary"
+          size="medium"
+          onClick={() => {
+            switch (state) {
+              case 'SIGNED_OUT':
+                if (authUrl.includes('https://')) {
+                  window.location.href = authUrl;
+                } else {
+                  router.push('/auth');
+                }
+                break;
+              case 'UNREGISTRED':
+                if (registrationUrl.includes('https://')) {
+                  window.location.href = registrationUrl;
+                } else {
+                  router.push(registrationUrl);
+                }
+                break;
+              case 'REGISTRED':
+                logout(
+                  () => {
+                    router.reload();
+                  },
+                  (err) => console.log(err)
+                );
+                break;
+              default:
                 router.push('/auth');
-              }
-              break;
-            case 'UNREGISTRED':
-              if (registrationUrl.includes('https://')) {
-                window.location.href = registrationUrl;
-              } else {
-                router.push(registrationUrl);
-              }
-              break;
-            case 'REGISTRED':
-              logout(
-                () => {
-                  router.reload();
-                },
-                (err) => console.log(err)
-              );
-              break;
-            default:
-              router.push('/auth');
-              break;
-          }
-        }}
-      >
-        {loginText[state]}
-      </BasicButton>
+                break;
+            }
+          }}
+        >
+          {loginText[state]}
+        </BasicButton>
+      )}
     </Header>
   );
 };

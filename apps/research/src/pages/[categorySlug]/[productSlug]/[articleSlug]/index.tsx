@@ -13,7 +13,7 @@ import {
 } from '@/components';
 import Image from 'next/image';
 import { BasicButton, Divider, NextPageWithLayout } from 'ui';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import { ReactElement, useEffect, useState } from 'react';
 import { fetcher } from 'core';
@@ -62,7 +62,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   return (
     <>
       <Head>
-        <title>{article.title}</title>
+        <title>{getTitle('Research', article.title)}</title>
       </Head>
       <Indicator color={product.branding.color} />
       <section
@@ -112,7 +112,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
               className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
             >
               <p className="md:text-heading7 text-body1 text-label-dark-primary">
-                Upgrade to K33 Research Pro to download all reports
+                Sign in to K33 Research Pro to download the report
               </p>
               <Link
                 href={getUrl(
@@ -121,7 +121,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
                 )}
               >
                 <BasicButton variant="secondary">
-                  Start 30-Day Free Trial
+                  Start 30 Day Free Trial
                 </BasicButton>
               </Link>
             </div>

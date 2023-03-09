@@ -19,7 +19,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   return (
     <div
       id={articleSlug}
-      className="flex flex-col w-64 h-[480px] flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-xl ring-1 ring-opacity-10 ring-brand-light-tertiary"
+      className="flex flex-col w-64 h-[480px] flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-xl ring-1 ring-opacity-10 ring-brand-light-tertiary hover:scale-105 transition-all"
     >
       {article.thumbnail ? (
         <div

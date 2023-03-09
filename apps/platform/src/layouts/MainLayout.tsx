@@ -35,7 +35,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           firebaseConfig={config}
           logo={
             <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
-              <Image src={logo} width={133} height={40} alt="k33-logo" />
+              <Image src={logo} height={24} width={94} alt="company logo" />
             </Link>
           }
           authUrl={'auth'}

@@ -1,5 +1,12 @@
 import Image from 'next/image';
-import { BasicCards, Hero, BasicPromotion, NextPageWithLayout } from 'ui';
+import {
+  BasicCards,
+  Hero,
+  BasicPromotion,
+  NextPageWithLayout,
+  BasicButton,
+  ListIcon,
+} from 'ui';
 import { MainLayout } from '@/layouts';
 import heroImage from '../assets/hero.svg';
 import bloomberg from '../assets/bloomberg.png';
@@ -16,11 +23,13 @@ import promotion3 from '../assets/promotion3.png';
 import researchOffer from '../assets/research_offer.svg';
 import adviceOffer from '../assets/advice_offer.svg';
 import marketsOffer from '../assets/markets_offer.svg';
+import { BiRightArrowAlt } from 'react-icons/bi';
 
 import { Companies } from '@/components';
 
 import { ReactElement } from 'react';
-import { SendEmail } from 'platform-js';
+import { SendEmail, getTitle } from 'platform-js';
+import Head from 'next/head';
 
 const hero = {
   title: 'Safe. Secure. Digital assets.',
@@ -63,7 +72,7 @@ const insightPromotion = {
       src={promotion1}
       height={744}
       alt="get real insight"
-      className="md:w-[400px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Get real insight',
@@ -88,7 +97,7 @@ const tradePromotion = {
       src={promotion2}
       height={744}
       alt="Trade with conviction"
-      className="md:w-[400px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Trade with conviction',
@@ -113,7 +122,7 @@ const securePromotion = {
       src={promotion3}
       height={744}
       alt="Secure your wealth"
-      className="md:w-[400px]"
+      className="md:w-[768px] w-[328px]"
     />
   ),
   title: 'Secure your wealth',
@@ -166,21 +175,33 @@ const offers = [
 const Index: NextPageWithLayout = () => {
   return (
     <>
-      <Hero
-        {...hero}
-        bigImage={<Image src={heroImage} width={863} alt="hero-k33-image" />}
-      >
-        <SendEmail
-          placeholder="Enter your email"
-          label="Get Early Access"
-          listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+      <Head>
+        <title>{getTitle(hero.title)}</title>
+      </Head>
+      <div className="flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
+        <div className="flex flex-col gap-4 md:px-0 px-6">
+          <p className="text-heading4 md:text-heading2">{hero.title}</p>
+          <p className="text-brand-light-tertiary md:text-body4 text-body3">
+            {hero.subtitle}
+          </p>
+          {/* <SendEmail
+            placeholder="Enter your email"
+            label="Get Started"
+            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
+          /> */}
+        </div>
+        <Image
+          src={heroImage}
+          width={863}
+          alt="hero-k33-image"
+          className="md:w-[863px] w-[458px]"
         />
-      </Hero>
-      <div className="flex flex-col md:gap-32 gap-12 px-6 md:px-0 md:container">
+      </div>
+      <div className="flex flex-col md:gap-24 gap-44 px-6 md:px-0 md:container">
         <Companies {...companies} />
         <div
           id="k33-apps"
-          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full"
+          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full md:pb-20"
         >
           {apps.map((app) => (
             <BasicCards {...app} key={app.title}>
@@ -193,45 +214,97 @@ const Index: NextPageWithLayout = () => {
             </BasicCards>
           ))}
         </div>
-        <BasicPromotion {...insightPromotion} direction="left" />
-        <BasicPromotion {...tradePromotion} direction="right" />
-        <BasicPromotion {...securePromotion} direction="left" />
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-col text-center items-center justify-center">
-            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-              {call.title}
-            </p>
-            <p className="md:text-heading6 text-heading7 text-brand-light-primary">
-              {call.subtitle}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-full">
-            <p className="md:text-heading8 text-body1 text-brand-light-secondary">
-              What we offer
-            </p>
-            <div
-              id="k33-offers"
-              className="flex md:flex-row flex-col items-center justify-between pt-14 w-full gap-8"
-            >
-              {offers.map((offer) => (
-                <BasicCards {...offer} key={offer.title} variant="secondary">
-                  <p className="text-heading8 text-label-light-primary">
-                    {offer.title}
-                  </p>
-                </BasicCards>
-              ))}
+        <div className="md:container md:px-0 px-6 flex flex-col gap-32 md:gap-52">
+          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+            {insightPromotion.image}
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {insightPromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {insightPromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {insightPromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={insightPromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {insightPromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
             </div>
           </div>
-        </div>
-        <div
-          id="k33-send-email"
-          className="md:w-2/4 w-full md:pb-32 flex flex-col self-center"
-        >
-          <SendEmail
-            placeholder="Enter your email"
-            label="Get Early Access"
-            listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
-          />
+          <div className="flex md:flex-row flex-col-reverse md:gap-10 gap-8 items-center">
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {tradePromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {tradePromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {tradePromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={tradePromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {tradePromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+            {tradePromotion.image}
+          </div>
+          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+            {securePromotion.image}
+            <div className="flex flex-col gap-8 items-start">
+              <div className="flex flex-col gap-2">
+                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                  {securePromotion.title}
+                </p>
+                <p className="text-small md:text-body1 text-label-light-secondary">
+                  {securePromotion.description}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+                {securePromotion.points.map((point) => (
+                  <div key={point} className="flex flex-row items-center gap-2">
+                    <ListIcon />
+                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a href={securePromotion.callToAction.url}>
+                <BasicButton>
+                  <div className="flex flex-row items-center gap-2">
+                    {securePromotion.callToAction.label} <BiRightArrowAlt />
+                  </div>
+                </BasicButton>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>

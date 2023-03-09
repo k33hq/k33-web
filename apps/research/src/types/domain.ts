@@ -82,6 +82,8 @@ export interface Product {
   title: string;
   description: string;
   image: Image;
+  logo: Image;
+  themeImage: Image;
   sys: System;
 }
 
@@ -259,11 +261,14 @@ export interface SubscriptionPage {
 export interface ProductAvert {
   title: string;
   caption: string;
+  description: string;
   features: ReadonlyArray<string>;
   sampleReport: ResearchDocument;
   image: Image;
   productImage: Image;
   landingPageImage: Image;
+  logo: Image;
+  themeImage: Image;
 }
 
 // TODO: update this mess later on :sigh:

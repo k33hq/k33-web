@@ -22,10 +22,11 @@ export const investApi = createApi({
     }
   },
 
-  tagTypes: [],
+  tagTypes: ['Register'],
   endpoints: (builder) => ({
     getFundRegistration: builder.query<any, string>({
       query: (fund) => `funds/${fund}`,
+      providesTags: ['Register'],
     }),
 
     fundRegistration: builder.mutation<any, FundInfo & Fund>({
@@ -34,6 +35,7 @@ export const investApi = createApi({
         method: 'PUT',
         body,
       }),
+      invalidatesTags: ['Register'],
     }),
   }),
 });

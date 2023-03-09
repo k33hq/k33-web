@@ -4,9 +4,10 @@ import config from '@/firebase/config';
 import { ProductLandingPage } from '@/types';
 import { downloadResource, getUrl } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useAppState } from 'platform-js';
+import { getTitle, useAppState } from 'platform-js';
 import { useEffect } from 'react';
 import { BasicButton, BasicList } from 'ui';
 
@@ -26,35 +27,40 @@ const Product: NextPage<ProductProps> = ({ product }) => {
   }, [state, router]);
   return (
     <div className="bg-bg-dark-primary">
-      <div className="min-h-screen pb-12">
+      <Head>
+        <title>{getTitle('Research', product.product.title)}</title>
+      </Head>
+      <div className="min-h-screen pb-32">
         <ResearchHeader categories={[]} />
-        <main className="flex flex-col">
-          <div className="w-auto hidden md:inline-block relative h-[300px]">
-            {product.product.landingPageImage ? (
+        <main className="flex flex-col md:container">
+          <div className="w-full h-[300px] relative bg-label-light-tertiary">
+            {product.product.themeImage && (
               <Image
-                src={product.product.landingPageImage.url}
-                alt={product.product.landingPageImage.title}
+                src={product.product.themeImage.url}
+                alt={product.product.themeImage.title}
                 fill
                 style={{
-                  objectFit: 'contain',
-                  top: 0,
+                  objectFit: 'cover',
+                  filter: 'invert(100%)',
                 }}
               />
-            ) : null}
-          </div>
-          <div className="w-auto md:hidden inline-block relative h-[300px]">
-            {product.product.landingPageImage ? (
-              <Image
-                src={product.product.landingPageImage.url}
-                alt={product.product.landingPageImage.title}
-                fill
-                style={{
-                  transformOrigin: 'center',
-                  transform: 'scale(2.5)',
-                  top: 0,
-                }}
-              />
-            ) : null}
+            )}
+            {product.product.logo && (
+              <div className="m-auto absolute -top-10 left-0 right-0 bottom-20 transition-all md:w-[772px] w-[289px] flex flex-col items-center">
+                <Image
+                  src={product.product.logo.url}
+                  alt={product.product.logo.title}
+                  fill
+                  style={{
+                    filter: 'invert(100%)',
+                  }}
+                  className="md:w-[650px]"
+                />
+                <p className="text-label-dark-primary md:text-heading8 text-caption text-center absolute md:-bottom-10 bottom-12 w-[328px] md:w-[772px]">
+                  {product.product.description}
+                </p>
+              </div>
+            )}
           </div>
           <div className="flex md:flex-row md:justify-between md:content-center flex-col md:container items-center md:gap-20 py-20 md:py-36 md:px-0 px-6">
             <div
@@ -62,7 +68,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               className="flex flex-col md:gap-12 gap-9 max-w-[668px]"
             >
               <div className="flex flex-col md:gap-6 gap-6">
-                <h6 className="md:text-heading7 text-heading8 text-label-dark-primary">
+                <h6 className="md:text-heading7 text-heading8 text-label-dark-primary/80">
                   {product.product.caption}
                 </h6>
                 {product.product.features ? (
@@ -98,14 +104,16 @@ const Product: NextPage<ProductProps> = ({ product }) => {
                 ) : null}
               </div>
               {product.product.sampleReport ? (
-                <BasicButton
-                  variant="secondary"
-                  onClick={() =>
-                    downloadResource(product.product.sampleReport.url)
-                  }
-                >
-                  Download Sample
-                </BasicButton>
+                <div>
+                  <BasicButton
+                    variant="secondary"
+                    onClick={() =>
+                      downloadResource(product.product.sampleReport.url)
+                    }
+                  >
+                    Download Sample
+                  </BasicButton>
+                </div>
               ) : null}
             </div>
             {product.product.productImage ? (
@@ -126,13 +134,13 @@ const Product: NextPage<ProductProps> = ({ product }) => {
           </div>
           <div className="flex md:flex-row flex-col gap-2 md:justify-between md:items-center md:container md:px-0 px-6">
             <div className="md:w-[782px]">
-              <h1 className="md:text-heading1 text-label-dark-primary text-heading6">
+              <h1 className="md:text-heading1 text-label-dark-primary/80 text-heading6">
                 Get access for $50 per month
               </h1>
             </div>
             <div className="flex flex-col md:gap-12 gap-10">
               <div className="flex flex-col md:gap-8 gap-10">
-                <p className="md:text-heading8 text-label-dark-secondary text-body3">
+                <p className="md:text-heading8 text-label-dark-primary/80 text-body3">
                   What you get in our professional plan
                 </p>
                 <div className="flex flex-col md:gap-9 gap-7">
@@ -165,10 +173,9 @@ const Product: NextPage<ProductProps> = ({ product }) => {
                   ))}
                 </div>
               </div>
-              <div className="md:w-[315px]">
+              <div>
                 <BasicButton
                   variant="secondary"
-                  size="medium"
                   onClick={() =>
                     router.push(
                       getUrl('subscription', subscriptionPage.subscriptionSlug)

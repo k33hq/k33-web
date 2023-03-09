@@ -3,7 +3,9 @@ import { classificationConfig } from '@/config';
 import { useArcaneFlow } from '@/hooks';
 import PrivateLayout from '@/layouts/PrivateLayout';
 import { useGetFundRegistrationQuery } from '@/services';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { getTitle } from 'platform-js';
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, NextPageWithLayout } from 'ui';
 
@@ -26,6 +28,9 @@ const Classification: NextPageWithLayout = () => {
 
   return (
     <div className="md:container px-6 md:px-0 h-screen">
+      <Head>
+        <title>{getTitle('Investments', 'Classification')}</title>
+      </Head>
       <Survey prev={previous} next={next} />
     </div>
   );

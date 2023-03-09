@@ -10,17 +10,21 @@ const Companies: React.FC<CompaniesProps> = ({ label, companies }) => {
   return (
     <div
       id="k33-companies"
-      className="flex md:flex-row flex-col items-center md:gap-40 gap-8"
+      className="flex md:flex-row flex-col items-center md:gap-40 gap-2"
     >
-      <p className="text-heading8 text-label-light-secondary">{label}</p>
-      <div className="flex md:flex-row flex-col md:gap-8 gap-6 items-center">
+      <p className="md:text-heading8 text-caption text-label-light-secondary">
+        {label}
+      </p>
+      <div className="flex flex-row-reverse md:flex-row flex-wrap md:gap-8 gap-6 items-center">
         {companies.map((url, index) => (
-          <Image
-            src={url}
-            key={`companies-${index}`}
-            height={47}
-            alt="company logo"
-          />
+          <div className="relative">
+            <Image
+              src={url}
+              key={`companies-${index}`}
+              alt="company logo"
+              className="md:h-[47px] md:min-w-max h-[31px]"
+            />
+          </div>
         ))}
       </div>
     </div>

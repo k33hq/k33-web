@@ -53,3 +53,6 @@ export function downloadResource(url: string, filename?: string) {
     })
     .catch((e) => console.error(e));
 }
+
+export const getTitle = (...title: Array<string>) =>
+  `K33 | ${title.join(' - ')}`;

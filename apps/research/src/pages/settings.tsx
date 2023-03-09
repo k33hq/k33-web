@@ -2,6 +2,8 @@ import { useStripeSubscriber } from '@/hooks';
 import { PrivateLayout } from '@/layouts';
 import { SubscriberType } from '@/types';
 import { fetcher } from 'core';
+import Head from 'next/head';
+import { getTitle } from 'platform-js';
 import { ReactElement, useEffect, useState } from 'react';
 import {
   NextPageWithLayout,
@@ -33,6 +35,9 @@ const Settings: NextPageWithLayout = () => {
 
   return (
     <>
+      <Head>
+        <title>{getTitle('Research', 'Settings')}</title>
+      </Head>
       <div className="flex flex-col md:gap-10 md:py-20 gap-4 pt-10 px-6 md:px-0 bg-bg-light-secondary">
         <div
           className="flex flex-col md:gap-4 gap-2 md:container"

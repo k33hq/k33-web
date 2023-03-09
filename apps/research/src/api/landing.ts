@@ -23,6 +23,16 @@ const GetResearchLandingPage = gql`
                 description
                 title
               }
+              logo {
+                url
+                title
+                description
+              }
+              themeImage {
+                url
+                title
+                description
+              }
             }
           }
         }

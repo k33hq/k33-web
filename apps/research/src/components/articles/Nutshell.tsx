@@ -14,7 +14,7 @@ const NutShell: React.FC<NutShellProps> = ({ document }) => {
   return (
     <div className="flex flex-wrap gap-6">
       <div className="flex-grow basis-28">
-        <p className="text-body1 text-label-light-primary">In a nutshell</p>
+        <p className="text-body1 text-label-light-primary">In short</p>
       </div>
       <div className="flex flex-col gap-8 basis-0 grow-[999]">
         {documentToReactComponents(document.json, richTextOptions)}

@@ -13,11 +13,12 @@ import left from '../assets/research-left-bg.png';
 import right from '../assets/research-right-bg.png';
 import Image from 'next/image';
 import subImage from '../assets/sub.png';
-import { SendEmail, useAppState } from 'platform-js';
+import { SendEmail, getTitle, useAppState } from 'platform-js';
 import { BasicButton } from 'ui';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import config from '@/firebase/config';
+import Head from 'next/head';
 
 const hero = {
   title: 'Understand the digital assets industry,',
@@ -39,6 +40,9 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
   }, [state, router]);
   return (
     <>
+      <Head>
+        <title>{getTitle('Research')}</title>
+      </Head>
       <div className="min-h-screen pb-12">
         <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[544px] w-full">
           <ResearchHeader categories={[]} />
@@ -58,7 +62,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
             <CitedBy />
           </div>
         </div>
-        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-32">
+        <div className="px-6 md:container md:px-0 pt-20 w-full flex flex-col items-center md:gap-16 pb-20 md:pb-32 gap-10">
           <div
             id="product-heading"
             className="flex flex-col items-center gap-2 justify-center content-center md:w-[624px] text-center"
@@ -81,9 +85,9 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
           </div>
         </div>
         <AnalystPromotion />
-        <div className="px-6 md:container md:px-0">
+        <div className="md:container">
           <div className="flex flex-col md:flex-row  w-full items-center justify-between py-20 md:py-32">
-            <div id="subscription-title" className="relative">
+            <div id="subscription-title" className="relative py-10">
               <Image src={subImage} height={779} width={700} alt="asd" />
               <h2 className="absolute top-1/2 left-1/3 -translate-x-1/3 -translate-y-1/2 text-heading6 md:text-heading2 text-label-light-primary md:w-[509px] w-[249px]">
                 Choose a plan that’s right for you
@@ -91,7 +95,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
             </div>
             <div
               id="subscription-element"
-              className="flex md:flex-row items-start md:gap-20 flex-col gap-12"
+              className="flex md:flex-row items-start md:gap-20 flex-col gap-12 px-6 md:px-0"
             >
               {subscriptions.map((subscription) => (
                 <SubscriptionElement

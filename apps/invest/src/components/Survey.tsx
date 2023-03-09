@@ -74,7 +74,7 @@ const welcome = {
 const professionalInvestor = {
   title: 'Investor Classification',
   description:
-    'Congratulations! You are classified as a Professional Investor and are eligible to view details about the fund.',
+    'You are classified as a Professional Investor and are eligible to view details about the fund.',
   label: 'Continue',
 };
 

@@ -85,7 +85,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
                 as="div"
                 className="space-y-1"
                 style={{
-                  zIndex: 1,
+                  zIndex: 2,
                 }}
                 value={setCountry}
                 onChange={(
@@ -203,6 +203,9 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
                 <Listbox
                   as="div"
                   value={setCallCountry}
+                  style={{
+                    zIndex: 1,
+                  }}
                   onChange={(
                     e: React.Dispatch<React.SetStateAction<Country>>
                   ) => {
@@ -332,7 +335,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
 
         <div>
           <BasicButton variant="secondary" size="medium" type="submit">
-            {isLoading ? 'Registring' : 'Submit'}
+            {isLoading ? 'Registering' : 'Submit'}
           </BasicButton>
         </div>
       </form>

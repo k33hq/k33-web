@@ -1,10 +1,11 @@
-import { NextPage } from 'next';
 import left from '../assets/about-left-bg.png';
 import right from '../assets/about-right-bg.png';
 import Image from 'next/image';
 import { MainLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
 import aboutUsImage from '../assets/AboutUs.png';
+import Head from 'next/head';
+import { getTitle } from 'platform-js';
 
 const hero = {
   title: 'Safe. Secure. Digital Assets.',
@@ -20,6 +21,9 @@ const aboutUs = [
 const About: NextPageWithLayout = () => {
   return (
     <>
+      <Head>
+        <title>{getTitle('About')}</title>
+      </Head>
       <div
         className="relative w-full max-w-[1728px] mx-auto py-8 flex flex-col items-center content-center px-6 md:px-0"
         id="markets-hero"
