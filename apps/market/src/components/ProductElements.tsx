@@ -23,14 +23,14 @@ const ProductElements: React.FC<ProductElementsProps> = ({
   comingSoon = true,
 }) => {
   return (
-    <div className="shadow-md px-6 py-10 md:w-[369px] w-[327px] flex flex-col items-center md:gap-12 rounded-xl ring-1 ring-brand-light-tertiary/20">
+    <div className="shadow-md px-6 py-10 md:w-[369px] w-[327px] flex flex-col items-center gap-8 md:gap-12 rounded-xl ring-1 ring-brand-light-tertiary/20">
       {comingSoon && (
         <div className="bg-default-systemGrey-light-4 px-2 py-1 rounded-lg">
           <p className="text-body2 text-label-light-primary">Coming Soon</p>
         </div>
       )}
       <Image src={logo} alt={`${title}-logo`} />
-      <div className="flex flex-col text-center text-heading8 gap-2">
+      <div className="flex flex-col text-center text-heading8 md:gap-2 gap-3">
         <p className="text-label-light-primary">{title}</p>
         <p className="text-label-light-secondary">{description}</p>
       </div>

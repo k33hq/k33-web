@@ -30,7 +30,7 @@ const offerings = {
       ],
       action: {
         label: 'Get Started',
-        href: '',
+        href: 'mailto:markets@k33.com?subject=K33 Vault - Requesting More Info&body=Please give me more details about the K33 Vault product.',
       },
     },
     {
@@ -46,7 +46,7 @@ const offerings = {
       ],
       action: {
         label: 'Get Started',
-        href: '',
+        href: 'mailto:markets@k33.com?subject=K33 Bespoke - Requesting More Info&body=Please give me more details about the K33 Bespoke product.',
       },
     },
     {
