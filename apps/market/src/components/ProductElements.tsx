@@ -16,7 +16,7 @@ const ProductElements: React.FC<ProductElementsProps> = ({
   features,
 }) => {
   return (
-    <div className="shadow-md px-6 py-10 md:h-[723px] h-[703px] md:w-[369px] w-[327px] flex flex-col items-center md:gap-12 rounded-xl">
+    <div className="shadow-md px-6 py-10 md:h-[723px] h-[703px] md:w-[369px] w-[327px] flex flex-col items-center md:gap-12 rounded-xl ring-1 ring-brand-light-tertiary/20">
       <div className="bg-default-systemGrey-light-4 px-2 py-1 rounded-lg">
         <p className="text-body2 text-label-light-primary">Coming Soon</p>
       </div>

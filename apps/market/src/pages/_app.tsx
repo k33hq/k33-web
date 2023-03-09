@@ -17,9 +17,7 @@ interface PlatformAppProps extends AppProps {}
 const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
   return (
     <K33App>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <Component {...pageProps} />
     </K33App>
   );
 };
