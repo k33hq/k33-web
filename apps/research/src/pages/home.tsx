@@ -201,7 +201,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
           <div
             id="category-article-list"
-            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 justify-center items-center md:overflow-hidden overflow-x-auto overflow-y-hidden`}
+            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 md:justify-center md:items-center md:overflow-hidden overflow-auto`}
           >
             {reportArticles.map((article) => (
               <ArticleElement {...article} key={article.articleSlug} />
@@ -216,9 +216,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
 
 // TODO: write test cases to show only reports
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Home.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export default Home;
 
