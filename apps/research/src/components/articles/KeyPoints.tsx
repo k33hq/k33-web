@@ -16,7 +16,7 @@ const KeyPoints: React.FC<KeyPointsProps> = ({ points }) => {
         {points.map((point) => (
           <div className="flex flex-row gap-4 items-center" key={point.trim()}>
             <Dot />
-            <p className="text-body2 text-label-light-secondary">{point}</p>
+            <p className="text-body2 text-label-light-primary">{point}</p>
           </div>
         ))}
       </div>
