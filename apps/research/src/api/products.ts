@@ -41,6 +41,7 @@ const GetProductAdvertBySlug = gql`
         product {
           caption
           features
+          description
           landingPageImage {
             url
             title

@@ -261,6 +261,7 @@ export interface SubscriptionPage {
 export interface ProductAvert {
   title: string;
   caption: string;
+  description: string;
   features: ReadonlyArray<string>;
   sampleReport: ResearchDocument;
   image: Image;

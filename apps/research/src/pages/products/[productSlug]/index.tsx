@@ -32,7 +32,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       </Head>
       <div className="min-h-screen pb-12">
         <ResearchHeader categories={[]} />
-        <main className="flex flex-col">
+        <main className="flex flex-col md:container">
           <div className="w-full h-[300px] relative bg-label-light-tertiary">
             {product.product.themeImage && (
               <Image
@@ -46,7 +46,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               />
             )}
             {product.product.logo && (
-              <div className="m-auto absolute top-0 bottom-0 left-0 right-0 hover:scale-90 transition-all md:w-[650px] w-[289px] flex flex-col">
+              <div className="m-auto absolute -top-10 left-0 right-0 bottom-20 transition-all md:w-[772px] w-[289px] flex flex-col items-center">
                 <Image
                   src={product.product.logo.url}
                   alt={product.product.logo.title}
@@ -54,7 +54,11 @@ const Product: NextPage<ProductProps> = ({ product }) => {
                   style={{
                     filter: 'invert(100%)',
                   }}
+                  className="md:w-[650px]"
                 />
+                <p className="text-label-dark-primary md:text-heading8 text-caption text-center absolute md:-bottom-10 bottom-12 w-[328px] md:w-[772px]">
+                  {product.product.description}
+                </p>
               </div>
             )}
           </div>
@@ -100,14 +104,16 @@ const Product: NextPage<ProductProps> = ({ product }) => {
                 ) : null}
               </div>
               {product.product.sampleReport ? (
-                <BasicButton
-                  variant="secondary"
-                  onClick={() =>
-                    downloadResource(product.product.sampleReport.url)
-                  }
-                >
-                  Download Sample
-                </BasicButton>
+                <div>
+                  <BasicButton
+                    variant="secondary"
+                    onClick={() =>
+                      downloadResource(product.product.sampleReport.url)
+                    }
+                  >
+                    Download Sample
+                  </BasicButton>
+                </div>
               ) : null}
             </div>
             {product.product.productImage ? (
