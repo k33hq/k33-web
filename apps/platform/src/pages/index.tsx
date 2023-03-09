@@ -184,11 +184,11 @@ const Index: NextPageWithLayout = () => {
           <p className="text-brand-light-tertiary md:text-body4 text-body3">
             {hero.subtitle}
           </p>
-          <SendEmail
+          {/* <SendEmail
             placeholder="Enter your email"
             label="Get Started"
             listIds={['d2e4dc82-5cd8-4cc9-ad84-131389919f91']}
-          />
+          /> */}
         </div>
         <Image
           src={heroImage}

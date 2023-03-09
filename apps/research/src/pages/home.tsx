@@ -26,7 +26,6 @@ import { PrivateLayout } from '@/layouts';
 import { BasicButton, NextPageWithLayout } from 'ui';
 import { fetcher } from 'core';
 import { getTitle, useAppState } from 'platform-js';
-import config from '@/firebase/config';
 import Link from 'next/link';
 import { getUrl } from '@/utils';
 import { useStripeSubscriber } from '@/hooks';
