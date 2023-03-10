@@ -11,6 +11,7 @@ import { checkout } from '@/utils';
 import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import Head from 'next/head';
+import { useStripeSubscriber } from '@/hooks';
 
 interface SubscriptionProps {
   subscription: SubscriptionPage;
@@ -21,9 +22,10 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
 }) => {
   const state = useAppState(config);
   const route = useRouter();
+  const sub = useStripeSubscriber();
 
   React.useEffect(() => {
-    if (subscription.subscription.stripeProductId === 'free') {
+    if (subscription.subscription.stripeProductId === 'free' || sub === 'pro') {
       route.push('/home');
     } else {
       const email = getCustomerEmail();
@@ -31,7 +33,7 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
         checkout(subscription.subscription.stripeProductId, email);
       }
     }
-  }, [subscription, state, route]);
+  }, [subscription, state, route, sub]);
 
   return (
     <div id="subscription">
