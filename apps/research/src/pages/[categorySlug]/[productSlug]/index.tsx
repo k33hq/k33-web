@@ -18,7 +18,7 @@ import {
   ProductsWithArticles,
 } from '@/components';
 import { NextPageWithLayout } from 'ui';
-import { getUrl } from '@/utils';
+import { getUrl, siteUsername } from '@/utils';
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
 import Head from 'next/head';
@@ -36,10 +36,62 @@ const Product: NextPageWithLayout<ProductProps> = ({
   productSlug,
 }) => {
   const { product, branding } = rootProduct;
+
+  const getSeo = () => {
+    if (rootProduct.seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={rootProduct.seo.description} />
+            <meta
+              property="og:title"
+              content={rootProduct.seo.title}
+              key="ogtitle"
+            />
+            <meta
+              property="og:description"
+              content={rootProduct.seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={rootProduct.seo.image.url} />
+
+            <meta name="twitter:title" content={rootProduct.seo.title} />
+            <meta
+              name="twitter:description"
+              content={rootProduct.seo.description}
+            />
+            <meta name="twitter:image" content={rootProduct.seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={product.description} />
+        <meta property="og:title" content={rootProduct.title} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={product.description}
+          key="ogdesc"
+        />
+        <meta property="og:image" content={product.image.url} />
+        <meta name="twitter:title" content={rootProduct.title} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={product.image.url} />
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
-        <title>{getTitle('Research', product.title)}</title>
+        {getSeo()}
+        <title>{getTitle('Research', rootProduct.title)}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta property="og:url" content={getUrl(categorySlug, productSlug)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:image:alt" content={product.image.title} />
       </Head>
       <div className="w-auto relative md:h-80 h-44">
         {product.themeImage && (

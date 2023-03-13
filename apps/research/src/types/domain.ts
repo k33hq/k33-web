@@ -76,6 +76,7 @@ export type CategoryElements = ReadonlyArray<CategoryElement>;
 
 export interface CategoryPage {
   title: string;
+  seo: Seo | null;
   category: Category;
   highlightedProductsCollection: {
     items: ReadonlyArray<ProductElementsWithArticleElement>;
@@ -119,6 +120,7 @@ export type ProductElements = ReadonlyArray<ProductElement>;
 
 export interface ProductPage {
   title: string;
+  seo: Seo | null;
   branding: Brand;
   product: Product;
 }
@@ -293,6 +295,7 @@ export interface ProductLandingPage extends ProductCoreSlug {
 
 export interface LandingPage {
   title: string;
+  seo: Seo | null;
   productsCollection: {
     items: ReadonlyArray<ProductAdvertElement>;
   };

@@ -118,6 +118,15 @@ const GetProductBySlug = gql`
     productWebCollection(where: { productSlug: $productSlug }, limit: 1) {
       items {
         title
+        seo {
+          title
+          description
+          image {
+            url
+            description
+            title
+          }
+        }
         branding {
           color
         }

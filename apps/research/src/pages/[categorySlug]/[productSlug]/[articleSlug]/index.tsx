@@ -14,9 +14,7 @@ import {
 import Image from 'next/image';
 import { BasicButton, Divider, NextPageWithLayout } from 'ui';
 import { getTitle, useAppState } from 'platform-js';
-import config from '@/firebase/config';
 import { ReactElement, useEffect, useState } from 'react';
-import { fetcher } from 'core';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
 import { useStripeSubscriber } from '@/hooks';

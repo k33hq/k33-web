@@ -7,6 +7,15 @@ const GetResearchLandingPage = gql`
     researchLandingPageWebCollection(limit: 1) {
       items {
         title
+        seo {
+          title
+          description
+          image {
+            url
+            description
+            title
+          }
+        }
         productsCollection {
           items {
             productSlug

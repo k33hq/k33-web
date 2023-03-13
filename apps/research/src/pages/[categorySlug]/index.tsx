@@ -14,7 +14,7 @@ import {
 import { ReactElement } from 'react';
 import { PrivateLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
-import { getUrl } from '@/utils';
+import { getUrl, siteUsername } from '@/utils';
 import Head from 'next/head';
 import { getTitle } from 'platform-js';
 
@@ -27,12 +27,56 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   category,
   highlightedProductsCollection,
   products,
+  title,
+  seo,
   categorySlug,
 }) => {
+  const getSeo = () => {
+    if (seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={seo.description} />
+            <meta property="og:title" content={seo.title} key="ogtitle" />
+            <meta
+              property="og:description"
+              content={seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={seo.image.url} />
+
+            <meta name="twitter:title" content={seo.title} />
+            <meta name="twitter:description" content={seo.description} />
+            <meta name="twitter:image" content={seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={category.description} />
+        <meta property="og:title" content={title} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={category.description}
+          key="ogdesc"
+        />
+
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={category.description} />
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
-        <title>{getTitle('Research', category.title)}</title>
+        {getSeo()}
+        <title>{getTitle('Research', title)}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta property="og:url" content={getUrl(categorySlug)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
       </Head>
       <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 bg-bg-light-secondary">
         <div
@@ -114,7 +158,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<CategoryProps> = async (
   context
 ) => {
-  const { category, highlightedProductsCollection, title } =
+  const { category, highlightedProductsCollection, title, seo } =
     await getCategoryPage(context.params!.categorySlug as string);
 
   const products = await getProductArticleElementsByCategories(
@@ -124,6 +168,7 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async (
   return {
     props: {
       categorySlug: context.params!.categorySlug as string,
+      seo,
       category,
       highlightedProductsCollection,
       title,

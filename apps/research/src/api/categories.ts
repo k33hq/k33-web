@@ -38,6 +38,15 @@ const GetCategoryPage = gql`
     categoryWebCollection(where: { categorySlug: $categorySlug }, limit: 1) {
       items {
         title
+        seo {
+          title
+          description
+          image {
+            url
+            title
+            description
+          }
+        }
         category {
           title
           description
