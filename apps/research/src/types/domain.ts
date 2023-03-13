@@ -25,6 +25,12 @@ export interface RichText {
   json: Document;
 }
 
+export interface Seo {
+  title: string;
+  description: string;
+  image: Image;
+}
+
 export interface Author {
   name: string;
   title: string;
@@ -169,6 +175,7 @@ export type ArticleElements = ReadonlyArray<ArticleElement>;
 
 export interface ArticlePage {
   title: string;
+  seo: Seo | null;
   product: Omit<ProductElement, 'categoryWeb'>;
   publishedDate: string;
   article: Article;

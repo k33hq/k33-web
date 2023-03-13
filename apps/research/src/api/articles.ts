@@ -101,6 +101,15 @@ const GetArticlePage = gql`
     articleWebCollection(where: { articleSlug: $articleSlug }, limit: 1) {
       items {
         title
+        seo {
+          title
+          description
+          image {
+            url
+            description
+            title
+          }
+        }
         product {
           productSlug
           branding {
