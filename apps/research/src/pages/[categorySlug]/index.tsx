@@ -74,7 +74,10 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         {getSeo()}
         <title>{getTitle('Research', title)}</title>
         <meta name="twitter:site" content={siteUsername} />
-        <meta property="og:url" content={getUrl(categorySlug)} />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_RESEARCH_URL + getUrl(categorySlug)}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
       </Head>

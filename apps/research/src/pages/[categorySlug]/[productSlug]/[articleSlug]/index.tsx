@@ -110,7 +110,10 @@ const Article: NextPageWithLayout<ArticleProps> = ({
         <meta name="twitter:site" content={siteUsername} />
         <meta
           property="og:url"
-          content={getUrl(categorySlug, productSlug, articleSlug)}
+          content={
+            process.env.NEXT_PUBLIC_RESEARCH_URL +
+            getUrl(categorySlug, productSlug, articleSlug)
+          }
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="article" />

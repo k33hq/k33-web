@@ -95,7 +95,10 @@ const Product: NextPage<ProductProps> = ({ product }) => {
         <meta name="twitter:site" content={siteUsername} />
         <meta
           property="og:url"
-          content={getUrl('products', product.productSlug)}
+          content={
+            process.env.NEXT_PUBLIC_RESEARCH_URL +
+            getUrl('products', product.productSlug)
+          }
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />

@@ -86,7 +86,10 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
         {getSeo()}
         <title>{getTitle('Research')}</title>
         <meta name="twitter:site" content={siteUsername} />
-        <meta property="og:url" content={getUrl()} />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_RESEARCH_URL + getUrl()}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
       </Head>

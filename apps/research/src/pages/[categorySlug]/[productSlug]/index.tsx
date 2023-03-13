@@ -88,7 +88,13 @@ const Product: NextPageWithLayout<ProductProps> = ({
         {getSeo()}
         <title>{getTitle('Research', rootProduct.title)}</title>
         <meta name="twitter:site" content={siteUsername} />
-        <meta property="og:url" content={getUrl(categorySlug, productSlug)} />
+        <meta
+          property="og:url"
+          content={
+            process.env.NEXT_PUBLIC_RESEARCH_URL +
+            getUrl(categorySlug, productSlug)
+          }
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
         <meta name="twitter:image:alt" content={product.image.title} />
