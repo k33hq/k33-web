@@ -215,7 +215,7 @@ const Index: NextPageWithLayout = () => {
           ))}
         </div>
         <div className="md:container md:px-0 px-6 flex flex-col gap-32 md:gap-52">
-          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col md:gap-5 gap-8 items-center">
             {insightPromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
@@ -245,7 +245,7 @@ const Index: NextPageWithLayout = () => {
               </a>
             </div>
           </div>
-          <div className="flex md:flex-row flex-col-reverse md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col-reverse md:gap-4 gap-8 items-center">
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
                 <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
@@ -275,7 +275,7 @@ const Index: NextPageWithLayout = () => {
             </div>
             {tradePromotion.image}
           </div>
-          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col md:gap-0 gap-8 items-center">
             {securePromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
