@@ -169,10 +169,11 @@ const Article: NextPageWithLayout<ArticleProps> = ({
             )}
           </div>
           <Divider />
-          <div className="py-4">
+          <div className="pt-4 md:pt-0 pb-2 md:pb-0">
             <NutShell document={article.summary} />
           </div>
           <KeyPoints points={article.keyPoints} />
+          <Divider />
           <div className="w-full h-64 md:h-[423px] relative">
             {article.image ? (
               <Image
