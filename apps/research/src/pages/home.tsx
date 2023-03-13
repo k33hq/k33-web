@@ -185,7 +185,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
             >
               <Marker color={reportArticles[0].product.branding.color} />
               <Link
-                className="md:text-body1 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
+                className="md:text-heading8 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
                 href={getUrl(reportArticles[0].category.categorySlug)}
               >
                 {reportArticles[0].category.category.title}

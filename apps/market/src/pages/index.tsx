@@ -66,11 +66,11 @@ const Index: NextPage = () => {
         <title>{getTitle('Market')}</title>
       </Head>
       <div className="min-h-screen">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary md:h-[544px] h-[512px] w-full bg-[url('../assets/landing.svg')]">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-bg-dark-primary md:h-[544px] h-[512px] w-full bg-[url('../assets/landing.svg')]">
           <MarketHeader />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-36 pt-20 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
-              <div className="text-brand-dark-primary flex flex-col md:gap-2">
+              <div className="text-brand-dark-primary flex flex-col gap-2">
                 <h5 className="md:text-heading4 text-heading6">{hero.title}</h5>
                 <h6 className="md:text-body1 text-caption">{hero.body}</h6>
               </div>
@@ -79,7 +79,7 @@ const Index: NextPage = () => {
         </div>
         <div className="md:container flex flex-col items-center pt-20 px-6 md:px-0">
           <div className="md:w-[566px] text-center">
-            <h6 className="md:text-heading6 text-heading8">
+            <h6 className="md:text-heading6 text-heading8 px-2 md:px-0">
               {offerings.title}
             </h6>
           </div>

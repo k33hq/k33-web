@@ -180,8 +180,8 @@ const Index: NextPageWithLayout = () => {
       </Head>
       <div className="flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
         <div className="flex flex-col gap-4 md:px-0 px-6">
-          <p className="text-heading4 md:text-heading2">{hero.title}</p>
-          <p className="text-brand-light-tertiary md:text-body4 text-body3">
+          <p className="text-heading6 md:text-heading2">{hero.title}</p>
+          <p className="text-brand-light-tertiary md:text-body4 text-small">
             {hero.subtitle}
           </p>
           {/* <SendEmail
@@ -207,7 +207,7 @@ const Index: NextPageWithLayout = () => {
             <BasicCards {...app} key={app.title}>
               <a
                 href={app.url}
-                className="ui-text-heading6 hover:underline ui-text-brand-light-primary"
+                className="ui-text-heading7 hover:underline ui-text-brand-light-primary"
               >
                 {app.title}
               </a>

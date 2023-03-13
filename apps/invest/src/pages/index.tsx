@@ -46,8 +46,8 @@ const Index: NextPage = () => {
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
               <div className="text-brand-dark-primary flex flex-col md:gap-2">
-                <h5 className="md:text-heading2 text-heading8">{hero.title}</h5>
-                <h6 className="md:text-body2 text-heading8">{hero.body}</h6>
+                <h5 className="md:text-heading2 text-heading7">{hero.title}</h5>
+                <h6 className="md:text-body2 text-caption">{hero.body}</h6>
               </div>
             </div>
           </div>
