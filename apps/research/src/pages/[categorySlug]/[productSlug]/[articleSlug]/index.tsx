@@ -12,13 +12,14 @@ import {
   Profile,
 } from '@/components';
 import Image from 'next/image';
-import { BasicButton, Divider, NextPageWithLayout } from 'ui';
+import { BasicButton, Divider, NextPageWithLayout, Marker, Dot } from 'ui';
 import { getTitle, useAppState } from 'platform-js';
 import { ReactElement, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
 import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
+import { formatDateAndTime } from '@contentful/f36-datetime';
 
 interface ArticleProps {
   articleSlug: string;
@@ -132,20 +133,45 @@ const Article: NextPageWithLayout<ArticleProps> = ({
         </div>
 
         <article
-          className={`flex flex-col justify-center md:gap-8 gap-6 md:w-2/3 w-full px-6 md:px-0`}
+          className={`flex flex-col justify-center md:gap-8 gap-4 md:w-2/3 w-full px-6 md:px-0`}
         >
-          <ArticleTitle
-            published={publishedDate}
-            product={{
-              title: product.product.title,
-              href: getUrl(categorySlug, productSlug),
-              branding: product.branding,
-            }}
-            title={article.title}
-            subtitle={article.subtitle ?? undefined}
-          />
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col md:gap-2 gap-1">
+              <div
+                id="article-meta-title"
+                className="flex flex-row gap-3 items-center"
+              >
+                <div
+                  id="research-product-branding-title"
+                  className="flex flex-row gap-1 items-center"
+                >
+                  <Marker color={product.branding.color} />
+                  <Link
+                    className={`font-[500] leading-4 text-[10px] md:font-[600] md:text-[24px] text-label-light-primary/60 hover:text-label-light-tertiary uppercase`}
+                    href={getUrl(categorySlug, productSlug)}
+                  >
+                    {product.product.title}
+                  </Link>
+                </div>
+                <Dot />
+                <p className="md:text-body4 text-small text-label-light-secondary">
+                  {formatDateAndTime(publishedDate, 'day')}
+                </p>
+              </div>
+              <p className="md:text-heading7 text-heading8 text-label-light-primary">
+                {article.title}
+              </p>
+            </div>
+            {article.subtitle && (
+              <p className="md:text-body2 text-small  md:text-label-light-primary text-label-light-secondary">
+                {article.subtitle}
+              </p>
+            )}
+          </div>
           <Divider />
-          <NutShell document={article.summary} />
+          <div className="py-4">
+            <NutShell document={article.summary} />
+          </div>
           <KeyPoints points={article.keyPoints} />
           <div className="w-full h-64 md:h-[423px] relative">
             {article.image ? (
@@ -188,9 +214,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   );
 };
 
-Article.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Article.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   const articles = await getArticleSlugs();
