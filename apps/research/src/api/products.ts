@@ -29,6 +29,15 @@ const GetProductAdvertBySlug = gql`
     productWebCollection(where: { productSlug: $productSlug }, limit: 1) {
       items {
         productSlug
+        seo {
+          title
+          description
+          image {
+            url
+            description
+            title
+          }
+        }
         subscriptionPage {
           subscriptionSlug
           subscription {

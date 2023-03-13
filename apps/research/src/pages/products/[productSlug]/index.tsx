@@ -2,7 +2,7 @@ import { getProductAdvertBySlug, getProductSlugs } from '@/api';
 import { ResearchFooter, ResearchHeader } from '@/components';
 import config from '@/firebase/config';
 import { ProductLandingPage } from '@/types';
-import { downloadResource, getUrl } from '@/utils';
+import { downloadResource, getUrl, siteUsername } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -25,10 +25,72 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       router.push('/home');
     }
   }, [state, router]);
+
+  const getSeo = () => {
+    if (product.seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={product.seo.description} />
+            <meta
+              property="og:title"
+              content={product.seo.title}
+              key="ogtitle"
+            />
+            <meta
+              property="og:description"
+              content={product.seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={product.seo.image.url} />
+
+            <meta name="twitter:title" content={product.seo.title} />
+            <meta
+              name="twitter:description"
+              content={product.seo.description}
+            />
+            <meta name="twitter:image" content={product.seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={product.product.description} />
+        <meta
+          property="og:title"
+          content={product.product.title}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={product.product.description}
+          key="ogdesc"
+        />
+        <meta property="og:image" content={product.product.logo.url} />
+        <meta name="twitter:title" content={product.product.title} />
+        <meta
+          name="twitter:description"
+          content={product.product.description}
+        />
+        <meta name="twitter:image" content={product.product.logo.url} />
+      </>
+    );
+  };
+
   return (
     <div className="bg-bg-dark-primary">
       <Head>
+        {getSeo()}
         <title>{getTitle('Research', product.product.title)}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta
+          property="og:url"
+          content={getUrl('products', product.productSlug)}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:image:alt" content={product.product.logo.title} />
       </Head>
       <div className="min-h-screen pb-32">
         <ResearchHeader categories={[]} />

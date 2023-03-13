@@ -201,6 +201,7 @@ export type ProductElementsWithArticleElements =
 // some fanacy stuff
 
 export interface HomePage {
+  seo: Seo | null;
   mainArticle: HomeArticleElement;
   subArticle1: HomeArticleElement;
   subArticle2: HomeArticleElement;
@@ -290,6 +291,7 @@ export interface ProductLandingPage extends ProductCoreSlug {
     subscriptionSlug: string;
     subscription: Omit<Subscription, 'linkedFrom' | 'image'>;
   };
+  seo: Seo | null;
   product: Omit<ProductAvert, 'image'>;
 }
 
