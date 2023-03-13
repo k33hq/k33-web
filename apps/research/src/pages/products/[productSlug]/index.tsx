@@ -27,7 +27,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
   }, [state, router]);
 
   const getSeo = () => {
-    if (product.seo)
+    if (product.seo) {
       return (
         <>
           <>
@@ -54,6 +54,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
           </>
         </>
       );
+    }
     return (
       <>
         <meta name="description" content={product.product.description} />
@@ -67,13 +68,21 @@ const Product: NextPage<ProductProps> = ({ product }) => {
           content={product.product.description}
           key="ogdesc"
         />
-        <meta property="og:image" content={product.product.logo.url} />
+        {product.product.logo && (
+          <>
+            <meta property="og:image" content={product.product.logo.url} />
+            <meta name="twitter:image" content={product.product.logo.url} />
+            <meta
+              name="twitter:image:alt"
+              content={product.product.logo.title}
+            />
+          </>
+        )}
         <meta name="twitter:title" content={product.product.title} />
         <meta
           name="twitter:description"
           content={product.product.description}
         />
-        <meta name="twitter:image" content={product.product.logo.url} />
       </>
     );
   };
@@ -90,7 +99,6 @@ const Product: NextPage<ProductProps> = ({ product }) => {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:image:alt" content={product.product.logo.title} />
       </Head>
       <div className="min-h-screen pb-32">
         <ResearchHeader categories={[]} />
