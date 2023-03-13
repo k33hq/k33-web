@@ -28,8 +28,8 @@ export const BasicCards: React.FC<BasicCardsProps> = ({
       <p
         className={
           variant === 'primary'
-            ? 'ui-text-heading8 ui-text-label-light-tertiary ui-text-center sm:ui-text-start'
-            : 'ui-text-body3 ui-text-default-systemGrey-light-1 ui-text-center'
+            ? 'ui-text-heading7 ui-text-label-light-secondary ui-text-center sm:ui-text-start'
+            : 'ui-text-body1 ui-text-default-systemGrey-light-1 ui-text-center'
         }
       >
         {description}

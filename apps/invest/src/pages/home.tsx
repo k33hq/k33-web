@@ -400,7 +400,7 @@ const FundCardContent: React.FC<FundCardContentProps> = ({
       <div className="flex flex-row items-center md:gap-4 gap-2 md:pb-6 pb-4">
         <div className="flex flex-row items-center gap-1">
           <Marker color="brand.black" />
-          <p className="uppercase md:text-heading8 text-small text-label-light-primary/60">
+          <p className="uppercase md:text-heading8 text-xsmall text-label-light-primary/60">
             {title}
           </p>
         </div>

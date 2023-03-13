@@ -1,7 +1,7 @@
 import { getArticlePage, getArticleSlugs } from '@/api';
 import { ArticlePage, SubscriberType } from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { getUrl } from '@/utils';
+import { getUrl, siteUsername } from '@/utils';
 import {
   Indicator,
   ReportsDownload,
@@ -14,9 +14,7 @@ import {
 import Image from 'next/image';
 import { BasicButton, Divider, NextPageWithLayout } from 'ui';
 import { getTitle, useAppState } from 'platform-js';
-import config from '@/firebase/config';
 import { ReactElement, useEffect, useState } from 'react';
-import { fetcher } from 'core';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
 import { useStripeSubscriber } from '@/hooks';
@@ -59,10 +57,64 @@ const Article: NextPageWithLayout<ArticleProps> = ({
     return null;
   };
 
+  const getSeo = () => {
+    if (articlePage.seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={articlePage.seo.description} />
+            <meta
+              property="og:title"
+              content={articlePage.seo.title}
+              key="ogtitle"
+            />
+            <meta
+              property="og:description"
+              content={articlePage.seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={articlePage.seo.image.url} />
+
+            <meta name="twitter:title" content={articlePage.seo.title} />
+            <meta
+              name="twitter:description"
+              content={articlePage.seo.description}
+            />
+            <meta name="twitter:image" content={articlePage.seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={article.subtitle ?? ''} />
+        <meta property="og:title" content={articlePage.title} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={article.subtitle ?? ''}
+          key="ogdesc"
+        />
+        <meta property="og:image" content={article.image!.url} />
+        <meta name="twitter:title" content={articlePage.title} />
+        <meta name="twitter:description" content={article.subtitle ?? ''} />
+        <meta name="twitter:image" content={article.image!.url} />
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
-        <title>{getTitle('Research', article.title)}</title>
+        {getSeo()}
+        <title>{getTitle('Research', articlePage.title)}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta
+          property="og:url"
+          content={getUrl(categorySlug, productSlug, articleSlug)}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:image:alt" content={article.title} />
       </Head>
       <Indicator color={product.branding.color} />
       <section

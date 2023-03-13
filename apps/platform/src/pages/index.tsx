@@ -8,7 +8,7 @@ import {
   ListIcon,
 } from 'ui';
 import { MainLayout } from '@/layouts';
-import heroImage from '../assets/hero.svg';
+import heroImage from '../assets/hero.png';
 import bloomberg from '../assets/bloomberg.png';
 import forbes from '../assets/forbes.png';
 import reuters from '../assets/reuters.png';
@@ -178,10 +178,34 @@ const Index: NextPageWithLayout = () => {
       <Head>
         <title>{getTitle(hero.title)}</title>
       </Head>
-      <div className="flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
+      <div
+        className="hidden relative w-full md:max-w-[1728px] md:h-[863px] mx-auto md:flex flex-col items-center content-center px-6 md:px-0 transition-all"
+        id="markets-hero"
+      >
+        <div className="md:absolute md:right-0 md:h-[863px] md:w-[923px] hidden md:block">
+          <Image
+            src={heroImage}
+            fill
+            alt="hero-k33-image"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </div>
+        <div className="md:h-[863px] md:container md:self-start md:justify-start flex md:items-center">
+          <div className="flex flex-col gap-4 md:px-0 px-6 md:max-w-[575px]">
+            <p className="text-heading6 md:text-heading2">{hero.title}</p>
+            <p className="text-brand-light-tertiary md:text-body4 text-small">
+              {hero.subtitle}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="md:hidden flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
         <div className="flex flex-col gap-4 md:px-0 px-6">
-          <p className="text-heading4 md:text-heading2">{hero.title}</p>
-          <p className="text-brand-light-tertiary md:text-body4 text-body3">
+          <p className="text-heading6 md:text-heading2">{hero.title}</p>
+          <p className="text-brand-light-tertiary md:text-body4 text-small">
             {hero.subtitle}
           </p>
           {/* <SendEmail
@@ -197,7 +221,8 @@ const Index: NextPageWithLayout = () => {
           className="md:w-[863px] w-[458px]"
         />
       </div>
-      <div className="flex flex-col md:gap-24 gap-44 px-6 md:px-0 md:container">
+
+      <div className="flex flex-col md:gap-24 gap-44 px-6 md:px-0 md:container md:pt-4 pb-[72px]">
         <Companies {...companies} />
         <div
           id="k33-apps"
@@ -207,7 +232,7 @@ const Index: NextPageWithLayout = () => {
             <BasicCards {...app} key={app.title}>
               <a
                 href={app.url}
-                className="ui-text-heading6 hover:underline ui-text-brand-light-primary"
+                className="ui-text-heading7 hover:underline ui-text-brand-light-primary"
               >
                 {app.title}
               </a>
@@ -215,7 +240,7 @@ const Index: NextPageWithLayout = () => {
           ))}
         </div>
         <div className="md:container md:px-0 px-6 flex flex-col gap-32 md:gap-52">
-          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col md:gap-5 gap-8 items-center">
             {insightPromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
@@ -245,7 +270,7 @@ const Index: NextPageWithLayout = () => {
               </a>
             </div>
           </div>
-          <div className="flex md:flex-row flex-col-reverse md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col-reverse md:gap-4 gap-8 items-center">
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
                 <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
@@ -275,7 +300,7 @@ const Index: NextPageWithLayout = () => {
             </div>
             {tradePromotion.image}
           </div>
-          <div className="flex md:flex-row flex-col md:gap-10 gap-8 items-center">
+          <div className="flex md:flex-row flex-col md:gap-0 gap-8 items-center">
             {securePromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">

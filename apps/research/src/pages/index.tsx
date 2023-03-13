@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import config from '@/firebase/config';
 import Head from 'next/head';
+import { getUrl, siteUsername } from '@/utils';
 
 const hero = {
   title: 'Understand the digital assets industry,',
@@ -38,10 +39,56 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
       router.push('/home');
     }
   }, [state, router]);
+
+  const getSeo = () => {
+    if (landingPage.seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={landingPage.seo.description} />
+            <meta
+              property="og:title"
+              content={landingPage.seo.title}
+              key="ogtitle"
+            />
+            <meta
+              property="og:description"
+              content={landingPage.seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={landingPage.seo.image.url} />
+
+            <meta name="twitter:title" content={landingPage.seo.title} />
+            <meta
+              name="twitter:description"
+              content={landingPage.seo.description}
+            />
+            <meta name="twitter:image" content={landingPage.seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={''} />
+        <meta property="og:title" content={landingPage.title} key="ogtitle" />
+        <meta property="og:description" content={''} key="ogdesc" />
+
+        <meta name="twitter:title" content={landingPage.title} />
+        <meta name="twitter:description" content={''} />
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
+        {getSeo()}
         <title>{getTitle('Research')}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta property="og:url" content={getUrl()} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
       </Head>
       <div className="min-h-screen pb-12">
         <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[544px] w-full">

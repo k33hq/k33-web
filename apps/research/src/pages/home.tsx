@@ -27,7 +27,7 @@ import { BasicButton, NextPageWithLayout } from 'ui';
 import { fetcher } from 'core';
 import { getTitle, useAppState } from 'platform-js';
 import Link from 'next/link';
-import { getUrl } from '@/utils';
+import { getUrl, siteUsername } from '@/utils';
 import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
 
@@ -38,6 +38,7 @@ interface HomeProps extends HomePage {
 }
 
 const Home: NextPageWithLayout<HomeProps> = ({
+  seo,
   mainArticle,
   subArticle1,
   subArticle2,
@@ -49,10 +50,63 @@ const Home: NextPageWithLayout<HomeProps> = ({
 }) => {
   const subscriber = useStripeSubscriber();
 
+  const getSeo = () => {
+    if (seo)
+      return (
+        <>
+          <>
+            <meta name="description" content={seo.description} />
+            <meta property="og:title" content={seo.title} key="ogtitle" />
+            <meta
+              property="og:description"
+              content={seo.description}
+              key="ogdesc"
+            />
+
+            <meta property="og:image" content={seo.image.url} />
+
+            <meta name="twitter:title" content={seo.title} />
+            <meta name="twitter:description" content={seo.description} />
+            <meta name="twitter:image" content={seo.image.url} />
+          </>
+        </>
+      );
+    return (
+      <>
+        <meta name="description" content={mainArticle.article.subtitle ?? ''} />
+        <meta
+          property="og:title"
+          content={mainArticle.article.title}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={mainArticle.article.subtitle ?? ''}
+          key="ogdesc"
+        />
+
+        <meta name="twitter:title" content={mainArticle.article.title} />
+        <meta
+          name="twitter:description"
+          content={mainArticle.article.subtitle ?? ''}
+        />
+        <meta
+          name="twitter:image"
+          content={mainArticle.article.coverPicture.url}
+        />
+      </>
+    );
+  };
+
   return (
     <>
       <Head>
+        {getSeo()}
         <title>{getTitle('Research', 'Home')}</title>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta property="og:url" content={getUrl('home')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:type" content="website" />
       </Head>
       <section className="w-full bg-bg-light-secondary">
         <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8 px-6 md:px-0">
@@ -185,7 +239,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
             >
               <Marker color={reportArticles[0].product.branding.color} />
               <Link
-                className="md:text-body1 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
+                className="md:text-heading8 text-body3 text-label-light-secondary uppercase hover:text-label-light-tertiary"
                 href={getUrl(reportArticles[0].category.categorySlug)}
               >
                 {reportArticles[0].category.category.title}
@@ -221,8 +275,14 @@ Home.getLayout = function getLayout(page: ReactElement) {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { mainArticle, subArticle1, subArticle2, subArticle3, subArticle4 } =
-    await getHomePageElements();
+  const {
+    mainArticle,
+    subArticle1,
+    subArticle2,
+    subArticle3,
+    subArticle4,
+    seo,
+  } = await getHomePageElements();
 
   const articles = await getCategoriesAndTheirArticles();
   // const articles = (await getArticleElementByCategories('reports')).map(
@@ -243,6 +303,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      seo,
       mainArticle,
       subArticle1,
       subArticle2,

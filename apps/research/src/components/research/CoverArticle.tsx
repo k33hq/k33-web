@@ -10,6 +10,7 @@ import ArticleSubtitle from '../articles/ArticleSubtitle';
 
 interface CoverArticleProps extends HomeArticleElement {}
 
+// TODO: hard width instead of percentage
 const CoverArticle: React.FC<CoverArticleProps> = ({
   product,
   category,

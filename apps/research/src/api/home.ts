@@ -5,6 +5,15 @@ import { GetHomePageElementsResponse } from '../types';
 const GetHomePageElements = gql`
   query {
     homePage(id: "1ZbMXiefkGuOYeDaIo7WNX") {
+      seo {
+        title
+        description
+        image {
+          url
+          title
+          description
+        }
+      }
       mainArticle {
         articleSlug
         publishedDate

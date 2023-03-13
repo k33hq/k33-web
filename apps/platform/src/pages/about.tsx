@@ -3,7 +3,9 @@ import right from '../assets/about-right-bg.png';
 import Image from 'next/image';
 import { MainLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
-import aboutUsImage from '../assets/AboutUs.png';
+//import aboutUsImage from '../assets/AboutUs.png';
+import aboutUsImage from '../assets/about.png';
+import aboutUsMobile from '../assets/about-mobile.png';
 import Head from 'next/head';
 import { getTitle } from 'platform-js';
 
@@ -62,7 +64,7 @@ const About: NextPageWithLayout = () => {
       </div>
       <div
         id="company-info"
-        className="md:text-heading7 text-heading8 px-6 md:px-0 text-label-light-secondary md:container flex flex-col md:flex-row md:justify-between md:items-center md:pt-72 pt-20"
+        className="md:text-heading7 text-heading8 px-6 md:px-0 text-label-light-secondary md:container flex flex-col md:flex-row md:justify-between md:items-center md:pt-72 pt-20 pb-[72px] gap-11 md:gap-0"
       >
         <div className="flex flex-col md:gap-12 md:w-[720px] gap-6">
           {aboutUs.map((para) => (
@@ -71,9 +73,19 @@ const About: NextPageWithLayout = () => {
             </p>
           ))}
         </div>
-        <div className="relative w-full md:h-[763px] md:w-[636px] h-[999px]">
+        <div className="relative w-full md:h-[763px] md:w-[636px] h-[999px] hidden md:block">
           <Image
             src={aboutUsImage}
+            fill
+            alt="k33 family"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </div>
+        <div className="relative md:hidden block transition-all h-[935px] w-[328px]">
+          <Image
+            src={aboutUsMobile}
             fill
             alt="k33 family"
             style={{

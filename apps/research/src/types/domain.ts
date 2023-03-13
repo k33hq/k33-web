@@ -25,6 +25,12 @@ export interface RichText {
   json: Document;
 }
 
+export interface Seo {
+  title: string;
+  description: string;
+  image: Image;
+}
+
 export interface Author {
   name: string;
   title: string;
@@ -70,6 +76,7 @@ export type CategoryElements = ReadonlyArray<CategoryElement>;
 
 export interface CategoryPage {
   title: string;
+  seo: Seo | null;
   category: Category;
   highlightedProductsCollection: {
     items: ReadonlyArray<ProductElementsWithArticleElement>;
@@ -113,6 +120,7 @@ export type ProductElements = ReadonlyArray<ProductElement>;
 
 export interface ProductPage {
   title: string;
+  seo: Seo | null;
   branding: Brand;
   product: Product;
 }
@@ -169,6 +177,7 @@ export type ArticleElements = ReadonlyArray<ArticleElement>;
 
 export interface ArticlePage {
   title: string;
+  seo: Seo | null;
   product: Omit<ProductElement, 'categoryWeb'>;
   publishedDate: string;
   article: Article;
@@ -192,6 +201,7 @@ export type ProductElementsWithArticleElements =
 // some fanacy stuff
 
 export interface HomePage {
+  seo: Seo | null;
   mainArticle: HomeArticleElement;
   subArticle1: HomeArticleElement;
   subArticle2: HomeArticleElement;
@@ -281,11 +291,13 @@ export interface ProductLandingPage extends ProductCoreSlug {
     subscriptionSlug: string;
     subscription: Omit<Subscription, 'linkedFrom' | 'image'>;
   };
+  seo: Seo | null;
   product: Omit<ProductAvert, 'image'>;
 }
 
 export interface LandingPage {
   title: string;
+  seo: Seo | null;
   productsCollection: {
     items: ReadonlyArray<ProductAdvertElement>;
   };
