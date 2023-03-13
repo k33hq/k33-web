@@ -15,14 +15,14 @@ const Companies: React.FC<CompaniesProps> = ({ label, companies }) => {
       <p className="md:text-heading8 text-caption text-label-light-secondary">
         {label}
       </p>
-      <div className="flex flex-row-reverse md:flex-row flex-wrap md:gap-8 gap-6 items-center">
+      <div className="flex flex-row-reverse md:flex-row md:gap-8 gap-6 items-center">
         {companies.map((url, index) => (
           <div className="relative">
             <Image
               src={url}
               key={`companies-${index}`}
               alt="company logo"
-              className="md:h-[47px] md:min-w-max h-[31px]"
+              className="md:h-[47px] h-[29px]"
             />
           </div>
         ))}
