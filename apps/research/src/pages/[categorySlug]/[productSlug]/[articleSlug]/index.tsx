@@ -215,9 +215,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   );
 };
 
-// Article.getLayout = function getLayout(page: ReactElement) {
-//   return <PrivateLayout>{page}</PrivateLayout>;
-// };
+Article.getLayout = function getLayout(page: ReactElement) {
+  return <PrivateLayout>{page}</PrivateLayout>;
+};
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   const articles = await getArticleSlugs();

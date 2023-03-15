@@ -97,5 +97,12 @@ export const richTextOptions: Options = {
         </a>
       );
     },
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul className="list-outside list-disc pl-4">{children}</ul>
+    ),
+    [BLOCKS.OL_LIST]: (node, children) => (
+      <ol className="list-outside">{children}</ol>
+    ),
+    [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
   },
 };
