@@ -96,7 +96,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         <div className="bg-scroll bg-category-products bg-blend-soft-light bg-center bg-no-repeat bg-cover">
           <div
             id="research-category-products"
-            className={`md:py-20 py-8 md:px-16 px-6 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full md:gap-60 gap-20`}
+            className={`md:pt-[88px] md:pb-[56px] py-8 md:px-10 md:container flex md:flex-row flex-col sm:justify-center justify-start md:flex-wrap w-full md:gap-60 gap-20 transition-all`}
           >
             {highlightedProductsCollection.items.map((product) => (
               <ProductsWithArticles key={product.productSlug} {...product} />
@@ -106,12 +106,12 @@ const Category: NextPageWithLayout<CategoryProps> = ({
       </div>
       <div
         id={`k33-${category.title}-products`}
-        className="flex flex-row md:gap-12 gap-6 flex-wrap items-center justify-center md:justify-start"
+        className="flex flex-row md:gap-12 gap-6 flex-wrap items-center md:justify-start overflow-auto transition-all pb-24"
       >
         {products.map(({ branding, product, productSlug, linkedFrom }) => (
           <div
             id={`k33-${productSlug}-reports`}
-            className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-6 md:px-0"
+            className="md:container flex flex-col md:pt-[96px] md:gap-0 pt-10 gap-6 px-6 md:px-0"
           >
             <div id="k33-research-info" className="flex flex-col gap-2">
               <ProductTitle
@@ -125,7 +125,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
             </div>
             <div
               id={`k33-${productSlug}-report-list`}
-              className="flex flex-row md:gap-12 gap-6 flex-wrap items-center justify-center md:justify-start"
+              className="flex flex-row md:gap-12 py-12 gap-4 md:justify-center md:items-center overflow-auto md:overflow-hidden"
             >
               {linkedFrom.articleWebCollection.items.map((article) => (
                 <ArticleElement
@@ -142,9 +142,9 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   );
 };
 
-Category.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Category.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const categorySlugs = await getAllCategorySlugs();

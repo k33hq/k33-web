@@ -1,8 +1,5 @@
 import { NextPage } from 'next';
-import left from '../assets/markets-left-bg.png';
-import right from '../assets/markets-right-bg.png';
-import Image from 'next/image';
-import { SendEmail, getTitle } from 'platform-js';
+import { getTitle } from 'platform-js';
 import bespoke from '../assets/bespoke.png';
 import professional from '../assets/professional.png';
 import vault from '../assets/vault.png';
@@ -66,7 +63,7 @@ const Index: NextPage = () => {
         <title>{getTitle('Market')}</title>
       </Head>
       <div className="min-h-screen">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-bg-dark-primary md:h-[544px] h-[512px] w-full bg-[url('../assets/landing.svg')]">
+        <div className="bg-scroll bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-bg-dark-primary md:h-[544px] h-[512px] w-full bg-[url('../assets/landing.svg')]">
           <MarketHeader />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-36 pt-20 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">

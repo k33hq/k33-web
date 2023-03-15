@@ -15,9 +15,11 @@ const ProductsWithArticles: React.FC<ProductsWithArticlesProps> = ({
 }) => {
   const { articleWebCollection } = linkedFrom;
   return (
-    <div className="flex flex-col md:gap-12 gap-4 md:py-10 md:w-2/5 w-full">
-      <ProductElement {...{ product, productSlug, categoryWeb, branding }} />
-      <div className="flex flex-row items-center overflow-x-auto md:overflow-hidden gap-4 justify-between">
+    <div className="flex flex-col gap-4 sm:w-[568px] sm:h-[616px]">
+      <div className="md:container md:px-0 px-6">
+        <ProductElement {...{ product, productSlug, categoryWeb, branding }} />
+      </div>
+      <div className="flex flex-row sm:items-center overflow-x-auto sm:overflow-hidden gap-4 sm:justify-between md:py-8 md:px-2 py-6 transition-all">
         {articleWebCollection.items.map((article) => (
           <ArticleElement
             key={article.articleSlug}
@@ -28,6 +30,7 @@ const ProductsWithArticles: React.FC<ProductsWithArticlesProps> = ({
               productSlug: productSlug,
             }}
             category={categoryWeb}
+            animate={false}
           />
         ))}
       </div>

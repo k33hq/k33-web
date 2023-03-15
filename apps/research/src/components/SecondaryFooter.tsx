@@ -49,7 +49,7 @@ const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
               </Link>
             ))}
         </div>
-        <div id="research-social" className="flex md:flex-row flex-col gap-4">
+        <div id="research-social" className="flex flex-row gap-4">
           <p className="text-body1 text-label-dark-primary">Connect</p>
           {socials.map((social) => (
             <Link

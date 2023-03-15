@@ -94,7 +94,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
         <meta property="og:type" content="website" />
       </Head>
       <div className="min-h-screen pb-12">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary min-h-[544px] w-full">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-bg-dark-primary min-h-[544px] w-full">
           <ResearchHeader categories={[]} />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">
