@@ -1,6 +1,5 @@
 import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
 import {
-  getProductElementsAndArticleElementsByCategory,
   getAllCategorySlugs,
   getCategoryPage,
   getProductArticleElementsByCategories,
