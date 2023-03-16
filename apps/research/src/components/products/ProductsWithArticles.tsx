@@ -19,7 +19,7 @@ const ProductsWithArticles: React.FC<ProductsWithArticlesProps> = ({
       <div className="md:container md:px-0 px-6">
         <ProductElement {...{ product, productSlug, categoryWeb, branding }} />
       </div>
-      <div className="flex flex-row sm:items-center overflow-x-auto sm:overflow-hidden gap-4 sm:justify-between md:py-8 md:px-2 py-6 transition-all">
+      <div className="flex flex-row sm:items-center overflow-x-auto sm:overflow-hidden gap-12 sm:justify-between md:py-8 md:px-2 px-1 py-6 transition-all">
         {articleWebCollection.items.map((article) => (
           <ArticleElement
             key={article.articleSlug}
