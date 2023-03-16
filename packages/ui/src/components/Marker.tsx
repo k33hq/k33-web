@@ -18,15 +18,11 @@ export const colors = {
   'brand.black': 'bg-brand-light-primary',
 };
 
-const Marker: React.FC<MarkerProps> = ({ 
+const Marker: React.FC<MarkerProps> = ({
   color = 'systemBlue',
   size = 'large',
 }) => (
-  <div
-    className={
-      `${size == 'large' ? 'ui-w-1' : 'ui-w-0.5'} ui-h-4 ` + colors[color]
-    }
-  />
+  <div className={'md:ui-w-1 md:ui-h-4 ui-w-0.5 ui-h-3 ' + colors[color]} />
 );
 
 export default Marker;

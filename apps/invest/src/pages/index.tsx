@@ -41,7 +41,7 @@ const Index: NextPage = () => {
         <title>{getTitle('Investments')}</title>
       </Head>
       <div className="min-h-screen">
-        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-brand-light-primary md:min-h-[482px] min-h-[376px] w-full bg-[url('../assets/landing.svg')]">
+        <div className="bg-scroll bg-landing bg-blend-soft-light bg-center bg-no-repeat bg-cover bg-bg-dark-primary md:min-h-[482px] min-h-[376px] w-full bg-[url('../assets/landing.svg')]">
           <InvestHeader />
           <div className="md:container flex flex-col items-center justify-center md:gap-16 gap-12 text-center md:pt-20 pt-11 md:px-0 px-6">
             <div className="flex flex-col md:gap-8 gap-4 items-center justify-center">

@@ -7,7 +7,9 @@ import ProductTitle from '../products/ProductTitle';
 import { getUrl } from '../../utils';
 import ArticleDate from './ArticleDate';
 
-interface ArticleElementProps extends ArticleElementType {}
+interface ArticleElementProps extends ArticleElementType {
+  animate?: boolean;
+}
 
 const ArticleElement: React.FC<ArticleElementProps> = ({
   category,
@@ -15,11 +17,14 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   articleSlug,
   publishedDate,
   product,
+  animate = true,
 }) => {
   return (
     <div
       id={articleSlug}
-      className="flex flex-col w-64 h-[480px] flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary shadow-xl ring-1 ring-opacity-10 ring-brand-light-tertiary hover:scale-105 transition-all"
+      className={`flex flex-col w-64 h-[480px] flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary drop-shadow-xl ${
+        animate ? 'hover:scale-105 transition-all ease-in-out' : ''
+      }`}
     >
       {article.thumbnail ? (
         <div
@@ -59,7 +64,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
           <ArticleDate size="small" published={publishedDate} />
         </div>
         <Link
-          className="text-label-light-primary text-body1 hover:text-label-light-secondary line-clamp-3 text-ellipsis"
+          className="text-label-light-primary text-body1 hover:text-label-light-secondary line-clamp-2 text-ellipsis"
           href={getUrl(category.categorySlug, product.productSlug, articleSlug)}
         >
           {article.title}

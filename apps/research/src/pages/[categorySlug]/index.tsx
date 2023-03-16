@@ -1,6 +1,5 @@
 import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
 import {
-  getProductElementsAndArticleElementsByCategory,
   getAllCategorySlugs,
   getCategoryPage,
   getProductArticleElementsByCategories,
@@ -74,13 +73,16 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         {getSeo()}
         <title>{getTitle('Research', title)}</title>
         <meta name="twitter:site" content={siteUsername} />
-        <meta property="og:url" content={getUrl(categorySlug)} />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_RESEARCH_URL + getUrl(categorySlug)}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
       </Head>
-      <div className="flex flex-col md:gap-10 md:pt-20 gap-4 pt-10 bg-bg-light-secondary">
+      <div className="flex flex-col pt-12 md:pt-20 bg-bg-light-secondary">
         <div
-          className="flex flex-col md:gap-4 gap-2 md:container px-6 md:px-0"
+          className="flex flex-col md:gap-4 gap-2 pb-24 md:pb-20 md:container px-6 md:px-0"
           id="research-category-banner"
         >
           <p className="md:text-heading5 text-heading6 text-label-light-primary">
@@ -93,7 +95,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         <div className="bg-scroll bg-category-products bg-blend-soft-light bg-center bg-no-repeat bg-cover">
           <div
             id="research-category-products"
-            className={`md:py-20 py-8 md:px-16 px-6 md:container flex md:flex-row flex-col justify-start md:flex-wrap w-full md:gap-60 gap-20`}
+            className={`md:pt-[88px] md:pb-[56px] py-8 md:px-10 md:container flex md:flex-row flex-col sm:justify-center justify-start md:flex-wrap w-full md:gap-60 gap-20 transition-all`}
           >
             {highlightedProductsCollection.items.map((product) => (
               <ProductsWithArticles key={product.productSlug} {...product} />
@@ -103,14 +105,17 @@ const Category: NextPageWithLayout<CategoryProps> = ({
       </div>
       <div
         id={`k33-${category.title}-products`}
-        className="flex flex-row md:gap-12 gap-6 flex-wrap items-center justify-center md:justify-start"
+        className="flex flex-row md:gap-12 gap-6 items-center md:justify-start transition-all pb-24"
       >
         {products.map(({ branding, product, productSlug, linkedFrom }) => (
           <div
             id={`k33-${productSlug}-reports`}
-            className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-6 md:px-0"
+            className="flex flex-col md:pt-[96px] md:gap-0 pt-[89px] gap-6 w-full"
           >
-            <div id="k33-research-info" className="flex flex-col gap-2">
+            <div
+              id="k33-research-info"
+              className="flex flex-col gap-2 px-6 md:px-0 md:container"
+            >
               <ProductTitle
                 title={product.title}
                 branding={branding}
@@ -122,7 +127,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
             </div>
             <div
               id={`k33-${productSlug}-report-list`}
-              className="flex flex-row md:gap-12 gap-6 flex-wrap items-center justify-center md:justify-start"
+              className="flex flex-row md:gap-12 md:py-12 py-4 gap-12 md:justify-center md:items-center overflow-auto px-1 md:px-0"
             >
               {linkedFrom.articleWebCollection.items.map((article) => (
                 <ArticleElement

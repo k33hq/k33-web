@@ -12,6 +12,7 @@ module.exports = {
         'category-products': "url('../assets/product.svg')",
       },
       dropShadow: {
+        sm: '0px 0px 8px rgba(58, 58, 60, 0.25)',
         lg: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         xl: '0px 0px 4px rgba(33, 37, 41, 0.5)',
       },

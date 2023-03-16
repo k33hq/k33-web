@@ -104,7 +104,10 @@ const Home: NextPageWithLayout<HomeProps> = ({
         {getSeo()}
         <title>{getTitle('Research', 'Home')}</title>
         <meta name="twitter:site" content={siteUsername} />
-        <meta property="og:url" content={getUrl('home')} />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_RESEARCH_URL + getUrl('home')}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
       </Head>

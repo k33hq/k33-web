@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Dot from '../Dot';
+import { Dot, Marker } from 'ui';
 import { ProductTitleProps } from '../products';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import ProductTitle from '../products/ProductTitle';
+import Link from 'next/link';
 
 interface ArticleTitleProps {
   product: ProductTitleProps;
@@ -18,7 +19,7 @@ const ArticleTitle: React.FC<ArticleTitleProps> = ({
   subtitle,
 }) => {
   return (
-    <div className="flex flex-col g-2">
+    <div className="flex flex-col gap-2">
       <div id="article-meta-title" className="flex flex-row gap-3 items-center">
         <ProductTitle {...product} />
         <Dot />
