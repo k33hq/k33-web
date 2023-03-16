@@ -64,7 +64,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
           <ArticleDate size="small" published={publishedDate} />
         </div>
         <Link
-          className="text-label-light-primary text-body1 hover:text-label-light-secondary line-clamp-3 text-ellipsis"
+          className="text-label-light-primary text-body1 hover:text-label-light-secondary line-clamp-2 text-ellipsis"
           href={getUrl(category.categorySlug, product.productSlug, articleSlug)}
         >
           {article.title}
