@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 const fundCards = {
   strategy: {
     title: 'Fund Strategy',
-    date: 'Aug 22nd 2022',
+    date: '',
     subtitle:
       'Arcane Assets is an actively managed fund with the goal to maximise long term investor returns by capturing the value accrual of cryptocurrencies as an asset class. We do this by offering long exposure to sound projects with strong fundamentals in the crypto space.',
 
