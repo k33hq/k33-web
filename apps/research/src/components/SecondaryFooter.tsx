@@ -26,10 +26,12 @@ const socials = [
     url: 'mailto:research@k33.com',
   },
 ];
+
+// TODO: md:pl-[208px] md:pr-[384px] to match with the figma
 const SecondaryFooter: React.FC<SecondaryFooterProps> = ({ categories }) => {
   return (
     <div className="bg-bg-dark-secondary md:h-14">
-      <div className="md:container flex flex-col md:flex-row items-center py-6 md:py-4 md:px-0 px-6 gap-4 md:gap-0 transition-all ease-in-out">
+      <div className="md:container flex flex-col md:flex-row items-center py-6 md:py-4 md:px-0 px-6 gap-4 md:gap-0 transition-all ease-in-out md:pl-[208px]">
         <div className="md:w-[389px] w-full flex flex-col items-center md:items-start">
           <Link href={process.env.NEXT_PUBLIC_RESEARCH_URL as string}>
             <Image src={researchLogo} width={144} alt="research" />

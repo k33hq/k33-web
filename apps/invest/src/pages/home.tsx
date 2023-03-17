@@ -1,4 +1,3 @@
-import { useFundRedirection } from '@/hooks';
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
 import { NextPageWithLayout } from 'ui';
@@ -13,7 +12,6 @@ import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
 import { getTitle } from 'platform-js';
 import { useGetFundRegistrationQuery } from '@/services';
-import { isError } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 /**

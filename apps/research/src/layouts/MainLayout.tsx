@@ -16,7 +16,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, categories }) => {
         children
       ) : (
         <>
-          <div className="min-h-screen pb-12">
+          <div className="min-h-screen">
             <ResearchHeader categories={categories} />
             <main className="flex flex-col">{children}</main>
           </div>
