@@ -22,7 +22,7 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   return (
     <div
       id={articleSlug}
-      className={`flex flex-col w-64 h-[480px] p-2 rounded-xl overflow-hidden ring-1 ring-brand-light-tertiary/20 bg-bg-light-primary drop-shadow-xl transition-all ${
+      className={`flex flex-col w-64 h-[480px] rounded-xl overflow-hidden ring-1 ring-brand-light-tertiary/20 bg-bg-light-primary drop-shadow-xl transition-all ${
         animate ? 'hover:scale-105' : ''
       }`}
     >
