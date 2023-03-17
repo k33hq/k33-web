@@ -21,9 +21,9 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="rounded-xl bg-bg-light-primary overflow-hidden flex md:flex-row flex-col ring-1 ring-brand-light-tertiary/10 w-[338px] h-[338px] md:w-[1488px] md:h-[336px] drop-shadow-md"
+      className="rounded-xl bg-bg-light-primary overflow-hidden flex md:flex-row flex-col ring-1 ring-brand-light-tertiary/10 w-[338px] h-[338px] md:w-full md:h-[336px] drop-shadow-md transition-all ease-in"
     >
-      <div className="relative md:w-[672px]">
+      <div className="relative md:w-[672px] h-[168px] md:h-full">
         {article.coverPicture ? (
           <Link
             href={getUrl(
@@ -31,7 +31,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
               product.productSlug,
               articleSlug
             )}
-            className="cursor-pointer"
+            className="cursor-pointer transition-all"
           >
             <Image
               src={article.coverPicture.url}

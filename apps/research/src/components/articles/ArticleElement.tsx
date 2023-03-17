@@ -22,15 +22,12 @@ const ArticleElement: React.FC<ArticleElementProps> = ({
   return (
     <div
       id={articleSlug}
-      className={`flex flex-col w-64 h-[480px] flex-shrink-0 rounded-xl overflow-hidden bg-bg-light-primary drop-shadow-xl ${
-        animate ? 'hover:scale-105 transition-all ease-in-out' : ''
+      className={`flex flex-col w-64 h-[480px] p-2 rounded-xl overflow-hidden ring-1 ring-brand-light-tertiary/20 bg-bg-light-primary drop-shadow-xl transition-all ${
+        animate ? 'hover:scale-105' : ''
       }`}
     >
       {article.thumbnail ? (
-        <div
-          id={articleSlug + '-thumbnail'}
-          className="relative h-[360px] flex-shrink-0"
-        >
+        <div id={articleSlug + '-thumbnail'} className="relative h-[360px]">
           <Link
             href={getUrl(
               category.categorySlug,
