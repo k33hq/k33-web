@@ -38,7 +38,7 @@ const hero = {
 };
 
 const companies = {
-  label: 'Trusted By',
+  label: 'Regularly cited by',
   companies: [ft, bloomberg, cnn, reuters, forbes],
 };
 
