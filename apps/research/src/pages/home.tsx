@@ -112,11 +112,13 @@ const Home: NextPageWithLayout<HomeProps> = ({
         <meta property="og:type" content="website" />
       </Head>
       <section className="w-full bg-bg-light-secondary">
-        <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8 px-6 md:px-0">
-          {mainArticle ? <CoverArticle {...mainArticle} /> : null}
+        <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8">
+          <div className="px-6 md:px-0">
+            {mainArticle ? <CoverArticle {...mainArticle} /> : null}
+          </div>
           <div
             id="secondary-articles-section"
-            className="flex flex-row gap-12 items-center overflow-x-auto pb-4"
+            className="flex flex-row gap-12 items-center overflow-x-auto pb-4 px-1 md:px-0"
           >
             {subArticle1 ? <SubArticle {...subArticle1} /> : null}
             {subArticle2 ? <SubArticle {...subArticle2} /> : null}
@@ -227,14 +229,11 @@ const Home: NextPageWithLayout<HomeProps> = ({
             </>
           ))}
       </section> */}
-      <section
-        className="md:container md:py-32 py-12 md:px-0 px-6"
-        id="category-articles"
-      >
+      <section className="md:container md:py-32 py-12" id="category-articles">
         <div id="reports" className="flex flex-col gap-8">
           <div
             id="category-title"
-            className="flex flex-row items-center justify-between"
+            className="flex flex-row items-center justify-between md:px-0 px-6"
           >
             <div
               id="research-product-branding-title"
@@ -257,7 +256,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
           <div
             id="category-article-list"
-            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 md:justify-center md:items-center md:overflow-hidden overflow-auto`}
+            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 md:justify-center md:items-center md:overflow-hidden overflow-auto px-1 md:px-0`}
           >
             {reportArticles.map((article) => (
               <ArticleElement {...article} key={article.articleSlug} />
@@ -271,9 +270,9 @@ const Home: NextPageWithLayout<HomeProps> = ({
 };
 
 // TODO: write test cases to show only reports
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Home.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export default Home;
 

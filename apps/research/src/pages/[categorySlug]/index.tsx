@@ -1,8 +1,14 @@
-import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
+import {
+  ArticleElements,
+  CategoryPage,
+  ProductElementsWithArticleElements,
+} from '@/types';
 import {
   getAllCategorySlugs,
+  getArticleElementsByProductAndCategories,
   getCategoryPage,
   getProductArticleElementsByCategories,
+  getRemainingProducts,
 } from '@/api';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import {
@@ -20,6 +26,7 @@ import { getTitle } from 'platform-js';
 interface CategoryProps extends CategoryPage {
   categorySlug: string;
   products: ProductElementsWithArticleElements;
+  productArticles: ArticleElements[];
 }
 
 const Category: NextPageWithLayout<CategoryProps> = ({
@@ -29,6 +36,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   title,
   seo,
   categorySlug,
+  productArticles,
 }) => {
   const getSeo = () => {
     if (seo)
@@ -107,9 +115,9 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         id={`k33-${category.title}-products`}
         className="flex flex-row md:gap-12 gap-6 items-center md:justify-start transition-all pb-24"
       >
-        {products.map(({ branding, product, productSlug, linkedFrom }) => (
+        {productArticles.map((articles) => (
           <div
-            id={`k33-${productSlug}-reports`}
+            id={`k33-${articles[0].product.productSlug}-reports`}
             className="flex flex-col md:pt-[96px] md:gap-0 pt-[89px] gap-6 w-full"
           >
             <div
@@ -117,19 +125,19 @@ const Category: NextPageWithLayout<CategoryProps> = ({
               className="flex flex-col gap-2 px-6 md:px-0 md:container"
             >
               <ProductTitle
-                title={product.title}
-                branding={branding}
-                href={getUrl(categorySlug, productSlug)}
+                title={articles[0].product.product.title}
+                branding={articles[0].product.branding}
+                href={getUrl(categorySlug, articles[0].product.productSlug)}
               />
               <p className="md:text-body1 text-body2 text-label-light-secondary">
-                {product.description}
+                {articles[0].product.product.description}
               </p>
             </div>
             <div
-              id={`k33-${productSlug}-report-list`}
+              id={`k33-${articles[0].product.productSlug}-report-list`}
               className="flex flex-row md:gap-12 md:py-12 py-4 gap-12 md:justify-center md:items-center overflow-auto px-1 md:px-0"
             >
-              {linkedFrom.articleWebCollection.items.map((article) => (
+              {articles.map((article) => (
                 <ArticleElement
                   key={article.articleSlug}
                   {...article}
@@ -170,6 +178,23 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async (
     context.params!.categorySlug as string,
     highlightedProductsCollection.items.map((product) => product.productSlug)
   );
+
+  const productSlugs = await getRemainingProducts(
+    context.params!.categorySlug as string,
+    highlightedProductsCollection.items.map((product) => product.productSlug)
+  );
+
+  const productArticles = await Promise.all(
+    productSlugs.map(async ({ productSlug }) => {
+      const article = await getArticleElementsByProductAndCategories(
+        context.params!.categorySlug as string,
+        productSlug,
+        5
+      );
+      return article;
+    })
+  );
+
   return {
     props: {
       categorySlug: context.params!.categorySlug as string,
@@ -178,6 +203,7 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async (
       highlightedProductsCollection,
       title,
       products,
+      productArticles,
     },
   };
 };

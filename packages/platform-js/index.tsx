@@ -26,7 +26,7 @@ const K33App: NextPage<K33AppProps> = ({ children }) => {
           window.dataLayer.push(arguments);
         }
   
-        gtag('config', ${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID});
+        gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}');
         gtag('consent', 'default', {
           ad_storage: 'denied',
           analytics_storage: 'denied',
