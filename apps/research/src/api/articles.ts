@@ -54,6 +54,7 @@ const GetArticleElementsByProductAndCategories = gql`
   query GetArticleSlugsByProductsAndCategories(
     $categorySlug: String!
     $productSlug: String!
+    $limit: Int!
   ) {
     articleWebCollection(
       where: {
@@ -61,7 +62,7 @@ const GetArticleElementsByProductAndCategories = gql`
         product: { productSlug: $productSlug }
       }
       order: [publishedDate_DESC]
-      limit: 10
+      limit: $limit
     ) {
       items {
         category {
@@ -210,6 +211,8 @@ const GetArticleElementsByCategories = gql`
   }
 `;
 
+// special product based articles
+
 // TODO:
 
 export const getArticleSlugByProductAndCategories = async (
@@ -232,12 +235,13 @@ export const getArticleSlugs = async () => {
 
 export const getArticleElementsByProductAndCategories = async (
   categorySlug: string,
-  productSlug: string
+  productSlug: string,
+  limit: number = 10
 ) => {
   const { articleWebCollection } =
     await contentful.request<GetArticleElementsByProductAndCategoriesResponse>(
       GetArticleElementsByProductAndCategories,
-      { categorySlug, productSlug }
+      { categorySlug, productSlug, limit }
     );
 
   return articleWebCollection.items;

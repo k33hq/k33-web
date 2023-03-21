@@ -1,8 +1,10 @@
 import { CategoryPage, ProductElementsWithArticleElements } from '@/types';
 import {
   getAllCategorySlugs,
+  getArticleElementsByProductAndCategories,
   getCategoryPage,
   getProductArticleElementsByCategories,
+  getRemainingProducts,
 } from '@/api';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import {
@@ -170,6 +172,29 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async (
     context.params!.categorySlug as string,
     highlightedProductsCollection.items.map((product) => product.productSlug)
   );
+
+  const productSlugs = await getRemainingProducts(
+    context.params!.categorySlug as string,
+    highlightedProductsCollection.items.map((product) => product.productSlug)
+  );
+
+  const articles = await productSlugs.map(async (p) => {
+    const article = await getArticleElementsByProductAndCategories(
+      context.params!.categorySlug as string,
+      p.productSlug,
+      5
+    );
+
+    return {
+      product: {
+        ...article[0].product,
+        article: article,
+      },
+    };
+  });
+
+  console.log(articles);
+
   return {
     props: {
       categorySlug: context.params!.categorySlug as string,

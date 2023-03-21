@@ -97,6 +97,16 @@ export interface GetProductElementsWithArticleElementsByCategoriesResponse {
 }
 
 /**
+ * special article elements with product elements right now only getting 2 article elements
+ */
+
+export interface GetRemainingProductSlugResponse {
+  productWebCollection: {
+    items: ReadonlyArray<ProductCoreSlug>;
+  };
+}
+
+/**
  * article types
  */
 export interface GetArticleSlugsByProductsAndCategoriesResponse {

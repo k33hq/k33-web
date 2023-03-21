@@ -7,6 +7,7 @@ import {
   GetProductElementsWithArticleElementsByCategoriesResponse,
   GetProductSlugsResponse,
   GetProductLandingResponse,
+  GetRemainingProductSlugResponse,
 } from '../types';
 
 /** get all product slugs */
@@ -274,6 +275,25 @@ const GetProductArticleElementsByCategories = gql`
   }
 `;
 
+// get remaining productSlugs
+const GetRemainingProductSlug = gql`
+  query GetProductSlugByCategory(
+    $categorySlug: String!
+    $productSlugs: [String]
+  ) {
+    productWebCollection(
+      where: {
+        categoryWeb: { categorySlug: $categorySlug }
+        productSlug_not_in: $productSlugs
+      }
+    ) {
+      items {
+        productSlug
+      }
+    }
+  }
+`;
+
 export const getProductSlugs = async () => {
   const { productWebCollection } =
     await contentful.request<GetProductSlugsResponse>(GetProductSlugs);
@@ -352,6 +372,19 @@ export const getProductArticleElementsByCategories = async (
   const { productWebCollection } =
     await contentful.request<GetProductElementsWithArticleElementsByCategoriesResponse>(
       GetProductArticleElementsByCategories,
+      { categorySlug, productSlugs }
+    );
+
+  return productWebCollection.items;
+};
+
+export const getRemainingProducts = async (
+  categorySlug: string,
+  productSlugs: ReadonlyArray<string>
+) => {
+  const { productWebCollection } =
+    await contentful.request<GetRemainingProductSlugResponse>(
+      GetRemainingProductSlug,
       { categorySlug, productSlugs }
     );
 
