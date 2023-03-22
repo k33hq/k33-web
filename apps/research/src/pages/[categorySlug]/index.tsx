@@ -152,9 +152,9 @@ const Category: NextPageWithLayout<CategoryProps> = ({
   );
 };
 
-Category.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Category.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const categorySlugs = await getAllCategorySlugs();
