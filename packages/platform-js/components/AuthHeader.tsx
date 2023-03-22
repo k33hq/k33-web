@@ -171,7 +171,7 @@ export const MarketsLogo: React.FC<LogoProps> = ({ active = false }) => {
 export const apps = [
   {
     name: 'Research',
-    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
+    url: process.env.NEXT_PUBLIC_RESEARCH_URL + '/' + 'home',
     Logo: ResearchLogo,
     key: 'research',
   },
