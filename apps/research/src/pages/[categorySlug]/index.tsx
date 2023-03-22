@@ -113,7 +113,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
       </div>
       <div
         id={`k33-${category.title}-products`}
-        className="flex flex-row md:gap-12 gap-6 items-center md:justify-start transition-all pb-24"
+        className="flex flex-row md:gap-12 gap-6 items-center md:justify-start transition-all pb-[120px]"
       >
         {productArticles.map((articles) => (
           <div

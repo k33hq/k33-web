@@ -120,7 +120,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
       <Indicator color={branding.color} />
       <section
         id={`k33-${product.sys.id}-reports`}
-        className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-6 md:px-0"
+        className="md:container flex flex-col md:pt-20 md:gap-12 pt-10 gap-6 px-6 md:px-0 pb-[120px]"
       >
         <div id="k33-research-info" className="flex flex-col gap-2">
           <ProductTitle

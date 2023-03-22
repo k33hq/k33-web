@@ -229,7 +229,10 @@ const Home: NextPageWithLayout<HomeProps> = ({
             </>
           ))}
       </section> */}
-      <section className="md:container md:py-32 py-12" id="category-articles">
+      <section
+        className="md:container md:py-32 py-12 pb-[72px]"
+        id="category-articles"
+      >
         <div id="reports" className="flex flex-col gap-8">
           <div
             id="category-title"
