@@ -61,12 +61,11 @@ const Auth: React.FC<AuthProps> = ({
         logo={<FcGoogle width={22} height={22} />}
         onClick={google}
       />
-
-      {/* <BrandButton
+      <BrandButton
         label="Sign in with Microsoft"
         logo={<BsMicrosoft width={22} height={22} />}
         onClick={microsoft}
-      /> */}
+      />
     </Stack>
   );
 };
