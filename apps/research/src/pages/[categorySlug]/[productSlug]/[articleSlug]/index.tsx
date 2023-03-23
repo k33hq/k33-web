@@ -146,12 +146,17 @@ const Article: NextPageWithLayout<ArticleProps> = ({
                   className="flex flex-row gap-1 items-center"
                 >
                   <Marker color={product.branding.color} />
-                  <Link
+                  {/* <Link
                     className={`font-[500] leading-4 text-[10px] md:font-[600] md:text-[24px] text-label-light-primary/60 hover:text-label-light-tertiary uppercase`}
                     href={getUrl(categorySlug, productSlug)}
                   >
                     {product.product.title}
-                  </Link>
+                  </Link> */}
+                  <p
+                    className={`font-[500] leading-4 text-[10px] md:font-[600] md:text-[24px] text-label-light-primary/60 uppercase`}
+                  >
+                    {product.product.title}
+                  </p>
                 </div>
                 <Dot />
                 <p className="md:text-body4 text-small text-label-light-secondary">
