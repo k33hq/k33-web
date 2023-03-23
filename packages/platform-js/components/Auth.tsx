@@ -4,7 +4,8 @@ import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
 import { BrandButton, Stack } from 'ui';
 import { FcGoogle } from 'react-icons/fc';
-import { googleLogin } from 'core';
+import { BsMicrosoft } from 'react-icons/bs';
+import { googleLogin, microsoftLogin } from 'core';
 import { UserCredential } from 'firebase/auth';
 
 interface AuthProps {
@@ -44,6 +45,15 @@ const Auth: React.FC<AuthProps> = ({
     );
   };
 
+  const microsoft = () => {
+    microsoftLogin(
+      (user) => {
+        onSuccessLogin(user);
+      },
+      (err) => {}
+    );
+  };
+
   return (
     <Stack>
       <BrandButton
@@ -51,6 +61,12 @@ const Auth: React.FC<AuthProps> = ({
         logo={<FcGoogle width={22} height={22} />}
         onClick={google}
       />
+
+      {/* <BrandButton
+        label="Sign in with Microsoft"
+        logo={<BsMicrosoft width={22} height={22} />}
+        onClick={microsoft}
+      /> */}
     </Stack>
   );
 };

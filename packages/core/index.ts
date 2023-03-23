@@ -29,6 +29,7 @@ import {
   User,
   Auth,
   signOut,
+  OAuthProvider,
 } from 'firebase/auth';
 import type {
   LoginSuccessCallback,
@@ -81,6 +82,17 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
       signInWithPopup(auth, provider).then(success).catch(error);
     })
     .catch((error) => {});
+};
+
+export const microsoftLogin = (success: LinkSuccess, error: LinkFailure) => {
+  const auth = getAuth(getApp(APP_NAME));
+
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      const provider = new OAuthProvider('microsoft.com');
+      signInWithPopup(auth, provider).then(success).catch(error);
+    })
+    .catch((err) => {});
 };
 
 export const logout = (success: () => void, error: (err: any) => void) => {
