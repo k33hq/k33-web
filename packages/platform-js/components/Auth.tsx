@@ -35,23 +35,11 @@ const Auth: React.FC<AuthProps> = ({
   }, [state, router, registrationUrl]);
 
   const google = () => {
-    googleLogin(
-      (user) => {
-        onSuccessLogin(user);
-      },
-      (err) => {
-        // ignore for now
-      }
-    );
+    googleLogin(onSuccessLogin, (err) => {});
   };
 
   const microsoft = () => {
-    microsoftLogin(
-      (user) => {
-        onSuccessLogin(user);
-      },
-      (err) => {}
-    );
+    microsoftLogin(onSuccessLogin, (err) => {});
   };
 
   return (
