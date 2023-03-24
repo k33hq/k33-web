@@ -18,6 +18,7 @@ const aboutUs = [
   'K33’s mission is to build the most secure and accessible platform to learn about, trade, and hold digital assets. As a research-led brokerage with investment services, we deeply understand the digital assets landscape, with the need for secure and verifiable custody, the risk inherent in trading, the difficulty in selecting safe investments, and the desire for impartial and objective research and analysis.',
   'We hold transparency as a core principle, from the accessibility of our analysts, the visibility of our custody, the openness of our financials, right down to our open-source code base.',
   'Built by a dedicated team of industry experts, K33 is your gateway to safe, secure, digital assets.',
+  'K33 is fully owned by the Nasdaq First North listed Arcario AB, previously Arcane Crypto AB. For more information, check out arcario.com or go directly to Investor Relations for Arcario',
 ];
 
 const About: NextPageWithLayout = () => {

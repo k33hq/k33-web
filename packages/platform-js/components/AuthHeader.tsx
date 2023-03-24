@@ -195,6 +195,11 @@ export const company = [
     url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'about') as string,
     key: 'about',
   },
+  {
+    name: 'Investor Relations',
+    url: 'https://ir.arcario.com/',
+    key: 'investor',
+  },
 ];
 
 export const social = [
