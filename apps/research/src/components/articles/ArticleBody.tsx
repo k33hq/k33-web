@@ -28,7 +28,7 @@ const ArticleBody: React.FC<ArticleBodyProps> = ({ document }) => {
               (i: any) => i.sys.id === node.data.target.sys.id
             );
             return (
-              <div className="w-full min-h-[70px] md:max-h-[423px] relative">
+              <div className="w-full h-64 md:h-[423px] relative">
                 <Image
                   src={img?.url}
                   fill
