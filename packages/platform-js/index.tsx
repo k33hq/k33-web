@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 import { NextPage } from 'next';
 import Cookie from './components/Cookie';
 import Script from 'next/script';
@@ -16,23 +17,23 @@ const K33App: NextPage<K33AppProps> = ({ children }) => {
     <>
       <Script
         strategy="afterInteractive"
-        async
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          window.dataLayer.push(arguments);
-        }
-  
-        gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}');
-        gtag('consent', 'default', {
-          ad_storage: 'denied',
-          analytics_storage: 'denied',
-        });
-        `}
-      </Script>
+      <Script
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}');
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              analytics_storage: 'denied',
+            });
+          `,
+        }}
+      />
       <Cookie />
       {children}
     </>

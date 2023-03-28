@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import 'ui/styles.css';
 import { NextPageWithLayout } from 'ui';
 import K33App from 'platform-js';
+import Script from 'next/script';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
