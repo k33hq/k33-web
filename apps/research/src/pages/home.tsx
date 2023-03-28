@@ -30,6 +30,9 @@ import Link from 'next/link';
 import { getUrl, siteUsername } from '@/utils';
 import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
+import { getCustomerEmail, getCustomerId } from 'core';
+import getStripe from '@/utils/get-stripejs';
+import config from '@/firebase/config';
 
 interface HomeProps extends HomePage {
   articles: CategoriesAndArticles;
@@ -48,7 +51,16 @@ const Home: NextPageWithLayout<HomeProps> = ({
   subscription,
   reportArticles,
 }) => {
+  const state = useAppState(config);
   const subscriber = useStripeSubscriber();
+  const [email, setEmail] = useState<null | string | undefined>(null);
+  const [customerId, setCustomerID] = useState<undefined | null | string>(null);
+  const stripe = getStripe();
+
+  useEffect(() => {
+    setEmail(getCustomerEmail());
+    setCustomerID(getCustomerId());
+  }, []);
 
   const getSeo = () => {
     if (seo)
@@ -127,6 +139,32 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
         </div>
       </section>
+
+      {/* {(subscriber === null || subscriber === 'free') && (
+        <>
+          {email && customerId ? (
+            <>
+              <stripe-pricing-table
+                pricing-table-id="prctbl_1MbMv0LrfjWYG7W51XRtWX1e"
+                publishable-key="pk_test_zKp03y7a9joXn0e0jSrQIimG00rftOWMzH"
+                client-reference-id={getCustomerId()}
+                customer-email={getCustomerEmail()}
+              ></stripe-pricing-table>
+            </>
+          ) : (
+            <Link
+              href={getUrl(
+                'subscription',
+                'professional-k33-research-subscription'
+              )}
+            >
+              <BasicButton variant="secondary" size="medium">
+                Start 30-day Free trial
+              </BasicButton>
+            </Link>
+          )}
+        </>
+      )} */}
 
       {(subscriber === null || subscriber === 'free') && (
         <section
@@ -229,6 +267,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
             </>
           ))}
       </section> */}
+
       <section
         className="md:container md:py-32 py-12 pb-[72px]"
         id="category-articles"

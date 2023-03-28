@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 import Document, {
   Html,
   Head,
@@ -6,6 +7,7 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import { poppins } from './_app';
+import Script from 'next/script';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
