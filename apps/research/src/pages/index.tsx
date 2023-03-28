@@ -157,6 +157,7 @@ const Research: NextPage<ResearchProps> = ({ subscriptions, landingPage }) => {
           </div>
         </div>
       </div>
+
       <ResearchFooter categories={[]} />
     </>
   );
