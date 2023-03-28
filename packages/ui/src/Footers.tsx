@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
     >
       <div
         id="k33-footer-main-content"
-        className="ui-flex ui-flex-col md:px-0 md:ui-gap-0 md:ui-flex-row ui-gap-12 px-6 md:ui-container md:ui-pt-8 ui-pt-6 ui-items-center md:ui-items-start md:ui-justify-between md:pl-[208px] md:pr-[384px]"
+        className="ui-flex ui-flex-col md:px-0 md:ui-gap-0 md:ui-flex-row ui-gap-12 px-6 md:ui-container md:ui-pt-8 ui-pt-6 ui-items-center md:ui-items-start md:ui-justify-between md:ui-pl-[208px] md:ui-pr-[384px]"
       >
         {logo}
         <div
