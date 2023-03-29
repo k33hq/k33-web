@@ -159,82 +159,106 @@ const Category: NextPageWithLayout<CategoryProps> = ({
           ))}
         </div>
       ) : (
-        <div
-          id={`k33-${category.title}-products`}
-          className="flex flex-row overflow-x-auto gap-2 lg:gap-8 lg:flex-col lg:container px-1 lg:px-2 pb-[120px] pt-[65px]"
-        >
-          {(productArticles as ArticleCategoryElements[]).map(
-            ({ article, category, product, publishedDate, articleSlug }) => (
-              <div
-                id="main-article"
-                className="shadow-md rounded-xl bg-bg-light-primary overflow-hidden flex flex-col lg:flex-row lg:w-full min-w-[336px] min-h-[336px] lg:h-[271px] ring-1 ring-brand-light-tertiary/20 transition-all"
+        <div className="pb-[120px] pt-[65px] lg:pt-[88px] flex flex-col">
+          <div
+            id="k33-research-info"
+            className="flex flex-col gap-2 px-6 lg:px-0 lg:container"
+          >
+            <div
+              id="research-product-branding-title"
+              className="flex flex-row gap-1 items-center"
+            >
+              <Marker
+                color={highlightedProductsCollection.items[0].branding.color}
+              />
+              <Link
+                className={`md:text-heading8 text-body1 text-label-light-secondary hover:text-label-light-tertiary uppercase`}
+                href={getUrl(categorySlug)}
               >
-                <div className="relative aspect-[1.91/1] min-h-[168px] lg:min-h-271">
-                  {article.thumbnail ? (
-                    <Link
-                      href={getUrl(
-                        category.categorySlug,
-                        product.productSlug,
-                        articleSlug
-                      )}
-                      className="cursor-pointer"
-                    >
-                      <Image
-                        src={article.coverPicture.url}
-                        fill
-                        style={{
-                          objectFit: 'cover',
-                        }}
-                        alt={article.coverPicture.title}
-                      />
-                    </Link>
-                  ) : null}
-                </div>
-
+                {title}
+              </Link>
+            </div>
+            <p className="md:text-body1 text-body2 text-label-light-secondary">
+              {highlightedProductsCollection.items[0].product.description}
+            </p>
+          </div>
+          <div
+            id={`k33-${category.title}-products`}
+            className="flex flex-row overflow-auto gap-2 lg:gap-8 lg:flex-col lg:container lg:pt-12 pt-10 pb-[120px] md:px-4 px-1"
+          >
+            {(productArticles as ArticleCategoryElements[]).map(
+              ({ article, category, product, publishedDate, articleSlug }) => (
                 <div
-                  id="article-information"
-                  className="flex flex-col gap-2 p-4 lg:p-[42.5px]"
+                  id="main-article"
+                  className="rounded-xl bg-bg-light-primary overflow-hidden flex flex-col lg:flex-row lg:w-full min-w-[336px] min-h-[336px] lg:h-[271px] ring-1 ring-brand-light-tertiary/20 drop-shadow-sm transition-all"
                 >
-                  <div className="flex flex-col gap-2">
-                    <div
-                      id="article-meta-title"
-                      className="flex flex-row gap-3 items-center"
-                    >
-                      <div
-                        id="research-product-branding-title"
-                        className="flex flex-row gap-1 items-center"
+                  <div className="relative aspect-[1.91/1] min-h-[168px] lg:min-h-271">
+                    {article.thumbnail ? (
+                      <Link
+                        href={getUrl(
+                          category.categorySlug,
+                          product.productSlug,
+                          articleSlug
+                        )}
+                        className="cursor-pointer"
                       >
-                        <Marker color={product.branding.color} />
-                        <Link
-                          className={`xl:leading-4 xl:font-[600] xl:text-[24px] xl:text-body4 text-small text-label-light-primary/60 hover:text-label-light-tertiary uppercase`}
-                          href={getUrl(category.categorySlug)}
-                        >
-                          {title}
-                        </Link>
-                      </div>
+                        <Image
+                          src={article.coverPicture.url}
+                          fill
+                          style={{
+                            objectFit: 'cover',
+                          }}
+                          alt={article.coverPicture.title}
+                        />
+                      </Link>
+                    ) : null}
+                  </div>
 
-                      <p className="md:text-body4 text-label-light-secondary/60 text-small">
-                        {formatDateAndTime(publishedDate, 'day')}
+                  <div
+                    id="article-information"
+                    className="flex flex-col gap-2 p-4 lg:p-[42.5px]"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div
+                        id="article-meta-title"
+                        className="flex flex-row gap-3 items-center"
+                      >
+                        <div
+                          id="research-product-branding-title"
+                          className="flex flex-row gap-1 items-center"
+                        >
+                          <Marker color={product.branding.color} />
+                          <Link
+                            className={`xl:leading-4 xl:font-[600] xl:text-[24px] xl:text-body4 text-small text-label-light-primary/60 hover:text-label-light-tertiary uppercase`}
+                            href={getUrl(category.categorySlug)}
+                          >
+                            {title}
+                          </Link>
+                        </div>
+
+                        <p className="xl:text-body4 text-label-light-secondary/60 text-small">
+                          {formatDateAndTime(publishedDate, 'day')}
+                        </p>
+                      </div>
+                      <Link
+                        className="text-label-light-primary text-body1 lg:text-heading8 xl:text-heading6 hover:text-label-light-secondary transition-all"
+                        href={getUrl(
+                          category.categorySlug,
+                          product.productSlug,
+                          articleSlug
+                        )}
+                      >
+                        {article.title}
+                      </Link>
+                      <p className="text-body4 text-label-light-secondary/80 line-clamp-2 text-ellipsis">
+                        {article.subtitle}
                       </p>
                     </div>
-                    <Link
-                      className="text-label-light-primary text-body1 lg:text-heading8 xl:text-heading6 hover:text-label-light-secondary transition-all"
-                      href={getUrl(
-                        category.categorySlug,
-                        product.productSlug,
-                        articleSlug
-                      )}
-                    >
-                      {article.title}
-                    </Link>
-                    <p className="text-body4 text-label-light-secondary/80 line-clamp-2 text-ellipsis">
-                      {article.subtitle}
-                    </p>
                   </div>
                 </div>
-              </div>
-            )
-          )}
+              )
+            )}
+          </div>
         </div>
       )}
     </>
