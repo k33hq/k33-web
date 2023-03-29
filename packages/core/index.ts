@@ -92,6 +92,7 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
 export const microsoftLogin = (success: LinkSuccess, error: LinkFailure) => {
   const auth = getAuth(getApp(APP_NAME));
 
+  // TODO: change it when we go to prod
   setPersistence(auth, browserLocalPersistence)
     .then(() => {
       const provider = new OAuthProvider('microsoft.com');
@@ -319,5 +320,5 @@ export const getCustomerEmail = () => {
 
 export const isProd = () => {
   //@ts-ignore
-  return window.location.hostname === 'k33';
+  return window.location.hostname === 'k33.com';
 };
