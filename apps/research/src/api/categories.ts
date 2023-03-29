@@ -51,6 +51,7 @@ const GetCategoryPage = gql`
           title
           description
         }
+        type
         highlightedProductsCollection {
           items {
             categoryWeb {

@@ -21,7 +21,7 @@ const SubArticle: React.FC<SubArticleProps> = ({
       id="main-article"
       className="shadow-md rounded-xl bg-bg-light-primary overflow-hidden flex flex-col min-w-[336px] h-[336px] ring-1 ring-brand-light-tertiary/10"
     >
-      <div className="relative w-full h-1/2">
+      <div className="relative w-full aspect-[1.91/1] h-1/2">
         {article.coverPicture ? (
           <Link
             href={getUrl(

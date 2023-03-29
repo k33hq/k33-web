@@ -21,9 +21,9 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
   return (
     <div
       id="main-article"
-      className="rounded-xl bg-bg-light-primary overflow-hidden flex md:flex-row flex-col ring-1 ring-brand-light-tertiary/10 w-[338px] h-[338px] md:w-full md:h-[336px] drop-shadow-md transition-all ease-in"
+      className="rounded-xl bg-bg-light-primary overflow-hidden flex md:flex-row flex-col ring-1 ring-brand-light-tertiary/10 h-[336px] lg:h-[336px] w-full drop-shadow-md transition-all ease-in"
     >
-      <div className="relative md:w-[672px] h-[168px] md:h-full">
+      <div className="relative xl:w-[672px] aspect-[1.91/1]">
         {article.coverPicture ? (
           <Link
             href={getUrl(
@@ -45,7 +45,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
         ) : null}
       </div>
       <div
-        className="flex flex-col gap-2 md:p-12 p-4 transition-all ease-in-out"
+        className="flex flex-col gap-2 md:p-8 lg:p-12 p-4 transition-all ease-in-out"
         id="article-information"
       >
         <div
@@ -65,7 +65,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
           </p>
         </div>
         <Link
-          className="text-label-light-primary md:text-heading5 text-body1 hover:text-label-light-secondary"
+          className="text-label-light-primary xl:text-heading5 text-body1 hover:text-label-light-secondary"
           href={getUrl(category.categorySlug, product.productSlug, articleSlug)}
         >
           {article.title}

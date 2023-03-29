@@ -124,13 +124,13 @@ const Home: NextPageWithLayout<HomeProps> = ({
         <meta property="og:type" content="website" />
       </Head>
       <section className="w-full bg-bg-light-secondary">
-        <div className="md:container md:pb-12 pb-8 md:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8">
-          <div className="px-6 md:px-0">
+        <div className="lg:container lg:pb-12 pb-8 lg:pt-[72px] pt-12 flex flex-col md:gap-12 gap-8">
+          <div className="px-6 lg:px-0">
             {mainArticle ? <CoverArticle {...mainArticle} /> : null}
           </div>
           <div
             id="secondary-articles-section"
-            className="flex flex-row gap-12 items-center overflow-x-auto pb-4 px-1 md:px-0"
+            className="flex flex-row gap-12 items-center overflow-x-auto pb-4 px-1 lg:px-0"
           >
             {subArticle1 ? <SubArticle {...subArticle1} /> : null}
             {subArticle2 ? <SubArticle {...subArticle2} /> : null}
@@ -173,7 +173,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
         >
           <div
             id="promotion-section"
-            className="md:container md:px-0 px-6 flex md:flex-row flex-col py-10 items-center md:py-8 md:justify-between gap-10"
+            className="lg:container lg:px-0 px-6 flex lg:flex-row flex-col py-10 items-center lg:py-8 lg:justify-between gap-10"
           >
             <div id="promotion-action" className="flex flex-col gap-4">
               <div id="promotion-information" className="flex flex-col gap-2">
@@ -204,14 +204,14 @@ const Home: NextPageWithLayout<HomeProps> = ({
             </div>
             <div
               id="promotion-features"
-              className="md:px-8 md:py-7 py-2 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full md:flex-wrap gap-2 bg-default-systemGrey-dark-2 md:h-[176px] md:max-w-[762px]"
+              className="lg:px-8 lg:py-7 py-6 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full lg:flex-wrap gap-2 bg-default-systemGrey-dark-2 xl:h-[176px]"
             >
               {subscription.subscription.features.map((feature) => (
                 <div
                   key={feature}
-                  className="flex flex-row md:items-center items-start md:gap-2 gap-6 justify-start"
+                  className="flex flex-row lg:items-center items-start md:items-baseline lg:gap-2 gap-6 justify-start"
                 >
-                  <div className="h-[19px] w-[19.19px] md:w-[35px] md:h-[33px]">
+                  <div className="h-[19px] w-[19.19px] lg:w-[35px] lg:h-[33px]">
                     <svg
                       width="36"
                       height="33"
@@ -269,13 +269,13 @@ const Home: NextPageWithLayout<HomeProps> = ({
       </section> */}
 
       <section
-        className="md:container md:py-32 py-12 pb-[72px]"
+        className="lg:container lg:py-32 py-12 pb-[72px]"
         id="category-articles"
       >
         <div id="reports" className="flex flex-col gap-8">
           <div
             id="category-title"
-            className="flex flex-row items-center justify-between md:px-0 px-6"
+            className="flex flex-row items-center justify-between lg:px-0 px-6"
           >
             <div
               id="research-product-branding-title"
@@ -298,7 +298,7 @@ const Home: NextPageWithLayout<HomeProps> = ({
           </div>
           <div
             id="category-article-list"
-            className={`flex flex-row md:gap-12 py-12 pb-10 gap-4 md:justify-center md:items-center md:overflow-hidden overflow-auto px-1 md:px-0`}
+            className={`flex flex-row lg:gap-12 py-12 pb-10 gap-4 lg:justify-center lg:items-center lg:overflow-hidden overflow-auto px-1 lg:px-0`}
           >
             {reportArticles.map((article) => (
               <ArticleElement {...article} key={article.articleSlug} />

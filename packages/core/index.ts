@@ -69,6 +69,10 @@ export const init = (config: FirebaseOptions) => {
       popupRedirectResolver: browserPopupRedirectResolver,
     });
   }
+
+  //@ts-ignore
+  console.log('isProd : ' + isProd() + ' ' + window.location.hostname);
+
   return auth;
 };
 
@@ -79,6 +83,7 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
   setPersistence(auth, browserLocalPersistence)
     .then(() => {
       const provider = new GoogleAuthProvider();
+
       signInWithPopup(auth, provider).then(success).catch(error);
     })
     .catch((error) => {});
@@ -87,12 +92,11 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
 export const microsoftLogin = (success: LinkSuccess, error: LinkFailure) => {
   const auth = getAuth(getApp(APP_NAME));
 
-  // TODO: change it when we go to prod
   setPersistence(auth, browserLocalPersistence)
     .then(() => {
       const provider = new OAuthProvider('microsoft.com');
       provider.setCustomParameters({
-        tenant: '929d58c5-dd83-427c-a163-3762f9562a1d',
+        tenant: isProd() ? 'common' : '929d58c5-dd83-427c-a163-3762f9562a1d',
       });
       signInWithPopup(auth, provider).then(success).catch(error);
     })
@@ -311,4 +315,9 @@ export const getCustomerEmail = () => {
   const auth = getAuth(getApp(APP_NAME));
   const email = auth.currentUser?.email;
   return email;
+};
+
+export const isProd = () => {
+  //@ts-ignore
+  return window.location.hostname === 'k33';
 };

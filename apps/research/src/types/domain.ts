@@ -6,6 +6,8 @@ export interface System {
   firstPublishedAt: string;
 }
 
+export type CategoryType = 'highlighted' | 'standard';
+
 export type Colors =
   | 'systemRed'
   | 'systemOrange'
@@ -78,6 +80,7 @@ export interface CategoryPage {
   title: string;
   seo: Seo | null;
   category: Category;
+  type: CategoryType | null;
   highlightedProductsCollection: {
     items: ReadonlyArray<ProductElementsWithArticleElement>;
   };
@@ -168,7 +171,7 @@ export interface ArticleCategoryElements extends ArticleSlug {
       title: string;
     };
   } & CategorySlug;
-  article: Pick<Article, 'title' | 'thumbnail' | 'coverPicture'>;
+  article: Pick<Article, 'title' | 'thumbnail' | 'coverPicture' | 'subtitle'>;
   product: Omit<ProductElement, 'categoryWeb'>;
   publishedDate: string;
 }
