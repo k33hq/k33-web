@@ -5,4 +5,5 @@ export { default as ArticleTitle } from './ArticleTitle';
 export { default as ArticleSubtitle } from './ArticleSubtitle';
 export { default as NutShell } from './Nutshell';
 export { default as KeyPoints } from './KeyPoints';
+export { default as ArticleDate } from './ArticleDate';
 export * from './reports';

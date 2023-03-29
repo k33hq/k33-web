@@ -172,10 +172,10 @@ const GetArticlePage = gql`
 // special queries
 
 const GetArticleElementsByCategories = gql`
-  query GetArticleElementsByCategories($categorySlug: String!) {
+  query GetArticleElementsByCategories($categorySlug: String!, $limit: Int!) {
     articleWebCollection(
       where: { category: { categorySlug: $categorySlug } }
-      limit: 5
+      limit: $limit
       order: [publishedDate_DESC]
     ) {
       items {
@@ -200,10 +200,15 @@ const GetArticleElementsByCategories = gql`
         publishedDate
         article {
           title
+          subtitle
           thumbnail {
             url
             title
             description
+          }
+          coverPicture {
+            url
+            title
           }
         }
       }
@@ -257,12 +262,16 @@ export const getArticlePage = async (articleSlug: string) => {
 };
 
 // TODO: add getArticleByCategory
-export const getArticleElementByCategories = async (categorySlug: string) => {
+export const getArticleElementByCategories = async (
+  categorySlug: string,
+  limit: number = 5
+) => {
   const { articleWebCollection } =
     await contentful.request<GetArticleElementsByCategoriesResponse>(
       GetArticleElementsByCategories,
       {
         categorySlug,
+        limit,
       }
     );
   return articleWebCollection.items;

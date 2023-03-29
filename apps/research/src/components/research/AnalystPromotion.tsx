@@ -7,18 +7,18 @@ const AnalystPromotion: React.FC = () => {
   return (
     <div
       id="analyst-promotion-box"
-      className="bg-default-systemGrey-light-5 relative md:w-full bg-[url('../assets/network.svg')] bg-scroll bg-no-repeat bg-cover md:bg-contain transition-all"
+      className="bg-default-systemGrey-light-5 relative lg:w-full bg-[url('../assets/network.svg')] bg-scroll bg-no-repeat bg-cover lg:bg-contain transition-all"
     >
       <div
         id="analyst-promotion"
-        className="md:container flex items-end md:flex-row flex-col-reverse justify-around md:gap-0 md:px-0 px-6"
+        className="lg:container flex items-end lg:flex-row flex-col-reverse justify-around lg:gap-0 lg:px-0 px-6"
       >
         <Image
           src={analyst}
           width={375}
           height={250}
           alt=""
-          className="md:mt-5"
+          className="lg:mt-5"
         />
         <div
           id="analyst-information"
