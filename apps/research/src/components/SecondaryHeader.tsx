@@ -22,7 +22,7 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
         isLanding ? 'bg-bg-dark-primary' : 'bg-bg-light-tertiary'
       }`}
     >
-      <div className="lg:container flex flex-row lg:gap-12 gap-6 items-center lg:justify-center h-10 lg:px-0 px-6 overflow-auto">
+      <div className="xl:container flex flex-row xl:gap-12 gap-6 items-center lg:justify-center h-10 xl:px-0 px-6 overflow-auto">
         <Link href={process.env.NEXT_PUBLIC_RESEARCH_URL as string}>
           <Image
             src={researchLogo}

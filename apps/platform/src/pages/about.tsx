@@ -26,10 +26,10 @@ const About: NextPageWithLayout = () => {
         <title>{getTitle('About')}</title>
       </Head>
       <div
-        className="relative w-full max-w-[1728px] mx-auto py-8 flex flex-col items-center content-center px-6 md:px-0"
+        className="relative w-full max-w-[1728px] mx-auto py-8 flex flex-col items-center content-center px-6 xl:px-0 transition-all ease-in"
         id="markets-hero"
       >
-        <div className="md:absolute md:left-0 md:h-[634px] md:w-[238px] hidden md:block">
+        <div className="xl:absolute xl:left-0 xl:h-[634px] 2xl:w-[238px] xl:w-[200px] hidden xl:block transition-all ease-in">
           <Image
             src={left}
             fill
@@ -39,7 +39,7 @@ const About: NextPageWithLayout = () => {
             alt="left-market-bg"
           />
         </div>
-        <div className="md:absolute md:right-0 md:h-[634px] md:w-[238px] hidden md:block">
+        <div className="xl:absolute xl:right-0 xl:h-[634px] 2xl:w-[238px] xl:w-[200px] hidden xl:block transition-all ease-in">
           <Image
             src={right}
             fill
@@ -51,19 +51,19 @@ const About: NextPageWithLayout = () => {
         </div>
         <div
           id="hero-text"
-          className="flex flex-col justify-center items-center md:container md:content-center md:text-center gap-4 md:w-[1173px] md:pt-[188px]"
+          className="flex flex-col md:justify-center md:items-center xl:container xl:content-center xl:text-center gap-4 xl:w-[1173px] xl:pt-[188px]"
         >
-          <h2 className="md:text-heading2 text-heading5 text-brand-light-primary">
+          <h2 className="2xl:text-heading2 xl:text-heading3 text-heading5 text-brand-light-primary transition-all ease-in">
             {hero.title}
           </h2>
-          <p className="md:text-heading5 text-heading8 text-brand-light-tertiary">
+          <p className="2xl:text-heading5 xl:text-heading7 text-heading8 text-brand-light-tertiary transition-all ease-in">
             {hero.body}
           </p>
         </div>
       </div>
       <div
         id="company-info"
-        className="md:text-heading7 text-heading8 px-6 md:px-0 text-label-light-secondary md:container flex flex-col md:flex-row md:justify-between md:items-center md:pt-72 pt-20 pb-[72px] gap-11 md:gap-0"
+        className="md:text-heading7 text-heading8 px-6 md:px-0 text-label-light-secondary md:container md:items-center flex flex-col xl:flex-row xl:justify-between xl:pt-72 pt-20 pb-[72px] gap-11 xl:gap-0 transition-all delay-75 ease-in-out"
       >
         <div className="flex flex-col md:gap-12 md:w-[720px] gap-6">
           {aboutUs.map((para) => (
