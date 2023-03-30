@@ -17,7 +17,7 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
     <div
       id={productSlug}
       className={
-        'flex flex-col ring-1 ring-brand-light-tertiary/10 md:w-[512px] w-[328px] rounded-xl shadow-xl overflow-hidden'
+        'flex flex-col ring-1 ring-brand-light-tertiary/10 sm:w-[512px] w-[328px] rounded-xl shadow-xl overflow-hidden transition-all ease-in-out'
       }
     >
       <div className={`relative h-[216px] w-full transition-all`}>
@@ -33,24 +33,24 @@ const ProductAdvert: React.FC<ProductAdvertProps> = ({
           <Image src={product.logo.url} alt={product.logo.title} fill />
         </div>
       </div>
-      <div className="md:px-8 md:py-8 flex flex-col px-2 py-9 transition-all items-center justify-center md:gap-10 gap-9">
-        <p className="text-heading8 text-label-light-secondary text-center w-[296px] md:w-[444px]">
+      <div className="md:px-8 sm:py-8 flex flex-col px-2 py-9 transition-all items-center justify-center md:gap-10 gap-9">
+        <p className="text-heading8 text-label-light-secondary text-center w-[296px] sm:w-[444px]">
           {product.caption}
         </p>
-        <div className="w-[296px] md:w-[448px]">
+        <div className="w-[296px] sm:w-[448px]">
           <BasicList data={product.features} />
         </div>
-        <div className="flex flex-row justify-between w-[296px] md:w-[448px]">
+        <div className="flex flex-row justify-between w-[296px] sm:w-[448px]">
           {product.sampleReport ? (
             <button
-              className="text-caption md:text-body1 bg-brand-light-primary px-3 py-[6px] rounded-md drop-shadow-xl text-label-dark-primary hover:bg-brand-light-tertiary hover:text-label-dark-primary md:px-11 md:py-2 md:rounded-lg"
+              className="text-caption md:text-body1 bg-brand-light-primary px-3 py-[6px] rounded-md drop-shadow-xl text-label-dark-primary hover:bg-brand-light-tertiary hover:text-label-dark-primary sm:px-11 md:py-2 sm:rounded-lg"
               onClick={() => downloadResource(product.sampleReport.url)}
             >
               Download Sample
             </button>
           ) : null}
           <button
-            className="text-caption px-3 py-[6px] rounded-md drop-shadow-xl text-brand-light-primary bg-bg-light-primary border-[1.4px] border-solid md:border-[2px] border-brand-light-primary hover:bg-brand-light-tertiary hover:text-label-dark-primary md:text-body1 md:px-10 md:py-2 md:rounded-lg"
+            className="text-caption px-3 py-[6px] rounded-md drop-shadow-xl text-brand-light-primary bg-bg-light-primary border-[1.4px] border-solid sm:border-[2px] border-brand-light-primary hover:bg-brand-light-tertiary hover:text-label-dark-primary md:text-body1 sm:px-10 sm:py-2 sm:rounded-lg"
             onClick={() => router.push(getUrl('products', productSlug))}
           >
             Find out More
