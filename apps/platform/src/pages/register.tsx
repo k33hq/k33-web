@@ -59,7 +59,7 @@ const Register: NextPageWithLayout<RegisterProps> = ({ terms }) => {
 export const getStaticProps: GetStaticProps<RegisterProps> = async ({
   params,
 }) => {
-  const terms = await getPageData('terms');
+  const terms = await getPageData('register');
   return {
     props: {
       terms,
