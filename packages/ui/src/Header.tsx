@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
         transparent ? '' : 'ui-bg-bg-light-primary'
       }`}
     >
-      <div className="lg:ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6 lg:ui-px-0">
+      <div className="xl:ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6 xl:ui-px-0">
         {logo}
         <div
           id="header-action-section"
@@ -42,7 +42,7 @@ export const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({
 }) => {
   return (
     <nav className={`ui-navbar ui-w-full ui-bg-bg-light-tertiary`}>
-      <div className="lg:ui-container ui-flex ui-flex-row lg:ui-gap-12 ui-gap-6 ui-items-center lg:ui-justify-center ui-h-10 lg:ui-px-0 ui-px-6 ui-overflow-auto">
+      <div className="xl:ui-container ui-flex ui-flex-row lg:ui-gap-12 ui-gap-6 ui-items-center lg:ui-justify-center ui-h-10 xl:ui-px-0 ui-px-6 ui-overflow-auto">
         {branding}
         <div className="ui-flex-1" />
         {children}

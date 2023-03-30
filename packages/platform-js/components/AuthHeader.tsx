@@ -196,9 +196,14 @@ export const company = [
     key: 'about',
   },
   {
-    name: 'Investor Relations',
-    url: 'https://ir.arcario.com/',
-    key: 'investor',
+    name: 'T&C',
+    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'terms&conditions') as string,
+    key: 'T&C',
+  },
+  {
+    name: 'Privacy',
+    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'privacy') as string,
+    key: 'privacy',
   },
 ];
 

@@ -72,7 +72,7 @@ const insightPromotion = {
       src={promotion1}
       height={744}
       alt="get real insight"
-      className="md:w-[768px] w-[328px]"
+      className="xl:w-[768px] md:w-[500px] w-[328px] transition-all ease-in-out"
     />
   ),
   title: 'Get real insight',
@@ -97,7 +97,7 @@ const tradePromotion = {
       src={promotion2}
       height={744}
       alt="Trade with conviction"
-      className="md:w-[768px] w-[328px]"
+      className="xl:w-[768px] md:w-[500px] w-[328px] transition-all ease-in-out"
     />
   ),
   title: 'Trade with conviction',
@@ -122,7 +122,7 @@ const securePromotion = {
       src={promotion3}
       height={744}
       alt="Secure your wealth"
-      className="md:w-[768px] w-[328px]"
+      className="xl:w-[768px] md:w-[500px] w-[328px] transition-all ease-in-out"
     />
   ),
   title: 'Secure your wealth',
@@ -179,10 +179,10 @@ const Index: NextPageWithLayout = () => {
         <title>{getTitle(hero.title)}</title>
       </Head>
       <div
-        className="hidden relative w-full md:max-w-[1728px] md:h-[863px] mx-auto md:flex flex-col items-center content-center px-6 md:px-0 transition-all"
+        className="hidden relative 2xl:max-w-[1728px] xl:container 2xl:h-[863px] xl:h-[700px] lg:h-[500px] lg:flex flex-col items-center content-center transition-all ease-in-out"
         id="markets-hero"
       >
-        <div className="md:absolute md:right-0 md:h-[863px] md:w-[923px] hidden md:block">
+        <div className="absolute right-0 2xl:h-[863px] 2xl:w-[923px] xl:h-[700px] xl:w-[800px] lg:h-[500px] lg:w-[600px] md:h-[200px] md:w-[300px] hidden md:block transition-all ease-in-out">
           <Image
             src={heroImage}
             fill
@@ -192,20 +192,22 @@ const Index: NextPageWithLayout = () => {
             }}
           />
         </div>
-        <div className="md:h-[863px] md:container md:self-start md:justify-start flex md:items-center">
-          <div className="flex flex-col gap-4 md:px-0 px-6 md:max-w-[575px]">
-            <p className="text-heading6 md:text-heading2">{hero.title}</p>
-            <p className="text-brand-light-tertiary md:text-body4 text-small">
+        <div className="2xl:h-[863px] xl:h-[700px] lg:h-[500px] xl:container md:self-start md:justify-start flex md:items-center transition-all ease-in-out pl-6 xl:px-0">
+          <div className="flex flex-col gap-4 md:px-0 px-6 2xl:max-w-[575px] xl:max-w-[530px] lg:max-w-[490px] md:max-w-[400px] transition-all ease-in-out">
+            <p className="text-heading6 2xl:text-heading2 xl:text-heading3 lg:text-heading4 transition-all ease-in-out">
+              {hero.title}
+            </p>
+            <p className="text-brand-light-tertiary lg:text-body4 text-small">
               {hero.subtitle}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="md:hidden flex flex-col md:container md:flex-row gap-12 items-center justify-between pb-[88px]">
-        <div className="flex flex-col gap-4 md:px-0 px-6">
-          <p className="text-heading6 md:text-heading2">{hero.title}</p>
-          <p className="text-brand-light-tertiary md:text-body4 text-small">
+      <div className="lg:hidden flex flex-col gap-12 items-center justify-between pb-[88px]">
+        <div className="flex flex-col gap-4 px-6 md:w-[800px]">
+          <p className="text-heading6">{hero.title}</p>
+          <p className="text-brand-light-tertiary text-small">
             {hero.subtitle}
           </p>
           {/* <SendEmail
@@ -218,15 +220,15 @@ const Index: NextPageWithLayout = () => {
           src={heroImage}
           width={863}
           alt="hero-k33-image"
-          className="md:w-[863px] w-[458px]"
+          className="md:w-[700px] w-[458px] justify-end content-end items-end self-end"
         />
       </div>
 
-      <div className="flex flex-col md:gap-24 gap-44 px-6 md:px-0 md:container md:pt-4 pb-[72px]">
+      <div className="flex flex-col md:gap-24 gap-44 px-6 xl:px-0 xl:container md:pt-4 pb-[72px]">
         <Companies {...companies} />
         <div
           id="k33-apps"
-          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center md:w-full md:pb-20"
+          className="flex md:flex-row flex-col items-center gap-8 md:justify-between md:content-center xl:w-full md:pb-20"
         >
           {apps.map((app) => (
             <BasicCards {...app} key={app.title}>
@@ -239,23 +241,23 @@ const Index: NextPageWithLayout = () => {
             </BasicCards>
           ))}
         </div>
-        <div className="md:container md:px-0 px-6 flex flex-col gap-32 md:gap-52">
-          <div className="flex md:flex-row flex-col md:gap-5 gap-8 items-center">
+        <div className="lg:container xl:px-0 px-6 flex flex-col gap-32 xl:gap-52">
+          <div className="flex md:flex-row flex-col xl:gap-5 gap-8 items-center">
             {insightPromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
-                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                <p className="text-heading5 xl:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
                   {insightPromotion.title}
                 </p>
                 <p className="text-small md:text-body1 text-label-light-secondary">
                   {insightPromotion.description}
                 </p>
               </div>
-              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+              <div className="flex flex-col gap-3 xl:gap-9 justify-center">
                 {insightPromotion.points.map((point) => (
                   <div key={point} className="flex flex-row items-center gap-2">
                     <ListIcon />
-                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                    <p className="xl:text-heading8 text-body1 text-label-light-secondary">
                       {point}
                     </p>
                   </div>
@@ -270,21 +272,21 @@ const Index: NextPageWithLayout = () => {
               </a>
             </div>
           </div>
-          <div className="flex md:flex-row flex-col-reverse md:gap-4 gap-8 items-center">
+          <div className="flex md:flex-row flex-col-reverse xl:gap-4 gap-8 items-center">
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
-                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                <p className="text-heading5 xl:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
                   {tradePromotion.title}
                 </p>
                 <p className="text-small md:text-body1 text-label-light-secondary">
                   {tradePromotion.description}
                 </p>
               </div>
-              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+              <div className="flex flex-col gap-3 xl:gap-9 justify-center">
                 {tradePromotion.points.map((point) => (
                   <div key={point} className="flex flex-row items-center gap-2">
                     <ListIcon />
-                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                    <p className="xl:text-heading8 text-body1 text-label-light-secondary">
                       {point}
                     </p>
                   </div>
@@ -300,22 +302,22 @@ const Index: NextPageWithLayout = () => {
             </div>
             {tradePromotion.image}
           </div>
-          <div className="flex md:flex-row flex-col md:gap-0 gap-8 items-center">
+          <div className="flex md:flex-row flex-col xl:gap-0 gap-8 items-center">
             {securePromotion.image}
             <div className="flex flex-col gap-8 items-start">
               <div className="flex flex-col gap-2">
-                <p className="text-heading5 md:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
+                <p className="text-heading5 xl:text-heading4 text-label-light-primary/80 md:text-label-light-primary">
                   {securePromotion.title}
                 </p>
                 <p className="text-small md:text-body1 text-label-light-secondary">
                   {securePromotion.description}
                 </p>
               </div>
-              <div className="flex flex-col gap-3 md:gap-9 justify-center">
+              <div className="flex flex-col gap-3 xl:gap-9 justify-center">
                 {securePromotion.points.map((point) => (
                   <div key={point} className="flex flex-row items-center gap-2">
                     <ListIcon />
-                    <p className="md:text-heading8 text-body1 text-label-light-secondary">
+                    <p className="xl:text-heading8 text-body1 text-label-light-secondary">
                       {point}
                     </p>
                   </div>

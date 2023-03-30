@@ -29,7 +29,7 @@ const About: NextPageWithLayout = () => {
         className="relative w-full max-w-[1728px] mx-auto py-8 flex flex-col items-center content-center px-6 xl:px-0 transition-all ease-in"
         id="markets-hero"
       >
-        <div className="xl:absolute xl:left-0 xl:h-[634px] xl:w-[238px] hidden xl:block">
+        <div className="xl:absolute xl:left-0 xl:h-[634px] 2xl:w-[238px] xl:w-[200px] hidden xl:block transition-all ease-in">
           <Image
             src={left}
             fill
@@ -39,7 +39,7 @@ const About: NextPageWithLayout = () => {
             alt="left-market-bg"
           />
         </div>
-        <div className="xl:absolute xl:right-0 xl:h-[634px] xl:w-[238px] hidden xl:block">
+        <div className="xl:absolute xl:right-0 xl:h-[634px] 2xl:w-[238px] xl:w-[200px] hidden xl:block transition-all ease-in">
           <Image
             src={right}
             fill
@@ -53,10 +53,10 @@ const About: NextPageWithLayout = () => {
           id="hero-text"
           className="flex flex-col md:justify-center md:items-center xl:container xl:content-center xl:text-center gap-4 xl:w-[1173px] xl:pt-[188px]"
         >
-          <h2 className="xl:text-heading2 text-heading5 text-brand-light-primary">
+          <h2 className="2xl:text-heading2 xl:text-heading3 text-heading5 text-brand-light-primary transition-all ease-in">
             {hero.title}
           </h2>
-          <p className="xl:text-heading5 text-heading8 text-brand-light-tertiary">
+          <p className="2xl:text-heading5 xl:text-heading7 text-heading8 text-brand-light-tertiary transition-all ease-in">
             {hero.body}
           </p>
         </div>
