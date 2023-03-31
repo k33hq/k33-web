@@ -197,8 +197,9 @@ export const company = [
   },
   {
     name: 'T&C',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'terms&conditions') as string,
-    key: 'T&C',
+    url: (process.env.NEXT_PUBLIC_PLATFORM_URL +
+      'terms-and-conditions') as string,
+    key: 'terms-and-conditions',
   },
   {
     name: 'Privacy',
