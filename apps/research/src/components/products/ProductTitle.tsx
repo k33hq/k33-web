@@ -22,7 +22,7 @@ const ProductTitle: React.FC<ProductTitleProps> = ({
       className="flex flex-row gap-1 items-center"
     >
       <Marker color={branding.color} size={size} />
-      <p
+      {/* <p
         className={`${
           size === 'large'
             ? 'md:text-heading8 text-body1 text-label-light-secondary'
@@ -30,8 +30,8 @@ const ProductTitle: React.FC<ProductTitleProps> = ({
         }`}
       >
         {title}
-      </p>
-      {/* <Link
+      </p> */}
+      <Link
         className={`${
           size === 'large'
             ? 'md:text-heading8 text-body1 text-label-light-secondary'
@@ -40,7 +40,7 @@ const ProductTitle: React.FC<ProductTitleProps> = ({
         href={href}
       >
         {title}
-      </Link> */}
+      </Link>
     </div>
   );
 };
