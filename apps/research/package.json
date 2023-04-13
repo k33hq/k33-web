@@ -16,6 +16,7 @@
     "@contentful/rich-text-types": "^16.0.2",
     "@headlessui/react": "^1.7.11",
     "@next/font": "^13.1.6",
+    "@reduxjs/toolkit": "^1.9.3",
     "@stripe/stripe-js": "^1.46.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "core": "workspace:*",
@@ -23,10 +24,12 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "next": "^13.1.1",
+    "next-redux-wrapper": "^8.1.0",
     "platform-js": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
     "ui": "workspace:*"
   },
   "devDependencies": {

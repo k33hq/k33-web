@@ -40,7 +40,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   const mainBody = () => {
     if (
       (subscriber != null && subscriber === 'pro') ||
-      ['blog', 'analysis'].includes(categorySlug)
+      ['blog', 'analysis', 'token-evaluations'].includes(categorySlug)
     ) {
       return (
         <>

@@ -1,5 +1,6 @@
 import { useStripeSubscriber } from '@/hooks';
 import { PrivateLayout } from '@/layouts';
+import { useCustomerMutation } from '@/services';
 import { SubscriberType } from '@/types';
 import { fetcher } from 'core';
 import Head from 'next/head';
@@ -72,6 +73,25 @@ interface PlanProps {
 }
 
 const Plan: React.FC<PlanProps> = ({ type, features }) => {
+  const [dashboard, { isLoading, isSuccess, data, error, isError }] =
+    useCustomerMutation();
+
+  useEffect(() => {
+    const customerDashboard = async () => {
+      try {
+        const url = await dashboard({
+          return_url: window.location.href,
+        }).unwrap();
+
+        window.open(url);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    customerDashboard();
+  }, []);
+
   return (
     <div
       id="stripe-product-panel"

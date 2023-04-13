@@ -9,6 +9,8 @@ import { CategoryElements } from '@/types';
 import { MainLayout } from '@/layouts';
 import { NextPageWithLayout } from 'ui';
 import K33App from 'platform-js';
+import { Provider } from 'react-redux';
+import { wrapper } from '@/store';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -22,19 +24,19 @@ interface ResearchAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
-const ResearchApp = ({
-  Component,
-  pageProps,
-  categories,
-}: ResearchAppProps) => {
+const ResearchApp = ({ Component, categories, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
+  const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
-    <K33App>
-      <Script async src="https://js.stripe.com/v3/pricing-table.js" />
-      <MainLayout categories={categories}>
-        {getLayout(<Component {...pageProps} />)}
-      </MainLayout>
-    </K33App>
+    <Provider store={store}>
+      <K33App>
+        <Script async src="https://js.stripe.com/v3/pricing-table.js" />
+        <MainLayout categories={categories}>
+          {getLayout(<Component {...props.pageProps} />)}
+        </MainLayout>
+      </K33App>
+    </Provider>
   );
 };
 
