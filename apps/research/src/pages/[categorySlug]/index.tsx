@@ -137,7 +137,11 @@ const Category: NextPageWithLayout<CategoryProps> = ({
                 <ProductTitle
                   title={articles[0].product.product.title}
                   branding={articles[0].product.branding}
-                  href={getUrl(categorySlug, articles[0].product.productSlug)}
+                  href={
+                    categorySlug === 'reports'
+                      ? getUrl(categorySlug, articles[0].product.productSlug)
+                      : getUrl(categorySlug)
+                  }
                 />
                 <p className="md:text-body1 text-body2 text-label-light-secondary">
                   {articles[0].product.product.description}

@@ -53,7 +53,11 @@ const SubArticle: React.FC<SubArticleProps> = ({
               size="small"
               title={product.product.title}
               branding={product.branding}
-              href={getUrl(category.categorySlug, product.productSlug)}
+              href={
+                category.categorySlug === 'reports'
+                  ? getUrl(category.categorySlug, product.productSlug)
+                  : getUrl(category.categorySlug)
+              }
             />
             <ArticleDate size="small" published={publishedDate} />
           </div>
