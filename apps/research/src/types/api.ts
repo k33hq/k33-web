@@ -188,3 +188,25 @@ export interface GetArchivedPageResponse {
     items: ReadonlyArray<ArchivePage>;
   };
 }
+
+// stripe
+
+export interface CheckOutSessionRequest {
+  price_id: string;
+  success_url: string;
+  cancel_url: string;
+}
+
+export interface CheckoutSessionResponse {
+  url: string;
+  expires_at: string;
+}
+
+export interface CustomerPortalSessionRequest {
+  return_url: string;
+}
+
+export interface CustomerPortalSessionResponse {
+  url: string;
+  return_url: string;
+}

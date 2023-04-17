@@ -35,6 +35,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
   categorySlug,
   productSlug,
 }) => {
+  console.log(rootProduct);
   const { product, branding } = rootProduct;
 
   const getSeo = () => {

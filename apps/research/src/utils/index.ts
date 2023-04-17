@@ -12,8 +12,6 @@ export const colors = {
   systemPink: 'bg-default-systemPink-light',
 };
 
-export * from './get-stripejs';
-
 // TODO: put these in some lib
 // TODO: update research use this from platform-js
 export function forceDownload(blob: string, filename?: string | undefined) {

@@ -73,7 +73,7 @@ const CoverArticle: React.FC<CoverArticleProps> = ({
         >
           {article.title}
         </Link>
-        <p className="text-body4 text-label-light-secondary/80 line-clamp-2 text-ellipsis">
+        <p className="text-body4 text-label-light-secondary/80 line-clamp-4 text-ellipsis">
           {article.subtitle}
         </p>
       </div>
