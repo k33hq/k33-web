@@ -205,3 +205,8 @@ export interface CheckoutSessionResponse {
 export interface CustomerPortalSessionRequest {
   return_url: string;
 }
+
+export interface CustomerPortalSessionResponse {
+  url: string;
+  return_url: string;
+}

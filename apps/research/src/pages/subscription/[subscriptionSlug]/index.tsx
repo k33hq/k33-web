@@ -6,8 +6,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
-import { getCustomerEmail, getCustomerId } from 'core';
-import { checkout } from '@/utils';
 import { getTitle, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import Head from 'next/head';
@@ -23,7 +21,6 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
 }) => {
   const [checkout, { isLoading, isSuccess, data, error, isError }] =
     useCheckoutMutation();
-
   const state = useAppState(config);
   const route = useRouter();
   const sub = useStripeSubscriber();

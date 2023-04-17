@@ -3,7 +3,6 @@ import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
 import App from 'next/app';
-import Script from 'next/script';
 import { getCategoryElements } from '@/api';
 import { CategoryElements } from '@/types';
 import { MainLayout } from '@/layouts';
@@ -31,7 +30,6 @@ const ResearchApp = ({ Component, categories, ...rest }: ResearchAppProps) => {
   return (
     <Provider store={store}>
       <K33App>
-        <Script async src="https://js.stripe.com/v3/pricing-table.js" />
         <MainLayout categories={categories}>
           {getLayout(<Component {...props.pageProps} />)}
         </MainLayout>

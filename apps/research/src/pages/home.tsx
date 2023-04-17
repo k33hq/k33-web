@@ -31,7 +31,6 @@ import { getUrl, siteUsername } from '@/utils';
 import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
 import { getCustomerEmail, getCustomerId } from 'core';
-import getStripe from '@/utils/get-stripejs';
 import config from '@/firebase/config';
 
 interface HomeProps extends HomePage {
@@ -55,7 +54,6 @@ const Home: NextPageWithLayout<HomeProps> = ({
   const subscriber = useStripeSubscriber();
   const [email, setEmail] = useState<null | string | undefined>(null);
   const [customerId, setCustomerID] = useState<undefined | null | string>(null);
-  const stripe = getStripe();
 
   useEffect(() => {
     setEmail(getCustomerEmail());

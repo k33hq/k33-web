@@ -5,6 +5,7 @@ import {
   CheckOutSessionRequest,
   CheckoutSessionResponse,
   CustomerPortalSessionRequest,
+  CustomerPortalSessionResponse,
 } from '@/types';
 
 export const researchApi = createApi({
@@ -37,12 +38,14 @@ export const researchApi = createApi({
         }),
       }
     ),
-    customer: builder.mutation<any, CustomerPortalSessionRequest>({
+    customer: builder.mutation<
+      CustomerPortalSessionResponse,
+      CustomerPortalSessionRequest
+    >({
       query: (body) => ({
         url: `payment/customer-portal-session`,
         method: 'POST',
         body,
-        responseHandler: 'text',
       }),
     }),
   }),
