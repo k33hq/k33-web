@@ -40,12 +40,16 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
       }
     };
 
-    if (subscription.subscription.stripeProductId == 'free' || sub === 'pro') {
-      route.push('/home');
-    } else {
+    // if (subscription.subscription.stripeProductId == 'free' || sub === 'pro') {
+    //   route.push('/home');
+    // } else {
+    //   doCheckout();
+    // }
+
+    if (state === 'REGISTRED') {
       doCheckout();
     }
-  }, []);
+  }, [state]);
 
   return (
     <div id="subscription">
