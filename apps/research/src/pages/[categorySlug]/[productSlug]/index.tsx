@@ -93,7 +93,11 @@ const Product: NextPageWithLayout<ProductProps> = ({
           property="og:url"
           content={
             process.env.NEXT_PUBLIC_RESEARCH_URL +
-            getUrl(categorySlug, productSlug)
+            `${
+              categorySlug === 'reports'
+                ? getUrl(categorySlug, productSlug)
+                : getUrl(categorySlug)
+            }`
           }
         />
         <meta name="twitter:card" content="summary_large_image" />
@@ -127,7 +131,11 @@ const Product: NextPageWithLayout<ProductProps> = ({
           <ProductTitle
             title={product.title}
             branding={branding}
-            href={getUrl(categorySlug, productSlug)}
+            href={
+              categorySlug === 'reports'
+                ? getUrl(categorySlug, productSlug)
+                : getUrl(categorySlug)
+            }
           />
           <p className="md:text-body1 text-body2 text-label-light-secondary">
             {product.description}

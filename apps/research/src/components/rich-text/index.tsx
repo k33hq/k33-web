@@ -91,7 +91,7 @@ export const richTextOptions: Options = {
           href={data.uri}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-body2 hover:underline text-label-light-primary"
+          className="text-body2 text-label-light-primary underline hover:text-label-light-secondary"
         >
           {children}
         </a>

@@ -55,7 +55,30 @@ const Article: NextPageWithLayout<ArticleProps> = ({
       );
     }
 
-    return null;
+    return (
+      <>
+        {(subscriber === null || subscriber === 'free') && (
+          <div
+            id="id-subscribe"
+            className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
+          >
+            <p className="md:text-heading7 text-body1 text-label-dark-primary">
+              Sign in to K33 Research Pro to download the report
+            </p>
+            <Link
+              href={getUrl(
+                'subscription',
+                'professional-k33-research-subscription'
+              )}
+            >
+              <BasicButton variant="secondary">
+                Start 30 Day Free Trial
+              </BasicButton>
+            </Link>
+          </div>
+        )}
+      </>
+    );
   };
 
   const getSeo = () => {
@@ -133,7 +156,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
         </div>
 
         <article
-          className={`flex flex-col justify-center md:gap-8 gap-4 md:w-2/3 w-full px-6 md:px-0`}
+          className={`flex flex-col justify-center md:gap-8 gap-4 md:w-2/3 w-full px-6 md:px-0 pb-[120px]`}
         >
           <div className="flex flex-col gap-2">
             <div className="flex flex-col md:gap-2 gap-1">
@@ -146,17 +169,16 @@ const Article: NextPageWithLayout<ArticleProps> = ({
                   className="flex flex-row gap-1 items-center"
                 >
                   <Marker color={product.branding.color} />
-                  {/* <Link
+                  <Link
                     className={`font-[500] leading-4 text-[10px] md:font-[600] md:text-[24px] text-label-light-primary/60 hover:text-label-light-tertiary uppercase`}
-                    href={getUrl(categorySlug, productSlug)}
+                    href={
+                      categorySlug === 'reports'
+                        ? getUrl(categorySlug, productSlug)
+                        : getUrl(categorySlug)
+                    }
                   >
                     {product.product.title}
-                  </Link> */}
-                  <p
-                    className={`font-[500] leading-4 text-[10px] md:font-[600] md:text-[24px] text-label-light-primary/60 uppercase`}
-                  >
-                    {product.product.title}
-                  </p>
+                  </Link>
                 </div>
                 <Dot />
                 <p className="md:text-body4 text-small text-label-light-secondary">
@@ -193,7 +215,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
           </div>
 
           {mainBody()}
-          {(subscriber === null || subscriber === 'free') && (
+          {/* {(subscriber === null || subscriber === 'free') && (
             <div
               id="id-subscribe"
               className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
@@ -212,7 +234,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
                 </BasicButton>
               </Link>
             </div>
-          )}
+          )} */}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
