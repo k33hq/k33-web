@@ -87,7 +87,13 @@ const Plan: React.FC<PlanProps> = ({ type, features }) => {
         return_url: window.location.href,
       }).unwrap();
 
-      window.open(response.url);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      //@ts-ignore
+      a.style = 'display: none';
+      a.href = response.url;
+      a.click();
+      document.body.removeChild(a);
     } catch (err) {
       console.log(err);
     }
