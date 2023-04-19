@@ -19,7 +19,6 @@
     "dev:research": {
       "outputs": ["out/**", "dist/**", ".next/**"],
       "env": [
-        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
         "STRIPE_SECRET_KEY",
         "NEXT_PUBLIC_PRICING_TABLE_ID",
         "NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID",
