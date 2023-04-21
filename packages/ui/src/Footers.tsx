@@ -60,7 +60,8 @@ export const Footer: React.FC<FooterProps> = ({ logo, children }) => {
         className="ui-flex md:ui-flex-row ui-flex-col ui-items-center ui-justify-center ui-gap-1 md:ui-gap-2 "
       >
         <p className="ui-text-small ui-text-label-light-tertiary">
-          Munkedamsveien 45, Oslo, Norway
+          K33 Operations AS (orgnr. 994 608 673), Munkedamsveien 45, 0250, Oslo,
+          Norway
         </p>
       </div>
     </div>
