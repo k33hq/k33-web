@@ -1,5 +1,5 @@
-import { getArticlePage, getArticleSlugs } from '@/api';
-import { ArticlePage, SubscriberType } from '@/types';
+import { getArticlePage, getArticleSlugs, getSubscriptionBySlug } from '@/api';
+import { ArticlePage, SubscriberType, SubscriptionPage } from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getUrl, siteUsername } from '@/utils';
 import {
@@ -20,12 +20,14 @@ import { PrivateLayout } from '@/layouts';
 import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
 import { formatDateAndTime } from '@contentful/f36-datetime';
+import { useCheckoutMutation } from '@/services';
 
 interface ArticleProps {
   articleSlug: string;
   categorySlug: string;
   productSlug: string;
   article: ArticlePage;
+  subscription: SubscriptionPage;
 }
 
 const Article: NextPageWithLayout<ArticleProps> = ({
@@ -33,9 +35,13 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   categorySlug,
   article: articlePage,
   articleSlug,
+  subscription,
 }) => {
   const { article, product, publishedDate } = articlePage;
   const subscriber = useStripeSubscriber();
+
+  const [checkout, { isLoading, isSuccess, data, error, isError }] =
+    useCheckoutMutation();
 
   const mainBody = () => {
     if (
@@ -65,16 +71,19 @@ const Article: NextPageWithLayout<ArticleProps> = ({
             <p className="md:text-heading7 text-body1 text-label-dark-primary">
               Sign in to K33 Research Pro to download the report
             </p>
-            <Link
-              href={getUrl(
-                'subscription',
-                'professional-k33-research-subscription'
-              )}
+            <BasicButton
+              variant="secondary"
+              onClick={async () => {
+                const response = await checkout({
+                  price_id: subscription.subscription.stripeProductId,
+                  success_url: window.location.href,
+                  cancel_url: window.location.href,
+                }).unwrap();
+                window.location.href = response.url;
+              }}
             >
-              <BasicButton variant="secondary">
-                Start 30 Day Free Trial
-              </BasicButton>
-            </Link>
+              Start 30 Day Free Trial
+            </BasicButton>
           </div>
         )}
       </>
@@ -215,26 +224,6 @@ const Article: NextPageWithLayout<ArticleProps> = ({
           </div>
 
           {mainBody()}
-          {/* {(subscriber === null || subscriber === 'free') && (
-            <div
-              id="id-subscribe"
-              className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
-            >
-              <p className="md:text-heading7 text-body1 text-label-dark-primary">
-                Sign in to K33 Research Pro to download the report
-              </p>
-              <Link
-                href={getUrl(
-                  'subscription',
-                  'professional-k33-research-subscription'
-                )}
-              >
-                <BasicButton variant="secondary">
-                  Start 30 Day Free Trial
-                </BasicButton>
-              </Link>
-            </div>
-          )} */}
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
@@ -267,6 +256,9 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
   const articleSlug = context.params!.articleSlug as string;
 
   const article = await getArticlePage(context.params!.articleSlug as string);
+  const subscription = await getSubscriptionBySlug(
+    'professional-k33-research-subscription'
+  );
 
   return {
     props: {
@@ -274,6 +266,7 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
       articleSlug,
       categorySlug,
       productSlug,
+      subscription,
     },
   };
 };
