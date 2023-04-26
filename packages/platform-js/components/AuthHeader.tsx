@@ -8,7 +8,7 @@ import {
 } from 'ui';
 import * as React from 'react';
 import { FirebaseOptions } from 'firebase/app';
-import { AppStates, init, logout } from 'core';
+import { AppStates, logout } from 'core';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
 

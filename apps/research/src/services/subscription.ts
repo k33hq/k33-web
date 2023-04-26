@@ -6,6 +6,8 @@ import {
   CheckoutSessionResponse,
   CustomerPortalSessionRequest,
   CustomerPortalSessionResponse,
+  GetProductInfoResponse,
+  GetProductsResponse,
 } from '@/types';
 
 export const researchApi = createApi({
@@ -27,7 +29,7 @@ export const researchApi = createApi({
     }
   },
 
-  tagTypes: [],
+  tagTypes: ['Products'],
   endpoints: (builder) => ({
     checkout: builder.mutation<CheckoutSessionResponse, CheckOutSessionRequest>(
       {
@@ -38,6 +40,13 @@ export const researchApi = createApi({
         }),
       }
     ),
+    getProducts: builder.query<GetProductsResponse, void>({
+      query: () => 'payment/subscribed-products',
+      providesTags: ['Products'],
+      extraOptions: {
+        maxRetries: 10,
+      },
+    }),
     customer: builder.mutation<
       CustomerPortalSessionResponse,
       CustomerPortalSessionRequest
@@ -47,6 +56,10 @@ export const researchApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Products'],
+    }),
+    getProductInfo: builder.query<GetProductInfoResponse, string>({
+      query: (productId) => `payment/subscribed-products/${productId}`,
     }),
   }),
 });
@@ -55,6 +68,9 @@ export const researchApi = createApi({
 export const {
   useCheckoutMutation,
   useCustomerMutation,
+  useGetProductsQuery,
+  useLazyGetProductsQuery,
+  useLazyGetProductInfoQuery,
   util: { getRunningQueriesThunk },
 } = researchApi;
 

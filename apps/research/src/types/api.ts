@@ -24,6 +24,7 @@ import {
   ArchivePageSlugs,
   ArchivePage,
   ArticleCategoryElements,
+  ProductStatus,
 } from './domain';
 
 /**
@@ -209,4 +210,13 @@ export interface CustomerPortalSessionRequest {
 export interface CustomerPortalSessionResponse {
   url: string;
   return_url: string;
+}
+
+export interface GetProductsResponse {
+  subscribedProducts: ReadonlyArray<string>;
+}
+
+export interface GetProductInfoResponse {
+  product_id: string;
+  status: ProductStatus;
 }

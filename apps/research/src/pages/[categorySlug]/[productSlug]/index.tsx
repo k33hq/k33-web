@@ -19,8 +19,6 @@ import {
 } from '@/components';
 import { NextPageWithLayout } from 'ui';
 import { getUrl, siteUsername } from '@/utils';
-import { ReactElement } from 'react';
-import { PrivateLayout } from '@/layouts';
 import Head from 'next/head';
 import { getTitle } from 'platform-js';
 
@@ -35,7 +33,6 @@ const Product: NextPageWithLayout<ProductProps> = ({
   categorySlug,
   productSlug,
 }) => {
-  console.log(rootProduct);
   const { product, branding } = rootProduct;
 
   const getSeo = () => {

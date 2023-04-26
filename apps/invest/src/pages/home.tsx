@@ -66,9 +66,6 @@ const Home: NextPageWithLayout = () => {
   );
 
   useEffect(() => {
-    console.log(error);
-    console.log(isError);
-    console.log(data);
     if (isError) {
       router.push('/');
     }

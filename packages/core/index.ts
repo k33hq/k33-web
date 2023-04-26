@@ -69,10 +69,6 @@ export const init = (config: FirebaseOptions) => {
       popupRedirectResolver: browserPopupRedirectResolver,
     });
   }
-
-  //@ts-ignore
-  console.log('isProd : ' + isProd() + ' ' + window.location.hostname);
-
   return auth;
 };
 
@@ -147,7 +143,7 @@ export const isLoggedIn = () => {
 
 // get user Info
 export const getUserInformation = (callback: NextOrObserver<User>) => {
-  const auth = getAuth();
+  const auth = getAuth(getApp(APP_NAME));
   onAuthStateChanged(auth, callback);
 };
 
