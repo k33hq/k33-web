@@ -25,6 +25,7 @@ import {
   ArchivePage,
   ArticleCategoryElements,
   ProductStatus,
+  SubscriptionProducts,
 } from './domain';
 
 /**
@@ -173,6 +174,14 @@ export interface GetSubscriptionFromSlugResponse {
 export interface GetResearchLandingPageResponse {
   researchLandingPageWebCollection: {
     items: ReadonlyArray<LandingPage>;
+  };
+}
+
+// stripe product stuff
+
+export interface GetAllSubscriptionProductsResponse {
+  subscriptionProductCollection: {
+    items: SubscriptionProducts;
   };
 }
 

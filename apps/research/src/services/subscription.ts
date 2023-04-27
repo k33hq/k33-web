@@ -34,29 +34,21 @@ export const researchApi = createApi({
     checkout: builder.mutation<CheckoutSessionResponse, CheckOutSessionRequest>(
       {
         query: (body) => ({
-          url: `payment/checkout-session`,
+          url: `payment/checkout-sessions`,
           method: 'POST',
           body,
         }),
       }
     ),
-    getProducts: builder.query<GetProductsResponse, void>({
-      query: () => 'payment/subscribed-products',
-      providesTags: ['Products'],
-      extraOptions: {
-        maxRetries: 10,
-      },
-    }),
     customer: builder.mutation<
       CustomerPortalSessionResponse,
       CustomerPortalSessionRequest
     >({
       query: (body) => ({
-        url: `payment/customer-portal-session`,
+        url: `payment/customer-portal-sessions`,
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['Products'],
     }),
     getProductInfo: builder.query<GetProductInfoResponse, string>({
       query: (productId) => `payment/subscribed-products/${productId}`,
@@ -68,8 +60,6 @@ export const researchApi = createApi({
 export const {
   useCheckoutMutation,
   useCustomerMutation,
-  useGetProductsQuery,
-  useLazyGetProductsQuery,
   useLazyGetProductInfoQuery,
   util: { getRunningQueriesThunk },
 } = researchApi;

@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request';
 import { contentful } from './client';
 import {
+  GetAllSubscriptionProductsResponse,
   GetAllSubscriptionSlugsResponse,
   GetAllSubscriptionsResponse,
   GetSubscriptionFromSlugResponse,
@@ -69,6 +70,16 @@ const GetSubscriptionBySlug = gql`
   }
 `;
 
+const GetK33Products = gql`
+  query {
+    subscriptionProductCollection {
+      items {
+        productId
+      }
+    }
+  }
+`;
+
 export const getAllSubscriptions = async () => {
   const { subscriptionCollection } =
     await contentful.request<GetAllSubscriptionsResponse>(GetAllSubscriptions);
@@ -95,4 +106,13 @@ export const getSubscriptionBySlug = async (subscriptionSlug: string) => {
     );
 
   return subscriptionWebCollection.items[0];
+};
+
+export const getK33Products = async () => {
+  const { subscriptionProductCollection } =
+    await contentful.request<GetAllSubscriptionProductsResponse>(
+      GetK33Products
+    );
+
+  return subscriptionProductCollection.items;
 };

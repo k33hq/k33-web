@@ -351,3 +351,9 @@ export interface ArchivePage extends ArchivePageSlug {
     linkToReport: null | ResearchDocument;
   };
 }
+
+export interface SubscriptionProductID {
+  productId: string;
+}
+
+export type SubscriptionProducts = ReadonlyArray<SubscriptionProductID>;

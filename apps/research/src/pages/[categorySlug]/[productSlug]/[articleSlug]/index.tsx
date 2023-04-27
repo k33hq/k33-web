@@ -1,5 +1,15 @@
-import { getArticlePage, getArticleSlugs, getSubscriptionBySlug } from '@/api';
-import { ArticlePage, SubscriberType, SubscriptionPage } from '@/types';
+import {
+  getArticlePage,
+  getArticleSlugs,
+  getK33Products,
+  getSubscriptionBySlug,
+} from '@/api';
+import {
+  ArticlePage,
+  SubscriberType,
+  SubscriptionPage,
+  SubscriptionProducts,
+} from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getUrl, siteUsername } from '@/utils';
 import {
@@ -28,6 +38,7 @@ interface ArticleProps {
   productSlug: string;
   article: ArticlePage;
   subscription: SubscriptionPage;
+  subscriptionProducts: SubscriptionProducts;
 }
 
 const Article: NextPageWithLayout<ArticleProps> = ({
@@ -36,6 +47,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   article: articlePage,
   articleSlug,
   subscription,
+  subscriptionProducts,
 }) => {
   const { article, product, publishedDate } = articlePage;
 
@@ -173,7 +185,8 @@ const Article: NextPageWithLayout<ArticleProps> = ({
           </div>
 
           <SubscriptionAdvert
-            productId={subscription.subscription.stripeProductId}
+            productId={subscriptionProducts[0].productId}
+            priceId={subscription.subscription.stripeProductId}
             overRideSubscriptionCheck={[
               'blog',
               'analysis',
@@ -226,6 +239,8 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
     'professional-k33-research-subscription'
   );
 
+  const subscriptionProducts = await getK33Products();
+
   return {
     props: {
       article,
@@ -233,6 +248,7 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
       categorySlug,
       productSlug,
       subscription,
+      subscriptionProducts,
     },
   };
 };

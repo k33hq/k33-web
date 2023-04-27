@@ -3,7 +3,6 @@ import {
   useCheckoutMutation,
   useCustomerMutation,
   useLazyGetProductInfoQuery,
-  useLazyGetProductsQuery,
 } from '@/services';
 import { ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
@@ -11,12 +10,14 @@ import * as React from 'react';
 import { BasicButton } from 'ui';
 
 interface SubscriptionAdvertProps {
+  priceId: string;
   productId: string;
   overRideSubscriptionCheck?: boolean;
   children: React.ReactNode;
 }
 
 const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
+  priceId,
   productId,
   children,
   overRideSubscriptionCheck = false,
@@ -25,12 +26,33 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
   const [productInfoStatus, setProductInfoStatus] = React.useState<
     ProductStatus | null | 'loading'
   >('loading');
-
   const state = useAppState(config);
-  const [getProductsTrigger] = useLazyGetProductsQuery();
   const [getProductsInfoTrigger] = useLazyGetProductInfoQuery();
-
   const [dashboard] = useCustomerMutation();
+
+  React.useEffect(() => {
+    const getProductsInfo = async () => {
+      try {
+        const data = await getProductsInfoTrigger(productId).unwrap();
+        setProductInfoStatus(data.status);
+      } catch (err) {}
+    };
+    getProductsInfo();
+  }, [state, getProductsInfoTrigger, productId]);
+
+  // implementation details
+  const doCheckOut = async () => {
+    try {
+      const response = await checkout({
+        price_id: priceId,
+        success_url: window.location.href,
+        cancel_url: window.location.href,
+      }).unwrap();
+      window.location.href = response.url;
+    } catch (err) {
+      //nothing for now
+    }
+  };
 
   const customerDashboard = async () => {
     try {
@@ -50,39 +72,6 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
     }
   };
 
-  React.useEffect(() => {
-    const getProductStatus = async (productId: string) => {
-      try {
-        const data = await getProductsInfoTrigger(productId).unwrap();
-        setProductInfoStatus(data.status);
-      } catch (err) {
-        setProductInfoStatus(null);
-      }
-    };
-    const getProducts = async () => {
-      try {
-        const data = await getProductsTrigger().unwrap();
-        getProductStatus(data.subscribedProducts[0]);
-      } catch (err) {
-        setProductInfoStatus(null);
-      }
-    };
-    getProducts();
-  }, [state, getProductsTrigger, getProductsInfoTrigger]);
-
-  const doCheckOut = async () => {
-    try {
-      const response = await checkout({
-        price_id: productId,
-        success_url: window.location.href,
-        cancel_url: window.location.href,
-      }).unwrap();
-      window.location.href = response.url;
-    } catch (err) {
-      //nothing for now
-    }
-  };
-
   if (productInfoStatus === 'active' || overRideSubscriptionCheck)
     return <div className="pb-[120px]">{children}</div>;
 
@@ -91,10 +80,10 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
   return (
     <div
       id="id-subscribe"
-      className="bg-bg-dark-elevated-primary items-center justify-center text-center content-center md:py-14 py-8 md:px-20 px-10"
+      className="bg-bg-dark-elevated-primary md:py-14 py-8 md:px-20 px-10"
     >
-      <div className="flex flex-col md:gap-10 gap-6">
-        <div className="flex flex-col md:gap-4">
+      <div className="flex flex-col md:gap-10 gap-6 md:w-[439px] mx-auto">
+        <div className="flex flex-col md:gap-4 items-center justify-center text-center">
           <p className="md:text-heading6 text-body1 text-label-dark-primary">
             {productInfoStatus === 'ended'
               ? 'Update subscription to keep reading'
@@ -107,7 +96,7 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
           </p>
         </div>
         {productInfoStatus === 'ended' ? (
-          <BasicButton variant="secondary" onClick={customerDashboard}>
+          <BasicButton variant="secondary" onClick={doCheckOut}>
             Update Subscription
           </BasicButton>
         ) : (
