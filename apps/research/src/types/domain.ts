@@ -1,6 +1,6 @@
 import { Document } from '@contentful/rich-text-types';
 
-export type ProductStatus = 'active' | 'ended';
+export type ProductStatus = 'active' | 'ended' | 'blocked';
 export interface System {
   id: string;
   firstPublishedAt: string;

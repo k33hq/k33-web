@@ -95,6 +95,12 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
               : 'Subscribe to K33 Research Pro to keep reading and get full access to all our research.'}
           </p>
         </div>
+        {productInfoStatus === 'blocked' && (
+          <BasicButton variant="secondary" onClick={customerDashboard}>
+            Update Subscription
+          </BasicButton>
+        )}
+
         {productInfoStatus === 'ended' ? (
           <BasicButton variant="secondary" onClick={doCheckOut}>
             Update Subscription
