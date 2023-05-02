@@ -35,7 +35,9 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
       try {
         const data = await getProductsInfoTrigger(productId).unwrap();
         setProductInfoStatus(data.status);
-      } catch (err) {}
+      } catch (err) {
+        setProductInfoStatus(null);
+      }
     };
     getProductsInfo();
   }, [state, getProductsInfoTrigger, productId]);
