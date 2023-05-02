@@ -24,6 +24,8 @@ import {
   ArchivePageSlugs,
   ArchivePage,
   ArticleCategoryElements,
+  ProductStatus,
+  SubscriptionProducts,
 } from './domain';
 
 /**
@@ -175,6 +177,14 @@ export interface GetResearchLandingPageResponse {
   };
 }
 
+// stripe product stuff
+
+export interface GetAllSubscriptionProductsResponse {
+  subscriptionProductCollection: {
+    items: SubscriptionProducts;
+  };
+}
+
 // archived stuff
 
 export interface GetArchivedPageSlugsResponse {
@@ -209,4 +219,13 @@ export interface CustomerPortalSessionRequest {
 export interface CustomerPortalSessionResponse {
   url: string;
   return_url: string;
+}
+
+export interface GetProductsResponse {
+  subscribedProducts: ReadonlyArray<string>;
+}
+
+export interface GetProductInfoResponse {
+  product_id: string;
+  status: ProductStatus;
 }

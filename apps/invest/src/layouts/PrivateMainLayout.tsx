@@ -13,10 +13,6 @@ const PrivateMainLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
   const router = useRouter();
 
   React.useEffect(() => {
-    if (state === 'UNREGISTRED') {
-      window.location.href = process.env.NEXT_PUBLIC_PLATFORM_URL + '/register';
-    }
-
     if (state === 'SIGNED_OUT') {
       router.push(process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth');
     }

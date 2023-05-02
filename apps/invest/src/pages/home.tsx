@@ -10,9 +10,13 @@ import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
-import { getTitle } from 'platform-js';
-import { useGetFundRegistrationQuery } from '@/services';
+import { getTitle, useAppState } from 'platform-js';
+import {
+  useGetFundRegistrationQuery,
+  useLazyGetFundRegistrationQuery,
+} from '@/services';
 import { useRouter } from 'next/router';
+import config from '@/firebase/config';
 
 /**
  *  user-state: [registered, fund-registered]
@@ -24,25 +28,25 @@ const fundCards = {
     title: 'Fund Strategy',
     date: '',
     subtitle:
-      'Arcane Assets is an actively managed fund with the goal to maximise long term investor returns by capturing the value accrual of cryptocurrencies as an asset class. We do this by offering long exposure to sound projects with strong fundamentals in the crypto space.',
+      'K33 Assets is an actively managed fund with the goal to maximize long-term investor returns by capturing the value accrual of cryptocurrencies as an asset class. We do this by offering long exposure to sound projects with strong fundamentals in the crypto space.',
 
     description: [
       'Furthermore, the fund makes tactical adjustments to its allocations across the crypto asset risk spectrum depending on expected macroeconomic conditions.',
-      'Finally, we allocate a small part of our assets under management to discretionary trading, a mix of opportunistic event-driven strategies, employing derivatives strategies, short selling, arbitrage, staking and various investments in the decentralised finance ecosystem. The carefully selected and diversified cryptocurrency exposure ensures that the fund can excel regardless of whether it is bitcoin or other cryptocurrencies that succeed.',
+      'Finally, we allocate a small part of our assets under management to discretionary trading, a mix of opportunistic event-driven strategies, employing derivatives strategies, short selling, arbitrage, staking and various investments in the decentralized finance ecosystem. The carefully selected and diversified cryptocurrency exposure ensures that the fund can excel regardless of whether it is Bitcoin or other cryptocurrencies that succeed.',
     ],
   },
   position: {
     title: 'position and Near Term Outlook ',
-    date: 'Dec 2022',
+    date: 'April 2023',
     subtitle: '',
     description: [
-      'The macroeconomic outlook for 2023 has shifted to favouring more neutral positioning but we don’t expect risk-on markets, including crypto, to see a sustained bull market quite yet. That being said, we believe that it is time to move from defensive to more neutral risk positioning in crypto markets, as leverage that built up during the bull craze of 2020 and 2021 has mostly wound down and reset. We see 2023 as a better year for crypto assets than 2022 and are positioning the fund accordingly.',
+      "March was marked by turbulence in the traditional financial sector, emphasising the importance of crypto's self-custody and skepticism towards legacy systems. As Q1 came to a close, crypto performed remarkably well compared to traditional assets, and we expect the market to continue showing strength. However, it is essential to manage expectations for Q2, as the same level of growth as Q1 may not be attainable. Moving forward, our long-term outlook for crypto remains optimistic, despite the likelihood of a more moderate Q2. As always, we will keep a close eye on regulatory developments and market trends to navigate the crypto landscape effectively.",
     ],
   },
   summary: {
     title: 'trading summary',
     description: [
-      'The objective of the Fund is to provide a diversified exposure to the cryptocurrency market, independently of the performance of individual assets. The Fund has a long-term fundamental approach to the majority of its investments, but also acts on short-term opportunities in the market.',
+      'The objective of the Fund is to provide diversified exposure to the cryptocurrency market, independently of the performance of individual assets. The Fund has a long-term fundamental approach to the majority of its investments but also acts on short-term opportunities in the market.',
     ],
   },
 };
@@ -61,18 +65,33 @@ const promotion = {
 // TODO: extract the promotion box
 const Home: NextPageWithLayout = () => {
   const router = useRouter();
-  const { error, data, isError, isSuccess } = useGetFundRegistrationQuery(
-    'k33-assets-i-fund-limited'
-  );
+  const state = useAppState(config);
+
+  // const { error, data, isError, isSuccess } = useGetFundRegistrationQuery(
+  //   'k33-assets-i-fund-limited'
+  // );
+
+  const [trigger] = useLazyGetFundRegistrationQuery();
 
   useEffect(() => {
-    console.log(error);
-    console.log(isError);
-    console.log(data);
-    if (isError) {
-      router.push('/');
-    }
-  }, [router, isError]);
+    const getFundRegisteration = async () => {
+      try {
+        const data = await trigger('k33-assets-i-fund-limited').unwrap();
+      } catch (error) {
+        console.log(error);
+        router.push('/');
+      }
+    };
+
+    getFundRegisteration();
+  }, [state, trigger, router]);
+
+  // useEffect(() => {
+  //   console.log(isError);
+  //   if (isError) {
+  //     router.push('/');
+  //   }
+  // }, [router, isError]);
 
   return (
     <>
@@ -141,7 +160,7 @@ const Home: NextPageWithLayout = () => {
           </div>
           <div
             id="promotion-features"
-            className="md:px-8 md:py-7 py-2 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full md:flex-wrap gap-2 bg-default-systemGrey-dark-2 md:h-[176px] md:max-w-[762px]"
+            className="md:px-8 md:py-7 py-2 px-4 rounded-[40px] flex flex-col sm:h-full sm:w-full md:flex-wrap gap-2 bg-default-systemGrey-dark-2 2xl:h-[176px] 2xl:max-w-[762px]"
           >
             {promotion.features.map((feature) => (
               <div
@@ -219,8 +238,8 @@ const Home: NextPageWithLayout = () => {
                   <thead className="text-caption text-label-light-primary">
                     <tr>
                       <th>Minimum Investment</th>
-                      <th>Share Class B $100,000</th>
-                      <th>Share Class D $250,000</th>
+                      <th>Share Class F $100,000</th>
+                      <th>Share Class G $100,000</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-body3">
@@ -275,7 +294,7 @@ const Home: NextPageWithLayout = () => {
                   <thead className="text-small text-label-light-primary">
                     <tr>
                       <th>Minimum Investment</th>
-                      <th>Share Class B $100,000</th>
+                      <th>Share Class F $100,000</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
@@ -321,7 +340,7 @@ const Home: NextPageWithLayout = () => {
                   <thead className="text-small text-label-light-primary">
                     <tr>
                       <th>Minimum Investment</th>
-                      <th>Share Class D $250,000</th>
+                      <th>Share Class G $100,000</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
@@ -417,9 +436,9 @@ interface FundCardBodyProps {
 }
 
 const cardSize: Record<Size, string> = {
-  small: 'md:w-[624px]',
+  small: '2xl:w-[624px]',
   large: 'w-full',
-  medium: 'md:max-w-[832px] md:min-w-[720px]',
+  medium: '2xl:max-w-[832px] 2xl:min-w-[720px]',
 };
 
 const FundCardBody: React.FC<FundCardBodyProps> = ({

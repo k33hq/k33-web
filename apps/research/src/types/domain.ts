@@ -1,6 +1,6 @@
 import { Document } from '@contentful/rich-text-types';
-import React from 'react';
 
+export type ProductStatus = 'active' | 'ended' | 'blocked';
 export interface System {
   id: string;
   firstPublishedAt: string;
@@ -351,3 +351,9 @@ export interface ArchivePage extends ArchivePageSlug {
     linkToReport: null | ResearchDocument;
   };
 }
+
+export interface SubscriptionProductID {
+  productId: string;
+}
+
+export type SubscriptionProducts = ReadonlyArray<SubscriptionProductID>;

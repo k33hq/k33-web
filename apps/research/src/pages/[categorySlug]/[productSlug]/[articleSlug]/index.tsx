@@ -1,5 +1,15 @@
-import { getArticlePage, getArticleSlugs, getSubscriptionBySlug } from '@/api';
-import { ArticlePage, SubscriberType, SubscriptionPage } from '@/types';
+import {
+  getArticlePage,
+  getArticleSlugs,
+  getK33Products,
+  getSubscriptionBySlug,
+} from '@/api';
+import {
+  ArticlePage,
+  SubscriberType,
+  SubscriptionPage,
+  SubscriptionProducts,
+} from '@/types';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { getUrl, siteUsername } from '@/utils';
 import {
@@ -10,6 +20,7 @@ import {
   ArticleTitle,
   ArticleBody,
   Profile,
+  SubscriptionAdvert,
 } from '@/components';
 import Image from 'next/image';
 import { BasicButton, Divider, NextPageWithLayout, Marker, Dot } from 'ui';
@@ -17,10 +28,9 @@ import { getTitle, useAppState } from 'platform-js';
 import { ReactElement, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PrivateLayout } from '@/layouts';
-import { useStripeSubscriber } from '@/hooks';
 import Head from 'next/head';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { useCheckoutMutation } from '@/services';
+import config from '@/firebase/config';
 
 interface ArticleProps {
   articleSlug: string;
@@ -28,6 +38,7 @@ interface ArticleProps {
   productSlug: string;
   article: ArticlePage;
   subscription: SubscriptionPage;
+  subscriptionProducts: SubscriptionProducts;
 }
 
 const Article: NextPageWithLayout<ArticleProps> = ({
@@ -36,59 +47,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   article: articlePage,
   articleSlug,
   subscription,
+  subscriptionProducts,
 }) => {
   const { article, product, publishedDate } = articlePage;
-  const subscriber = useStripeSubscriber();
-
-  const [checkout, { isLoading, isSuccess, data, error, isError }] =
-    useCheckoutMutation();
-
-  const mainBody = () => {
-    if (
-      (subscriber != null && subscriber === 'pro') ||
-      ['blog', 'analysis', 'token-evaluations'].includes(categorySlug)
-    ) {
-      return (
-        <>
-          <ArticleBody document={article.body} />
-          {article.reportDocument ? (
-            <ReportsDownload
-              url={article.reportDocument.url}
-              title={article.reportDocument.title}
-            />
-          ) : null}
-        </>
-      );
-    }
-
-    return (
-      <>
-        {(subscriber === null || subscriber === 'free') && (
-          <div
-            id="id-subscribe"
-            className="bg-bg-dark-elevated-primary flex flex-col items-center justify-center text-center content-center md:py-16 py-8 md:px-24 px-10 md:gap-6 gap-2"
-          >
-            <p className="md:text-heading7 text-body1 text-label-dark-primary">
-              Sign in to K33 Research Pro to download the report
-            </p>
-            <BasicButton
-              variant="secondary"
-              onClick={async () => {
-                const response = await checkout({
-                  price_id: subscription.subscription.stripeProductId,
-                  success_url: window.location.href,
-                  cancel_url: window.location.href,
-                }).unwrap();
-                window.location.href = response.url;
-              }}
-            >
-              Start 30 Day Free Trial
-            </BasicButton>
-          </div>
-        )}
-      </>
-    );
-  };
 
   const getSeo = () => {
     if (articlePage.seo)
@@ -165,7 +126,7 @@ const Article: NextPageWithLayout<ArticleProps> = ({
         </div>
 
         <article
-          className={`flex flex-col justify-center md:gap-8 gap-4 md:w-2/3 w-full px-6 md:px-0 pb-[120px]`}
+          className={`flex flex-col justify-center md:gap-8 gap-4 md:w-2/3 w-full px-6 md:px-0`}
         >
           <div className="flex flex-col gap-2">
             <div className="flex flex-col md:gap-2 gap-1">
@@ -223,7 +184,25 @@ const Article: NextPageWithLayout<ArticleProps> = ({
             ) : null}
           </div>
 
-          {mainBody()}
+          <SubscriptionAdvert
+            productId={subscriptionProducts[0].productId}
+            priceId={subscription.subscription.stripeProductId}
+            overRideSubscriptionCheck={[
+              'blog',
+              'analysis',
+              'token-evaluations',
+            ].includes(categorySlug)}
+          >
+            <>
+              <ArticleBody document={article.body} />
+              {article.reportDocument ? (
+                <ReportsDownload
+                  url={article.reportDocument.url}
+                  title={article.reportDocument.title}
+                />
+              ) : null}
+            </>
+          </SubscriptionAdvert>
         </article>
         <div id="article-socials" className="md:w-1/3 hidden md:block"></div>
       </section>
@@ -260,6 +239,8 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
     'professional-k33-research-subscription'
   );
 
+  const subscriptionProducts = await getK33Products();
+
   return {
     props: {
       article,
@@ -267,6 +248,7 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async (context) => {
       categorySlug,
       productSlug,
       subscription,
+      subscriptionProducts,
     },
   };
 };
