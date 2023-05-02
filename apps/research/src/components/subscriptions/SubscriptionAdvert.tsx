@@ -77,6 +77,30 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
 
   if (productInfoStatus === 'loading') return null;
 
+  if (productInfoStatus === 'blocked')
+    return (
+      <div
+        id="id-subscribe"
+        className="bg-bg-dark-elevated-primary md:py-14 py-8 md:px-20 px-10"
+      >
+        <div className="flex flex-col md:gap-10 gap-6 md:w-[439px] mx-auto">
+          <div className="flex flex-col md:gap-4 items-center justify-center text-center">
+            <p className="md:text-heading6 text-body1 text-label-dark-primary">
+              Update subscription to keep reading
+            </p>
+            <p className="md:text-body2 text-small text-label-dark-primary">
+              Your subscription to K33 Research Pro gets you full access to all
+              our research.
+            </p>
+          </div>
+
+          <BasicButton variant="secondary" onClick={customerDashboard}>
+            Update Subscription
+          </BasicButton>
+        </div>
+      </div>
+    );
+
   return (
     <div
       id="id-subscribe"
@@ -95,11 +119,6 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
               : 'Subscribe to K33 Research Pro to keep reading and get full access to all our research.'}
           </p>
         </div>
-        {productInfoStatus === 'blocked' && (
-          <BasicButton variant="secondary" onClick={customerDashboard}>
-            Update Subscription
-          </BasicButton>
-        )}
 
         {productInfoStatus === 'ended' ? (
           <BasicButton variant="secondary" onClick={doCheckOut}>
