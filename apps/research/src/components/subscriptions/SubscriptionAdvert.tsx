@@ -73,7 +73,11 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
   };
 
   if (productInfoStatus === 'active' || overRideSubscriptionCheck)
-    return <div className="pb-[120px]">{children}</div>;
+    return (
+      <div className="pb-[120px] flex flex-col justify-center md:gap-8 gap-4 w-full px-6 md:px-0">
+        {children}
+      </div>
+    );
 
   if (productInfoStatus === 'loading') return null;
 
