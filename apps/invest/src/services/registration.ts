@@ -43,6 +43,7 @@ export const investApi = createApi({
 // Export hooks for usage in functional components
 export const {
   useGetFundRegistrationQuery,
+  useLazyGetFundRegistrationQuery,
   useFundRegistrationMutation,
   util: { getRunningQueriesThunk },
 } = investApi;
