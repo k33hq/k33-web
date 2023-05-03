@@ -187,11 +187,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
           <SubscriptionAdvert
             productId={subscriptionProducts[0].productId}
             priceId={subscription.subscription.stripeProductId}
-            overRideSubscriptionCheck={[
-              'blog',
-              'analysis',
-              'token-evaluations',
-            ].includes(categorySlug)}
+            overRideSubscriptionCheck={['the-friday-focus'].includes(
+              productSlug
+            )}
           >
             <>
               <ArticleBody document={article.body} />
