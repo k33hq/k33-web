@@ -4,33 +4,24 @@ import {
   getK33Products,
   getSubscriptionBySlug,
 } from '@/api';
-import {
-  ArticlePage,
-  SubscriberType,
-  SubscriptionPage,
-  SubscriptionProducts,
-} from '@/types';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { ArticlePage, SubscriptionPage, SubscriptionProducts } from '@/types';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { getUrl, siteUsername } from '@/utils';
 import {
   Indicator,
   ReportsDownload,
   NutShell,
   KeyPoints,
-  ArticleTitle,
   ArticleBody,
   Profile,
   SubscriptionAdvert,
 } from '@/components';
 import Image from 'next/image';
-import { BasicButton, Divider, NextPageWithLayout, Marker, Dot } from 'ui';
-import { getTitle, useAppState } from 'platform-js';
-import { ReactElement, useEffect, useState } from 'react';
+import { Divider, NextPageWithLayout, Marker, Dot } from 'ui';
+import { getTitle } from 'platform-js';
 import Link from 'next/link';
-import { PrivateLayout } from '@/layouts';
 import Head from 'next/head';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import config from '@/firebase/config';
 
 interface ArticleProps {
   articleSlug: string;
@@ -208,9 +199,9 @@ const Article: NextPageWithLayout<ArticleProps> = ({
   );
 };
 
-Article.getLayout = function getLayout(page: ReactElement) {
-  return <PrivateLayout>{page}</PrivateLayout>;
-};
+// Article.getLayout = function getLayout(page: ReactElement) {
+//   return <PrivateLayout>{page}</PrivateLayout>;
+// };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   const articles = await getArticleSlugs();
