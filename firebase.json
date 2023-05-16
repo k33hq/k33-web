@@ -47,6 +47,18 @@
       "cleanUrls": true,
       "public": "./apps/market/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-auth-dev",
+      "cleanUrls": true,
+      "public": "./apps/auth/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-auth",
+      "cleanUrls": true,
+      "public": "./apps/auth/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
 }

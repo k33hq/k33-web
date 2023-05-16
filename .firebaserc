@@ -16,6 +16,9 @@
         ],
         "k33-platform-dev": [
           "k33-platform-dev"
+        ],
+        "k33-auth-dev": [
+          "k33-auth-dev"
         ]
       }
     },
@@ -32,6 +35,9 @@
         ],
         "k33-markets": [
           "k33-markets"
+        ],
+        "k33-auth": [
+          "k33-auth"
         ]
       }
     }
