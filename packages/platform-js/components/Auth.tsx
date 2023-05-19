@@ -49,6 +49,7 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
     if (state === 'REGISTRED') {
       router.back();
     } else if (state === 'UNREGISTRED') {
+      console.log(state);
       register().then((state) => router.reload());
     }
   }, [state, router]);
