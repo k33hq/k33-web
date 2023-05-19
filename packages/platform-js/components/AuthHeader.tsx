@@ -8,7 +8,7 @@ import {
 } from 'ui';
 import * as React from 'react';
 import { FirebaseOptions } from 'firebase/app';
-import { AppStates, logout } from 'core';
+import { AppStates, logout, register } from 'core';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
 
@@ -236,6 +236,12 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
     !router.basePath.includes('markets') &&
     !router.basePath.includes('invest');
 
+  React.useEffect(() => {
+    if (state === 'UNREGISTRED') {
+      register().then((state) => router.reload());
+    }
+  }, [router, state]);
+
   return (
     <Header logo={logo} transparent={transparent}>
       <AppDrawer>
@@ -280,11 +286,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
                 }
                 break;
               case 'UNREGISTRED':
-                if (registrationUrl.includes('https://')) {
-                  window.location.href = registrationUrl;
-                } else {
-                  router.push(registrationUrl);
-                }
+                register().then((state) => router.reload());
                 break;
               case 'REGISTRED':
                 logout(
