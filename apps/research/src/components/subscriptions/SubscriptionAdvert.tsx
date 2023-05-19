@@ -84,7 +84,7 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
         subtitle="Subscribe to K33 Research Pro to keep reading and get 30 days of full access to all our research."
       >
         <div className="items-center justify-center text-center flex flex-col lg:gap-4">
-          <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL + 'auth'}>
+          <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}>
             <BasicButton variant="secondary">Sign Up & Start Trial</BasicButton>
           </Link>
 
@@ -93,7 +93,7 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
               Already a paid subscriber?
             </p>
             <Link
-              href={process.env.NEXT_PUBLIC_PLATFORM_URL + 'auth'}
+              href={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
               className="md:text-body2 text-small text-label-dark-primary underline"
             >
               Sign In
