@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { BrandButton, Stack } from 'ui';
 import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
-import { googleLogin, microsoftLogin } from 'core';
+import { googleLogin, microsoftLogin, register } from 'core';
 import { UserCredential } from 'firebase/auth';
+import Link from 'next/link';
 
 interface DiffCredData {
   appName: string;
@@ -39,26 +40,19 @@ interface AuthProps {
   onSuccessLogin: (user: UserCredential) => void;
 }
 
-const Auth: React.FC<AuthProps> = ({
-  firebaseConfig,
-  registrationUrl,
-  onSuccessLogin,
-}) => {
+const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (state === 'REGISTRED') {
-      router.push('/');
+      router.back();
     } else if (state === 'UNREGISTRED') {
-      if (registrationUrl.includes('https')) {
-        window.location.href = registrationUrl;
-      } else {
-        router.push(registrationUrl);
-      }
+      console.log(state);
+      register().then((state) => router.reload());
     }
-  }, [state, router, registrationUrl]);
+  }, [state, router]);
 
   const google = () => {
     googleLogin(onSuccessLogin, (err) => {});
