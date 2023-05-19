@@ -1,4 +1,4 @@
-import { AppStates, getAppState } from 'core';
+import { AppStates, getAppState, register } from 'core';
 import { FirebaseOptions } from 'firebase/app';
 import { init } from 'core';
 import * as React from 'react';
@@ -34,7 +34,7 @@ export const useAuth = (
     if (state === 'REGISTRED') {
       router.push(options.home);
     } else if (state === 'UNREGISTRED') {
-      router.push(options.registration);
+      register().then((state) => router.reload());
     }
   }, [state, router, options]);
 
