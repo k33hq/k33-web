@@ -87,22 +87,6 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
           {error}
         </p>
       </div>
-      <div className="pt-12 px-6 md:px-0 text-center text-default-systemPink-light">
-        {`By continuing you agree to K33’s `}
-        <Link className="underline" href={'terms-and-conditions'}>
-          Terms of Service
-        </Link>
-        {` and acknowledge that K33’s `}
-        <Link className="underline" href={'privacy'}>
-          Privacy Policy
-        </Link>
-        {` applies to you.`}
-      </div>
-      <div className="pt-60">
-        <p className="px-6 md:px-0 text-center text-default-systemPink-light">
-          {error}
-        </p>
-      </div>
     </Stack>
   );
 };
