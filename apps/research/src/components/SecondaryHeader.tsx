@@ -23,7 +23,7 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({ categories }) => {
       }`}
     >
       <div className="xl:container flex flex-row xl:gap-12 gap-6 items-center lg:justify-center h-10 xl:px-0 px-6 overflow-auto">
-        <Link href={process.env.NEXT_PUBLIC_RESEARCH_URL as string}>
+        <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}>
           <Image
             src={researchLogo}
             alt="research-logo"

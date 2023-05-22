@@ -27,7 +27,7 @@ const SendEmail: React.FC<SendEmailProps> = ({
     event.preventDefault();
     // validate email and send it to sendgrid
     const result = await fetch(
-      process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'email-subscriptions',
+      `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/email-subscriptions`,
       {
         method: 'PUT',
         mode: 'cors',

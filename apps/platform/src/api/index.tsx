@@ -2,7 +2,7 @@ import { PutEmailAddressRequest } from '@/types';
 
 export const emailAdd = async (email: string) => {
   const result = await fetch(
-    process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'email-subscriptions',
+    `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/email-subscriptions`,
     {
       method: 'PUT',
       mode: 'cors',

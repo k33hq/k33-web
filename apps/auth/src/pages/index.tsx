@@ -30,16 +30,14 @@ const Auth: NextPage = () => {
             {`By continuing you agree to K33’s `}
             <Link
               className="underline"
-              href={
-                process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'terms-and-conditions'
-              }
+              href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/terms-and-conditions`}
             >
               Terms of Service
             </Link>
             {` and acknowledge that K33’s `}
             <Link
               className="underline"
-              href={process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'privacy'}
+              href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/privacy`}
             >
               Privacy Policy
             </Link>

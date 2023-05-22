@@ -35,9 +35,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
                   router.reload();
                 }}
                 firebaseConfig={config}
-                registrationUrl={
-                  process.env.NEXT_PUBLIC_PLATFORM_URL + 'register'
-                }
+                registrationUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/register`}
               />
             </div>
           </div>

@@ -35,7 +35,7 @@ const TempLayout: React.FC<TemplLayoutProps> = ({ children }) => {
         <AuthHeader
           firebaseConfig={config}
           logo={
-            <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+            <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
               <Image src={logo} width={133} height={40} alt="k33-logo" />
             </Link>
           }
@@ -44,7 +44,7 @@ const TempLayout: React.FC<TemplLayoutProps> = ({ children }) => {
         />
         <SecondaryHeader
           branding={
-            <Link href={process.env.NEXT_PUBLIC_MARKETS_URL as string}>
+            <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/markets`}>
               <Image
                 src={investmentLogo}
                 alt="k33-investments"
