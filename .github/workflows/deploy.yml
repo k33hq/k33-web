@@ -60,6 +60,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm build
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
@@ -98,6 +100,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm build
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
@@ -136,6 +140,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm build
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
@@ -174,6 +180,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm build
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
@@ -212,6 +220,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm build
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
