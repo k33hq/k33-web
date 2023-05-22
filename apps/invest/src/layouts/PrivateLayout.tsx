@@ -15,7 +15,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
   React.useEffect(() => {
     // TODO: redirect to login
     if (state === 'SIGNED_OUT') {
-      window.location.href = process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth';
+      window.location.href = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`;
     }
   }, [state, router]);
 

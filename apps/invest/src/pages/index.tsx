@@ -28,7 +28,7 @@ const insightPromotion = {
     'For professional investors',
   ],
   callToAction: {
-    url: process.env.NEXT_PUBLIC_INVEST_URL + '/' + 'classification',
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest/classification`,
     label: 'Learn More',
   },
 };

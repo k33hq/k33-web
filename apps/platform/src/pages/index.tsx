@@ -46,21 +46,21 @@ const apps = [
   {
     logo: <Image src={research} width={108} height={108} alt="research" />,
     title: 'Research',
-    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`,
     description:
       'Weekly reports on digital asset markets & macro, from industry leading analysts.',
   },
   {
     logo: <Image src={market} width={108} height={108} alt="market" />,
     title: 'Markets',
-    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/markets`,
     description:
       'Get best execution across multiple exchanges, with a custody solution tailored just for you.',
   },
   {
     logo: <Image src={invest} width={108} height={108} alt="invest" />,
     title: 'Investments',
-    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest`,
     description:
       'Gain long-term managed exposure to digital assets through tailored managed funds.',
   },
@@ -86,7 +86,7 @@ const insightPromotion = {
     'Bespoke research & consulting',
   ],
   callToAction: {
-    url: process.env.NEXT_PUBLIC_RESEARCH_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`,
     label: 'Find Out More',
   },
 };
@@ -111,7 +111,7 @@ const tradePromotion = {
     'Seamless onboarding',
   ],
   callToAction: {
-    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/markets`,
     label: 'Find Out More',
   },
 };
@@ -136,7 +136,7 @@ const securePromotion = {
     'Fully regulated exposure',
   ],
   callToAction: {
-    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest`,
     label: 'Find Out More',
   },
 };

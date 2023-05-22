@@ -90,7 +90,7 @@ const Category: NextPageWithLayout<CategoryProps> = ({
         <meta name="twitter:site" content={siteUsername} />
         <meta
           property="og:url"
-          content={process.env.NEXT_PUBLIC_RESEARCH_URL + getUrl(categorySlug)}
+          content={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research` + getUrl(categorySlug)}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />

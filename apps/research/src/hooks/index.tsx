@@ -9,7 +9,7 @@ export const useStripeSubscriber = () => {
     const getSubscriber = async () => {
       try {
         const data = await fetcher(
-          `${process.env.NEXT_PUBLIC_K33_BACKEND_URL}payment/subscribed-products`
+          `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/payment/subscribed-products`
         );
 
         if (data.status === 404) {

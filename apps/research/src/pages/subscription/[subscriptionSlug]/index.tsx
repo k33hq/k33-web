@@ -30,8 +30,8 @@ const Subscription: NextPageWithLayout<SubscriptionProps> = ({
       try {
         const payload = await checkout({
           price_id: subscription.subscription.stripeProductId,
-          success_url: process.env.NEXT_PUBLIC_RESEARCH_URL + '/settings',
-          cancel_url: process.env.NEXT_PUBLIC_RESEARCH_URL + '/settings',
+          success_url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/settings`,
+          cancel_url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/settings`,
         }).unwrap();
         window.location.href = payload.url;
       } catch (err) {

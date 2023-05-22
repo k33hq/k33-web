@@ -5,7 +5,7 @@ import { Fund, FundInfo } from '@/types';
 
 export const investApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'apps/invest/',
+    baseUrl: `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/apps/invest/`,
     prepareHeaders: async (headers) => {
       const token = await getIdToken();
       headers.set('Content-Type', 'application/json');

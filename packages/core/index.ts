@@ -212,7 +212,7 @@ interface AppConfig {
 export const getAppState = async (config?: AppConfig) => {
   try {
     const data = await fetcher(
-      process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'user'
+      `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`
     );
     if (data.status === 404) {
       return UNREGISTERED;
@@ -231,7 +231,7 @@ export const getAppState = async (config?: AppConfig) => {
 export const register = async (config?: AppConfig) => {
   try {
     const data = await mutator(
-      process.env.NEXT_PUBLIC_K33_BACKEND_URL + 'user',
+      `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`,
       'POST',
       {}
     );
