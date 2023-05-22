@@ -64,6 +64,8 @@ jobs:
       #  TODO joel: add tests
       #      - name: Test
       #        run: pnpm test
+      - name: export auth
+        run: pnpm --dir apps/auth export
       - name: export platform
         run: pnpm --dir apps/platform export
       - name: export research
