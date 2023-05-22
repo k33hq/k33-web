@@ -250,7 +250,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
             <AppItem
               active={active || isHome}
               name="Home"
-              url={process.env.NEXT_PUBLIC_PLATFORM_URL as string}
+              url={process.env.NEXT_PUBLIC_WEBFLOW_ROOT as string}
             >
               <PlatformLogo active={active || isHome} />
             </AppItem>
