@@ -192,18 +192,18 @@ export const apps = [
 export const company = [
   {
     name: 'About',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'about') as string,
+    url: (process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'about') as string,
     key: 'about',
   },
   {
     name: 'T&C',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL +
+    url: (process.env.NEXT_PUBLIC_WEBFLOW_ROOT +
       'terms-and-conditions') as string,
     key: 'terms-and-conditions',
   },
   {
     name: 'Privacy',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'privacy') as string,
+    url: (process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'privacy') as string,
     key: 'privacy',
   },
 ];
