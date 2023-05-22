@@ -1,3 +1,4 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 import { NextPage } from 'next';
 import { Auth as AuthComponent, getTitle } from 'platform-js';
 import config from '@/firebase/config';
@@ -27,11 +28,19 @@ const Auth: NextPage = () => {
         <div className="px-6 md:px-0 text-center text-small justify-center flex flex-col">
           <p>
             {`By continuing you agree to K33’s `}
-            <Link className="underline" href={'terms-and-conditions'}>
+            <Link
+              className="underline"
+              href={
+                process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'terms-and-conditions'
+              }
+            >
               Terms of Service
             </Link>
             {` and acknowledge that K33’s `}
-            <Link className="underline" href={'privacy'}>
+            <Link
+              className="underline"
+              href={process.env.NEXT_PUBLIC_WEBFLOW_ROOT + 'privacy'}
+            >
               Privacy Policy
             </Link>
             {` applies to you.`}
