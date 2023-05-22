@@ -44,7 +44,7 @@ const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
     <>
       <AuthHeader
         logo={
-          <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+          <Link href={process.env.NEXT_PUBLIC_WEBFLOW_ROOT as string}>
             <Image
               src={logo}
               height={24}
@@ -56,7 +56,7 @@ const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
             />
           </Link>
         }
-        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + 'auth'}
+        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
         registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + 'register'}
         firebaseConfig={config}
         transparent={true}

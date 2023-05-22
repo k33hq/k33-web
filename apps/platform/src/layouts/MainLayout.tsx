@@ -34,11 +34,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <AuthHeader
           firebaseConfig={config}
           logo={
-            <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+            <Link href={process.env.NEXT_PUBLIC_WEBFLOW_ROOT as string}>
               <Image src={logo} height={24} width={94} alt="company logo" />
             </Link>
           }
-          authUrl={'auth'}
+          authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
           registrationUrl={'register'}
         />
         <main className="flex flex-col">{children}</main>
