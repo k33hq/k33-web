@@ -66,5 +66,3 @@ jobs:
         run: pnpm --dir apps/research export
       - name: export invest
         run: pnpm --dir apps/invest export
-      - name: export markets
-        run: pnpm --dir apps/market export
