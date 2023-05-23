@@ -1,7 +1,5 @@
 user-agent: *
-disallow: /register
-disallow: /research/home
+disallow: /services/auth
 
 sitemap: https://k33.com/sitemap.xml
-sitemap: https://k33.com/research/sitemap.xml
 sitemap: https://k33.com/research/archive/sitemap.xml
