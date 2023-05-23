@@ -45,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         />
         <SecondaryHeader
           branding={
-            <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest`}>
+            <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}>
               <Image
                 src={investmentLogo}
                 alt="k33-investments"

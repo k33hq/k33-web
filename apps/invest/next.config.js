@@ -1,6 +1,6 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  basePath: '/invest',
+  basePath: '/apps/invest',
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.pdf$/i,

@@ -177,7 +177,7 @@ export const apps = [
   },
   {
     name: 'Investments',
-    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest`,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`,
     Logo: InvestLogo,
     key: 'invest',
   },

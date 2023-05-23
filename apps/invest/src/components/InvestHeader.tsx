@@ -64,7 +64,7 @@ const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
 
       <nav className={`navbar w-full bg-bg-dark-primary`}>
         <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
-          <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/invest`}>
+          <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}>
             <Image
               src={investmentLogo}
               alt="research-logo"

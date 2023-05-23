@@ -145,7 +145,7 @@ const Home: NextPageWithLayout = () => {
                 </BasicButton>
               </a>
               <a
-                href="/invest/home/fund-doc.pdf"
+                href="/apps/invest/home/fund-doc.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
