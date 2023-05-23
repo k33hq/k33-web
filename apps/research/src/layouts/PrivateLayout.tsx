@@ -3,6 +3,8 @@ import { Modal, BrandButton, Loading } from 'ui';
 import { Auth, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import { useRouter } from 'next/router';
+import { register } from 'core';
+import Link from "next/link";
 
 interface PrivateLayoutProps {
   children: React.ReactNode;
@@ -12,6 +14,12 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
   const state = useAppState(config);
   const router = useRouter();
   const privateStates = ['SIGNED_OUT'];
+
+  React.useEffect(() => {
+    if (state === 'UNREGISTRED') {
+      register();
+    }
+  }, [state]);
 
   return (
     <>
@@ -37,6 +45,25 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
                 firebaseConfig={config}
                 registrationUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/register`}
               />
+              <div className="px-6 md:px-0 text-center text-small justify-center flex flex-col">
+                <p>
+                  {`By continuing you agree to K33’s `}
+                  <Link
+                    className="underline"
+                    href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/terms-and-conditions`}
+                  >
+                    Terms of Service
+                  </Link>
+                  {` and acknowledge that K33’s `}
+                  <Link
+                    className="underline"
+                    href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/privacy`}
+                  >
+                    Privacy Policy
+                  </Link>
+                  {` applies to you.`}
+                </p>
+              </div>
             </div>
           </div>
         </Modal>
