@@ -11,9 +11,6 @@
         "k33-invest-dev": [
           "k33-invest-dev"
         ],
-        "k33-markets-dev": [
-          "k33-markets-dev"
-        ],
         "k33-platform-dev": [
           "k33-platform-dev"
         ],
@@ -32,9 +29,6 @@
         ],
         "k33-invest": [
           "k33-invest"
-        ],
-        "k33-markets": [
-          "k33-markets"
         ],
         "k33-auth": [
           "k33-auth"
