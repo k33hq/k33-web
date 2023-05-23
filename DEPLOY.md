@@ -5,7 +5,6 @@
 ```shell
 pnpm install
 pnpm build
-pnpm --dir apps/platform export
 pnpm --dir apps/research export
 pnpm --dir apps/invest export
 pnpm --dir apps/market export
