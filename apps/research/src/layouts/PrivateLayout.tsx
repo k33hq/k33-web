@@ -4,7 +4,7 @@ import { Auth, useAppState } from 'platform-js';
 import config from '@/firebase/config';
 import { useRouter } from 'next/router';
 import { register } from 'core';
-import Link from "next/link";
+import Link from 'next/link';
 
 interface PrivateLayoutProps {
   children: React.ReactNode;

@@ -26,3 +26,4 @@ firebase deploy --only hosting:k33-research
 firebase deploy --only hosting:k33-invest
 firebase deploy --only hosting:k33-auth
 ```
+s
