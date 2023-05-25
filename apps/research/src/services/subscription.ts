@@ -12,7 +12,7 @@ import {
 
 export const researchApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_K33_BACKEND_URL,
+    baseUrl: `https://${process.env.NEXT_PUBLIC_API_DOMAIN}`,
     prepareHeaders: async (headers) => {
       const token = await getIdToken();
       headers.set('Content-Type', 'application/json');

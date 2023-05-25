@@ -171,19 +171,19 @@ export const MarketsLogo: React.FC<LogoProps> = ({ active = false }) => {
 export const apps = [
   {
     name: 'Research',
-    url: process.env.NEXT_PUBLIC_RESEARCH_URL + '/' + 'home',
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/home`,
     Logo: ResearchLogo,
     key: 'research',
   },
   {
     name: 'Investments',
-    url: process.env.NEXT_PUBLIC_INVEST_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`,
     Logo: InvestLogo,
     key: 'invest',
   },
   {
     name: 'Markets',
-    url: process.env.NEXT_PUBLIC_MARKETS_URL as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/markets`,
     Logo: MarketsLogo,
     key: 'markets',
   },
@@ -192,18 +192,17 @@ export const apps = [
 export const company = [
   {
     name: 'About',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'about') as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/about`,
     key: 'about',
   },
   {
     name: 'T&C',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL +
-      'terms-and-conditions') as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/terms-and-conditions`,
     key: 'terms-and-conditions',
   },
   {
     name: 'Privacy',
-    url: (process.env.NEXT_PUBLIC_PLATFORM_URL + 'privacy') as string,
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/privacy`,
     key: 'privacy',
   },
 ];
@@ -250,7 +249,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
             <AppItem
               active={active || isHome}
               name="Home"
-              url={process.env.NEXT_PUBLIC_PLATFORM_URL as string}
+              url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}
             >
               <PlatformLogo active={active || isHome} />
             </AppItem>

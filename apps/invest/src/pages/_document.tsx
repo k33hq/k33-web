@@ -21,7 +21,7 @@ class MyDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="64x64"
-            href="/invest/favicon-64x64.png"
+            href="/apps/invest/favicon-64x64.png"
           />
         </Head>
         <body className={`${poppins.className} flex min-h-screen flex-col`}>

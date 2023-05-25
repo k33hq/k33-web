@@ -33,7 +33,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
     <>
       <AuthHeader
         logo={
-          <Link href={process.env.NEXT_PUBLIC_PLATFORM_URL as string}>
+          <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
             <Image
               src={logo}
               height={24}
@@ -45,8 +45,8 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ categories }) => {
             />
           </Link>
         }
-        authUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth'}
-        registrationUrl={process.env.NEXT_PUBLIC_PLATFORM_URL + 'register'}
+        authUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+        registrationUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/register`}
         firebaseConfig={config}
         transparent={isLanding}
       />

@@ -89,7 +89,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
         <meta
           property="og:url"
           content={
-            process.env.NEXT_PUBLIC_RESEARCH_URL +
+            `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research` +
             `${
               categorySlug === 'reports'
                 ? getUrl(categorySlug, productSlug)

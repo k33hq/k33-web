@@ -14,13 +14,11 @@
     "@next/font": "^13.1.6",
     "core": "workspace:*",
     "firebase": "^9.16.0",
-    "gray-matter": "^4.0.3",
     "next": "^13.1.1",
     "platform-js": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
-    "react-markdown": "^8.0.5",
     "ui": "workspace:*"
   },
   "devDependencies": {

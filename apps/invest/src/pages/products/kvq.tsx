@@ -151,7 +151,7 @@ const KvQ: NextPageWithLayout = () => {
         className="md:container flex md:flex-row flex-col md:gap-8 md:py-12"
       >
         <a
-          href="/invest/pdfs/PDF-report-Methodology.pdf"
+          href="/apps/invest/pdfs/PDF-report-Methodology.pdf"
           target="_blank"
           rel="noopener noreferrer"
           download
@@ -163,7 +163,7 @@ const KvQ: NextPageWithLayout = () => {
           </BasicButton>
         </a>
         <a
-          href="/invest/pdfs/PDF-report-Assessment-Jan-2023.pdf"
+          href="/apps/invest/pdfs/PDF-report-Assessment-Jan-2023.pdf"
           target="_blank"
           rel="noopener noreferrer"
           download

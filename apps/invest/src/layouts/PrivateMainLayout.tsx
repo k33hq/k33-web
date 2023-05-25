@@ -14,7 +14,7 @@ const PrivateMainLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
 
   React.useEffect(() => {
     if (state === 'SIGNED_OUT') {
-      router.push(process.env.NEXT_PUBLIC_PLATFORM_URL + '/auth');
+      router.push(`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`);
     }
   }, [state, router]);
 
