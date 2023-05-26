@@ -1,0 +1,43 @@
+name: Deploy Platform
+
+on:
+  workflow_dispatch:
+    inputs: 
+      target_env:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - 'dev'
+          - 'prod'
+
+jobs:
+  deploy-webflow:
+    name: Deploy apps/platform
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: fetch webflow exported zip file
+        run: wget https://storage.cloud.google.com/k33-${{ inputs.target_env }}_webflow_export/k33-web.webflow.zip
+      - name: unzip
+        run: unzip k33-web.webflow.zip -d apps/platform/out/
+      - name: add robots.txt and sitemap.xml
+        run: >
+          cp apps/platform/public/robots.txt apps/platform/out/
+          cp apps/platform/public/sitemap.xml apps/platform/out/
+      - name: deploy apps/platform
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.GCP_SA_KEY }}'
+          expires: 30d
+          projectId: '${{ vars.GCP_PROJECT_ID }}'
+          channelId: live
+          # removing target will deploy all targets defined in .firebaserc
+          target: '${{ vars.FIREBASE_PLATFORM_TARGET }}'
