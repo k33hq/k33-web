@@ -12,14 +12,13 @@ if [ -z "${BASH_VERSINFO}" ] || [ -z "${BASH_VERSINFO[0]}" ] || [ ${BASH_VERSINF
 fi
 
 # remove old files
-rm -rf apps/platform/out/*
+rm -rf apps/platform/out
 
 # unzip
 unzip k33-web.webflow.zip -d apps/platform/out/
 
-# add robots.txt and sitemap.xml 
-cp apps/platform/public/robots.txt apps/platform/out/
-cp apps/platform/public/sitemap.xml apps/platform/out/
+# add public files including hidden files
+cp -r apps/platform/public/ apps/platform/out
 
 # select k33-prod project
 firebase use k33-dev

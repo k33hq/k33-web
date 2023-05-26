@@ -2,7 +2,7 @@ name: Deploy Platform
 
 on:
   workflow_dispatch:
-    inputs: 
+    inputs:
       target_env:
         description: 'Target environment'
         required: true
@@ -24,13 +24,11 @@ jobs:
         with:
           fetch-depth: 2
       - name: fetch webflow exported zip file
-        run: wget https://storage.cloud.google.com/k33-${{ inputs.target_env }}_webflow_export/k33-web.webflow.zip
+        run: wget https://storage.googleapis.com/k33-${{ inputs.target_env }}_webflow_export/k33-web.webflow.zip
       - name: unzip
         run: unzip k33-web.webflow.zip -d apps/platform/out/
-      - name: add robots.txt and sitemap.xml
-        run: >
-          cp apps/platform/public/robots.txt apps/platform/out/
-          cp apps/platform/public/sitemap.xml apps/platform/out/
+      - name: add public files excluding hidden files
+        run: cp apps/platform/public/* apps/platform/out/
       - name: deploy apps/platform
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
