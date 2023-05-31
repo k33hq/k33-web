@@ -14,6 +14,16 @@ export const researchApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `https://${process.env.NEXT_PUBLIC_API_DOMAIN}`,
     prepareHeaders: async (headers) => {
+      //@ts-ignore
+      gtag(
+        'get',
+        process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+        'client_id',
+        (clientId: string) => {
+          console.log(clientId);
+          headers.set('X-Client-Id', `${clientId}`);
+        }
+      );
       const token = await getIdToken();
       headers.set('Content-Type', 'application/json');
       if (token) {

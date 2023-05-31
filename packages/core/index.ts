@@ -272,15 +272,24 @@ export const mutator = async <T extends object>(
   const token = await getIdToken();
   if (token) {
     //@ts-ignore
-    return fetch(url, {
-      method,
-      body: JSON.stringify(body),
-      //@ts-ignore
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }),
-    });
+    return gtag(
+      'get',
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+      'client_id',
+      (clientId: string) => {
+        //@ts-ignore
+        return fetch(url, {
+          method,
+          body: JSON.stringify(body),
+          //@ts-ignore
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            'x-client-id': clientId,
+          }),
+        });
+      }
+    );
   } else {
     return Promise.reject(new Error('user not authenticated'));
   }
