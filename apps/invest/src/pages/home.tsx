@@ -36,11 +36,12 @@ const fundCards = {
     ],
   },
   position: {
-    title: 'position and Near Term Outlook ',
-    date: 'April 2023',
+    title: 'position and Near Term Outlook',
+    date: 'May 2023',
     subtitle: '',
     description: [
-      "March was marked by turbulence in the traditional financial sector, emphasising the importance of crypto's self-custody and skepticism towards legacy systems. As Q1 came to a close, crypto performed remarkably well compared to traditional assets, and we expect the market to continue showing strength. However, it is essential to manage expectations for Q2, as the same level of growth as Q1 may not be attainable. Moving forward, our long-term outlook for crypto remains optimistic, despite the likelihood of a more moderate Q2. As always, we will keep a close eye on regulatory developments and market trends to navigate the crypto landscape effectively.",
+      'The long-term trend continues to look strong. Bitcoin on-chain activity is booming due to Ordinals, relieving some concerns around its long-term security budget. Ethereum has completed its staking roadmap by enabling withdrawals from staking, and is experiencing a quite significant drop in supply as on-chain activity leads to burning of ETH.',
+      "Near-term, speculators eye the US government's impending sale of Bitcoins originating from Silk Road. Genesis bankruptcy is back on topic with a large debt from DCG to Genesis due in May. While these events can add to the volatility of their particular month, they appear as noise when zooming out.",
     ],
   },
   summary: {
@@ -217,14 +218,8 @@ const Home: NextPageWithLayout = () => {
               <div></div>
             </FundCard>
             <div className="flex flex-col md:gap-4 gap-8">
-              <FundCard title="trading summary" date={''}>
-                <FundBold>
-                  The objective of the Fund is to provide a diversified exposure
-                  to the cryptocurrency market, independently of the performance
-                  of individual assets. The Fund has a long-term fundamental
-                  approach to the majority of its investments, but also acts on
-                  short-term opportunities in the market.
-                </FundBold>
+              <FundCard title={fundCards.summary.title} date={''}>
+                <FundBold>{fundCards.summary.description}</FundBold>
               </FundCard>
               <FundCard title="key fund facts" date={''}>
                 <Image src={fundFact} alt="" />
@@ -274,7 +269,7 @@ const Home: NextPageWithLayout = () => {
                       <td>20% (btc benchmark)</td>
                     </tr>
                     <tr>
-                      <td>High watermark</td>
+                      <td>High Watermark</td>
                       <td>Yes</td>
                       <td>Yes</td>
                     </tr>
@@ -323,7 +318,7 @@ const Home: NextPageWithLayout = () => {
                       <td>20%</td>
                     </tr>
                     <tr>
-                      <td>High watermark</td>
+                      <td>High Watermark</td>
                       <td>Yes</td>
                     </tr>
                     <tr>
