@@ -81,7 +81,7 @@ const SubscriptionAdvert: React.FC<SubscriptionAdvertProps> = ({
     return (
       <CallToAction
         title="Keep reading with a 30-day free trial"
-        subtitle="Subscribe to K33 Research Pro to keep reading and get 30 days of full access to all our research."
+        subtitle="Subscribe to K33 Research Pro to get full access to all research. No credit card needed for free trial."
       >
         <div className="items-center justify-center text-center flex flex-col lg:gap-4">
           <Link
