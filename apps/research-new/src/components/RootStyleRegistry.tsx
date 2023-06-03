@@ -5,9 +5,7 @@ import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
 
 interface RootStyleRegistryProps extends React.PropsWithChildren {}
 
-export const RootStyleRegistry: React.FC<RootStyleRegistryProps> = ({
-  children,
-}) => {
+const RootStyleRegistry: React.FC<RootStyleRegistryProps> = ({ children }) => {
   const [cache] = React.useState(() => createCache());
 
   useServerInsertedHTML(() => {
@@ -22,3 +20,5 @@ export const RootStyleRegistry: React.FC<RootStyleRegistryProps> = ({
 
   return <StyleProvider cache={cache}>{children}</StyleProvider>;
 };
+
+export default RootStyleRegistry;
