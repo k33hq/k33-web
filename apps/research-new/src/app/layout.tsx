@@ -1,10 +1,10 @@
 'use client';
 import { Poppins } from 'next/font/google';
 import { ResearchHeader, RootStyleProvider } from '@/components';
-import { Button, Layout } from 'antd';
+import { Layout } from 'antd';
 import 'antd/dist/reset.css';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
   display: 'swap',
@@ -26,10 +26,14 @@ export default function RootLayout({
             }}
           >
             <ResearchHeader />
-            <Content className="site-layout">{children}</Content>
+            <Content>{children}</Content>
           </Layout>
         </RootStyleProvider>
       </body>
     </html>
   );
 }
+
+// TODO: ask xavier about this
+// TODO: decompose individual sections into its own component, maybe reuse it over the other pages
+// TODO:
