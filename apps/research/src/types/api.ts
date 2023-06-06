@@ -3,7 +3,7 @@ import {
   ArticlePage,
   ArticleWebCollection,
   ArticleSeo,
-} from './article';
+} from './contentful';
 import { ProductStatus } from './payments';
 
 export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;

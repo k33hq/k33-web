@@ -48,6 +48,9 @@ export interface IArticleFields {
 
   /** Published Date */
   publishedDate?: string | undefined;
+
+  /** Public Snippet */
+  publicSnippet: Document;
 }
 
 /** Topic - An Article is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that forms the basis of how K33 Research core content (PDFs, Webinars, or Opinion) are distributed. */
@@ -71,7 +74,7 @@ export interface IArticle extends Entry<IArticleFields> {
 
 export interface IArticleMobileFields {
   /** Article */
-  article?: IArticle | undefined;
+  article: IArticle;
 }
 
 /** Assembly - how an Article should be constructed to be presented on iOS, iPadOS, or Android */
@@ -95,7 +98,7 @@ export interface IArticleMobile extends Entry<IArticleMobileFields> {
 
 export interface IArticleWebFields {
   /** Article */
-  article?: IArticle | undefined;
+  article: IArticle;
 
   /** Title */
   title: string;
@@ -112,7 +115,7 @@ export interface IArticleWebFields {
   /** Author */
   author: IAuthorWeb;
 
-  /** publishedDate */
+  /** Published Date */
   publishedDate: string;
 
   /** Subscription */
@@ -120,6 +123,12 @@ export interface IArticleWebFields {
 
   /** SEO */
   seo?: ISeoMetadata | undefined;
+
+  /** Attributes */
+  attributes?: IAttribute[] | undefined;
+
+  /** Section */
+  section: ISection;
 }
 
 /** Assembly - how an Article should be constructed to be presented on the web */
@@ -134,6 +143,33 @@ export interface IArticleWeb extends Entry<IArticleWebFields> {
     contentType: {
       sys: {
         id: 'articleWeb';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IAttributeFields {
+  /** key */
+  key: string;
+
+  /** value */
+  value: string;
+}
+
+/** Attributes of type Key=Value assigned to ArticleWeb */
+
+export interface IAttribute extends Entry<IAttributeFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'attribute';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -569,6 +605,30 @@ export interface IResearchLandingPageWeb
   };
 }
 
+export interface ISectionFields {
+  /** name */
+  name: string;
+}
+
+/** Path of sections in web expressed as section/sub-section */
+
+export interface ISection extends Entry<ISectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'section';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface ISeoMetadataFields {
   /** Title */
   title: string;
@@ -729,6 +789,7 @@ export type CONTENT_TYPE =
   | 'article'
   | 'articleMobile'
   | 'articleWeb'
+  | 'attribute'
   | 'author'
   | 'authorWeb'
   | 'callToAction'
@@ -741,6 +802,7 @@ export type CONTENT_TYPE =
   | 'promotion'
   | 'quote'
   | 'researchLandingPageWeb'
+  | 'section'
   | 'seoMetadata'
   | 'subscription'
   | 'subscriptionProduct'
@@ -751,6 +813,7 @@ export type IEntry =
   | IArticle
   | IArticleMobile
   | IArticleWeb
+  | IAttribute
   | IAuthor
   | IAuthorWeb
   | ICallToAction
@@ -763,6 +826,7 @@ export type IEntry =
   | IPromotion
   | IQuote
   | IResearchLandingPageWeb
+  | ISection
   | ISeoMetadata
   | ISubscription
   | ISubscriptionProduct

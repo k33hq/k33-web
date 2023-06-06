@@ -1,24 +1,31 @@
+import { TagCollection } from './tags';
 import {
   IArticleFields,
   IArticleWebFields,
   ISectionFields,
   ISeoMetadataFields,
-} from './generated/contentful';
+  ITagFields,
+} from '../generated/contentful';
+import { AuthorCollection, AuthorCompact } from './author';
+import { Asset } from './global';
 
 export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 
-interface Article
+export interface Article
   extends Pick<
-    IArticleFields,
-    | 'title'
-    | 'subtitle'
-    | 'image'
-    | 'body'
-    | 'publicSnippet'
-    | 'summary'
-    | 'keyPoints'
-    | 'reportDocument'
-  > {}
+      IArticleFields,
+      | 'title'
+      | 'subtitle'
+      | 'body'
+      | 'publicSnippet'
+      | 'summary'
+      | 'keyPoints'
+      | 'reportDocument'
+    >,
+    AuthorCollection<AuthorCompact>,
+    TagCollection<ITagFields> {
+  image: Asset;
+}
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {
   seo: ISeoMetadataFields;

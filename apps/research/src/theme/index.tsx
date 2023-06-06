@@ -6,6 +6,7 @@ const withTheme = (node: JSX.Element) => (
     theme={{
       token: {
         colorPrimary: '#52c41a',
+        colorTextSecondary: '#000000a6',
       },
       components: {
         Layout: {
