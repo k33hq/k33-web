@@ -7,7 +7,6 @@ import {
   CustomerPortalSessionRequest,
   CustomerPortalSessionResponse,
   GetProductInfoResponse,
-  GetProductsResponse,
 } from '@/types';
 
 export const researchApi = createApi({

@@ -2,7 +2,7 @@
 module.exports = {
   swcMinify: true,
   basePath: '/research',
-  transpilePackages: ['core', 'platform-js'],
+  transpilePackages: ['core', 'platform-js', 'antd'],
   reactStrictMode: true,
   images: {
     unoptimized: true,

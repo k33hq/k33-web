@@ -1,97 +1,47 @@
 import { gql } from 'graphql-request';
 import { contentful } from './client';
 import {
-  GetArticleElementsByCategoriesResponse,
-  GetArticleElementsByProductAndCategoriesResponse,
   GetArticlePageResponse,
-  GetArticleSlugsByProductsAndCategoriesResponse,
+  GetArticleSeoResponse,
   GetArticleSlugsResponse,
-} from '../types';
-
-/**
- * since they are only slugs can be intensive
- */
-const GetArticleSlugsByProductsAndCategories = gql`
-  query GetArticleSlugsByProductsAndCategories(
-    $categorySlug: String!
-    $productSlug: String!
-  ) {
-    articleWebCollection(
-      where: {
-        category: { categorySlug: $categorySlug }
-        product: { productSlug: $productSlug }
-      }
-    ) {
-      items {
-        articleSlug
-      }
-    }
-  }
-`;
+} from '@/types';
+import {
+  PublicSnippetFragment,
+  ArticleBodyFragment,
+  SeoFragment,
+  AssetFragment,
+} from './fragments';
 
 const GetArticleSlugs = gql`
   query {
     articleWebCollection {
       items {
         articleSlug
-        category {
-          categorySlug
-        }
-
-        product {
-          productSlug
-        }
       }
     }
   }
 `;
 
-/**
- * gets a minimized version of articles for showing as cards
- * its ordered by the date first published
- */
-const GetArticleElementsByProductAndCategories = gql`
-  query GetArticleSlugsByProductsAndCategories(
-    $categorySlug: String!
-    $productSlug: String!
-    $limit: Int!
-  ) {
-    articleWebCollection(
-      where: {
-        category: { categorySlug: $categorySlug }
-        product: { productSlug: $productSlug }
-      }
-      order: [publishedDate_DESC]
-      limit: $limit
-    ) {
+const GetArticleSeo = gql`
+  query GetArticlePage($articleSlug: String!) {
+    articleWebCollection(where: { articleSlug: $articleSlug }, limit: 1) {
       items {
-        category {
-          categorySlug
-        }
-
-        articleSlug
-        publishedDate
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-          }
+        title
+        seo {
+          ...seo
         }
         article {
           title
-
-          thumbnail {
-            url
-            title
-            description
+          subtitle
+          image {
+            ...asset
           }
         }
       }
     }
   }
+  ${AssetFragment}
+  ${SeoFragment}
 `;
 
 /**
@@ -103,50 +53,32 @@ const GetArticlePage = gql`
       items {
         title
         seo {
-          title
-          description
-          image {
-            url
-            description
-            title
-          }
+          ...seo
         }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-          }
+        section {
+          name
         }
         publishedDate
         article {
           title
           subtitle
-          body {
-            json
-            links {
-              assets {
-                block {
-                  url
-                  description
-                  title
-                  sys {
-                    id
-                  }
-                }
-              }
+          tagsCollection {
+            items {
+              title
             }
+          }
+          publicSnippet {
+            ...publicSnippet
+          }
+          body {
+            ...articleBody
           }
           summary {
             json
           }
           keyPoints
           image {
-            url
-            title
-            description
+            ...asset
           }
           reportDocument {
             url
@@ -157,9 +89,7 @@ const GetArticlePage = gql`
               name
               title
               profilePicture {
-                url
-                title
-                description
+                ...asset
               }
             }
           }
@@ -167,70 +97,11 @@ const GetArticlePage = gql`
       }
     }
   }
+  ${AssetFragment}
+  ${SeoFragment}
+  ${PublicSnippetFragment}
+  ${ArticleBodyFragment}
 `;
-
-// special queries
-
-const GetArticleElementsByCategories = gql`
-  query GetArticleElementsByCategories($categorySlug: String!, $limit: Int!) {
-    articleWebCollection(
-      where: { category: { categorySlug: $categorySlug } }
-      limit: $limit
-      order: [publishedDate_DESC]
-    ) {
-      items {
-        category {
-          categorySlug
-          category {
-            title
-          }
-        }
-
-        articleSlug
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-          }
-        }
-
-        publishedDate
-        article {
-          title
-          subtitle
-          thumbnail {
-            url
-            title
-            description
-          }
-          coverPicture {
-            url
-            title
-          }
-        }
-      }
-    }
-  }
-`;
-
-// special product based articles
-
-// TODO:
-
-export const getArticleSlugByProductAndCategories = async (
-  categorySlug: string,
-  productSlug: string
-) => {
-  const { articleWebCollection } =
-    await contentful.request<GetArticleSlugsByProductsAndCategoriesResponse>(
-      GetArticleSlugsByProductsAndCategories,
-      { categorySlug, productSlug }
-    );
-  return articleWebCollection.items;
-};
 
 export const getArticleSlugs = async () => {
   const { articleWebCollection } =
@@ -238,18 +109,12 @@ export const getArticleSlugs = async () => {
   return articleWebCollection.items;
 };
 
-export const getArticleElementsByProductAndCategories = async (
-  categorySlug: string,
-  productSlug: string,
-  limit: number = 10
-) => {
+export const getArticleSeo = async (articleSlug: string) => {
   const { articleWebCollection } =
-    await contentful.request<GetArticleElementsByProductAndCategoriesResponse>(
-      GetArticleElementsByProductAndCategories,
-      { categorySlug, productSlug, limit }
-    );
-
-  return articleWebCollection.items;
+    await contentful.request<GetArticleSeoResponse>(GetArticleSeo, {
+      articleSlug,
+    });
+  return articleWebCollection.items[0];
 };
 
 export const getArticlePage = async (articleSlug: string) => {
@@ -259,20 +124,4 @@ export const getArticlePage = async (articleSlug: string) => {
     });
 
   return articleWebCollection.items[0];
-};
-
-// TODO: add getArticleByCategory
-export const getArticleElementByCategories = async (
-  categorySlug: string,
-  limit: number = 5
-) => {
-  const { articleWebCollection } =
-    await contentful.request<GetArticleElementsByCategoriesResponse>(
-      GetArticleElementsByCategories,
-      {
-        categorySlug,
-        limit,
-      }
-    );
-  return articleWebCollection.items;
 };

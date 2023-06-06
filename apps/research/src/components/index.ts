@@ -1,13 +1,3 @@
-export { default as Indicator } from './Indicator';
-export { default as SecondaryHeader } from './SecondaryHeader';
-export { default as ArticleElement } from './articles/ArticleElement';
-export * from './articles';
-export * from './products';
-export * from './categories';
-export * from './research';
-export { default as ResearchHeader } from './ResearchHeader';
-export { default as ResearchFooter } from './ResearchFooter';
-export * from './author';
-export * from './subscriptions';
-export * from './landing';
-export { default as Marker } from './Marker';
+export * from './platform';
+export * from './layouts';
+export * from './article';

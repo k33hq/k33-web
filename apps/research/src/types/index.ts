@@ -1,3 +1,3 @@
+export * from './generated/contentful';
 export * from './api';
-export * from './domain';
-export * from './ui';
+export * from './article';
