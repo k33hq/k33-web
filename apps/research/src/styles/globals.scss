@@ -1,14 +1,4 @@
-$sm: 596px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
-$xxl: 1600px;
-
-@mixin desktop() {
-  @media only screen and (min-width: $lg) {
-    @content;
-  }
-}
+@import 'screens';
 
 :root {
   --max-width: 1440;
@@ -56,4 +46,5 @@ ul li {
 
 .article-layout {
   padding: 40px 0px;
+  transition: ease all 0.5s;
 }

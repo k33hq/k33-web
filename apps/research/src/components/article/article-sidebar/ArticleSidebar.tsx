@@ -1,6 +1,6 @@
 import { AuthorCompact, ITagFields } from '@/types';
 import * as React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import ArticleAuthor from './ArticleAuthor';
 import { Typography, Tag, Space, Grid } from 'antd';
 

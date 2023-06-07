@@ -5,3 +5,9 @@
     @content;
   }
 }
+
+@mixin medium() {
+  @media only screen and (min-width: $md) {
+    @content;
+  }
+}

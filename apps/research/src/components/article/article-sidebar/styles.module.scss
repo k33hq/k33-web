@@ -1,0 +1,32 @@
+@import 'src/styles/screens';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 1s ease-in;
+  padding: 0px;
+  gap: 24px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+  }
+}
+
+@include medium() {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@include desktop() {
+  .sidebar {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
