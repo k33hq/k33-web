@@ -6,7 +6,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <Layout
       style={{
-        maxHeight: 1024,
+        minHeight: 1024,
       }}
     >
       <ResearchHeader />

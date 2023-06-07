@@ -7,29 +7,23 @@ import {
   ITagFields,
 } from '../generated/contentful';
 import { AuthorCollection, AuthorCompact } from './author';
-import { Asset } from './global';
-import { Document } from '@contentful/rich-text-types';
+import { Asset, RichTextDocument } from './global';
 
-export interface ArticleSummary {
-  json: Document;
-}
+export interface ArticleSummary extends RichTextDocument {}
+export interface ArticleBody extends RichTextDocument {}
 
 export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 
 export interface Article
   extends Pick<
       IArticleFields,
-      | 'title'
-      | 'subtitle'
-      | 'body'
-      | 'publicSnippet'
-      | 'keyPoints'
-      | 'reportDocument'
+      'title' | 'subtitle' | 'publicSnippet' | 'keyPoints' | 'reportDocument'
     >,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields> {
   image: Asset;
   summary: ArticleSummary | undefined;
+  body: ArticleBody | undefined;
 }
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {

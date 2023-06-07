@@ -1,6 +1,6 @@
 import { richTextOptions } from '@/components';
-import { Article } from '@/types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Article } from '@/types';
 import { Typography } from 'antd';
 import * as React from 'react';
 
