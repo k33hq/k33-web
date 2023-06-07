@@ -6,10 +6,15 @@ import {
   LinkedinFilled,
   TwitterOutlined,
 } from '@ant-design/icons';
+import { copyText, linkedin, twitter } from '@/utils';
 
 const { Title } = Typography;
 
-const ShareArticle: React.FC = () => {
+interface ShareArticleProps {
+  title: string;
+}
+
+const ShareArticle: React.FC<ShareArticleProps> = ({ title }) => {
   return (
     <div className={styles.articleShare}>
       <Divider />
@@ -25,13 +30,21 @@ const ShareArticle: React.FC = () => {
         </Title>
         <Space>
           <Tooltip title="Share on Twitter">
-            <Button icon={<TwitterOutlined />} />
+            <Button
+              onClick={() =>
+                twitter({ text: title, hashtags: [], target: '_blank' })
+              }
+              icon={<TwitterOutlined />}
+            />
           </Tooltip>
           <Tooltip title="Share on LinkedIn">
-            <Button icon={<LinkedinFilled />} />
+            <Button
+              onClick={() => linkedin({ target: '_blank' })}
+              icon={<LinkedinFilled />}
+            />
           </Tooltip>
           <Tooltip title="Copy Article Link">
-            <Button icon={<LinkOutlined />} />
+            <Button onClick={() => copyText()} icon={<LinkOutlined />} />
           </Tooltip>
         </Space>
       </div>

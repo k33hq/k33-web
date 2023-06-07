@@ -1,7 +1,7 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 
 interface Share {
-  url: string | URL;
+  url?: string | URL;
 }
 
 interface ShareMetaData {
@@ -27,7 +27,7 @@ export const verifyUrl = (share: Share) => {
 };
 
 export const shareWindow = (
-  shareData: Share & Pick<ShareMetaData, 'target'>
+  shareData: { url: string } & Pick<ShareMetaData, 'target'>
 ) => {
   if (typeof window !== 'undefined') {
     const y = window.top!.outerHeight / 2 + window.top!.screenY - 500 / 2;
