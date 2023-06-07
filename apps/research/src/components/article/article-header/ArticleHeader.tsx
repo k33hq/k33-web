@@ -1,7 +1,8 @@
 import { Article } from '@/types';
-import { Divider, Grid, Space, Typography } from 'antd';
+import { Divider, Typography } from 'antd';
 import * as React from 'react';
 import { Image } from 'antd';
+import styles from './styles.module.css';
 
 const { Title, Text } = Typography;
 
@@ -13,16 +14,17 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   subtitle,
   image,
 }) => {
-  const { lg } = Grid.useBreakpoint();
   return (
-    <Space direction="vertical" size={lg ? 24 : 16}>
+    <div id="article-header" className={styles.header}>
       <Title level={2} editable={false}>
         {title}
       </Title>
       <Text type="secondary">{subtitle}</Text>
-      <Image preview={false} src={image.url} alt={image.title ?? ''} />
-      <Divider />
-    </Space>
+      <div className={styles.headerImage}>
+        <Image preview={false} src={image.url} alt={image.title ?? ''} />
+        <Divider />
+      </div>
+    </div>
   );
 };
 

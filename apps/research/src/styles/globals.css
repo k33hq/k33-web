@@ -1,5 +1,10 @@
 :root {
   --max-width: 1440;
+  --small-device: 596px;
+  --medium-device: 768px;
+  --large-device: 992px;
+  --x-large-device: 1200px;
+  --x-x-large-device: 1600px;
 }
 
 * {

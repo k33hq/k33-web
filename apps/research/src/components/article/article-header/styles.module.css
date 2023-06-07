@@ -1,14 +1,15 @@
-.article {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-}
-
-.articleSummary > div {
+.header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 8px;
+  gap: 16px;
+}
+
+.headerImage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
 }

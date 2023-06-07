@@ -2,12 +2,12 @@ import { Article as ArticleType } from '@/types';
 import * as React from 'react';
 import styles from './styles.module.css';
 import { ArticleHeader } from './article-header';
-import { ArticleTakeAways } from './article-body';
+import { ArticleInShorts, ArticleTakeAways } from './article-body';
 
 interface ArticleProps
   extends Pick<
     ArticleType,
-    'title' | 'subtitle' | 'image' | 'body' | 'keyPoints'
+    'title' | 'subtitle' | 'image' | 'body' | 'keyPoints' | 'summary'
   > {}
 
 const Article: React.FC<ArticleProps> = ({
@@ -15,11 +15,15 @@ const Article: React.FC<ArticleProps> = ({
   subtitle,
   image,
   keyPoints,
+  summary,
 }) => {
   return (
     <article className={styles.article}>
       <ArticleHeader title={title} subtitle={subtitle} image={image} />
-      <ArticleTakeAways keyPoints={keyPoints} />
+      <div id="article-summary">
+        <ArticleInShorts summary={summary} />
+        <ArticleTakeAways keyPoints={keyPoints} />
+      </div>
     </article>
   );
 };
