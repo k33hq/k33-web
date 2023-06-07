@@ -9,8 +9,8 @@ const ResearchHeader: React.FC = () => {
   return (
     <Header
       style={{
-        position: 'static',
-        zIndex: 1,
+        position: 'sticky',
+        zIndex: 99,
         width: '100%',
         display: 'flex',
         justifyContent: 'center',

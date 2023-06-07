@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout } from 'antd';
-import { ResearchHeader } from '../platform';
+import { ResearchFooter, ResearchHeader } from '../platform';
 
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
@@ -11,6 +11,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     >
       <ResearchHeader />
       <Layout>{children}</Layout>
+      <ResearchFooter />
     </Layout>
   );
 };
