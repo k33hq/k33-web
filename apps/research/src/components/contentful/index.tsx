@@ -14,24 +14,24 @@ const ContentFulText: React.FC<RichTextElements> = ({ children }) => (
 );
 
 const Heading1: React.FC<RichTextElements> = ({ children }) => (
-  <Title level={1}>{children}</Title>
+  <Title level={3}>{children}</Title>
 );
 
 const Heading2: React.FC<RichTextElements> = ({ children }) => (
-  <Title level={2}>{children}</Title>
+  <Title level={4}>{children}</Title>
 );
 
 const Heading3: React.FC<RichTextElements> = ({ children }) => (
-  <Title level={3}>{children}</Title>
+  <Title level={5}>{children}</Title>
 );
 
 //
 const Heading4: React.FC<RichTextElements> = ({ children }) => (
-  <Title level={3}>{children}</Title>
+  <Title level={5}>{children}</Title>
 );
 
 const Heading5: React.FC<RichTextElements> = ({ children }) => (
-  <Title level={4}>{children}</Title>
+  <Title level={5}>{children}</Title>
 );
 
 const Heading6: React.FC<RichTextElements> = ({ children }) => (

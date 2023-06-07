@@ -1,11 +1,11 @@
 import { getArticlePage, getArticleSeo, getArticleSlugs } from '@/api';
 import type { ArticlePage, ArticleSeo } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { Layout, Row, Col, Grid } from 'antd';
+import { Layout, Row, Col, Grid, Divider } from 'antd';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 import { NextSeo } from 'next-seo';
-import { Article, ArticleSidebar } from '@/components';
+import { Article, ArticleSidebar, ShareArticle } from '@/components';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -23,15 +23,16 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   return (
     <>
       <NextSeo />
-      <Row gutter={{ xs: 0, xl: 64 }}>
+      <Row gutter={{ xs: 64, xl: 64 }}>
         <Col xs={24} xl={6} order={xl ? 0 : 2}>
           <ArticleSidebar
             authors={page.article.authorsCollection.items}
             tags={page.article.tagsCollection.items}
           />
         </Col>
-        <Col xs={24} xl={14}>
+        <Col xs={24} xl={14} className="article">
           <Article {...articleContent} />
+          <ShareArticle />
         </Col>
         <Col xs={0} xl={2}></Col>
       </Row>

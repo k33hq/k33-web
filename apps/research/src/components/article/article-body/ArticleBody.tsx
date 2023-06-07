@@ -1,6 +1,7 @@
 import { richTextOptions } from '@/components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, Block, Inline } from '@contentful/rich-text-types';
+import { BLOCKS } from '@contentful/rich-text-types';
+import styles from './styles.module.css';
 import { Article } from '@/types';
 import { Image } from 'antd';
 import * as React from 'react';
@@ -10,7 +11,7 @@ interface ArticleBodyProps extends Pick<Article, 'body'> {}
 const ArticleBody: React.FC<ArticleBodyProps> = ({ body }) => {
   if (!body) return;
   return (
-    <div id="article-body">
+    <div id="article-body" className={styles.articleBody}>
       {documentToReactComponents(body.json, {
         ...richTextOptions,
         renderNode: {

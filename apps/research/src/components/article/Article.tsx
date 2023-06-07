@@ -20,7 +20,7 @@ const Article: React.FC<ArticleProps> = ({
   body,
 }) => {
   return (
-    <article id="article" className={styles.article}>
+    <>
       <ArticleHeader title={title} subtitle={subtitle} image={image} />
       {keyPoints || summary ? (
         <div id="article-summary" className={styles.articleSummary}>
@@ -30,7 +30,7 @@ const Article: React.FC<ArticleProps> = ({
         </div>
       ) : null}
       <ArticleBody body={body} />
-    </article>
+    </>
   );
 };
 
