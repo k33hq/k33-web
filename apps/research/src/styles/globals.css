@@ -31,3 +31,11 @@ ul li {
   gap: 32px;
   width: 100%;
 }
+
+.article-sidebar {
+  margin-top: 44px;
+}
+
+.article-layout {
+  padding: 40px 0px;
+}
