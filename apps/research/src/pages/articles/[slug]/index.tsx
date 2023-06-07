@@ -5,7 +5,12 @@ import { Layout, Row, Col, Grid, Divider } from 'antd';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 import { NextSeo } from 'next-seo';
-import { Article, ArticleSidebar, ShareArticle } from '@/components';
+import {
+  Article,
+  ArticleMetaData,
+  ArticleSidebar,
+  ShareArticle,
+} from '@/components';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -18,6 +23,8 @@ interface ArticlePageProps {
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   const { xl } = useBreakpoint();
   const {
+    section,
+    publishedDate,
     article: { authorsCollection, tagsCollection, ...articleContent },
   } = page;
   return (
@@ -31,6 +38,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
           />
         </Col>
         <Col xs={24} xl={14} className="article">
+          <ArticleMetaData section={section} publishedDate={publishedDate} />
           <Article {...articleContent} />
           <ShareArticle />
         </Col>
