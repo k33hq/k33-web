@@ -47,6 +47,7 @@
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "graphql-request": "^5.1.0",
+    "sass": "^1.62.1",
     "ts-node": "^10.9.1",
     "tsconfig": "workspace:*",
     "tslib": "^2.5.3",

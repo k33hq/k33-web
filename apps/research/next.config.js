@@ -1,7 +1,12 @@
+const path = require('path');
+
 /** @type {import("next").NextConfig} */
 module.exports = {
   swcMinify: true,
   basePath: '/research',
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   transpilePackages: ['core', 'platform-js', 'antd'],
   reactStrictMode: true,
   images: {

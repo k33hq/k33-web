@@ -1,3 +1,15 @@
+$sm: 596px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1600px;
+
+@mixin desktop() {
+  @media only screen and (min-width: $lg) {
+    @content;
+  }
+}
+
 :root {
   --max-width: 1440;
   --small-device: 596px;
@@ -36,7 +48,7 @@ ul li {
   margin-top: 44px;
 }
 
-@media screen and (min-width: 992px) {
+@include desktop() {
   .article-sidebar {
     margin-top: 0px;
   }
