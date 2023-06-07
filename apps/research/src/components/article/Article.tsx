@@ -3,6 +3,7 @@ import * as React from 'react';
 import styles from './styles.module.css';
 import { ArticleHeader } from './article-header';
 import { ArticleBody, ArticleInShorts, ArticleTakeAways } from './article-body';
+import { Divider } from 'antd';
 
 interface ArticleProps
   extends Pick<
@@ -21,10 +22,13 @@ const Article: React.FC<ArticleProps> = ({
   return (
     <article id="article" className={styles.article}>
       <ArticleHeader title={title} subtitle={subtitle} image={image} />
-      <div id="article-summary" className={styles.articleSummary}>
-        <ArticleInShorts summary={summary} />
-        <ArticleTakeAways keyPoints={keyPoints} />
-      </div>
+      {keyPoints || summary ? (
+        <div id="article-summary" className={styles.articleSummary}>
+          <ArticleInShorts summary={summary} />
+          <ArticleTakeAways keyPoints={keyPoints} />
+          <Divider />
+        </div>
+      ) : null}
       <ArticleBody body={body} />
     </article>
   );
