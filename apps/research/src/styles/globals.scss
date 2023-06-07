@@ -38,7 +38,7 @@ ul li {
   margin-top: 44px;
 }
 
-@include desktop() {
+@include large() {
   .article-sidebar {
     margin-top: 0px;
   }
@@ -47,4 +47,10 @@ ul li {
 .article-layout {
   padding: 40px 0px;
   transition: ease all 0.5s;
+}
+
+@include xlarge() {
+  .article-layout {
+    padding: 64px 0px;
+  }
 }

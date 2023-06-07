@@ -1,8 +1,8 @@
 import { Article, ArticlePage } from '@/types';
-import { Divider, Typography } from 'antd';
+import { Card, Divider, Typography } from 'antd';
 import * as React from 'react';
 import { Image } from 'antd';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import ArticleMetaData from '../ArticleMetaData';
 
 const { Title, Text } = Typography;
@@ -25,7 +25,16 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       </Title>
       <Text type="secondary">{subtitle}</Text>
       <div className={styles.headerImage}>
-        <Image preview={false} src={image.url} alt={image.title ?? ''} />
+        <Card
+          cover={
+            <Image preview={false} src={image.url} alt={image.title ?? ''} />
+          }
+          style={{
+            border: 0,
+          }}
+        >
+          <Card.Meta description={image.description} />
+        </Card>
         <Divider />
       </div>
     </div>
