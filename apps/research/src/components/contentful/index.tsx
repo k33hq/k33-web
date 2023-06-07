@@ -1,43 +1,47 @@
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { Options } from '@contentful/rich-text-react-renderer';
 import * as React from 'react';
-import { Divider } from 'antd';
+import { Divider, Typography } from 'antd';
+
+const { Text, Title, Link } = Typography;
 
 interface RichTextElements {
   children: React.ReactNode;
 }
 
-const Text: React.FC<RichTextElements> = ({ children }) => <p>{children}</p>;
+const ContentFulText: React.FC<RichTextElements> = ({ children }) => (
+  <Text>{children}</Text>
+);
 
 const Heading1: React.FC<RichTextElements> = ({ children }) => (
-  <h1>{children}</h1>
+  <Title level={1}>{children}</Title>
 );
 
 const Heading2: React.FC<RichTextElements> = ({ children }) => (
-  <h2>{children}</h2>
+  <Title level={2}>{children}</Title>
 );
 
 const Heading3: React.FC<RichTextElements> = ({ children }) => (
-  <h3>{children}</h3>
+  <Title level={3}>{children}</Title>
 );
 
 //
 const Heading4: React.FC<RichTextElements> = ({ children }) => (
-  <h4>{children}</h4>
+  <Title level={3}>{children}</Title>
 );
 
 const Heading5: React.FC<RichTextElements> = ({ children }) => (
-  <h5>{children}</h5>
+  <Title level={4}>{children}</Title>
 );
 
 const Heading6: React.FC<RichTextElements> = ({ children }) => (
-  <h6>{children}</h6>
+  <Title level={5}>{children}</Title>
 );
 
 export const richTextOptions: Options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children: React.ReactNode) => (
-      <Text>{children}</Text>
+      <ContentFulText>{children}</ContentFulText>
     ),
     [BLOCKS.HEADING_1]: (node, children: React.ReactNode) => (
       <Heading1>{children}</Heading1>
@@ -61,22 +65,13 @@ export const richTextOptions: Options = {
 
     [INLINES.HYPERLINK]: ({ data }, children: React.ReactNode) => {
       return (
-        <a
-          href={data.uri}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-body2 text-label-light-primary underline hover:text-label-light-secondary"
-        >
+        <Link href={data.uri} target="_blank" rel="noopener noreferrer">
           {children}
-        </a>
+        </Link>
       );
     },
-    [BLOCKS.UL_LIST]: (node, children) => (
-      <ul className="list-outside list-disc pl-4">{children}</ul>
-    ),
-    [BLOCKS.OL_LIST]: (node, children) => (
-      <ol className="list-outside">{children}</ol>
-    ),
+    [BLOCKS.UL_LIST]: (node, children) => <ul>{children}</ul>,
+    [BLOCKS.OL_LIST]: (node, children) => <ol>{children}</ol>,
     [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
   },
 };

@@ -8,6 +8,11 @@ import {
 } from '../generated/contentful';
 import { AuthorCollection, AuthorCompact } from './author';
 import { Asset } from './global';
+import { Document } from '@contentful/rich-text-types';
+
+export interface ArticleSummary {
+  json: Document;
+}
 
 export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 
@@ -18,13 +23,13 @@ export interface Article
       | 'subtitle'
       | 'body'
       | 'publicSnippet'
-      | 'summary'
       | 'keyPoints'
       | 'reportDocument'
     >,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields> {
   image: Asset;
+  summary: ArticleSummary | undefined;
 }
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {

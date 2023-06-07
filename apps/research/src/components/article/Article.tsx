@@ -18,9 +18,9 @@ const Article: React.FC<ArticleProps> = ({
   summary,
 }) => {
   return (
-    <article className={styles.article}>
+    <article id="article" className={styles.article}>
       <ArticleHeader title={title} subtitle={subtitle} image={image} />
-      <div id="article-summary">
+      <div id="article-summary" className={styles.articleSummary}>
         <ArticleInShorts summary={summary} />
         <ArticleTakeAways keyPoints={keyPoints} />
       </div>
