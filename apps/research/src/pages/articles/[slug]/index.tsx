@@ -37,7 +37,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
             tags={page.article.tagsCollection.items}
           />
         </Col>
-        <Col xs={24} xl={14} className="article">
+        <Col id="article" xs={24} xl={14} className="article">
           <ArticleMetaData section={section} publishedDate={publishedDate} />
           <Article {...articleContent} />
           <ShareArticle />

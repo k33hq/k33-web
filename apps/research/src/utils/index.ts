@@ -30,3 +30,13 @@ export function downloadResource(url: string, filename?: string) {
 }
 
 export const siteUsername = '@K33Research';
+
+export const getReadingTime = () => {
+  const text = document.getElementById('article-body')!.innerText;
+  const wpm = 225;
+  const words = text.trim().split(/\s+/).length;
+  const time = Math.ceil(words / wpm);
+  return time;
+};
+
+export * from './share';
