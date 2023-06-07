@@ -30,7 +30,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   return (
     <>
       <NextSeo />
-      <Row gutter={{ xs: 40, lg: 64 }} className="article-layout">
+      <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
           <ArticleSidebar
             authors={page.article.authorsCollection.items}
