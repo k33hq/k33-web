@@ -1,4 +1,4 @@
-import { Article as ArticleType } from '@/types';
+import { ArticlePage, Article as ArticleType } from '@/types';
 import * as React from 'react';
 import styles from './styles.module.css';
 import { ArticleHeader } from './article-header';
@@ -7,9 +7,10 @@ import { Divider } from 'antd';
 
 interface ArticleProps
   extends Pick<
-    ArticleType,
-    'title' | 'subtitle' | 'image' | 'body' | 'keyPoints' | 'summary'
-  > {}
+      ArticleType,
+      'title' | 'subtitle' | 'image' | 'body' | 'keyPoints' | 'summary'
+    >,
+    Pick<ArticlePage, 'section' | 'publishedDate'> {}
 
 const Article: React.FC<ArticleProps> = ({
   title,
@@ -18,10 +19,16 @@ const Article: React.FC<ArticleProps> = ({
   keyPoints,
   summary,
   body,
+  ...metadata
 }) => {
   return (
     <>
-      <ArticleHeader title={title} subtitle={subtitle} image={image} />
+      <ArticleHeader
+        title={title}
+        subtitle={subtitle}
+        image={image}
+        {...metadata}
+      />
       {keyPoints || summary ? (
         <div id="article-summary" className={styles.articleSummary}>
           <ArticleInShorts summary={summary} />

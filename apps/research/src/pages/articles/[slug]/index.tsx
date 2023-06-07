@@ -38,8 +38,11 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
           />
         </Col>
         <Col id="article" xs={24} xl={14} className="article">
-          <ArticleMetaData section={section} publishedDate={publishedDate} />
-          <Article {...articleContent} />
+          <Article
+            {...articleContent}
+            section={section}
+            publishedDate={publishedDate}
+          />
           <ShareArticle title={articleContent.title} />
         </Col>
         <Col xs={0} xl={2}></Col>
