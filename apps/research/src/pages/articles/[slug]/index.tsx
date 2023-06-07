@@ -21,7 +21,7 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
-  const { xl } = useBreakpoint();
+  const { lg } = useBreakpoint();
   const {
     section,
     publishedDate,
@@ -30,14 +30,14 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   return (
     <>
       <NextSeo />
-      <Row gutter={{ xs: 40, xl: 64 }} className="article-layout">
-        <Col xs={24} xl={6} order={xl ? 0 : 2} className="article-sidebar">
+      <Row gutter={{ xs: 40, lg: 64 }} className="article-layout">
+        <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
           <ArticleSidebar
             authors={page.article.authorsCollection.items}
             tags={page.article.tagsCollection.items}
           />
         </Col>
-        <Col id="article" xs={24} xl={14} className="article">
+        <Col id="article" xs={24} lg={14} className="article">
           <Article
             {...articleContent}
             section={section}
@@ -45,7 +45,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
           />
           <ShareArticle title={articleContent.title} />
         </Col>
-        <Col xs={0} xl={2}></Col>
+        <Col xs={0} lg={2}></Col>
       </Row>
     </>
   );
