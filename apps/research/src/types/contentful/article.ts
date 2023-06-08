@@ -17,13 +17,14 @@ export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 export interface Article
   extends Pick<
       IArticleFields,
-      'title' | 'subtitle' | 'publicSnippet' | 'keyPoints' | 'reportDocument'
+      'title' | 'subtitle' | 'keyPoints' | 'reportDocument'
     >,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields> {
   image: Asset;
   summary: ArticleSummary | undefined;
   body: ArticleBody | undefined;
+  publicSnippet: ArticleBody;
 }
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {

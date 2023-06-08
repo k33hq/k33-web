@@ -2,14 +2,16 @@ import { ArticlePage, Article as ArticleType } from '@/types';
 import * as React from 'react';
 import styles from './styles.module.css';
 import { ArticleHeader } from './article-header';
-import { ArticleBody, ArticleInShorts, ArticleTakeAways } from './article-body';
+import {
+  ArticleBody,
+  ArticleInShorts,
+  ArticleTakeAways,
+  PrivateArticle,
+} from './article-body';
 import { Divider } from 'antd';
 
 interface ArticleProps
-  extends Pick<
-      ArticleType,
-      'title' | 'subtitle' | 'image' | 'body' | 'keyPoints' | 'summary'
-    >,
+  extends ArticleType,
     Pick<ArticlePage, 'section' | 'publishedDate'> {}
 
 const Article: React.FC<ArticleProps> = ({
@@ -19,6 +21,7 @@ const Article: React.FC<ArticleProps> = ({
   keyPoints,
   summary,
   body,
+  publicSnippet,
   ...metadata
 }) => {
   return (
@@ -36,7 +39,9 @@ const Article: React.FC<ArticleProps> = ({
           <Divider />
         </div>
       ) : null}
-      <ArticleBody body={body} />
+      <PrivateArticle publicSnippet={publicSnippet}>
+        <ArticleBody body={body} />
+      </PrivateArticle>
     </>
   );
 };

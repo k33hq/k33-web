@@ -18,6 +18,7 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
   const shareUrl = () => {
     copyText();
   };
+  // TODO: change share to dropdown
   return (
     <Space size={4} split={<Divider type="vertical" />}>
       {/* <Text strong>{section.name.split('/')[0]}</Text> */}
@@ -40,5 +41,7 @@ const ReadTime = () => {
   React.useEffect(() => {
     setTime(getReadingTime());
   }, []);
+
+  if (time === 0) return null;
   return <Text type="secondary">{time} min read</Text>;
 };
