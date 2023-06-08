@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 import { BrandButton, Stack } from 'ui';
 import { FcGoogle } from 'react-icons/fc';
 import { BsMicrosoft } from 'react-icons/bs';
-import { googleLogin, microsoftLogin, register } from 'core';
+import { appleLogin, googleLogin, microsoftLogin, register } from 'core';
 import { UserCredential } from 'firebase/auth';
-import Link from 'next/link';
+import { FaApple } from "react-icons/fa";
 
 interface DiffCredData {
   appName: string;
@@ -57,6 +57,10 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
     googleLogin(onSuccessLogin, (err) => {});
   };
 
+  const apple = () => {
+    appleLogin(onSuccessLogin, (err) => {});
+  };
+
   const microsoft = () => {
     microsoftLogin(onSuccessLogin, (err: FirebaseError) => {
       if (err.code == 'auth/account-exists-with-different-credential') {
@@ -76,11 +80,16 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
         logo={<FcGoogle width={22} height={22} />}
         onClick={google}
       />
-      {/* <BrandButton
+      <BrandButton
+        label="Sign in with Apple"
+        logo={<FaApple width={22} height={22} />}
+        onClick={apple}
+      />
+      <BrandButton
         label="Sign in with Microsoft"
         logo={<BsMicrosoft width={22} height={22} />}
         onClick={microsoft}
-      /> */}
+      />
       <div className="pt-60">
         <p className="px-6 md:px-0 text-center text-default-systemPink-light">
           {error}
