@@ -25,18 +25,14 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       </Title>
       <Text type="secondary">{subtitle}</Text>
       <div className={styles.headerImage}>
-        <Card
-          cover={
-            <Image preview={false} src={image.url} alt={image.title ?? ''} />
-          }
-          style={{
-            border: 0,
-          }}
-        >
-          <Card.Meta description={image.description} />
-        </Card>
-        <Divider />
+        <Image preview={false} src={image.url} alt={image.title ?? ''} />
+        {image.description && (
+          <Typography.Text type="secondary">
+            {image.description}
+          </Typography.Text>
+        )}
       </div>
+      <Divider />
     </div>
   );
 };
