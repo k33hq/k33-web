@@ -1,11 +1,12 @@
 @import 'src/styles/screens';
+@import 'src/styles/variables';
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  transition: all 1s ease-in;
+  transition: all $animation-seconds ease-in;
   gap: 16px;
 }
 
