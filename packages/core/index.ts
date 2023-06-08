@@ -85,6 +85,18 @@ export const googleLogin = (success: LinkSuccess, error: LinkFailure) => {
     .catch((error) => {});
 };
 
+export const appleLogin = (success: LinkSuccess, error: LinkFailure) => {
+  const auth = getAuth(getApp(APP_NAME));
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      const provider = new OAuthProvider('apple.com');
+      provider.addScope('email');
+      provider.addScope('name');
+      signInWithPopup(auth, provider).then(success).catch(error);
+    })
+    .catch((error) => {});
+};
+
 export const microsoftLogin = (success: LinkSuccess, error: LinkFailure) => {
   const auth = getAuth(getApp(APP_NAME));
 
