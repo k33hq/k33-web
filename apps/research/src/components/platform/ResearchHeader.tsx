@@ -1,21 +1,23 @@
-import { Layout, theme } from 'antd';
+import { Affix, Layout, theme } from 'antd';
+import styles from './styles.module.scss';
 
 const { Header } = Layout;
 
-const ResearchHeader: React.FC = () => {
-  const {
-    token: { colorPrimary },
-  } = theme.useToken();
+interface ResearchHeaderProps {
+  toggleSider: () => void;
+}
+
+const ResearchHeader: React.FC<ResearchHeaderProps> = ({ toggleSider }) => {
   return (
-    <Header
-      style={{
-        position: 'sticky',
-        zIndex: 99,
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    ></Header>
+    <Affix>
+      <Header className={styles.header}>
+        <div id="header-content">
+          <div>Logo</div>
+          <div>Menu</div>
+          <div>Sign up and sider</div>
+        </div>
+      </Header>
+    </Affix>
   );
 };
 

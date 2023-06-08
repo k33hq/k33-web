@@ -1,10 +1,46 @@
 @import 'src/styles/variables';
+@import 'src/styles/screens';
 
 .footer {
-  > main {
-    align-self: center;
-    max-width: $md;
-    width: 100%;
+  width: 100%;
+}
+
+.footerContent {
+  align-self: center;
+  max-width: $md;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all $animation-seconds ease-in;
+  gap: 24px;
+}
+
+@include medium() {
+  .footerContent {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.header {
+  position: 'sticky';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > div {
+    max-width: $max-width;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

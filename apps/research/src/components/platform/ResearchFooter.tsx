@@ -5,16 +5,23 @@ import {
   LinkedinFilled,
   TwitterOutlined,
 } from '@ant-design/icons';
+import { appStructure } from '@/config';
 
 const { Footer, Content } = Layout;
 
 const ResearchFooter: React.FC = () => {
   return (
-    <Footer>
+    <Footer className={styles.footer}>
       <Divider />
       <Layout id="footer-main" className={styles.footer}>
-        <Content id="footer-content">
-          <div id="navigation">Nav</div>
+        <Content id="footer-content" className={styles.footerContent}>
+          <div id="navigation" className={styles.navigation}>
+            {appStructure.navigation.map((nav) => (
+              <Button key={nav.label} type="link" size="small">
+                {nav.label}
+              </Button>
+            ))}
+          </div>
           <div id="social-links">
             <Space wrap>
               <Button type="link" icon={<MailOutlined />} />
