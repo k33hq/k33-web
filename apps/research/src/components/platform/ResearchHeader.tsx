@@ -38,26 +38,27 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ toggleSider }) => {
           }}
         >
           <div id="header-content">
-            <Row gutter={32}>
-              <Col>
+            <Row gutter={32} wrap={false}>
+              <Col flex={1}>
                 <Typography.Text>Logo</Typography.Text>
               </Col>
-              <Col flex={1}>
-                {md && (
-                  <Menu
-                    selectable={false}
-                    mode="horizontal"
-                    style={{
-                      borderBottom: 0,
-                    }}
-                    disabledOverflow
-                    items={appStructure.navigation.map(({ key, label }) => ({
-                      key,
-                      label,
-                    }))}
-                  />
-                )}
-              </Col>
+              {md && (
+                <Col flex={2}>
+                  {
+                    <Menu
+                      selectable={false}
+                      mode="horizontal"
+                      style={{
+                        borderBottom: 0,
+                      }}
+                      items={appStructure.navigation.map(({ key, label }) => ({
+                        key,
+                        label,
+                      }))}
+                    />
+                  }
+                </Col>
+              )}
               <Col>
                 <Button>Sign In</Button>
               </Col>
