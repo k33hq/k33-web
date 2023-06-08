@@ -41,8 +41,7 @@
   justify-content: center;
   > div {
     max-width: $max-width;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-self: center;
+    width: 100%;
   }
 }
