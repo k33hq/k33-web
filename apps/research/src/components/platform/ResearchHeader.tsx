@@ -13,6 +13,7 @@ import {
 import styles from './styles.module.scss';
 import { appStructure } from '@/config';
 import { MenuOutlined } from '@ant-design/icons';
+import * as React from 'react';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -44,7 +45,11 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = ({ toggleSider }) => {
               <Col flex={1}>
                 {md && (
                   <Menu
+                    selectable={false}
                     mode="horizontal"
+                    style={{
+                      borderBottom: 0,
+                    }}
                     disabledOverflow
                     items={appStructure.navigation.map(({ key, label }) => ({
                       key,

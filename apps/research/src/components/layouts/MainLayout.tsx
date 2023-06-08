@@ -23,6 +23,11 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         <ResearchFooter />
       </Layout>
       <Sider
+        style={{
+          position: 'absolute',
+          height: '100vh',
+          right: 0,
+        }}
         breakpoint="sm"
         collapsedWidth="0"
         trigger={null}
