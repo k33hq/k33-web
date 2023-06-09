@@ -63,6 +63,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0px;
   transition: all $animation-seconds ease-in;
   > div {
     display: flex;
@@ -70,12 +71,6 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-  }
-}
-
-@include medium() {
-  .callToAction {
-    padding: 0px 40px;
   }
 }
 
@@ -93,8 +88,4 @@
 .signupFooter {
   padding: 0px 8px;
   gap: 8px;
-}
-
-.endedBody {
-  padding: 24px 32px;
 }

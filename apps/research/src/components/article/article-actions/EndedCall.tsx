@@ -24,12 +24,8 @@ const EndedCall: React.FC<EndedCallProps> = ({ checkout }) => {
   } = useToken();
   return (
     <CallToActionCard>
-      <Space className={styles.ended}>
-        <Space
-          id="ended-header"
-          direction="vertical"
-          className={styles.endedHeader}
-        >
+      <Space size={16}>
+        <Space id="ended-header" direction="vertical" size={8}>
           <Title level={5} style={{ margin: 0 }}>
             Renew your K33 Research Pro subscription
           </Title>
@@ -46,12 +42,11 @@ const EndedCall: React.FC<EndedCallProps> = ({ checkout }) => {
           style={{
             backgroundColor: colorBgContainer,
             borderRadius: borderRadius,
-            width: '100%',
             textAlign: 'start',
+            padding: '24px 32px',
           }}
           direction="vertical"
           size={20}
-          className={styles.endedBody}
         >
           <Space direction="vertical">
             <Title level={5} style={{ margin: 0 }}>
@@ -65,24 +60,27 @@ const EndedCall: React.FC<EndedCallProps> = ({ checkout }) => {
             </Space>
           </Space>
           <Divider style={{ margin: 0 }} />
-          <Space>
-            <ul>
-              {features.map((feature) => (
-                <Space key={feature} size="middle">
-                  <li>
-                    <Text
-                      style={{
-                        fontSize: fontSizeSM,
-                      }}
-                    >
-                      {feature}
-                    </Text>
-                  </li>
+          <List
+            split={false}
+            style={{
+              minWidth: 287,
+              width: '100%',
+            }}
+            dataSource={features}
+            renderItem={(feat) => (
+              <List.Item>
+                <Space align="start">
+                  <CheckCircleFilled
+                    style={{
+                      color: colorPrimary,
+                    }}
+                  />
+                  <Text>{feat}</Text>
                 </Space>
-              ))}
-            </ul>
-          </Space>
-          <Button type="primary" block onClick={checkout}>
+              </List.Item>
+            )}
+          />
+          <Button size="large" type="primary" block onClick={checkout}>
             Renew Your Subscription
           </Button>
         </Space>
