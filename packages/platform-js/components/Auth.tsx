@@ -34,12 +34,12 @@ interface DiffCredData {
   };
 }
 
-interface LoginOptions {
+export interface LoginOptions {
   google: () => void;
   microsoft: () => void;
 }
 
-interface AuthFunctionalities {
+export interface AuthFunctionalities {
   login: LoginOptions;
   error: string | null;
 }

@@ -1,10 +1,6 @@
-import { Auth as AuthComponent, getTitle } from 'platform-js';
-import { Button, Typography } from 'antd';
+import { Auth as AuthComponent, getTitle, LoginOptions } from 'platform-js';
+import { Typography } from 'antd';
 import config from '@/firebase/config';
-import Icon, { AppleFilled, GoogleCircleFilled } from '@ant-design/icons';
-import googleLogo from '../assets/google.svg';
-import microsoftLogo from '../assets/microsoft.svg';
-
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -25,19 +21,18 @@ const SignUp: NextPageWithLayout = () => {
           <Typography.Title level={2}>Register to K33</Typography.Title>
           <div id="info">
             <Typography.Text>Already registered?</Typography.Text>
-            <Typography.Link>Sign In Here</Typography.Link>
+            <Link href={'/'}>
+              <Typography.Link>Sign In Here</Typography.Link>
+            </Link>
           </div>
         </div>
         <div id="sign-in-options" className={styles.signinOptions}>
-          <Button block icon={<AppleFilled />}>
-            Sign Up with Apple
-          </Button>
-          <Button block icon={<Icon src={googleLogo} />}>
-            Sign Up with Google
-          </Button>
-          <Button block icon={<Icon src={googleLogo} />}>
-            Sign Up with Microsoft
-          </Button>
+          <AuthComponent
+            onSuccessLogin={() => router.reload()}
+            firebaseConfig={config}
+          >
+            {(props) => <LoginOptions {...props} />}
+          </AuthComponent>
         </div>
       </div>
     </>
