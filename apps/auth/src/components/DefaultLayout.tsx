@@ -2,6 +2,7 @@ import { Affix, Layout, Typography } from 'antd';
 import * as React from 'react';
 import K33Logo from '../assets/logo.svg';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const { Content, Header, Footer } = Layout;
 
@@ -47,9 +48,17 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, footer }) => {
       >
         <div style={{ maxWidth: 281, textAlign: 'center' }}>
           <Typography.Text>
-            {`By ${footer} for K33 you agree to the Terms of Service. Check our
-            K33’s Privacy Policy.`}
+            {`By ${footer} for K33 you agree to the `}
           </Typography.Text>
+          <Link
+            href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/terms-and-conditions`}
+          >
+            <Typography.Link underline>Terms of Service</Typography.Link>
+          </Link>
+          <Typography.Text> Check our K33’s </Typography.Text>
+          <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/privacy`}>
+            <Typography.Link underline>Privacy Policy.</Typography.Link>
+          </Link>
         </div>
       </Footer>
     </Layout>
