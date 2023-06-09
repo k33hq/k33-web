@@ -5,12 +5,6 @@ import { ResearchFooter, ResearchHeader } from '../platform';
 const { Sider } = Layout;
 
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [collapsed, setCollapsed] = React.useState(true);
-
-  const toggleSider = () => {
-    setCollapsed((state) => !state);
-  };
-
   return (
     <Layout
       style={{
@@ -18,22 +12,10 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       }}
     >
       <Layout>
-        <ResearchHeader toggleSider={toggleSider} />
+        <ResearchHeader />
         <Layout>{children}</Layout>
         <ResearchFooter />
       </Layout>
-      <Sider
-        style={{
-          position: 'absolute',
-          height: '100vh',
-          right: 0,
-        }}
-        breakpoint="sm"
-        collapsedWidth="0"
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-      ></Sider>
     </Layout>
   );
 };

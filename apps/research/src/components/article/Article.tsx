@@ -39,7 +39,7 @@ const Article: React.FC<ArticleProps> = ({
           <Divider />
         </div>
       ) : null}
-      <PrivateArticle publicSnippet={publicSnippet}>
+      <PrivateArticle publicSnippet={publicSnippet} priceId="" productId="">
         <ArticleBody body={body} />
       </PrivateArticle>
     </>

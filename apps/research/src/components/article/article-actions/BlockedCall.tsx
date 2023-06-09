@@ -29,6 +29,7 @@ const BlockedCall: React.FC = () => {
       <Result
         style={{
           maxWidth: 656,
+          padding: 0,
         }}
         status="error"
         title="Failed Payment Attempt"

@@ -1,11 +1,7 @@
 import { Article } from '@/types';
 import * as React from 'react';
 import { Skeleton } from 'antd';
-import {
-  useCheckoutMutation,
-  useCustomerMutation,
-  useLazyGetProductInfoQuery,
-} from '@/services';
+import { useCheckoutMutation, useLazyGetProductInfoQuery } from '@/services';
 import { ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import config from '@/firebase/config';
@@ -14,6 +10,7 @@ import {
   SignUpCall,
   BlockedCall,
   EndedCall,
+  StartTrialCall,
 } from '../article-actions';
 
 interface PrivateArticleProps
@@ -65,11 +62,26 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     }
   };
 
-  return (
-    <ActionLayout publicSnippet={publicSnippet}>
-      <EndedCall checkout={doCheckOut} />
-    </ActionLayout>
-  );
+  const getCallToAction = (state: typeof productInfoStatus) => {
+    switch (state) {
+      case 'loading':
+        return (
+          <>
+            <Skeleton.Input active size="default" block />
+            <Skeleton.Input active size="default" block />
+            <Skeleton.Input active size="default" block />
+            <Skeleton.Image active />
+            <Skeleton.Input active size="default" block />
+          </>
+        );
+      case 'blocked':
+        return <BlockedCall />;
+      case 'ended':
+        return <EndedCall checkout={doCheckOut} />;
+      default:
+        return <StartTrialCall checkout={doCheckOut} />;
+    }
+  };
 
   if (state === 'SIGNED_OUT')
     return (
@@ -78,32 +90,13 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       </ActionLayout>
     );
 
-  if (productInfoStatus === 'loading')
-    return (
-      <ActionLayout publicSnippet={publicSnippet}>
-        <Skeleton.Input active size="default" block />
-        <Skeleton.Input active size="default" block />
-        <Skeleton.Input active size="default" block />
-        <Skeleton.Image active />
-        <Skeleton.Input active size="default" block />
-      </ActionLayout>
-    );
+  if (productInfoStatus === 'active') return children;
 
-  switch (productInfoStatus) {
-    case 'active':
-      return children;
-    case 'blocked':
-      return (
-        <ActionLayout publicSnippet={publicSnippet}>
-          <BlockedCall />
-        </ActionLayout>
-      );
-    case 'ended':
-      return <h1>ended</h1>;
-
-    default:
-      return <h1>trail</h1>;
-  }
+  return (
+    <ActionLayout publicSnippet={publicSnippet}>
+      {getCallToAction(productInfoStatus)}
+    </ActionLayout>
+  );
 };
 
 export default PrivateArticle;

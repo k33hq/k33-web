@@ -20,7 +20,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   return (
     <div id="article-header" className={styles.header}>
       <ArticleMetaData {...metadata} />
-      <Title level={2} editable={false}>
+      <Title level={2} style={{ margin: 0, padding: 0 }}>
         {title}
       </Title>
       <Text type="secondary">{subtitle}</Text>
