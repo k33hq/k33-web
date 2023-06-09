@@ -5,8 +5,6 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
-import { poppins } from './_app';
-
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -26,7 +24,7 @@ class MyDocument extends Document {
             href="/research/favicon-64x64.png"
           />
         </Head>
-        <body className={`${poppins.className} flex min-h-screen flex-col`}>
+        <body>
           <Main />
           <NextScript />
         </body>

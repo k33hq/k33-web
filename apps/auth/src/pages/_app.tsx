@@ -1,17 +1,10 @@
 import { AppProps } from 'next/app';
-import { Poppins } from '@next/font/google';
-import '../styles/globals.css';
-import 'ui/styles.css';
+import '../../public/antd.min.css';
+import '../styles/globals.scss';
 import { NextPageWithLayout } from 'ui';
 import K33App from 'platform-js';
-import Script from 'next/script';
-
-export const poppins = Poppins({
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
+import { DefaultLayout } from '@/components';
+import withTheme from '@/theme';
 
 interface PlatformAppProps extends AppProps {
   Component: NextPageWithLayout;
@@ -19,7 +12,7 @@ interface PlatformAppProps extends AppProps {
 
 const PlatformApp = ({ Component, pageProps }: PlatformAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-  return <K33App>{getLayout(<Component {...pageProps} />)}</K33App>;
+  return withTheme(<>{getLayout(<Component {...pageProps} />)}</>);
 };
 
 export default PlatformApp;
