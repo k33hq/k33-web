@@ -58,7 +58,7 @@
   );
 }
 
-.signup {
+.callToAction {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +74,7 @@
 }
 
 @include medium() {
-  .signup {
+  .callToAction {
     padding: 0px 40px;
   }
 }
@@ -93,4 +93,8 @@
 .signupFooter {
   padding: 0px 8px;
   gap: 8px;
+}
+
+.endedBody {
+  padding: 24px 32px;
 }
