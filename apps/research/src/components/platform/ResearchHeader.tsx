@@ -77,7 +77,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                   </Col>
                 )}
                 <Col>
-                  <Button>Sign In</Button>
+                  <Button type="primary">Sign In</Button>
                 </Col>
                 <Col>
                   {!md && (
@@ -115,7 +115,15 @@ const AppLogo: React.FC = () => {
   return (
     <>
       <Image width={51} priority src={companyLogo} alt="company-logo" />
-      <Image width={98} priority src={researchLogo} alt="research-logo" />
+      <Image
+        priority
+        width={98}
+        style={{
+          minWidth: 50,
+        }}
+        src={researchLogo}
+        alt="research-logo"
+      />
     </>
   );
 };
