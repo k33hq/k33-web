@@ -1,3 +1,6 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
 .actionLayout {
   display: flex;
   flex-direction: column;
@@ -60,7 +63,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all $animation-seconds ease-in;
   > div {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    justify-content: center;
+    align-items: center;
   }
+}
+
+@include medium() {
+  .signup {
+    padding: 0px 40px;
+  }
+}
+
+.signupHeader {
+  padding: 0px 8px;
+  gap: 8px;
+}
+
+.loginOptions {
+  padding: 32px 0px;
+  gap: 8px;
+  width: 100%;
+}
+
+.signupFooter {
+  padding: 0px 8px;
+  gap: 8px;
 }

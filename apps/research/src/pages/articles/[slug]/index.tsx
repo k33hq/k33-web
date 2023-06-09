@@ -22,24 +22,28 @@ interface ArticlePageProps {
 
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   const { lg } = useBreakpoint();
-  const { section, publishedDate, article } = page;
+  const {
+    section,
+    publishedDate,
+    article: { authorsCollection, tagsCollection, ...articleContent },
+  } = page;
   return (
     <>
       <NextSeo />
       <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
           <ArticleSidebar
-            authors={article.authorsCollection.items}
-            tags={article.tagsCollection.items}
+            authors={authorsCollection.items}
+            tags={tagsCollection.items}
           />
         </Col>
         <Col id="article" xs={24} lg={14} className="article">
           <Article
-            {...article}
+            {...articleContent}
             section={section}
             publishedDate={publishedDate}
           />
-          <ShareArticle title={article.title} />
+          <ShareArticle title={articleContent.title} />
         </Col>
         <Col xs={0} lg={2}></Col>
       </Row>

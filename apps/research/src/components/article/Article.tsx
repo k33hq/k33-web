@@ -11,7 +11,7 @@ import {
 import { Divider } from 'antd';
 
 interface ArticleProps
-  extends ArticleType,
+  extends Omit<ArticleType, 'authorsCollection' | 'tagsCollection'>,
     Pick<ArticlePage, 'section' | 'publishedDate'> {}
 
 const Article: React.FC<ArticleProps> = ({
