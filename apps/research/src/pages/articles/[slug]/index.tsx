@@ -27,9 +27,15 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
     publishedDate,
     article: { authorsCollection, tagsCollection, ...articleContent },
   } = page;
+
+  const { seo: pageSeo, article, title } = seo;
+
   return (
     <>
-      <NextSeo />
+      <NextSeo
+        title={title}
+        description={pageSeo ? pageSeo.description : article.subtitle}
+      />
       <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
           <ArticleSidebar
