@@ -1,7 +1,7 @@
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { Options } from '@contentful/rich-text-react-renderer';
 import * as React from 'react';
-import { Divider, Typography } from 'antd';
+import { Button, Divider, Typography } from 'antd';
 
 const { Text, Title, Link } = Typography;
 
@@ -66,7 +66,7 @@ export const richTextOptions: Options = {
     [INLINES.HYPERLINK]: ({ data }, children: React.ReactNode) => {
       return (
         <Link href={data.uri} target="_blank" rel="noopener noreferrer">
-          {children}
+          <Button type="link">{children}</Button>
         </Link>
       );
     },

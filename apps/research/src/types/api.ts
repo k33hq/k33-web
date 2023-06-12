@@ -3,12 +3,16 @@ import {
   ArticlePage,
   ArticleWebCollection,
   ArticleSeo,
+  SubscriptionProductCollection,
+  SubscriptionProduct,
 } from './contentful';
 import { ProductStatus } from './payments';
 
 export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;
 export type GetArticleSeoResponse = ArticleWebCollection<ArticleSeo>;
 export type GetArticlePageResponse = ArticleWebCollection<ArticlePage>;
+export type GetSubscriptionProductResponse =
+  SubscriptionProductCollection<SubscriptionProduct>;
 
 // payments
 

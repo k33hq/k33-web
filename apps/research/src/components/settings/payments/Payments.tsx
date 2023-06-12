@@ -18,9 +18,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   const checkout = useCustomerCheckout(priceId);
   const dashboard = useCustomerDashboard();
 
-  // React.useEffect(() => {
-  //   router.push(`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`);
-  // }, [state, router]);
+  React.useEffect(() => {
+    if (state === 'SIGNED_OUT') {
+      router.push(
+        `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`
+      );
+    }
+  }, [state, router]);
 
   return (
     <>

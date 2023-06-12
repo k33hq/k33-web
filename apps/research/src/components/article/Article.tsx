@@ -12,7 +12,10 @@ import { Divider } from 'antd';
 
 interface ArticleProps
   extends Omit<ArticleType, 'authorsCollection' | 'tagsCollection'>,
-    Pick<ArticlePage, 'section' | 'publishedDate'> {}
+    Pick<ArticlePage, 'section' | 'publishedDate'> {
+  productId: string;
+  priceId: string;
+}
 
 const Article: React.FC<ArticleProps> = ({
   title,
@@ -22,6 +25,8 @@ const Article: React.FC<ArticleProps> = ({
   summary,
   body,
   publicSnippet,
+  productId,
+  priceId,
   ...metadata
 }) => {
   return (
@@ -39,7 +44,11 @@ const Article: React.FC<ArticleProps> = ({
           <Divider />
         </div>
       ) : null}
-      <PrivateArticle publicSnippet={publicSnippet} priceId="" productId="">
+      <PrivateArticle
+        publicSnippet={publicSnippet}
+        priceId={priceId}
+        productId={productId}
+      >
         <ArticleBody body={body} />
       </PrivateArticle>
     </>

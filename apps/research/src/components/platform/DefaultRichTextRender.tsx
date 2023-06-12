@@ -14,6 +14,8 @@ const { Meta } = Card;
 const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
   document,
 }) => {
+  if (!document) return;
+
   return (
     <>
       {documentToReactComponents(document.json, {

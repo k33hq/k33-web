@@ -1,5 +1,10 @@
-import { getArticlePage, getArticleSeo, getArticleSlugs } from '@/api';
-import type { ArticlePage, ArticleSeo } from '@/types';
+import {
+  getArticlePage,
+  getArticleSeo,
+  getArticleSlugs,
+  getProducts,
+} from '@/api';
+import type { ArticlePage, ArticleSeo, SubscriptionProduct } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
@@ -14,17 +19,24 @@ const { useToken } = theme;
 interface ArticlePageProps {
   seo: ArticleSeo;
   page: ArticlePage;
+  product: SubscriptionProduct;
 }
 
-const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
+const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
+  page,
+  seo,
+  product,
+}) => {
   const { lg } = useBreakpoint();
   const {
     section,
     publishedDate,
     article: { authorsCollection, tagsCollection, ...articleContent },
   } = page;
-
+  const { productId, pricesCollection } = product;
   const { seo: pageSeo, article, title } = seo;
+
+  console.log(pricesCollection);
 
   return (
     <>
@@ -44,6 +56,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
             {...articleContent}
             section={section}
             publishedDate={publishedDate}
+            productId={productId}
+            priceId={pricesCollection.items[0].stripeProductId}
           />
           <ShareArticle title={articleContent.title} />
         </Col>
@@ -102,9 +116,11 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   const slug = context.params!.slug as string;
   const page = await getArticlePage(slug);
   const seo = await getArticleSeo(slug);
+  const product = await getProducts();
   return {
     props: {
       page,
+      product,
       seo,
     },
   };

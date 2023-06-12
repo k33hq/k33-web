@@ -11,7 +11,6 @@ import { Asset, RichTextDocument } from './global';
 
 export interface ArticleSummary extends RichTextDocument {}
 export interface ArticleBody extends RichTextDocument {}
-
 export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 
 export interface Article

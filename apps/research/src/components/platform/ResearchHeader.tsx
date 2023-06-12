@@ -6,18 +6,27 @@ import {
   Button,
   Row,
   Col,
-  Typography,
-  theme,
   ConfigProvider,
   Drawer,
+  Avatar,
+  Dropdown,
 } from 'antd';
+import type { MenuProps } from 'antd';
 import styles from './styles.module.scss';
 import { appStructure } from '@/config';
-import { MenuOutlined } from '@ant-design/icons';
+import {
+  LogoutOutlined,
+  MenuOutlined,
+  UserOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
 import * as React from 'react';
 import Image from 'next/image';
 import companyLogo from '../../assets/k33.svg';
 import researchLogo from '../../assets/research.svg';
+import { useAppState } from 'platform-js';
+import firebaseConfig from '@/firebase/config';
+import Link from 'next/link';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -30,6 +39,20 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+  const state = useAppState(firebaseConfig);
+
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Settings',
+      icon: <SettingOutlined />,
+    },
+    {
+      key: '2',
+      label: 'Logout',
+      icon: <LogoutOutlined />,
+    },
+  ];
 
   return (
     <>
@@ -45,7 +68,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
             }}
           >
             <div id="header-content">
-              <Row gutter={32} wrap={false}>
+              <Row gutter={16} wrap={false}>
                 <Col
                   flex={1}
                   style={{
@@ -77,7 +100,20 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                   </Col>
                 )}
                 <Col>
-                  <Button type="primary">Sign In</Button>
+                  {state === 'SIGNED_OUT' ? (
+                    <Link
+                      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                    >
+                      <Button type="primary">Sign In</Button>
+                    </Link>
+                  ) : (
+                    <Dropdown menu={{ items }}>
+                      <Avatar
+                        onClick={(e) => e?.preventDefault()}
+                        icon={<UserOutlined />}
+                      />
+                    </Dropdown>
+                  )}
                 </Col>
                 <Col>
                   {!md && (

@@ -7,9 +7,9 @@ import { useRouter } from 'next/router';
 export const useAppState = (firebaseConfig: FirebaseOptions) => {
   const [state, setState] = React.useState<AppStates>('LOADING');
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     init(firebaseConfig);
-  }, []);
+  }, [firebaseConfig]);
 
   React.useEffect(() => {
     getAppState().then((s) => setState(s));
