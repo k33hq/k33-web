@@ -9,11 +9,9 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         minHeight: 1024,
       }}
     >
-      <Layout>
-        <ResearchHeader />
-        {children}
-        <ResearchFooter />
-      </Layout>
+      <ResearchHeader />
+      <Layout>{children}</Layout>
+      <ResearchFooter />
     </Layout>
   );
 };
