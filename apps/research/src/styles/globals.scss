@@ -55,3 +55,11 @@ ul li {
     padding: 64px 0px;
   }
 }
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 0px 64px;
+  gap: 40px;
+}

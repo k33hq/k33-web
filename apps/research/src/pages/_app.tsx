@@ -20,6 +20,7 @@ interface ResearchAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
+// TODO: add the cookie popup
 const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   const { store, props } = wrapper.useWrappedStore(rest);

@@ -43,7 +43,9 @@ const SignUpCall: React.FC = () => {
       <div id="sign-up-footer" className={styles.signupFooter}>
         <div>
           <Text>Already subscribed? </Text>
-          <Link href="">
+          <Link
+            href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+          >
             <AntLink underline>Sign In Here</AntLink>
           </Link>
         </div>

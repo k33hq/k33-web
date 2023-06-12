@@ -1,4 +1,4 @@
-import { Button, Divider, Layout, Space } from 'antd';
+import { Button, Divider, Layout, Space, theme } from 'antd';
 import styles from './styles.module.scss';
 import {
   MailOutlined,
@@ -8,12 +8,28 @@ import {
 import { appStructure } from '@/config';
 
 const { Footer, Content } = Layout;
+const { useToken } = theme;
 
 const ResearchFooter: React.FC = () => {
+  const {
+    token: { colorBgContainer },
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useToken();
   return (
-    <Footer className={styles.footer}>
+    <Footer
+      className={styles.footer}
+      style={{
+        backgroundColor: colorBgContainer,
+      }}
+    >
       <Divider />
-      <Layout id="footer-main" className={styles.footer}>
+      <Layout
+        id="footer-main"
+        className={styles.footer}
+        style={{
+          backgroundColor: colorBgContainer,
+        }}
+      >
         <Content id="footer-content" className={styles.footerContent}>
           <div id="navigation" className={styles.navigation}>
             {appStructure.navigation.map((nav) => (

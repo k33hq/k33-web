@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Layout } from 'antd';
 import { ResearchFooter, ResearchHeader } from '../platform';
 
-const { Sider } = Layout;
-
 const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <Layout
@@ -13,7 +11,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     >
       <Layout>
         <ResearchHeader />
-        <Layout>{children}</Layout>
+        {children}
         <ResearchFooter />
       </Layout>
     </Layout>

@@ -8,3 +8,10 @@ export interface Navigation {
 export interface AppStructure {
   navigation: ReadonlyArray<Navigation>;
 }
+
+export interface PageTab {
+  key: string;
+  label: string;
+}
+
+export type PageTabs = Array<PageTab>;

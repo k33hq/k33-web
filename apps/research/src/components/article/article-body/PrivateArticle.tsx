@@ -1,7 +1,7 @@
 import { Article } from '@/types';
 import * as React from 'react';
 import { Skeleton } from 'antd';
-import { useCheckoutMutation, useLazyGetProductInfoQuery } from '@/services';
+import { useLazyGetProductInfoQuery } from '@/services';
 import { ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import config from '@/firebase/config';
@@ -12,6 +12,7 @@ import {
   EndedCall,
   StartTrialCall,
 } from '../article-actions';
+import { useCustomerCheckout, useProductInfo } from '@/hooks';
 
 interface PrivateArticleProps
   extends React.PropsWithChildren,
@@ -26,43 +27,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   productId,
   priceId,
 }) => {
-  // checkout and dashboard mutations
-  const [checkout] = useCheckoutMutation();
-  const [getProductsInfoTrigger] = useLazyGetProductInfoQuery();
-
-  // load the firebase app
-  const state = useAppState(config);
-
-  const [productInfoStatus, setProductInfoStatus] = React.useState<
-    ProductStatus | null | 'loading'
-  >('loading');
-
-  React.useEffect(() => {
-    const getProductsInfo = async () => {
-      try {
-        const data = await getProductsInfoTrigger(productId).unwrap();
-        setProductInfoStatus(data.status);
-      } catch (err) {
-        setProductInfoStatus(null);
-      }
-    };
-    getProductsInfo();
-  }, [state, getProductsInfoTrigger, productId]);
-
-  const doCheckOut = async () => {
-    try {
-      const response = await checkout({
-        price_id: priceId,
-        success_url: window.location.href,
-        cancel_url: window.location.href,
-      }).unwrap();
-      window.location.href = response.url;
-    } catch (err) {
-      //nothing for now
-    }
-  };
-
-  const getCallToAction = (state: typeof productInfoStatus) => {
+  const doCheckOut = useCustomerCheckout(priceId);
+  const [status, state] = useProductInfo(productId);
+  const getCallToAction = (state: typeof status) => {
     switch (state) {
       case 'loading':
         return (
@@ -90,11 +57,11 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       </ActionLayout>
     );
 
-  if (productInfoStatus === 'active') return children;
+  if (status === 'active') return children;
 
   return (
     <ActionLayout publicSnippet={publicSnippet}>
-      {getCallToAction(productInfoStatus)}
+      {getCallToAction(status)}
     </ActionLayout>
   );
 };

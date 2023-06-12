@@ -1,19 +1,15 @@
 import { getArticlePage, getArticleSeo, getArticleSlugs } from '@/api';
 import type { ArticlePage, ArticleSeo } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { Layout, Row, Col, Grid, Divider } from 'antd';
+import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
 import { NextSeo } from 'next-seo';
-import {
-  Article,
-  ArticleMetaData,
-  ArticleSidebar,
-  ShareArticle,
-} from '@/components';
+import { Article, ArticleSidebar, ShareArticle } from '@/components';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
+const { useToken } = theme;
 
 interface ArticlePageProps {
   seo: ArticleSeo;
@@ -57,12 +53,19 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page, seo }) => {
   );
 };
 
-ArticlePage.getLayout = function getLayout(page: ReactElement) {
+ArticlePage.getLayout = function getLayout(
+  page: ReactElement
+): React.ReactNode {
+  const {
+    token: { colorBgContainer },
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useToken();
   return (
     <Content
       style={{
         display: 'flex',
         justifyContent: 'center',
+        backgroundColor: colorBgContainer,
       }}
     >
       <Content

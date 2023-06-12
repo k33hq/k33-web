@@ -11,7 +11,7 @@ const withTheme = (node: JSX.Element) => (
       },
       components: {
         Layout: {
-          colorBgBody: '#ffffff',
+          colorBgContainer: '#ffffff',
           colorBgHeader: '#141414',
         },
       },
