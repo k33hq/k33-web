@@ -1,3 +1,6 @@
+import { appStructure } from '@/config';
+import { Navigations } from '@/types';
+
 export const getUrl = (...slugs: Array<string>) => `/${slugs.join('/')}`;
 
 export function forceDownload(blob: string, filename?: string | undefined) {
@@ -42,3 +45,9 @@ export const getReadingTime = () => {
 };
 
 export * from './share';
+
+export const getLevelTwos = (levelOne: string) => {
+  return appStructure.navigation
+    .filter((nav) => nav.key === levelOne && nav.children !== undefined)
+    .flatMap((nav) => nav.children) as Navigations;
+};

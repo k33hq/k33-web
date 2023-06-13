@@ -1,18 +1,19 @@
 import { TabLayout } from '@/components';
 import { getLevelTwos } from '@/utils';
+import Typography from 'antd/es/typography/Typography';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
-const IndustryInsights: NextPageWithLayout = () => {
+const IndustryReports: NextPageWithLayout = () => {
   return (
     <>
       <NextSeo />
-      <h1>Valuation home</h1>
+      <h1>Industry Reports</h1>
     </>
   );
 };
 
-IndustryInsights.getLayout = function getLayout(page: React.ReactElement) {
+IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey="industry-reports"
@@ -24,4 +25,4 @@ IndustryInsights.getLayout = function getLayout(page: React.ReactElement) {
   );
 };
 
-export default IndustryInsights;
+export default IndustryReports;

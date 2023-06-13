@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { NextPageWithLayout } from 'ui';
-import { Layout, Typography } from 'antd';
+import { Typography } from 'antd';
 import { SimpleLayout } from '@/components';
 import { NextSeo } from 'next-seo';
-
-const { Content } = Layout;
 
 const Home: NextPageWithLayout = () => {
   return (

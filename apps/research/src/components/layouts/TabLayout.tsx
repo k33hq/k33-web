@@ -1,20 +1,28 @@
-import { PageTabs } from '@/types';
+import { Navigations } from '@/types';
 import { theme, Layout, Row, Col, Tabs, Typography } from 'antd';
 import * as React from 'react';
 import styles from './styles.module.scss';
+import { useRouter } from 'next/router';
 
 const { useToken } = theme;
 const { Title } = Typography;
 
 interface TabLayoutProps extends React.PropsWithChildren {
   title: string;
-  tabs: PageTabs;
+  tabs: Navigations;
+  activeKey: string;
 }
 
-const TabLayout: React.FC<TabLayoutProps> = ({ children, title, tabs }) => {
+const TabLayout: React.FC<TabLayoutProps> = ({
+  children,
+  title,
+  tabs,
+  activeKey,
+}) => {
   const {
     token: { colorBgContainer },
   } = useToken();
+  const router = useRouter();
   return (
     <>
       <div
@@ -49,7 +57,11 @@ const TabLayout: React.FC<TabLayoutProps> = ({ children, title, tabs }) => {
                   margin: 0,
                 }}
                 type="card"
-                items={tabs}
+                onTabClick={(key, event) => {
+                  router.push(key);
+                }}
+                activeKey={activeKey}
+                items={tabs.map(({ key, label }) => ({ key, label }))}
               />
             </Col>
           </Row>
@@ -70,7 +82,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({ children, title, tabs }) => {
           }}
         >
           <Row>
-            <Col span={22} offset={1}>
+            <Col span={22} offset={1} className="default-body">
               {children}
             </Col>
           </Row>

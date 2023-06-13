@@ -18,19 +18,21 @@ const Settings: NextPageWithLayout<SettingsProps> = ({ product }) => {
   return (
     <>
       <NextSeo title="K33 - Settings" />
-      <Content id="settings-layout" className="settings">
-        <Payments
-          priceId={product.pricesCollection.items[0].stripeProductId}
-          productId={product.productId}
-        />
-      </Content>
+      <Payments
+        priceId={product.pricesCollection.items[0].stripeProductId}
+        productId={product.productId}
+      />
     </>
   );
 };
 
 Settings.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout title="Settings" tabs={[{ key: 'payments', label: 'Payments' }]}>
+    <TabLayout
+      activeKey="payments"
+      title="Settings"
+      tabs={[{ key: 'payments', label: 'Payments', url: '' }]}
+    >
       {page}
     </TabLayout>
   );

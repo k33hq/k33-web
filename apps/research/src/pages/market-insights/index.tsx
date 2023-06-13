@@ -1,11 +1,12 @@
 import { TabLayout } from '@/components';
+import { getLevelTwos } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
 const MarketInsights: NextPageWithLayout = () => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Market Insights" />
       <h1>Valuation home</h1>
     </>
   );
@@ -14,11 +15,9 @@ const MarketInsights: NextPageWithLayout = () => {
 MarketInsights.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
+      activeKey="quick-takes"
       title="Market Insights"
-      tabs={[
-        { key: 'analysis', label: 'Analysis' },
-        { key: 'principles', label: 'Principles' },
-      ]}
+      tabs={getLevelTwos('market-insights')}
     >
       {page}
     </TabLayout>

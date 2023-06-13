@@ -2,16 +2,18 @@ export interface Navigation {
   key: string;
   label: string;
   url: string;
-  children?: ReadonlyArray<Navigation>;
+  children?: Array<Navigation>;
 }
 
 export interface AppStructure {
-  navigation: ReadonlyArray<Navigation>;
+  navigation: Array<Navigation>;
 }
 
-export interface PageTab {
-  key: string;
-  label: string;
-}
+// export interface PageTab {
+//   key: string;
+//   label: string;
+// }
 
-export type PageTabs = Array<PageTab>;
+// export type PageTabs = Array<PageTab>;
+
+export type Navigations = Array<Navigation>;

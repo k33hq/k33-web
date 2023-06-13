@@ -1,4 +1,5 @@
 import { TabLayout } from '@/components';
+import { getLevelTwos } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
@@ -6,7 +7,7 @@ const Principles: NextPageWithLayout = () => {
   return (
     <>
       <NextSeo />
-      <h1>Principles</h1>
+      <h1>Valuation Principles</h1>
     </>
   );
 };
@@ -14,11 +15,9 @@ const Principles: NextPageWithLayout = () => {
 Principles.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
+      activeKey="valuation-principles"
       title="Token Valuation"
-      tabs={[
-        { key: 'analysis', label: 'Analysis' },
-        { key: 'principles', label: 'Principles' },
-      ]}
+      tabs={getLevelTwos('token-valuation')}
     >
       {page}
     </TabLayout>
