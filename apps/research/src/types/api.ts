@@ -6,6 +6,7 @@ import {
   SubscriptionProductCollection,
   SubscriptionProduct,
   ArticleWebWidget,
+  ArticleSummaryWidget,
 } from './contentful';
 import { ProductStatus } from './payments';
 
@@ -50,3 +51,6 @@ export interface GetProductInfoResponse {
 
 export type GetArticleWebWidgetsResponse =
   ArticleWebCollection<ArticleWebWidget>;
+
+export type GetArticleSummaryWidgetResponse =
+  ArticleWebCollection<ArticleSummaryWidget>;

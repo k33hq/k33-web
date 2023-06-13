@@ -1,10 +1,9 @@
+import * as React from 'react';
+
 import { ArticleWebWidget as ArticleWebWidgetType } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Card, Col, Image, Typography, theme } from 'antd';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
-import * as React from 'react';
 
 interface ArticleWidgetProps extends ArticleWebWidgetType {}
 
@@ -28,9 +27,10 @@ export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
         <Card
           style={{
             width: '100%',
-            border: 0,
+            overflow: 'hidden',
           }}
           hoverable
+          bordered={false}
           cover={
             <Image
               src={thumbnail.url}

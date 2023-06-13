@@ -29,6 +29,10 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
       >
         <Card
+          style={{
+            width: '100%',
+            overflow: 'hidden',
+          }}
           hoverable
           cover={
             <Image
@@ -37,7 +41,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
               alt={thumbnail.description}
             />
           }
-          bordered={false}
+          bordered
         >
           <Meta
             title={
