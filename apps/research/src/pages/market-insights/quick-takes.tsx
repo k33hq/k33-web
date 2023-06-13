@@ -1,13 +1,20 @@
-import { TabLayout } from '@/components';
+import { getArticleWebWidgets } from '@/api';
+import { ArticleWidgetList, TabLayout } from '@/components';
+import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
+import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
-const QuickTakes: NextPageWithLayout = () => {
+interface QuickTakesProps {
+  articles: ReadonlyArray<ArticleWebWidget>;
+}
+
+const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
   return (
     <>
-      <NextSeo title="Research - Market Insights" />
-      <h1>quick takes</h1>
+      <NextSeo title="Market Insights - Quick Takes" />
+      <ArticleWidgetList articles={articles} />
     </>
   );
 };
@@ -22,6 +29,15 @@ QuickTakes.getLayout = function getLayout(page: React.ReactElement) {
       {page}
     </TabLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps<QuickTakesProps> = async () => {
+  const articles = await getArticleWebWidgets('market-insights/quick-takes');
+  return {
+    props: {
+      articles,
+    },
+  };
 };
 
 export default QuickTakes;

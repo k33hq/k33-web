@@ -5,6 +5,7 @@ import {
   ArticleSeo,
   SubscriptionProductCollection,
   SubscriptionProduct,
+  ArticleWebWidget,
 } from './contentful';
 import { ProductStatus } from './payments';
 
@@ -44,3 +45,8 @@ export interface GetProductInfoResponse {
   product_id: string;
   status: ProductStatus;
 }
+
+//market insight
+
+export type GetArticleWebWidgetsResponse =
+  ArticleWebCollection<ArticleWebWidget>;

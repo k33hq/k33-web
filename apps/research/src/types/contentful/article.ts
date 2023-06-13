@@ -43,3 +43,14 @@ export interface ArticleWebCollection<T extends object> {
     items: ReadonlyArray<T>;
   };
 }
+
+// level 2s
+export interface ArticleWidget
+  extends Pick<IArticleFields, 'title' | 'subtitle'> {
+  thumbnail: Asset;
+}
+
+export interface ArticleWebWidget
+  extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
+  article: Pick<ArticleWidget, 'title' | 'thumbnail'>;
+}

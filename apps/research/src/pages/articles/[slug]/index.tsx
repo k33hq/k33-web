@@ -36,8 +36,6 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
   const { productId, pricesCollection } = product;
   const { seo: pageSeo, article, title } = seo;
 
-  console.log(pricesCollection);
-
   return (
     <>
       <NextSeo
