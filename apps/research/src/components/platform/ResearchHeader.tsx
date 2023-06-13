@@ -27,6 +27,7 @@ import researchLogo from '../../assets/research.svg';
 import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -36,6 +37,7 @@ interface ResearchHeaderProps {}
 const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
   const { md } = useBreakpoint();
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -90,9 +92,10 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                           borderBottom: 0,
                         }}
                         items={appStructure.navigation.map(
-                          ({ key, label }) => ({
+                          ({ key, label, url }) => ({
                             key,
                             label,
+                            onClick: () => router.push(url),
                           })
                         )}
                       />
@@ -135,9 +138,10 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           style={{
             width: 200,
           }}
-          items={appStructure.navigation.map(({ key, label }) => ({
+          items={appStructure.navigation.map(({ key, label, url }) => ({
             key,
             label,
+            onClick: () => router.push(url),
           }))}
         />
       </Drawer>

@@ -10,17 +10,17 @@ export const appStructure: AppStructure = {
     {
       key: 'market-insight',
       label: 'Market Insights',
-      url: '/market-insights',
+      url: '/market-insights/quick-takes',
     },
     {
       key: 'token-valuation',
       label: 'Token Valuation',
-      url: '/token-valuation',
+      url: '/token-valuation/analysis',
     },
     {
       key: 'industry-insights',
       label: 'Industry Insights',
-      url: '/industry-insights',
+      url: '/industry-insights/coverage',
     },
   ],
 };

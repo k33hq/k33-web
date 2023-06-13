@@ -2,16 +2,16 @@ import { TabLayout } from '@/components';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
-const TokenValuation: NextPageWithLayout = () => {
+const Principles: NextPageWithLayout = () => {
   return (
     <>
       <NextSeo />
-      <h1>Valuation home</h1>
+      <h1>Principles</h1>
     </>
   );
 };
 
-TokenValuation.getLayout = function getLayout(page: React.ReactElement) {
+Principles.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       title="Token Valuation"
@@ -25,4 +25,4 @@ TokenValuation.getLayout = function getLayout(page: React.ReactElement) {
   );
 };
 
-export default TokenValuation;
+export default Principles;

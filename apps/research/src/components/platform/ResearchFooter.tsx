@@ -6,6 +6,7 @@ import {
   TwitterOutlined,
 } from '@ant-design/icons';
 import { appStructure } from '@/config';
+import Link from 'next/link';
 
 const { Footer, Content } = Layout;
 const { useToken } = theme;
@@ -33,9 +34,11 @@ const ResearchFooter: React.FC = () => {
         <Content id="footer-content" className={styles.footerContent}>
           <div id="navigation" className={styles.navigation}>
             {appStructure.navigation.map((nav) => (
-              <Button key={nav.label} type="link" size="small">
-                {nav.label}
-              </Button>
+              <Link href={nav.url}>
+                <Button key={nav.label} type="link" size="small">
+                  {nav.label}
+                </Button>
+              </Link>
             ))}
           </div>
           <div id="social-links">
