@@ -24,7 +24,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
   const { md } = useBreakpoint();
 
   return (
-    <Col xs={12} sm={12} md={6} xxl={5}>
+    <Col xs={12} sm={12} md={6} xxl={6}>
       <Link
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
       >
@@ -51,10 +51,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
               </Text>
             }
             description={
-              <Text
-                strong
-                ellipsis={md ? ({ tooltip: title } as EllipsisConfig) : false}
-              >
+              <Text strong ellipsis={false}>
                 {title}
               </Text>
             }

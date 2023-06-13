@@ -2,7 +2,7 @@ import { getArticleWebWidgets } from '@/api';
 import { ReportWidget, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
-import { Row } from 'antd';
+import { Grid, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -14,10 +14,11 @@ interface WeeklyReportsProps {
 const WeeklyReports: NextPageWithLayout<WeeklyReportsProps> = ({
   articles,
 }) => {
+  const { sm } = Grid.useBreakpoint();
   return (
     <>
       <NextSeo title="Market Insights - Weekly Reports" />
-      <Row wrap gutter={[16, 40]}>
+      <Row wrap gutter={[sm ? 16 : 32, 40]}>
         {articles.map((article) => (
           <ReportWidget key={article.publishedDate} {...article} />
         ))}

@@ -34,7 +34,7 @@ const ResearchFooter: React.FC = () => {
         <Content id="footer-content" className={styles.footerContent}>
           <div id="navigation" className={styles.navigation}>
             {appStructure.navigation.map((nav) => (
-              <Link href={nav.url}>
+              <Link href={nav.url} key={nav.key}>
                 <Button key={nav.label} type="link" size="small">
                   {nav.label}
                 </Button>
