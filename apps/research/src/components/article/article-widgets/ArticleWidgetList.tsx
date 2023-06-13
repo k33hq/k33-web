@@ -9,7 +9,7 @@ interface ArticleWidgetListProps {
 
 const ArticleWidgetList: React.FC<ArticleWidgetListProps> = ({ articles }) => {
   return (
-    <Row wrap>
+    <Row wrap gutter={[32, 32]}>
       {articles.map((article) => (
         <ArticleWidget key={article.publishedDate} {...article} />
       ))}

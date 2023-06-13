@@ -68,16 +68,12 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
 ArticlePage.getLayout = function getLayout(
   page: ReactElement
 ): React.ReactNode {
-  const {
-    token: { colorBgContainer },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = useToken();
   return (
     <Content
       style={{
         display: 'flex',
         justifyContent: 'center',
-        backgroundColor: colorBgContainer,
+        backgroundColor: 'white',
       }}
     >
       <Content

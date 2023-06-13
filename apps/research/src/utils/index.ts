@@ -51,3 +51,5 @@ export const getLevelTwos = (levelOne: string) => {
     .filter((nav) => nav.key === levelOne && nav.children !== undefined)
     .flatMap((nav) => nav.children) as Navigations;
 };
+
+export const navigate = (url: string) => {};

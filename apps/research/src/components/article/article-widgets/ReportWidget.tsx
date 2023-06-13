@@ -1,18 +1,18 @@
 import { ArticleWebWidget as ArticleWebWidgetType } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { Card, Col, Image, Typography, theme } from 'antd';
+import { Card, Col, Grid, Image, Typography, theme } from 'antd';
+import { EllipsisConfig } from 'antd/es/typography/Base';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
 import * as React from 'react';
 
-interface ArticleWidgetProps extends ArticleWebWidgetType {}
+interface ReportWidgetProps extends ArticleWebWidgetType {}
 
 const { Meta } = Card;
-const { useToken } = theme;
 const { Text } = Typography;
+const { useToken } = theme;
+const { useBreakpoint } = Grid;
 
-export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
+export const ReportWidget: React.FC<ReportWidgetProps> = ({
   publishedDate,
   articleSlug,
   article: { thumbnail, title },
@@ -20,16 +20,15 @@ export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
   const {
     token: { fontSizeSM },
   } = useToken();
+
+  const { md } = useBreakpoint();
+
   return (
-    <Col xs={24} sm={24} md={6}>
+    <Col xs={12} sm={12} md={6} xxl={5}>
       <Link
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
       >
         <Card
-          style={{
-            width: '100%',
-            border: 0,
-          }}
           hoverable
           cover={
             <Image
@@ -38,6 +37,7 @@ export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
               alt={thumbnail.description}
             />
           }
+          bordered={false}
         >
           <Meta
             title={
@@ -50,7 +50,14 @@ export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
                 {formatDateAndTime(publishedDate, 'day')}
               </Text>
             }
-            description={<Text strong>{title}</Text>}
+            description={
+              <Text
+                strong
+                ellipsis={md ? ({ tooltip: title } as EllipsisConfig) : false}
+              >
+                {title}
+              </Text>
+            }
           />
         </Card>
       </Link>
@@ -58,4 +65,4 @@ export const ArticleWidget: React.FC<ArticleWidgetProps> = ({
   );
 };
 
-export default ArticleWidget;
+export default ReportWidget;

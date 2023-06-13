@@ -95,7 +95,16 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                           ({ key, label, url }) => ({
                             key,
                             label,
-                            onClick: () => router.push(url),
+                            onClick: () => {
+                              if (!(typeof window === undefined)) {
+                                window.history.pushState(
+                                  null,
+                                  '',
+                                  `/research${url}`
+                                );
+                                window.location.reload();
+                              }
+                            },
                           })
                         )}
                       />
@@ -141,7 +150,12 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           items={appStructure.navigation.map(({ key, label, url }) => ({
             key,
             label,
-            onClick: () => router.push(url),
+            onClick: () => {
+              if (!(typeof window === undefined)) {
+                window.history.pushState(null, '', `/research${url}`);
+                window.location.reload();
+              }
+            },
           }))}
         />
       </Drawer>

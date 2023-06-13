@@ -33,13 +33,23 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     switch (state) {
       case 'loading':
         return (
-          <>
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 40,
+            }}
+          >
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />
             <Skeleton.Image active />
             <Skeleton.Input active size="default" block />
-          </>
+            <Skeleton.Input active size="default" block />
+            <Skeleton.Input active size="default" block />
+            <Skeleton.Input active size="default" block />
+          </div>
         );
       case 'blocked':
         return <BlockedCall />;

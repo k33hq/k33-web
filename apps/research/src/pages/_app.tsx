@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
+import * as React from 'react';
 import { NextPageWithLayout } from 'ui';
 import K33App from 'platform-js';
 import { Provider } from 'react-redux';
@@ -25,9 +26,30 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   const { store, props } = wrapper.useWrappedStore(rest);
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+
+  if (typeof window !== 'undefined') {
+    window.onload = () => {
+      document.getElementById('holderStyle')!.remove();
+    };
+  }
+
   return withTheme(
     <Provider store={store}>
-      <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
+      <style
+        id="holderStyle"
+        dangerouslySetInnerHTML={{
+          __html: `
+                    *, *::before, *::after {
+                        transition: none!important;
+                    }
+                    `,
+        }}
+      />
+      <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
+        <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
+      </div>
     </Provider>
   );
 };

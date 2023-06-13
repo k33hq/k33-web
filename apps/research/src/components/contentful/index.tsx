@@ -65,8 +65,13 @@ export const richTextOptions: Options = {
 
     [INLINES.HYPERLINK]: ({ data }, children: React.ReactNode) => {
       return (
-        <Link href={data.uri} target="_blank" rel="noopener noreferrer">
-          <Button type="link">{children}</Button>
+        <Link
+          underline
+          href={data.uri}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
         </Link>
       );
     },
