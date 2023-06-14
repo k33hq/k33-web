@@ -1,14 +1,16 @@
 import { ArticleWebWidget as ArticleWebWidgetType } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { Card, Col, Grid, Image, Typography, theme } from 'antd';
+import { Card, Col, Grid, Image, Space, Typography, theme } from 'antd';
 import { EllipsisConfig } from 'antd/es/typography/Base';
 import Link from 'next/link';
+import styles from './styles.module.scss';
+
 import * as React from 'react';
 
 interface ReportWidgetProps extends ArticleWebWidgetType {}
 
 const { Meta } = Card;
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
@@ -18,7 +20,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
   article: { thumbnail, title },
 }) => {
   const {
-    token: { fontSizeSM },
+    token: { fontSizeHeading5 },
   } = useToken();
 
   const { md } = useBreakpoint();
@@ -33,9 +35,11 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
             width: '100%',
             overflow: 'hidden',
           }}
+          size="small"
           hoverable
           cover={
             <Image
+              style={{}}
               src={thumbnail.url}
               preview={false}
               alt={thumbnail.description}
@@ -43,23 +47,35 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
           }
           bordered
         >
-          <Meta
-            title={
-              <Text
-                type="secondary"
-                style={{
-                  fontSize: fontSizeSM,
-                }}
-              >
+          <div
+            id="article-summary-information"
+            className={styles.articleSummaryBody}
+          >
+            <Space>
+              <Text type="secondary">
                 {formatDateAndTime(publishedDate, 'day')}
               </Text>
-            }
-            description={
-              <Text strong ellipsis={false}>
-                {title}
-              </Text>
-            }
-          />
+            </Space>
+            <Paragraph
+              strong
+              style={{
+                margin: 0,
+                fontSize: fontSizeHeading5,
+              }}
+              ellipsis={
+                md
+                  ? ({
+                      rows: 2,
+                      tooltip: title,
+                    } as EllipsisConfig)
+                  : ({
+                      rows: 2,
+                    } as EllipsisConfig)
+              }
+            >
+              {title}
+            </Paragraph>
+          </div>
         </Card>
       </Link>
     </Col>

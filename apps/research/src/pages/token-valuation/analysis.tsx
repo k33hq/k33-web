@@ -1,13 +1,25 @@
-import { TabLayout } from '@/components';
+import { getArticleSummaryWidgets } from '@/api';
+import { ArticleWidget, TabLayout } from '@/components';
+import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
+import { Row } from 'antd';
+import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 
-const Analysis: NextPageWithLayout = () => {
+interface AnalysisProps {
+  articles: ReadonlyArray<ArticleSummaryWidget>;
+}
+
+const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
   return (
     <>
       <NextSeo />
-      <h1>Analysis</h1>
+      <Row wrap gutter={[32, 48]}>
+        {articles.map((article, index) => (
+          <ArticleWidget key={article.publishedDate} {...article} />
+        ))}
+      </Row>
     </>
   );
 };
@@ -22,6 +34,15 @@ Analysis.getLayout = function getLayout(page: React.ReactElement) {
       {page}
     </TabLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps<AnalysisProps> = async () => {
+  const articles = await getArticleSummaryWidgets('token-valuation/analysis');
+  return {
+    props: {
+      articles,
+    },
+  };
 };
 
 export default Analysis;

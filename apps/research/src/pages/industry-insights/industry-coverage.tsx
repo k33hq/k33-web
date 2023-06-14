@@ -1,5 +1,5 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleMaxWidget, TabLayout } from '@/components';
+import { ArticleWidget, TabLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Row } from 'antd';
@@ -17,9 +17,9 @@ const IndustryCoverage: NextPageWithLayout<IndustryCoverageProps> = ({
   return (
     <>
       <NextSeo />
-      <Row wrap gutter={[16, 56]}>
+      <Row wrap gutter={[32, 56]}>
         {articles.map((article, index) => (
-          <ArticleMaxWidget key={article.publishedDate} {...article} />
+          <ArticleWidget key={article.publishedDate} {...article} />
         ))}
       </Row>
     </>

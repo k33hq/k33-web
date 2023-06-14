@@ -18,7 +18,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
   return (
     <>
       <NextSeo />
-      <Row wrap gutter={[sm ? 16 : 32, 40]}>
+      <Row wrap gutter={[sm ? 32 : 16, 40]}>
         {articles.map((article) => (
           <ReportWidget key={article.publishedDate} {...article} />
         ))}
