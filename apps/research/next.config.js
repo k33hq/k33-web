@@ -20,4 +20,8 @@ module.exports = {
     ],
   },
   staticPageGenerationTimeout: 300,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
 };

@@ -44,12 +44,11 @@ export const getReadingTime = () => {
   return time;
 };
 
-export * from './share';
-
 export const getLevelTwos = (levelOne: string) => {
   return appStructure.navigation
     .filter((nav) => nav.key === levelOne && nav.children !== undefined)
     .flatMap((nav) => nav.children) as Navigations;
 };
 
-export const navigate = (url: string) => {};
+export * from './share';
+export * from './markdown';
