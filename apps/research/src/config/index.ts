@@ -57,14 +57,14 @@ export const appStructure: AppStructure = {
           url: '/industry-insights/industry-reports',
         },
         {
-          key: 'news',
-          label: 'News',
-          url: '/industry-insights/news',
-        },
-        {
           key: 'industry-coverage',
           label: 'Industry Coverage',
           url: '/industry-insights/industry-coverage',
+        },
+        {
+          key: 'news',
+          label: 'News',
+          url: '/industry-insights/news',
         },
       ],
     },
