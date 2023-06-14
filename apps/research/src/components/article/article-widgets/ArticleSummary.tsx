@@ -1,6 +1,16 @@
 import { ArticleSummaryWidget } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { Badge, Col, Divider, Grid, Image, Row, Space, Typography } from 'antd';
+import {
+  Badge,
+  Col,
+  Divider,
+  Grid,
+  Image,
+  Row,
+  Space,
+  Tag,
+  Typography,
+} from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 import styles from './styles.module.scss';
@@ -14,7 +24,7 @@ interface ArticleSummaryProps extends ArticleSummaryWidget {
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({
   publishedDate,
   articleSlug,
-  article: { title, thumbnail, subtitle },
+  article: { title, thumbnail, subtitle, tagsCollection },
   isNew = false,
 }) => {
   const { sm, md } = Grid.useBreakpoint();
@@ -24,7 +34,7 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
         <Link
           href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
         >
-          <Row wrap gutter={16} align="middle">
+          <Row wrap gutter={[24, 16]} align="middle">
             <Col xs={24} sm={12} order={sm ? 2 : 0}>
               <Image
                 style={{
@@ -40,8 +50,11 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
                 id="article-summary-information"
                 className={styles.articleSummaryBody}
               >
-                <Space>
+                <Space size={8}>
                   {isNew && <Badge text="New" color="blue" />}
+                  {tagsCollection.items.map((tag) => (
+                    <Tag key={tag.title}>{tag.title}</Tag>
+                  ))}
                   <Text type="secondary">
                     {formatDateAndTime(publishedDate, 'day')}
                   </Text>
