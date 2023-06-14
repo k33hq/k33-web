@@ -19,7 +19,7 @@ const IndustryCoverage: NextPageWithLayout<IndustryCoverageProps> = ({
       <NextSeo />
       <Row wrap gutter={[32, 56]}>
         {articles.map((article, index) => (
-          <ArticleWidget key={article.publishedDate} {...article} />
+          <ArticleWidget key={article.publishedDate} {...article} showTags />
         ))}
       </Row>
     </>

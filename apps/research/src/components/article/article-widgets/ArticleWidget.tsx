@@ -1,6 +1,16 @@
 import { ArticleSummaryWidget } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { Badge, Col, theme, Grid, Image, Row, Space, Typography } from 'antd';
+import {
+  Badge,
+  Col,
+  theme,
+  Grid,
+  Image,
+  Row,
+  Space,
+  Typography,
+  Tag,
+} from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 import styles from './styles.module.scss';
@@ -11,18 +21,21 @@ const { useToken } = theme;
 
 interface ArticleSummaryProps extends ArticleSummaryWidget {
   isNew?: boolean;
+  showTags?: boolean;
 }
 
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({
   publishedDate,
   articleSlug,
-  article: { title, thumbnail, subtitle },
+  article: { title, thumbnail, subtitle, tagsCollection },
   isNew = false,
+  showTags = false,
 }) => {
-  const { sm, md } = Grid.useBreakpoint();
+  const { sm, md, xl } = Grid.useBreakpoint();
   const {
-    token: { fontSizeHeading5 },
+    token: { fontSizeHeading5, fontSizeSM },
   } = useToken();
+
   return (
     <Col xs={24} sm={24} md={6}>
       <Row gutter={[0, md ? 24 : 8]} align="middle">
@@ -46,9 +59,21 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
             id="article-summary-information"
             className={styles.articleSummaryBody}
           >
-            <Space>
+            <Space size={[0, 4]} wrap>
               {isNew && <Badge text="New" color="blue" />}
-              <Text type="secondary">
+              {xl && showTags && (
+                <Space size={[0, 4]} wrap>
+                  {tagsCollection.items.slice(0, 3).map((tag) => (
+                    <Tag key={tag.title}>{tag.title}</Tag>
+                  ))}
+                </Space>
+              )}
+              <Text
+                type="secondary"
+                style={{
+                  fontSize: fontSizeSM,
+                }}
+              >
                 {formatDateAndTime(publishedDate, 'day')}
               </Text>
             </Space>

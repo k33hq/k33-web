@@ -19,6 +19,11 @@ const GetArticleWebWidgets = gql`
             ...asset
           }
           title
+          tagsCollection {
+            items {
+              title
+            }
+          }
         }
         articleSlug
         publishedDate

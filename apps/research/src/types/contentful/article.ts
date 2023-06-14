@@ -46,13 +46,13 @@ export interface ArticleWebCollection<T extends object> {
 
 // level 2s
 export interface ArticleWidget
-  extends Pick<IArticleFields, 'title' | 'subtitle'> {
+  extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection'> {
   thumbnail: Asset;
 }
 
 export interface ArticleWebWidget
   extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
-  article: Pick<ArticleWidget, 'title' | 'thumbnail'>;
+  article: Omit<ArticleWidget, 'subtitle'>;
 }
 
 export interface ArticleSummaryWidget
