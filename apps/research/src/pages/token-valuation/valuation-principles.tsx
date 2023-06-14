@@ -30,44 +30,50 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
   return (
     <>
       <NextSeo title="Research - Token Valuation Principles" />
-      <div
-        id="valuation-principles"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-        }}
-      >
-        <ReactMarkdown
-          components={{
-            img: function (props) {
-              return (
-                <div
-                  style={{
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                  }}
-                >
-                  <Image src={props.src} alt={props.alt} />
-                </div>
-              );
-            },
-            h1: ({ node, children, ...props }) => (
-              <Title level={2}>{children}</Title>
-            ),
-            h3: ({ node, children, ...props }) => (
-              <Title level={3} type="secondary">
-                {children}
-              </Title>
-            ),
-            p: ({ node, children, ...props }) => {
-              return <Paragraph>{children}</Paragraph>;
-            },
-          }}
-        >
-          {content}
-        </ReactMarkdown>
-      </div>
+      <Row align="middle">
+        <Col xs={0} xl={4}></Col>
+        <Col xs={24} xl={16}>
+          <div
+            id="valuation-principles"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+            }}
+          >
+            <ReactMarkdown
+              components={{
+                img: function (props) {
+                  return (
+                    <div
+                      style={{
+                        justifyContent: 'center',
+                        alignSelf: 'center',
+                      }}
+                    >
+                      <Image src={props.src} alt={props.alt} />
+                    </div>
+                  );
+                },
+                h1: ({ node, children, ...props }) => (
+                  <Title level={2}>{children}</Title>
+                ),
+                h3: ({ node, children, ...props }) => (
+                  <Title level={3} type="secondary">
+                    {children}
+                  </Title>
+                ),
+                p: ({ node, children, ...props }) => {
+                  return <Paragraph>{children}</Paragraph>;
+                },
+              }}
+            >
+              {content}
+            </ReactMarkdown>
+          </div>
+        </Col>
+        <Col xs={0} xl={4}></Col>
+      </Row>
       <div
         id="token-valuation-applying-framework"
         style={{
@@ -107,13 +113,7 @@ Principles.getLayout = function getLayout(page: React.ReactElement) {
       title="Token Valuation"
       tabs={getLevelTwos('token-valuation')}
     >
-      <Row align="middle">
-        <Col xs={0} xl={4}></Col>
-        <Col xs={24} xl={16}>
-          {page}
-        </Col>
-        <Col xs={0} xl={4}></Col>
-      </Row>
+      {page}
     </TabLayout>
   );
 };
