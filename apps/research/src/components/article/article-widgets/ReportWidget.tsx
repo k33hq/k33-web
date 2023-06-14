@@ -56,6 +56,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
                 {formatDateAndTime(publishedDate, 'day')}
               </Text>
             </Space>
+
             <Paragraph
               strong
               style={{

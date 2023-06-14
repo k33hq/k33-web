@@ -10,6 +10,7 @@ import {
   Drawer,
   Avatar,
   Dropdown,
+  theme,
 } from 'antd';
 import type { MenuProps } from 'antd';
 import styles from './styles.module.scss';
@@ -28,9 +29,11 @@ import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { logout } from 'core';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
+const { useToken } = theme;
 
 interface ResearchHeaderProps {}
 
@@ -38,9 +41,13 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
   const { md } = useBreakpoint();
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
+  const {
+    token: { colorPrimary },
+  } = useToken();
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+
   const state = useAppState(firebaseConfig);
 
   const items: MenuProps['items'] = [
@@ -48,11 +55,17 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
       key: '1',
       label: 'Settings',
       icon: <SettingOutlined />,
+      onClick: () => router.push('/settings'),
     },
     {
       key: '2',
       label: 'Logout',
       icon: <LogoutOutlined />,
+      onClick: () =>
+        logout(
+          () => router.reload(),
+          (err) => {}
+        ),
     },
   ];
 
@@ -121,6 +134,9 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                   ) : (
                     <Dropdown menu={{ items }}>
                       <Avatar
+                        style={{
+                          backgroundColor: colorPrimary,
+                        }}
                         onClick={(e) => e?.preventDefault()}
                         icon={<UserOutlined />}
                       />

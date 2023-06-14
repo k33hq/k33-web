@@ -49,9 +49,14 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
                       style={{
                         justifyContent: 'center',
                         alignSelf: 'center',
+                        height: 400,
                       }}
                     >
-                      <Image src={props.src} alt={props.alt} />
+                      <Image
+                        src={props.src}
+                        alt={props.alt}
+                        preview={{ scaleStep: 5 }}
+                      />
                     </div>
                   );
                 },

@@ -1,5 +1,5 @@
-import { Card, Avatar, Space, Typography, Button } from 'antd';
 import * as React from 'react';
+import { Card, Avatar, Space, Typography, Button } from 'antd';
 import { WalletOutlined } from '@ant-design/icons';
 import styles from './styles.module.scss';
 import stripe from '../../../assets/stripe.svg';
