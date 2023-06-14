@@ -1,12 +1,15 @@
-import { TabLayout } from '@/components';
+import { ReportWidget, TabLayout } from '@/components';
 import { getLevelTwos, getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 import ReactMarkdown from 'react-markdown';
 import { GetStaticProps } from 'next';
-import { Typography, Image, Row, Col } from 'antd';
+import { Typography, Image, Row, Col, Divider, Grid } from 'antd';
+import { getArticleWebWidgets } from '@/api';
+import { ArticleWebWidget } from '@/types';
 
 interface PrinciplesProps {
+  articles: ReadonlyArray<ArticleWebWidget>;
   principles: {
     page: string;
     content: string;
@@ -16,11 +19,14 @@ interface PrinciplesProps {
   };
 }
 
-const { Paragraph, Title } = Typography;
+const { Paragraph, Title, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const Principles: NextPageWithLayout<PrinciplesProps> = ({
+  articles,
   principles: { page, content, frontmatter },
 }) => {
+  const { sm } = useBreakpoint();
   return (
     <>
       <NextSeo title="Research - Token Valuation Principles" />
@@ -62,6 +68,34 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
           {content}
         </ReactMarkdown>
       </div>
+      <div
+        id="token-valuation-applying-framework"
+        style={{
+          marginTop: 64,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 40,
+          width: '100%',
+        }}
+      >
+        <div
+          id="token-valuation-report-header"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16,
+            width: '100%',
+          }}
+        >
+          <Text strong>Applying the Framework</Text>
+          <Divider style={{ margin: 0 }} />
+        </div>
+        <Row wrap gutter={[sm ? 32 : 16, 40]}>
+          {articles.map((article) => (
+            <ReportWidget key={article.publishedDate} {...article} />
+          ))}
+        </Row>
+      </div>
     </>
   );
 };
@@ -86,9 +120,11 @@ Principles.getLayout = function getLayout(page: React.ReactElement) {
 
 export const getStaticProps: GetStaticProps<PrinciplesProps> = async () => {
   const principles = await getPageData('token_valuation_principles');
+  const articles = await getArticleWebWidgets('token-valuation/principles');
   return {
     props: {
       principles,
+      articles,
     },
   };
 };
