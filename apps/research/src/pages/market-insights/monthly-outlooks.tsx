@@ -18,8 +18,12 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
     <>
       <NextSeo title="Research - Market Insights" />
       <Row wrap gutter={[16, 40]}>
-        {articles.map((article) => (
-          <ArticleSummary key={article.publishedDate} {...article} />
+        {articles.map((article, index) => (
+          <ArticleSummary
+            key={article.publishedDate}
+            {...article}
+            isNew={index === 0 ? true : false}
+          />
         ))}
       </Row>
     </>
