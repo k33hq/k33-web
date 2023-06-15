@@ -15,7 +15,7 @@ const ArticleInShorts: React.FC<ArticleInShortsProps> = ({ summary }) => {
         level={4}
         style={{
           margin: 0,
-          minWidth: 78,
+          minWidth: 110,
         }}
       >
         In Short

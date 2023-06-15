@@ -1,26 +1,34 @@
 import { Article, ArticlePage } from '@/types';
-import { theme, Divider, Typography } from 'antd';
+import { theme, Divider, Typography, Button } from 'antd';
 import * as React from 'react';
 import { Image } from 'antd';
 import styles from './styles.module.scss';
 import ArticleMetaData from '../ArticleMetaData';
+import { downloadResource } from '@/utils';
+import { useProductInfo } from '@/hooks';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
 
 interface ArticleHeaderProps
-  extends Pick<Article, 'title' | 'subtitle' | 'image'>,
-    Pick<ArticlePage, 'section' | 'publishedDate'> {}
+  extends Pick<Article, 'title' | 'subtitle' | 'image' | 'reportDocument'>,
+    Pick<ArticlePage, 'section' | 'publishedDate'> {
+  productId: string;
+}
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   title,
   subtitle,
   image,
+  productId,
+  reportDocument,
   ...metadata
 }) => {
+  const [status, state] = useProductInfo(productId);
   const {
     token: { fontSizeSM },
   } = useToken();
+
   return (
     <div id="article-header" className={styles.header}>
       <ArticleMetaData {...metadata} title={title} />
@@ -36,6 +44,20 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
           </Typography.Text>
         )}
       </div>
+      {reportDocument && (
+        <>
+          {status === 'active' && (
+            <Button
+              type="primary"
+              onClick={() => downloadResource(reportDocument.url)}
+              block
+              size="large"
+            >
+              Download Report
+            </Button>
+          )}
+        </>
+      )}
       <Divider style={{ margin: 0 }} />
     </div>
   );

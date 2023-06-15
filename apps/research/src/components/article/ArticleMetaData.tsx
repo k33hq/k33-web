@@ -17,19 +17,17 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
   title,
   publishedDate,
 }) => {
-  const shareUrl = () => {
-    copyText();
-  };
-  // TODO: change share to dropdown
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      <Link href={'/' + section.name}>
-        {section.name
-          .split('/')[1]
-          .split('-')
-          .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
-          .join(' ')}
-      </Link>
+      {section && (
+        <Link href={'/' + section.name}>
+          {section.name
+            .split('/')[1]
+            .split('-')
+            .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
+            .join(' ')}
+        </Link>
+      )}
       <Text type="secondary">{formatDateAndTime(publishedDate, 'day')}</Text>
       <SocialSharing title={title} label="Share" type="text" />
     </Space>

@@ -14,16 +14,14 @@ export interface ArticleBody extends RichTextDocument {}
 export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 
 export interface Article
-  extends Pick<
-      IArticleFields,
-      'title' | 'subtitle' | 'keyPoints' | 'reportDocument'
-    >,
+  extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints'>,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields> {
   image: Asset;
   summary: ArticleSummary | undefined;
   body: ArticleBody | undefined;
   publicSnippet: ArticleBody;
+  reportDocument: Asset;
 }
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {

@@ -17,6 +17,7 @@ interface ArticleProps
   priceId: string;
 }
 
+// TODO: extract the subscription product call to rtk toolkit soo we have the productID and price in the store when we need them
 const Article: React.FC<ArticleProps> = ({
   title,
   subtitle,
@@ -27,14 +28,17 @@ const Article: React.FC<ArticleProps> = ({
   publicSnippet,
   productId,
   priceId,
+  reportDocument,
   ...metadata
 }) => {
   return (
     <>
       <ArticleHeader
         title={title}
+        reportDocument={reportDocument}
         subtitle={subtitle}
         image={image}
+        productId={productId}
         {...metadata}
       />
       {keyPoints || summary ? (
