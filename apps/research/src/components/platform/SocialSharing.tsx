@@ -32,7 +32,7 @@ const SocialSharing: React.FC<SocialSharingProps> = ({
       icon: <LinkOutlined />,
       onClick: () => {
         copyText();
-        messageApi.success('Article Link Copied!!');
+        messageApi.success('Link Copied!!');
       },
     },
     {

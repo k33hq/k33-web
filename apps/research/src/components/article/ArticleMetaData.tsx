@@ -1,8 +1,8 @@
 import { ArticlePage } from '@/types';
 import { copyText, getReadingTime } from '@/utils';
-import { ShareAltOutlined } from '@ant-design/icons';
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import { Button, Divider, Space, Tooltip, Typography } from 'antd';
+import { Divider, Space, Typography } from 'antd';
+import Link from 'next/link';
 
 import * as React from 'react';
 import { SocialSharing } from '../platform';
@@ -23,9 +23,14 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
   // TODO: change share to dropdown
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      {/* <Text strong>{section.name.split('/')[0]}</Text> */}
+      <Link href={'/' + section.name}>
+        {section.name
+          .split('/')[1]
+          .split('-')
+          .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
+          .join(' ')}
+      </Link>
       <Text type="secondary">{formatDateAndTime(publishedDate, 'day')}</Text>
-      <ReadTime />
       <SocialSharing title={title} label="Share" type="text" />
     </Space>
   );
