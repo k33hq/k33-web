@@ -27,7 +27,7 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
   article: { title, thumbnail, subtitle, tagsCollection },
   isNew = false,
 }) => {
-  const { sm, md } = Grid.useBreakpoint();
+  const { sm, md, lg } = Grid.useBreakpoint();
   return (
     <>
       <Col style={{ paddingTop: 20, paddingBottom: 20 }}>
@@ -50,11 +50,15 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
                 id="article-summary-information"
                 className={styles.articleSummaryBody}
               >
-                <Space size={8}>
+                <Space size={4}>
                   {isNew && <Badge text="New" color="blue" />}
-                  {tagsCollection.items.map((tag) => (
-                    <Tag key={tag.title}>{tag.title}</Tag>
-                  ))}
+                  {lg && (
+                    <Space.Compact>
+                      {tagsCollection.items.slice(0, 3).map((tag) => (
+                        <Tag key={tag.title}>{tag.title}</Tag>
+                      ))}
+                    </Space.Compact>
+                  )}
                   <Text type="secondary">
                     {formatDateAndTime(publishedDate, 'day')}
                   </Text>

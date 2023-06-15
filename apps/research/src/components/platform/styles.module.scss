@@ -39,8 +39,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-inline: 0px !important;
+  padding-right: 16px !important;
+  padding-left: 24px !important;
   > div {
     max-width: $max-width;
     align-self: center;
