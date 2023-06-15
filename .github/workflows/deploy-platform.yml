@@ -17,7 +17,6 @@ jobs:
     name: Deploy apps/platform
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    environment: ${{ inputs.target_env }}
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -29,13 +28,30 @@ jobs:
         run: unzip k33-web.webflow.zip -d apps/platform/out/
       - name: add public files excluding hidden files
         run: cp apps/platform/public/* apps/platform/out/
+      - name: Load secrets
+        uses: 1password/load-secrets-action@v1
+        with:
+          # Export loaded secrets as environment variables
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          # firebase
+          FIREBASE_PROJECT_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/PROJECT_ID
+          FIREBASE_SERVICE_ACCOUNT: op://k33-web-env/${{ inputs.target_env }}/firebase/SERVICE_ACCOUNT
+          FIREBASE_PLATFORM_TARGET: op://k33-web-env/${{ inputs.target_env }}/firebase/PLATFORM_TARGET
+          # google
+          NEXT_PUBLIC_GOOGLE_ID: op://k33-web-env/${{ inputs.target_env }}/google/ID
+          NEXT_PUBLIC_GOOGLE_SECRET: op://k33-web-env/${{ inputs.target_env }}/google/SECRET
+          # domains
+          NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/WEB
+          NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/API
       - name: deploy apps/platform
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.GCP_SA_KEY }}'
+          firebaseServiceAccount: '${{ env.FIREBASE_SERVICE_ACCOUNT }}'
           expires: 30d
-          projectId: '${{ vars.GCP_PROJECT_ID }}'
+          projectId: '${{ env.FIREBASE_PROJECT_ID }}'
           channelId: live
           # removing target will deploy all targets defined in .firebaserc
-          target: '${{ vars.FIREBASE_PLATFORM_TARGET }}'
+          target: '${{ env.FIREBASE_PLATFORM_TARGET }}'
