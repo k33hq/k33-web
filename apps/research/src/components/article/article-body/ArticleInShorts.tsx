@@ -20,7 +20,16 @@ const ArticleInShorts: React.FC<ArticleInShortsProps> = ({ summary }) => {
       >
         In Short
       </Typography.Title>
-      {documentToReactComponents(summary.json, richTextOptions)}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: 16,
+        }}
+      >
+        {documentToReactComponents(summary.json, richTextOptions)}
+      </div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const ArticleTakeAways: React.FC<Pick<IArticleFields, 'keyPoints'>> = ({
           minWidth: 110,
         }}
       >
-        Take Aways
+        Takeaways
       </Typography.Title>
       <ul>
         {keyPoints.map((points) => (
