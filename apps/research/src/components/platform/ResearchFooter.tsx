@@ -14,7 +14,6 @@ const { useToken } = theme;
 const ResearchFooter: React.FC = () => {
   const {
     token: { colorBgContainer },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useToken();
   return (
     <Footer

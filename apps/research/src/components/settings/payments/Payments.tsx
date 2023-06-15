@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SettingsPaymentTitle from './SettingsPaymentTitle';
 import PaymentCard from './PaymentCard';
-import { Card, Avatar, Space, Typography, Button, Badge } from 'antd';
+import { Card, Avatar, Space, Typography, Button, Badge, Alert } from 'antd';
 import {
   useCustomerCheckout,
   useCustomerDashboard,
@@ -45,20 +45,140 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
     switch (productStatus) {
       case 'blocked':
         return (
-          <Button onClick={checkout} icon={<EditOutlined />}>
-            Update Payment Details
-          </Button>
+          <Ribbon text={'Pro'} color={'red'}>
+            <Card loading={status === 'loading'} id="payments-card">
+              <div className={styles.paymentCard}>
+                <div
+                  id="payment-information"
+                  className={styles.paymentInformation}
+                >
+                  <Avatar icon={<WalletOutlined />} />
+                  <Space.Compact direction="vertical">
+                    <Text strong>K33 Research</Text>
+                    {email && (
+                      <Text type="secondary">{`Email: ${mask(email)}`}</Text>
+                    )}
+                  </Space.Compact>
+                </div>
+
+                <div id="payment-action" className={styles.paymentAction}>
+                  <Button onClick={checkout} icon={<EditOutlined />}>
+                    Update Payment Details
+                  </Button>
+                  <Image
+                    priority
+                    width={73}
+                    style={{
+                      minWidth: 50,
+                    }}
+                    src={stripe}
+                    alt="stripe"
+                  />
+                </div>
+              </div>
+            </Card>
+          </Ribbon>
         );
       case 'active':
         return (
-          <Button onClick={checkout} icon={<EditOutlined />}>
-            Manage Subscription
-          </Button>
+          <Ribbon text={'Pro'} color={'#000000'}>
+            <Card loading={status === 'loading'} id="payments-card">
+              <div className={styles.paymentCard}>
+                <div
+                  id="payment-information"
+                  className={styles.paymentInformation}
+                >
+                  <Avatar icon={<WalletOutlined />} />
+                  <Space.Compact direction="vertical">
+                    <Text strong>K33 Research</Text>
+                    {email && (
+                      <Text type="secondary">{`Email: ${mask(email)}`}</Text>
+                    )}
+                  </Space.Compact>
+                </div>
+
+                <div id="payment-action" className={styles.paymentAction}>
+                  <Button onClick={checkout} icon={<EditOutlined />}>
+                    Manage Subscription
+                  </Button>
+                  <Image
+                    priority
+                    width={73}
+                    style={{
+                      minWidth: 50,
+                    }}
+                    src={stripe}
+                    alt="stripe"
+                  />
+                </div>
+              </div>
+            </Card>
+          </Ribbon>
         );
       case 'ended':
-        return <Button onClick={checkout}>Renew PRO Subscription</Button>;
+        return (
+          <Card loading={status === 'loading'} id="payments-card">
+            <div className={styles.paymentCard}>
+              <div
+                id="payment-information"
+                className={styles.paymentInformation}
+              >
+                <Avatar icon={<WalletOutlined />} />
+                <Space.Compact direction="vertical">
+                  <Text strong>K33 Research</Text>
+                  {email && (
+                    <Text type="secondary">{`Email: ${mask(email)}`}</Text>
+                  )}
+                </Space.Compact>
+              </div>
+
+              <div id="payment-action" className={styles.paymentAction}>
+                <Button onClick={checkout}>Renew PRO Subscription</Button>
+                <Image
+                  priority
+                  width={73}
+                  style={{
+                    minWidth: 50,
+                  }}
+                  src={stripe}
+                  alt="stripe"
+                />
+              </div>
+            </div>
+          </Card>
+        );
       default:
-        return <Button onClick={checkout}>Start 30-Day Free Trial</Button>;
+        return (
+          <Card loading={status === 'loading'} id="payments-card">
+            <div className={styles.paymentCard}>
+              <div
+                id="payment-information"
+                className={styles.paymentInformation}
+              >
+                <Avatar icon={<WalletOutlined />} />
+                <Space.Compact direction="vertical">
+                  <Text strong>K33 Research</Text>
+                  {email && (
+                    <Text type="secondary">{`Email: ${mask(email)}`}</Text>
+                  )}
+                </Space.Compact>
+              </div>
+
+              <div id="payment-action" className={styles.paymentAction}>
+                <Button onClick={checkout}>Start 30-Day Free Trial</Button>
+                <Image
+                  priority
+                  width={73}
+                  style={{
+                    minWidth: 50,
+                  }}
+                  src={stripe}
+                  alt="stripe"
+                />
+              </div>
+            </div>
+          </Card>
+        );
     }
   };
 
@@ -75,46 +195,17 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
           Login
         </Link>
       ) : (
-        <Card
-          loading={status === 'loading'}
-          id="payments-card"
-          style={{
-            width: '100%',
-          }}
-        >
-          <div className={styles.paymentCard}>
-            <Ribbon
-              // text={['blocked', 'active'].includes(status!) ? 'Pro' : null}
-              text={'Pro'}
-              color="red"
-            >
-              <div
-                id="payment-information"
-                className={styles.paymentInformation}
-              >
-                <Avatar icon={<WalletOutlined />} />
-                <Space.Compact direction="vertical">
-                  <Text strong>K33 Research</Text>
-                  {email && (
-                    <Text type="secondary">{`Email: ${mask(email)}`}</Text>
-                  )}
-                </Space.Compact>
-              </div>
-            </Ribbon>
-            <div id="payment-action" className={styles.paymentAction}>
-              {getPaymentCard(status)}
-              <Image
-                priority
-                width={73}
-                style={{
-                  minWidth: 50,
-                }}
-                src={stripe}
-                alt="stripe"
-              />
-            </div>
-          </div>
-        </Card>
+        <>
+          {status === 'blocked' && (
+            <Alert
+              message="Failed Payment Attempt:"
+              description="We were unable to complete the payment of your subscription."
+              type="error"
+              showIcon
+            />
+          )}
+          {getPaymentCard(status)}
+        </>
       )}
     </>
   );

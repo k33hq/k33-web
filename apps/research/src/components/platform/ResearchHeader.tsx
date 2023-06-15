@@ -69,6 +69,10 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
     },
   ];
 
+  React.useEffect(() => {
+    console.log();
+  }, [router]);
+
   return (
     <>
       <Affix>
@@ -104,6 +108,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                         style={{
                           borderBottom: 0,
                         }}
+                        selectedKeys={router.pathname.split('/')}
                         items={appStructure.navigation.map(
                           ({ key, label, url }) => ({
                             key,
@@ -163,6 +168,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           style={{
             width: 200,
           }}
+          selectedKeys={router.pathname.split('/')}
           items={appStructure.navigation.map(({ key, label, url }) => ({
             key,
             label,
