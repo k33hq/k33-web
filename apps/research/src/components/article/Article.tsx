@@ -41,7 +41,11 @@ const Article: React.FC<ArticleProps> = ({
         <div id="article-summary" className={styles.articleSummary}>
           <ArticleInShorts summary={summary} />
           <ArticleTakeAways keyPoints={keyPoints} />
-          <Divider />
+          <Divider
+            style={{
+              margin: 0,
+            }}
+          />
         </div>
       ) : null}
       <PrivateArticle

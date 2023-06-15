@@ -13,6 +13,7 @@ import styles from './styles.module.scss';
 import stripe from '../../../assets/stripe.svg';
 import Image from 'next/image';
 import { getUserInformation } from 'core';
+import { SignUpCall } from '@/components';
 
 const { Text, Link } = Typography;
 const { Ribbon } = Badge;
@@ -46,7 +47,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
       case 'blocked':
         return (
           <Ribbon text={'Pro'} color={'red'}>
-            <Card loading={status === 'loading'} id="payments-card">
+            <Card
+              loading={status === 'loading'}
+              id="payments-card"
+              style={{
+                width: '100%',
+              }}
+            >
               <div className={styles.paymentCard}>
                 <div
                   id="payment-information"
@@ -62,7 +69,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
                 </div>
 
                 <div id="payment-action" className={styles.paymentAction}>
-                  <Button onClick={checkout} icon={<EditOutlined />}>
+                  <Button onClick={dashboard} icon={<EditOutlined />}>
                     Update Payment Details
                   </Button>
                   <Image
@@ -82,7 +89,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
       case 'active':
         return (
           <Ribbon text={'Pro'} color={'#000000'}>
-            <Card loading={status === 'loading'} id="payments-card">
+            <Card
+              loading={status === 'loading'}
+              id="payments-card"
+              style={{
+                width: '100%',
+              }}
+            >
               <div className={styles.paymentCard}>
                 <div
                   id="payment-information"
@@ -98,7 +111,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
                 </div>
 
                 <div id="payment-action" className={styles.paymentAction}>
-                  <Button onClick={checkout} icon={<EditOutlined />}>
+                  <Button onClick={dashboard} icon={<EditOutlined />}>
                     Manage Subscription
                   </Button>
                   <Image
@@ -117,7 +130,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
         );
       case 'ended':
         return (
-          <Card loading={status === 'loading'} id="payments-card">
+          <Card
+            loading={status === 'loading'}
+            id="payments-card"
+            style={{
+              width: '100%',
+            }}
+          >
             <div className={styles.paymentCard}>
               <div
                 id="payment-information"
@@ -149,7 +168,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
         );
       default:
         return (
-          <Card loading={status === 'loading'} id="payments-card">
+          <Card
+            loading={status === 'loading'}
+            style={{
+              width: '100%',
+            }}
+            id="payments-card"
+          >
             <div className={styles.paymentCard}>
               <div
                 id="payment-information"
@@ -187,13 +212,18 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   return (
     <>
       <SettingsPaymentTitle />
-
       {state === 'SIGNED_OUT' ? (
-        <Link
-          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
-          Login
-        </Link>
+          <SignUpCall />
+        </div>
       ) : (
         <>
           {status === 'blocked' && (

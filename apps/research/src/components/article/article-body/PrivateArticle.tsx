@@ -1,10 +1,6 @@
 import { Article } from '@/types';
 import * as React from 'react';
 import { Skeleton } from 'antd';
-import { useLazyGetProductInfoQuery } from '@/services';
-import { ProductStatus } from '@/types';
-import { useAppState } from 'platform-js';
-import config from '@/firebase/config';
 import {
   ActionLayout,
   SignUpCall,
@@ -44,7 +40,13 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />
-            <Skeleton.Image active />
+            <Skeleton.Image
+              style={{
+                width: '100%',
+                height: 400,
+              }}
+              active
+            />
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />
             <Skeleton.Input active size="default" block />

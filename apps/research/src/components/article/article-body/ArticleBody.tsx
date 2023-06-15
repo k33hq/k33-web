@@ -1,7 +1,6 @@
 import { DefaultRichTextRenderer } from '@/components';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { Article } from '@/types';
-
 import * as React from 'react';
 
 interface ArticleBodyProps extends Pick<Article, 'body'> {}
