@@ -23,7 +23,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   } = useToken();
   return (
     <div id="article-header" className={styles.header}>
-      <ArticleMetaData {...metadata} />
+      <ArticleMetaData {...metadata} title={title} />
       <Title level={2} style={{ margin: 0, padding: 0 }}>
         {title}
       </Title>

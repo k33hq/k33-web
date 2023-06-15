@@ -5,14 +5,16 @@ import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Button, Divider, Space, Tooltip, Typography } from 'antd';
 
 import * as React from 'react';
+import { SocialSharing } from '../platform';
 
 interface ArticleMetaDataProps
-  extends Pick<ArticlePage, 'section' | 'publishedDate'> {}
+  extends Pick<ArticlePage, 'section' | 'publishedDate' | 'title'> {}
 
 const { Text } = Typography;
 
 const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
   section,
+  title,
   publishedDate,
 }) => {
   const shareUrl = () => {
@@ -24,11 +26,7 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
       {/* <Text strong>{section.name.split('/')[0]}</Text> */}
       <Text type="secondary">{formatDateAndTime(publishedDate, 'day')}</Text>
       <ReadTime />
-      <Tooltip title="Article Link Copied!" trigger="click">
-        <Button onClick={shareUrl} type="text" icon={<ShareAltOutlined />}>
-          Share
-        </Button>
-      </Tooltip>
+      <SocialSharing title={title} label="Share" type="text" />
     </Space>
   );
 };
