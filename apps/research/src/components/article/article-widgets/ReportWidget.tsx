@@ -26,7 +26,7 @@ export const ReportWidget: React.FC<ReportWidgetProps> = ({
   const { md } = useBreakpoint();
 
   return (
-    <Col xs={12} sm={12} md={6} xxl={6}>
+    <Col xs={12} sm={12} md={6} xxl={4}>
       <Link
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
       >

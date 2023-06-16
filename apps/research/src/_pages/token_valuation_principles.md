@@ -17,7 +17,7 @@ We further believe that demand can be decomposed into Fundamental and Speculativ
 ### Fundamental and market price illustration
 
 Long term, fundamental demand will dominate and can be understood as a trend or driver around which speculative demand fluctuates. Hence, as a long-term investor, it is key to have a good understanding of the fundamental value drivers of an asset. Having a clear understanding of the fundamentals will both expose the relative size and direction of speculative demand and form the basis for developing long-term investment hypotheses and scenarios.
-To provide investors with a toolset to do exactly this, we are developing a framework for assessing the fundamental value of a cryptocurrency token. The framework is a work in progress and can be severely altered as we learn more. Currently, we are conceptually dividing the fundamentals of a token price into three main components;
+To provide investors with a toolset to do exactly this, we are developing a framework for assessing the fundamental value of a cryptocurrency token. The framework is a work in progress and can be severely altered as we learn more. Currently, we are conceptually dividing the fundamentals of a token price into three main components:
 
 •	Persistent Financial Premium - the store of value component
 •	Money Function - the medium of exchange component

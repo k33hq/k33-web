@@ -1,10 +1,10 @@
-import { ReportWidget, TabLayout } from '@/components';
+import { ReportWidget, TabLayout, ValuationPrinciple } from '@/components';
 import { getLevelTwos, getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
 import ReactMarkdown from 'react-markdown';
 import { GetStaticProps } from 'next';
-import { Typography, Image, Row, Col, Divider, Grid } from 'antd';
+import { Typography, Image, Row, Col, Divider, Grid, Anchor } from 'antd';
 import { getArticleWebWidgets } from '@/api';
 import { ArticleWebWidget } from '@/types';
 
@@ -24,60 +24,55 @@ const { useBreakpoint } = Grid;
 
 const Principles: NextPageWithLayout<PrinciplesProps> = ({
   articles,
-  principles: { page, content, frontmatter },
+  principles,
 }) => {
-  const { sm } = useBreakpoint();
+  const { sm, xl } = useBreakpoint();
+
   return (
     <>
       <NextSeo title="Research - Token Valuation Principles" />
-      <Row align="middle">
-        <Col xs={0} xl={4}></Col>
-        <Col xs={24} xl={16}>
-          <div
-            id="valuation-principles"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 16,
-            }}
-          >
-            <ReactMarkdown
-              components={{
-                img: function (props) {
-                  return (
-                    <div
-                      style={{
-                        justifyContent: 'center',
-                        alignSelf: 'center',
-                        height: 400,
-                      }}
-                    >
-                      <Image
-                        src={props.src}
-                        alt={props.alt}
-                        preview={{ scaleStep: 5 }}
-                      />
-                    </div>
-                  );
-                },
-                h1: ({ node, children, ...props }) => (
-                  <Title level={2}>{children}</Title>
-                ),
-                h3: ({ node, children, ...props }) => (
-                  <Title level={3} type="secondary">
-                    {children}
-                  </Title>
-                ),
-                p: ({ node, children, ...props }) => {
-                  return <Paragraph>{children}</Paragraph>;
-                },
-              }}
-            >
-              {content}
-            </ReactMarkdown>
-          </div>
+      <Row align="top" gutter={[16, 32]}>
+        <Col xs={0} lg={24} xl={6}>
+          <Anchor
+            affix={xl ?? true}
+            direction={xl ? 'vertical' : 'horizontal'}
+            showInkInFixed
+            offsetTop={64}
+            items={[
+              {
+                key: '1',
+                href: '#valuation-header',
+                title: 'A Framework for Evaluating Token Prices',
+              },
+              {
+                key: '2',
+                href: '#defining-the-three-components',
+                title:
+                  'Defining the three components of a fundamental token price:',
+                children: [
+                  {
+                    key: '3',
+                    href: '#store-value',
+                    title: '1. The store of value component',
+                  },
+                  {
+                    key: '4',
+                    href: '#exchange-medium',
+                    title: '2. The medium of exchange function',
+                  },
+                  {
+                    key: '5',
+                    href: '#access-utility',
+                    title: '3. Access utility.',
+                  },
+                ],
+              },
+            ]}
+          />
         </Col>
-        <Col xs={0} xl={4}></Col>
+        <Col xs={24} xl={16}>
+          <ValuationPrinciple />
+        </Col>
       </Row>
       <div
         id="token-valuation-applying-framework"
@@ -103,7 +98,7 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
         </div>
         <Row wrap gutter={[sm ? 32 : 16, 40]}>
           {articles.map((article) => (
-            <ReportWidget key={article.publishedDate} {...article} />
+            <ReportWidget key={article.articleSlug} {...article} />
           ))}
         </Row>
       </div>

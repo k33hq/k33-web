@@ -76,3 +76,8 @@ ul li {
   position: relative;
   width: 100%;
 }
+
+.ant-anchor-link-title {
+  white-space: pre-wrap !important;
+  text-overflow: initial !important;
+}
