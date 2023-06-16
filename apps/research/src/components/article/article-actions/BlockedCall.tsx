@@ -5,7 +5,7 @@ import { useCustomerMutation } from '@/services';
 import { useCustomerDashboard } from '@/hooks';
 
 const BlockedCall: React.FC = () => {
-  const customerDashboard = useCustomerDashboard();
+  const { customerDashboard, isLoading } = useCustomerDashboard();
   return (
     <CallToActionCard>
       <Result
@@ -18,6 +18,7 @@ const BlockedCall: React.FC = () => {
         subTitle="We were unable to complete the payment attempt on your subscription as a K33 Research Pro user."
         extra={[
           <Button
+            loading={isLoading}
             type="primary"
             key="update-payment-detail"
             onClick={customerDashboard}

@@ -31,8 +31,9 @@ const mask = (email: string) =>
 const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   const router = useRouter();
   const [status, state] = useProductInfo(productId);
-  const checkout = useCustomerCheckout(priceId);
-  const dashboard = useCustomerDashboard();
+  const { doCheckOut: checkout, isLoading } = useCustomerCheckout(priceId);
+  const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
+    useCustomerDashboard();
 
   React.useEffect(() => {
     getUserInformation((user) => {
@@ -69,7 +70,11 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
                 </div>
 
                 <div id="payment-action" className={styles.paymentAction}>
-                  <Button onClick={dashboard} icon={<EditOutlined />}>
+                  <Button
+                    loading={isDashboardLoading}
+                    onClick={dashboard}
+                    icon={<EditOutlined />}
+                  >
                     Update Payment Details
                   </Button>
                   <Image
@@ -111,7 +116,11 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
                 </div>
 
                 <div id="payment-action" className={styles.paymentAction}>
-                  <Button onClick={dashboard} icon={<EditOutlined />}>
+                  <Button
+                    loading={isDashboardLoading}
+                    onClick={dashboard}
+                    icon={<EditOutlined />}
+                  >
                     Manage Subscription
                   </Button>
                   <Image
@@ -152,7 +161,9 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
               </div>
 
               <div id="payment-action" className={styles.paymentAction}>
-                <Button onClick={checkout}>Renew PRO Subscription</Button>
+                <Button loading={isLoading} onClick={checkout}>
+                  Renew PRO Subscription
+                </Button>
                 <Image
                   priority
                   width={73}
@@ -190,7 +201,9 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
               </div>
 
               <div id="payment-action" className={styles.paymentAction}>
-                <Button onClick={checkout}>Start 30-Day Free Trial</Button>
+                <Button loading={isLoading} onClick={checkout}>
+                  Start 30-Day Free Trial
+                </Button>
                 <Image
                   priority
                   width={73}

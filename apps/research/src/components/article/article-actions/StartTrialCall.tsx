@@ -5,12 +5,16 @@ import { ProCheckoutCard } from '../article-payments';
 
 interface EndedCallProps {
   checkout: () => void;
+  isLoading?: boolean;
 }
 
 const { Text, Title } = Typography;
 const { useToken } = theme;
 
-const StartTrialCall: React.FC<EndedCallProps> = ({ checkout }) => {
+const StartTrialCall: React.FC<EndedCallProps> = ({
+  checkout,
+  isLoading = false,
+}) => {
   const {
     token: { fontSizeSM },
   } = useToken();
@@ -31,6 +35,7 @@ const StartTrialCall: React.FC<EndedCallProps> = ({ checkout }) => {
           </Text>
         </Space>
         <ProCheckoutCard
+          isLoading={isLoading}
           handleCheckout={checkout}
           label="Start 30-Day Free Trial"
           isFreeTrial

@@ -16,12 +16,14 @@ interface ProCheckoutCardProps {
   handleCheckout: () => void;
   label: string;
   isFreeTrial?: boolean;
+  isLoading?: boolean;
 }
 
 const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   handleCheckout,
   label,
   isFreeTrial = false,
+  isLoading = false,
 }) => {
   const {
     token: { colorBgContainer, borderRadius, colorPrimary },
@@ -87,7 +89,13 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           </List.Item>
         )}
       />
-      <Button size="large" type="primary" block onClick={handleCheckout}>
+      <Button
+        loading={isLoading}
+        size="large"
+        type="primary"
+        block
+        onClick={handleCheckout}
+      >
         {label}
       </Button>
     </Space>

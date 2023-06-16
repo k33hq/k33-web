@@ -23,7 +23,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   productId,
   priceId,
 }) => {
-  const doCheckOut = useCustomerCheckout(priceId);
+  const { doCheckOut, isLoading } = useCustomerCheckout(priceId);
   const [status, state] = useProductInfo(productId);
   const getCallToAction = (state: typeof status) => {
     switch (state) {
@@ -56,9 +56,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'blocked':
         return <BlockedCall />;
       case 'ended':
-        return <EndedCall checkout={doCheckOut} />;
+        return <EndedCall isLoading={isLoading} checkout={doCheckOut} />;
       default:
-        return <StartTrialCall checkout={doCheckOut} />;
+        return <StartTrialCall isLoading={isLoading} checkout={doCheckOut} />;
     }
   };
 

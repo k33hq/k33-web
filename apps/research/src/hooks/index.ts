@@ -9,7 +9,7 @@ import { useAppState } from 'platform-js';
 import * as React from 'react';
 
 export const useCustomerDashboard = () => {
-  const [dashboard] = useCustomerMutation();
+  const [dashboard, { data, isLoading }] = useCustomerMutation();
   const customerDashboard = async () => {
     try {
       const response = await dashboard({
@@ -28,11 +28,11 @@ export const useCustomerDashboard = () => {
     }
   };
 
-  return customerDashboard;
+  return { customerDashboard, isLoading };
 };
 
 export const useCustomerCheckout = (priceId: string) => {
-  const [checkout] = useCheckoutMutation();
+  const [checkout, { isLoading }] = useCheckoutMutation();
   const doCheckOut = async () => {
     try {
       const response = await checkout({
@@ -46,7 +46,7 @@ export const useCustomerCheckout = (priceId: string) => {
     }
   };
 
-  return doCheckOut;
+  return { doCheckOut, isLoading };
 };
 
 export const useProductInfo = (productId: string) => {
