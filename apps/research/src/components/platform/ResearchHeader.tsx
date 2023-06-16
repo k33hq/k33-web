@@ -134,7 +134,14 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                     <Link
                       href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
                     >
-                      <Button type="primary">Sign In</Button>
+                      <Button
+                        style={{
+                          boxShadow: 'none',
+                        }}
+                        type="primary"
+                      >
+                        Sign In
+                      </Button>
                     </Link>
                   ) : (
                     <Dropdown menu={{ items }}>
