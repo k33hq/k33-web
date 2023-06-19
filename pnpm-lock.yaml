@@ -201,6 +201,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.1.4
         version: 5.1.4(react-dom@18.2.0)(react@18.2.0)
+      '@builder.io/react':
+        specifier: ^3.0.3
+        version: 3.0.3(react-dom@18.2.0)(react@18.2.0)
       '@contentful/f36-datetime':
         specifier: ^4.26.0
         version: 4.26.0(react-dom@18.2.0)(react@18.2.0)
@@ -802,6 +805,37 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
+
+  /@builder.io/react@3.0.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-oqsv5ZBTR074Lct9zfWkUqWF7dIeY3m/CauKgb1nadoEgpF9Izq0jZvdofkN6EyvhjMctSbB342DQA0gj7jOQw==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@builder.io/sdk': 2.0.3
+      '@emotion/core': 10.3.1(react@18.2.0)
+      hash-sum: 2.0.0
+      preact: 10.15.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      vm2: 3.9.19
+    optionalDependencies:
+      node-fetch: 2.6.7
+      prop-types: 15.8.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@builder.io/sdk@2.0.3:
+    resolution: {integrity: sha512-OF061HbkB/m7FrLHthFKhie4oevQ8KeeTHhlMry4dVreIUuV953eFkQI1YdnjDJO7C2HGuFjKxtnZ76Cx7gFeg==}
+    dependencies:
+      hash-sum: 2.0.0
+      node-fetch: 2.6.7
+      tslib: 1.14.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /@contentful/f36-core@4.26.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-metJA3qQ+1OVeKJ5jsTDUISEa79HdF70DX+sjyXoErW2NwavxkmVgSIAOVjFeDqefv5G8iVME7gCKDB4coIaHg==}
@@ -1979,7 +2013,6 @@ packages:
   /acorn-walk@8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /acorn@7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -1990,7 +2023,6 @@ packages:
     resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-    dev: true
 
   /ahooks-v3-count@1.0.0:
     resolution: {integrity: sha512-V7uUvAwnimu6eh/PED4mCDjE7tokeZQLKlxg9lCTMPhN+NjsSbtdacByVlR1oluXQzD3MOw55wylDmQo4+S9ZQ==}
@@ -3772,6 +3804,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hash-sum@2.0.0:
+    resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+    dev: false
+
   /hast-util-whitespace@2.0.1:
     resolution: {integrity: sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==}
     dev: true
@@ -4938,6 +4974,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /preact@10.15.1:
+    resolution: {integrity: sha512-qs2ansoQEwzNiV5eAcRT1p1EC/dmEzaATVDJNiB3g2sRDWdA7b7MurXdJjB2+/WQktGWZwxvDrnuRFbWuIr64g==}
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -6547,6 +6587,15 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
     dev: true
+
+  /vm2@3.9.19:
+    resolution: {integrity: sha512-J637XF0DHDMV57R6JyVsTak7nIL8gy5KH4r1HiwWLf/4GBbb5MKL5y7LpmF4A8E2nR6XmzpmMFQ7V7ppPTmUQg==}
+    engines: {node: '>=6.0'}
+    hasBin: true
+    dependencies:
+      acorn: 8.8.2
+      acorn-walk: 8.2.0
+    dev: false
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}

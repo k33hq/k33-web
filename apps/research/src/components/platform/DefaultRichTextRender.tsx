@@ -37,10 +37,18 @@ const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
                   flexDirection: 'column',
                   alignItems: 'center',
                   padding: 0,
-                  gap: 24,
+                  gap: 8,
+                  marginTop: 32,
+                  marginBottom: 32,
                 }}
               >
-                <Image src={img?.url} alt={img.title ?? ''} />
+                <Image
+                  src={img?.url}
+                  alt={img.title ?? ''}
+                  style={{
+                    margin: 0,
+                  }}
+                />
                 {img.description && (
                   <Typography.Text
                     style={{ fontSize: fontSizeSM }}
