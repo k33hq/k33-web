@@ -1,8 +1,8 @@
 import { getArticleWebWidgets } from '@/api';
-import { ArticleWidget, TabLayout } from '@/components';
+import { ArticleCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
-import { Row } from 'antd';
+import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -17,7 +17,9 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
       <NextSeo title="Market Insights - Quick Takes" />
       <Row wrap gutter={[32, 40]}>
         {articles.map((article) => (
-          <ArticleWidget key={article.publishedDate} {...article} showTags />
+          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+            <ArticleCard {...article} showTags />
+          </Col>
         ))}
       </Row>
     </>

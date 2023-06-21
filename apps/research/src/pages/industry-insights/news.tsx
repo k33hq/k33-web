@@ -1,8 +1,8 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleWidget, TabLayout } from '@/components';
+import { ArticleCard, TabLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
-import { Divider, Row, Typography } from 'antd';
+import { Col, Divider, Row, Typography } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -28,7 +28,9 @@ const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
       </div>
       <Row wrap gutter={[32, 56]}>
         {articles.map((article, index) => (
-          <ArticleWidget key={article.publishedDate} {...article} />
+          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+            <ArticleCard {...article} />
+          </Col>
         ))}
       </Row>
     </>

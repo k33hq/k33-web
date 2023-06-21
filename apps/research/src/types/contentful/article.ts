@@ -57,3 +57,8 @@ export interface ArticleSummaryWidget
   extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
   article: ArticleWidget;
 }
+
+export interface ArticleSummaryWithCover
+  extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
+  article: Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'image'>;
+}

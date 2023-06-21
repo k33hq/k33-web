@@ -1,8 +1,8 @@
 import { getArticleWebWidgets } from '@/api';
-import { ReportWidget, TabLayout } from '@/components';
+import { ReportCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
-import { Grid, Row } from 'antd';
+import { Grid, Row, Col } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -19,8 +19,10 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
     <>
       <NextSeo />
       <Row wrap gutter={[sm ? 32 : 16, 40]}>
-        {articles.map((article) => (
-          <ReportWidget key={article.publishedDate} {...article} />
+        {articles.map((report) => (
+          <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
+            <ReportCard {...report} />
+          </Col>
         ))}
       </Row>
     </>

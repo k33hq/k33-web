@@ -1,4 +1,9 @@
-import { ReportWidget, TabLayout, ValuationPrinciple } from '@/components';
+import {
+  ReportWidget,
+  ReportCard,
+  TabLayout,
+  ValuationPrinciple,
+} from '@/components';
 import { getLevelTwos, getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -97,8 +102,10 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
           <Divider style={{ margin: 0 }} />
         </div>
         <Row wrap gutter={[sm ? 32 : 16, 40]}>
-          {articles.map((article) => (
-            <ReportWidget key={article.articleSlug} {...article} />
+          {articles.map((report) => (
+            <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
+              <ReportCard {...report} />
+            </Col>
           ))}
         </Row>
       </div>

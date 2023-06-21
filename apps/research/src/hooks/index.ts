@@ -70,3 +70,16 @@ export const useProductInfo = (productId: string) => {
 
   return [productInfoStatus, state];
 };
+
+export const useCounter = (val: number) => {
+  const [current, setCurrent] = React.useState(val);
+  const next = () => {
+    setCurrent((s) => s + 1);
+  };
+
+  const previous = () => {
+    setCurrent((s) => s + 1);
+  };
+
+  return { current, next, previous };
+};

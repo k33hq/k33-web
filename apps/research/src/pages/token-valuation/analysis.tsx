@@ -1,8 +1,8 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleWidget, TabLayout } from '@/components';
+import { ArticleCard, TabLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
-import { Row } from 'antd';
+import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
@@ -16,8 +16,10 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
     <>
       <NextSeo />
       <Row wrap gutter={[32, 48]}>
-        {articles.map((article, index) => (
-          <ArticleWidget key={article.publishedDate} {...article} />
+        {articles.map((article) => (
+          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+            <ArticleCard {...article} />
+          </Col>
         ))}
       </Row>
     </>

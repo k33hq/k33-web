@@ -4,6 +4,9 @@ import {
   GetArticlePageResponse,
   GetArticleSeoResponse,
   GetArticleSlugsResponse,
+  GetArticleSummaryWidgetResponse,
+  GetArticleSummaryWithCoverResponse,
+  GetArticleWebWidgetsResponse,
 } from '@/types';
 import {
   PublicSnippetFragment,
@@ -103,6 +106,89 @@ const GetArticlePage = gql`
   ${ArticleBodyFragment}
 `;
 
+const GetArticleWebWidgets = gql`
+  query GetArticleWebWidgets($section: String!, $limit: Int!) {
+    articleWebCollection(
+      where: { section: { name: $section } }
+      order: [publishedDate_DESC]
+      limit: $limit
+    ) {
+      items {
+        article {
+          thumbnail {
+            ...asset
+          }
+          title
+          tagsCollection {
+            items {
+              title
+            }
+          }
+        }
+        articleSlug
+        publishedDate
+      }
+    }
+  }
+  ${AssetFragment}
+`;
+
+const GetArticleWebSummaryWidgets = gql`
+  query GetArticleWebSummaryWidgets($section: String!, $limit: Int!) {
+    articleWebCollection(
+      where: { section: { name: $section } }
+      order: [publishedDate_DESC]
+      limit: $limit
+    ) {
+      items {
+        article {
+          thumbnail {
+            ...asset
+          }
+          title
+          subtitle
+          tagsCollection {
+            items {
+              title
+            }
+          }
+        }
+        articleSlug
+        publishedDate
+      }
+    }
+  }
+  ${AssetFragment}
+`;
+
+const GetArticleSummaryWithCover = gql`
+  query GetArticleSummaryWithCover($section: String!, $limit: Int!) {
+    articleWebCollection(
+      where: { section: { name: $section } }
+      order: [publishedDate_DESC]
+      limit: $limit
+    ) {
+      items {
+        article {
+          image {
+            ...asset
+          }
+          title
+          subtitle
+          tagsCollection {
+            items {
+              title
+            }
+          }
+        }
+        articleSlug
+        publishedDate
+      }
+    }
+  }
+  ${AssetFragment}
+`;
+
 export const getArticleSlugs = async () => {
   const { articleWebCollection } =
     await contentful.request<GetArticleSlugsResponse>(GetArticleSlugs);
@@ -124,4 +210,49 @@ export const getArticlePage = async (articleSlug: string) => {
     });
 
   return articleWebCollection.items[0];
+};
+
+export const getArticleWebWidgets = async (
+  section: string,
+  limit: number = 100
+) => {
+  const { articleWebCollection } =
+    await contentful.request<GetArticleWebWidgetsResponse>(
+      GetArticleWebWidgets,
+      {
+        section,
+        limit,
+      }
+    );
+  return articleWebCollection.items;
+};
+
+export const getArticleSummaryWidgets = async (
+  section: string,
+  limit: number = 100
+) => {
+  const { articleWebCollection } =
+    await contentful.request<GetArticleSummaryWidgetResponse>(
+      GetArticleWebSummaryWidgets,
+      {
+        section,
+        limit,
+      }
+    );
+  return articleWebCollection.items;
+};
+
+export const getArticleSummaryWithCoverWidgets = async (
+  section: string,
+  limit: number = 100
+) => {
+  const { articleWebCollection } =
+    await contentful.request<GetArticleSummaryWithCoverResponse>(
+      GetArticleSummaryWithCover,
+      {
+        section,
+        limit,
+      }
+    );
+  return articleWebCollection.items;
 };

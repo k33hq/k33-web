@@ -7,6 +7,7 @@ import {
   SubscriptionProduct,
   ArticleWebWidget,
   ArticleSummaryWidget,
+  ArticleSummaryWithCover,
 } from './contentful';
 import { ProductStatus } from './payments';
 
@@ -54,3 +55,6 @@ export type GetArticleWebWidgetsResponse =
 
 export type GetArticleSummaryWidgetResponse =
   ArticleWebCollection<ArticleSummaryWidget>;
+
+export type GetArticleSummaryWithCoverResponse =
+  ArticleWebCollection<ArticleSummaryWithCover>;
