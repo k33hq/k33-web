@@ -15,7 +15,7 @@ import styles from './styles.module.scss';
 import { ArticleSummaryWidget } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 
-const { Text, Link: AntLink, Title } = Typography;
+const { Text, Link: AntLink, Title, Paragraph } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
@@ -77,14 +77,15 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
                 </Title>
               </Link>
               {lg && (
-                <Text
+                <Paragraph
                   type="secondary"
                   style={{
                     color: colorTextDescription,
                   }}
+                  ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
                 >
                   {subtitle}
-                </Text>
+                </Paragraph>
               )}
             </div>
           </List.Item>

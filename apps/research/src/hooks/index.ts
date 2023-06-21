@@ -7,6 +7,7 @@ import {
 import { ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import * as React from 'react';
+import { useHistoryTravel } from 'ahooks';
 
 export const useCustomerDashboard = () => {
   const [dashboard, { data, isLoading }] = useCustomerMutation();
@@ -71,15 +72,27 @@ export const useProductInfo = (productId: string) => {
   return [productInfoStatus, state];
 };
 
-export const useCounter = (val: number) => {
-  const [current, setCurrent] = React.useState(val);
-  const next = () => {
-    setCurrent((s) => s + 1);
-  };
+export const useTraverse = <T>(elements: Array<T>) => {
+  const upperBound = elements.length - 1;
+  const [current, setCurrent] = React.useState(upperBound ?? 0);
+  const [list] = React.useState(elements);
 
   const previous = () => {
-    setCurrent((s) => s + 1);
+    if (current > 0) {
+      setCurrent((c) => c - 1);
+    }
+  };
+  const next = () => {
+    if (current < upperBound) {
+      setCurrent((c) => c + 1);
+    }
   };
 
-  return { current, next, previous };
+  return {
+    current: list[current],
+    previous,
+    next,
+    hasNext: current < upperBound,
+    hasPrevious: current > 0,
+  };
 };

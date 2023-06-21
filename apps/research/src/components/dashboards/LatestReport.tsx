@@ -3,7 +3,8 @@ import { Button, Card, Grid, Image, Typography, theme } from 'antd';
 import Link from 'next/link';
 import * as React from 'react';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { useCounter } from '@/hooks';
+import { useTraverse } from '@/hooks';
+import { motion } from 'framer-motion';
 
 const { Link: AntLink, Text } = Typography;
 const { useToken } = theme;
@@ -13,11 +14,38 @@ interface LatestReportProps {
   reports: ReadonlyArray<ArticleSummaryWithCover>;
 }
 
+export const variants = {
+  show: {
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      duration: 1,
+    },
+  },
+  hide: {
+    opacity: 0,
+  },
+};
+
+// TODO: fetch the api on client side
 const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
   const {
     token: { colorBgLayout },
   } = useToken();
-  const { current, next, previous } = useCounter(reports.length - 1);
+  const {
+    current: {
+      article: {
+        subtitle,
+        title,
+        image: { url, description },
+      },
+      articleSlug,
+    },
+    next,
+    previous,
+    hasNext,
+    hasPrevious,
+  } = useTraverse(reports.slice());
 
   return (
     <Card
@@ -32,30 +60,42 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
           <AntLink underline>See More</AntLink>
         </Link>
       }
-      cover={
-        <Image
-          src={reports[current].article.image.url}
-          alt={reports[current].article.image.description}
-          preview={false}
-        />
-      }
+      bodyStyle={{
+        minHeight: 100,
+      }}
+      cover={<Image src={url} alt={description} preview={false} />}
       actions={[
         <Button
-          disabled={current <= 0}
           type="text"
+          size="large"
+          block
           icon={<ArrowLeftOutlined />}
           onClick={previous}
+          disabled={!hasPrevious}
         />,
-        <Button type="text">Read Report</Button>,
+        <Link href={'/articles/' + articleSlug}>
+          <Button size="large" block type="text">
+            Read Report
+          </Button>
+        </Link>,
         <Button
           icon={<ArrowRightOutlined />}
+          size="large"
+          block
+          disabled={!hasNext}
           onClick={next}
-          disabled={current >= 5}
           type="text"
         />,
       ]}
     >
-      <Text type="secondary">{reports[current].article.subtitle}</Text>
+      <motion.div
+        key={articleSlug}
+        variants={variants}
+        animate={'show'}
+        initial="hide"
+      >
+        <Text type="secondary">{subtitle}</Text>
+      </motion.div>
     </Card>
   );
 };
