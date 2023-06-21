@@ -48,6 +48,9 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
           publishedDate,
         }) => (
           <List.Item
+            style={{
+              padding: '24px 0px 24px 0px',
+            }}
             key={articleSlug}
             {...(lg && {
               extra: (
@@ -62,7 +65,11 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
               ),
             })}
           >
-            <div id="quick-take-body" className={styles.quickTakeBody}>
+            <div
+              id="quick-take-body"
+              style={{ width: '100%' }}
+              className={styles.quickTakeBody}
+            >
               <Text
                 type="secondary"
                 style={{
@@ -71,22 +78,25 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
               >
                 {formatDateAndTime(publishedDate, 'day')}
               </Text>
-              <Link href={'/articles/' + articleSlug}>
-                <Title level={5} style={{ margin: 0 }}>
-                  {title}
-                </Title>
-              </Link>
-              {lg && (
-                <Paragraph
-                  type="secondary"
-                  style={{
-                    color: colorTextDescription,
-                  }}
-                  ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-                >
-                  {subtitle}
-                </Paragraph>
-              )}
+              <List.Item.Meta
+                style={{
+                  width: '100%',
+                }}
+                title={<Link href={'/articles/' + articleSlug}>{title}</Link>}
+                {...(lg && {
+                  description: (
+                    <Paragraph
+                      type="secondary"
+                      style={{
+                        color: colorTextDescription,
+                      }}
+                      ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+                    >
+                      {subtitle}
+                    </Paragraph>
+                  ),
+                })}
+              />
             </div>
           </List.Item>
         )}

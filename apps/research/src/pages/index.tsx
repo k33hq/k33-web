@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NextPageWithLayout } from 'ui';
 import {
+  HomeDashboard,
   IndustryDashboard,
   MarketDashboard,
   SimpleLayout,
@@ -13,13 +14,14 @@ import {
   ArticleSummaryWidget,
   ArticleSummaryWithCover,
   ArticleWebWidget,
+  HomePage,
 } from '@/types';
 import {
   getArticleSummaryWidgets,
   getArticleSummaryWithCoverWidgets,
   getArticleWebWidgets,
+  getHomePage,
 } from '@/api';
-import Head from 'next/head';
 
 builder.init(process.env.BUILDER_API_KEY!);
 
@@ -28,6 +30,7 @@ interface HomePageProps {
   analysis: ReadonlyArray<ArticleSummaryWidget>;
   quickTakes: ReadonlyArray<ArticleSummaryWidget>;
   reports: ReadonlyArray<ArticleSummaryWithCover>;
+  homePage: HomePage;
 }
 
 const Home: NextPageWithLayout<HomePageProps> = ({
@@ -35,24 +38,24 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   analysis,
   quickTakes,
   reports,
+  homePage: {
+    seo: {
+      title,
+      description,
+      image: { url, ...seoImage },
+    },
+    ...articles
+  },
 }) => {
   return (
     <>
-      <NextSeo title="K33 - Research" />
-      <Head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charSet="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-      </Head>
+      <NextSeo
+        title={title}
+        defaultTitle="K33 - Research"
+        description={description}
+      />
       <main id="research-home">
+        <HomeDashboard {...articles} />
         <MarketDashboard quickTakes={quickTakes} reports={reports} />
         <TokenDashboard articles={analysis} />
         <IndustryDashboard reports={industryReports} />
@@ -84,6 +87,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     5
   );
 
+  const homePage = await getHomePage();
+
   // api call
   return {
     props: {
@@ -91,6 +96,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       analysis,
       quickTakes,
       reports,
+      homePage,
     },
   };
 };

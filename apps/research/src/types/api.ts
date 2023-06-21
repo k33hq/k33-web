@@ -8,7 +8,9 @@ import {
   ArticleWebWidget,
   ArticleSummaryWidget,
   ArticleSummaryWithCover,
+  HomePage,
 } from './contentful';
+import { SeoData } from './contentful/Seo';
 import { ProductStatus } from './payments';
 
 export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;
@@ -58,3 +60,7 @@ export type GetArticleSummaryWidgetResponse =
 
 export type GetArticleSummaryWithCoverResponse =
   ArticleWebCollection<ArticleSummaryWithCover>;
+
+export interface GetHomePageResponse {
+  homePage: HomePage;
+}

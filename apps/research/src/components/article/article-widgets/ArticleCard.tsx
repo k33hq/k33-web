@@ -58,7 +58,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           id="article-summary-information"
           className={styles.articleSummaryBody}
         >
-          <Space size={[0, 4]} wrap>
+          <Space size={[4, 4]} align="baseline" wrap>
             {isNew && <Badge text="New" color="blue" />}
             {xl && showTags && (
               <Space size={[0, 4]} wrap>

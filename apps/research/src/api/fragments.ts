@@ -53,3 +53,32 @@ export const AssetFragment = gql`
     description
   }
 `;
+
+// Various Article Widget Queries
+
+export const articleWebWidgetCoverFragment = gql`
+  fragment articleWebWidgetCover on ArticleWeb {
+    articleSlug
+    publishedDate
+    article {
+      title
+      subtitle
+      coverPicture {
+        ...asset
+      }
+    }
+  }
+`;
+
+// TODO: fragment for thumbnail, image and tagCollection
+
+export const articleWebWidgetFragment = gql`
+  fragment articleWebWidget on ArticleWeb {
+    articleSlug
+    publishedDate
+    article {
+      title
+      subtitle
+    }
+  }
+`;

@@ -3,11 +3,11 @@ import {
   IArticleFields,
   IArticleWebFields,
   ISectionFields,
-  ISeoMetadataFields,
   ITagFields,
 } from '../generated/contentful';
 import { AuthorCollection, AuthorCompact } from './author';
 import { Asset, RichTextDocument } from './global';
+import { SeoData } from './Seo';
 
 export interface ArticleSummary extends RichTextDocument {}
 export interface ArticleBody extends RichTextDocument {}
@@ -22,10 +22,11 @@ export interface Article
   body: ArticleBody | undefined;
   publicSnippet: ArticleBody;
   reportDocument: Asset;
+  coverPicture: Asset;
 }
 
 export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {
-  seo: ISeoMetadataFields;
+  seo: SeoData;
   article: Pick<Article, 'title' | 'subtitle' | 'image'>;
 }
 
@@ -33,7 +34,7 @@ export interface ArticlePage
   extends Pick<IArticleWebFields, 'publishedDate' | 'title'>,
     ArticleSeo {
   section: ISectionFields;
-  article: Article;
+  article: Omit<Article, 'coverPicture'>;
 }
 
 export interface ArticleWebCollection<T extends object> {
@@ -61,4 +62,14 @@ export interface ArticleSummaryWidget
 export interface ArticleSummaryWithCover
   extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
   article: Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'image'>;
+}
+
+export interface ArticleWebWidgetCover
+  extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
+  article: Pick<Article, 'title' | 'subtitle' | 'coverPicture'>;
+}
+
+export interface ArticleWebWidgetNormal
+  extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
+  article: Pick<Article, 'title' | 'subtitle'>;
 }
