@@ -56,7 +56,7 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
       bordered
       title="Weekly Report"
       extra={
-        <Link href={'/'}>
+        <Link href={'/market-insights/weekly-reports'}>
           <AntLink underline>See More</AntLink>
         </Link>
       }
