@@ -54,7 +54,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         defaultTitle="K33 - Research"
         description={description}
       />
-      <main id="research-home">
+      <main id="research-home" className="research-home">
         <HomeDashboard {...articles} />
         <MarketDashboard quickTakes={quickTakes} reports={reports} />
         <TokenDashboard articles={analysis} />

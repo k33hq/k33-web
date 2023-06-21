@@ -25,7 +25,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     token: { fontSizeSM },
   } = useToken();
   return (
-    <Row wrap gutter={32} align="stretch">
+    <Row wrap gutter={32} align="stretch" id="research-home-cover">
       <Col xs={24} md={12} lg={10}>
         <ArticleCard
           article={{

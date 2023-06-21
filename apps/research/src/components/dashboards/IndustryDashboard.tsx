@@ -19,7 +19,7 @@ const IndustryDashboard: React.FC<IndustryDashboardProps> = ({ reports }) => {
   return (
     <div id="industry-insight-dashboard-summary">
       <NamedDivider label="Industry Insights " />
-      <ClientCarousel reports={reports} />
+      {/* <ClientCarousel reports={reports} /> */}
     </div>
   );
 };

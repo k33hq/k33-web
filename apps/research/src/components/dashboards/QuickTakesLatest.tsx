@@ -38,7 +38,7 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
           <AntLink underline>See More</AntLink>
         </Link>
       </div>
-      <Divider style={{ marginTop: 16, marginBottom: 16 }} />
+      <Divider style={{ marginTop: 16, marginBottom: 0 }} />
       <List
         size="large"
         dataSource={md ? quickTakes.slice() : quickTakes.slice(0, 2)}
@@ -58,6 +58,7 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
                   <Image
                     preview={false}
                     width={308}
+                    height={154}
                     alt={thumbnail.title}
                     src={thumbnail.url}
                   />

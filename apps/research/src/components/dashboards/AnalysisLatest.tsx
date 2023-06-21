@@ -17,15 +17,23 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
 
   const smallScreenArticles = articles.slice(0, 2);
   return (
-    <div id="analysis-dashboard-summary">
-      <div id="analysis-header" className={styles.sectionHeader}>
-        <Text strong>Analysis</Text>
-        <Link href={'/token-valuation/analysis'}>
-          <AntLink underline>See More</AntLink>
-        </Link>
+    <div id="analysis-dashboard-summary" className={styles.analysisSummary}>
+      <div id="analysis-header" className={styles.anlysisHeader}>
+        <div id="analysis-title" className={styles.sectionHeader}>
+          <Text strong>Analysis</Text>
+          <Link href={'/token-valuation/analysis'}>
+            <AntLink underline>See More</AntLink>
+          </Link>
+        </div>
+        <Divider style={{ margin: 0 }} />
       </div>
-      <Divider />
-      <Row align="middle" gutter={16}>
+      <Row
+        align="middle"
+        gutter={[
+          { md: 16, lg: 24, xl: 32 },
+          { xs: 56, sm: 48 },
+        ]}
+      >
         {md
           ? articles.map((article) => (
               <Col span={6} key={article.articleSlug}>
@@ -33,10 +41,12 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
               </Col>
             ))
           : smallScreenArticles.map((article) => (
-              <Col span={24} key={article.articleSlug}>
-                <ArticleCard {...article} />
-                <Divider />
-              </Col>
+              <>
+                <Col span={24} key={article.articleSlug}>
+                  <ArticleCard {...article} />
+                </Col>
+                <Divider style={{ margin: 0 }} />
+              </>
             ))}
       </Row>
     </div>

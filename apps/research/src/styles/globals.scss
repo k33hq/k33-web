@@ -81,3 +81,30 @@ ul li {
   white-space: pre-wrap !important;
   text-overflow: initial !important;
 }
+
+.research-home {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 0px 64px;
+  gap: 64px;
+}
+
+.home-section-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  transition: all $animation-seconds ease-in;
+  gap: 24px;
+}
+
+@include medium() {
+  .home-section-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 48px;
+  }
+}

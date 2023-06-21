@@ -28,7 +28,7 @@ const MarketCombinedSummary: React.FC<MarketCombinedSummaryProps> = ({
   reports,
 }) => {
   return (
-    <Row wrap align="stretch" gutter={24}>
+    <Row wrap align="stretch" gutter={[24, 48]}>
       <Col xs={24} md={12}>
         <ErrorBoundary
           fallback={

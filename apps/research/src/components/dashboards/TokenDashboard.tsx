@@ -11,7 +11,10 @@ interface TokenDashboardProps {
 
 const TokenDashboard: React.FC<TokenDashboardProps> = ({ articles }) => {
   return (
-    <div id="token-valuation-dashboard-summary">
+    <div
+      id="token-valuation-dashboard-summary"
+      className="home-section-summary"
+    >
       <NamedDivider label="Token Valuation" />
       <AnalysisLatest articles={articles} />
     </div>
