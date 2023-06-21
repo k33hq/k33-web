@@ -2,12 +2,8 @@ import { FirebaseError, FirebaseOptions } from 'firebase/app';
 import * as React from 'react';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
-import { BrandButton, Stack } from 'ui';
-import { FcGoogle } from 'react-icons/fc';
-import { BsMicrosoft } from 'react-icons/bs';
-import { googleLogin, microsoftLogin, register } from 'core';
+import { appleLogin, googleLogin, microsoftLogin, register } from 'core';
 import { UserCredential } from 'firebase/auth';
-import Link from 'next/link';
 
 interface DiffCredData {
   appName: string;
@@ -36,6 +32,7 @@ interface DiffCredData {
 
 export interface LoginOptions {
   google: () => void;
+  apple: () => void;
   microsoft: () => void;
 }
 
@@ -73,6 +70,12 @@ const Auth: React.FC<AuthProps> = ({
     });
   };
 
+  const apple = () => {
+    appleLogin(onSuccessLogin, (err: FirebaseError) => {
+      setError(err.message);
+    });
+  };
+
   const microsoft = () => {
     microsoftLogin(onSuccessLogin, (err: FirebaseError) => {
       if (err.code == 'auth/account-exists-with-different-credential') {
@@ -85,7 +88,7 @@ const Auth: React.FC<AuthProps> = ({
     });
   };
 
-  return <>{children({ login: { google, microsoft }, error })}</>;
+  return <>{children({ login: { google, apple, microsoft }, error })}</>;
 };
 
 export default Auth;
