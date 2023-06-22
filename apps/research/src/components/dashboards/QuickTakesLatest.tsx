@@ -25,7 +25,7 @@ interface QuickTakesLatestProps {
 
 const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
   const {
-    token: { colorTextDescription, fontSizeSM },
+    token: { colorTextDescription, fontSizeSM, fontSizeHeading5 },
   } = useToken();
 
   const { md, lg } = useBreakpoint();
@@ -40,7 +40,6 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
       </div>
       <Divider style={{ marginTop: 16, marginBottom: 0 }} />
       <List
-        size="large"
         dataSource={md ? quickTakes.slice() : quickTakes.slice(0, 2)}
         renderItem={({
           article: { thumbnail, title, subtitle },
@@ -49,7 +48,7 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
         }) => (
           <List.Item
             style={{
-              padding: '24px 0px 24px 0px',
+              padding: '16px 0px 16px 0px',
             }}
             key={articleSlug}
             {...(lg && {
@@ -83,7 +82,14 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
                 style={{
                   width: '100%',
                 }}
-                title={<Link href={'/articles/' + articleSlug}>{title}</Link>}
+                title={
+                  <Link
+                    style={{ fontSize: fontSizeHeading5 }}
+                    href={'/articles/' + articleSlug}
+                  >
+                    {title}
+                  </Link>
+                }
                 {...(lg && {
                   description: (
                     <Paragraph

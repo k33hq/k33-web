@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   // const homepage = await builder.get('homepage').toPromise();
   const industryReports = await getArticleWebWidgets(
     'industry-insights/reports',
-    4
+    6
   );
   const analysis = await getArticleSummaryWidgets(
     'token-valuation/analysis',

@@ -22,24 +22,33 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   coverArticle2,
 }) => {
   const {
-    token: { fontSizeSM },
+    token: {
+      fontSizeSM,
+      fontSizeHeading4,
+      fontSizeHeading5,
+      fontSizeHeading2,
+      colorBgLayout,
+      fontSizeLG,
+    },
   } = useToken();
   return (
     <Row wrap gutter={32} align="stretch" id="research-home-cover">
-      <Col xs={24} md={12} lg={10}>
+      <Col xs={24} md={12} lg={11}>
         <ArticleCard
           article={{
             tagsCollection: { items: [] },
             thumbnail: mainArticle.article.coverPicture,
             ...mainArticle.article,
           }}
+          titleHeading={fontSizeHeading2}
           articleSlug={mainArticle.articleSlug}
           publishedDate={mainArticle.publishedDate}
-          isNew
+          subtitleHeading={fontSizeHeading4}
+          dateLevel={fontSizeLG}
         />
       </Col>
       <Col xs={24} md={12} lg={7}>
-        <Row wrap gutter={[0, 24]}>
+        <Row wrap gutter={[0, 12]}>
           <Col span={24}>
             <ArticleCard
               article={{
@@ -48,6 +57,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 ...coverArticle1.article,
               }}
               articleSlug={coverArticle1.articleSlug}
+              titleHeading={fontSizeHeading4}
               publishedDate={coverArticle1.publishedDate}
             />
             <Divider
@@ -67,7 +77,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 {formatDateAndTime(coverArticle2.publishedDate, 'day')}
               </Text>
               <Link href={'/articles/' + coverArticle2.articleSlug}>
-                <Title level={5} style={{ margin: 0 }}>
+                <Title level={4} style={{ margin: 0 }}>
                   {coverArticle2.article.title}
                 </Title>
               </Link>
@@ -87,16 +97,22 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </Col>
         </Row>
       </Col>
-      <Col xs={0} lg={7}>
+      <Col xs={0} lg={6}>
         <List
           size="large"
           dataSource={[subArticle1, subArticle2, subArticle3, subArticle4]}
+          style={{
+            backgroundColor: colorBgLayout,
+          }}
           renderItem={({
             article: { title, subtitle },
             articleSlug,
             publishedDate,
           }) => (
-            <List.Item key={articleSlug}>
+            <List.Item
+              key={articleSlug}
+              style={{ marginBottom: 16, paddingRight: 16, paddingLeft: 16 }}
+            >
               <div
                 id="home-list-body"
                 style={{
@@ -116,7 +132,16 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   style={{
                     width: '100%',
                   }}
-                  title={<Link href={'/articles/' + articleSlug}>{title}</Link>}
+                  title={
+                    <Link
+                      style={{
+                        fontSize: fontSizeHeading5,
+                      }}
+                      href={'/articles/' + articleSlug}
+                    >
+                      {title}
+                    </Link>
+                  }
                 />
               </div>
             </List.Item>

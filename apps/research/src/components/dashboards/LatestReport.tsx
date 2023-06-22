@@ -30,7 +30,7 @@ export const variants = {
 // TODO: fetch the api on client side
 const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
   const {
-    token: { colorBgLayout },
+    token: { colorBgLayout, fontSize },
   } = useToken();
   const {
     current: {
@@ -52,6 +52,7 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
       headStyle={{
         backgroundColor: colorBgLayout,
         overflow: 'hidden',
+        fontSize: fontSize,
       }}
       bordered
       title="Weekly Report"
@@ -61,7 +62,7 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
         </Link>
       }
       bodyStyle={{
-        minHeight: 100,
+        minHeight: 114,
       }}
       cover={<Image src={url} alt={description} preview={false} />}
       actions={[

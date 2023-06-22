@@ -1,14 +1,15 @@
 import { Card, Image, Space, Typography, theme, Grid } from 'antd';
+import { EllipsisConfig } from 'antd/es/typography/Base';
 import Link from 'next/link';
 import * as React from 'react';
 
-const { Link: AntLink, Text } = Typography;
+const { Link: AntLink, Text, Paragraph } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
 const OutlookCard: React.FC = () => {
   const {
-    token: { fontSizeSM, fontSizeXL, colorBgLayout },
+    token: { fontSizeSM, fontSizeLG, colorBgLayout, fontSize },
   } = useToken();
   const { sm } = useBreakpoint();
   return (
@@ -19,6 +20,7 @@ const OutlookCard: React.FC = () => {
       bordered
       headStyle={{
         backgroundColor: colorBgLayout,
+        fontSize: fontSize,
       }}
       title="Monthly Outlook"
       extra={
@@ -27,12 +29,16 @@ const OutlookCard: React.FC = () => {
         </Link>
       }
     >
-      <Space direction="horizontal" size="middle" align="start">
-        <Space direction="vertical">
-          <Text
+      <Space direction="horizontal" size={24} align="start">
+        <Space direction="vertical" size={0}>
+          <Paragraph
             type="secondary"
+            ellipsis={
+              { rows: 4, expandable: true, symbol: 'more' } as EllipsisConfig
+            }
             style={{
-              fontSize: fontSizeXL,
+              fontSize: fontSizeLG,
+              margin: 0,
             }}
           >
             My short-term outlook has improved after a slow but SEC-heavy
@@ -42,7 +48,7 @@ const OutlookCard: React.FC = () => {
             short-term outlook has improved after a slow but SEC-heavy February
             and a BTC push toward $28k could happen sooner rather than later.
             Further, Shanghai represents attractive narrative-based...
-          </Text>
+          </Paragraph>
           <Text
             type="secondary"
             style={{
@@ -55,6 +61,7 @@ const OutlookCard: React.FC = () => {
         {sm && (
           <div
             style={{
+              minHeight: 137,
               width: 137,
             }}
           >

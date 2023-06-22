@@ -15,6 +15,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { EllipsisConfig } from 'antd/es/typography/Base';
+import { TitleProps } from 'antd/es/typography/Title';
 
 const { Text, Paragraph } = Typography;
 const { useToken } = theme;
@@ -22,6 +23,9 @@ const { useToken } = theme;
 interface ArticleCardProps extends ArticleSummaryWidget {
   isNew?: boolean;
   showTags?: boolean;
+  titleHeading?: number;
+  subtitleHeading?: number;
+  dateLevel?: number;
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
@@ -30,10 +34,13 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   article: { title, thumbnail, subtitle, tagsCollection },
   isNew = false,
   showTags = false,
+  titleHeading,
+  subtitleHeading,
+  dateLevel,
 }) => {
   const { md, xl } = Grid.useBreakpoint();
   const {
-    token: { fontSizeHeading5, fontSizeSM },
+    token: { fontSizeHeading5, fontSizeSM, fontSize },
   } = useToken();
 
   return (
@@ -58,7 +65,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           id="article-summary-information"
           className={styles.articleSummaryBody}
         >
-          <Space size={[4, 4]} align="baseline" wrap>
+          <Space size={[4, 4]} align="center" wrap>
             {isNew && <Badge text="New" color="blue" />}
             {xl && showTags && (
               <Space size={[0, 4]} wrap>
@@ -70,7 +77,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             <Text
               type="secondary"
               style={{
-                fontSize: fontSizeSM,
+                fontSize: dateLevel ?? fontSizeSM,
               }}
             >
               {formatDateAndTime(publishedDate, 'day')}
@@ -83,7 +90,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               strong
               style={{
                 margin: 0,
-                fontSize: fontSizeHeading5,
+                fontSize: titleHeading ?? fontSizeHeading5,
               }}
               ellipsis={
                 md
@@ -101,6 +108,9 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           </Link>
           <Paragraph
             type="secondary"
+            style={{
+              fontSize: subtitleHeading ?? fontSize,
+            }}
             ellipsis={
               md
                 ? ({

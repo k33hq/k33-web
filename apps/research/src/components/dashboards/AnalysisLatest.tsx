@@ -18,7 +18,7 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
   const smallScreenArticles = articles.slice(0, 2);
   return (
     <div id="analysis-dashboard-summary" className={styles.analysisSummary}>
-      <div id="analysis-header" className={styles.anlysisHeader}>
+      {/* <div id="analysis-header" className={styles.anlysisHeader}>
         <div id="analysis-title" className={styles.sectionHeader}>
           <Text strong>Analysis</Text>
           <Link href={'/token-valuation/analysis'}>
@@ -26,7 +26,7 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
           </Link>
         </div>
         <Divider style={{ margin: 0 }} />
-      </div>
+      </div> */}
       <Row
         align="middle"
         gutter={[

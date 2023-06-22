@@ -20,7 +20,7 @@ const LatestIndustryReports: React.FC<LatestIndustryReportsProps> = ({
       id="industry-reports-dashboard-summary"
       className={styles.analysisSummary}
     >
-      <div id="analysis-header" className={styles.anlysisHeader}>
+      {/* <div id="analysis-header" className={styles.anlysisHeader}>
         <div id="analysis-title" className={styles.sectionHeader}>
           <Text strong>Industry Reports</Text>
           <Link href={'/industry-insights/industry-reports'}>
@@ -28,7 +28,7 @@ const LatestIndustryReports: React.FC<LatestIndustryReportsProps> = ({
           </Link>
         </div>
         <Divider style={{ margin: 0 }} />
-      </div>
+      </div> */}
       <Row
         align="stretch"
         style={{
@@ -40,7 +40,7 @@ const LatestIndustryReports: React.FC<LatestIndustryReportsProps> = ({
         ]}
       >
         {reports.map((report) => (
-          <Col xs={12} sm={12} md={6} key={report.articleSlug}>
+          <Col xs={12} sm={12} md={4} key={report.articleSlug}>
             <ReportCard {...report} />
           </Col>
         ))}

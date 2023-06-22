@@ -3,8 +3,9 @@ import NamedDivider from '../platform/NamedDivider';
 import { ArticleWebWidget } from '@/types';
 import dynamic from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Result } from 'antd';
+import { Divider, Result, Typography } from 'antd';
 import LatestIndustryReports from './LatestIndustryReports';
+import Link from 'next/link';
 
 const ClientCarousel = dynamic(
   () => import('../article/article-widgets/ReportCarousel'),
@@ -13,6 +14,7 @@ const ClientCarousel = dynamic(
 
 // TODO: 4 industry report section reports
 
+const { Link: AntLink, Title } = Typography;
 interface IndustryDashboardProps {
   reports: ReadonlyArray<ArticleWebWidget>;
 }
@@ -23,7 +25,23 @@ const IndustryDashboard: React.FC<IndustryDashboardProps> = ({ reports }) => {
       id="industry-insight-dashboard-summary"
       className="home-section-summary"
     >
-      <NamedDivider label="Industry Insights " />
+      <div style={{ width: '100%' }}>
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Title level={4}>Token Valuation</Title>
+          <Link href={'/token-valuation/analysis'}>
+            <AntLink underline>See More</AntLink>
+          </Link>
+        </div>
+        <Divider style={{ margin: 0 }} />
+      </div>
 
       {/* <ErrorBoundary
         fallback={
