@@ -50,5 +50,13 @@ export const getLevelTwos = (levelOne: string) => {
     .flatMap((nav) => nav.children) as Navigations;
 };
 
+export function isBrowser() {
+  return !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  );
+}
+
 export * from './share';
 export * from './markdown';

@@ -9,6 +9,8 @@ import withTheme from '../theme';
 import { MainLayout } from '@/components';
 import '../../public/antd.min.css';
 import '../styles/globals.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],

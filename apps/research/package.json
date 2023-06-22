@@ -16,6 +16,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.9.1",
     "@ant-design/icons": "^5.1.4",
+    "@ant-design/react-slick": "^1.0.1",
     "@builder.io/react": "^3.0.3",
     "@contentful/f36-datetime": "^4.26.0",
     "@contentful/rich-text-react-renderer": "^15.16.2",
@@ -34,7 +35,8 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.10",
     "react-redux": "^8.0.5",
-    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^9.4.1",
     "ui": "workspace:*"
   },
   "devDependencies": {

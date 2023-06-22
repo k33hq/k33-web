@@ -8,6 +8,7 @@ import { ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import * as React from 'react';
 import { useHistoryTravel } from 'ahooks';
+import { isBrowser } from '@/utils';
 
 export const useCustomerDashboard = () => {
   const [dashboard, { data, isLoading }] = useCustomerMutation();
@@ -95,4 +96,14 @@ export const useTraverse = <T>(elements: Array<T>) => {
     hasNext: current < upperBound,
     hasPrevious: current > 0,
   };
+};
+
+export const useBrowser = () => {
+  const [state, setState] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setState(isBrowser() && !!document.visibilityState);
+  }, []);
+
+  return state;
 };

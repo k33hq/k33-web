@@ -97,6 +97,7 @@ ul li {
   padding: 0px;
   transition: all $animation-seconds ease-in;
   gap: 24px;
+  width: 100%;
 }
 
 @include medium() {
