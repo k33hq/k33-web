@@ -35,8 +35,8 @@ const IndustryDashboard: React.FC<IndustryDashboardProps> = ({ reports }) => {
             justifyContent: 'space-between',
           }}
         >
-          <Title level={4}>Token Valuation</Title>
-          <Link href={'/token-valuation/analysis'}>
+          <Title level={4}>Industry Insights</Title>
+          <Link href={'/industry-insights/industry-reports'}>
             <AntLink underline>See More</AntLink>
           </Link>
         </div>
