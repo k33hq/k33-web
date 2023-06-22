@@ -62,6 +62,7 @@ const GetArticlePage = gql`
           name
         }
         publishedDate
+        articleSlug
         article {
           title
           subtitle

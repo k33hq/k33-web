@@ -53,6 +53,9 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         title={title}
         defaultTitle="K33 - Research"
         description={description}
+        twitter={{
+          cardType: '',
+        }}
       />
       <main id="research-home" className="research-home">
         <HomeDashboard {...articles} />

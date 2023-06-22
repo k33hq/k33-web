@@ -31,7 +31,7 @@ export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {
 }
 
 export interface ArticlePage
-  extends Pick<IArticleWebFields, 'publishedDate' | 'title'>,
+  extends Pick<IArticleWebFields, 'publishedDate' | 'title' | 'articleSlug'>,
     ArticleSeo {
   section: ISectionFields;
   article: Omit<Article, 'coverPicture'>;

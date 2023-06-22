@@ -42,8 +42,16 @@ const ResearchFooter: React.FC = () => {
           </div>
           <div id="social-links">
             <Space wrap>
-              <Button type="link" icon={<MailOutlined />} />
-              <Button type="link" icon={<LinkedinFilled />} />
+              <Button
+                type="link"
+                icon={<MailOutlined />}
+                href="mailto:contact@k33.com"
+              />
+              <Button
+                type="link"
+                icon={<LinkedinFilled />}
+                href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
+              />
               <Button type="link" icon={<TwitterOutlined />} />
             </Space>
           </div>

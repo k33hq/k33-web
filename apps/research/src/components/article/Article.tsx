@@ -11,7 +11,10 @@ import {
 import { Divider } from 'antd';
 
 interface ArticleProps
-  extends Omit<ArticleType, 'authorsCollection' | 'tagsCollection'>,
+  extends Omit<
+      ArticleType,
+      'authorsCollection' | 'tagsCollection' | 'coverPicture'
+    >,
     Pick<ArticlePage, 'section' | 'publishedDate'> {
   productId: string;
   priceId: string;

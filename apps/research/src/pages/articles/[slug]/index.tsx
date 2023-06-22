@@ -9,7 +9,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'ui';
-import { NextSeo } from 'next-seo';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 import { Article, ArticleSidebar, ShareArticle } from '@/components';
 
 const { Content } = Layout;
@@ -31,6 +31,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
   const {
     section,
     publishedDate,
+    articleSlug,
     article: { authorsCollection, tagsCollection, ...articleContent },
   } = page;
   const { productId, pricesCollection } = product;
@@ -41,6 +42,45 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
       <NextSeo
         title={title}
         description={pageSeo ? pageSeo.description : article.subtitle}
+        twitter={{
+          handle: '@K33HQ',
+          site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
+          cardType: 'twitter:card',
+        }}
+        openGraph={{
+          title: title,
+          description: pageSeo ? pageSeo.description : article.subtitle,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`,
+          type: 'article',
+          article: {
+            publishedTime: publishedDate,
+            authors: authorsCollection.items.map((author) => author.name),
+            tags: tagsCollection.items.map((tag) => tag.title),
+          },
+          images: [
+            {
+              url: articleContent.image.url,
+              alt: articleContent.image.description,
+            },
+          ],
+          siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
+        }}
+      />
+      <ArticleJsonLd
+        useAppDir={false}
+        url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
+        title={article.title}
+        images={[articleContent.image.url]}
+        datePublished={publishedDate}
+        dateModified={publishedDate}
+        authorName={authorsCollection.items.map((author) => ({
+          name: author.name,
+          title: author.title,
+        }))}
+        publisherName="K33 Research"
+        publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-64x64.png`}
+        description={pageSeo ? pageSeo.description : article.subtitle!}
+        isAccessibleForFree={false}
       />
       <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
