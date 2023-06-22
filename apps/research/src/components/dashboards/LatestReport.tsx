@@ -45,7 +45,7 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
     previous,
     hasNext,
     hasPrevious,
-  } = useTraverse(reports.slice());
+  } = useTraverse(reports.slice().reverse() as Array<ArticleSummaryWithCover>);
 
   return (
     <Card

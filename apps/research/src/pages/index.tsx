@@ -54,7 +54,9 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         defaultTitle="K33 - Research"
         description={description}
         twitter={{
-          cardType: '',
+          handle: '@K33HQ',
+          site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
+          cardType: 'twitter:card',
         }}
       />
       <main id="research-home" className="research-home">

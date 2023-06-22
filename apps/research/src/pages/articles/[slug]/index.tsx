@@ -59,8 +59,10 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           },
           images: [
             {
-              url: articleContent.image.url,
-              alt: articleContent.image.description,
+              url: pageSeo ? pageSeo.image.url : articleContent.image.url,
+              alt: pageSeo
+                ? pageSeo.image.description
+                : articleContent.image.description,
             },
           ],
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',

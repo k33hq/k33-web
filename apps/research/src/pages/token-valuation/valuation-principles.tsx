@@ -1,13 +1,8 @@
-import {
-  ReportWidget,
-  ReportCard,
-  TabLayout,
-  ValuationPrinciple,
-} from '@/components';
+import { ReportCard, TabLayout, ValuationPrinciple } from '@/components';
 import { getLevelTwos, getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'ui';
-import ReactMarkdown from 'react-markdown';
+
 import { GetStaticProps } from 'next';
 import { Typography, Image, Row, Col, Divider, Grid, Anchor } from 'antd';
 import { getArticleWebWidgets } from '@/api';
