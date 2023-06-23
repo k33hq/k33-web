@@ -83,88 +83,99 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
             }}
           >
             <div id="header-content">
-              <Row gutter={16} wrap={false}>
-                <Col
-                  flex={1}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 8,
-                  }}
-                >
-                  <AppLogo />
-                </Col>
-                {md && (
-                  <Col flex={2}>
-                    {
-                      <Menu
-                        selectable={false}
-                        mode="horizontal"
-                        style={{
-                          borderBottom: 0,
-                        }}
-                        defaultSelectedKeys={['home']}
-                        selectedKeys={
-                          router.pathname.split('/').filter((v) => v != '')
-                            .length > 0
-                            ? router.pathname.split('/').filter((v) => v != '')
-                            : ['home']
-                        }
-                        items={appStructure.navigation.map(
-                          ({ key, label, url }) => ({
-                            key,
-                            label,
-                            onClick: () => {
-                              if (!(typeof window === undefined)) {
-                                window.history.pushState(
-                                  null,
-                                  '',
-                                  `/research${url}`
-                                );
-                                window.location.reload();
-                              }
-                            },
-                          })
-                        )}
-                      />
-                    }
-                  </Col>
-                )}
-                <Col>
-                  {state === 'SIGNED_OUT' ? (
-                    <Link
-                      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+              <Row wrap={false} align="middle">
+                <Col span={22} offset={1}>
+                  <Row wrap={false} gutter={16}>
+                    <Col
+                      flex={1}
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 8,
+                        paddingLeft: 0,
+                      }}
                     >
-                      <Button
-                        style={{
-                          boxShadow: 'none',
-                        }}
-                        type="primary"
-                      >
-                        Sign In
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Dropdown menu={{ items }}>
-                      <Avatar
-                        style={{
-                          backgroundColor: colorPrimary,
-                        }}
-                        onClick={(e) => e?.preventDefault()}
-                        icon={<UserOutlined />}
-                      />
-                    </Dropdown>
-                  )}
-                </Col>
-                <Col>
-                  {!md && (
-                    <Button
-                      onClick={openDrawer}
-                      type="text"
-                      icon={<MenuOutlined />}
-                    />
-                  )}
+                      <AppLogo />
+                    </Col>
+                    {md && (
+                      <Col flex={2}>
+                        {
+                          <Menu
+                            selectable={false}
+                            mode="horizontal"
+                            style={{
+                              borderBottom: 0,
+                            }}
+                            defaultSelectedKeys={['home']}
+                            selectedKeys={
+                              router.pathname.split('/').filter((v) => v != '')
+                                .length > 0
+                                ? router.pathname
+                                    .split('/')
+                                    .filter((v) => v != '')
+                                : ['home']
+                            }
+                            items={appStructure.navigation.map(
+                              ({ key, label, url }) => ({
+                                key,
+                                label,
+                                onClick: () => {
+                                  if (!(typeof window === undefined)) {
+                                    window.history.pushState(
+                                      null,
+                                      '',
+                                      `/research${url}`
+                                    );
+                                    window.location.reload();
+                                  }
+                                },
+                              })
+                            )}
+                          />
+                        }
+                      </Col>
+                    )}
+                    <Col
+                      style={{
+                        paddingRight: 0,
+                      }}
+                    >
+                      {state === 'SIGNED_OUT' ? (
+                        <Link
+                          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                        >
+                          <Button
+                            style={{
+                              boxShadow: 'none',
+                            }}
+                            type="primary"
+                          >
+                            Sign In
+                          </Button>
+                        </Link>
+                      ) : (
+                        <Dropdown menu={{ items }}>
+                          <Avatar
+                            style={{
+                              backgroundColor: colorPrimary,
+                            }}
+                            onClick={(e) => e?.preventDefault()}
+                            icon={<UserOutlined />}
+                          />
+                        </Dropdown>
+                      )}
+                    </Col>
+                    <Col md={0}>
+                      {!md && (
+                        <Button
+                          onClick={openDrawer}
+                          type="text"
+                          icon={<MenuOutlined />}
+                        />
+                      )}
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </div>

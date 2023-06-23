@@ -111,7 +111,12 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           }) => (
             <List.Item
               key={articleSlug}
-              style={{ marginBottom: 16, paddingRight: 16, paddingLeft: 16 }}
+              style={{
+                marginBottom: 16,
+                paddingLeft: 16,
+                paddingTop: 16,
+                marginTop: 16,
+              }}
             >
               <div
                 id="home-list-body"

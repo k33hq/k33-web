@@ -35,12 +35,12 @@ const LatestIndustryReports: React.FC<LatestIndustryReportsProps> = ({
           marginTop: 16,
         }}
         gutter={[
-          { xs: 16, xl: 24 },
+          { xs: 16, sm: 16, md: 16, lg: 16, xl: 24 },
           { xs: 56, sm: 40 },
         ]}
       >
         {reports.map((report) => (
-          <Col xs={12} sm={12} md={4} key={report.articleSlug}>
+          <Col xs={12} sm={12} md={4} lg={4} key={report.articleSlug}>
             <ReportCard {...report} />
           </Col>
         ))}

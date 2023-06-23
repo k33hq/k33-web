@@ -43,6 +43,9 @@ const ReportCard: React.FC<ArticleWebWidgetType> = ({
       >
         <div
           id="article-summary-information"
+          style={{
+            minHeight: 96,
+          }}
           className={styles.articleSummaryBody}
         >
           <Space>
