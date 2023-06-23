@@ -31,7 +31,14 @@ const Auth: NextPageWithLayout = () => {
             onSuccessLogin={() => router.reload()}
             firebaseConfig={config}
           >
-            {(props) => <LoginOptions {...props} />}
+            {(props) => (
+              <LoginOptions
+                {...props}
+                appleText="Sign In with Apple"
+                googleText="Sign In with Google"
+                microsoftText="Sign In with Microsoft"
+              />
+            )}
           </AuthComponent>
         </div>
       </div>
