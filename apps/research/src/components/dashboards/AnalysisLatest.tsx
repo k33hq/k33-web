@@ -16,6 +16,7 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
   const { md } = useBreakpoint();
 
   const smallScreenArticles = articles.slice(0, 2);
+
   return (
     <div id="analysis-dashboard-summary" className={styles.analysisSummary}>
       {/* <div id="analysis-header" className={styles.anlysisHeader}>
@@ -40,9 +41,9 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
                 <ArticleCard {...article} />
               </Col>
             ))
-          : smallScreenArticles.map((article) => (
+          : smallScreenArticles.map((article, index) => (
               <>
-                <Col span={24} key={article.articleSlug}>
+                <Col span={24} key={article.articleSlug! + index}>
                   <ArticleCard {...article} />
                 </Col>
                 <Divider style={{ margin: 0 }} />
