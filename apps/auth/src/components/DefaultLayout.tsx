@@ -1,4 +1,4 @@
-import { Affix, Layout, Typography } from 'antd';
+import { Affix, Grid, Layout, Typography } from 'antd';
 import * as React from 'react';
 import K33Logo from '../assets/logo.svg';
 import Image from 'next/image';
@@ -6,15 +6,18 @@ import Link from 'next/link';
 
 const { Content, Header, Footer } = Layout;
 
+const { useBreakpoint } = Grid;
+
 interface DefaultLayoutProps extends React.PropsWithChildren {
   footer: string;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, footer }) => {
+  const { md } = useBreakpoint();
   return (
     <Layout
       style={{
-        minHeight: 650,
+        minHeight: md ? 1000 : 650,
       }}
     >
       <Affix>
@@ -46,7 +49,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, footer }) => {
           justifyContent: 'center',
         }}
       >
-        <div style={{ maxWidth: 281, textAlign: 'center' }}>
+        <div style={{ maxWidth: 300, textAlign: 'center' }}>
           <Typography.Text>
             {`By ${footer} for K33 you agree to the `}
           </Typography.Text>
