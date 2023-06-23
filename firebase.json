@@ -25,6 +25,18 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
+      "target": "k33-research-archive-dev",
+      "cleanUrls": true,
+      "public": "./apps/research-archive/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-research-archive",
+      "cleanUrls": true,
+      "public": "./apps/research-archive/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
       "target": "k33-invest-dev",
       "cleanUrls": true,
       "public": "./apps/invest/out",
