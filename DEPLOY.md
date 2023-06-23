@@ -6,6 +6,7 @@
 pnpm install
 pnpm build
 pnpm --dir apps/research export
+pnpm --dir apps/research-archive export
 pnpm --dir apps/invest export
 pnpm --dir apps/auth export
 ```
@@ -14,6 +15,7 @@ pnpm --dir apps/auth export
 ```shell
 firebase deploy --only hosting:k33-platform-dev
 firebase deploy --only hosting:k33-research-dev
+firebase deploy --only hosting:k33-research-archive-dev
 firebase deploy --only hosting:k33-invest-dev
 firebase deploy --only hosting:k33-auth-dev
 ```
@@ -23,7 +25,7 @@ firebase deploy --only hosting:k33-auth-dev
 ```shell
 firebase deploy --only hosting:k33-platform
 firebase deploy --only hosting:k33-research
+firebase deploy --only hosting:k33-research-archive
 firebase deploy --only hosting:k33-invest
 firebase deploy --only hosting:k33-auth
 ```
-s
