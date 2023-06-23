@@ -1,4 +1,4 @@
-import { Button, Divider, Layout, Space, theme } from 'antd';
+import { Button, Divider, Layout, Space, theme, Row, Col } from 'antd';
 import styles from './styles.module.scss';
 import {
   MailOutlined,

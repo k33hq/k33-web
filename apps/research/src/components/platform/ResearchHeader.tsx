@@ -198,7 +198,11 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           style={{
             width: 200,
           }}
-          selectedKeys={router.pathname.split('/')}
+          selectedKeys={
+            router.pathname.split('/').filter((v) => v != '').length > 0
+              ? router.pathname.split('/').filter((v) => v != '')
+              : ['home']
+          }
           items={appStructure.navigation.map(({ key, label, url }) => ({
             key,
             label,
