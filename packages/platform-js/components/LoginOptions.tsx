@@ -3,9 +3,18 @@ import Icon, { AppleFilled } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import { AuthFunctionalities } from './Auth';
 
-const LoginOptions: React.FC<AuthFunctionalities> = ({
+interface LoginOptionsProps extends AuthFunctionalities {
+  appleText?: string;
+  microsoftText?: string;
+  googleText?: string;
+}
+
+const LoginOptions: React.FC<LoginOptionsProps> = ({
   login: { google, apple, microsoft },
   error,
+  appleText = 'Sign Up with Apple',
+  microsoftText = 'Sign Up with Microsoft',
+  googleText = 'Sign Up with Google',
 }) => {
   return (
     <>
@@ -44,10 +53,10 @@ const LoginOptions: React.FC<AuthFunctionalities> = ({
           </Icon>
         }
       >
-        Sign Up with Google
+        {googleText}
       </Button>
       <Button block onClick={apple} icon={<AppleFilled />}>
-        Sign Up with Apple
+        {appleText}
       </Button>
       <Button
         block
@@ -81,7 +90,7 @@ const LoginOptions: React.FC<AuthFunctionalities> = ({
           </Icon>
         }
       >
-        Sign Up with Microsoft
+        {microsoftText}
       </Button>
       {error && <Typography.Text type="danger">{error}</Typography.Text>}
     </>

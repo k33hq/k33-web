@@ -100,16 +100,19 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   if (status === 'active') return children;
 
   return (
-    <ActionLayout publicSnippet={publicSnippet}>
-      <motion.div
-        key={status}
-        variants={variants}
-        animate={'show'}
-        initial="hide"
-      >
+    <motion.div
+      key={status}
+      variants={variants}
+      animate={'show'}
+      initial="hide"
+      style={{
+        width: '100%',
+      }}
+    >
+      <ActionLayout publicSnippet={publicSnippet}>
         {getCallToAction(status)}
-      </motion.div>
-    </ActionLayout>
+      </ActionLayout>
+    </motion.div>
   );
 };
 

@@ -109,3 +109,9 @@ ul li {
     gap: 48px;
   }
 }
+
+@include medium() {
+  .research-home {
+    gap: 124px;
+  }
+}

@@ -43,7 +43,14 @@ const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
             router.reload();
           }}
         >
-          {(props) => <LoginOptions {...props} />}
+          {(props) => (
+            <LoginOptions
+              {...props}
+              appleText="Sign Up with Apple and Start Free Trial"
+              googleText="Sign Up with Google and Start Free Trial"
+              microsoftText="Sign Up with Microsoft and Start Free Trial"
+            />
+          )}
         </Auth>
       </div>
       <div id="sign-up-footer" className={styles.signupFooter}>
