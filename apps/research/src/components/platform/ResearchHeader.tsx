@@ -159,7 +159,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                           </Button>
                         </Link>
                       ) : (
-                        <Dropdown menu={{ items }}>
+                        <Dropdown placement="bottomLeft" menu={{ items }}>
                           <Avatar
                             style={{
                               backgroundColor: colorPrimary,

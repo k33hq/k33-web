@@ -6,6 +6,7 @@ import { ProCheckoutCard } from '../article-payments';
 interface EndedCallProps {
   checkout: () => void;
   isLoading?: boolean;
+  isReport?: boolean;
 }
 
 const { Text, Title } = Typography;
@@ -14,6 +15,7 @@ const { useToken } = theme;
 const StartTrialCall: React.FC<EndedCallProps> = ({
   checkout,
   isLoading = false,
+  isReport = false,
 }) => {
   const {
     token: { fontSizeSM },
@@ -23,7 +25,9 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
       <Space size={16}>
         <Space id="ended-header" direction="vertical" size={8}>
           <Title level={5} style={{ margin: 0 }}>
-            Register to K33 Research Pro
+            {isReport
+              ? 'Register to K33 Research Pro to download the report'
+              : 'Register to K33 Research Pro to keep reading the article'}
           </Title>
           <Text
             style={{

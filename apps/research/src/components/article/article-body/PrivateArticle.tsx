@@ -9,19 +9,35 @@ import {
   StartTrialCall,
 } from '../article-actions';
 import { useCustomerCheckout, useProductInfo } from '@/hooks';
+import { motion } from 'framer-motion';
 
 interface PrivateArticleProps
   extends React.PropsWithChildren,
     Pick<Article, 'publicSnippet'> {
   productId: string;
   priceId: string;
+  isReport?: boolean;
 }
+
+export const variants = {
+  show: {
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      duration: 1,
+    },
+  },
+  hide: {
+    opacity: 0,
+  },
+};
 
 const PrivateArticle: React.FC<PrivateArticleProps> = ({
   publicSnippet,
   children,
   productId,
   priceId,
+  isReport = false,
 }) => {
   const { doCheckOut, isLoading } = useCustomerCheckout(priceId);
   const [status, state] = useProductInfo(productId);
@@ -56,16 +72,28 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'blocked':
         return <BlockedCall />;
       case 'ended':
-        return <EndedCall isLoading={isLoading} checkout={doCheckOut} />;
+        return (
+          <EndedCall
+            isLoading={isLoading}
+            checkout={doCheckOut}
+            isReport={isReport}
+          />
+        );
       default:
-        return <StartTrialCall isLoading={isLoading} checkout={doCheckOut} />;
+        return (
+          <StartTrialCall
+            isLoading={isLoading}
+            checkout={doCheckOut}
+            isReport={isReport}
+          />
+        );
     }
   };
 
   if (state === 'SIGNED_OUT')
     return (
       <ActionLayout publicSnippet={publicSnippet}>
-        <SignUpCall />
+        <SignUpCall isReport={isReport} />
       </ActionLayout>
     );
 
@@ -73,7 +101,14 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
 
   return (
     <ActionLayout publicSnippet={publicSnippet}>
-      {getCallToAction(status)}
+      <motion.div
+        key={status}
+        variants={variants}
+        animate={'show'}
+        initial="hide"
+      >
+        {getCallToAction(status)}
+      </motion.div>
     </ActionLayout>
   );
 };

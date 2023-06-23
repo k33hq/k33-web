@@ -10,7 +10,11 @@ import CallToActionCard from './CallToActionCard';
 const { useToken } = theme;
 const { Text, Title, Link: AntLink } = Typography;
 
-const SignUpCall: React.FC = () => {
+interface SignUpCallProps {
+  isReport?: boolean;
+}
+
+const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
   const {
     token: { fontSizeSM },
   } = useToken();
@@ -19,7 +23,9 @@ const SignUpCall: React.FC = () => {
     <CallToActionCard>
       <div id="sign-up-header" className={styles.signupHeader}>
         <Title level={5} editable={false}>
-          Sign up for K33 Research Pro and keep reading our research
+          {isReport
+            ? 'Sign up for K33 Research Pro to download the report'
+            : 'Sign up for K33 Research Pro to keep reading the article'}
         </Title>
         <Text
           style={{
