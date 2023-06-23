@@ -29,7 +29,7 @@ const TokenDashboard: React.FC<TokenDashboardProps> = ({ articles }) => {
             justifyContent: 'space-between',
           }}
         >
-          <Title level={4}>Token Valuation</Title>
+          <Title level={4}>Token Analysis</Title>
           <Link href={'/token-valuation/analysis'}>
             <AntLink underline>See More</AntLink>
           </Link>

@@ -85,15 +85,19 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
             <div id="header-content">
               <Row wrap={false} align="middle">
                 <Col span={22} offset={1}>
-                  <Row wrap={false} gutter={16}>
+                  <Row
+                    wrap={false}
+                    gutter={16}
+                    style={{ paddingLeft: 8, paddingRight: 8 }}
+                  >
                     <Col
                       flex={1}
                       style={{
                         display: 'flex',
                         flexDirection: 'row',
                         alignItems: 'center',
+                        padding: 0,
                         gap: 8,
-                        paddingLeft: 0,
                       }}
                     >
                       <AppLogo />
@@ -166,7 +170,13 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                         </Dropdown>
                       )}
                     </Col>
-                    <Col md={0}>
+                    <Col
+                      md={0}
+                      style={{
+                        paddingRight: 0,
+                        margin: 0,
+                      }}
+                    >
                       {!md && (
                         <Button
                           onClick={openDrawer}
