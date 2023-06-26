@@ -29,6 +29,11 @@ const CookieModal: React.FC = () => {
   const openPreferences = () => setManage(true);
   const closePrederences = () => setManage(false);
 
+  const closeCookie = () => {
+    setCookie(false);
+    acceptCookie();
+  };
+
   return (
     <Modal
       getContainer={false}
@@ -36,8 +41,9 @@ const CookieModal: React.FC = () => {
       mask={false}
       open={showCookie}
       style={{
-        top: size?.height! - 600,
+        top: size?.height! - 700,
       }}
+      maskStyle={{}}
       closable={false}
       footer={[
         manage ? (
@@ -54,7 +60,7 @@ const CookieModal: React.FC = () => {
             style={{
               boxShadow: 'none',
             }}
-            onClick={acceptCookie}
+            onClick={closeCookie}
             key="submit"
             type="primary"
           >
@@ -67,7 +73,7 @@ const CookieModal: React.FC = () => {
             }}
             key="submit"
             type="primary"
-            onClick={acceptCookie}
+            onClick={closeCookie}
           >
             Allow Cookies
           </Button>
