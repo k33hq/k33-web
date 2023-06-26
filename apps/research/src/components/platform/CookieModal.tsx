@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { isCookie, acceptCookie, denyCookie } from 'core';
-
 import {
   Button,
   Switch,
-  Modal,
   Typography,
   theme,
-  Grid,
   Card,
   Affix,
   Row,
   Col,
   Layout,
 } from 'antd';
+import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
@@ -23,9 +21,22 @@ const { Text } = Typography;
 const { useToken } = theme;
 const { Content } = Layout;
 
+export const variants = {
+  show: {
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      duration: 0.3,
+    },
+  },
+  hide: {
+    opacity: 0,
+  },
+};
+
 const CookieModal: React.FC = () => {
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, boxShadowSecondary, colorBorderSecondary },
   } = useToken();
   const router = useRouter();
   const [showCookie, setCookie] = React.useState(false);
@@ -48,80 +59,91 @@ const CookieModal: React.FC = () => {
   return (
     <>
       {showCookie && (
-        <Affix offsetBottom={10}>
-          <Layout
-            style={{
-              display: 'flex',
-              backgroundColor: colorBgContainer,
-            }}
+        <Affix offsetBottom={0}>
+          <motion.div
+            key={`${manage}`}
+            variants={variants}
+            animate={'show'}
+            initial="hide"
           >
-            <Content
-              id="page-title"
+            <Layout
               style={{
-                maxWidth: 1440,
-                alignSelf: 'center',
-                width: '100%',
+                display: 'flex',
+                backgroundColor: colorBgContainer,
+                borderColor: colorBorderSecondary,
+                borderWidth: 1,
+                boxShadow: boxShadowSecondary,
+                borderBlockStyle: 'solid',
               }}
             >
-              <Row>
-                <Col span={22} offset={1}>
-                  <Card
-                    title="Cookies Settings"
-                    style={{
-                      position: 'static',
-                      bottom: 0,
-                    }}
-                    actions={[
-                      manage ? (
-                        <Button
-                          size="large"
-                          onClick={closePrederences}
-                          type="text"
-                        >
-                          Back
-                        </Button>
-                      ) : (
-                        <Button
-                          onClick={openPreferences}
-                          type="text"
-                          size="large"
-                        >
-                          Manage Cookies
-                        </Button>
-                      ),
-                      manage ? (
-                        <Button
-                          size="large"
-                          style={{
-                            boxShadow: 'none',
-                          }}
-                          onClick={closeCookie}
-                          key="submit"
-                          type="primary"
-                        >
-                          Accept
-                        </Button>
-                      ) : (
-                        <Button
-                          size="large"
-                          style={{
-                            boxShadow: 'none',
-                          }}
-                          key="submit"
-                          type="primary"
-                          onClick={closeCookie}
-                        >
-                          Allow Cookies
-                        </Button>
-                      ),
-                    ]}
-                  >
-                    {manage ? <CookiePreference /> : <CookieInformation />}
-                  </Card>
-                </Col>
-              </Row>
-            </Content>
-          </Layout>
+              <Content
+                id="page-title"
+                style={{
+                  maxWidth: 1440,
+                  alignSelf: 'center',
+                  width: '100%',
+                }}
+              >
+                <Row>
+                  <Col span={22} offset={1}>
+                    <Card
+                      title="Cookies Settings"
+                      style={{
+                        border: 'none',
+                      }}
+                      headStyle={{
+                        border: 'none',
+                        padding: '24px 24px 8px 24px',
+                        margin: 0,
+                        minHeight: 0,
+                      }}
+                      bodyStyle={{
+                        border: 'none',
+                        padding: '0px 24px 24px 24px',
+                        margin: 0,
+                      }}
+                      actions={[
+                        manage ? (
+                          <Button onClick={closePrederences} type="text">
+                            Back
+                          </Button>
+                        ) : (
+                          <Button onClick={openPreferences} type="text">
+                            Manage Cookies
+                          </Button>
+                        ),
+                        manage ? (
+                          <Button
+                            style={{
+                              boxShadow: 'none',
+                            }}
+                            onClick={closeCookie}
+                            key="submit"
+                            type="primary"
+                          >
+                            Accept
+                          </Button>
+                        ) : (
+                          <Button
+                            style={{
+                              boxShadow: 'none',
+                            }}
+                            key="submit"
+                            type="primary"
+                            onClick={closeCookie}
+                          >
+                            Allow Cookies
+                          </Button>
+                        ),
+                      ]}
+                    >
+                      {manage ? <CookiePreference /> : <CookieInformation />}
+                    </Card>
+                  </Col>
+                </Row>
+              </Content>
+            </Layout>
+          </motion.div>
         </Affix>
       )}
     </>
@@ -130,13 +152,23 @@ const CookieModal: React.FC = () => {
 
 export default CookieModal;
 
-const CookieInformation: React.FC = () => (
-  <Text type="secondary">
-    We use cookies in order to give you the best experience possible while using
-    our platform. Some of them are essential, others are optional. We won’t turn
-    them on unless you accept.
-  </Text>
-);
+const CookieInformation: React.FC = () => {
+  const {
+    token: { fontSizeLG },
+  } = useToken();
+  return (
+    <Text
+      type="secondary"
+      style={{
+        fontSize: fontSizeLG,
+      }}
+    >
+      We use cookies to give you the best experience while using our platform.
+      Some of them are essential, others are optional. We won’t turn them on
+      unless you accept.
+    </Text>
+  );
+};
 
 const CookiePreference: React.FC = () => {
   const {
