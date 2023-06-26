@@ -61,7 +61,7 @@ const CookieModal: React.FC = () => {
       {showCookie && (
         <Affix offsetBottom={0}>
           <motion.div
-            key={`${manage}`}
+            key={`${manage}-cookies`}
             variants={variants}
             animate={'show'}
             initial="hide"
