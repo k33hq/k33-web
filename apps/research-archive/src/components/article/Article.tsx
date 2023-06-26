@@ -55,14 +55,7 @@ const Article: React.FC<ArticleProps> = ({
           />
         </div>
       ) : null}
-      <PrivateArticle
-        isReport={!!reportDocument}
-        publicSnippet={publicSnippet}
-        priceId={priceId}
-        productId={productId}
-      >
-        <ArticleBody body={body} />
-      </PrivateArticle>
+      <ArticleBody body={body} />
     </>
   );
 };
