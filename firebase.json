@@ -16,13 +16,43 @@
       "target": "k33-research-dev",
       "cleanUrls": true,
       "public": "./apps/research/out",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "redirects": [
+        { "source": "/research/reports/ahead-of-the-curve/:slug",                   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/analysis/:slug",                            "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/the-friday-focus/:slug",                    "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/reports/industry-reports/:slug",                     "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/token-evaluations/k33-vinter-quality-index/:slug",   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/monthly-wrap-up/:slug",                      "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/reports/the-fundamentals/:slug",                     "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/blog-posts/:slug",                           "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/ahead-of-the-curve/:slug",                  "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/year-in-review/:slug",                      "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/analysis/:slug",                             "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/token-evaluations/analysis/:slug",                   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/blog/blog-posts/:slug",                              "destination": "/research/articles/:slug", "type": 301 }
+      ]
     },
     {
       "target": "k33-research",
       "cleanUrls": true,
       "public": "./apps/research/out",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "redirects": [
+        { "source": "/research/reports/ahead-of-the-curve/:slug",                   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/analysis/:slug",                            "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/the-friday-focus/:slug",                    "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/reports/industry-reports/:slug",                     "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/token-evaluations/k33-vinter-quality-index/:slug",   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/monthly-wrap-up/:slug",                      "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/reports/the-fundamentals/:slug",                     "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/blog-posts/:slug",                           "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/ahead-of-the-curve/:slug",                  "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/analysis/year-in-review/:slug",                      "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/opinion/analysis/:slug",                             "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/token-evaluations/analysis/:slug",                   "destination": "/research/articles/:slug", "type": 301 },
+        { "source": "/research/blog/blog-posts/:slug",                              "destination": "/research/articles/:slug", "type": 301 }
+      ]
     },
     {
       "target": "k33-research-archive-dev",
