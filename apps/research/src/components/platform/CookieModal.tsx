@@ -18,12 +18,9 @@ import {
 
 import styles from './styles.module.scss';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { useSize } from 'ahooks';
-import { isBrowser } from '@/utils';
 
 const { Text } = Typography;
 const { useToken } = theme;
-const { useBreakpoint } = Grid;
 const { Content } = Layout;
 
 const CookieModal: React.FC = () => {
