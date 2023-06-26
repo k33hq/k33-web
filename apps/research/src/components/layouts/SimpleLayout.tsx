@@ -8,7 +8,7 @@ interface SimpleLayoutProps extends React.PropsWithChildren {}
 
 const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children }) => {
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, colorPrimaryText },
   } = useToken();
   return (
     <Layout
@@ -23,6 +23,7 @@ const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children }) => {
           maxWidth: 1440,
           alignSelf: 'center',
           width: '100%',
+          color: colorPrimaryText,
         }}
       >
         <Row>
