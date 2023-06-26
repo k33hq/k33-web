@@ -2,7 +2,19 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { isCookie, acceptCookie, denyCookie } from 'core';
 
-import { Button, Switch, Modal, Typography, theme, Grid } from 'antd';
+import {
+  Button,
+  Switch,
+  Modal,
+  Typography,
+  theme,
+  Grid,
+  Card,
+  Affix,
+  Row,
+  Col,
+  Layout,
+} from 'antd';
 
 import styles from './styles.module.scss';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
@@ -12,13 +24,15 @@ import { isBrowser } from '@/utils';
 const { Text } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
+const { Content } = Layout;
 
 const CookieModal: React.FC = () => {
+  const {
+    token: { colorBgContainer },
+  } = useToken();
   const router = useRouter();
   const [showCookie, setCookie] = React.useState(false);
   const [manage, setManage] = React.useState(false);
-  const size = useSize(isBrowser() ? document.querySelector('body') : null);
-  const { md } = useBreakpoint();
 
   React.useEffect(() => {
     if (!isCookie()) {
@@ -35,53 +49,85 @@ const CookieModal: React.FC = () => {
   };
 
   return (
-    <Modal
-      getContainer={false}
-      title="Cookies Settings"
-      mask={false}
-      open={showCookie}
-      style={{
-        top: size?.height! - 700,
-      }}
-      maskStyle={{}}
-      closable={false}
-      footer={[
-        manage ? (
-          <Button onClick={closePrederences} type="text">
-            Back
-          </Button>
-        ) : (
-          <Button onClick={openPreferences} type="text">
-            Manage Cookies
-          </Button>
-        ),
-        manage ? (
-          <Button
+    <>
+      {showCookie && (
+        <Affix offsetBottom={10}>
+          <Layout
             style={{
-              boxShadow: 'none',
+              display: 'flex',
+              backgroundColor: colorBgContainer,
             }}
-            onClick={closeCookie}
-            key="submit"
-            type="primary"
           >
-            Accept
-          </Button>
-        ) : (
-          <Button
-            style={{
-              boxShadow: 'none',
-            }}
-            key="submit"
-            type="primary"
-            onClick={closeCookie}
-          >
-            Allow Cookies
-          </Button>
-        ),
-      ]}
-    >
-      {manage ? <CookiePreference /> : <CookieInformation />}
-    </Modal>
+            <Content
+              id="page-title"
+              style={{
+                maxWidth: 1440,
+                alignSelf: 'center',
+                width: '100%',
+              }}
+            >
+              <Row>
+                <Col span={22} offset={1}>
+                  <Card
+                    title="Cookies Settings"
+                    style={{
+                      position: 'static',
+                      bottom: 0,
+                    }}
+                    actions={[
+                      manage ? (
+                        <Button
+                          size="large"
+                          onClick={closePrederences}
+                          type="text"
+                        >
+                          Back
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={openPreferences}
+                          type="text"
+                          size="large"
+                        >
+                          Manage Cookies
+                        </Button>
+                      ),
+                      manage ? (
+                        <Button
+                          size="large"
+                          style={{
+                            boxShadow: 'none',
+                          }}
+                          onClick={closeCookie}
+                          key="submit"
+                          type="primary"
+                        >
+                          Accept
+                        </Button>
+                      ) : (
+                        <Button
+                          size="large"
+                          style={{
+                            boxShadow: 'none',
+                          }}
+                          key="submit"
+                          type="primary"
+                          onClick={closeCookie}
+                        >
+                          Allow Cookies
+                        </Button>
+                      ),
+                    ]}
+                  >
+                    {manage ? <CookiePreference /> : <CookieInformation />}
+                  </Card>
+                </Col>
+              </Row>
+            </Content>
+          </Layout>
+        </Affix>
+      )}
+    </>
   );
 };
 
