@@ -11,6 +11,7 @@ import '../../public/antd.min.css';
 import '../styles/globals.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Script from 'next/script';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -47,6 +48,26 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
                         transition: none!important;
                     }
                     `,
+        }}
+      />
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
+      />
+      <Script
+        id="gtag-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}');
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              analytics_storage: 'denied',
+            });
+          `,
         }}
       />
       <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
