@@ -26,39 +26,41 @@ const ResearchFooter: React.FC = () => {
       <div
         style={{
           maxWidth: 1440,
-          alignSelf: 'center !important',
+          alignSelf: 'center ',
           width: '100%',
         }}
       >
-        <Row wrap={false}>
-          <Col span={22} offset={1} className={styles.footerContent}>
-            <div id="navigation" className={styles.navigation}>
-              {appStructure.navigation.map((nav) => (
-                <Link href={nav.url} key={nav.key}>
-                  <Button key={nav.label} type="link" size="small">
-                    {nav.label}
-                  </Button>
-                </Link>
-              ))}
-            </div>
-            <div id="social-links">
-              <Space wrap>
-                <Button
-                  type="link"
-                  icon={<MailOutlined />}
-                  href="mailto:contact@k33.com"
-                />
-                <Button
-                  type="link"
-                  icon={<LinkedinFilled />}
-                  href="https://www.linkedin.com/showcase/k33research"
-                />
-                <Button
-                  type="link"
-                  icon={<TwitterOutlined />}
-                  href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
-                />
-              </Space>
+        <Row>
+          <Col span={22} offset={1}>
+            <div className={styles.footerContent}>
+              <div id="navigation" className={styles.navigation}>
+                {appStructure.navigation.map((nav) => (
+                  <Link href={nav.url} key={nav.key}>
+                    <Button key={nav.label} type="link" size="small">
+                      {nav.label}
+                    </Button>
+                  </Link>
+                ))}
+              </div>
+              <div id="social-links">
+                <Space wrap>
+                  <Button
+                    type="link"
+                    icon={<MailOutlined />}
+                    href="mailto:contact@k33.com"
+                  />
+                  <Button
+                    type="link"
+                    icon={<LinkedinFilled />}
+                    href="https://www.linkedin.com/showcase/k33research"
+                  />
+                  <Button
+                    type="link"
+                    icon={<TwitterOutlined />}
+                    href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
+                  />
+                </Space>
+              </div>
             </div>
           </Col>
         </Row>

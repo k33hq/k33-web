@@ -22,6 +22,9 @@ const OutlookCard: React.FC = () => {
         backgroundColor: colorBgLayout,
         fontSize: fontSize,
       }}
+      bodyStyle={{
+        padding: '16px 24px 16px 24px',
+      }}
       title="Monthly Outlook"
       extra={
         <Link href={'/market-insights/monthly-outlooks'}>
@@ -30,7 +33,7 @@ const OutlookCard: React.FC = () => {
       }
     >
       <Space direction="horizontal" size={24} align="start">
-        <Space direction="vertical" size={0}>
+        <Space direction="vertical" size={8}>
           <Paragraph
             type="secondary"
             ellipsis={
@@ -61,7 +64,6 @@ const OutlookCard: React.FC = () => {
         {sm && (
           <div
             style={{
-              minHeight: 137,
               width: 137,
             }}
           >

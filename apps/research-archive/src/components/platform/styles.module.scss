@@ -8,14 +8,11 @@
 }
 
 .footerContent {
-  align-self: center;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: $max-width;
-  transition: all $animation-seconds ease-in;
+  width: 100%;
   gap: 24px;
 }
 
@@ -23,7 +20,6 @@
   .footerContent {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
   }
 }
 
@@ -31,8 +27,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
   gap: 8px;
 }
 .header {
