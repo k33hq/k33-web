@@ -15,7 +15,7 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
   return (
     <>
       <NextSeo title="Market Insights - Quick Takes" />
-      <Row wrap gutter={[32, 40]}>
+      <Row wrap gutter={[32, 40]} align="stretch">
         {articles.map((article) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
             <ArticleCard {...article} showTags />

@@ -114,12 +114,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             ellipsis={
               md
                 ? ({
-                    rows: 2,
+                    rows: subtitleHeading ? 3 : 2,
                     expandable: true,
                     symbol: 'more',
                   } as EllipsisConfig)
                 : ({
-                    rows: 3,
+                    rows: subtitleHeading ? 4 : 3,
                     expandable: true,
                     symbol: 'more',
                   } as EllipsisConfig)

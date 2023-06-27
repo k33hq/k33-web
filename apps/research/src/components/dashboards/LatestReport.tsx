@@ -32,6 +32,7 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
   const {
     token: { colorBgLayout, fontSize },
   } = useToken();
+  const { xl } = useBreakpoint();
   const {
     current: {
       article: {
@@ -46,6 +47,8 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
     hasNext,
     hasPrevious,
   } = useTraverse(reports.slice().reverse() as Array<ArticleSummaryWithCover>);
+
+  console.log(xl);
 
   return (
     <Card

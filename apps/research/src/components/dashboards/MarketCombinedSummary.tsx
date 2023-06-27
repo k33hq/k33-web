@@ -7,15 +7,7 @@ import dynamic from 'next/dynamic';
 
 const Reports = dynamic(() => import('./LatestReport'), {
   ssr: false,
-  loading: () => (
-    <Card
-      loading
-      style={{
-        width: '100%',
-        height: 400,
-      }}
-    />
-  ),
+  loading: () => <Card loading />,
 });
 
 interface MarketCombinedSummaryProps {
@@ -28,7 +20,7 @@ const MarketCombinedSummary: React.FC<MarketCombinedSummaryProps> = ({
   reports,
 }) => {
   return (
-    <Row wrap align="stretch" gutter={[24, 48]}>
+    <Row gutter={[24, 48]}>
       <Col xs={24} md={12}>
         <ErrorBoundary
           fallback={

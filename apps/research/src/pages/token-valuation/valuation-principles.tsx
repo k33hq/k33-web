@@ -99,7 +99,7 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
               <Text strong>Applying the Framework</Text>
               <Divider style={{ margin: 0 }} />
             </div>
-            <Row wrap gutter={[sm ? 32 : 16, 40]}>
+            <Row wrap gutter={[sm ? 32 : 16, 40]} align="stretch">
               {articles.map((report) => (
                 <Col xs={12} sm={12} md={6} key={report.articleSlug}>
                   <ReportCard {...report} />

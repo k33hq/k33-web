@@ -26,7 +26,7 @@ const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
         <Text strong>Past Weekly Highlights</Text>
         <Divider />
       </div>
-      <Row wrap gutter={[32, 56]}>
+      <Row wrap gutter={[32, 56]} align="stretch">
         {articles.map((article, index) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
             <ArticleCard {...article} />

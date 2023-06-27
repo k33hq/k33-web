@@ -17,7 +17,7 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
   return (
     <>
       <NextSeo title="Research - Market Insights" />
-      <Row wrap gutter={[16, 40]}>
+      <Row wrap gutter={[16, 40]} align="stretch">
         {articles.map((article, index) => (
           <ArticleSummary
             key={article.publishedDate}

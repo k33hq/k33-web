@@ -18,7 +18,7 @@ const WeeklyReports: NextPageWithLayout<WeeklyReportsProps> = ({
   return (
     <>
       <NextSeo title="Market Insights - Weekly Reports" />
-      <Row wrap gutter={[md ? 32 : 16, 40]}>
+      <Row wrap gutter={[md ? 32 : 16, 40]} align="stretch">
         {articles.map((report) => (
           <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
             <ReportCard {...report} />

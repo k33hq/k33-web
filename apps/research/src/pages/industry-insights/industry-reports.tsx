@@ -18,7 +18,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
   return (
     <>
       <NextSeo />
-      <Row wrap gutter={[sm ? 32 : 16, 40]}>
+      <Row wrap gutter={[sm ? 32 : 16, 40]} align="stretch">
         {articles.map((report) => (
           <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
             <ReportCard {...report} />

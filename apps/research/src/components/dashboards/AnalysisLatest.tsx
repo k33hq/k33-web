@@ -29,7 +29,7 @@ const AnalysisLatest: React.FC<AnalysisLatestProps> = ({ articles }) => {
         <Divider style={{ margin: 0 }} />
       </div> */}
       <Row
-        align="middle"
+        align="stretch"
         gutter={[
           { md: 16, lg: 24, xl: 32 },
           { xs: 56, sm: 48 },

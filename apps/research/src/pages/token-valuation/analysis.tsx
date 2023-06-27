@@ -15,7 +15,7 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
   return (
     <>
       <NextSeo />
-      <Row wrap gutter={[32, 48]}>
+      <Row wrap gutter={[32, 48]} align="stretch">
         {articles.map((article) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
             <ArticleCard {...article} />
