@@ -11,7 +11,8 @@
     "lint": "next lint",
     "codegen": "contentful-typescript-codegen --output src/types/generated/contentful.d.ts",
     "predev": "ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
-    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx"
+    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.9.1",
@@ -56,6 +57,7 @@
     "eslint-config-custom": "workspace:*",
     "graphql-request": "^5.1.0",
     "gray-matter": "^4.0.3",
+    "next-sitemap": "^4.1.3",
     "react-markdown": "^8.0.7",
     "sass": "^1.62.1",
     "ts-node": "^10.9.1",
