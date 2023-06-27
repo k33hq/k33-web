@@ -125,13 +125,18 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                                 key,
                                 label,
                                 onClick: () => {
-                                  if (!(typeof window === undefined)) {
+                                  if (
+                                    !(typeof window === undefined) &&
+                                    !url.includes('https://')
+                                  ) {
                                     window.history.pushState(
                                       null,
                                       '',
                                       `/research${url}`
                                     );
                                     window.location.reload();
+                                  } else {
+                                    window.location.href = url;
                                   }
                                 },
                               })
@@ -207,9 +212,11 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
             key,
             label,
             onClick: () => {
-              if (!(typeof window === undefined)) {
+              if (!(typeof window === undefined) && !url.includes('https://')) {
                 window.history.pushState(null, '', `/research${url}`);
                 window.location.reload();
+              } else {
+                window.location.href = url;
               }
             },
           }))}

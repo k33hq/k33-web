@@ -51,9 +51,13 @@ const ResearchFooter: React.FC = () => {
                 <Button
                   type="link"
                   icon={<LinkedinFilled />}
+                  href="https://www.linkedin.com/showcase/k33research"
+                />
+                <Button
+                  type="link"
+                  icon={<TwitterOutlined />}
                   href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
                 />
-                <Button type="link" icon={<TwitterOutlined />} />
               </Space>
             </div>
           </Col>
