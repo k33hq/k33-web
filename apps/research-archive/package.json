@@ -11,7 +11,8 @@
     "lint": "next lint",
     "codegen": "contentful-typescript-codegen --output src/types/generated/contentful.d.ts",
     "predev": "ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
-    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx"
+    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.9.1",
