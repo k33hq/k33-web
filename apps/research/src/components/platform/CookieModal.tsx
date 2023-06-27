@@ -12,7 +12,7 @@ import {
   Col,
   Layout,
 } from 'antd';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import styles from './styles.module.scss';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
@@ -37,6 +37,7 @@ export const variants = {
 const slideUp = {
   show: {
     y: 0,
+    opacity: 1,
     transition: {
       type: 'spring',
       damping: 15,
@@ -46,6 +47,13 @@ const slideUp = {
   },
   hide: {
     y: 1000,
+    opacity: 0,
+    transition: {
+      type: 'spring',
+      damping: 15,
+      stiffness: 100,
+      restDelta: 0.01,
+    },
   },
 };
 
@@ -72,14 +80,24 @@ const CookieModal: React.FC = () => {
   };
 
   return (
-    <>
+    <AnimatePresence>
       {showCookie && (
         <Affix offsetBottom={0}>
           <motion.div
             key={router.pathname}
             variants={slideUp}
-            animate={'show'}
+            animate={['show']}
             initial="hide"
+            exit={{
+              y: 1000,
+              opacity: 0,
+              transition: {
+                type: 'spring',
+                damping: 15,
+                stiffness: 100,
+                restDelta: 0.01,
+              },
+            }}
           >
             <Layout
               style={{
@@ -165,7 +183,7 @@ const CookieModal: React.FC = () => {
           </motion.div>
         </Affix>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 
