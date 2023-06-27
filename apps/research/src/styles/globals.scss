@@ -104,9 +104,10 @@ ul li {
   .home-section-summary {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 0px;
     gap: 48px;
+    width: 100%;
   }
 }
 

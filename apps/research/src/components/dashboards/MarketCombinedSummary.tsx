@@ -1,9 +1,10 @@
 import * as React from 'react';
 import QuickTakesLatest from './QuickTakesLatest';
 import type { ArticleSummaryWidget, ArticleSummaryWithCover } from '@/types';
-import { Col, Row, Result, Skeleton, Card } from 'antd';
+import { Col, Row, Result, Skeleton, Card, Grid } from 'antd';
 import { ErrorBoundary } from 'react-error-boundary';
 import dynamic from 'next/dynamic';
+import styles from './styles.module.scss';
 
 const Reports = dynamic(() => import('./LatestReport'), {
   ssr: false,
@@ -20,8 +21,8 @@ const MarketCombinedSummary: React.FC<MarketCombinedSummaryProps> = ({
   reports,
 }) => {
   return (
-    <Row gutter={[24, 48]}>
-      <Col xs={24} md={12}>
+    <div className={styles.marketCombined}>
+      <div>
         <ErrorBoundary
           fallback={
             <Result
@@ -33,11 +34,11 @@ const MarketCombinedSummary: React.FC<MarketCombinedSummaryProps> = ({
         >
           <Reports reports={reports} />
         </ErrorBoundary>
-      </Col>
-      <Col xs={24} md={12}>
+      </div>
+      <div>
         <QuickTakesLatest quickTakes={quickTakes} />
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 

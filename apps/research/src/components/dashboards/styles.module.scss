@@ -1,8 +1,12 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
 .sectionHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding-right: 8px;
   width: 100%;
 }
 
@@ -36,4 +40,27 @@
   flex-direction: column;
   padding: 0px;
   gap: 40px;
+}
+
+.marketCombined {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  width: 100%;
+  transition: all $animation-seconds ease-in;
+  > div {
+    width: 100%;
+  }
+}
+
+@include medium() {
+  .marketCombined {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 100%;
+    > div {
+      flex: 1;
+    }
+  }
 }
