@@ -18,6 +18,7 @@ const MainLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <Layout
         style={{
           minHeight: 1024,
+          backgroundColor: 'white',
         }}
       >
         <ResearchHeader />

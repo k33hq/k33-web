@@ -34,6 +34,21 @@ export const variants = {
   },
 };
 
+const slideUp = {
+  show: {
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 15,
+      stiffness: 100,
+      restDelta: 0.01,
+    },
+  },
+  hide: {
+    y: 1000,
+  },
+};
+
 const CookieModal: React.FC = () => {
   const {
     token: { colorBgContainer, boxShadowSecondary, colorBorderSecondary },
@@ -61,8 +76,8 @@ const CookieModal: React.FC = () => {
       {showCookie && (
         <Affix offsetBottom={0}>
           <motion.div
-            key={`${manage}-cookies`}
-            variants={variants}
+            key={router.pathname}
+            variants={slideUp}
             animate={'show'}
             initial="hide"
           >
@@ -70,10 +85,7 @@ const CookieModal: React.FC = () => {
               style={{
                 display: 'flex',
                 backgroundColor: colorBgContainer,
-                borderColor: colorBorderSecondary,
-                borderWidth: 1,
-                boxShadow: boxShadowSecondary,
-                borderBlockStyle: 'solid',
+                boxShadow: '0 -16px 16px 0 rgba(0, 0, 0, 0.08)',
               }}
             >
               <Content
@@ -137,7 +149,14 @@ const CookieModal: React.FC = () => {
                         ),
                       ]}
                     >
-                      {manage ? <CookiePreference /> : <CookieInformation />}
+                      <motion.div
+                        key={`${manage}-key`}
+                        variants={variants}
+                        animate={'show'}
+                        initial="hide"
+                      >
+                        {manage ? <CookiePreference /> : <CookieInformation />}
+                      </motion.div>
                     </Card>
                   </Col>
                 </Row>
