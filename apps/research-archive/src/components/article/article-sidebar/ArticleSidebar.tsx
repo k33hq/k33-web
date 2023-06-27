@@ -24,16 +24,16 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ authors, tags }) => {
         }}
       >
         <Text type="secondary">Written by</Text>
-        {authors.map((author) => (
-          <ArticleAuthor key={author.slug} {...author} />
-        ))}
+        {authors.length > 0 &&
+          authors.map((author) => (
+            <ArticleAuthor key={author.slug} {...author} />
+          ))}
       </div>
       <div id="article-tags">
         <Text type="secondary">Related Tags</Text>
         <Space wrap size={[0, 8]}>
-          {tags.map((tag) => (
-            <Tag key={tag.name}>{tag.name}</Tag>
-          ))}
+          {tags.length > 0 &&
+            tags.map((tag) => <Tag key={tag.name}>{tag.name}</Tag>)}
         </Space>
       </div>
     </aside>

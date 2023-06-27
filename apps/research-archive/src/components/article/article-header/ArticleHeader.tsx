@@ -36,16 +36,23 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       </Title>
       <Text type="secondary">{subtitle}</Text>
       <div className={styles.headerImage}>
-        <Image
-          preview={false}
-          src={image.url}
-          style={{ margin: 0 }}
-          alt={image.title ?? ''}
-        />
-        {image.description && (
-          <Typography.Text style={{ fontSize: fontSizeSM }} type="secondary">
-            {image.description}
-          </Typography.Text>
+        {image && (
+          <>
+            <Image
+              preview={false}
+              src={image && image.url}
+              style={{ margin: 0 }}
+              alt={image && image.title}
+            />
+            {image.description && (
+              <Typography.Text
+                style={{ fontSize: fontSizeSM }}
+                type="secondary"
+              >
+                {image.description}
+              </Typography.Text>
+            )}
+          </>
         )}
       </div>
       {linkToReport && (

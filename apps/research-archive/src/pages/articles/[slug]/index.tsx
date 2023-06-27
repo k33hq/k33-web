@@ -24,11 +24,16 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
     content: { tagsCollection, image, publishDate, authorsCollection },
   } = page;
 
+  const authors = authorsCollection ? authorsCollection.items : [];
+  const tags = tagsCollection ? tagsCollection.items : [];
+  const imageUrl = image ? image.url : '';
+  const imageTitle = image ? image.title : '';
+
   return (
     <>
       <NextSeo
         title={title}
-        description={description}
+        description={description ? description : page.content.subtitle}
         twitter={{
           handle: '@K33HQ',
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
@@ -36,18 +41,18 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
         }}
         openGraph={{
           title: title,
-          description: description,
+          description: description ? description : page.content.subtitle,
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`,
           type: 'article',
           article: {
             publishedTime: publishDate,
-            authors: authorsCollection.items.map((author) => author.name),
-            tags: tagsCollection.items.map((tag) => tag.name),
+            authors: authors.map((author) => author.name),
+            tags: tags.map((tag) => tag.name),
           },
           images: [
             {
-              url: image.url,
-              alt: image.title,
+              url: imageUrl,
+              alt: imageTitle,
             },
           ],
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
@@ -57,24 +62,21 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
         useAppDir={false}
         url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`}
         title={ArticleTitle}
-        images={[image.url]}
+        images={[imageUrl]}
         datePublished={publishDate}
         dateModified={publishDate}
-        authorName={authorsCollection.items.map((author) => ({
+        authorName={authors.map((author) => ({
           name: author.name,
           title: author.title,
         }))}
         publisherName="K33 Research"
         publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-64x64.png`}
-        description={description}
+        description={description ? description : page.content.subtitle}
         isAccessibleForFree={true}
       />
       <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
-          <ArticleSidebar
-            authors={authorsCollection.items}
-            tags={tagsCollection.items}
-          />
+          <ArticleSidebar authors={authors} tags={tags} />
         </Col>
         <Col id="article" xs={24} lg={14} className="article">
           <Article {...page} />
