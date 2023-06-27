@@ -17,46 +17,48 @@ const ResearchFooter: React.FC = () => {
   } = useToken();
   return (
     <Footer
-      className={styles.footer}
       style={{
         backgroundColor: colorBgContainer,
       }}
+      className={styles.footer}
     >
       <Divider />
-      <Layout
-        id="footer-main"
-        className={styles.footer}
+      <div
         style={{
-          backgroundColor: colorBgContainer,
+          maxWidth: 1440,
+          alignSelf: 'center !important',
+          width: '100%',
         }}
       >
-        <Content id="footer-content" className={styles.footerContent}>
-          <div id="navigation" className={styles.navigation}>
-            {appStructure.navigation.map((nav) => (
-              <Link href={nav.url} key={nav.key}>
-                <Button key={nav.label} type="link" size="small">
-                  {nav.label}
-                </Button>
-              </Link>
-            ))}
-          </div>
-          <div id="social-links">
-            <Space wrap>
-              <Button
-                type="link"
-                icon={<MailOutlined />}
-                href="mailto:contact@k33.com"
-              />
-              <Button
-                type="link"
-                icon={<LinkedinFilled />}
-                href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
-              />
-              <Button type="link" icon={<TwitterOutlined />} />
-            </Space>
-          </div>
-        </Content>
-      </Layout>
+        <Row wrap={false}>
+          <Col span={22} offset={1} className={styles.footerContent}>
+            <div id="navigation" className={styles.navigation}>
+              {appStructure.navigation.map((nav) => (
+                <Link href={nav.url} key={nav.key}>
+                  <Button key={nav.label} type="link" size="small">
+                    {nav.label}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+            <div id="social-links">
+              <Space wrap>
+                <Button
+                  type="link"
+                  icon={<MailOutlined />}
+                  href="mailto:contact@k33.com"
+                />
+                <Button
+                  type="link"
+                  icon={<LinkedinFilled />}
+                  href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
+                />
+                <Button type="link" icon={<TwitterOutlined />} />
+              </Space>
+            </div>
+          </Col>
+        </Row>
+      </div>
     </Footer>
   );
 };

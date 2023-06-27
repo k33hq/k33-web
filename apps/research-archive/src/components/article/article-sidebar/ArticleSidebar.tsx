@@ -1,4 +1,4 @@
-import { AuthorCompact, ITagFields } from '@/types';
+import { Authors, Tags } from '@/types';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import ArticleAuthor from './ArticleAuthor';
@@ -8,8 +8,8 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 interface ArticleSidebarProps extends React.PropsWithChildren {
-  authors: ReadonlyArray<AuthorCompact>;
-  tags: ReadonlyArray<ITagFields>;
+  authors: Authors;
+  tags: Tags;
 }
 
 const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ authors, tags }) => {
@@ -25,14 +25,14 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ authors, tags }) => {
       >
         <Text type="secondary">Written by</Text>
         {authors.map((author) => (
-          <ArticleAuthor key={author.name} {...author} />
+          <ArticleAuthor key={author.slug} {...author} />
         ))}
       </div>
       <div id="article-tags">
         <Text type="secondary">Related Tags</Text>
         <Space wrap size={[0, 8]}>
           {tags.map((tag) => (
-            <Tag key={tag.title}>{tag.title}</Tag>
+            <Tag key={tag.name}>{tag.name}</Tag>
           ))}
         </Space>
       </div>

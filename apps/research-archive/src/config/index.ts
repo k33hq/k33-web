@@ -10,63 +10,17 @@ export const appStructure: AppStructure = {
     {
       key: 'market-insights',
       label: 'Market Insights',
-      url: '/market-insights/quick-takes',
-      children: [
-        {
-          key: 'quick-takes',
-          label: 'Quick Takes',
-          url: '/market-insights/quick-takes',
-        },
-        {
-          key: 'weekly-reports',
-          label: 'Weekly Reports',
-          url: '/market-insights/weekly-reports',
-        },
-        {
-          key: 'monthly-outlooks',
-          label: 'Monthly Outlooks',
-          url: '/market-insights/monthly-outlooks',
-        },
-      ],
+      url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/market-insights/quick-takes`,
     },
     {
       key: 'token-valuation',
       label: 'Token Valuation',
-      url: '/token-valuation/analysis',
-      children: [
-        {
-          key: 'analysis',
-          label: 'Analysis',
-          url: '/token-valuation/analysis',
-        },
-        {
-          key: 'valuation-principles',
-          label: 'Valuation Principles',
-          url: '/token-valuation/valuation-principles',
-        },
-      ],
+      url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/token-valuation/analysis`,
     },
     {
       key: 'industry-insights',
       label: 'Industry Insights',
-      url: '/industry-insights/industry-reports',
-      children: [
-        {
-          key: 'industry-reports',
-          label: 'Industry Reports',
-          url: '/industry-insights/industry-reports',
-        },
-        {
-          key: 'industry-coverage',
-          label: 'Industry Coverage',
-          url: '/industry-insights/industry-coverage',
-        },
-        {
-          key: 'news',
-          label: 'News',
-          url: '/industry-insights/news',
-        },
-      ],
+      url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/industry-insights/industry-reports`,
     },
   ],
 };

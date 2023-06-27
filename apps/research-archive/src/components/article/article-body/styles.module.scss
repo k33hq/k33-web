@@ -8,31 +8,3 @@
   padding: 0px;
   gap: 8px;
 }
-
-.privateArticle {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
-  position: relative;
-}
-
-.summary {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
-  transition: all $animation-seconds ease-in;
-}
-
-@include medium() {
-  .summary {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 72px;
-  }
-}

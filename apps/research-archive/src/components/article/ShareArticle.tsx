@@ -1,12 +1,6 @@
 import * as React from 'react';
 import styles from './styles.module.css';
-import { Typography, Space, Tooltip, Button, Divider } from 'antd';
-import {
-  LinkOutlined,
-  LinkedinFilled,
-  TwitterOutlined,
-} from '@ant-design/icons';
-import { copyText, linkedin, twitter } from '@/utils';
+import { Typography, Space, Divider } from 'antd';
 import { SocialSharing } from '../platform';
 
 const { Title } = Typography;

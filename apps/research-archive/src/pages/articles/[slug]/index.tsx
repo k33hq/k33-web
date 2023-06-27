@@ -1,10 +1,5 @@
-import {
-  getArticlePage,
-  getArticleSeo,
-  getArticleSlugs,
-  getProducts,
-} from '@/api';
-import type { ArticlePage, ArticleSeo, SubscriptionProduct } from '@/types';
+import { getArchivedArticle, getArchivedPageSlugs } from '@/api';
+import type { ArchivePage } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
@@ -17,31 +12,23 @@ const { useBreakpoint } = Grid;
 const { useToken } = theme;
 
 interface ArticlePageProps {
-  seo: ArticleSeo;
-  page: ArticlePage;
-  product: SubscriptionProduct;
+  page: ArchivePage;
 }
 
-const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
-  page,
-  seo,
-  product,
-}) => {
+const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
   const { lg } = useBreakpoint();
   const {
-    section,
-    publishedDate,
-    articleSlug,
-    article: { authorsCollection, tagsCollection, ...articleContent },
+    title: ArticleTitle,
+    slug,
+    seo: { title, description },
+    content: { tagsCollection, image, publishDate, authorsCollection },
   } = page;
-  const { productId, pricesCollection } = product;
-  const { seo: pageSeo, article, title } = seo;
 
   return (
     <>
       <NextSeo
         title={title}
-        description={pageSeo ? pageSeo.description : article.subtitle}
+        description={description}
         twitter={{
           handle: '@K33HQ',
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
@@ -49,20 +36,18 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         }}
         openGraph={{
           title: title,
-          description: pageSeo ? pageSeo.description : article.subtitle,
-          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`,
+          description: description,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`,
           type: 'article',
           article: {
-            publishedTime: publishedDate,
+            publishedTime: publishDate,
             authors: authorsCollection.items.map((author) => author.name),
-            tags: tagsCollection.items.map((tag) => tag.title),
+            tags: tagsCollection.items.map((tag) => tag.name),
           },
           images: [
             {
-              url: pageSeo ? pageSeo.image.url : articleContent.image.url,
-              alt: pageSeo
-                ? pageSeo.image.description
-                : articleContent.image.description,
+              url: image.url,
+              alt: image.title,
             },
           ],
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
@@ -70,19 +55,19 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
       />
       <ArticleJsonLd
         useAppDir={false}
-        url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
-        title={article.title}
-        images={[articleContent.image.url]}
-        datePublished={publishedDate}
-        dateModified={publishedDate}
+        url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`}
+        title={ArticleTitle}
+        images={[image.url]}
+        datePublished={publishDate}
+        dateModified={publishDate}
         authorName={authorsCollection.items.map((author) => ({
           name: author.name,
           title: author.title,
         }))}
         publisherName="K33 Research"
         publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-64x64.png`}
-        description={pageSeo ? pageSeo.description : article.subtitle!}
-        isAccessibleForFree={false}
+        description={description}
+        isAccessibleForFree={true}
       />
       <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
@@ -92,14 +77,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           />
         </Col>
         <Col id="article" xs={24} lg={14} className="article">
-          <Article
-            {...articleContent}
-            section={section}
-            publishedDate={publishedDate}
-            productId={productId}
-            priceId={pricesCollection.items[0].stripeProductId}
-          />
-          <ShareArticle title={articleContent.title} />
+          <Article {...page} />
+          <ShareArticle title={ArticleTitle} />
         </Col>
         <Col xs={0} lg={2}></Col>
       </Row>
@@ -134,9 +113,9 @@ ArticlePage.getLayout = function getLayout(
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await getArticleSlugs();
-  const paths = slugs.map(({ articleSlug }) => ({
-    params: { slug: articleSlug },
+  const slugs = await getArchivedPageSlugs();
+  const paths = slugs.map(({ slug }) => ({
+    params: { slug },
   }));
 
   return {
@@ -150,14 +129,10 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   context
 ) => {
   const slug = context.params!.slug as string;
-  const page = await getArticlePage(slug);
-  const seo = await getArticleSeo(slug);
-  const product = await getProducts();
+  const page = await getArchivedArticle(slug);
   return {
     props: {
       page,
-      product,
-      seo,
     },
   };
 };

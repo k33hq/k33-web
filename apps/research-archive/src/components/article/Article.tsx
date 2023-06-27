@@ -1,61 +1,25 @@
-import { ArticlePage, Article as ArticleType } from '@/types';
+import { ArchivePage } from '@/types';
 import * as React from 'react';
-import styles from './styles.module.css';
 import { ArticleHeader } from './article-header';
-import {
-  ArticleBody,
-  ArticleInShorts,
-  ArticleTakeAways,
-  PrivateArticle,
-} from './article-body';
-import { Divider } from 'antd';
+import { ArticleBody } from './article-body';
 
-interface ArticleProps
-  extends Omit<
-      ArticleType,
-      'authorsCollection' | 'tagsCollection' | 'coverPicture'
-    >,
-    Pick<ArticlePage, 'section' | 'publishedDate'> {
-  productId: string;
-  priceId: string;
-}
+interface ArticleProps extends ArchivePage {}
 
 // TODO: extract the subscription product call to rtk toolkit soo we have the productID and price in the store when we need them
 const Article: React.FC<ArticleProps> = ({
   title,
-  subtitle,
-  image,
-  keyPoints,
-  summary,
-  body,
-  publicSnippet,
-  productId,
-  priceId,
-  reportDocument,
-  ...metadata
+  content: { subtitle, image, linkToReport, content: body, publishDate },
 }) => {
   return (
     <>
       <ArticleHeader
+        publishDate={publishDate}
         title={title}
-        reportDocument={reportDocument}
+        linkToReport={linkToReport}
         subtitle={subtitle}
         image={image}
-        productId={productId}
-        {...metadata}
       />
-      {keyPoints || summary ? (
-        <div id="article-summary" className={styles.articleSummary}>
-          <ArticleInShorts summary={summary} />
-          <ArticleTakeAways keyPoints={keyPoints} />
-          <Divider
-            style={{
-              margin: 0,
-            }}
-          />
-        </div>
-      ) : null}
-      <ArticleBody body={body} />
+      <ArticleBody content={body} />
     </>
   );
 };

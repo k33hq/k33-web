@@ -2,6 +2,8 @@
 @import 'src/styles/screens';
 
 .footer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -33,7 +35,6 @@
   align-items: flex-start;
   gap: 8px;
 }
-
 .header {
   position: 'sticky';
   display: flex;

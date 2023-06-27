@@ -1,17 +1,13 @@
-import { AuthorCompact } from '@/types';
+import { Author } from '@/types';
 import { Space, Avatar, Typography } from 'antd';
 import * as React from 'react';
 
 const { Text } = Typography;
 
-const ArticleAuthor: React.FC<AuthorCompact> = ({
-  name,
-  title,
-  profilePicture,
-}) => {
+const ArticleAuthor: React.FC<Author> = ({ name, title, image }) => {
   return (
     <Space>
-      <Avatar size={'large'} src={profilePicture.url} />
+      <Avatar size={'large'} src={image.url} />
       <Space.Compact direction="vertical" size="middle">
         <Text type="secondary" strong>
           {name}

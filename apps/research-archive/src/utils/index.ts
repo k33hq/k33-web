@@ -1,6 +1,3 @@
-import { appStructure } from '@/config';
-import { Navigations } from '@/types';
-
 export const getUrl = (...slugs: Array<string>) => `/${slugs.join('/')}`;
 
 export function forceDownload(blob: string, filename?: string | undefined) {
@@ -44,12 +41,6 @@ export const getReadingTime = () => {
   return time;
 };
 
-export const getLevelTwos = (levelOne: string) => {
-  return appStructure.navigation
-    .filter((nav) => nav.key === levelOne && nav.children !== undefined)
-    .flatMap((nav) => nav.children) as Navigations;
-};
-
 export function isBrowser() {
   return !!(
     typeof window !== 'undefined' &&
@@ -59,4 +50,3 @@ export function isBrowser() {
 }
 
 export * from './share';
-export * from './markdown';

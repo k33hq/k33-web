@@ -1,4 +1,4 @@
-import { RichTextDocument } from '@/types';
+import { RichText } from '@/types';
 import * as React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
@@ -6,10 +6,11 @@ import { Card, Image, Typography, theme } from 'antd';
 import { richTextOptions } from '../contentful';
 
 interface DefaultRichTextRenderProps {
-  document: RichTextDocument;
+  document: RichText;
 }
 
 const { useToken } = theme;
+const { Link } = Typography;
 
 const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
   document,
@@ -27,9 +28,18 @@ const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
         renderNode: {
           ...richTextOptions.renderNode,
           [BLOCKS.EMBEDDED_ASSET]: (node, children: React.ReactNode) => {
-            const img = (document as any).links.assets.block.find(
+            const asset = (document as any).links.assets.block.find(
               (i: any) => i.sys.id === node.data.target.sys.id
             );
+
+            if (asset.contentType === 'application/pdf') {
+              return (
+                <Link href={asset.url} target="_blank" underline>
+                  {asset.title}
+                </Link>
+              );
+            }
+
             return (
               <div
                 style={{
@@ -43,18 +53,18 @@ const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
                 }}
               >
                 <Image
-                  src={img?.url}
-                  alt={img.title ?? ''}
+                  src={asset?.url}
+                  alt={asset.title ?? ''}
                   style={{
                     margin: 0,
                   }}
                 />
-                {img.description && (
+                {asset.description && (
                   <Typography.Text
                     style={{ fontSize: fontSizeSM }}
                     type="secondary"
                   >
-                    {img.description}
+                    {asset.description}
                   </Typography.Text>
                 )}
               </div>

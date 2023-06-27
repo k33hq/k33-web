@@ -1,15 +1,15 @@
 import { DefaultRichTextRenderer } from '@/components';
 import styles from './styles.module.scss';
-import { Article } from '@/types';
+import { ArchivedArticleContent } from '@/types';
 import * as React from 'react';
 
-interface ArticleBodyProps extends Pick<Article, 'body'> {}
+interface ArticleBodyProps extends Pick<ArchivedArticleContent, 'content'> {}
 
-const ArticleBody: React.FC<ArticleBodyProps> = ({ body }) => {
-  if (!body) return;
+const ArticleBody: React.FC<ArticleBodyProps> = ({ content }) => {
+  if (!content) return;
   return (
     <div id="article-body" className={styles.articleBody}>
-      <DefaultRichTextRenderer document={body} />
+      <DefaultRichTextRenderer document={content} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ArticlePage } from '@/types';
+import { ArchivePage, ArchivedArticleContent } from '@/types';
 import { copyText, getReadingTime } from '@/utils';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Divider, Space, Typography } from 'antd';
@@ -8,27 +8,19 @@ import * as React from 'react';
 import { SocialSharing } from '../platform';
 
 interface ArticleMetaDataProps
-  extends Pick<ArticlePage, 'section' | 'publishedDate' | 'title'> {}
+  extends Pick<ArchivePage, 'title'>,
+    Pick<ArchivedArticleContent, 'publishDate'> {}
 
 const { Text } = Typography;
 
 const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
-  section,
   title,
-  publishedDate,
+  publishDate,
 }) => {
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      {section && (
-        <Link href={'/' + section.name}>
-          {section.name
-            .split('/')[1]
-            .split('-')
-            .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
-            .join(' ')}
-        </Link>
-      )}
-      <Text type="secondary">{formatDateAndTime(publishedDate, 'day')}</Text>
+      <ReadTime />
+      <Text type="secondary">{formatDateAndTime(publishDate, 'day')}</Text>
       <SocialSharing title={title} label="Share" type="text" />
     </Space>
   );
