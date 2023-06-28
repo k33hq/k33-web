@@ -97,13 +97,15 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </Col>
         </Row>
       </Col>
-      <Col xs={0} lg={6}>
+      <Col
+        xs={0}
+        lg={6}
+        style={{
+          backgroundColor: colorBgLayout,
+        }}
+      >
         <List
-          size="large"
           dataSource={[subArticle1, subArticle2, subArticle3, subArticle4]}
-          style={{
-            backgroundColor: colorBgLayout,
-          }}
           renderItem={({
             article: { title, subtitle },
             articleSlug,

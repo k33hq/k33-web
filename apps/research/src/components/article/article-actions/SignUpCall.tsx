@@ -24,8 +24,8 @@ const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
       <div id="sign-up-header" className={styles.signupHeader}>
         <Title level={5} editable={false}>
           {isReport
-            ? 'Sign up for K33 Research Pro to download the report'
-            : 'Sign up for K33 Research Pro to keep reading the article'}
+            ? 'Try K33 Research Pro for free to download the report'
+            : 'Try K33 Research Pro for free to read the article'}
         </Title>
         <Text
           style={{
@@ -46,9 +46,9 @@ const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
           {(props) => (
             <LoginOptions
               {...props}
-              appleText="Sign Up with Apple and Start Free Trial"
-              googleText="Sign Up with Google and Start Free Trial"
-              microsoftText="Sign Up with Microsoft and Start Free Trial"
+              appleText="Sign Up with Apple"
+              googleText="Sign Up with Google"
+              microsoftText="Sign Up with Microsoft"
             />
           )}
         </Auth>
