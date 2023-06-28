@@ -32,7 +32,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     },
   } = useToken();
   return (
-    <Row wrap gutter={32} align="stretch" id="research-home-cover">
+    <Row wrap gutter={[24, 32]} align="stretch" id="research-home-cover">
       <Col xs={24} md={12} lg={11}>
         <ArticleCard
           article={{
@@ -48,7 +48,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
         />
       </Col>
       <Col xs={24} md={12} lg={7}>
-        <Row wrap gutter={[0, 12]}>
+        <Row wrap gutter={[16, 12]}>
           <Col span={24}>
             <ArticleCard
               article={{
