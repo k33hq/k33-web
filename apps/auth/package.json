@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export -o out/services/auth",
+    "postexport": "mv out/services/auth/404.html out/",
     "lint": "next lint",
     "predev": "ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx"
