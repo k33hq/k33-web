@@ -52,6 +52,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build local dependencies
+        run: pnpm --dir packages/ui build
       - name: export research-archive
         run: pnpm --dir apps/research-archive export
       - name: deploy research-archive
