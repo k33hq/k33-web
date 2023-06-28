@@ -11,10 +11,12 @@ const { useToken } = theme;
 const { Text, Title, Link: AntLink } = Typography;
 
 interface SignUpCallProps {
-  isReport?: boolean;
+  title?: string;
 }
 
-const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
+const SignUpCall: React.FC<SignUpCallProps> = ({
+  title = 'Sign up for K33 Research',
+}) => {
   const {
     token: { fontSizeSM },
   } = useToken();
@@ -23,9 +25,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({ isReport = false }) => {
     <CallToActionCard>
       <div id="sign-up-header" className={styles.signupHeader}>
         <Title level={5} editable={false}>
-          {isReport
-            ? 'Try K33 Research Pro for free to download the report'
-            : 'Try K33 Research Pro for free to read the article'}
+          {title}
         </Title>
         <Text
           style={{
