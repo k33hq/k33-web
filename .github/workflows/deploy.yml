@@ -55,11 +55,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm build
-      #  TODO joel: add tests
-      #      - name: Test
-      #        run: pnpm test
       - name: export services/auth
         run: pnpm --dir apps/auth export
       - name: deploy services/auth
@@ -95,11 +90,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm build
-      #  TODO joel: add tests
-      #      - name: Test
-      #        run: pnpm test
       - name: export research
         run: pnpm --dir apps/research export
       - name: deploy research
