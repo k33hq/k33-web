@@ -52,11 +52,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm build
-      #  TODO joel: add tests
-      #      - name: Test
-      #        run: pnpm test
       - name: export research-archive
         run: pnpm --dir apps/research-archive export
       - name: deploy research-archive

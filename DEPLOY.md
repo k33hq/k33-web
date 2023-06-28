@@ -4,7 +4,14 @@
 
 ```shell
 pnpm install
+```
+
+Needed only for `invest` app.  
+```shell
 pnpm build
+```
+
+```shell
 pnpm --dir apps/research export
 pnpm --dir apps/research-archive export
 pnpm --dir apps/invest export
