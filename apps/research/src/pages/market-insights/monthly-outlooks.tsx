@@ -17,7 +17,7 @@ import {
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 import styles from './styles.module.scss';
 
 const { Text } = Typography;

@@ -1,6 +1,5 @@
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
-import { NextPageWithLayout } from 'ui';
 import content from '../assets/Content.png';
 import serviceProviders from '../assets/service_providers.png';
 import fundFact from '../assets/fund_fact.png';
@@ -10,7 +9,7 @@ import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
-import { getTitle, useAppState } from 'platform-js';
+import { getTitle, useAppState, NextPageWithLayout } from 'platform-js';
 import {
   useGetFundRegistrationQuery,
   useLazyGetFundRegistrationQuery,

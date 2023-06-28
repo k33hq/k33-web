@@ -1,7 +1,7 @@
 import { ReportCard, TabLayout, ValuationPrinciple } from '@/components';
 import { getLevelTwos, getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 
 import { GetStaticProps } from 'next';
 import { Typography, Image, Row, Col, Divider, Grid, Anchor } from 'antd';

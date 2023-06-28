@@ -1,7 +1,10 @@
 /* eslint-disable @next/next/inline-script-id */
-import { NextPage } from 'next';
+
 import Cookie from './components/Cookie';
 import Script from 'next/script';
+
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
 export * from './components';
 export * from './hooks';
@@ -43,3 +46,7 @@ const K33App: NextPage<K33AppProps> = ({ children }) => {
 export default K33App;
 
 // whitelisting
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};

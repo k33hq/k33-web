@@ -2,8 +2,7 @@ import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
-import K33App from 'platform-js';
-import { NextPageWithLayout } from 'ui';
+import K33App, { NextPageWithLayout } from 'platform-js';
 import { Provider } from 'react-redux';
 import { wrapper } from '@/store';
 

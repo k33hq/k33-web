@@ -1,10 +1,14 @@
-import { Auth as AuthComponent, getTitle, LoginOptions } from 'platform-js';
+import {
+  Auth as AuthComponent,
+  getTitle,
+  LoginOptions,
+  NextPageWithLayout,
+} from 'platform-js';
 import { Button, Typography } from 'antd';
 import config from '@/firebase/config';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import { NextPageWithLayout } from 'ui';
 import { DefaultLayout } from '@/components';
 import styles from './styles.module.scss';
 

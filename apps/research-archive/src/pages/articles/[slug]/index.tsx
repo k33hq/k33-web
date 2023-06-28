@@ -3,7 +3,7 @@ import type { ArchivePage } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import { Article, ArticleSidebar, ShareArticle } from '@/components';
 

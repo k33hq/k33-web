@@ -5,7 +5,7 @@ import { getLevelTwos } from '@/utils';
 import { Col, Divider, Row, Typography } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 
 const { Text } = Typography;
 

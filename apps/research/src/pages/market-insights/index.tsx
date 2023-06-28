@@ -1,7 +1,7 @@
 import { TabLayout } from '@/components';
 import { getLevelTwos } from '@/utils';
 import { NextSeo } from 'next-seo';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 
 const MarketInsights: NextPageWithLayout = () => {
   return (

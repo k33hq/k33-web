@@ -5,7 +5,7 @@ import { getLevelTwos } from '@/utils';
 import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 
 interface IndustryCoverageProps {
   articles: ReadonlyArray<ArticleSummaryWidget>;

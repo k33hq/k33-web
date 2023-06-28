@@ -1,9 +1,8 @@
 import { AppProps } from 'next/app';
 import '../../public/antd.min.css';
 import '../styles/globals.scss';
-import { NextPageWithLayout } from 'ui';
-import K33App from 'platform-js';
-import { DefaultLayout } from '@/components';
+import { NextPageWithLayout } from 'platform-js';
+
 import withTheme from '@/theme';
 
 interface PlatformAppProps extends AppProps {

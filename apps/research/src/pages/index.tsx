@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 import {
   HomeDashboard,
   IndustryDashboard,

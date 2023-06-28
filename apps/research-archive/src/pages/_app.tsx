@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
 import * as React from 'react';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 import withTheme from '../theme';
 import { MainLayout } from '@/components';
 import '../../public/antd.min.css';

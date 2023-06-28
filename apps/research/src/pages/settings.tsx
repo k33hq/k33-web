@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout } from 'antd';
-import { NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'platform-js';
 import { NextSeo } from 'next-seo';
 import { TabLayout, Payments } from '@/components';
 import { GetStaticProps } from 'next';
