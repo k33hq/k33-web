@@ -18,6 +18,7 @@ firebase-debug.*.log*
 # .firebaserc
 
 public/sitemap.xml
+public/antd.min.css
 
 # Runtime data
 pids

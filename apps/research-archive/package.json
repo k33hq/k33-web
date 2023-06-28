@@ -7,7 +7,7 @@
     "test": "",
     "build": "pnpm prebuild && next build",
     "start": "next start",
-    "export": "next build && next export -o out/research/archive",
+    "export": "pnpm build && next export -o out/research/archive",
     "postexport": "mv out/research/archive/404.html out/",
     "lint": "next lint",
     "codegen": "contentful-typescript-codegen --output src/types/generated/contentful.d.ts",

@@ -11,6 +11,7 @@ firebase-debug.*.log*
 .firebase/
 
 public/sitemap.xml
+public/antd.min.css
 
 # Firebase config
 
