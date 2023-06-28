@@ -4,11 +4,7 @@
 
 ```shell
 pnpm install
-```
-
-Needed only for `invest` app.  
-```shell
-pnpm build
+pnpm --dir packages/ui build
 ```
 
 ```shell

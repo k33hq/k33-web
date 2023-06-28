@@ -55,11 +55,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm build
-      #  TODO joel: add tests
-      #      - name: Test
-      #        run: pnpm test
+      - name: Build local dependencies
+        run: pnpm --dir packages/ui build
       - name: export auth
         run: pnpm --dir apps/auth export
       - name: export research
