@@ -97,27 +97,23 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </Col>
         </Row>
       </Col>
-      <Col
-        xs={0}
-        lg={6}
-        style={{
-          backgroundColor: colorBgLayout,
-        }}
-      >
+      <Col xs={0} lg={6}>
         <List
           dataSource={[subArticle1, subArticle2, subArticle3, subArticle4]}
-          renderItem={({
-            article: { title, subtitle },
-            articleSlug,
-            publishedDate,
-          }) => (
+          style={{
+            backgroundColor: colorBgLayout,
+          }}
+          renderItem={(
+            { article: { title, subtitle }, articleSlug, publishedDate },
+            index
+          ) => (
             <List.Item
               key={articleSlug}
               style={{
                 marginBottom: 16,
                 paddingLeft: 16,
                 paddingTop: 16,
-                marginTop: 16,
+                marginTop: index === 0 ? 0 : 16,
               }}
             >
               <div
