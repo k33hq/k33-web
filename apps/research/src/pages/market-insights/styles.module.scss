@@ -1,0 +1,38 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
+.monthlyOutlookList :global(li) {
+  margin-left: 0;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.monthlyOutlook {
+  display: flex;
+  flex-direction: column-reverse;
+  transition: all 1.2s ease-in;
+  padding: 16px 0px 16px 0px !important;
+  gap: 24px;
+  width: 100% !important;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@include medium() {
+  .monthlyOutlook {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 0px 16px 0px !important;
+    gap: 24px;
+  }
+}
+
+@include medium() {
+  .monthlyOutlookList {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
