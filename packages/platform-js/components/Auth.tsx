@@ -2,12 +2,8 @@ import { FirebaseError, FirebaseOptions } from 'firebase/app';
 import * as React from 'react';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
-import { BrandButton, Stack } from 'ui';
-import { FcGoogle } from 'react-icons/fc';
-import { BsMicrosoft } from 'react-icons/bs';
 import { appleLogin, googleLogin, microsoftLogin, register } from 'core';
 import { UserCredential } from 'firebase/auth';
-import { FaApple } from "react-icons/fa";
 
 interface DiffCredData {
   appName: string;
@@ -34,13 +30,28 @@ interface DiffCredData {
   };
 }
 
-interface AuthProps {
-  firebaseConfig: FirebaseOptions;
-  registrationUrl: string;
-  onSuccessLogin: (user: UserCredential) => void;
+export interface LoginOptions {
+  google: () => void;
+  apple: () => void;
+  microsoft: () => void;
 }
 
-const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
+export interface AuthFunctionalities {
+  login: LoginOptions;
+  error: string | null;
+}
+
+interface AuthProps {
+  firebaseConfig: FirebaseOptions;
+  onSuccessLogin: (user: UserCredential) => void;
+  children: (props: AuthFunctionalities) => React.ReactElement;
+}
+
+const Auth: React.FC<AuthProps> = ({
+  firebaseConfig,
+  onSuccessLogin,
+  children,
+}) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
@@ -54,11 +65,15 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
   }, [state, router]);
 
   const google = () => {
-    googleLogin(onSuccessLogin, (err) => {});
+    googleLogin(onSuccessLogin, (err: FirebaseError) => {
+      setError(err.message);
+    });
   };
 
   const apple = () => {
-    appleLogin(onSuccessLogin, (err) => {});
+    appleLogin(onSuccessLogin, (err: FirebaseError) => {
+      setError(err.message);
+    });
   };
 
   const microsoft = () => {
@@ -73,30 +88,7 @@ const Auth: React.FC<AuthProps> = ({ firebaseConfig, onSuccessLogin }) => {
     });
   };
 
-  return (
-    <Stack>
-      <BrandButton
-        label="Sign in with Google"
-        logo={<FcGoogle width={22} height={22} />}
-        onClick={google}
-      />
-      <BrandButton
-        label="Sign in with Apple"
-        logo={<FaApple width={22} height={22} />}
-        onClick={apple}
-      />
-      <BrandButton
-        label="Sign in with Microsoft"
-        logo={<BsMicrosoft width={22} height={22} />}
-        onClick={microsoft}
-      />
-      <div className="pt-60">
-        <p className="px-6 md:px-0 text-center text-default-systemPink-light">
-          {error}
-        </p>
-      </div>
-    </Stack>
-  );
+  return <>{children({ login: { google, apple, microsoft }, error })}</>;
 };
 
 export default Auth;

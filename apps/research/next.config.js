@@ -1,8 +1,13 @@
+const path = require('path');
+
 /** @type {import("next").NextConfig} */
 module.exports = {
   swcMinify: true,
   basePath: '/research',
-  transpilePackages: ['core', 'platform-js'],
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
+  transpilePackages: ['core', 'platform-js', 'antd'],
   reactStrictMode: true,
   images: {
     unoptimized: true,
@@ -15,4 +20,8 @@ module.exports = {
     ],
   },
   staticPageGenerationTimeout: 300,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
 };

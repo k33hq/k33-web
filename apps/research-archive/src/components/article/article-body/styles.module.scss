@@ -1,0 +1,10 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
+.articleBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}

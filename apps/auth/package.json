@@ -3,37 +3,43 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev",
     "test": "",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export -o out/services/auth",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
+    "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx"
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.9.1",
+    "@ant-design/icons": "^5.1.4",
     "@next/font": "^13.1.6",
+    "antd": "^5.5.2",
+    "react-icons": "^4.7.1",
     "core": "workspace:*",
     "firebase": "^9.16.0",
     "next": "^13.1.1",
     "platform-js": "workspace:*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.7.1",
     "ui": "workspace:*"
   },
   "devDependencies": {
+    "@ant-design/static-style-extract": "^1.0.1",
     "@babel/core": "^7.0.0",
-    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
+    "@types/react": "^18.2.8",
     "@types/react-dom": "^18.0.7",
-    "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.1.4",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
-    "postcss": "^8.4.21",
-    "tailwind-config": "workspace:*",
-    "tailwindcss": "^3.2.4",
+    "sass": "^1.62.1",
+    "ts-node": "^10.9.1",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.3"
+    "tslib": "^2.5.3",
+    "typescript": "5.1.3"
   }
 }

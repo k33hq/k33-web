@@ -5,14 +5,17 @@
   "targets": {
     "k33-dev": {
       "hosting": {
+        "k33-platform-dev": [
+          "k33-platform-dev"
+        ],
         "k33-research-dev": [
           "k33-research2-dev"
         ],
+        "k33-research-archive-dev": [
+          "k33-research-archive-dev"
+        ],
         "k33-invest-dev": [
           "k33-invest-dev"
-        ],
-        "k33-platform-dev": [
-          "k33-platform-dev"
         ],
         "k33-auth-dev": [
           "k33-auth-dev"
@@ -26,6 +29,9 @@
         ],
         "k33-research": [
           "k33-research"
+        ],
+        "k33-research-archive": [
+          "k33-research-archive"
         ],
         "k33-invest": [
           "k33-invest"

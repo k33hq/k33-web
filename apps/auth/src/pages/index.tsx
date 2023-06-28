@@ -1,52 +1,53 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
-import { NextPage } from 'next';
-import { Auth as AuthComponent, getTitle } from 'platform-js';
+import { Auth as AuthComponent, getTitle, LoginOptions } from 'platform-js';
+import { Button, Typography } from 'antd';
 import config from '@/firebase/config';
-import Image from 'next/image';
-import logo from '../assets/logo.svg';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import { NextPageWithLayout } from 'ui';
+import { DefaultLayout } from '@/components';
+import styles from './styles.module.scss';
 
 // TODO: take on success and on failure
-const Auth: NextPage = () => {
+const Auth: NextPageWithLayout = () => {
   const router = useRouter();
   return (
-    <div className="container items-center flex flex-col justify-center md:gap-10 gap-8 mt-44">
+    <>
       <Head>
-        <title>{getTitle('Auth')}</title>
+        <title>{getTitle('Sign In')}</title>
       </Head>
-      <Image src={logo} width={200} height={100} alt="k33-logo" />
-      <div className="w-96 flex flex-col gap-2">
-        <AuthComponent
-          firebaseConfig={config}
-          registrationUrl="/register"
-          onSuccessLogin={(user) => {
-            router.reload();
-          }}
-        />
-        <div className="px-6 md:px-0 text-center text-small justify-center flex flex-col">
-          <p>
-            {`By continuing you agree to K33’s `}
-            <Link
-              className="underline"
-              href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/terms-and-conditions`}
-            >
-              Terms of Service
+      <div id="sign-in-section" className={styles.signin}>
+        <div id="title" className={styles.header}>
+          <Typography.Title level={2}>Welcome back!</Typography.Title>
+          <div id="info">
+            <Typography.Text>Don’t have an account yet?</Typography.Text>
+            <Link href={'/signup'}>
+              <Typography.Link>Sign Up Here</Typography.Link>
             </Link>
-            {` and acknowledge that K33’s `}
-            <Link
-              className="underline"
-              href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/privacy`}
-            >
-              Privacy Policy
-            </Link>
-            {` applies to you.`}
-          </p>
+          </div>
+        </div>
+        <div id="sign-in-options" className={styles.signinOptions}>
+          <AuthComponent
+            onSuccessLogin={() => router.reload()}
+            firebaseConfig={config}
+          >
+            {(props) => (
+              <LoginOptions
+                {...props}
+                appleText="Sign In with Apple"
+                googleText="Sign In with Google"
+                microsoftText="Sign In with Microsoft"
+              />
+            )}
+          </AuthComponent>
         </div>
       </div>
-    </div>
+    </>
   );
+};
+
+Auth.getLayout = function (page) {
+  return <DefaultLayout footer="signing in">{page}</DefaultLayout>;
 };
 
 export default Auth;

@@ -1,19 +1,19 @@
-import { NextPage } from 'next';
-import { ReactElement, ReactNode } from 'react';
-
-export type Size = 'large' | 'small';
-
-import * as React from 'react';
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'stripe-pricing-table': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-  }
+export interface Navigation {
+  key: string;
+  label: string;
+  url: string;
+  children?: Array<Navigation>;
 }
 
-export type SubscriberType = 'free' | 'pro';
+export interface AppStructure {
+  navigation: Array<Navigation>;
+}
+
+// export interface PageTab {
+//   key: string;
+//   label: string;
+// }
+
+// export type PageTabs = Array<PageTab>;
+
+export type Navigations = Array<Navigation>;

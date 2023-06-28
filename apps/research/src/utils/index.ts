@@ -1,19 +1,8 @@
+import { appStructure } from '@/config';
+import { Navigations } from '@/types';
+
 export const getUrl = (...slugs: Array<string>) => `/${slugs.join('/')}`;
 
-export const colors = {
-  systemBlue: 'bg-default-systemBlue-light',
-  systemRed: 'bg-default-systemRed-light',
-  systemOrange: 'bg-default-systemOrange-light',
-  systemYellow: 'bg-default-systemYellow-light',
-  systemGreen: 'bg-default-systemGreen-light',
-  systemTeal: 'bg-default-systemTeal-light',
-  systemIndigo: 'bg-default-systemIndigo-light',
-  systemPurple: 'bg-default-systemPurple-light',
-  systemPink: 'bg-default-systemPink-light',
-};
-
-// TODO: put these in some lib
-// TODO: update research use this from platform-js
 export function forceDownload(blob: string, filename?: string | undefined) {
   var a = document.createElement('a');
   //@ts-ignore
@@ -44,3 +33,30 @@ export function downloadResource(url: string, filename?: string) {
 }
 
 export const siteUsername = '@K33Research';
+
+export const getReadingTime = () => {
+  const articleBody = document.getElementById('article-body');
+  if (!articleBody) return 0;
+  const text = document.getElementById('article-body')!.innerText;
+  const wpm = 225;
+  const words = text.trim().split(/\s+/).length;
+  const time = Math.ceil(words / wpm);
+  return time;
+};
+
+export const getLevelTwos = (levelOne: string) => {
+  return appStructure.navigation
+    .filter((nav) => nav.key === levelOne && nav.children !== undefined)
+    .flatMap((nav) => nav.children) as Navigations;
+};
+
+export function isBrowser() {
+  return !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  );
+}
+
+export * from './share';
+export * from './markdown';

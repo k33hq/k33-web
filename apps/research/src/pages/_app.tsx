@@ -1,15 +1,17 @@
-import { AppContext, AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import { Poppins } from '@next/font/google';
-import '../styles/globals.css';
-import 'ui/styles.css';
-import App from 'next/app';
-import { getCategoryElements } from '@/api';
-import { CategoryElements } from '@/types';
-import { MainLayout } from '@/layouts';
+import * as React from 'react';
 import { NextPageWithLayout } from 'ui';
 import K33App from 'platform-js';
 import { Provider } from 'react-redux';
 import { wrapper } from '@/store';
+import withTheme from '../theme';
+import { MainLayout } from '@/components';
+import '../../public/antd.min.css';
+import '../styles/globals.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Script from 'next/script';
 
 export const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
@@ -19,32 +21,60 @@ export const poppins = Poppins({
 });
 
 interface ResearchAppProps extends AppProps {
-  categories: CategoryElements;
   Component: NextPageWithLayout;
 }
 
-const ResearchApp = ({ Component, categories, ...rest }: ResearchAppProps) => {
+// TODO: add the cookie popup
+const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   const { store, props } = wrapper.useWrappedStore(rest);
 
-  return (
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+
+  if (typeof window !== 'undefined') {
+    window.onload = () => {
+      document.getElementById('holderStyle')!.remove();
+    };
+  }
+
+  return withTheme(
     <Provider store={store}>
-      <K33App>
-        <MainLayout categories={categories}>
-          {getLayout(<Component {...props.pageProps} />)}
-        </MainLayout>
-      </K33App>
+      <style
+        id="holderStyle"
+        dangerouslySetInnerHTML={{
+          __html: `
+                    *, *::before, *::after {
+                        transition: none!important;
+                    }
+                    `,
+        }}
+      />
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
+      />
+      <Script
+        id="gtag-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}');
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              analytics_storage: 'denied',
+            });
+          `,
+        }}
+      />
+      <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
+        <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
+      </div>
     </Provider>
   );
-};
-
-ResearchApp.getInitialProps = async (context: AppContext) => {
-  const pageProps = await App.getInitialProps(context);
-  const categories = await getCategoryElements();
-  return {
-    ...pageProps,
-    categories,
-  };
 };
 
 export default ResearchApp;

@@ -1,3 +1,5 @@
+export * from './generated/contentful';
 export * from './api';
-export * from './domain';
+export * from './contentful';
+export * from './payments';
 export * from './ui';

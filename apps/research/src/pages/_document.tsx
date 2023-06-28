@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/inline-script-id */
 import Document, {
   Html,
   Head,
@@ -6,15 +5,14 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
-import { poppins } from './_app';
-import Script from 'next/script';
-
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    return {
+      ...initialProps,
+      styles: <>{initialProps.styles}</>,
+    };
   }
-
   render() {
     return (
       <Html lang="en">
@@ -26,7 +24,7 @@ class MyDocument extends Document {
             href="/research/favicon-64x64.png"
           />
         </Head>
-        <body className={`${poppins.className} flex min-h-screen flex-col`}>
+        <body>
           <Main />
           <NextScript />
         </body>

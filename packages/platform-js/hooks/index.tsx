@@ -9,7 +9,7 @@ export const useAppState = (firebaseConfig: FirebaseOptions) => {
 
   React.useEffect(() => {
     init(firebaseConfig);
-  }, []);
+  }, [firebaseConfig]);
 
   React.useEffect(() => {
     getAppState().then((s) => setState(s));

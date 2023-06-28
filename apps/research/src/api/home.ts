@@ -1,153 +1,51 @@
 import { gql } from 'graphql-request';
 import { contentful } from './client';
-import { GetHomePageElementsResponse } from '../types';
+import {
+  AssetFragment,
+  SeoFragment,
+  articleWebWidgetCoverFragment,
+  articleWebWidgetFragment,
+} from './fragments';
+import { GetHomePageResponse } from '@/types';
 
-const GetHomePageElements = gql`
+const GetHomePage = gql`
   query {
     homePage(id: "1ZbMXiefkGuOYeDaIo7WNX") {
       seo {
-        title
-        description
-        image {
-          url
-          title
-          description
-        }
+        ...seo
       }
       mainArticle {
-        articleSlug
-        publishedDate
-        category {
-          categorySlug
-        }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-            description
-          }
-        }
-        article {
-          title
-          subtitle
-          coverPicture {
-            url
-            title
-          }
-        }
+        ...articleWebWidgetCover
       }
-
+      coverArticle1 {
+        ...articleWebWidgetCover
+      }
+      coverArticle2 {
+        ...articleWebWidget
+      }
       subArticle1 {
-        articleSlug
-        publishedDate
-        category {
-          categorySlug
-        }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-            description
-          }
-        }
-        article {
-          title
-          subtitle
-          coverPicture {
-            url
-            title
-          }
-        }
+        ...articleWebWidget
       }
-
       subArticle2 {
-        articleSlug
-        publishedDate
-        category {
-          categorySlug
-        }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-            description
-          }
-        }
-        article {
-          title
-          subtitle
-          coverPicture {
-            url
-            title
-          }
-        }
+        ...articleWebWidget
       }
       subArticle3 {
-        articleSlug
-        publishedDate
-        category {
-          categorySlug
-        }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-            description
-          }
-        }
-        article {
-          title
-          subtitle
-          coverPicture {
-            url
-            title
-          }
-        }
+        ...articleWebWidget
       }
       subArticle4 {
-        articleSlug
-        publishedDate
-        category {
-          categorySlug
-        }
-        product {
-          productSlug
-          branding {
-            color
-          }
-          product {
-            title
-            description
-          }
-        }
-        article {
-          title
-          subtitle
-          coverPicture {
-            url
-            title
-          }
-        }
+        ...articleWebWidget
       }
     }
   }
+  ${SeoFragment}
+  ${AssetFragment}
+  ${articleWebWidgetCoverFragment}
+  ${articleWebWidgetFragment}
 `;
 
-export const getHomePageElements = async () => {
-  const { homePage } = await contentful.request<GetHomePageElementsResponse>(
-    GetHomePageElements
+export const getHomePage = async () => {
+  const { homePage } = await contentful.request<GetHomePageResponse>(
+    GetHomePage
   );
 
   return homePage;
