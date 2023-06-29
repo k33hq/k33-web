@@ -11,6 +11,8 @@ import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'platform-js';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import { Article, ArticleSidebar, ShareArticle } from '@/components';
+import Head from 'next/head';
+import { siteUsername } from '@/utils';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -39,11 +41,24 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
 
   return (
     <>
+      <Head>
+        <meta name="twitter:site" content={siteUsername} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta
+          name="twitter:description"
+          content={pageSeo ? pageSeo.description : article.subtitle}
+        />
+        <meta
+          name="twitter:image"
+          content={pageSeo ? pageSeo.image.url : articleContent.image.url}
+        />
+      </Head>
       <NextSeo
         title={title}
         description={pageSeo ? pageSeo.description : article.subtitle}
         twitter={{
-          handle: '@K33HQ',
+          handle: siteUsername,
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
           cardType: 'summary_large_image',
         }}
