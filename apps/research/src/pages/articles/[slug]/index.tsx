@@ -55,6 +55,10 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         />
       </Head>
       <NextSeo
+        themeColor="#000000"
+        robotsProps={{
+          maxImagePreview: 'large',
+        }}
         title={title}
         description={pageSeo ? pageSeo.description : article.subtitle}
         twitter={{
