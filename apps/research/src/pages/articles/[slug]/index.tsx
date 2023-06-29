@@ -45,7 +45,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         twitter={{
           handle: '@K33HQ',
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
-          cardType: 'twitter:card',
+          cardType: 'summary',
         }}
         openGraph={{
           title: title,
