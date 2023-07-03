@@ -26,7 +26,11 @@ const MarketInsights: NextPageWithLayout<MarketInsightsProps> = ({
 };
 
 MarketInsights.getLayout = function getLayout(page: React.ReactElement) {
-  return <MarketInsightsLayout activeKey="home">{page}</MarketInsightsLayout>;
+  return (
+    <MarketInsightsLayout activeKey="/market-insights">
+      {page}
+    </MarketInsightsLayout>
+  );
 };
 
 export const getStaticProps: GetStaticProps<MarketInsightsProps> = async () => {

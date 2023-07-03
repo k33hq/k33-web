@@ -28,7 +28,9 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
 
 Analysis.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TokenValuationLayout activeKey="analysis">{page}</TokenValuationLayout>
+    <TokenValuationLayout activeKey="/token-valuation/analysis">
+      {page}
+    </TokenValuationLayout>
   );
 };
 

@@ -30,7 +30,7 @@ const WeeklyReports: NextPageWithLayout<WeeklyReportsProps> = ({
 
 WeeklyReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <MarketInsightsLayout activeKey="weekly-reports">
+    <MarketInsightsLayout activeKey="/market-insights/weekly-reports">
       {page}
     </MarketInsightsLayout>
   );

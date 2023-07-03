@@ -13,7 +13,9 @@ const IndustryInsights: NextPageWithLayout = () => {
 
 IndustryInsights.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <IndustryInsightsLayout activeKey="home">{page}</IndustryInsightsLayout>
+    <IndustryInsightsLayout activeKey="/industry-insights">
+      {page}
+    </IndustryInsightsLayout>
   );
 };
 

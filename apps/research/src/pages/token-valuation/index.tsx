@@ -12,7 +12,11 @@ const TokenValuation: NextPageWithLayout = () => {
 };
 
 TokenValuation.getLayout = function getLayout(page: React.ReactElement) {
-  return <TokenValuationLayout activeKey="home">{page}</TokenValuationLayout>;
+  return (
+    <TokenValuationLayout activeKey="/token-valuation">
+      {page}
+    </TokenValuationLayout>
+  );
 };
 
 export default TokenValuation;

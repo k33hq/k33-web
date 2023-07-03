@@ -31,7 +31,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
 
 IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <IndustryInsightsLayout activeKey="industry-reports">
+    <IndustryInsightsLayout activeKey="/industry-insights/industry-reports">
       {page}
     </IndustryInsightsLayout>
   );

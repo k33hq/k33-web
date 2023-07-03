@@ -130,7 +130,7 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
 
 MontlyOutlooks.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <MarketInsightsLayout activeKey="monthly-outlooks">
+    <MarketInsightsLayout activeKey="/market-insights/monthly-outlooks">
       {page}
     </MarketInsightsLayout>
   );

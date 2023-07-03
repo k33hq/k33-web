@@ -27,7 +27,9 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
 
 QuickTakes.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <MarketInsightsLayout activeKey="quick-takes">{page}</MarketInsightsLayout>
+    <MarketInsightsLayout activeKey="/market-insights/quick-takes">
+      {page}
+    </MarketInsightsLayout>
   );
 };
 

@@ -120,7 +120,7 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
 
 Principles.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TokenValuationLayout activeKey="valuation-principles">
+    <TokenValuationLayout activeKey="/token-valuation/valuation-principles">
       {page}
     </TokenValuationLayout>
   );

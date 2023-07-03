@@ -24,6 +24,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   const {
     token: { colorBgContainer },
   } = useToken();
+
   const router = useRouter();
   return (
     <>
@@ -66,7 +67,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                   router.push(key);
                 }}
                 activeKey={activeKey}
-                items={tabs.map(({ key, label }) => ({ key, label }))}
+                items={tabs.map(({ label, url }) => ({ key: url, label }))}
               />
             </Col>
           </Row>

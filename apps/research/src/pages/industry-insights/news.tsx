@@ -24,22 +24,24 @@ const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
         }}
       >
         <Text strong>Past Weekly Highlights</Text>
-        <Divider />
+        <Divider style={{ marginTop: 16, marginBottom: 40 }} />
+        <Row wrap gutter={[32, 56]} align="stretch">
+          {articles.map((article, index) => (
+            <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+              <ArticleCard {...article} />
+            </Col>
+          ))}
+        </Row>
       </div>
-      <Row wrap gutter={[32, 56]} align="stretch">
-        {articles.map((article, index) => (
-          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
-            <ArticleCard {...article} />
-          </Col>
-        ))}
-      </Row>
     </>
   );
 };
 
 News.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <IndustryInsightsLayout activeKey="news">{page}</IndustryInsightsLayout>
+    <IndustryInsightsLayout activeKey="/industry-insights/news">
+      {page}
+    </IndustryInsightsLayout>
   );
 };
 
