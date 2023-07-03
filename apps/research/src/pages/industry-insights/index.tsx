@@ -1,5 +1,4 @@
-import { TabLayout } from '@/components';
-import { getLevelTwos } from '@/utils';
+import { IndustryInsightsLayout } from '@/components';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
@@ -14,13 +13,7 @@ const IndustryInsights: NextPageWithLayout = () => {
 
 IndustryInsights.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="industry-reports"
-      title="Industry Insights"
-      tabs={getLevelTwos('industry-insights')}
-    >
-      {page}
-    </TabLayout>
+    <IndustryInsightsLayout activeKey="home">{page}</IndustryInsightsLayout>
   );
 };
 

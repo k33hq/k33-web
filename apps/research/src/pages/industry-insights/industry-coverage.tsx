@@ -1,5 +1,5 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleCard, TabLayout } from '@/components';
+import { ArticleCard, IndustryInsightsLayout, TabLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Col, Row } from 'antd';
@@ -30,13 +30,9 @@ const IndustryCoverage: NextPageWithLayout<IndustryCoverageProps> = ({
 
 IndustryCoverage.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="industry-coverage"
-      title="Industry Insights"
-      tabs={getLevelTwos('industry-insights')}
-    >
+    <IndustryInsightsLayout activeKey="industry-coverage">
       {page}
-    </TabLayout>
+    </IndustryInsightsLayout>
   );
 };
 

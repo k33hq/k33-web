@@ -1,5 +1,4 @@
-import { TabLayout } from '@/components';
-import { getLevelTwos } from '@/utils';
+import { TokenValuationLayout } from '@/components';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
@@ -13,15 +12,7 @@ const TokenValuation: NextPageWithLayout = () => {
 };
 
 TokenValuation.getLayout = function getLayout(page: React.ReactElement) {
-  return (
-    <TabLayout
-      activeKey="analysis"
-      title="Token Valuation"
-      tabs={getLevelTwos('token-valuation')}
-    >
-      {page}
-    </TabLayout>
-  );
+  return <TokenValuationLayout activeKey="home">{page}</TokenValuationLayout>;
 };
 
 export default TokenValuation;

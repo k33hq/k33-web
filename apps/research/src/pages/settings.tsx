@@ -29,6 +29,8 @@ const Settings: NextPageWithLayout<SettingsProps> = ({ product }) => {
 Settings.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
+      description="Here you will find a nice description of the page that will help you 
+    understand a bit better."
       activeKey="payments"
       title="Settings"
       tabs={[{ key: 'payments', label: 'Payments', url: '' }]}

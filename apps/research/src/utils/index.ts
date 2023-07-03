@@ -47,7 +47,10 @@ export const getReadingTime = () => {
 export const getLevelTwos = (levelOne: string) => {
   return appStructure.navigation
     .filter((nav) => nav.key === levelOne && nav.children !== undefined)
-    .flatMap((nav) => nav.children) as Navigations;
+    .flatMap(({ children, key, label }) => [
+      { key: 'home', label: 'Home' },
+      ...children?.flatMap((nav) => nav)!,
+    ]) as Navigations;
 };
 
 export function isBrowser() {

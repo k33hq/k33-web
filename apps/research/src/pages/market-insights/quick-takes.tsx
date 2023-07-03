@@ -1,7 +1,6 @@
 import { getArticleWebWidgets } from '@/api';
-import { ArticleCard, TabLayout } from '@/components';
+import { ArticleCard, MarketInsightsLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
-import { getLevelTwos } from '@/utils';
 import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
@@ -28,13 +27,7 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
 
 QuickTakes.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="quick-takes"
-      title="Market Insights"
-      tabs={getLevelTwos('market-insights')}
-    >
-      {page}
-    </TabLayout>
+    <MarketInsightsLayout activeKey="quick-takes">{page}</MarketInsightsLayout>
   );
 };
 

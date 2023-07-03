@@ -15,11 +15,10 @@ const MarketDashboard: React.FC<MarketDashboardProps> = ({
   reports,
 }) => {
   return (
-    <div id="market-dashboard-summary" className="home-section-summary">
-      <NamedDivider label="Market Insights" />
+    <>
       <MarketCombinedSummary quickTakes={quickTakes} reports={reports} />
       <OutlookCard />
-    </div>
+    </>
   );
 };
 

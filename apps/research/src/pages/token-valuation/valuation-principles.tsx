@@ -1,5 +1,10 @@
-import { ReportCard, TabLayout, ValuationPrinciple } from '@/components';
-import { getLevelTwos, getPageData } from '@/utils';
+import {
+  ReportCard,
+  TabLayout,
+  TokenValuationLayout,
+  ValuationPrinciple,
+} from '@/components';
+import { getPageData } from '@/utils';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
@@ -109,49 +114,15 @@ const Principles: NextPageWithLayout<PrinciplesProps> = ({
           </div>
         </Col>
       </Row>
-      {/* <div
-        id="token-valuation-applying-framework"
-        style={{
-          marginTop: 64,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 40,
-          width: '100%',
-        }}
-      >
-        <div
-          id="token-valuation-report-header"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 16,
-            width: '100%',
-          }}
-        >
-          <Text strong>Applying the Framework</Text>
-          <Divider style={{ margin: 0 }} />
-        </div>
-        <Row wrap gutter={[sm ? 32 : 16, 40]}>
-          {articles.map((report) => (
-            <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
-              <ReportCard {...report} />
-            </Col>
-          ))}
-        </Row>
-      </div> */}
     </>
   );
 };
 
 Principles.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="valuation-principles"
-      title="Token Valuation"
-      tabs={getLevelTwos('token-valuation')}
-    >
+    <TokenValuationLayout activeKey="valuation-principles">
       {page}
-    </TabLayout>
+    </TokenValuationLayout>
   );
 };
 

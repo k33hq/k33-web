@@ -4,6 +4,7 @@ import {
   HomeDashboard,
   IndustryDashboard,
   MarketDashboard,
+  NamedDivider,
   SimpleLayout,
   TokenDashboard,
 } from '@/components';
@@ -61,7 +62,10 @@ const Home: NextPageWithLayout<HomePageProps> = ({
       />
       <main id="research-home" className="research-home">
         <HomeDashboard {...articles} />
-        <MarketDashboard quickTakes={quickTakes} reports={reports} />
+        <div id="market-dashboard-summary" className="home-section-summary">
+          <NamedDivider label="Market Insights" />
+          <MarketDashboard quickTakes={quickTakes} reports={reports} />
+        </div>
         <TokenDashboard articles={analysis} />
         <IndustryDashboard reports={industryReports} />
       </main>

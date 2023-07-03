@@ -1,7 +1,6 @@
 import { getArticleWebWidgets } from '@/api';
-import { ReportCard, TabLayout } from '@/components';
+import { MarketInsightsLayout, ReportCard } from '@/components';
 import { ArticleWebWidget } from '@/types';
-import { getLevelTwos } from '@/utils';
 import { Grid, Row, Col } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
@@ -31,13 +30,9 @@ const WeeklyReports: NextPageWithLayout<WeeklyReportsProps> = ({
 
 WeeklyReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="weekly-reports"
-      title="Market Insights"
-      tabs={getLevelTwos('market-insights')}
-    >
+    <MarketInsightsLayout activeKey="weekly-reports">
       {page}
-    </TabLayout>
+    </MarketInsightsLayout>
   );
 };
 

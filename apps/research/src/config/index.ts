@@ -10,7 +10,7 @@ export const appStructure: AppStructure = {
     {
       key: 'market-insights',
       label: 'Market Insights',
-      url: '/market-insights/quick-takes',
+      url: '/market-insights',
       children: [
         {
           key: 'quick-takes',
@@ -32,7 +32,7 @@ export const appStructure: AppStructure = {
     {
       key: 'token-valuation',
       label: 'Token Valuation',
-      url: '/token-valuation/analysis',
+      url: '/token-valuation',
       children: [
         {
           key: 'analysis',
@@ -49,7 +49,7 @@ export const appStructure: AppStructure = {
     {
       key: 'industry-insights',
       label: 'Industry Insights',
-      url: '/industry-insights/industry-reports',
+      url: '/industry-insights',
       children: [
         {
           key: 'industry-reports',

@@ -1,5 +1,5 @@
 import { getArticleWebWidgets } from '@/api';
-import { ReportCard, TabLayout } from '@/components';
+import { IndustryInsightsLayout, ReportCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Grid, Row, Col } from 'antd';
@@ -31,13 +31,9 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
 
 IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="industry-reports"
-      title="Industry Insights"
-      tabs={getLevelTwos('industry-insights')}
-    >
+    <IndustryInsightsLayout activeKey="industry-reports">
       {page}
-    </TabLayout>
+    </IndustryInsightsLayout>
   );
 };
 
