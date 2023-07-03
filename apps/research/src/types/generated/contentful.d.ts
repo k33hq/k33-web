@@ -72,30 +72,6 @@ export interface IArticle extends Entry<IArticleFields> {
   };
 }
 
-export interface IArticleMobileFields {
-  /** Article */
-  article: IArticle;
-}
-
-/** Assembly - how an Article should be constructed to be presented on iOS, iPadOS, or Android */
-
-export interface IArticleMobile extends Entry<IArticleMobileFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'articleMobile';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IArticleWebFields {
   /** Article */
   article: IArticle;
@@ -369,6 +345,12 @@ export interface IHomePageFields {
 
   /** SEO */
   seo: ISeoMetadata;
+
+  /** Cover Article 1 */
+  coverArticle1: IArticleWeb;
+
+  /** Cover Article 2 */
+  coverArticle2: IArticleWeb;
 }
 
 /** Assembly */
@@ -383,6 +365,104 @@ export interface IHomePage extends Entry<IHomePageFields> {
     contentType: {
       sys: {
         id: 'homePage';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IIndexFields {
+  /** ID */
+  id: string;
+
+  /** Name */
+  name: string;
+
+  /** Selected Tokens */
+  selectedTokens: IIndexToken[];
+
+  /** Framework Article */
+  frameworkArticle: IArticle;
+
+  /** Assessment Article */
+  assessmentArticle: IArticle;
+
+  /** Chart */
+  chart: Asset;
+
+  /** Highlight Article */
+  highlightArticle: IArticle;
+}
+
+export interface IIndex extends Entry<IIndexFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'index';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IIndexTokenFields {
+  /** Name */
+  name: string;
+
+  /** Token */
+  token: IToken;
+
+  /** Selected */
+  selected: 'Yes' | 'No';
+
+  /** Commentary */
+  commentary: string;
+}
+
+export interface IIndexToken extends Entry<IIndexTokenFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'indexToken';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface INewsFields {
+  /** Top News */
+  topNews: Document;
+
+  /** Other News */
+  otherNews: Document;
+}
+
+/** Top Stories for industry insights home page */
+
+export interface INews extends Entry<INewsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'news';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -545,30 +625,6 @@ export interface IPromotion extends Entry<IPromotionFields> {
     contentType: {
       sys: {
         id: 'promotion';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IQuoteFields {
-  /** Title */
-  title?: string | undefined;
-}
-
-/** Topic */
-
-export interface IQuote extends Entry<IQuoteFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'quote';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -785,9 +841,33 @@ export interface ITag extends Entry<ITagFields> {
   };
 }
 
+export interface ITokenFields {
+  /** ID */
+  id: string;
+
+  /** Name */
+  name: string;
+}
+
+export interface IToken extends Entry<ITokenFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'token';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | 'article'
-  | 'articleMobile'
   | 'articleWeb'
   | 'attribute'
   | 'author'
@@ -796,22 +876,24 @@ export type CONTENT_TYPE =
   | 'category'
   | 'categoryWeb'
   | 'homePage'
+  | 'index'
+  | 'indexToken'
+  | 'news'
   | 'productBranding'
   | 'productTitle'
   | 'productWeb'
   | 'promotion'
-  | 'quote'
   | 'researchLandingPageWeb'
   | 'section'
   | 'seoMetadata'
   | 'subscription'
   | 'subscriptionProduct'
   | 'subscriptionWeb'
-  | 'tag';
+  | 'tag'
+  | 'token';
 
 export type IEntry =
   | IArticle
-  | IArticleMobile
   | IArticleWeb
   | IAttribute
   | IAuthor
@@ -820,18 +902,21 @@ export type IEntry =
   | ICategory
   | ICategoryWeb
   | IHomePage
+  | IIndex
+  | IIndexToken
+  | INews
   | IProductBranding
   | IProductTitle
   | IProductWeb
   | IPromotion
-  | IQuote
   | IResearchLandingPageWeb
   | ISection
   | ISeoMetadata
   | ISubscription
   | ISubscriptionProduct
   | ISubscriptionWeb
-  | ITag;
+  | ITag
+  | IToken;
 
 export type LOCALE_CODE = 'en-US';
 

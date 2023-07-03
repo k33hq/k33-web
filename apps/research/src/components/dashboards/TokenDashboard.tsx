@@ -1,9 +1,8 @@
 import * as React from 'react';
-import NamedDivider from '../platform/NamedDivider';
-import AnalysisLatest from './AnalysisLatest';
-import { ArticleSummaryWidget, ArticleWebWidget } from '@/types';
+import { ArticleSummaryWidget } from '@/types';
 import Link from 'next/link';
 import { Divider, Typography } from 'antd';
+import { DashboardList } from '../article';
 
 // TODO: gets 4 latest analysis section articles
 
@@ -37,7 +36,13 @@ const TokenDashboard: React.FC<TokenDashboardProps> = ({ articles }) => {
         <Divider style={{ margin: 0 }} />
       </div>
 
-      <AnalysisLatest articles={articles} />
+      <DashboardList
+        articles={articles}
+        title="Analysis"
+        hideSection
+        smallScreen={2}
+        href="/token-valuation/analysis"
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NamedDivider from '../platform/NamedDivider';
+import NamedDivider from '../../platform/NamedDivider';
 import { ArticleWebWidget } from '@/types';
 import dynamic from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -8,7 +8,7 @@ import LatestIndustryReports from './LatestIndustryReports';
 import Link from 'next/link';
 
 const ClientCarousel = dynamic(
-  () => import('../article/article-widgets/ReportCarousel'),
+  () => import('../../article/article-widgets/ReportCarousel'),
   { ssr: false, loading: () => <h1>loading</h1> }
 );
 

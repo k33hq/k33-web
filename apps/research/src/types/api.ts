@@ -9,6 +9,7 @@ import {
   ArticleSummaryWidget,
   ArticleSummaryWithCover,
   HomePage,
+  News,
 } from './contentful';
 import { SeoData } from './contentful/Seo';
 import { ProductStatus } from './payments';
@@ -63,4 +64,8 @@ export type GetArticleSummaryWithCoverResponse =
 
 export interface GetHomePageResponse {
   homePage: HomePage;
+}
+
+export interface NewsResponse {
+  news: News;
 }
