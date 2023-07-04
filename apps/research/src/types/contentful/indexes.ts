@@ -46,3 +46,10 @@ export interface IndexWebCollection<T extends object> {
     items: ReadonlyArray<T>;
   };
 }
+
+export interface TokenValuationIndex
+  extends Pick<IIndexFields, 'name' | 'slug' | 'description'> {
+  selectedTokensCollection: { items: ReadonlyArray<IndexToken> };
+  frameworkArticle: IndexArticleLinked;
+  assessmentArticle: IndexArticleLinked;
+}

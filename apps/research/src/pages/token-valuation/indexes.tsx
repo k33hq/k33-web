@@ -32,10 +32,7 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
       <NextSeo />
       <div id="index-cover-dashboard" className="half">
         <div id="k33-vinter-index-tables" className="stack">
-          <SectionDescriptionHeader
-            name="K33 Vinter Quality Index"
-            description="The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets."
-          />
+          <SectionDescriptionHeader name={name} description={description} />
           <KVQTable
             tokens={selectedTokensCollection.items}
             {...tableResource}

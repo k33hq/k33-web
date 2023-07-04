@@ -1,36 +1,65 @@
-import { SectionDescriptionHeader, TokenValuationLayout } from '@/components';
+import { getArticleSummaryWidgets, getIndexSummary } from '@/api';
+import {
+  DashboardList,
+  KVQTable,
+  SectionDescriptionHeader,
+  SectionHeader,
+  TokenValuationLayout,
+  ValuationPrinciple,
+  ValuationPrincipleWidget,
+} from '@/components';
+import { ArticleSummaryWidget, TokenValuationIndex } from '@/types';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
-interface TokenValuationProps {}
+interface TokenValuationProps {
+  indexSummary: ReadonlyArray<TokenValuationIndex>;
+  analysis: ReadonlyArray<ArticleSummaryWidget>;
+}
 
-const TokenValuation: NextPageWithLayout = () => {
+const TokenValuation: NextPageWithLayout<TokenValuationProps> = ({
+  indexSummary,
+  analysis,
+}) => {
+  const {
+    name,
+    slug,
+    selectedTokensCollection,
+    description,
+    ...tableResource
+  } = indexSummary[0];
+
   return (
     <>
       <NextSeo />
       <div id="index-cover-dashboard" className="half">
         <div id="k33-vinter-index-tables" className="stack">
           <SectionDescriptionHeader
-            name="K33 Vinter Quality Index"
-            description="The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets."
+            name={name}
+            description={description}
             href="/token-valuation/indexes"
           />
-          {/* <KVQTable
+          <KVQTable
             tokens={selectedTokensCollection.items}
             {...tableResource}
-          /> */}
+          />
         </div>
         <div
           id="charts-and-hightlighted-articles"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: 32,
+            width: '100%',
           }}
-        ></div>
+        >
+          <DashboardList
+            articles={analysis}
+            title="Analysis"
+            column={12}
+            href="/token-valuation/analysis"
+          />
+        </div>
       </div>
+      <ValuationPrincipleWidget />
     </>
   );
 };
@@ -44,8 +73,16 @@ TokenValuation.getLayout = function getLayout(page: React.ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps<TokenValuationProps> = async () => {
+  const analysis = await getArticleSummaryWidgets(
+    'token-valuation/analysis',
+    4
+  );
+  const indexSummary = await getIndexSummary();
   return {
-    props: {},
+    props: {
+      analysis,
+      indexSummary,
+    },
   };
 };
 

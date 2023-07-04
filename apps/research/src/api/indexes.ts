@@ -6,7 +6,7 @@ import {
   ArticleSummaryLinkedFragment,
 } from './fragments';
 import { contentful } from './client';
-import { GetIndexesResponse } from '@/types';
+import { GetIndexeSummaryResponse, GetIndexesResponse } from '@/types';
 
 const Indexes = gql`
   query {
@@ -53,9 +53,49 @@ const Indexes = gql`
   ${ArticleSummaryLinkedFragment}
 `;
 
+const IndexSummary = gql`
+  query {
+    indexCollection(limit: 1) {
+      items {
+        name
+        slug
+        description
+
+        selectedTokensCollection {
+          items {
+            commentary
+            selected
+            name
+            token {
+              id
+              name
+            }
+          }
+        }
+
+        frameworkArticle {
+          ...tableArticle
+        }
+
+        assessmentArticle {
+          ...tableArticle
+        }
+      }
+    }
+  }
+  ${ArticleLinkedFragment}
+  ${IndexTableArticleFragment}
+`;
+
 export const getIndexes = async () => {
   const { indexCollection } = await contentful.request<GetIndexesResponse>(
     Indexes
   );
+  return indexCollection.items;
+};
+
+export const getIndexSummary = async () => {
+  const { indexCollection } =
+    await contentful.request<GetIndexeSummaryResponse>(IndexSummary);
   return indexCollection.items;
 };

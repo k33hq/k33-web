@@ -10,12 +10,14 @@ interface DashboardListProps extends SectionHeaderProps {
   articles: ReadonlyArray<ArticleWebWidget>;
   smallScreen?: number;
   hideSection?: boolean;
+  column?: number;
 }
 
 const DashboardList: React.FC<DashboardListProps> = ({
   articles,
   smallScreen,
   hideSection = false,
+  column = 6,
   ...section
 }) => {
   const { md } = useBreakpoint();
@@ -26,11 +28,11 @@ const DashboardList: React.FC<DashboardListProps> = ({
         <>
           {articles.map((article) => (
             <>
-              <Col xs={24} md={6} key={article.articleSlug}>
+              <Col xs={24} md={column} key={article.articleSlug}>
                 <ArticleCard {...article} />
               </Col>
               {!md && (
-                <Col xs={24} md={6} key={article.articleSlug}>
+                <Col xs={24} md={column} key={article.articleSlug}>
                   <Divider style={{ margin: 0 }} />
                 </Col>
               )}
@@ -43,7 +45,7 @@ const DashboardList: React.FC<DashboardListProps> = ({
       <>
         {md
           ? articles.map((article) => (
-              <Col span={6} key={article.articleSlug}>
+              <Col span={column} key={article.articleSlug}>
                 <ArticleCard {...article} />
               </Col>
             ))

@@ -20,7 +20,7 @@ const ValuationPrincipleWidget: React.FC = () => {
         backgroundColor: colorBgLayout,
       }}
       extra={
-        <Link href={'/market-insights/monthly-outlooks'}>
+        <Link href={'/token-valuation/valuation-principles'}>
           <AntLink underline>Read More</AntLink>
         </Link>
       }
