@@ -1,8 +1,25 @@
 import { IndexArticleLinked, IndexToken } from '@/types';
-import { DownloadOutlined, ReadOutlined } from '@ant-design/icons';
-import { Typography, Table, Space, Button, Tag, Card, Grid, theme } from 'antd';
-import { ColumnsType } from 'antd/es/table';
+import {
+  DownloadOutlined,
+  ReadOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
+import {
+  Typography,
+  Table,
+  Space,
+  Button,
+  Tag,
+  Card,
+  Grid,
+  theme,
+  Input,
+  InputRef,
+} from 'antd';
+import type { ColumnType, ColumnsType } from 'antd/es/table';
+import type { FilterConfirmProps } from 'antd/es/table/interface';
 import Link from 'next/link';
+import Highlighter from 'react-highlight-words';
 
 import * as React from 'react';
 
@@ -14,57 +31,10 @@ interface IndexesProps {
 
 const { Text } = Typography;
 
-const columns: ColumnsType<IndexToken> = [
-  {
-    title: '#',
-    key: 'name',
-    dataIndex: 'name',
-    render: (text, record, index) => index + 1,
-  },
-  {
-    title: 'Name',
-    key: 'token',
-    dataIndex: 'token',
-    sorter: (a, b) => a.token.id.length - b.token.id.length,
-    render: (text, record) => {
-      return (
-        <Space.Compact direction="vertical">
-          <Text strong>{text.id}</Text>
-          <Text type="secondary">{text.name}</Text>
-        </Space.Compact>
-      );
-    },
-  },
-  {
-    title: 'Selected',
-    dataIndex: 'selected',
-    key: 'selected',
-    filters: [
-      {
-        text: 'Yes',
-        value: 'Yes',
-      },
-      {
-        text: 'No',
-        value: 'No',
-      },
-    ],
-    align: 'center',
-
-    onFilter: (value, record) => record.selected.includes(value as string),
-    render: (text) => (
-      <Tag color={text === 'Yes' ? 'green' : 'red'}>{text}</Tag>
-    ),
-  },
-  {
-    title: 'Commentary',
-    key: 'commentary',
-    dataIndex: 'commentary',
-    responsive: ['sm'],
-  },
-];
 const { useBreakpoint } = Grid;
 const { useToken } = theme;
+
+type TokenIndex = keyof IndexToken;
 
 const KVQTable: React.FC<IndexesProps> = ({
   tokens,
@@ -72,9 +42,171 @@ const KVQTable: React.FC<IndexesProps> = ({
   assessmentArticle,
 }) => {
   const { sm, md } = useBreakpoint();
+  const [searchText, setSearchText] = React.useState('');
+  const [searchedColumn, setSearchedColumn] = React.useState('');
   const {
     token: { fontSizeSM, fontSize },
   } = useToken();
+
+  const searchInput = React.useRef<InputRef>(null);
+
+  const handleSearch = (
+    selectedKeys: string[],
+    confirm: (param?: FilterConfirmProps) => void,
+    dataIndex: TokenIndex
+  ) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters: () => void) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (
+    dataIndex: TokenIndex
+  ): ColumnType<IndexToken> => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
+      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() =>
+            handleSearch(selectedKeys as string[], confirm, dataIndex)
+          }
+          style={{ marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() =>
+              handleSearch(selectedKeys as string[], confirm, dataIndex)
+            }
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({ closeDropdown: false });
+              setSearchText((selectedKeys as string[])[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered: boolean) => (
+      <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes((value as string).toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+
+  const columns: ColumnsType<IndexToken> = [
+    {
+      title: '#',
+      key: 'name',
+      dataIndex: 'name',
+      render: (text, record, index) => index + 1,
+    },
+    {
+      title: 'Name',
+      key: 'token',
+      dataIndex: 'token',
+      ...getColumnSearchProps('name'),
+      sorter: (a, b) => a.token.id.length - b.token.id.length,
+      render: (text, record) => {
+        return (
+          <Space.Compact direction="vertical">
+            <Text strong>{text.id}</Text>
+            <Text type="secondary">{text.name}</Text>
+          </Space.Compact>
+        );
+      },
+    },
+    {
+      title: 'Selected',
+      dataIndex: 'selected',
+      key: 'selected',
+      filters: [
+        {
+          text: 'Yes',
+          value: 'Yes',
+        },
+        {
+          text: 'No',
+          value: 'No',
+        },
+      ],
+      align: 'center',
+
+      onFilter: (value, record) => record.selected.includes(value as string),
+      render: (text) => (
+        <Tag color={text === 'Yes' ? 'green' : 'red'}>{text}</Tag>
+      ),
+    },
+    {
+      title: 'Commentary',
+      key: 'commentary',
+      dataIndex: 'commentary',
+      responsive: ['sm'],
+    },
+  ];
+
   return (
     <Card
       style={{ margin: 0, padding: 0, width: '100%' }}
@@ -142,7 +274,7 @@ const KVQTable: React.FC<IndexesProps> = ({
             </Link>
           </div>
         )}
-        pagination={false}
+        pagination={{ position: ['bottomCenter'], pageSize: 5 }}
       />
     </Card>
   );
