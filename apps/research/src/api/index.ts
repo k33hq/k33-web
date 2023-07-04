@@ -3,3 +3,4 @@ export * from './client';
 export * from './products';
 export * from './home';
 export * from './global';
+export * from './indexes';

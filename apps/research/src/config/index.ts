@@ -35,6 +35,11 @@ export const appStructure: AppStructure = {
       url: '/token-valuation',
       children: [
         {
+          key: 'indexes',
+          label: 'Indexes',
+          url: '/token-valuation/indexes',
+        },
+        {
           key: 'analysis',
           label: 'Analysis',
           url: '/token-valuation/analysis',

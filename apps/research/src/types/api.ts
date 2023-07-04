@@ -12,6 +12,7 @@ import {
   News,
 } from './contentful';
 import { SeoData } from './contentful/Seo';
+import { IndexHome, IndexWebCollection } from './contentful/indexes';
 import { ProductStatus } from './payments';
 
 export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;
@@ -69,3 +70,7 @@ export interface GetHomePageResponse {
 export interface NewsResponse {
   news: News;
 }
+
+// index
+
+export type GetIndexesResponse = IndexWebCollection<IndexHome>;

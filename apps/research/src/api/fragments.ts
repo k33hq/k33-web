@@ -82,3 +82,35 @@ export const articleWebWidgetFragment = gql`
     }
   }
 `;
+
+// TODO: migration fragment to remove article-web
+
+export const IndexTableArticleFragment = gql`
+  fragment tableArticle on Article {
+    ...articleLinked
+  }
+`;
+
+export const ArticleSummaryLinkedFragment = gql`
+  fragment articleSummaryLinked on Article {
+    thumbnail {
+      ...asset
+    }
+    title
+    subtitle
+    ...articleLinked
+  }
+`;
+
+export const ArticleLinkedFragment = gql`
+  fragment articleLinked on Article {
+    linkedFrom {
+      articleWebCollection {
+        items {
+          articleSlug
+          publishedDate
+        }
+      }
+    }
+  }
+`;

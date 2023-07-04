@@ -373,11 +373,11 @@ export interface IHomePage extends Entry<IHomePageFields> {
 }
 
 export interface IIndexFields {
-  /** ID */
-  id: string;
-
   /** Name */
   name: string;
+
+  /** Slug */
+  slug: string;
 
   /** Selected Tokens */
   selectedTokens: IIndexToken[];
@@ -393,6 +393,9 @@ export interface IIndexFields {
 
   /** Highlight Article */
   highlightArticle: IArticle;
+
+  /** description */
+  description: string;
 }
 
 export interface IIndex extends Entry<IIndexFields> {

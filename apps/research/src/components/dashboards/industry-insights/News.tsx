@@ -13,7 +13,7 @@ const { useBreakpoint } = Grid;
 const News: React.FC<NewsProps> = ({ news: { topNews, otherNews } }) => {
   const { xl } = useBreakpoint();
   return (
-    <Card bordered title="Top Stories" className="override-list">
+    <Card bordered title="Top News Stories" className="override-list">
       <DefaultRichTextRenderer document={topNews} />
       {xl && (
         <>

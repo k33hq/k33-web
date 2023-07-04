@@ -4,3 +4,4 @@ export * from './global';
 export * from './products';
 export * from './Seo';
 export * from './home';
+export * from './indexes';
