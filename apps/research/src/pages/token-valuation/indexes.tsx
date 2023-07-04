@@ -2,11 +2,11 @@ import { getIndexes } from '@/api';
 import {
   HighlightArticle,
   KVQTable,
+  SectionDescriptionHeader,
   SpotlightChart,
   TokenValuationLayout,
 } from '@/components';
 import { IndexHome } from '@/types';
-import { Divider, Grid, Typography, theme } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
@@ -14,9 +14,6 @@ import { NextPageWithLayout } from 'platform-js';
 interface IndexesProps {
   indexes: ReadonlyArray<IndexHome>;
 }
-
-const { Text } = Typography;
-const { useToken } = theme;
 
 const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
   const {
@@ -30,22 +27,15 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
     ...tableResource
   } = indexes[0];
 
-  const {
-    token: { fontSizeSM },
-  } = useToken();
-
   return (
     <>
       <NextSeo />
       <div id="index-cover-dashboard" className="half">
         <div id="k33-vinter-index-tables" className="stack">
-          <div id="k33-vinter-index-table-description" className="stack">
-            <Text strong>{name}</Text>
-            <Text strong type="secondary">
-              {description}
-            </Text>
-            <Divider style={{ margin: 0 }} />
-          </div>
+          <SectionDescriptionHeader
+            name="K33 Vinter Quality Index"
+            description="The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets."
+          />
           <KVQTable
             tokens={selectedTokensCollection.items}
             {...tableResource}

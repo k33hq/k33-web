@@ -6,3 +6,4 @@ export { default as CookieModal } from './CookieModal';
 export { default as NamedDivider } from './NamedDivider';
 export { default as SectionHeader } from './SectionHeader';
 export * from './SectionHeader';
+export { default as SectionDescriptionHeader } from './SectionDescriptionHeader';
