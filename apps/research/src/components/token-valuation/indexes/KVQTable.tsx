@@ -1,6 +1,6 @@
 import { IndexArticleLinked, IndexToken } from '@/types';
 import { DownloadOutlined, ReadOutlined } from '@ant-design/icons';
-import { Typography, Table, Space, Button, Tag, Card } from 'antd';
+import { Typography, Table, Space, Button, Tag, Card, Grid, theme } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import Link from 'next/link';
 
@@ -15,11 +15,16 @@ interface IndexesProps {
 const { Text } = Typography;
 
 const columns: ColumnsType<IndexToken> = [
-  { title: '#', render: (text, record, index) => index + 1 },
+  {
+    title: '#',
+    key: 'name',
+    dataIndex: 'name',
+    render: (text, record, index) => index + 1,
+  },
   {
     title: 'Name',
+    key: 'token',
     dataIndex: 'token',
-    width: 200,
     sorter: (a, b) => a.token.id.length - b.token.id.length,
     render: (text, record) => {
       return (
@@ -33,6 +38,7 @@ const columns: ColumnsType<IndexToken> = [
   {
     title: 'Selected',
     dataIndex: 'selected',
+    key: 'selected',
     filters: [
       {
         text: 'Yes',
@@ -44,28 +50,45 @@ const columns: ColumnsType<IndexToken> = [
       },
     ],
     align: 'center',
+
     onFilter: (value, record) => record.selected.includes(value as string),
-    width: 100,
     render: (text) => (
       <Tag color={text === 'Yes' ? 'green' : 'red'}>{text}</Tag>
     ),
   },
-  { title: 'Commentary', dataIndex: 'commentary', responsive: ['sm'] },
+  {
+    title: 'Commentary',
+    key: 'commentary',
+    dataIndex: 'commentary',
+    responsive: ['sm'],
+  },
 ];
+const { useBreakpoint } = Grid;
+const { useToken } = theme;
 
 const KVQTable: React.FC<IndexesProps> = ({
   tokens,
   frameworkArticle,
   assessmentArticle,
 }) => {
+  const { md } = useBreakpoint();
+  const {
+    token: { fontSizeSM, fontSize },
+  } = useToken();
   return (
     <Card
-      style={{ margin: 0, padding: 0 }}
+      style={{ margin: 0, padding: 0, width: '100%' }}
       bodyStyle={{ margin: 0, padding: 0, overflow: 'hidden' }}
     >
       <Table
         columns={columns}
         dataSource={tokens}
+        expandable={{
+          expandedRowRender: (record) => (
+            <p style={{ margin: 0 }}>{record.commentary}</p>
+          ),
+        }}
+        rowKey={'name'}
         footer={() => (
           <div
             id="index-actions"
@@ -83,8 +106,15 @@ const KVQTable: React.FC<IndexesProps> = ({
                   .articleSlug
               }
             >
-              <Button type="text" icon={<ReadOutlined />}>
-                Understanding KVQ Framework
+              <Button
+                size={md ? 'middle' : 'small'}
+                type="text"
+                style={{
+                  fontSize: md ? fontSize : fontSizeSM,
+                }}
+                icon={<ReadOutlined />}
+              >
+                {md ? 'Understanding KVQ Framework' : 'KVQ Framework'}
               </Button>
             </Link>
             <Link
@@ -94,8 +124,15 @@ const KVQTable: React.FC<IndexesProps> = ({
                   .articleSlug
               }
             >
-              <Button type="text" icon={<DownloadOutlined />}>
-                Download Full Assessment
+              <Button
+                type="text"
+                icon={<DownloadOutlined />}
+                size={md ? 'middle' : 'small'}
+                style={{
+                  fontSize: md ? fontSize : fontSizeSM,
+                }}
+              >
+                {md ? 'Download Full Assessment' : 'Download Assessment'}
               </Button>
             </Link>
           </div>
