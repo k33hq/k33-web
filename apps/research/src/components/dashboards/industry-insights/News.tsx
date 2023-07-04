@@ -7,7 +7,7 @@ interface NewsProps {
   news: News;
 }
 
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 const { useBreakpoint } = Grid;
 
 const News: React.FC<NewsProps> = ({ news: { topNews, otherNews } }) => {
@@ -18,6 +18,14 @@ const News: React.FC<NewsProps> = ({ news: { topNews, otherNews } }) => {
       {xl && (
         <>
           <Divider />
+          <Text
+            strong
+            style={{
+              paddingBottom: 16,
+            }}
+          >
+            Other News
+          </Text>
           <DefaultRichTextRenderer
             document={otherNews}
             customOptions={newsRichTextOptions}
