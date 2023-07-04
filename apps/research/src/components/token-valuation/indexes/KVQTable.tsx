@@ -20,8 +20,9 @@ import type { ColumnType, ColumnsType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
 import Link from 'next/link';
 import Highlighter from 'react-highlight-words';
-
 import * as React from 'react';
+
+const DEFAULT_PAGE_SIZE = 5;
 
 interface IndexesProps {
   tokens: ReadonlyArray<IndexToken>;
@@ -44,6 +45,9 @@ const KVQTable: React.FC<IndexesProps> = ({
   const { sm, md } = useBreakpoint();
   const [searchText, setSearchText] = React.useState('');
   const [searchedColumn, setSearchedColumn] = React.useState('');
+  const [page, setPage] = React.useState(1);
+  const [paginationSize, setPaginationSize] = React.useState(DEFAULT_PAGE_SIZE); //your current default pagination size 25
+
   const {
     token: { fontSizeSM, fontSize },
   } = useToken();
@@ -161,7 +165,7 @@ const KVQTable: React.FC<IndexesProps> = ({
       title: '#',
       key: 'name',
       dataIndex: 'name',
-      render: (text, record, index) => index + 1,
+      render: (value, item, index) => (page - 1) * paginationSize + index + 1,
     },
     {
       title: 'Name',
@@ -274,7 +278,15 @@ const KVQTable: React.FC<IndexesProps> = ({
             </Link>
           </div>
         )}
-        pagination={{ position: ['bottomCenter'], pageSize: 5 }}
+        pagination={{
+          position: ['bottomCenter'],
+          pageSize: paginationSize,
+          onChange(current) {
+            setPage(current);
+          },
+          hideOnSinglePage: true,
+          responsive: true,
+        }}
       />
     </Card>
   );
