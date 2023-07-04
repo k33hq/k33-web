@@ -17,7 +17,7 @@ import {
 
 const GetArticleSlugs = gql`
   query {
-    articleWebCollection {
+    articleWebCollection(limit: 11000) {
       items {
         articleSlug
       }
