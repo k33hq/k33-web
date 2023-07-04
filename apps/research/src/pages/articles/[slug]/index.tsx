@@ -31,7 +31,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
 }) => {
   const { lg } = useBreakpoint();
   const {
-    section,
+    sections,
     publishedDate,
     articleSlug,
     article: { authorsCollection, tagsCollection, ...articleContent },
@@ -113,7 +113,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         <Col id="article" xs={24} lg={14} className="article">
           <Article
             {...articleContent}
-            section={section}
+            sections={sections}
             publishedDate={publishedDate}
             productId={productId}
             priceId={pricesCollection.items[0].stripeProductId}
