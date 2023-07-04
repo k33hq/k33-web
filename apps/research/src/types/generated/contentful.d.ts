@@ -88,9 +88,6 @@ export interface IArticleWebFields {
   /** Category Web */
   category: ICategoryWeb;
 
-  /** Author */
-  author: IAuthorWeb;
-
   /** Published Date */
   publishedDate: string;
 
@@ -105,6 +102,9 @@ export interface IArticleWebFields {
 
   /** Section */
   section: ISection;
+
+  /** Sections */
+  sections: ISection[];
 }
 
 /** Assembly - how an Article should be constructed to be presented on the web */
@@ -119,33 +119,6 @@ export interface IArticleWeb extends Entry<IArticleWebFields> {
     contentType: {
       sys: {
         id: 'articleWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IAttributeFields {
-  /** key */
-  key: string;
-
-  /** value */
-  value: string;
-}
-
-/** Attributes of type Key=Value assigned to ArticleWeb */
-
-export interface IAttribute extends Entry<IAttributeFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'attribute';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -179,66 +152,6 @@ export interface IAuthor extends Entry<IAuthorFields> {
     contentType: {
       sys: {
         id: 'author';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IAuthorWebFields {
-  /** Title */
-  title: string;
-
-  /** Author Slug */
-  authorSlug: string;
-
-  /** Author */
-  author: IAuthor;
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-/** Assembly - how an Author (the Research analyst’s name) should be constructed to be presented on the web */
-
-export interface IAuthorWeb extends Entry<IAuthorWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'authorWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ICallToActionFields {
-  /** Url */
-  url: string;
-
-  /** Label */
-  label: string;
-}
-
-/** Topic - A Call to Action is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that let’s us draw the users attention to a particular action we want them to take. */
-
-export interface ICallToAction extends Entry<ICallToActionFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'callToAction';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -334,12 +247,6 @@ export interface IHomePageFields {
   /** Sub Article 4 */
   subArticle4: IArticleWeb;
 
-  /** Promotion 1 */
-  promotion1: IPromotion;
-
-  /** Promotion 2 */
-  promotion2: IPromotion;
-
   /** Title */
   title: string;
 
@@ -396,6 +303,9 @@ export interface IIndexFields {
 
   /** description */
   description: string;
+
+  /** Chart Body */
+  chartBody: string;
 }
 
 export interface IIndex extends Entry<IIndexFields> {
@@ -466,39 +376,6 @@ export interface INews extends Entry<INewsFields> {
     contentType: {
       sys: {
         id: 'news';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IProductBrandingFields {
-  /** Color */
-  color:
-    | 'systemRed'
-    | 'systemOrange'
-    | 'systemYellow'
-    | 'systemGreen'
-    | 'systemTeal'
-    | 'systemBlue'
-    | 'systemIndigo'
-    | 'systemPurple'
-    | 'systemPink';
-}
-
-/** content topic for branding of products or articles, you decide :/ */
-
-export interface IProductBranding extends Entry<IProductBrandingFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'productBranding';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -592,71 +469,6 @@ export interface IProductWeb extends Entry<IProductWebFields> {
     contentType: {
       sys: {
         id: 'productWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IPromotionFields {
-  /** Title */
-  title: string;
-
-  /** Subtitle */
-  subtitle: string;
-
-  /** Image */
-  image: Asset;
-
-  /** Points */
-  points: string[];
-
-  /** Call To Action */
-  callToAction: ICallToAction;
-}
-
-/** Topic */
-
-export interface IPromotion extends Entry<IPromotionFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'promotion';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IResearchLandingPageWebFields {
-  /** Title */
-  title: string;
-
-  /** products */
-  products: IProductWeb[];
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-export interface IResearchLandingPageWeb
-  extends Entry<IResearchLandingPageWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'researchLandingPageWeb';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -872,21 +684,15 @@ export interface IToken extends Entry<ITokenFields> {
 export type CONTENT_TYPE =
   | 'article'
   | 'articleWeb'
-  | 'attribute'
   | 'author'
-  | 'authorWeb'
-  | 'callToAction'
   | 'category'
   | 'categoryWeb'
   | 'homePage'
   | 'index'
   | 'indexToken'
   | 'news'
-  | 'productBranding'
   | 'productTitle'
   | 'productWeb'
-  | 'promotion'
-  | 'researchLandingPageWeb'
   | 'section'
   | 'seoMetadata'
   | 'subscription'
@@ -898,21 +704,15 @@ export type CONTENT_TYPE =
 export type IEntry =
   | IArticle
   | IArticleWeb
-  | IAttribute
   | IAuthor
-  | IAuthorWeb
-  | ICallToAction
   | ICategory
   | ICategoryWeb
   | IHomePage
   | IIndex
   | IIndexToken
   | INews
-  | IProductBranding
   | IProductTitle
   | IProductWeb
-  | IPromotion
-  | IResearchLandingPageWeb
   | ISection
   | ISeoMetadata
   | ISubscription

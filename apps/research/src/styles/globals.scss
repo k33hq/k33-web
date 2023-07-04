@@ -157,6 +157,28 @@ ul li {
   }
 }
 
+.half {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  transition: all $animation-seconds ease-in;
+  > div {
+    width: 100%;
+  }
+}
+
+@include xlarge() {
+  .half {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    > div {
+      flex: 1;
+    }
+  }
+}
+
 .stack {
   display: flex;
   flex-direction: column;

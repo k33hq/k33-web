@@ -1,7 +1,12 @@
 import { getIndexes } from '@/api';
-import { KVQTable, TokenValuationLayout } from '@/components';
-import { IndexHome, IndexToken } from '@/types';
-import { Divider, Typography } from 'antd';
+import {
+  HighlightArticle,
+  KVQTable,
+  SpotlightChart,
+  TokenValuationLayout,
+} from '@/components';
+import { IndexHome } from '@/types';
+import { Divider, Grid, Typography, theme } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
@@ -11,6 +16,7 @@ interface IndexesProps {
 }
 
 const { Text } = Typography;
+const { useToken } = theme;
 
 const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
   const {
@@ -19,14 +25,19 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
     description,
     selectedTokensCollection,
     highlightArticle,
+    chartBody,
     chart,
     ...tableResource
   } = indexes[0];
 
+  const {
+    token: { fontSizeSM },
+  } = useToken();
+
   return (
     <>
       <NextSeo />
-      <div id="index-cover-dashboard">
+      <div id="index-cover-dashboard" className="half">
         <div id="k33-vinter-index-tables" className="stack">
           <div id="k33-vinter-index-table-description" className="stack">
             <Text strong>{name}</Text>
@@ -39,6 +50,18 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
             tokens={selectedTokensCollection.items}
             {...tableResource}
           />
+        </div>
+        <div
+          id="charts-and-hightlighted-articles"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 32,
+          }}
+        >
+          <SpotlightChart chart={chart} chartBody={chartBody} />
+          <HighlightArticle {...highlightArticle} />
         </div>
       </div>
     </>

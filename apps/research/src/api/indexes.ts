@@ -15,6 +15,7 @@ const Indexes = gql`
         name
         slug
         description
+        chartBody
 
         selectedTokensCollection {
           items {

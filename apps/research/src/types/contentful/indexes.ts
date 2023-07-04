@@ -12,7 +12,7 @@ export interface IndexToken extends Omit<IIndexTokenFields, 'token'> {
 }
 
 export interface IndexHome
-  extends Pick<IIndexFields, 'name' | 'slug' | 'description'> {
+  extends Pick<IIndexFields, 'name' | 'slug' | 'description' | 'chartBody'> {
   selectedTokensCollection: { items: ReadonlyArray<IndexToken> };
   frameworkArticle: IndexArticleLinked;
   assessmentArticle: IndexArticleLinked;
