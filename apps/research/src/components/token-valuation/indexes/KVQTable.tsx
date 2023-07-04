@@ -71,7 +71,7 @@ const KVQTable: React.FC<IndexesProps> = ({
   frameworkArticle,
   assessmentArticle,
 }) => {
-  const { md } = useBreakpoint();
+  const { sm, md } = useBreakpoint();
   const {
     token: { fontSizeSM, fontSize },
   } = useToken();
@@ -83,11 +83,16 @@ const KVQTable: React.FC<IndexesProps> = ({
       <Table
         columns={columns}
         dataSource={tokens}
-        expandable={{
-          expandedRowRender: (record) => (
-            <p style={{ margin: 0 }}>{record.commentary}</p>
-          ),
-        }}
+        {...(!sm && {
+          expandable: {
+            expandedRowRender: (record) => (
+              <Space.Compact>
+                <Text strong>Commentary</Text>
+                <Text>{record.commentary}</Text>
+              </Space.Compact>
+            ),
+          },
+        })}
         rowKey={'name'}
         footer={() => (
           <div
