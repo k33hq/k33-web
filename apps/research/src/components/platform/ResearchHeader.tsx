@@ -29,7 +29,7 @@ import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { logout } from 'core';
+import { getUserInformation, logout } from 'core';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -40,6 +40,11 @@ interface ResearchHeaderProps {}
 const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
   const { md } = useBreakpoint();
   const [open, setOpen] = React.useState(false);
+  // TODO: extract this in global state
+  const [user, setUser] = React.useState<{
+    url: string | null;
+    email: string | null;
+  }>({ url: null, email: null });
   const router = useRouter();
   const {
     token: { colorPrimary },
@@ -68,6 +73,14 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
         ),
     },
   ];
+
+  React.useEffect(() => {
+    getUserInformation((user) => {
+      if (user) {
+        setUser({ url: user.photoURL, email: user.email });
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -166,12 +179,22 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                       ) : (
                         <Dropdown placement="bottomLeft" menu={{ items }}>
                           <Avatar
-                            style={{
-                              backgroundColor: colorPrimary,
-                            }}
+                            {...(!user.url && {
+                              style: {
+                                backgroundColor: colorPrimary,
+                              },
+                            })}
+                            src={user.url}
                             onClick={(e) => e?.preventDefault()}
-                            icon={<UserOutlined />}
-                          />
+                          >
+                            {user.email && (
+                              <>
+                                {user.url
+                                  ? user.email?.charAt(0).toUpperCase()
+                                  : null}
+                              </>
+                            )}
+                          </Avatar>
                         </Dropdown>
                       )}
                     </Col>
