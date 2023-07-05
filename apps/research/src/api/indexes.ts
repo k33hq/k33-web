@@ -25,6 +25,9 @@ const Indexes = gql`
             token {
               id
               name
+              icon {
+                ...asset
+              }
             }
           }
         }

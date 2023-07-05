@@ -15,6 +15,7 @@ import {
   theme,
   Input,
   InputRef,
+  Avatar,
 } from 'antd';
 import type { ColumnType, ColumnsType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
@@ -175,10 +176,15 @@ const KVQTable: React.FC<IndexesProps> = ({
       sorter: (a, b) => a.token.id.length - b.token.id.length,
       render: (text, record) => {
         return (
-          <Space.Compact direction="vertical">
-            <Text strong>{text.id}</Text>
-            <Text type="secondary">{text.name}</Text>
-          </Space.Compact>
+          <Space>
+            <Avatar src={text.icon.url} alt={text.icon.description} />
+            <Space.Compact direction="vertical">
+              <Text strong>{text.id}</Text>
+              <Text type="secondary" ellipsis>
+                {text.name}
+              </Text>
+            </Space.Compact>
+          </Space>
         );
       },
     },

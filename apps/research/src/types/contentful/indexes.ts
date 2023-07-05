@@ -6,7 +6,9 @@ import {
 import { ArticleWebWidget, ArticleWidget } from './article';
 import { Asset } from './global';
 
-export type Token = ITokenFields;
+export interface Token extends Omit<ITokenFields, 'icon'> {
+  icon: Asset;
+}
 export interface IndexToken extends Omit<IIndexTokenFields, 'token'> {
   token: Token;
 }
