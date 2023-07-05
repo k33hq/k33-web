@@ -185,16 +185,9 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                               },
                             })}
                             src={user.url}
+                            icon={!user.url && <UserOutlined />}
                             onClick={(e) => e?.preventDefault()}
-                          >
-                            {user.email && (
-                              <>
-                                {user.url
-                                  ? user.email?.charAt(0).toUpperCase()
-                                  : null}
-                              </>
-                            )}
-                          </Avatar>
+                          />
                         </Dropdown>
                       )}
                     </Col>
