@@ -28,7 +28,7 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
   const { lg } = useBreakpoint();
   return (
     <>
-      <NextSeo title="Research - Market Insights" />
+      <NextSeo title="Research - Monthly Outlooks" />
       <Row
         wrap
         gutter={[16, 40]}

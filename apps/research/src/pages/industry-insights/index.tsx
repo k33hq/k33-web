@@ -26,7 +26,7 @@ const IndustryInsights: NextPageWithLayout<IndustryInsightsProps> = ({
 }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Insights" />
       <div id="industry-news-and-latest-reports" className="divide-equal">
         <div
           id="latest-reports"

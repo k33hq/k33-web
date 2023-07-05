@@ -17,7 +17,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
   const { sm } = Grid.useBreakpoint();
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Reports" />
       <Row wrap gutter={[sm ? 32 : 16, 40]} align="stretch">
         {articles.map((report) => (
           <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>

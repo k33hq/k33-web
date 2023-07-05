@@ -21,7 +21,7 @@ interface NewsProps {
 const News: NextPageWithLayout<NewsProps> = ({ articles, news }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Insights | News" />
       <NewsComponent news={news} hideOtherStores />
       <div
         id="news-header"

@@ -16,7 +16,7 @@ const IndustryCoverage: NextPageWithLayout<IndustryCoverageProps> = ({
 }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Coverage" />
       <Row wrap gutter={[32, 56]} align="stretch">
         {articles.map((article, index) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
