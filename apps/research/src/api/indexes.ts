@@ -72,6 +72,9 @@ const IndexSummary = gql`
             token {
               id
               name
+              icon {
+                ...asset
+              }
             }
           }
         }
@@ -86,6 +89,7 @@ const IndexSummary = gql`
       }
     }
   }
+  ${AssetFragment}
   ${ArticleLinkedFragment}
   ${IndexTableArticleFragment}
 `;

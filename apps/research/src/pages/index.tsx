@@ -7,7 +7,6 @@ import {
   MarketDashboard,
   NamedDivider,
   SimpleLayout,
-  TokenDashboard,
   TokenValuationCover,
 } from '@/components';
 import { NextSeo } from 'next-seo';

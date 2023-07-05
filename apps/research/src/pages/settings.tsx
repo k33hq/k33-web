@@ -33,7 +33,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
     understand a bit better."
       activeKey="payments"
       title="Settings"
-      tabs={[{ key: 'payments', label: 'Payments', url: '' }]}
+      tabs={[{ key: 'payments', label: 'Payments', url: '/settings' }]}
     >
       {page}
     </TabLayout>

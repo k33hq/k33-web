@@ -32,7 +32,7 @@ const SpotlightChart: React.FC<SpotlightChartProps> = ({
         },
       })}
       title="Spotlight Chart"
-      cover={<Image src={chart.url} alt={chart.description} preview={false} />}
+      cover={<Image src={chart.url} alt={chart.description} preview />}
     >
       {chartBody && <Text type="secondary">{chartBody}</Text>}
     </Card>
