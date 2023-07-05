@@ -2,6 +2,8 @@ import { ArticleSummaryLinked } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Grid, Space, Typography, theme, Image } from 'antd';
 import * as React from 'react';
+import styles from './styles.module.scss';
+import Link from 'next/link';
 
 interface HighlightArticleProps extends ArticleSummaryLinked {}
 
@@ -13,31 +15,19 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
   subtitle,
   title,
   thumbnail,
-  linkedFrom,
+  linkedFrom: {
+    articleWebCollection: { items },
+  },
 }) => {
   const {
     token: { fontSizeSM },
   } = useToken();
 
+  const { publishedDate, articleSlug } = items[0];
+
   return (
-    <div
-      id="highlighted-article"
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        id="highlighted-article-body"
-        style={{
-          display: 'flex',
-          padding: '0px 16px 0px 16px',
-          flexDirection: 'column',
-          gap: 8,
-          flex: 1,
-        }}
-      >
+    <div id="highlighted-article" className={styles.highlightedArticle}>
+      <div id="highlighted-article-body">
         <Space
           size={8}
           direction="horizontal"
@@ -51,7 +41,7 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
               fontSize: 'inherit',
             }}
           >
-            Highlight Article
+            Highlighted Article
           </Text>
           <Text
             type="secondary"
@@ -59,15 +49,16 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
               fontSize: 'inherit',
             }}
           >
-            {formatDateAndTime(
-              linkedFrom.articleWebCollection.items[0].publishedDate,
-              'day'
-            )}
+            {formatDateAndTime(publishedDate, 'day')}
           </Text>
         </Space>
-        <Title level={5} style={{ margin: 0 }}>
-          {title}
-        </Title>
+        <Link
+          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
+        >
+          <Title level={5} style={{ margin: 0 }}>
+            {title}
+          </Title>
+        </Link>
         <Paragraph
           type="secondary"
           ellipsis={{ rows: 4, expandable: true, symbol: 'more' }}
@@ -81,11 +72,15 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
           flex: 1,
         }}
       >
-        <Image
-          src={thumbnail.url}
-          alt={thumbnail.description}
-          preview={false}
-        />
+        <Link
+          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
+        >
+          <Image
+            src={thumbnail.url}
+            alt={thumbnail.description}
+            preview={false}
+          />
+        </Link>
       </div>
     </div>
   );
