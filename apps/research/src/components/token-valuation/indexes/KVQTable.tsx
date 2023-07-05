@@ -16,6 +16,7 @@ import {
   Input,
   InputRef,
   Avatar,
+  Tooltip,
 } from 'antd';
 import type { ColumnType, ColumnsType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
@@ -23,7 +24,7 @@ import Link from 'next/link';
 import Highlighter from 'react-highlight-words';
 import * as React from 'react';
 
-const DEFAULT_PAGE_SIZE = 5;
+const DEFAULT_PAGE_SIZE = 6;
 
 interface IndexesProps {
   tokens: ReadonlyArray<IndexToken>;
@@ -31,7 +32,7 @@ interface IndexesProps {
   assessmentArticle: IndexArticleLinked;
 }
 
-const { Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 const { useBreakpoint } = Grid;
 const { useToken } = theme;
@@ -43,7 +44,7 @@ const KVQTable: React.FC<IndexesProps> = ({
   frameworkArticle,
   assessmentArticle,
 }) => {
-  const { sm, md } = useBreakpoint();
+  const { sm, md, xl } = useBreakpoint();
   const [searchText, setSearchText] = React.useState('');
   const [searchedColumn, setSearchedColumn] = React.useState('');
   const [page, setPage] = React.useState(1);
@@ -166,14 +167,15 @@ const KVQTable: React.FC<IndexesProps> = ({
       title: '#',
       key: 'name',
       dataIndex: 'name',
+      width: 50,
       render: (value, item, index) => (page - 1) * paginationSize + index + 1,
     },
     {
       title: 'Name',
       key: 'token',
       dataIndex: 'token',
+      width: 160,
       ...getColumnSearchProps('name'),
-      sorter: (a, b) => a.token.id.length - b.token.id.length,
       render: (text, record) => {
         return (
           <Space>
@@ -192,6 +194,7 @@ const KVQTable: React.FC<IndexesProps> = ({
       title: 'Selected',
       dataIndex: 'selected',
       key: 'selected',
+
       filters: [
         {
           text: 'Yes',
@@ -203,7 +206,7 @@ const KVQTable: React.FC<IndexesProps> = ({
         },
       ],
       align: 'center',
-
+      width: 100,
       onFilter: (value, record) => record.selected.includes(value as string),
       render: (text) => (
         <Tag color={text === 'Yes' ? 'green' : 'red'}>{text}</Tag>
@@ -219,8 +222,14 @@ const KVQTable: React.FC<IndexesProps> = ({
 
   return (
     <Card
-      style={{ margin: 0, padding: 0, width: '100%' }}
-      bodyStyle={{ margin: 0, padding: 0, overflow: 'hidden' }}
+      style={{ margin: 0, padding: 0, width: xl ? 648 : '100%' }}
+      bodyStyle={{
+        margin: 0,
+        padding: 0,
+        width: '100%',
+        overflow: 'hidden',
+        cursor: 'pointer',
+      }}
     >
       <Table
         columns={columns}
@@ -293,6 +302,10 @@ const KVQTable: React.FC<IndexesProps> = ({
           hideOnSinglePage: true,
           responsive: true,
         }}
+        size="large"
+        {...(md && {
+          scroll: { y: 440 },
+        })}
       />
     </Card>
   );

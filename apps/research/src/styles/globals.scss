@@ -199,6 +199,10 @@ ul li {
   text-overflow: initial !important;
 }
 
+.ant-table-body {
+  overflow-x: auto !important;
+}
+
 // overriding defaults
 
 .override-list :global(li) {
