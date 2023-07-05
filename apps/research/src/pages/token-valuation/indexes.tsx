@@ -21,7 +21,7 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes, summaries }) => {
 
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Indexes" />
       <TokenValuationCover {...indexProps} isNavigable={false}>
         <div
           id="charts-and-hightlighted-articles"

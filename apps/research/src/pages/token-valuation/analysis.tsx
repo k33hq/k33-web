@@ -14,7 +14,7 @@ interface AnalysisProps {
 const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Token Valuation Analysis" />
       <Row wrap gutter={[32, 48]} align="stretch">
         {articles.map((article) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>

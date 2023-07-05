@@ -23,7 +23,10 @@ const TokenValuation: NextPageWithLayout<TokenValuationProps> = ({
 
   return (
     <>
-      <NextSeo />
+      <NextSeo
+        title="Research - Token Valuation"
+        description="Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential."
+      />
       <TokenValuationCover {...kvqProps}>
         <DashboardList
           articles={analysis}
