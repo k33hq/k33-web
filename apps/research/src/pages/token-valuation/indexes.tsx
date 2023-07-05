@@ -1,9 +1,8 @@
 import { getIndexes } from '@/api';
 import {
   HighlightArticle,
-  KVQTable,
-  SectionDescriptionHeader,
   SpotlightChart,
+  TokenValuationCover,
   TokenValuationLayout,
 } from '@/components';
 import { IndexHome } from '@/types';
@@ -16,28 +15,12 @@ interface IndexesProps {
 }
 
 const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
-  const {
-    name,
-    slug,
-    description,
-    selectedTokensCollection,
-    highlightArticle,
-    chartBody,
-    chart,
-    ...tableResource
-  } = indexes[0];
+  const { highlightArticle, chartBody, chart, ...indexProps } = indexes[0];
 
   return (
     <>
       <NextSeo />
-      <div id="index-cover-dashboard" className="half">
-        <div id="k33-vinter-index-tables" className="stack">
-          <SectionDescriptionHeader name={name} description={description} />
-          <KVQTable
-            tokens={selectedTokensCollection.items}
-            {...tableResource}
-          />
-        </div>
+      <TokenValuationCover {...indexProps} isNavigable={false}>
         <div
           id="charts-and-hightlighted-articles"
           style={{
@@ -50,7 +33,7 @@ const Indexes: NextPageWithLayout<IndexesProps> = ({ indexes }) => {
           <SpotlightChart chart={chart} chartBody={chartBody} />
           <HighlightArticle {...highlightArticle} />
         </div>
-      </div>
+      </TokenValuationCover>
     </>
   );
 };

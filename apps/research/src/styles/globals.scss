@@ -172,6 +172,7 @@ ul li {
   .half {
     display: flex;
     flex-direction: row;
+    gap: 40px;
     width: 100%;
     > div {
       flex: 1;

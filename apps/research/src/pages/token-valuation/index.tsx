@@ -1,11 +1,8 @@
 import { getArticleSummaryWidgets, getIndexSummary } from '@/api';
 import {
   DashboardList,
-  KVQTable,
-  SectionDescriptionHeader,
-  SectionHeader,
+  TokenValuationCover,
   TokenValuationLayout,
-  ValuationPrinciple,
   ValuationPrincipleWidget,
 } from '@/components';
 import { ArticleSummaryWidget, TokenValuationIndex } from '@/types';
@@ -22,43 +19,19 @@ const TokenValuation: NextPageWithLayout<TokenValuationProps> = ({
   indexSummary,
   analysis,
 }) => {
-  const {
-    name,
-    slug,
-    selectedTokensCollection,
-    description,
-    ...tableResource
-  } = indexSummary[0];
+  const kvqProps = indexSummary[0];
 
   return (
     <>
       <NextSeo />
-      <div id="index-cover-dashboard" className="half">
-        <div id="k33-vinter-index-tables" className="stack">
-          <SectionDescriptionHeader
-            name={name}
-            description={description}
-            href="/token-valuation/indexes"
-          />
-          <KVQTable
-            tokens={selectedTokensCollection.items}
-            {...tableResource}
-          />
-        </div>
-        <div
-          id="charts-and-hightlighted-articles"
-          style={{
-            width: '100%',
-          }}
-        >
-          <DashboardList
-            articles={analysis}
-            title="Analysis"
-            column={12}
-            href="/token-valuation/analysis"
-          />
-        </div>
-      </div>
+      <TokenValuationCover {...kvqProps}>
+        <DashboardList
+          articles={analysis}
+          title="Analysis"
+          column={12}
+          href="/token-valuation/analysis"
+        />
+      </TokenValuationCover>
       <ValuationPrincipleWidget />
     </>
   );
