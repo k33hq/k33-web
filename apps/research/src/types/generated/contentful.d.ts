@@ -97,9 +97,6 @@ export interface IArticleWebFields {
   /** SEO */
   seo?: ISeoMetadata | undefined;
 
-  /** Attributes */
-  attributes?: IAttribute[] | undefined;
-
   /** Section */
   section: ISection;
 
@@ -662,6 +659,9 @@ export interface ITokenFields {
 
   /** Name */
   name: string;
+
+  /** Icon */
+  icon: Asset;
 }
 
 export interface IToken extends Entry<ITokenFields> {

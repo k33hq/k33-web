@@ -222,7 +222,7 @@ const KVQTable: React.FC<IndexesProps> = ({
         {...(!sm && {
           expandable: {
             expandedRowRender: (record) => (
-              <Space.Compact>
+              <Space.Compact direction="vertical">
                 <Text strong>Commentary</Text>
                 <Text>{record.commentary}</Text>
               </Space.Compact>
