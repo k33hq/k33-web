@@ -8,20 +8,20 @@ import * as React from 'react';
 import { SocialSharing } from '../platform';
 
 interface ArticleMetaDataProps
-  extends Pick<ArticlePage, 'section' | 'publishedDate' | 'title'> {}
+  extends Pick<ArticlePage, 'sections' | 'publishedDate' | 'title'> {}
 
 const { Text } = Typography;
 
 const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
-  section,
+  sections,
   title,
   publishedDate,
 }) => {
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      {section && (
-        <Link href={'/' + section.name}>
-          {section.name
+      {sections && sections[0] && (
+        <Link href={'/' + sections[0].name}>
+          {sections[0].name
             .split('/')[1]
             .split('-')
             .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
