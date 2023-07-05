@@ -9,7 +9,7 @@ const { Title, Text } = Typography;
 
 export interface TabLayoutProps extends React.PropsWithChildren {
   title: string;
-  description: string;
+  description?: string;
   tabs: Navigations;
   activeKey: string;
 }
@@ -55,7 +55,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                   >
                     {title}
                   </Title>
-                  <Text>{description}</Text>
+                  {description && <Text>{description}</Text>}
                 </Space>
               </div>
               <Tabs

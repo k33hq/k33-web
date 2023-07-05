@@ -13,8 +13,7 @@ const MarketInsights: React.FC<MarketInsightsProps> = ({
   return (
     <TabLayout
       activeKey={activeKey}
-      description="Here you will find a nice description of the page that will help you 
-  understand a bit better."
+      description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
       title="Market Insights"
       tabs={getLevelTwos('market-insights')}
     >

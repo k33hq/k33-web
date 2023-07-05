@@ -12,8 +12,7 @@ const TokenValuationLayout: React.FC<TokenValuationLayoutProps> = ({
 }) => {
   return (
     <TabLayout
-      description="Here you will find a nice description of the page that will help you 
-      understand a bit better."
+      description="Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential."
       activeKey={activeKey}
       title="Token Valuation"
       tabs={getLevelTwos('token-valuation')}

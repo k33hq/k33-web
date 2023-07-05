@@ -47,7 +47,7 @@ const ResearchFooter: React.FC = () => {
                   <Button
                     type="link"
                     icon={<MailOutlined />}
-                    href="mailto:contact@k33.com"
+                    href="mailto:research@k33.com"
                   />
                   <Button
                     type="link"
@@ -57,7 +57,7 @@ const ResearchFooter: React.FC = () => {
                   <Button
                     type="link"
                     icon={<TwitterOutlined />}
-                    href="https://twitter.com/K33HQ?ref_src=twsrc%5Etfw"
+                    href="https://twitter.com/K33Research?ref_src=twsrc%5Etfw"
                   />
                 </Space>
               </div>

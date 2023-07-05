@@ -12,8 +12,7 @@ const IndustryInsightsLayout: React.FC<IndustryInsightsLayoutProps> = ({
 }) => {
   return (
     <TabLayout
-      description="Here you will find a nice description of the page that will help you 
-      understand a bit better."
+      description="Gain a competitive edge in the dynamic digital assets industry. Stay informed about the latest trends and news shaping the future landscape while navigating its intricate landscape with our expert industry insights."
       activeKey={activeKey}
       title="Industry Insights"
       tabs={getLevelTwos('industry-insights')}
