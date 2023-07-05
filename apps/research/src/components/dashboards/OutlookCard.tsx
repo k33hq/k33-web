@@ -44,13 +44,13 @@ const OutlookCard: React.FC = () => {
               margin: 0,
             }}
           >
-            My short-term outlook has improved after a slow but SEC-heavy
-            February and a BTC push toward $28k could happen sooner rather than
-            later. Further, Shanghai represents attractive narrative-based
-            opportunities in favour of increased weighing in LDO and ETH. My
-            short-term outlook has improved after a slow but SEC-heavy February
-            and a BTC push toward $28k could happen sooner rather than later.
-            Further, Shanghai represents attractive narrative-based...
+            The resurgence of the U.S. ETF race represents a monumental change
+            to bitcoin, with all ingredients in place for a spicy market in the
+            coming nine months in favor of more aggressive positioning in BTC.
+            Significant momentum should erupt ahead of the first deadline in
+            late August to early September, while the final ETF deadline is
+            itching closer to BTC’s 2024 halving, creating two potential
+            cyclical coinciding cyclical tailwinds.
           </Paragraph>
           <Text
             type="secondary"
