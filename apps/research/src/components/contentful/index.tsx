@@ -80,3 +80,28 @@ export const richTextOptions: Options = {
     [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
   },
 };
+
+export const newsRichTextOptions: Options = {
+  renderNode: {
+    ...richTextOptions.renderNode,
+    [BLOCKS.LIST_ITEM]: (node, children: React.ReactNode) => {
+      return <li style={{ marginLeft: 0 }}>{children}</li>;
+    },
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          listStyleType: 'none',
+          marginBlockStart: 0,
+          paddingLeft: 0,
+          paddingTop: 16,
+          alignItems: 'flex-start',
+        }}
+      >
+        {children}
+      </ul>
+    ),
+  },
+};

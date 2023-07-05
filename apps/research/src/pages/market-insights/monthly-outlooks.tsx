@@ -1,19 +1,9 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleSummary, TabLayout } from '@/components';
+import { MarketInsightsLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
-import { getLevelTwos } from '@/utils';
+
 import { formatDateAndTime } from '@contentful/f36-datetime';
-import {
-  Badge,
-  Grid,
-  Image,
-  List,
-  Row,
-  Space,
-  Tag,
-  Typography,
-  theme,
-} from 'antd';
+import { Grid, Image, List, Row, Space, Tag, Typography, theme } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
@@ -38,7 +28,7 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
   const { lg } = useBreakpoint();
   return (
     <>
-      <NextSeo title="Research - Market Insights" />
+      <NextSeo title="Research - Monthly Outlooks" />
       <Row
         wrap
         gutter={[16, 40]}
@@ -46,13 +36,6 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
           width: '100% !important',
         }}
       >
-        {/* {articles.map((article, index) => (
-          <ArticleSummary
-            key={article.publishedDate}
-            {...article}
-            isNew={index === 0 ? true : false}
-          />
-        ))} */}
         <List
           size="large"
           className={styles.monthlyOutlookList}
@@ -147,13 +130,9 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
 
 MontlyOutlooks.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="monthly-outlooks"
-      title="Market Insights"
-      tabs={getLevelTwos('market-insights')}
-    >
+    <MarketInsightsLayout activeKey="/market-insights/monthly-outlooks">
       {page}
-    </TabLayout>
+    </MarketInsightsLayout>
   );
 };
 

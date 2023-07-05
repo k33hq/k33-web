@@ -1,6 +1,10 @@
-import { getArticleSummaryWidgets } from '@/api';
-import { ArticleCard, TabLayout } from '@/components';
-import { ArticleSummaryWidget } from '@/types';
+import { getArticleSummaryWidgets, getNews } from '@/api';
+import {
+  ArticleCard,
+  IndustryInsightsLayout,
+  News as NewsComponent,
+} from '@/components';
+import { ArticleSummaryWidget, News } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Col, Divider, Row, Typography } from 'antd';
 import { GetStaticProps } from 'next';
@@ -11,12 +15,14 @@ const { Text } = Typography;
 
 interface NewsProps {
   articles: ReadonlyArray<ArticleSummaryWidget>;
+  news: News;
 }
 
-const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
+const News: NextPageWithLayout<NewsProps> = ({ articles, news }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Insights | News" />
+      <NewsComponent news={news} hideOtherStores />
       <div
         id="news-header"
         style={{
@@ -24,36 +30,34 @@ const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
         }}
       >
         <Text strong>Past Weekly Highlights</Text>
-        <Divider />
+        <Divider style={{ marginTop: 16, marginBottom: 40 }} />
+        <Row wrap gutter={[32, 56]} align="stretch">
+          {articles.map((article, index) => (
+            <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+              <ArticleCard {...article} />
+            </Col>
+          ))}
+        </Row>
       </div>
-      <Row wrap gutter={[32, 56]} align="stretch">
-        {articles.map((article, index) => (
-          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
-            <ArticleCard {...article} />
-          </Col>
-        ))}
-      </Row>
     </>
   );
 };
 
 News.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="news"
-      title="Industry Insights"
-      tabs={getLevelTwos('industry-insights')}
-    >
+    <IndustryInsightsLayout activeKey="/industry-insights/news">
       {page}
-    </TabLayout>
+    </IndustryInsightsLayout>
   );
 };
 
 export const getStaticProps: GetStaticProps<NewsProps> = async () => {
   const articles = await getArticleSummaryWidgets('industry-insights/news');
+  const news = await getNews();
   return {
     props: {
       articles,
+      news,
     },
   };
 };

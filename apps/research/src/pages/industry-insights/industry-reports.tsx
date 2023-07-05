@@ -1,5 +1,5 @@
 import { getArticleWebWidgets } from '@/api';
-import { ReportCard, TabLayout } from '@/components';
+import { IndustryInsightsLayout, ReportCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Grid, Row, Col } from 'antd';
@@ -17,7 +17,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
   const { sm } = Grid.useBreakpoint();
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Industry Reports" />
       <Row wrap gutter={[sm ? 32 : 16, 40]} align="stretch">
         {articles.map((report) => (
           <Col xs={12} sm={12} md={6} xxl={4} key={report.articleSlug}>
@@ -31,13 +31,9 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
 
 IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="industry-reports"
-      title="Industry Insights"
-      tabs={getLevelTwos('industry-insights')}
-    >
+    <IndustryInsightsLayout activeKey="/industry-insights/industry-reports">
       {page}
-    </TabLayout>
+    </IndustryInsightsLayout>
   );
 };
 

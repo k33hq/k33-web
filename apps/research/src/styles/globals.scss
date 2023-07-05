@@ -27,6 +27,8 @@ ul li {
   margin-left: 1em;
 }
 
+// article page
+
 .article {
   display: flex;
   flex-direction: column;
@@ -72,16 +74,6 @@ ul li {
   gap: 64px;
 }
 
-.ant-ribbon-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.ant-anchor-link-title {
-  white-space: pre-wrap !important;
-  text-overflow: initial !important;
-}
-
 .research-home {
   display: flex;
   flex-direction: column;
@@ -123,4 +115,96 @@ ul li {
 }
 .next-error-h1 + div h2 {
   color: black !important;
+}
+
+// dashboard styles
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+}
+
+.dashboard-article-summary {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 40px;
+}
+
+// layout
+.divide-equal {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  transition: all $animation-seconds ease-in;
+  > div {
+    width: 100%;
+  }
+}
+
+@include xlarge() {
+  .divide-equal {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    > div {
+      width: 100%;
+    }
+  }
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  transition: all $animation-seconds ease-in;
+  > div {
+    width: 100%;
+  }
+}
+
+@include xlarge() {
+  .half {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    > div {
+      flex: 1;
+    }
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 16px;
+}
+
+// ant overriding
+.ant-ribbon-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ant-anchor-link-title {
+  white-space: pre-wrap !important;
+  text-overflow: initial !important;
+}
+
+.ant-table-body {
+  overflow-x: auto !important;
+}
+
+// overriding defaults
+
+.override-list :global(li) {
+  margin-left: 0px !important;
 }

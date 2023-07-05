@@ -12,7 +12,7 @@ const { useToken } = theme;
 
 interface ArticleHeaderProps
   extends Pick<Article, 'title' | 'subtitle' | 'image' | 'reportDocument'>,
-    Pick<ArticlePage, 'section' | 'publishedDate'> {
+    Pick<ArticlePage, 'sections' | 'publishedDate'> {
   productId: string;
 }
 

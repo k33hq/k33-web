@@ -58,8 +58,10 @@ const GetArticlePage = gql`
         seo {
           ...seo
         }
-        section {
-          name
+        sectionsCollection(limit: 1) {
+          items {
+            name
+          }
         }
         publishedDate
         articleSlug
@@ -110,7 +112,7 @@ const GetArticlePage = gql`
 const GetArticleWebWidgets = gql`
   query GetArticleWebWidgets($section: String!, $limit: Int!) {
     articleWebCollection(
-      where: { section: { name: $section } }
+      where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
@@ -137,7 +139,7 @@ const GetArticleWebWidgets = gql`
 const GetArticleWebSummaryWidgets = gql`
   query GetArticleWebSummaryWidgets($section: String!, $limit: Int!) {
     articleWebCollection(
-      where: { section: { name: $section } }
+      where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
@@ -165,7 +167,7 @@ const GetArticleWebSummaryWidgets = gql`
 const GetArticleSummaryWithCover = gql`
   query GetArticleSummaryWithCover($section: String!, $limit: Int!) {
     articleWebCollection(
-      where: { section: { name: $section } }
+      where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {

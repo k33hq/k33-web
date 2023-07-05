@@ -1,14 +1,15 @@
 import { Navigations } from '@/types';
-import { theme, Layout, Row, Col, Tabs, Typography } from 'antd';
+import { theme, Layout, Row, Col, Tabs, Typography, Space } from 'antd';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 
 const { useToken } = theme;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
-interface TabLayoutProps extends React.PropsWithChildren {
+export interface TabLayoutProps extends React.PropsWithChildren {
   title: string;
+  description?: string;
   tabs: Navigations;
   activeKey: string;
 }
@@ -18,10 +19,12 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   title,
   tabs,
   activeKey,
+  description,
 }) => {
   const {
     token: { colorBgContainer },
   } = useToken();
+
   const router = useRouter();
   return (
     <>
@@ -43,14 +46,17 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           <Row>
             <Col span={22} offset={1}>
               <div id="page-title" className={styles.pageTitle}>
-                <Title
-                  level={3}
-                  style={{
-                    margin: 0,
-                  }}
-                >
-                  {title}
-                </Title>
+                <Space direction="vertical" size="small">
+                  <Title
+                    level={3}
+                    style={{
+                      margin: 0,
+                    }}
+                  >
+                    {title}
+                  </Title>
+                  {description && <Text>{description}</Text>}
+                </Space>
               </div>
               <Tabs
                 tabBarStyle={{
@@ -61,7 +67,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                   router.push(key);
                 }}
                 activeKey={activeKey}
-                items={tabs.map(({ key, label }) => ({ key, label }))}
+                items={tabs.map(({ label, url }) => ({ key: url, label }))}
               />
             </Col>
           </Row>

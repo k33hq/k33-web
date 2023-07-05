@@ -15,7 +15,7 @@ interface ArticleProps
       ArticleType,
       'authorsCollection' | 'tagsCollection' | 'coverPicture'
     >,
-    Pick<ArticlePage, 'section' | 'publishedDate'> {
+    Pick<ArticlePage, 'sections' | 'publishedDate'> {
   productId: string;
   priceId: string;
 }

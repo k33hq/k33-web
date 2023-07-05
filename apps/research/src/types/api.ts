@@ -9,8 +9,14 @@ import {
   ArticleSummaryWidget,
   ArticleSummaryWithCover,
   HomePage,
+  News,
 } from './contentful';
 import { SeoData } from './contentful/Seo';
+import {
+  IndexHome,
+  IndexWebCollection,
+  TokenValuationIndex,
+} from './contentful/indexes';
 import { ProductStatus } from './payments';
 
 export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;
@@ -64,3 +70,12 @@ export type GetArticleSummaryWithCoverResponse =
 export interface GetHomePageResponse {
   homePage: HomePage;
 }
+
+export interface NewsResponse {
+  news: News;
+}
+
+// index
+
+export type GetIndexesResponse = IndexWebCollection<IndexHome>;
+export type GetIndexeSummaryResponse = IndexWebCollection<TokenValuationIndex>;

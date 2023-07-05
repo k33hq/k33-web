@@ -1,5 +1,5 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleCard, TabLayout } from '@/components';
+import { ArticleCard, TabLayout, TokenValuationLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Col, Row } from 'antd';
@@ -14,7 +14,7 @@ interface AnalysisProps {
 const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
   return (
     <>
-      <NextSeo />
+      <NextSeo title="Research - Token Valuation Analysis" />
       <Row wrap gutter={[32, 48]} align="stretch">
         {articles.map((article) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
@@ -28,13 +28,9 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
 
 Analysis.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TabLayout
-      activeKey="analysis"
-      title="Token Valuation"
-      tabs={getLevelTwos('token-valuation')}
-    >
+    <TokenValuationLayout activeKey="/token-valuation/analysis">
       {page}
-    </TabLayout>
+    </TokenValuationLayout>
   );
 };
 

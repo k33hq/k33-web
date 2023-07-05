@@ -72,30 +72,6 @@ export interface IArticle extends Entry<IArticleFields> {
   };
 }
 
-export interface IArticleMobileFields {
-  /** Article */
-  article: IArticle;
-}
-
-/** Assembly - how an Article should be constructed to be presented on iOS, iPadOS, or Android */
-
-export interface IArticleMobile extends Entry<IArticleMobileFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'articleMobile';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IArticleWebFields {
   /** Article */
   article: IArticle;
@@ -112,9 +88,6 @@ export interface IArticleWebFields {
   /** Category Web */
   category: ICategoryWeb;
 
-  /** Author */
-  author: IAuthorWeb;
-
   /** Published Date */
   publishedDate: string;
 
@@ -124,11 +97,11 @@ export interface IArticleWebFields {
   /** SEO */
   seo?: ISeoMetadata | undefined;
 
-  /** Attributes */
-  attributes?: IAttribute[] | undefined;
-
   /** Section */
   section: ISection;
+
+  /** Sections */
+  sections: ISection[];
 }
 
 /** Assembly - how an Article should be constructed to be presented on the web */
@@ -143,33 +116,6 @@ export interface IArticleWeb extends Entry<IArticleWebFields> {
     contentType: {
       sys: {
         id: 'articleWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IAttributeFields {
-  /** key */
-  key: string;
-
-  /** value */
-  value: string;
-}
-
-/** Attributes of type Key=Value assigned to ArticleWeb */
-
-export interface IAttribute extends Entry<IAttributeFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'attribute';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -203,66 +149,6 @@ export interface IAuthor extends Entry<IAuthorFields> {
     contentType: {
       sys: {
         id: 'author';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IAuthorWebFields {
-  /** Title */
-  title: string;
-
-  /** Author Slug */
-  authorSlug: string;
-
-  /** Author */
-  author: IAuthor;
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-/** Assembly - how an Author (the Research analyst’s name) should be constructed to be presented on the web */
-
-export interface IAuthorWeb extends Entry<IAuthorWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'authorWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ICallToActionFields {
-  /** Url */
-  url: string;
-
-  /** Label */
-  label: string;
-}
-
-/** Topic - A Call to Action is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that let’s us draw the users attention to a particular action we want them to take. */
-
-export interface ICallToAction extends Entry<ICallToActionFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'callToAction';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -358,17 +244,17 @@ export interface IHomePageFields {
   /** Sub Article 4 */
   subArticle4: IArticleWeb;
 
-  /** Promotion 1 */
-  promotion1: IPromotion;
-
-  /** Promotion 2 */
-  promotion2: IPromotion;
-
   /** Title */
   title: string;
 
   /** SEO */
   seo: ISeoMetadata;
+
+  /** Cover Article 1 */
+  coverArticle1: IArticleWeb;
+
+  /** Cover Article 2 */
+  coverArticle2: IArticleWeb;
 }
 
 /** Assembly */
@@ -390,23 +276,36 @@ export interface IHomePage extends Entry<IHomePageFields> {
   };
 }
 
-export interface IProductBrandingFields {
-  /** Color */
-  color:
-    | 'systemRed'
-    | 'systemOrange'
-    | 'systemYellow'
-    | 'systemGreen'
-    | 'systemTeal'
-    | 'systemBlue'
-    | 'systemIndigo'
-    | 'systemPurple'
-    | 'systemPink';
+export interface IIndexFields {
+  /** Name */
+  name: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Selected Tokens */
+  selectedTokens: IIndexToken[];
+
+  /** Framework Article */
+  frameworkArticle: IArticle;
+
+  /** Assessment Article */
+  assessmentArticle: IArticle;
+
+  /** Chart */
+  chart: Asset;
+
+  /** Highlight Article */
+  highlightArticle: IArticle;
+
+  /** description */
+  description: string;
+
+  /** Chart Body */
+  chartBody: string;
 }
 
-/** content topic for branding of products or articles, you decide :/ */
-
-export interface IProductBranding extends Entry<IProductBrandingFields> {
+export interface IIndex extends Entry<IIndexFields> {
   sys: {
     id: string;
     type: string;
@@ -415,7 +314,65 @@ export interface IProductBranding extends Entry<IProductBrandingFields> {
     locale: string;
     contentType: {
       sys: {
-        id: 'productBranding';
+        id: 'index';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IIndexTokenFields {
+  /** Name */
+  name: string;
+
+  /** Token */
+  token: IToken;
+
+  /** Selected */
+  selected: 'Yes' | 'No';
+
+  /** Commentary */
+  commentary: string;
+}
+
+export interface IIndexToken extends Entry<IIndexTokenFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'indexToken';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface INewsFields {
+  /** Top News */
+  topNews: Document;
+
+  /** Other News */
+  otherNews: Document;
+}
+
+/** Top Stories for industry insights home page */
+
+export interface INews extends Entry<INewsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'news';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -509,95 +466,6 @@ export interface IProductWeb extends Entry<IProductWebFields> {
     contentType: {
       sys: {
         id: 'productWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IPromotionFields {
-  /** Title */
-  title: string;
-
-  /** Subtitle */
-  subtitle: string;
-
-  /** Image */
-  image: Asset;
-
-  /** Points */
-  points: string[];
-
-  /** Call To Action */
-  callToAction: ICallToAction;
-}
-
-/** Topic */
-
-export interface IPromotion extends Entry<IPromotionFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'promotion';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IQuoteFields {
-  /** Title */
-  title?: string | undefined;
-}
-
-/** Topic */
-
-export interface IQuote extends Entry<IQuoteFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'quote';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IResearchLandingPageWebFields {
-  /** Title */
-  title: string;
-
-  /** products */
-  products: IProductWeb[];
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-export interface IResearchLandingPageWeb
-  extends Entry<IResearchLandingPageWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'researchLandingPageWeb';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -785,53 +653,73 @@ export interface ITag extends Entry<ITagFields> {
   };
 }
 
+export interface ITokenFields {
+  /** ID */
+  id: string;
+
+  /** Name */
+  name: string;
+
+  /** Icon */
+  icon: Asset;
+}
+
+export interface IToken extends Entry<ITokenFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'token';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | 'article'
-  | 'articleMobile'
   | 'articleWeb'
-  | 'attribute'
   | 'author'
-  | 'authorWeb'
-  | 'callToAction'
   | 'category'
   | 'categoryWeb'
   | 'homePage'
-  | 'productBranding'
+  | 'index'
+  | 'indexToken'
+  | 'news'
   | 'productTitle'
   | 'productWeb'
-  | 'promotion'
-  | 'quote'
-  | 'researchLandingPageWeb'
   | 'section'
   | 'seoMetadata'
   | 'subscription'
   | 'subscriptionProduct'
   | 'subscriptionWeb'
-  | 'tag';
+  | 'tag'
+  | 'token';
 
 export type IEntry =
   | IArticle
-  | IArticleMobile
   | IArticleWeb
-  | IAttribute
   | IAuthor
-  | IAuthorWeb
-  | ICallToAction
   | ICategory
   | ICategoryWeb
   | IHomePage
-  | IProductBranding
+  | IIndex
+  | IIndexToken
+  | INews
   | IProductTitle
   | IProductWeb
-  | IPromotion
-  | IQuote
-  | IResearchLandingPageWeb
   | ISection
   | ISeoMetadata
   | ISubscription
   | ISubscriptionProduct
   | ISubscriptionWeb
-  | ITag;
+  | ITag
+  | IToken;
 
 export type LOCALE_CODE = 'en-US';
 

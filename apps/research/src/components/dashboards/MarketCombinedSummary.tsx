@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 const Reports = dynamic(() => import('./LatestReport'), {
   ssr: false,
-  loading: () => <Card loading />,
+  loading: () => <Card loading style={{ height: 400 }} />,
 });
 
 interface MarketCombinedSummaryProps {
