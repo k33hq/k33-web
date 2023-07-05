@@ -1,6 +1,10 @@
-import { getArticleSummaryWidgets } from '@/api';
-import { ArticleCard, IndustryInsightsLayout, TabLayout } from '@/components';
-import { ArticleSummaryWidget } from '@/types';
+import { getArticleSummaryWidgets, getNews } from '@/api';
+import {
+  ArticleCard,
+  IndustryInsightsLayout,
+  News as NewsComponent,
+} from '@/components';
+import { ArticleSummaryWidget, News } from '@/types';
 import { getLevelTwos } from '@/utils';
 import { Col, Divider, Row, Typography } from 'antd';
 import { GetStaticProps } from 'next';
@@ -11,12 +15,14 @@ const { Text } = Typography;
 
 interface NewsProps {
   articles: ReadonlyArray<ArticleSummaryWidget>;
+  news: News;
 }
 
-const News: NextPageWithLayout<NewsProps> = ({ articles }) => {
+const News: NextPageWithLayout<NewsProps> = ({ articles, news }) => {
   return (
     <>
       <NextSeo />
+      <NewsComponent news={news} hideOtherStores />
       <div
         id="news-header"
         style={{
@@ -47,9 +53,11 @@ News.getLayout = function getLayout(page: React.ReactElement) {
 
 export const getStaticProps: GetStaticProps<NewsProps> = async () => {
   const articles = await getArticleSummaryWidgets('industry-insights/news');
+  const news = await getNews();
   return {
     props: {
       articles,
+      news,
     },
   };
 };
