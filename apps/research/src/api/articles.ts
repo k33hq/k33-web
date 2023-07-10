@@ -13,6 +13,7 @@ import {
   ArticleBodyFragment,
   SeoFragment,
   AssetFragment,
+  ArticleLinkedFragment,
 } from './fragments';
 
 const GetArticleSlugs = gql`
@@ -99,6 +100,17 @@ const GetArticlePage = gql`
               }
             }
           }
+          recommendedArticlesCollection {
+            items {
+              title
+              subtitle
+              thumbnail {
+                url
+                description
+              }
+              ...articleLinked
+            }
+          }
         }
       }
     }
@@ -107,6 +119,7 @@ const GetArticlePage = gql`
   ${SeoFragment}
   ${PublicSnippetFragment}
   ${ArticleBodyFragment}
+  ${ArticleLinkedFragment}
 `;
 
 const GetArticleWebWidgets = gql`

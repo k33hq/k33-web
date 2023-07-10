@@ -6,15 +6,20 @@ const { Text, Link: AntLink } = Typography;
 
 export interface SectionHeaderProps {
   title: string;
-  href: string;
+  href?: string;
   id?: string;
+  isNavigable?: boolean;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   href,
   id = `section-${title.toLowerCase().replace(' ', '-')}`,
+  isNavigable = true,
 }) => {
+  if (!href && isNavigable)
+    throw 'href is not defined in SectionHeader but is navigable';
+
   return (
     <div id={id} className="dashboard-header">
       <div
@@ -29,9 +34,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         }}
       >
         <Text strong>{title}</Text>
-        <Link href={href}>
-          <AntLink underline>See More</AntLink>
-        </Link>
+        {isNavigable && (
+          <Link href={href ?? window.location.href}>
+            <AntLink underline>See More</AntLink>
+          </Link>
+        )}
       </div>
       <Divider style={{ margin: 0 }} />
     </div>

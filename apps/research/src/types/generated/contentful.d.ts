@@ -29,13 +29,13 @@ export interface IArticleFields {
   reportDocument?: Asset | undefined;
 
   /** Product */
-  product: IProductTitle;
+  product?: IProductTitle | undefined;
 
   /** Tags */
-  tags: ITag[];
+  tags?: ITag[] | undefined;
 
   /** Category */
-  category: ICategory;
+  category?: ICategory | undefined;
 
   /** Thumbnail */
   thumbnail: Asset;
@@ -51,6 +51,12 @@ export interface IArticleFields {
 
   /** Public Snippet */
   publicSnippet: Document;
+
+  /** Related Articles */
+  relatedArticles?: IArticle[] | undefined;
+
+  /** Recommended Articles */
+  recommendedArticles?: IArticle[] | undefined;
 }
 
 /** Topic - An Article is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that forms the basis of how K33 Research core content (PDFs, Webinars, or Opinion) are distributed. */
@@ -73,20 +79,20 @@ export interface IArticle extends Entry<IArticleFields> {
 }
 
 export interface IArticleWebFields {
-  /** Article */
-  article: IArticle;
-
   /** Title */
   title: string;
+
+  /** Article */
+  article: IArticle;
 
   /** Article Slug */
   articleSlug?: string | undefined;
 
   /** Product Web */
-  product: IProductWeb;
+  product?: IProductWeb | undefined;
 
   /** Category Web */
-  category: ICategoryWeb;
+  category?: ICategoryWeb | undefined;
 
   /** Published Date */
   publishedDate: string;
@@ -98,7 +104,7 @@ export interface IArticleWebFields {
   seo?: ISeoMetadata | undefined;
 
   /** Section */
-  section: ISection;
+  section?: ISection | undefined;
 
   /** Sections */
   sections: ISection[];

@@ -7,6 +7,7 @@ import {
   ArticleInShorts,
   ArticleTakeAways,
   PrivateArticle,
+  ArticleRecommendations,
 } from './article-body';
 import { Divider } from 'antd';
 
@@ -32,6 +33,7 @@ const Article: React.FC<ArticleProps> = ({
   productId,
   priceId,
   reportDocument,
+  recommendedArticlesCollection,
   ...metadata
 }) => {
   return (
@@ -63,6 +65,9 @@ const Article: React.FC<ArticleProps> = ({
       >
         <ArticleBody body={body} />
       </PrivateArticle>
+      <ArticleRecommendations
+        recommendedArticlesCollection={recommendedArticlesCollection}
+      />
     </>
   );
 };

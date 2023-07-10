@@ -8,6 +8,7 @@ import {
 import { AuthorCollection, AuthorCompact } from './author';
 import { Asset, RichTextDocument } from './global';
 import { SeoData } from './Seo';
+import { ArticleSummaryLinked } from './indexes';
 
 export interface ArticleSummary extends RichTextDocument {}
 export interface ArticleBody extends RichTextDocument {}
@@ -16,7 +17,8 @@ export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
 export interface Article
   extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints'>,
     AuthorCollection<AuthorCompact>,
-    TagCollection<ITagFields> {
+    TagCollection<ITagFields>,
+    RecommendedArticle<ArticleSummaryLinked> {
   image: Asset;
   summary: ArticleSummary | undefined;
   body: ArticleBody | undefined;
@@ -39,6 +41,12 @@ export interface ArticlePage
 
 export interface ArticleWebCollection<T extends object> {
   articleWebCollection: {
+    items: ReadonlyArray<T>;
+  };
+}
+
+export interface RecommendedArticle<T extends object> {
+  recommendedArticlesCollection: {
     items: ReadonlyArray<T>;
   };
 }
