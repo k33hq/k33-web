@@ -26,6 +26,7 @@ import {
   getHomePage,
   getIndexSummary,
 } from '@/api';
+import { siteUsername } from '@/utils';
 
 builder.init(process.env.BUILDER_API_KEY!);
 
@@ -58,13 +59,30 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   return (
     <>
       <NextSeo
-        title={title}
+        themeColor="#000000"
         defaultTitle="K33 - Research"
+        robotsProps={{
+          maxImagePreview: 'large',
+        }}
+        title={title}
         description={description}
         twitter={{
-          handle: '@K33HQ',
+          handle: siteUsername,
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
-          cardType: 'twitter:card',
+          cardType: 'summary_large_image',
+        }}
+        openGraph={{
+          title: title,
+          description: description,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`,
+          type: 'website',
+          images: [
+            {
+              url: 'https://images.ctfassets.net/i0qyt2j9snzb/3bw9VhMe8k8aI66rUAsGuR/8885288dd10032e9c5bbd287c69b3dd8/Cover_image_research__5_.png?h=250',
+              alt: 'k33-logo',
+            },
+          ],
+          siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
         }}
       />
       <main id="research-home" className="research-home">
