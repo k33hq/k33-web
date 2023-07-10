@@ -8,6 +8,7 @@ import {
   SectionHeader,
 } from '@/components';
 import { ArticleSummaryWidget, ArticleWebWidget, News } from '@/types';
+import { siteUsername } from '@/utils';
 import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
@@ -26,7 +27,35 @@ const IndustryInsights: NextPageWithLayout<IndustryInsightsProps> = ({
 }) => {
   return (
     <>
-      <NextSeo title="Research - Industry Insights" />
+      <NextSeo
+        themeColor="#000000"
+        robotsProps={{
+          maxImagePreview: 'large',
+        }}
+        title={'Research - Industry Insights'}
+        description={
+          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+        }
+        twitter={{
+          handle: siteUsername,
+          site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
+          cardType: 'summary_large_image',
+        }}
+        openGraph={{
+          title: 'Research - Industry Insights',
+          description:
+            'Gain a competitive edge in the dynamic digital assets industry. Stay informed about the latest trends and news shaping the future landscape while navigating its intricate landscape with our expert industry insights.',
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/industry-insights`,
+          type: 'article:section',
+          images: [
+            {
+              url: 'https://images.ctfassets.net/i0qyt2j9snzb/3bw9VhMe8k8aI66rUAsGuR/8885288dd10032e9c5bbd287c69b3dd8/Cover_image_research__5_.png?h=250',
+              alt: 'k33-logo',
+            },
+          ],
+          siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
+        }}
+      />
       <div id="industry-news-and-latest-reports" className="divide-equal">
         <div
           id="latest-reports"

@@ -9,6 +9,7 @@ import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { NextPageWithLayout } from 'platform-js';
 import styles from './styles.module.scss';
+import { siteUsername } from '@/utils';
 
 const { Text } = Typography;
 const { useToken } = theme;
@@ -28,7 +29,35 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
   const { lg } = useBreakpoint();
   return (
     <>
-      <NextSeo title="Research - Monthly Outlooks" />
+      <NextSeo
+        themeColor="#000000"
+        robotsProps={{
+          maxImagePreview: 'large',
+        }}
+        title={'Research - Market Insights Monthly Outlooks'}
+        description={
+          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+        }
+        twitter={{
+          handle: siteUsername,
+          site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
+          cardType: 'summary_large_image',
+        }}
+        openGraph={{
+          title: 'Research - Market Insights Monthly Outlooks',
+          description:
+            "Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains.",
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/market-insights/monthly-outlooks`,
+          type: 'article:section',
+          images: [
+            {
+              url: 'https://images.ctfassets.net/i0qyt2j9snzb/3bw9VhMe8k8aI66rUAsGuR/8885288dd10032e9c5bbd287c69b3dd8/Cover_image_research__5_.png?h=250',
+              alt: 'k33-logo',
+            },
+          ],
+          siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
+        }}
+      />
       <Row
         wrap
         gutter={[16, 40]}
