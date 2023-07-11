@@ -111,6 +111,18 @@ const GetArticlePage = gql`
               ...articleLinked
             }
           }
+
+          relatedArticlesCollection {
+            items {
+              title
+              subtitle
+              thumbnail {
+                url
+                description
+              }
+              ...articleLinked
+            }
+          }
         }
       }
     }

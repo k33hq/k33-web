@@ -18,7 +18,8 @@ export interface Article
   extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints'>,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields>,
-    RecommendedArticle<ArticleSummaryLinked> {
+    RecommendedArticle<ArticleSummaryLinked>,
+    RelatedArticles<ArticleSummaryLinked> {
   image: Asset;
   summary: ArticleSummary | undefined;
   body: ArticleBody | undefined;
@@ -47,6 +48,12 @@ export interface ArticleWebCollection<T extends object> {
 
 export interface RecommendedArticle<T extends object> {
   recommendedArticlesCollection: {
+    items: ReadonlyArray<T>;
+  };
+}
+
+export interface RelatedArticles<T extends object> {
+  relatedArticlesCollection: {
     items: ReadonlyArray<T>;
   };
 }

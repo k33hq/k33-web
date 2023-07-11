@@ -1,4 +1,4 @@
-import { ArticleWebWidget } from '@/types';
+import { ArticleWebWidget, DividerConfig } from '@/types';
 import * as React from 'react';
 import ArticleCard from './ArticleCard';
 import { Col, Divider, Grid, Row } from 'antd';
@@ -11,6 +11,7 @@ interface DashboardListProps extends SectionHeaderProps {
   smallScreen?: number;
   hideSection?: boolean;
   column?: number;
+  lastDivider?: boolean;
 }
 
 const DashboardList: React.FC<DashboardListProps> = ({
@@ -18,23 +19,35 @@ const DashboardList: React.FC<DashboardListProps> = ({
   smallScreen,
   hideSection = false,
   column = 6,
+  lastDivider = true,
   ...section
 }) => {
   const { md } = useBreakpoint();
+
+  const isLastDivider = <T extends object>(
+    list: ReadonlyArray<T>,
+    index: number
+  ) => {
+    return list.length - 1 == index && !lastDivider;
+  };
 
   const getArticles = () => {
     if (!smallScreen)
       return (
         <>
-          {articles.map((article) => (
+          {articles.map((article, index) => (
             <>
               <Col xs={24} md={column} key={article.articleSlug}>
                 <ArticleCard {...article} />
               </Col>
               {!md && (
-                <Col xs={24} md={column} key={article.articleSlug}>
-                  <Divider style={{ margin: 0 }} />
-                </Col>
+                <>
+                  {!isLastDivider(articles, index) && (
+                    <Col xs={24} md={column} key={article.articleSlug}>
+                      <Divider style={{ margin: 0 }} />
+                    </Col>
+                  )}
+                </>
               )}
             </>
           ))}
@@ -54,7 +67,9 @@ const DashboardList: React.FC<DashboardListProps> = ({
                 <Col span={24} key={article.articleSlug! + index}>
                   <ArticleCard {...article} />
                 </Col>
-                <Divider style={{ margin: 0 }} />
+                {!isLastDivider(articles.slice(0, smallScreen), index) && (
+                  <Divider style={{ margin: 0 }} />
+                )}
               </>
             ))}
       </>

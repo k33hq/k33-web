@@ -10,7 +10,12 @@ import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from 'platform-js';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
-import { Article, ArticleSidebar, ShareArticle } from '@/components';
+import {
+  Article,
+  ArticleSidebar,
+  ShareArticle,
+  ArticleRecommendations,
+} from '@/components';
 import Head from 'next/head';
 import { siteUsername } from '@/utils';
 
@@ -34,7 +39,13 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
     sections,
     publishedDate,
     articleSlug,
-    article: { authorsCollection, tagsCollection, ...articleContent },
+    article: {
+      authorsCollection,
+      tagsCollection,
+      recommendedArticlesCollection,
+      relatedArticlesCollection,
+      ...articleContent
+    },
   } = page;
   const { productId, pricesCollection } = product;
   const { seo: pageSeo, article, title } = seo;
@@ -103,7 +114,11 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         description={pageSeo ? pageSeo.description : article.subtitle!}
         isAccessibleForFree={false}
       />
-      <Row gutter={{ xs: 40, lg: 50 }} className="article-layout">
+      <Row
+        gutter={{ xs: 40, lg: 50 }}
+        className="article-layout"
+        style={{ marginLeft: 0, marginRight: 0 }}
+      >
         <Col xs={24} lg={6} order={lg ? 0 : 2} className="article-sidebar">
           <ArticleSidebar
             authors={authorsCollection.items}
@@ -119,6 +134,16 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
             priceId={pricesCollection.items[0].stripeProductId}
           />
           <ShareArticle title={articleContent.title} />
+        </Col>
+        <Col xs={0} lg={2}></Col>
+      </Row>
+      <Row>
+        <Col xs={0} lg={6} order={lg ? 0 : 2}></Col>
+        <Col id="article" xs={22} lg={14}>
+          <ArticleRecommendations
+            recommendedArticlesCollection={recommendedArticlesCollection}
+            relatedArticlesCollection={relatedArticlesCollection}
+          />
         </Col>
         <Col xs={0} lg={2}></Col>
       </Row>

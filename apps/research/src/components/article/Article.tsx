@@ -14,7 +14,11 @@ import { Divider } from 'antd';
 interface ArticleProps
   extends Omit<
       ArticleType,
-      'authorsCollection' | 'tagsCollection' | 'coverPicture'
+      | 'authorsCollection'
+      | 'tagsCollection'
+      | 'coverPicture'
+      | 'recommendedArticlesCollection'
+      | 'relatedArticlesCollection'
     >,
     Pick<ArticlePage, 'sections' | 'publishedDate'> {
   productId: string;
@@ -33,7 +37,6 @@ const Article: React.FC<ArticleProps> = ({
   productId,
   priceId,
   reportDocument,
-  recommendedArticlesCollection,
   ...metadata
 }) => {
   return (
@@ -65,9 +68,6 @@ const Article: React.FC<ArticleProps> = ({
       >
         <ArticleBody body={body} />
       </PrivateArticle>
-      <ArticleRecommendations
-        recommendedArticlesCollection={recommendedArticlesCollection}
-      />
     </>
   );
 };

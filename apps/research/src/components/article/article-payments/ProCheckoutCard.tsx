@@ -35,7 +35,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
         backgroundColor: colorBgContainer,
         borderRadius: borderRadius,
         textAlign: 'start',
-        padding: '24px 32px',
+        padding: '20px 28px',
       }}
       direction="vertical"
       size={20}
@@ -66,7 +66,6 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
       <List
         split={false}
         style={{
-          minWidth: 287,
           width: '100%',
           padding: 0,
         }}
