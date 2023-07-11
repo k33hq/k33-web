@@ -246,7 +246,15 @@ export default ResearchHeader;
 
 const AppLogo: React.FC = () => {
   return (
-    <>
+    <Link
+      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 8,
+        alignItems: 'center',
+      }}
+    >
       <Image width={51} priority src={companyLogo} alt="company-logo" />
       <Image
         priority
@@ -257,6 +265,6 @@ const AppLogo: React.FC = () => {
         src={researchLogo}
         alt="research-logo"
       />
-    </>
+    </Link>
   );
 };
