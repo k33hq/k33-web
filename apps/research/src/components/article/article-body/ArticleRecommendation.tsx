@@ -15,7 +15,8 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
   recommendedArticlesCollection: { items: articles },
   relatedArticlesCollection: { items: relatedArticles },
 }) => {
-  const mergedArticles = [...relatedArticles, ...articles]
+  const mergedArticles = [...relatedArticles, ...articles];
+  const uniqueArticles = [...new Set(mergedArticles)]
     .map(
       ({
         linkedFrom: {
@@ -42,7 +43,7 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
       <NamedDivider label="You may also like" />
       <DashboardList
         column={8}
-        articles={mergedArticles}
+        articles={uniqueArticles}
         title="You may also like"
         isNavigable={false}
         hideSection
