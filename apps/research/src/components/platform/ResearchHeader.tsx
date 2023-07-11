@@ -254,10 +254,20 @@ const AppLogo: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
+      <Link
+        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}
+        style={{
+          cursor: 'pointer',
+        }}
+      >
         <Image width={51} priority src={companyLogo} alt="company-logo" />
       </Link>
-      <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}>
+      <Link
+        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}
+        style={{
+          cursor: 'pointer',
+        }}
+      >
         <Image
           priority
           width={98}
