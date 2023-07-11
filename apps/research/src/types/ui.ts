@@ -17,3 +17,5 @@ export interface AppStructure {
 // export type PageTabs = Array<PageTab>;
 
 export type Navigations = Array<Navigation>;
+
+export type DividerConfig = boolean | { hideLast: boolean; hideFirst: boolean };

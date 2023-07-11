@@ -7,13 +7,18 @@ import {
   ArticleInShorts,
   ArticleTakeAways,
   PrivateArticle,
+  ArticleRecommendations,
 } from './article-body';
 import { Divider } from 'antd';
 
 interface ArticleProps
   extends Omit<
       ArticleType,
-      'authorsCollection' | 'tagsCollection' | 'coverPicture'
+      | 'authorsCollection'
+      | 'tagsCollection'
+      | 'coverPicture'
+      | 'recommendedArticlesCollection'
+      | 'relatedArticlesCollection'
     >,
     Pick<ArticlePage, 'sections' | 'publishedDate'> {
   productId: string;
