@@ -84,7 +84,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
 
   React.useEffect(() => {
     if (state === 'UNREGISTRED') {
-      register();
+      register().then((state) => router.reload());
     }
   }, [state, router]);
 
