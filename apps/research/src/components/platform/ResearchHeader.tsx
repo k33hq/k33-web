@@ -29,7 +29,7 @@ import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { getUserInformation, logout } from 'core';
+import { getUserInformation, logout, register } from 'core';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -81,6 +81,12 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
       }
     });
   }, []);
+
+  React.useEffect(() => {
+    if (state === 'UNREGISTRED') {
+      register().then((state) => router.reload());
+    }
+  }, [state, router]);
 
   return (
     <>
