@@ -125,7 +125,12 @@ const Articles: NextPageWithLayout = () => {
           >
             <Row>
               <Col span={22} offset={1}>
-                <div id="search-section">
+                <div
+                  id="search-section"
+                  style={{
+                    margin: 32,
+                  }}
+                >
                   <SearchText />
                 </div>
               </Col>
