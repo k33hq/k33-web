@@ -5,3 +5,4 @@ export * from './contentful';
 export * from './token-valuation';
 export * from './dashboards';
 export * from './settings';
+export * from './search';

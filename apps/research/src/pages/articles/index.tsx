@@ -3,16 +3,16 @@ import { NextPageWithLayout } from 'platform-js';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
-  SearchBox,
   Hits,
-  RefinementList,
   useInstantSearch,
   Configure,
 } from 'react-instantsearch-hooks-web';
 import { Asset } from '@/types';
-import { ArticleCard, ArticleSummary } from '@/components';
+import { ArticleCard, SearchText } from '@/components';
 import singletonRouter from 'next/router';
 import { createInstantSearchRouterNext } from 'react-instantsearch-hooks-router-nextjs';
+import { NextSeo } from 'next-seo';
+import { siteUsername } from '@/utils';
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -71,60 +71,90 @@ const Articles: NextPageWithLayout = () => {
   } = useToken();
 
   return (
-    <InstantSearch
-      searchClient={searchClient}
-      indexName="articles"
-      routing={{ router: createInstantSearchRouterNext({ singletonRouter }) }}
-      insights={true}
-    >
-      <Configure analytics={false} hitsPerPage={40} />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          boxSizing: 'border-box',
+    <>
+      <NextSeo
+        themeColor="#000000"
+        robotsProps={{
+          maxImagePreview: 'large',
         }}
+        title={'Research - Articles'}
+        description={
+          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+        }
+        twitter={{
+          handle: siteUsername,
+          site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
+          cardType: 'summary_large_image',
+        }}
+        openGraph={{
+          title: 'Research - Articles',
+          description:
+            'Gain a competitive edge in the dynamic digital assets industry. Stay informed about the latest trends and news shaping the future landscape while navigating its intricate landscape with our expert industry insights.',
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles`,
+          type: 'article:section',
+          images: [
+            {
+              url: 'https://images.ctfassets.net/i0qyt2j9snzb/3bw9VhMe8k8aI66rUAsGuR/8885288dd10032e9c5bbd287c69b3dd8/Cover_image_research__5_.png?h=250',
+              alt: 'k33-logo',
+            },
+          ],
+          siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
+        }}
+      />
+      <InstantSearch
+        searchClient={searchClient}
+        indexName="articles"
+        routing={{ router: createInstantSearchRouterNext({ singletonRouter }) }}
+        insights={true}
       >
-        <section
-          id="page-title"
+        <Configure analytics={false} hitsPerPage={40} />
+        <div
           style={{
-            maxWidth: 1440,
-            alignSelf: 'center',
-            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            boxSizing: 'border-box',
           }}
         >
-          <Row>
-            <Col span={22} offset={1}>
-              <div id="search-section">
-                <SearchBox placeholder="Search" autoFocus />
-                <RefinementList attribute="tags" />
-              </div>
-            </Col>
-          </Row>
-        </section>
-      </div>
-      <Layout
-        style={{
-          display: 'flex',
-          backgroundColor: colorBgContainer,
-        }}
-      >
-        <section
-          id="page-title"
+          <section
+            id="page-title"
+            style={{
+              maxWidth: 1440,
+              alignSelf: 'center',
+              width: '100%',
+            }}
+          >
+            <Row>
+              <Col span={22} offset={1}>
+                <div id="search-section">
+                  <SearchText />
+                </div>
+              </Col>
+            </Row>
+          </section>
+        </div>
+        <Layout
           style={{
-            maxWidth: 1440,
-            alignSelf: 'center',
-            width: '100%',
+            display: 'flex',
+            backgroundColor: colorBgContainer,
           }}
         >
-          <Row>
-            <Col span={22} offset={1} className="default-body">
-              <Hits hitComponent={Hit} />
-            </Col>
-          </Row>
-        </section>
-      </Layout>
-    </InstantSearch>
+          <section
+            id="page-title"
+            style={{
+              maxWidth: 1440,
+              alignSelf: 'center',
+              width: '100%',
+            }}
+          >
+            <Row>
+              <Col span={22} offset={1} className="default-body">
+                <Hits hitComponent={Hit} />
+              </Col>
+            </Row>
+          </section>
+        </Layout>
+      </InstantSearch>
+    </>
   );
 };
 
