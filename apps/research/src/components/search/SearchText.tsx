@@ -47,6 +47,12 @@ const SearchText: React.FC = () => {
       <Space.Compact size={'small'}>
         {items.map((item) => (
           <CheckableTag
+            style={{
+              borderRadius: 4,
+              border: !item.isRefined
+                ? '1px solid var(--color-text, rgba(0, 0, 0, 0.88))'
+                : '',
+            }}
             key={item.value}
             checked={item.isRefined}
             onClick={(e) => refineSearch(item.value)}

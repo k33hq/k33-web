@@ -1,69 +1,19 @@
-import { Col, Row, Layout, Typography, theme } from 'antd';
+import { Col, Row, Layout, theme } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import algoliasearch from 'algoliasearch/lite';
-import {
-  InstantSearch,
-  Hits,
-  useInstantSearch,
-  Configure,
-} from 'react-instantsearch-hooks-web';
-import { Asset } from '@/types';
-import { ArticleCard, SearchText } from '@/components';
+import { InstantSearch, Configure } from 'react-instantsearch-hooks-web';
+import { SearchHits, SearchText } from '@/components';
 import singletonRouter from 'next/router';
 import { createInstantSearchRouterNext } from 'react-instantsearch-hooks-router-nextjs';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 
 const { useToken } = theme;
-const { Title, Text } = Typography;
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!,
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY!
 );
-
-interface ResultBoxProps {
-  hit: {
-    authors: ReadonlyArray<string>;
-    image: Omit<Asset, 'description'>;
-    objectID: string;
-    publishedAt: string;
-    publishedDate: string;
-    section: string;
-    slug: string;
-    subtitle: string;
-    summary: string;
-    tags: ReadonlyArray<string>;
-    title: string;
-  };
-}
-
-// TODO: hooks
-
-const Hit: React.FC<ResultBoxProps> = ({ hit }) => {
-  const { status } = useInstantSearch();
-
-  const imageUrl = hit.image ? hit.image.url : '';
-  const imageDescription = hit.image ? hit.image.title : '';
-
-  return (
-    <>
-      {['loading', 'stalled', 'error'].includes(status) ? null : (
-        <ArticleCard
-          article={{
-            subtitle: hit.subtitle,
-            title: hit.title,
-
-            thumbnail: { url: imageUrl, description: imageDescription },
-            tagsCollection: { items: hit.tags.map((tag) => ({ title: tag })) },
-          }}
-          publishedDate={hit.publishedDate}
-          articleSlug={hit.slug}
-        />
-      )}
-    </>
-  );
-};
 
 const Articles: NextPageWithLayout = () => {
   const {
@@ -128,7 +78,7 @@ const Articles: NextPageWithLayout = () => {
                 <div
                   id="search-section"
                   style={{
-                    margin: 32,
+                    padding: '32px 96px',
                   }}
                 >
                   <SearchText />
@@ -153,7 +103,7 @@ const Articles: NextPageWithLayout = () => {
           >
             <Row>
               <Col span={22} offset={1} className="default-body">
-                <Hits hitComponent={Hit} />
+                <SearchHits />
               </Col>
             </Row>
           </section>
