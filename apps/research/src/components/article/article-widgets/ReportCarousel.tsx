@@ -12,12 +12,7 @@ import {
   Button,
 } from 'antd';
 import * as React from 'react';
-import {
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
+
 import styles from './styles.module.scss';
 import Link from 'next/link';
 import { formatDateAndTime } from '@contentful/f36-datetime';

@@ -7,6 +7,7 @@ import singletonRouter from 'next/router';
 import { createInstantSearchRouterNext } from 'react-instantsearch-hooks-router-nextjs';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
+import styles from './styles.module.scss';
 
 const { useToken } = theme;
 
@@ -75,12 +76,7 @@ const Articles: NextPageWithLayout = () => {
           >
             <Row>
               <Col span={22} offset={1}>
-                <div
-                  id="search-section"
-                  style={{
-                    padding: '32px 96px',
-                  }}
-                >
+                <div id="search-section" className={styles.searchLayout}>
                   <SearchText />
                 </div>
               </Col>
@@ -99,6 +95,7 @@ const Articles: NextPageWithLayout = () => {
               maxWidth: 1440,
               alignSelf: 'center',
               width: '100%',
+              paddingTop: 40,
             }}
           >
             <Row>

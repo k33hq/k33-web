@@ -1,11 +1,8 @@
 import * as React from 'react';
-import {
-  RefinementList,
-  useSearchBox,
-  useRefinementList,
-} from 'react-instantsearch-hooks-web';
+import { useSearchBox, useRefinementList } from 'react-instantsearch-hooks-web';
 import { UserOutlined } from '@ant-design/icons';
 import { Input, Space, Tag } from 'antd';
+import styles from './styles.module.scss';
 
 const { CheckableTag } = Tag;
 
@@ -30,21 +27,14 @@ const SearchText: React.FC = () => {
     refine(event.target.value);
   };
   return (
-    <div
-      id="search-section"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-      }}
-    >
+    <div id="search-section" className={styles.searchBox}>
       <Input
         size="large"
         placeholder="Search by keyword, content or author"
         prefix={<UserOutlined />}
         onChange={handleSearch}
       />
-      <Space.Compact size={'small'}>
+      <div id="refinement-list" className={styles.refinementList}>
         {items.map((item) => (
           <CheckableTag
             style={{
@@ -60,7 +50,7 @@ const SearchText: React.FC = () => {
             {item.label}
           </CheckableTag>
         ))}
-      </Space.Compact>
+      </div>
     </div>
   );
 };
