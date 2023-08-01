@@ -20,6 +20,7 @@ import {
   MenuOutlined,
   UserOutlined,
   SettingOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
 import * as React from 'react';
 import Image from 'next/image';
@@ -164,6 +165,21 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                         }
                       </Col>
                     )}
+                    <Col
+                      style={{
+                        paddingRight: 24,
+                      }}
+                    >
+                      <Link
+                        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles`}
+                      >
+                        <Button
+                          size="large"
+                          type="text"
+                          icon={<SearchOutlined />}
+                        ></Button>
+                      </Link>
+                    </Col>
                     <Col
                       style={{
                         paddingRight: 0,
