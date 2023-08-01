@@ -15,7 +15,6 @@ import Link from 'next/link';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { EllipsisConfig } from 'antd/es/typography/Base';
-import { TitleProps } from 'antd/es/typography/Title';
 
 const { Text, Paragraph } = Typography;
 const { useToken } = theme;
