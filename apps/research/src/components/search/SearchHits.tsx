@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Asset } from '@/types';
-import {
-  useInstantSearch,
-  Hits,
-  Highlight,
-  useHits,
-} from 'react-instantsearch-hooks-web';
+import { useHits } from 'react-instantsearch-hooks-web';
 import { ArticleCard } from '@/components';
 import { Col, Row } from 'antd';
 
@@ -66,22 +61,20 @@ const SearchHits: React.FC = () => {
             ? hit.horizontalThumbnail.title
             : '';
           return (
-            <Col xs={24} sm={24} md={6} key={hit.publishedDate}>
-              {['loading', 'stalled', 'error'].includes(status) ? null : (
-                <ArticleCard
-                  article={{
-                    subtitle: hit.subtitle,
-                    title: hit.title,
+            <Col xs={24} sm={24} md={6} key={hit.objectID}>
+              <ArticleCard
+                article={{
+                  subtitle: hit.subtitle,
+                  title: hit.title,
 
-                    thumbnail: { url: imageUrl, description: imageDescription },
-                    tagsCollection: {
-                      items: hit.tags.map((tag) => ({ title: tag })),
-                    },
-                  }}
-                  publishedDate={hit.publishedDate}
-                  articleSlug={hit.slug}
-                />
-              )}
+                  thumbnail: { url: imageUrl, description: imageDescription },
+                  tagsCollection: {
+                    items: hit.tags.map((tag) => ({ title: tag })),
+                  },
+                }}
+                publishedDate={hit.publishedDate}
+                articleSlug={hit.slug}
+              />
             </Col>
           );
         })}

@@ -237,6 +237,9 @@ importers:
       framer-motion:
         specifier: ^10.12.16
         version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
+      instantsearch.js:
+        specifier: ^4.56.8
+        version: 4.56.8(algoliasearch@4.18.0)
       next:
         specifier: ^13.1.1
         version: 13.1.6(@babel/core@7.20.12)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
@@ -2334,6 +2337,15 @@ packages:
       algoliasearch: 4.18.0
     dev: false
 
+  /algoliasearch-helper@3.14.0(algoliasearch@4.18.0):
+    resolution: {integrity: sha512-gXDXzsSS0YANn5dHr71CUXOo84cN4azhHKUbg71vAWnH+1JBiR4jf7to3t3JHXknXkbV0F7f055vUSBKrltHLQ==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+    dependencies:
+      '@algolia/events': 4.0.1
+      algoliasearch: 4.18.0
+    dev: false
+
   /algoliasearch@4.18.0:
     resolution: {integrity: sha512-pCuVxC1SVcpc08ENH32T4sLKSyzoU7TkRIDBMwSLfIiW+fq4znOmWDkAygHZ6pRcO9I1UJdqlfgnV7TRj+MXrA==}
     dependencies:
@@ -4228,6 +4240,27 @@ packages:
       '@types/qs': 6.9.7
       algoliasearch: 4.18.0
       algoliasearch-helper: 3.13.3(algoliasearch@4.18.0)
+      hogan.js: 3.0.2
+      htm: 3.1.1
+      preact: 10.15.1
+      qs: 6.9.7
+      search-insights: 2.7.0
+    dev: false
+
+  /instantsearch.js@4.56.8(algoliasearch@4.18.0):
+    resolution: {integrity: sha512-40DJ5l70ZzVzWPK3qrHTKlJLaHGq1PRZpzfL6281P2mz8G19WOHQHKAP4Zh6a4lOZaRtJQUiPjQwqCHSurXZ5g==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+    dependencies:
+      '@algolia/events': 4.0.1
+      '@algolia/ui-components-highlight-vdom': 1.2.1
+      '@algolia/ui-components-shared': 1.2.1
+      '@types/dom-speech-recognition': 0.0.1
+      '@types/google.maps': 3.53.4
+      '@types/hogan.js': 3.0.1
+      '@types/qs': 6.9.7
+      algoliasearch: 4.18.0
+      algoliasearch-helper: 3.14.0(algoliasearch@4.18.0)
       hogan.js: 3.0.2
       htm: 3.1.1
       preact: 10.15.1
