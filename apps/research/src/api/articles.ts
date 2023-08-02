@@ -104,7 +104,7 @@ const GetArticlePage = gql`
             items {
               title
               subtitle
-              thumbnail {
+              horizontalThumbnail {
                 url
                 description
               }
@@ -116,7 +116,7 @@ const GetArticlePage = gql`
             items {
               title
               subtitle
-              thumbnail {
+              horizontalThumbnail {
                 url
                 description
               }

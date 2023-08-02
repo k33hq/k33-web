@@ -33,6 +33,17 @@ export interface ArticleSummaryLinked
   };
 }
 
+export interface RelatedArticleSummaryLinked
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail'> {
+  linkedFrom: {
+    articleWebCollection: {
+      items: ReadonlyArray<
+        Pick<ArticleWebWidget, 'articleSlug' | 'publishedDate'>
+      >;
+    };
+  };
+}
+
 export interface IndexArticleLinked extends Pick<ArticleWidget, 'title'> {
   linkedFrom: {
     articleWebCollection: {

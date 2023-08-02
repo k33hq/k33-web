@@ -1,7 +1,7 @@
 import { getArticleWebWidgets } from '@/api';
 import { IndustryInsightsLayout, ReportCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
-import { getLevelTwos, siteUsername } from '@/utils';
+import { siteUsername } from '@/utils';
 import { Grid, Row, Col } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';

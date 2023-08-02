@@ -28,14 +28,14 @@ export interface IArticleFields {
   /** Report Document */
   reportDocument?: Asset | undefined;
 
-  /** Product */
-  product?: IProductTitle | undefined;
-
   /** Tags */
   tags?: ITag[] | undefined;
 
-  /** Category */
-  category?: ICategory | undefined;
+  /** Horizontal Thumbnail */
+  horizontalThumbnail: Asset;
+
+  /** Vertical Thumbnail */
+  verticalThumbnail?: Asset | undefined;
 
   /** Thumbnail */
   thumbnail: Asset;
@@ -88,12 +88,6 @@ export interface IArticleWebFields {
   /** Article Slug */
   articleSlug?: string | undefined;
 
-  /** Product Web */
-  product?: IProductWeb | undefined;
-
-  /** Category Web */
-  category?: ICategoryWeb | undefined;
-
   /** Published Date */
   publishedDate: string;
 
@@ -102,9 +96,6 @@ export interface IArticleWebFields {
 
   /** SEO */
   seo?: ISeoMetadata | undefined;
-
-  /** Section */
-  section?: ISection | undefined;
 
   /** Sections */
   sections: ISection[];
@@ -155,78 +146,6 @@ export interface IAuthor extends Entry<IAuthorFields> {
     contentType: {
       sys: {
         id: 'author';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ICategoryFields {
-  /** Title */
-  title: string;
-
-  /** Description */
-  description: string;
-}
-
-/** Topic - A Category is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that allows us to group K33 Research Articles by their product category (Report, Webinar, Analysis, Opinion or News). */
-
-export interface ICategory extends Entry<ICategoryFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'category';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ICategoryWebFields {
-  /** Title */
-  title: string;
-
-  /** Category Slug */
-  categorySlug: string;
-
-  /** Category */
-  category: ICategory;
-
-  /** Priority */
-  priority: number;
-
-  /** Products */
-  products?: IProductWeb[] | undefined;
-
-  /** Highlighted Products */
-  highlightedProducts: IProductWeb[];
-
-  /** SEO */
-  seo: ISeoMetadata;
-
-  /** Type */
-  type?: 'highlighted' | undefined;
-}
-
-/** Assembly for Category Content Type */
-
-export interface ICategoryWeb extends Entry<ICategoryWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'categoryWeb';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -379,99 +298,6 @@ export interface INews extends Entry<INewsFields> {
     contentType: {
       sys: {
         id: 'news';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IProductTitleFields {
-  /** Title */
-  title?: string | undefined;
-
-  /** Description */
-  description: string;
-
-  /** Image */
-  image: Asset;
-
-  /** Features */
-  features?: string[] | undefined;
-
-  /** Sample Report */
-  sampleReport?: Asset | undefined;
-
-  /** Caption */
-  caption?: string | undefined;
-
-  /** Product Image */
-  productImage?: Asset | undefined;
-
-  /** Landing Page Image */
-  landingPageImage?: Asset | undefined;
-
-  /** Logo */
-  logo: Asset;
-
-  /** Theme Image */
-  themeImage?: Asset | undefined;
-}
-
-/** Topic - A Product is an independently presentable, reusable, and individually created item that allows us to group K33 Research Articles by the product they contain or represent (eg. Ahead of the Curve, or Vetle’s View). */
-
-export interface IProductTitle extends Entry<IProductTitleFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'productTitle';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IProductWebFields {
-  /** Title */
-  title: string;
-
-  /** Product Slug */
-  productSlug: string;
-
-  /** Product */
-  product: IProductTitle;
-
-  /** Category Web */
-  categoryWeb?: ICategoryWeb | undefined;
-
-  /** Branding */
-  branding: IProductBranding;
-
-  /** Subscription Page */
-  subscriptionPage: ISubscriptionWeb;
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-/** Assembly for product content type on the web */
-
-export interface IProductWeb extends Entry<IProductWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'productWeb';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -691,14 +517,10 @@ export type CONTENT_TYPE =
   | 'article'
   | 'articleWeb'
   | 'author'
-  | 'category'
-  | 'categoryWeb'
   | 'homePage'
   | 'index'
   | 'indexToken'
   | 'news'
-  | 'productTitle'
-  | 'productWeb'
   | 'section'
   | 'seoMetadata'
   | 'subscription'
@@ -711,14 +533,10 @@ export type IEntry =
   | IArticle
   | IArticleWeb
   | IAuthor
-  | ICategory
-  | ICategoryWeb
   | IHomePage
   | IIndex
   | IIndexToken
   | INews
-  | IProductTitle
-  | IProductWeb
   | ISection
   | ISeoMetadata
   | ISubscription

@@ -8,7 +8,7 @@ import {
 import { AuthorCollection, AuthorCompact } from './author';
 import { Asset, RichTextDocument } from './global';
 import { SeoData } from './Seo';
-import { ArticleSummaryLinked } from './indexes';
+import { RelatedArticleSummaryLinked } from './indexes';
 
 export interface ArticleSummary extends RichTextDocument {}
 export interface ArticleBody extends RichTextDocument {}
@@ -18,8 +18,8 @@ export interface Article
   extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints'>,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields>,
-    RecommendedArticle<ArticleSummaryLinked>,
-    RelatedArticles<ArticleSummaryLinked> {
+    RecommendedArticle<RelatedArticleSummaryLinked>,
+    RelatedArticles<RelatedArticleSummaryLinked> {
   image: Asset;
   summary: ArticleSummary | undefined;
   body: ArticleBody | undefined;
@@ -62,6 +62,8 @@ export interface RelatedArticles<T extends object> {
 export interface ArticleWidget
   extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection'> {
   thumbnail: Asset;
+  horizontalThumbnail: Asset;
+  verticalThumbnail: Asset;
 }
 
 export interface ArticleWebWidget
@@ -71,7 +73,7 @@ export interface ArticleWebWidget
 
 export interface ArticleSummaryWidget
   extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
-  article: ArticleWidget;
+  article: Omit<ArticleWidget, 'horizontalThumbnail' | 'verticalThumbnail'>;
 }
 
 export interface ArticleSummaryWithCover

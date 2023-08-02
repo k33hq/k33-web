@@ -1,4 +1,4 @@
-import { ArticleWebWidget, DividerConfig } from '@/types';
+import { ArticleWebWidget, ArticleSummaryWidget } from '@/types';
 import * as React from 'react';
 import ArticleCard from './ArticleCard';
 import { Col, Divider, Grid, Row } from 'antd';
@@ -7,7 +7,7 @@ import { SectionHeader, SectionHeaderProps } from '@/components';
 const { useBreakpoint } = Grid;
 
 interface DashboardListProps extends SectionHeaderProps {
-  articles: ReadonlyArray<ArticleWebWidget>;
+  articles: ReadonlyArray<ArticleSummaryWidget>;
   smallScreen?: number;
   hideSection?: boolean;
   column?: number;
