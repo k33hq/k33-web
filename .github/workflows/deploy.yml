@@ -127,6 +127,9 @@ jobs:
           # domains
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          #algolia
+          NEXT_PUBLIC_ALGOLIA_APP_ID: op://k33-web-env/prod/algolia/APP_ID
+          NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: op://k33-web-env/prod/algolia/SEARCH_API_KEY
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies

@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Asset } from '@/types';
-import {
-  useInstantSearch,
-  Hits,
-  Highlight,
-  useHits,
-} from 'react-instantsearch-hooks-web';
+import { useHits } from 'react-instantsearch-hooks-web';
 import { ArticleCard } from '@/components';
 import { Col, Row } from 'antd';
 

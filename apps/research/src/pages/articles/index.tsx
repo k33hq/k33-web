@@ -3,10 +3,6 @@ import { NextPageWithLayout } from 'platform-js';
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, Configure } from 'react-instantsearch-hooks-web';
 import { SearchHits, SearchText } from '@/components';
-import singletonRouter from 'next/router';
-import { createInstantSearchRouterNext } from 'react-instantsearch-hooks-router-nextjs';
-import { history } from 'instantsearch.js/es/lib/routers';
-import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 import styles from './styles.module.scss';
@@ -22,8 +18,6 @@ const Articles: NextPageWithLayout = () => {
   const {
     token: { colorBgContainer },
   } = useToken();
-
-  const router = useRouter();
 
   return (
     <>
