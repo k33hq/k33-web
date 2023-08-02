@@ -44,13 +44,11 @@ const OutlookCard: React.FC = () => {
               margin: 0,
             }}
           >
-            The resurgence of the U.S. ETF race represents a monumental change
-            to bitcoin, with all ingredients in place for a spicy market in the
-            coming nine months in favor of more aggressive positioning in BTC.
-            Significant momentum should erupt ahead of the first deadline in
-            late August to early September, while the final ETF deadline is
-            itching closer to BTC’s 2024 halving, creating two potential
-            cyclical coinciding cyclical tailwinds.
+            The anemic summer revives the attractiveness of options straddles as
+            we approach months filled with known knowns and unknown unknowns.
+            Further, the slow and steady market represents a continued appealing
+            environment to build exposure as we head towards a robust cyclical
+            period for BTC.
           </Paragraph>
           <Text
             type="secondary"

@@ -53,7 +53,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               width: '100%',
             }}
             preview={false}
-            alt={thumbnail.description}
+            alt={thumbnail.description ?? ''}
             src={thumbnail.url}
           />
         </Link>

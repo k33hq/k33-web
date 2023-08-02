@@ -48,8 +48,6 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
     hasPrevious,
   } = useTraverse(reports.slice().reverse() as Array<ArticleSummaryWithCover>);
 
-  console.log(xl);
-
   return (
     <Card
       headStyle={{

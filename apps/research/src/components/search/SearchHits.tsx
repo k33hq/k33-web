@@ -40,8 +40,6 @@ const SearchHits: React.FC = () => {
     title: string;
   }>();
 
-  console.log(results);
-
   if (results!.__isArtificial && results!.nbHits === 0) {
     return (
       <div>

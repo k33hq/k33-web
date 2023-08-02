@@ -25,9 +25,7 @@ export const useCustomerDashboard = () => {
       a.href = response.url;
       a.click();
       document.body.removeChild(a);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return { customerDashboard, isLoading };
@@ -43,9 +41,7 @@ export const useCustomerCheckout = (priceId: string) => {
         cancel_url: window.location.href,
       }).unwrap();
       window.location.href = response.url;
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return { doCheckOut, isLoading };

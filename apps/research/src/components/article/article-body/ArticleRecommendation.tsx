@@ -1,5 +1,5 @@
 import {
-  ArticleSummaryLinked,
+  RelatedArticleSummaryLinked,
   RecommendedArticle,
   RelatedArticles,
 } from '@/types';
@@ -8,19 +8,15 @@ import { DashboardList } from '../article-widgets';
 import { NamedDivider } from '@/components';
 
 interface ArticleRecommendationProps
-  extends RecommendedArticle<ArticleSummaryLinked>,
-    RelatedArticles<ArticleSummaryLinked> {}
+  extends RecommendedArticle<RelatedArticleSummaryLinked>,
+    RelatedArticles<RelatedArticleSummaryLinked> {}
 
 const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
   recommendedArticlesCollection: { items: articles },
   relatedArticlesCollection: { items: relatedArticles },
 }) => {
-
-
   const mergedArticles = [...relatedArticles, ...articles];
   if (mergedArticles.length <= 0) return;
-
- 
 
   const uniqueArticles = [...new Set(mergedArticles)]
     .map(
@@ -28,20 +24,21 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
         linkedFrom: {
           articleWebCollection: { items },
         },
+        horizontalThumbnail,
         ...rest
       }) => {
         return {
           article: {
             ...rest,
             tagsCollection: { items: [] },
+            thumbnail: horizontalThumbnail,
           },
           articleSlug: items[0].articleSlug,
           publishedDate: items[0].publishedDate,
-        }
+        };
       }
     )
     .splice(0, 3);
-
 
   return (
     <div

@@ -43,8 +43,6 @@ const ReportCarousel: React.FC<ReportCarouselProps> = ({ reports }) => {
 
   const isBrowser = useBrowser();
 
-  console.log(isBrowser);
-
   const { md, sm } = useBreakpoint();
 
   return (
