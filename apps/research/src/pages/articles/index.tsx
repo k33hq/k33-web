@@ -5,6 +5,8 @@ import { InstantSearch, Configure } from 'react-instantsearch-hooks-web';
 import { SearchHits, SearchText } from '@/components';
 import singletonRouter from 'next/router';
 import { createInstantSearchRouterNext } from 'react-instantsearch-hooks-router-nextjs';
+import { history } from 'instantsearch.js/es/lib/routers';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 import styles from './styles.module.scss';
@@ -20,6 +22,8 @@ const Articles: NextPageWithLayout = () => {
   const {
     token: { colorBgContainer },
   } = useToken();
+
+  const router = useRouter();
 
   return (
     <>
@@ -52,13 +56,7 @@ const Articles: NextPageWithLayout = () => {
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
         }}
       />
-      <InstantSearch
-        searchClient={searchClient}
-        indexName="articles"
-        routing={{ router: createInstantSearchRouterNext({ singletonRouter }) }}
-        insights={true}
-      >
-        <Configure analytics={false} hitsPerPage={40} />
+      <InstantSearch searchClient={searchClient} indexName="articles" routing>
         <div
           style={{
             display: 'flex',
