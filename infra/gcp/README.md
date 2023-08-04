@@ -1,10 +1,14 @@
 # Infra
 
-## Load secrets from 1Password to .env
+## Load secrets from 1Password to .env files
 
 ```shell
-APP_ENV=dev op inject -i .env.template -o .env --account k33.1password.com
+# dev
+APP_ENV=dev op inject -i .env.template -o .env.development.local --account k33.1password.com
+cp .env.development.local .env
 
-APP_ENV=prod op inject -i .env.template -o .env --account k33.1password.com
+# prod
+APP_ENV=prod op inject -i .env.template -o .env.production.local --account k33.1password.com
+cp .env.production.local .env
 ```
 
