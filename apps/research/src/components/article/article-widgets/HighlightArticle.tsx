@@ -14,7 +14,7 @@ const { useToken } = theme;
 const HighlightArticle: React.FC<HighlightArticleProps> = ({
   subtitle,
   title,
-  thumbnail,
+  horizontalThumbnail,
   linkedFrom: {
     articleWebCollection: { items },
   },
@@ -76,8 +76,8 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
           href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
         >
           <Image
-            src={thumbnail.url}
-            alt={thumbnail.description}
+            src={horizontalThumbnail.url}
+            alt={horizontalThumbnail.description}
             preview={false}
           />
         </Link>

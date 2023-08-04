@@ -143,7 +143,10 @@ const GetArticleWebWidgets = gql`
     ) {
       items {
         article {
-          thumbnail {
+          horizontalThumbnail {
+            ...asset
+          }
+          verticalThumbnail {
             ...asset
           }
           title
@@ -170,7 +173,7 @@ const GetArticleWebSummaryWidgets = gql`
     ) {
       items {
         article {
-          thumbnail {
+          horizontalThumbnail {
             ...asset
           }
           title

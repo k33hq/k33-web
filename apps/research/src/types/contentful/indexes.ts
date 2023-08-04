@@ -23,7 +23,7 @@ export interface IndexHome
 }
 
 export interface ArticleSummaryLinked
-  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'thumbnail'> {
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'verticalThumbnail'> {
   linkedFrom: {
     articleWebCollection: {
       items: ReadonlyArray<

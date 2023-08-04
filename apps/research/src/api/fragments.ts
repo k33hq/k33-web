@@ -93,7 +93,7 @@ export const IndexTableArticleFragment = gql`
 
 export const ArticleSummaryLinkedFragment = gql`
   fragment articleSummaryLinked on Article {
-    thumbnail {
+    horizontalThumbnail {
       ...asset
     }
     title

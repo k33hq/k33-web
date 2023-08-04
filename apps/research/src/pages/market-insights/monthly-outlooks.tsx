@@ -71,7 +71,7 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
           dataSource={articles.slice()}
           renderItem={(
             {
-              article: { title, subtitle, thumbnail, tagsCollection },
+              article: { title, subtitle, horizontalThumbnail, tagsCollection },
               articleSlug,
               publishedDate,
             },
@@ -87,8 +87,8 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
                 <Link href={'/articles/' + articleSlug}>
                   <Image
                     preview={false}
-                    alt={thumbnail.title}
-                    src={thumbnail.url}
+                    alt={horizontalThumbnail.title}
+                    src={horizontalThumbnail.url}
                   />
                 </Link>
               }

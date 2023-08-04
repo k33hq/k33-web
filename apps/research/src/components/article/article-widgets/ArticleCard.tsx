@@ -30,7 +30,7 @@ interface ArticleCardProps extends ArticleSummaryWidget {
 const ArticleCard: React.FC<ArticleCardProps> = ({
   publishedDate,
   articleSlug,
-  article: { title, thumbnail, subtitle, tagsCollection },
+  article: { title, horizontalThumbnail, subtitle, tagsCollection },
   isNew = false,
   showTags = false,
   titleHeading,
@@ -53,8 +53,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               width: '100%',
             }}
             preview={false}
-            alt={thumbnail.description ?? ''}
-            src={thumbnail.url}
+            alt={horizontalThumbnail.description ?? ''}
+            src={horizontalThumbnail.url}
           />
         </Link>
       </Col>

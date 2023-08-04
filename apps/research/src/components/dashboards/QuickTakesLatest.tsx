@@ -42,7 +42,7 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
       <List
         dataSource={md ? quickTakes.slice() : quickTakes.slice(0, 2)}
         renderItem={({
-          article: { thumbnail, title, subtitle },
+          article: { horizontalThumbnail, title, subtitle },
           articleSlug,
           publishedDate,
         }) => (
@@ -58,8 +58,8 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
                     preview={false}
                     width={308}
                     height={154}
-                    alt={thumbnail.title}
-                    src={thumbnail.url}
+                    alt={horizontalThumbnail.title}
+                    src={horizontalThumbnail.url}
                   />
                 </Link>
               ),

@@ -24,14 +24,12 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
         linkedFrom: {
           articleWebCollection: { items },
         },
-        horizontalThumbnail,
         ...rest
       }) => {
         return {
           article: {
             ...rest,
             tagsCollection: { items: [] },
-            thumbnail: horizontalThumbnail,
           },
           articleSlug: items[0].articleSlug,
           publishedDate: items[0].publishedDate,

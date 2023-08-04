@@ -5,7 +5,7 @@ import {
   News as NewsComponent,
 } from '@/components';
 import { ArticleSummaryWidget, News } from '@/types';
-import { getLevelTwos, siteUsername } from '@/utils';
+import { siteUsername } from '@/utils';
 import { Col, Divider, Row, Typography } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';

@@ -61,7 +61,6 @@ export interface RelatedArticles<T extends object> {
 // level 2s
 export interface ArticleWidget
   extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection'> {
-  thumbnail: Asset;
   horizontalThumbnail: Asset;
   verticalThumbnail: Asset;
 }
@@ -73,7 +72,7 @@ export interface ArticleWebWidget
 
 export interface ArticleSummaryWidget
   extends Pick<IArticleWebFields, 'publishedDate' | 'articleSlug'> {
-  article: Omit<ArticleWidget, 'horizontalThumbnail' | 'verticalThumbnail'>;
+  article: Omit<ArticleWidget, 'verticalThumbnail'>;
 }
 
 export interface ArticleSummaryWithCover

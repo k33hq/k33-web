@@ -24,7 +24,7 @@ interface ArticleSummaryProps extends ArticleSummaryWidget {
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({
   publishedDate,
   articleSlug,
-  article: { title, thumbnail, subtitle, tagsCollection },
+  article: { title, horizontalThumbnail, subtitle, tagsCollection },
   isNew = false,
 }) => {
   const { sm, md, lg } = Grid.useBreakpoint();
@@ -41,8 +41,8 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
                   width: '100%',
                 }}
                 preview={false}
-                alt={thumbnail.description}
-                src={thumbnail.url}
+                alt={horizontalThumbnail.description}
+                src={horizontalThumbnail.url}
               />
             </Col>
             <Col xs={24} sm={12} md={12}>

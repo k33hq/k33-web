@@ -20,6 +20,7 @@ packages/ui/dist
 .DS_Store
 *.pem
 *.zip
+antd.min.css
 
 # debug
 npm-debug.log*
@@ -39,3 +40,6 @@ firebase-debug.log*
 
 # firebase
 .firebase
+
+# graphql
+schema.graphqls

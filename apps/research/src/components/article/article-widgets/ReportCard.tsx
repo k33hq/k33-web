@@ -11,7 +11,7 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
 const ReportCard: React.FC<ArticleWebWidgetType> = ({
-  article: { thumbnail, title },
+  article: { verticalThumbnail, title },
   articleSlug,
   publishedDate,
 }) => {
@@ -34,9 +34,9 @@ const ReportCard: React.FC<ArticleWebWidgetType> = ({
         cover={
           <Image
             style={{}}
-            src={thumbnail.url}
+            src={verticalThumbnail.url}
             preview={false}
-            alt={thumbnail.description}
+            alt={verticalThumbnail.description}
           />
         }
         bordered

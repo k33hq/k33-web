@@ -67,7 +67,7 @@ const SearchHits: React.FC = () => {
                   subtitle: hit.subtitle,
                   title: hit.title,
 
-                  thumbnail: { url: imageUrl, description: imageDescription },
+                  horizontalThumbnail: { url: imageUrl, description: imageDescription },
                   tagsCollection: {
                     items: hit.tags.map((tag) => ({ title: tag })),
                   },

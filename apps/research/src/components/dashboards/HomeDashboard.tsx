@@ -37,7 +37,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
         <ArticleCard
           article={{
             tagsCollection: { items: [] },
-            thumbnail: mainArticle.article.coverPicture,
+            horizontalThumbnail: mainArticle.article.coverPicture,
             ...mainArticle.article,
           }}
           titleHeading={fontSizeHeading2}
@@ -53,7 +53,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
             <ArticleCard
               article={{
                 tagsCollection: { items: [] },
-                thumbnail: coverArticle1.article.coverPicture,
+                horizontalThumbnail: coverArticle1.article.coverPicture,
                 ...coverArticle1.article,
               }}
               articleSlug={coverArticle1.articleSlug}

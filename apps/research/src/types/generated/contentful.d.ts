@@ -37,9 +37,6 @@ export interface IArticleFields {
   /** Vertical Thumbnail */
   verticalThumbnail?: Asset | undefined;
 
-  /** Thumbnail */
-  thumbnail: Asset;
-
   /** Cover Picture */
   coverPicture: Asset;
 
