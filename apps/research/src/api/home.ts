@@ -3,8 +3,8 @@ import { contentful } from './client';
 import {
   AssetFragment,
   SeoFragment,
-  articleWebWidgetCoverFragment,
-  articleWebWidgetFragment,
+  articleWidgetCoverFragment,
+  articleWidgetFragment,
 } from './fragments';
 import { GetHomePageResponse } from '@/types';
 
@@ -15,32 +15,32 @@ const GetHomePage = gql`
         ...seo
       }
       mainArticle {
-        ...articleWebWidgetCover
+        ...articleWidgetCover
       }
       coverArticle1 {
-        ...articleWebWidgetCover
+        ...articleWidgetCover
       }
       coverArticle2 {
-        ...articleWebWidget
+        ...articleWidget
       }
       subArticle1 {
-        ...articleWebWidget
+        ...articleWidget
       }
       subArticle2 {
-        ...articleWebWidget
+        ...articleWidget
       }
       subArticle3 {
-        ...articleWebWidget
+        ...articleWidget
       }
       subArticle4 {
-        ...articleWebWidget
+        ...articleWidget
       }
     }
   }
   ${SeoFragment}
   ${AssetFragment}
-  ${articleWebWidgetCoverFragment}
-  ${articleWebWidgetFragment}
+  ${articleWidgetCoverFragment}
+  ${articleWidgetFragment}
 `;
 
 export const getHomePage = async () => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArticleWebWidget as ArticleWebWidgetType } from '@/types';
+import { ArticleWebWidget as ArticleWidgetType } from '@/types';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Card, Grid, Image, Space, Typography, theme } from 'antd';
 import { EllipsisConfig } from 'antd/es/typography/Base';
@@ -10,8 +10,10 @@ const { Text, Paragraph } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
-const ReportCard: React.FC<ArticleWebWidgetType> = ({
-  article: { verticalThumbnail, title, publishedDate, },
+const ReportCard: React.FC<ArticleWidgetType> = ({
+  verticalThumbnail,
+  title,
+  publishedDate,
   articleSlug,
 }) => {
   const {

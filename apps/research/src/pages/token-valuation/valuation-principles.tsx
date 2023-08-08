@@ -9,7 +9,7 @@ import { NextPageWithLayout } from 'platform-js';
 
 import { GetStaticProps } from 'next';
 import { Typography, Image, Row, Col, Divider, Grid, Anchor } from 'antd';
-import { getArticleWebWidgets } from '@/api';
+import { getArticleWidgets } from '@/api';
 import { ArticleWebWidget } from '@/types';
 
 interface PrinciplesProps {
@@ -155,7 +155,7 @@ Principles.getLayout = function getLayout(page: React.ReactElement) {
 
 export const getStaticProps: GetStaticProps<PrinciplesProps> = async () => {
   const principles = await getPageData('token_valuation_principles');
-  const articles = await getArticleWebWidgets('token-valuation/principles');
+  const articles = await getArticleWidgets('token-valuation/principles');
   return {
     props: {
       principles,

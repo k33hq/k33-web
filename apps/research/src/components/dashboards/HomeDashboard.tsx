@@ -35,11 +35,10 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     <Row wrap gutter={[24, 32]} align="stretch" id="research-home-cover">
       <Col xs={24} md={12} lg={11}>
         <ArticleCard
-          article={{
-            tagsCollection: { items: [] },
-            horizontalThumbnail: mainArticle.article.coverPicture,
-            ...mainArticle.article,
-          }}
+          title={mainArticle.title}
+          tagsCollection={{items: []}}
+          horizontalThumbnail={mainArticle.coverPicture}
+          publishedDate={mainArticle.publishedDate}
           titleHeading={fontSizeHeading2}
           articleSlug={mainArticle.articleSlug}
           subtitleHeading={fontSizeHeading4}
@@ -50,11 +49,10 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
         <Row wrap gutter={[16, 12]}>
           <Col span={24}>
             <ArticleCard
-              article={{
-                tagsCollection: { items: [] },
-                horizontalThumbnail: coverArticle1.article.coverPicture,
-                ...coverArticle1.article,
-              }}
+              title={coverArticle1.title}
+              tagsCollection={{items: []}}
+              horizontalThumbnail={coverArticle1.coverPicture}
+              publishedDate={coverArticle1.publishedDate}
               articleSlug={coverArticle1.articleSlug}
               titleHeading={fontSizeHeading4}
             />
@@ -72,11 +70,11 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   fontSize: fontSizeSM,
                 }}
               >
-                {formatDateAndTime(coverArticle2.article.publishedDate, 'day')}
+                {formatDateAndTime(coverArticle2.publishedDate, 'day')}
               </Text>
               <Link href={'/articles/' + coverArticle2.articleSlug}>
                 <Title level={4} style={{ margin: 0 }}>
-                  {coverArticle2.article.title}
+                  {coverArticle2.title}
                 </Title>
               </Link>
               <Paragraph
@@ -89,7 +87,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   } as EllipsisConfig
                 }
               >
-                {coverArticle2.article.subtitle}
+                {coverArticle2.subtitle}
               </Paragraph>
             </div>
           </Col>
@@ -102,7 +100,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
             backgroundColor: colorBgLayout,
           }}
           renderItem={(
-            { article: { title, subtitle,  publishedDate, }, articleSlug, },
+            { title, subtitle,  publishedDate, articleSlug, },
             index
           ) => (
             <List.Item

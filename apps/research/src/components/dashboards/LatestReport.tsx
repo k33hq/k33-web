@@ -35,11 +35,9 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
   const { xl } = useBreakpoint();
   const {
     current: {
-      article: {
-        subtitle,
-        title,
-        image: { url, description },
-      },
+      subtitle,
+      title,
+      image: { url, description },
       articleSlug,
     },
     next,

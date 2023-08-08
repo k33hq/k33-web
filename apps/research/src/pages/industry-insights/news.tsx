@@ -61,7 +61,7 @@ const News: NextPageWithLayout<NewsProps> = ({ articles, news }) => {
         <Divider style={{ marginTop: 16, marginBottom: 40 }} />
         <Row wrap gutter={[32, 56]} align="stretch">
           {articles.map((article, index) => (
-            <Col xs={24} sm={24} md={6} key={article.article.publishedDate}>
+            <Col xs={24} sm={24} md={6} key={article.publishedDate}>
               <ArticleCard {...article} />
             </Col>
           ))}

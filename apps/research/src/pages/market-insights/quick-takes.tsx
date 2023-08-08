@@ -1,4 +1,4 @@
-import { getArticleWebWidgets } from '@/api';
+import { getArticleWidgets } from '@/api';
 import { ArticleCard, MarketInsightsLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { siteUsername } from '@/utils';
@@ -45,7 +45,7 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
       />
       <Row wrap gutter={[32, 40]} align="stretch">
         {articles.map((article) => (
-          <Col xs={24} sm={24} md={6} key={article.article.publishedDate}>
+          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
             <ArticleCard {...article} showTags />
           </Col>
         ))}
@@ -63,7 +63,7 @@ QuickTakes.getLayout = function getLayout(page: React.ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps<QuickTakesProps> = async () => {
-  const articles = await getArticleWebWidgets('market-insights/quick-takes');
+  const articles = await getArticleWidgets('market-insights/quick-takes');
   return {
     props: {
       articles,

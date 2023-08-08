@@ -1,4 +1,4 @@
-import { getArticleWebWidgets } from '@/api';
+import { getArticleWidgets } from '@/api';
 import { MarketInsightsLayout, ReportCard } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { siteUsername } from '@/utils';
@@ -66,7 +66,7 @@ WeeklyReports.getLayout = function getLayout(page: React.ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps<WeeklyReportsProps> = async () => {
-  const articles = await getArticleWebWidgets('market-insights/weekly-reports');
+  const articles = await getArticleWidgets('market-insights/weekly-reports');
   return {
     props: {
       articles,

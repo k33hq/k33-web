@@ -1,10 +1,9 @@
 import {
   getArticlePage,
-  getArticleSeo,
   getArticleSlugs,
   getProducts,
 } from '@/api';
-import type { ArticlePage, ArticleSeo, SubscriptionProduct } from '@/types';
+import type {ArticlePage, SubscriptionProduct} from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
@@ -24,31 +23,29 @@ const { useBreakpoint } = Grid;
 const { useToken } = theme;
 
 interface ArticlePageProps {
-  seo: ArticleSeo;
   page: ArticlePage;
   product: SubscriptionProduct;
 }
 
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
   page,
-  seo,
   product,
 }) => {
   const { lg } = useBreakpoint();
   const {
-    sections,
+    title,
+    subtitle,
+    seo,
     publishedDate,
     articleSlug,
-    article: {
-      authorsCollection,
-      tagsCollection,
-      recommendedArticlesCollection,
-      relatedArticlesCollection,
-      ...articleContent
-    },
+    authorsCollection,
+    tagsCollection,
+    relatedArticlesCollection,
+    recommendedArticlesCollection,
+    image,
+    ...articleContent
   } = page;
   const { productId, pricesCollection } = product;
-  const { seo: pageSeo, article, title } = seo;
 
   return (
     <>
@@ -58,11 +55,11 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         <meta name="twitter:title" content={title} />
         <meta
           name="twitter:description"
-          content={pageSeo ? pageSeo.description : article.subtitle}
+          content={seo ? seo.description : subtitle}
         />
         <meta
           name="twitter:image"
-          content={pageSeo ? pageSeo.image.url : articleContent.image.url}
+          content={seo ? seo.image.url : image.url}
         />
       </Head>
       <NextSeo
@@ -71,7 +68,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           maxImagePreview: 'large',
         }}
         title={title}
-        description={pageSeo ? pageSeo.description : article.subtitle}
+        description={seo ? seo.description : subtitle}
         twitter={{
           handle: siteUsername,
           site: process.env.NEXT_PUBLIC_WEB_DOMAIN,
@@ -79,7 +76,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         }}
         openGraph={{
           title: title,
-          description: pageSeo ? pageSeo.description : article.subtitle,
+          description: seo ? seo.description : subtitle,
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`,
           type: 'article',
           article: {
@@ -89,10 +86,10 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           },
           images: [
             {
-              url: pageSeo ? pageSeo.image.url : articleContent.image.url,
-              alt: pageSeo
-                ? pageSeo.image.description
-                : articleContent.image.description,
+              url: seo ? seo.image.url : image.url,
+              alt: seo
+                ? seo.image.description
+                : image.description,
             },
           ],
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
@@ -101,8 +98,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
       <ArticleJsonLd
         useAppDir={false}
         url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
-        title={article.title}
-        images={[articleContent.image.url]}
+        title={title}
+        images={[image.url]}
         datePublished={publishedDate}
         dateModified={publishedDate}
         authorName={authorsCollection.items.map((author) => ({
@@ -111,7 +108,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         }))}
         publisherName="K33 Research"
         publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-64x64.png`}
-        description={pageSeo ? pageSeo.description : article.subtitle!}
+        description={seo ? seo.description : subtitle!}
         isAccessibleForFree={false}
       />
       <Row
@@ -127,13 +124,15 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         </Col>
         <Col id="article" xs={24} lg={14} className="article">
           <Article
-            {...articleContent}
-            sections={sections}
+            title={title}
+            subtitle={subtitle}
+            articleSlug={articleSlug}
+            image={image}
             publishedDate={publishedDate}
+            {...articleContent}
             productId={productId}
-            priceId={pricesCollection.items[0].stripeProductId}
-          />
-          <ShareArticle title={articleContent.title} />
+            priceId={pricesCollection.items[0].stripeProductId}          />
+          <ShareArticle title={title} />
         </Col>
         <Col xs={0} lg={2}></Col>
       </Row>
@@ -141,8 +140,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
         <Col xs={0} lg={6} order={lg ? 0 : 2}></Col>
         <Col id="article" xs={22} lg={14}>
           <ArticleRecommendations
-            recommendedArticlesCollection={recommendedArticlesCollection}
             relatedArticlesCollection={relatedArticlesCollection}
+            recommendedArticlesCollection={recommendedArticlesCollection}
           />
         </Col>
         <Col xs={0} lg={2}></Col>
@@ -179,9 +178,11 @@ ArticlePage.getLayout = function getLayout(
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await getArticleSlugs();
-  const paths = slugs.map(({ articleSlug }) => ({
-    params: { slug: articleSlug },
-  }));
+  const paths = slugs
+    .filter(({articleSlug}) => articleSlug)
+    .map(({ articleSlug }) => ({
+      params: { slug: articleSlug },
+    }));
 
   return {
     paths,
@@ -195,13 +196,11 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
 ) => {
   const slug = context.params!.slug as string;
   const page = await getArticlePage(slug);
-  const seo = await getArticleSeo(slug);
   const product = await getProducts();
   return {
     props: {
       page,
       product,
-      seo,
     },
   };
 };

@@ -1,12 +1,11 @@
 import { gql } from 'graphql-request';
 import {
   AssetFragment,
-  ArticleLinkedFragment,
   IndexTableArticleFragment,
   ArticleSummaryLinkedFragment,
 } from './fragments';
 import { contentful } from './client';
-import { GetIndexeSummaryResponse, GetIndexesResponse } from '@/types';
+import { GetIndexesSummaryResponse, GetIndexesResponse } from '@/types';
 
 const Indexes = gql`
   query {
@@ -51,7 +50,6 @@ const Indexes = gql`
     }
   }
   ${AssetFragment}
-  ${ArticleLinkedFragment}
   ${IndexTableArticleFragment}
   ${ArticleSummaryLinkedFragment}
 `;
@@ -90,7 +88,6 @@ const IndexSummary = gql`
     }
   }
   ${AssetFragment}
-  ${ArticleLinkedFragment}
   ${IndexTableArticleFragment}
 `;
 
@@ -103,6 +100,6 @@ export const getIndexes = async () => {
 
 export const getIndexSummary = async () => {
   const { indexCollection } =
-    await contentful.request<GetIndexeSummaryResponse>(IndexSummary);
+    await contentful.request<GetIndexesSummaryResponse>(IndexSummary);
   return indexCollection.items;
 };

@@ -56,30 +56,26 @@ export const AssetFragment = gql`
 
 // Various Article Widget Queries
 
-export const articleWebWidgetCoverFragment = gql`
-  fragment articleWebWidgetCover on ArticleWeb {
+export const articleWidgetCoverFragment = gql`
+  fragment articleWidgetCover on Article {
     articleSlug
-    article {
-      title
-      subtitle
-      publishedDate
-      coverPicture {
-        ...asset
-      }
+    title
+    subtitle
+    publishedDate
+    coverPicture {
+      ...asset
     }
   }
 `;
 
 // TODO: fragment for thumbnail, image and tagCollection
 
-export const articleWebWidgetFragment = gql`
-  fragment articleWebWidget on ArticleWeb {
+export const articleWidgetFragment = gql`
+  fragment articleWidget on Article {
     articleSlug
-    article {
-      title
-      subtitle
-      publishedDate
-    }
+    title
+    subtitle
+    publishedDate
   }
 `;
 
@@ -87,7 +83,8 @@ export const articleWebWidgetFragment = gql`
 
 export const IndexTableArticleFragment = gql`
   fragment tableArticle on Article {
-    ...articleLinked
+    publishedDate
+    articleSlug
   }
 `;
 
@@ -98,19 +95,7 @@ export const ArticleSummaryLinkedFragment = gql`
     }
     title
     subtitle
-    ...articleLinked
-  }
-`;
-
-export const ArticleLinkedFragment = gql`
-  fragment articleLinked on Article {
     publishedDate
-    linkedFrom {
-      articleWebCollection {
-        items {
-          articleSlug
-        }
-      }
-    }
+    articleSlug
   }
 `;

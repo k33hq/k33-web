@@ -71,7 +71,11 @@ const MontlyOutlooks: NextPageWithLayout<MontlyOutlooksProps> = ({
           dataSource={articles.slice()}
           renderItem={(
             {
-              article: { title, subtitle, horizontalThumbnail, tagsCollection, publishedDate, },
+              title,
+              subtitle,
+              horizontalThumbnail,
+              tagsCollection,
+              publishedDate,
               articleSlug,
             },
             index

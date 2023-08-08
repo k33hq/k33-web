@@ -2,23 +2,21 @@ import { gql } from 'graphql-request';
 import { contentful } from './client';
 import {
   GetArticlePageResponse,
-  GetArticleSeoResponse,
   GetArticleSlugsResponse,
   GetArticleSummaryWidgetResponse,
   GetArticleSummaryWithCoverResponse,
-  GetArticleWebWidgetsResponse,
+  GetArticleWidgetsResponse,
 } from '@/types';
 import {
   PublicSnippetFragment,
   ArticleBodyFragment,
   SeoFragment,
   AssetFragment,
-  ArticleLinkedFragment,
 } from './fragments';
 
 const GetArticleSlugs = gql`
   query {
-    articleWebCollection(limit: 11000) {
+    articleCollection(limit: 11000) {
       items {
         articleSlug
       }
@@ -26,34 +24,12 @@ const GetArticleSlugs = gql`
   }
 `;
 
-const GetArticleSeo = gql`
-  query GetArticlePage($articleSlug: String!) {
-    articleWebCollection(where: { articleSlug: $articleSlug }, limit: 1) {
-      items {
-        title
-        seo {
-          ...seo
-        }
-        article {
-          title
-          subtitle
-          image {
-            ...asset
-          }
-        }
-      }
-    }
-  }
-  ${AssetFragment}
-  ${SeoFragment}
-`;
-
 /**
  * gets the entire article page
  */
 const GetArticlePage = gql`
   query GetArticlePage($articleSlug: String!) {
-    articleWebCollection(where: { articleSlug: $articleSlug }, limit: 1) {
+    articleCollection(where: { articleSlug: $articleSlug }, limit: 1) {
       items {
         title
         seo {
@@ -65,63 +41,61 @@ const GetArticlePage = gql`
           }
         }
         articleSlug
-        article {
-          title
-          subtitle
-          publishedDate
-          tagsCollection {
-            items {
-              title
-            }
-          }
-          publicSnippet {
-            ...publicSnippet
-          }
-          body {
-            ...articleBody
-          }
-          summary {
-            json
-          }
-          keyPoints
-          image {
-            ...asset
-          }
-          reportDocument {
-            url
+        subtitle
+        publishedDate
+        tagsCollection {
+          items {
             title
           }
-          authorsCollection {
-            items {
-              name
-              title
-              profilePicture {
-                ...asset
-              }
+        }
+        publicSnippet {
+          ...publicSnippet
+        }
+        body {
+          ...articleBody
+        }
+        summary {
+          json
+        }
+        keyPoints
+        image {
+          ...asset
+        }
+        reportDocument {
+          url
+          title
+        }
+        authorsCollection {
+          items {
+            name
+            title
+            profilePicture {
+              ...asset
             }
           }
-          recommendedArticlesCollection {
-            items {
-              title
-              subtitle
-              horizontalThumbnail {
-                url
-                description
-              }
-              ...articleLinked
+        }
+        recommendedArticlesCollection {
+          items {
+            title
+            subtitle
+            horizontalThumbnail {
+              url
+              description
             }
+            publishedDate
+            articleSlug
           }
-
-          relatedArticlesCollection {
-            items {
-              title
-              subtitle
-              horizontalThumbnail {
-                url
-                description
-              }
-              ...articleLinked
+        }
+        relatedArticlesCollection {
+          items {
+            title
+            subtitle
+            horizontalThumbnail {
+              url
+              description
             }
+            publishedDate
+            articleSlug
           }
         }
       }
@@ -131,30 +105,27 @@ const GetArticlePage = gql`
   ${SeoFragment}
   ${PublicSnippetFragment}
   ${ArticleBodyFragment}
-  ${ArticleLinkedFragment}
 `;
 
-const GetArticleWebWidgets = gql`
-  query GetArticleWebWidgets($section: String!, $limit: Int!) {
-    articleWebCollection(
+const GetArticleWidgets = gql`
+  query GetArticleWidgets($section: String!, $limit: Int!) {
+    articleCollection(
       where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
       items {
-        article {
-          horizontalThumbnail {
-            ...asset
-          }
-          verticalThumbnail {
-            ...asset
-          }
-          title
-          publishedDate
-          tagsCollection {
-            items {
-              title
-            }
+        horizontalThumbnail {
+          ...asset
+        }
+        verticalThumbnail {
+          ...asset
+        }
+        title
+        publishedDate
+        tagsCollection {
+          items {
+            title
           }
         }
         articleSlug
@@ -164,25 +135,23 @@ const GetArticleWebWidgets = gql`
   ${AssetFragment}
 `;
 
-const GetArticleWebSummaryWidgets = gql`
-  query GetArticleWebSummaryWidgets($section: String!, $limit: Int!) {
-    articleWebCollection(
+const GetArticleSummaryWidgets = gql`
+  query GetArticleSummaryWidgets($section: String!, $limit: Int!) {
+    articleCollection(
       where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
       items {
-        article {
-          horizontalThumbnail {
-            ...asset
-          }
-          title
-          subtitle
-          publishedDate
-          tagsCollection {
-            items {
-              title
-            }
+        horizontalThumbnail {
+          ...asset
+        }
+        title
+        subtitle
+        publishedDate
+        tagsCollection {
+          items {
+            title
           }
         }
         articleSlug
@@ -194,23 +163,21 @@ const GetArticleWebSummaryWidgets = gql`
 
 const GetArticleSummaryWithCover = gql`
   query GetArticleSummaryWithCover($section: String!, $limit: Int!) {
-    articleWebCollection(
+    articleCollection(
       where: { sections: { name: $section } }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
       items {
-        article {
-          image {
-            ...asset
-          }
-          title
-          subtitle
-          publishedDate
-          tagsCollection {
-            items {
-              title
-            }
+        image {
+          ...asset
+        }
+        title
+        subtitle
+        publishedDate
+        tagsCollection {
+          items {
+            title
           }
         }
         articleSlug
@@ -221,63 +188,55 @@ const GetArticleSummaryWithCover = gql`
 `;
 
 export const getArticleSlugs = async () => {
-  const { articleWebCollection } =
+  const { articleCollection } =
     await contentful.request<GetArticleSlugsResponse>(GetArticleSlugs);
-  return articleWebCollection.items;
-};
-
-export const getArticleSeo = async (articleSlug: string) => {
-  const { articleWebCollection } =
-    await contentful.request<GetArticleSeoResponse>(GetArticleSeo, {
-      articleSlug,
-    });
-  return articleWebCollection.items[0];
+  return articleCollection.items;
 };
 
 export const getArticlePage = async (articleSlug: string) => {
-  const { articleWebCollection } =
+  const { articleCollection } =
     await contentful.request<GetArticlePageResponse>(GetArticlePage, {
       articleSlug,
     });
 
-  return articleWebCollection.items[0];
+  return articleCollection.items[0];
 };
 
-export const getArticleWebWidgets = async (
+export const getArticleWidgets = async (
   section: string,
   limit: number = 100
 ) => {
-  const { articleWebCollection } =
-    await contentful.request<GetArticleWebWidgetsResponse>(
-      GetArticleWebWidgets,
+  const { articleCollection } =
+    await contentful.request<GetArticleWidgetsResponse>(
+      GetArticleWidgets,
       {
         section,
         limit,
       }
     );
-  return articleWebCollection.items;
+  return articleCollection.items;
 };
 
 export const getArticleSummaryWidgets = async (
   section: string,
   limit: number = 100
 ) => {
-  const { articleWebCollection } =
+  const { articleCollection } =
     await contentful.request<GetArticleSummaryWidgetResponse>(
-      GetArticleWebSummaryWidgets,
+      GetArticleSummaryWidgets,
       {
         section,
         limit,
       }
     );
-  return articleWebCollection.items;
+  return articleCollection.items;
 };
 
 export const getArticleSummaryWithCoverWidgets = async (
   section: string,
   limit: number = 100
 ) => {
-  const { articleWebCollection } =
+  const { articleCollection } =
     await contentful.request<GetArticleSummaryWithCoverResponse>(
       GetArticleSummaryWithCover,
       {
@@ -285,5 +244,5 @@ export const getArticleSummaryWithCoverWidgets = async (
         limit,
       }
     );
-  return articleWebCollection.items;
+  return articleCollection.items;
 };

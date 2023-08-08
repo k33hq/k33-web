@@ -1,8 +1,7 @@
 import {
   ArticleSlug,
   ArticlePage,
-  ArticleWebCollection,
-  ArticleSeo,
+  ArticleCollection,
   SubscriptionProductCollection,
   SubscriptionProduct,
   ArticleWebWidget,
@@ -19,9 +18,8 @@ import {
 } from './contentful/indexes';
 import { ProductStatus } from './payments';
 
-export type GetArticleSlugsResponse = ArticleWebCollection<ArticleSlug>;
-export type GetArticleSeoResponse = ArticleWebCollection<ArticleSeo>;
-export type GetArticlePageResponse = ArticleWebCollection<ArticlePage>;
+export type GetArticleSlugsResponse = ArticleCollection<ArticleSlug>;
+export type GetArticlePageResponse = ArticleCollection<ArticlePage>;
 export type GetSubscriptionProductResponse =
   SubscriptionProductCollection<SubscriptionProduct>;
 
@@ -58,14 +56,14 @@ export interface GetProductInfoResponse {
 
 //market insight
 
-export type GetArticleWebWidgetsResponse =
-  ArticleWebCollection<ArticleWebWidget>;
+export type GetArticleWidgetsResponse =
+  ArticleCollection<ArticleWebWidget>;
 
 export type GetArticleSummaryWidgetResponse =
-  ArticleWebCollection<ArticleSummaryWidget>;
+  ArticleCollection<ArticleSummaryWidget>;
 
 export type GetArticleSummaryWithCoverResponse =
-  ArticleWebCollection<ArticleSummaryWithCover>;
+  ArticleCollection<ArticleSummaryWithCover>;
 
 export interface GetHomePageResponse {
   homePage: HomePage;
@@ -78,4 +76,4 @@ export interface NewsResponse {
 // index
 
 export type GetIndexesResponse = IndexWebCollection<IndexHome>;
-export type GetIndexeSummaryResponse = IndexWebCollection<TokenValuationIndex>;
+export type GetIndexesSummaryResponse = IndexWebCollection<TokenValuationIndex>;

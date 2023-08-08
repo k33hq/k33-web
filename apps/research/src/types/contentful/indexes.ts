@@ -3,7 +3,7 @@ import {
   IIndexTokenFields,
   ITokenFields,
 } from '../generated/contentful';
-import { ArticleWebWidget, ArticleWidget } from './article';
+import { ArticleWidget } from './article';
 import { Asset } from './global';
 
 export interface Token extends Omit<ITokenFields, 'icon'> {
@@ -23,36 +23,12 @@ export interface IndexHome
 }
 
 export interface ArticleSummaryLinked
-  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'verticalThumbnail' | 'publishedDate'> {
-  linkedFrom: {
-    articleWebCollection: {
-      items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug'>
-      >;
-    };
-  };
-}
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'verticalThumbnail' | 'publishedDate' | 'articleSlug'> {}
 
 export interface RelatedArticleSummaryLinked
-  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'publishedDate'> {
-  linkedFrom: {
-    articleWebCollection: {
-      items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug'>
-      >;
-    };
-  };
-}
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'publishedDate' | 'articleSlug'> {}
 
-export interface IndexArticleLinked extends Pick<ArticleWidget, 'title' | 'publishedDate'> {
-  linkedFrom: {
-    articleWebCollection: {
-      items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug'>
-      >;
-    };
-  };
-}
+export interface IndexArticleLinked extends Pick<ArticleWidget, 'title' | 'publishedDate' | 'articleSlug'> {}
 
 export interface IndexWebCollection<T extends object> {
   indexCollection: {

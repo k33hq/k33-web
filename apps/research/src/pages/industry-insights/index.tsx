@@ -1,4 +1,4 @@
-import { getArticleSummaryWidgets, getArticleWebWidgets, getNews } from '@/api';
+import { getArticleSummaryWidgets, getArticleWidgets, getNews } from '@/api';
 import {
   ArticleCard,
   DashboardList,
@@ -99,7 +99,7 @@ IndustryInsights.getLayout = function getLayout(page: React.ReactElement) {
 export const getStaticProps: GetStaticProps<
   IndustryInsightsProps
 > = async () => {
-  const reports = await getArticleWebWidgets('industry-insights/reports', 6);
+  const reports = await getArticleWidgets('industry-insights/reports', 6);
 
   const coverage = await getArticleSummaryWidgets(
     'industry-insights/coverage',

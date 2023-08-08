@@ -12,8 +12,8 @@ interface ArticleRecommendationProps
     RelatedArticles<RelatedArticleSummaryLinked> {}
 
 const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
-  recommendedArticlesCollection: { items: articles },
   relatedArticlesCollection: { items: relatedArticles },
+  recommendedArticlesCollection: { items: articles },
 }) => {
   const mergedArticles = [...relatedArticles, ...articles];
   if (mergedArticles.length <= 0) return;
@@ -21,17 +21,11 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
   const uniqueArticles = [...new Set(mergedArticles)]
     .map(
       ({
-        linkedFrom: {
-          articleWebCollection: { items },
-        },
         ...rest
       }) => {
         return {
-          article: {
-            ...rest,
-            tagsCollection: { items: [] },
-          },
-          articleSlug: items[0].articleSlug,
+          ...rest,
+          tagsCollection: { items: [] },
         };
       }
     )

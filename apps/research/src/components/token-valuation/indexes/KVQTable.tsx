@@ -258,8 +258,7 @@ const KVQTable: React.FC<IndexesProps> = ({
             <Link
               href={
                 '/articles/' +
-                frameworkArticle.linkedFrom.articleWebCollection.items[0]
-                  .articleSlug
+                frameworkArticle.articleSlug
               }
             >
               <Button
@@ -276,8 +275,7 @@ const KVQTable: React.FC<IndexesProps> = ({
             <Link
               href={
                 '/articles/' +
-                assessmentArticle.linkedFrom.articleWebCollection.items[0]
-                  .articleSlug
+                assessmentArticle.articleSlug
               }
             >
               <Button

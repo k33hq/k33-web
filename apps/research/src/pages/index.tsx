@@ -22,7 +22,7 @@ import {
 import {
   getArticleSummaryWidgets,
   getArticleSummaryWithCoverWidgets,
-  getArticleWebWidgets,
+  getArticleWidgets,
   getHomePage,
   getIndexSummary,
 } from '@/api';
@@ -112,7 +112,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   // const homepage = await builder.get('homepage').toPromise();
-  const industryReports = await getArticleWebWidgets(
+  const industryReports = await getArticleWidgets(
     'industry-insights/reports',
     6
   );

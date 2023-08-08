@@ -7,11 +7,14 @@ export interface IArticleFields {
   /** Title */
   title: string;
 
+  /** Article Slug */
+  articleSlug: string;
+
   /** Subtitle */
   subtitle?: string | undefined;
 
   /** Image */
-  image?: Asset | undefined;
+  image: Asset;
 
   /** Body */
   body?: Document | undefined;
@@ -49,11 +52,17 @@ export interface IArticleFields {
   /** Public Snippet */
   publicSnippet: Document;
 
+  /** Sections */
+  sections: ISection[];
+
   /** Related Articles */
   relatedArticles?: IArticle[] | undefined;
 
   /** Recommended Articles */
   recommendedArticles?: IArticle[] | undefined;
+
+  /** SEO */
+  seo?: ISeoMetadata | undefined;
 }
 
 /** Topic - An Article is an independent (can be presented by itself), reusable (generic content not locked to a specific layout), and individual (about one thing & can be created on its own) item that forms the basis of how K33 Research core content (PDFs, Webinars, or Opinion) are distributed. */
@@ -78,21 +87,6 @@ export interface IArticle extends Entry<IArticleFields> {
 export interface IArticleWebFields {
   /** Title */
   title: string;
-
-  /** Article */
-  article: IArticle;
-
-  /** Article Slug */
-  articleSlug?: string | undefined;
-
-  /** Subscription */
-  subscription: ISubscriptionWeb;
-
-  /** SEO */
-  seo?: ISeoMetadata | undefined;
-
-  /** Sections */
-  sections: ISection[];
 }
 
 /** Assembly - how an Article should be constructed to be presented on the web */
@@ -149,19 +143,19 @@ export interface IAuthor extends Entry<IAuthorFields> {
 
 export interface IHomePageFields {
   /** Main Article */
-  mainArticle: IArticleWeb;
+  mainArticle: IArticle;
 
   /** Sub Article 1 */
-  subArticle1: IArticleWeb;
+  subArticle1: IArticle;
 
   /** Sub Article 2 */
-  subArticle2: IArticleWeb;
+  subArticle2: IArticle;
 
   /** Sub Article 3 */
-  subArticle3: IArticleWeb;
+  subArticle3: IArticle;
 
   /** Sub Article 4 */
-  subArticle4: IArticleWeb;
+  subArticle4: IArticle;
 
   /** Title */
   title: string;
@@ -170,10 +164,10 @@ export interface IHomePageFields {
   seo: ISeoMetadata;
 
   /** Cover Article 1 */
-  coverArticle1: IArticleWeb;
+  coverArticle1: IArticle;
 
   /** Cover Article 2 */
-  coverArticle2: IArticleWeb;
+  coverArticle2: IArticle;
 }
 
 /** Assembly */

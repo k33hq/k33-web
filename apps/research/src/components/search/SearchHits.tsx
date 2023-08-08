@@ -63,14 +63,12 @@ const SearchHits: React.FC = () => {
           return (
             <Col xs={24} sm={24} md={6} key={hit.objectID}>
               <ArticleCard
-                article={{
-                  subtitle: hit.subtitle,
-                  title: hit.title,
-                  horizontalThumbnail: { url: imageUrl, description: imageDescription },
-                  publishedDate: hit.publishedDate,
-                  tagsCollection: {
-                    items: hit.tags.map((tag) => ({ title: tag })),
-                  },
+                title={hit.title}
+                subtitle={hit.subtitle}
+                horizontalThumbnail={{ url: imageUrl, description: imageDescription }}
+                publishedDate={hit.publishedDate}
+                tagsCollection={{
+                  items: hit.tags.map((tag) => ({ title: tag })),
                 }}
                 articleSlug={hit.slug}
               />

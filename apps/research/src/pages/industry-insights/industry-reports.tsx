@@ -1,4 +1,4 @@
-import { getArticleWebWidgets } from '@/api';
+import { getArticleWidgets } from '@/api';
 import { IndustryInsightsLayout, ReportCard, TabLayout } from '@/components';
 import { ArticleWebWidget } from '@/types';
 import { siteUsername } from '@/utils';
@@ -68,7 +68,7 @@ IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
 export const getStaticProps: GetStaticProps<
   IndustryReportsProps
 > = async () => {
-  const articles = await getArticleWebWidgets('industry-insights/reports');
+  const articles = await getArticleWidgets('industry-insights/reports');
   return {
     props: {
       articles,

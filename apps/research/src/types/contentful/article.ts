@@ -1,7 +1,6 @@
 import { TagCollection } from './tags';
 import {
   IArticleFields,
-  IArticleWebFields,
   ISectionFields,
   ITagFields,
 } from '../generated/contentful';
@@ -12,10 +11,10 @@ import { RelatedArticleSummaryLinked } from './indexes';
 
 export interface ArticleSummary extends RichTextDocument {}
 export interface ArticleBody extends RichTextDocument {}
-export interface ArticleSlug extends Pick<IArticleWebFields, 'articleSlug'> {}
+export interface ArticleSlug extends Pick<IArticleFields, 'articleSlug'> {}
 
 export interface Article
-  extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints' | 'publishedDate'>,
+  extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints' | 'publishedDate' | 'articleSlug'>,
     AuthorCollection<AuthorCompact>,
     TagCollection<ITagFields>,
     RecommendedArticle<RelatedArticleSummaryLinked>,
@@ -28,21 +27,14 @@ export interface Article
   coverPicture: Asset;
 }
 
-export interface ArticleSeo extends Pick<IArticleWebFields, 'title'> {
-  seo: SeoData;
-  article: Pick<Article, 'title' | 'subtitle' | 'image'>;
-}
-
 export interface ArticlePage
-  extends Pick<IArticleWebFields, 'title' | 'articleSlug'>,
-    Pick<IArticleFields, 'publishedDate'>,
-    ArticleSeo {
+  extends Omit<Article, 'coverPicture'> {
+  seo: SeoData;
   sections: ISectionFields[];
-  article: Omit<Article, 'coverPicture'>;
 }
 
-export interface ArticleWebCollection<T extends object> {
-  articleWebCollection: {
+export interface ArticleCollection<T extends object> {
+  articleCollection: {
     items: ReadonlyArray<T>;
   };
 }
@@ -61,32 +53,22 @@ export interface RelatedArticles<T extends object> {
 
 // level 2s
 export interface ArticleWidget
-  extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'publishedDate'> {
+  extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'publishedDate' | 'articleSlug'> {
   horizontalThumbnail: Asset;
   verticalThumbnail: Asset;
 }
 
 export interface ArticleWebWidget
-  extends Pick<IArticleWebFields, 'articleSlug'> {
-  article: Omit<ArticleWidget, 'subtitle'>;
-}
+  extends Omit<ArticleWidget, 'subtitle'> {}
 
 export interface ArticleSummaryWidget
-  extends Pick<IArticleWebFields, 'articleSlug'> {
-  article: Omit<ArticleWidget, 'verticalThumbnail'>;
-}
+  extends Omit<ArticleWidget, 'verticalThumbnail'>{}
 
 export interface ArticleSummaryWithCover
-  extends Pick<IArticleWebFields, 'articleSlug'> {
-  article: Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'image' | 'publishedDate'>;
-}
+  extends Pick<Article, 'title' | 'subtitle' | 'tagsCollection' | 'image' | 'publishedDate' | 'articleSlug'> {}
 
-export interface ArticleWebWidgetCover
-  extends Pick<IArticleWebFields, 'articleSlug'> {
-  article: Pick<Article, 'title' | 'subtitle' | 'coverPicture' | 'publishedDate'>;
-}
+export interface ArticleWidgetCover
+  extends Pick<Article, 'title' | 'subtitle' | 'coverPicture' | 'publishedDate' | 'articleSlug'>{}
 
-export interface ArticleWebWidgetNormal
-  extends Pick<IArticleWebFields, 'articleSlug'> {
-  article: Pick<Article, 'title' | 'subtitle' | 'publishedDate'>;
-}
+export interface ArticleWidgetNormal
+  extends Pick<Article, 'title' | 'subtitle' | 'publishedDate' | 'articleSlug'>{}
