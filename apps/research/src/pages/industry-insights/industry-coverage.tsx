@@ -47,7 +47,7 @@ const IndustryCoverage: NextPageWithLayout<IndustryCoverageProps> = ({
       />
       <Row wrap gutter={[32, 56]} align="stretch">
         {articles.map((article, index) => (
-          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+          <Col xs={24} sm={24} md={6} key={article.article.publishedDate}>
             <ArticleCard {...article} showTags />
           </Col>
         ))}

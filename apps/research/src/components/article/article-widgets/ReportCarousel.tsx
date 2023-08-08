@@ -59,7 +59,7 @@ const ReportCarousel: React.FC<ReportCarouselProps> = ({ reports }) => {
         pagination={{ clickable: true }}
       >
         {reports.map(
-          ({ article: { verticalThumbnail, title }, publishedDate, articleSlug }) => (
+          ({ article: { verticalThumbnail, title, publishedDate, }, articleSlug }) => (
             <SwiperSlide>
               <Link
                 key={articleSlug}

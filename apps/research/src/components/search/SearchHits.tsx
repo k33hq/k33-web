@@ -66,13 +66,12 @@ const SearchHits: React.FC = () => {
                 article={{
                   subtitle: hit.subtitle,
                   title: hit.title,
-
                   horizontalThumbnail: { url: imageUrl, description: imageDescription },
+                  publishedDate: hit.publishedDate,
                   tagsCollection: {
                     items: hit.tags.map((tag) => ({ title: tag })),
                   },
                 }}
-                publishedDate={hit.publishedDate}
                 articleSlug={hit.slug}
               />
             </Col>

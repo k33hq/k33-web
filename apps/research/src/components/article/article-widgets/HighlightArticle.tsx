@@ -15,6 +15,7 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
   subtitle,
   title,
   horizontalThumbnail,
+  publishedDate,
   linkedFrom: {
     articleWebCollection: { items },
   },
@@ -23,7 +24,7 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
     token: { fontSizeSM },
   } = useToken();
 
-  const { publishedDate, articleSlug } = items[0];
+  const { articleSlug } = items[0];
 
   return (
     <div id="highlighted-article" className={styles.highlightedArticle}>

@@ -64,11 +64,11 @@ const GetArticlePage = gql`
             name
           }
         }
-        publishedDate
         articleSlug
         article {
           title
           subtitle
+          publishedDate
           tagsCollection {
             items {
               title
@@ -150,6 +150,7 @@ const GetArticleWebWidgets = gql`
             ...asset
           }
           title
+          publishedDate
           tagsCollection {
             items {
               title
@@ -157,7 +158,6 @@ const GetArticleWebWidgets = gql`
           }
         }
         articleSlug
-        publishedDate
       }
     }
   }
@@ -178,6 +178,7 @@ const GetArticleWebSummaryWidgets = gql`
           }
           title
           subtitle
+          publishedDate
           tagsCollection {
             items {
               title
@@ -185,7 +186,6 @@ const GetArticleWebSummaryWidgets = gql`
           }
         }
         articleSlug
-        publishedDate
       }
     }
   }
@@ -206,6 +206,7 @@ const GetArticleSummaryWithCover = gql`
           }
           title
           subtitle
+          publishedDate
           tagsCollection {
             items {
               title
@@ -213,7 +214,6 @@ const GetArticleSummaryWithCover = gql`
           }
         }
         articleSlug
-        publishedDate
       }
     }
   }

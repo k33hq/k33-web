@@ -44,7 +44,7 @@ export interface IArticleFields {
   video?: Asset | undefined;
 
   /** Published Date */
-  publishedDate?: string | undefined;
+  publishedDate: string;
 
   /** Public Snippet */
   publicSnippet: Document;
@@ -84,9 +84,6 @@ export interface IArticleWebFields {
 
   /** Article Slug */
   articleSlug?: string | undefined;
-
-  /** Published Date */
-  publishedDate: string;
 
   /** Subscription */
   subscription: ISubscriptionWeb;

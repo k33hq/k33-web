@@ -32,7 +32,6 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
             tagsCollection: { items: [] },
           },
           articleSlug: items[0].articleSlug,
-          publishedDate: items[0].publishedDate,
         };
       }
     )

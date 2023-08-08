@@ -42,7 +42,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           }}
           titleHeading={fontSizeHeading2}
           articleSlug={mainArticle.articleSlug}
-          publishedDate={mainArticle.publishedDate}
           subtitleHeading={fontSizeHeading4}
           dateLevel={fontSizeLG}
         />
@@ -58,7 +57,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               }}
               articleSlug={coverArticle1.articleSlug}
               titleHeading={fontSizeHeading4}
-              publishedDate={coverArticle1.publishedDate}
             />
             <Divider
               style={{
@@ -74,7 +72,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   fontSize: fontSizeSM,
                 }}
               >
-                {formatDateAndTime(coverArticle2.publishedDate, 'day')}
+                {formatDateAndTime(coverArticle2.article.publishedDate, 'day')}
               </Text>
               <Link href={'/articles/' + coverArticle2.articleSlug}>
                 <Title level={4} style={{ margin: 0 }}>
@@ -104,7 +102,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
             backgroundColor: colorBgLayout,
           }}
           renderItem={(
-            { article: { title, subtitle }, articleSlug, publishedDate },
+            { article: { title, subtitle,  publishedDate, }, articleSlug, },
             index
           ) => (
             <List.Item

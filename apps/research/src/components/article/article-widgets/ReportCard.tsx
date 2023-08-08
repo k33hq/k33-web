@@ -11,9 +11,8 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
 const ReportCard: React.FC<ArticleWebWidgetType> = ({
-  article: { verticalThumbnail, title },
+  article: { verticalThumbnail, title, publishedDate, },
   articleSlug,
-  publishedDate,
 }) => {
   const {
     token: { fontSizeHeading5 },

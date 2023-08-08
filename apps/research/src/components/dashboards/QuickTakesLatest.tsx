@@ -42,9 +42,8 @@ const QuickTakesLatest: React.FC<QuickTakesLatestProps> = ({ quickTakes }) => {
       <List
         dataSource={md ? quickTakes.slice() : quickTakes.slice(0, 2)}
         renderItem={({
-          article: { horizontalThumbnail, title, subtitle },
+          article: { horizontalThumbnail, title, subtitle, publishedDate, },
           articleSlug,
-          publishedDate,
         }) => (
           <List.Item
             style={{

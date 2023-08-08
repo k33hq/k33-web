@@ -28,9 +28,8 @@ interface ArticleCardProps extends ArticleSummaryWidget {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
-  publishedDate,
   articleSlug,
-  article: { title, horizontalThumbnail, subtitle, tagsCollection },
+  article: { title, horizontalThumbnail, subtitle, tagsCollection , publishedDate},
   isNew = false,
   showTags = false,
   titleHeading,

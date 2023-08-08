@@ -23,32 +23,32 @@ export interface IndexHome
 }
 
 export interface ArticleSummaryLinked
-  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'verticalThumbnail'> {
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'verticalThumbnail' | 'publishedDate'> {
   linkedFrom: {
     articleWebCollection: {
       items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug' | 'publishedDate'>
+        Pick<ArticleWebWidget, 'articleSlug'>
       >;
     };
   };
 }
 
 export interface RelatedArticleSummaryLinked
-  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail'> {
+  extends Pick<ArticleWidget, 'title' | 'subtitle' | 'horizontalThumbnail' | 'publishedDate'> {
   linkedFrom: {
     articleWebCollection: {
       items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug' | 'publishedDate'>
+        Pick<ArticleWebWidget, 'articleSlug'>
       >;
     };
   };
 }
 
-export interface IndexArticleLinked extends Pick<ArticleWidget, 'title'> {
+export interface IndexArticleLinked extends Pick<ArticleWidget, 'title' | 'publishedDate'> {
   linkedFrom: {
     articleWebCollection: {
       items: ReadonlyArray<
-        Pick<ArticleWebWidget, 'articleSlug' | 'publishedDate'>
+        Pick<ArticleWebWidget, 'articleSlug'>
       >;
     };
   };

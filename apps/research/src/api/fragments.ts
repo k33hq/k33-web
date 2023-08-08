@@ -59,10 +59,10 @@ export const AssetFragment = gql`
 export const articleWebWidgetCoverFragment = gql`
   fragment articleWebWidgetCover on ArticleWeb {
     articleSlug
-    publishedDate
     article {
       title
       subtitle
+      publishedDate
       coverPicture {
         ...asset
       }
@@ -75,10 +75,10 @@ export const articleWebWidgetCoverFragment = gql`
 export const articleWebWidgetFragment = gql`
   fragment articleWebWidget on ArticleWeb {
     articleSlug
-    publishedDate
     article {
       title
       subtitle
+      publishedDate
     }
   }
 `;
@@ -104,11 +104,11 @@ export const ArticleSummaryLinkedFragment = gql`
 
 export const ArticleLinkedFragment = gql`
   fragment articleLinked on Article {
+    publishedDate
     linkedFrom {
       articleWebCollection {
         items {
           articleSlug
-          publishedDate
         }
       }
     }

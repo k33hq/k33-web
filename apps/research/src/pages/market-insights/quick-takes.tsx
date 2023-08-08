@@ -45,7 +45,7 @@ const QuickTakes: NextPageWithLayout<QuickTakesProps> = ({ articles }) => {
       />
       <Row wrap gutter={[32, 40]} align="stretch">
         {articles.map((article) => (
-          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+          <Col xs={24} sm={24} md={6} key={article.article.publishedDate}>
             <ArticleCard {...article} showTags />
           </Col>
         ))}
