@@ -1,11 +1,14 @@
 import { Col, Row, Layout, theme } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import algoliasearch from 'algoliasearch/lite';
+import { history } from 'instantsearch.js/es/lib/routers';
 import { InstantSearch, Configure } from 'react-instantsearch-hooks-web';
 import { SearchHits, SearchText } from '@/components';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 import styles from './styles.module.scss';
+import {UiState} from "instantsearch.js";
+import {RouterProps} from "instantsearch.js/es/middlewares";
 
 const { useToken } = theme;
 
@@ -14,11 +17,51 @@ const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY!
 );
 
+// query params
+type RouteState = {
+  query?: string,
+  tags?: string,
+  authors?: string,
+  page?: number
+}
+
 const Articles: NextPageWithLayout = () => {
   const {
     token: { colorBgContainer },
   } = useToken();
-
+  const routing: RouterProps<UiState, RouteState> = {
+    router: history(),
+    stateMapping: {
+      stateToRoute(uiState: UiState): RouteState {
+        const indexUiState = uiState["articles"];
+        const routeState: RouteState = {
+          query: indexUiState.query,
+          page: indexUiState.page,
+        };
+        const tags = indexUiState.refinementList?.tags?.filter((tag) => tag.length > 0)
+        const authors = indexUiState.refinementList?.authors?.filter((author) => author.length > 0)
+        if (tags && tags.length) {
+          routeState.tags = tags.length == 1 ? tags[0] : tags?.join(',');
+        }
+        if (authors && authors.length) {
+          routeState.authors = authors.length == 1 ? authors[0] : authors?.join(',');
+        }
+        return routeState;
+      },
+      routeToState(routeState: RouteState): UiState  {
+        return {
+          ["articles"]: {
+            query: routeState.query,
+            refinementList: {
+              tags: (routeState.tags || '').split(','),
+              authors: (routeState.authors || '').split(','),
+            },
+            page: routeState.page,
+          },
+        };
+      },
+    }
+  }
   return (
     <>
       <NextSeo
@@ -50,7 +93,11 @@ const Articles: NextPageWithLayout = () => {
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
         }}
       />
-      <InstantSearch searchClient={searchClient} indexName="articles" routing>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName="articles"
+        routing={routing}
+      >
         <div
           style={{
             display: 'flex',
