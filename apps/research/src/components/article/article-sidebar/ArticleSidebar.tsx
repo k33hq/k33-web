@@ -3,6 +3,7 @@ import * as React from 'react';
 import styles from './styles.module.scss';
 import ArticleAuthor from './ArticleAuthor';
 import { Typography, Tag, Space, Grid } from 'antd';
+import Link from "next/link";
 
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -32,7 +33,9 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ authors, tags }) => {
         <Text type="secondary">Related Tags</Text>
         <Space wrap size={[0, 8]}>
           {tags.map((tag) => (
-            <Tag key={tag.title}>{tag.title}</Tag>
+            <Link key={`${tag.title}-link`} href={`/articles?tags=${tag.title}`}>
+              <Tag key={tag.title}>{tag.title}</Tag>
+            </Link>
           ))}
         </Space>
       </div>
