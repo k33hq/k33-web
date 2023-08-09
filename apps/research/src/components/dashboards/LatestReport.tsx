@@ -63,7 +63,11 @@ const LatestReport: React.FC<LatestReportProps> = ({ reports }) => {
       bodyStyle={{
         minHeight: 114,
       }}
-      cover={<Image src={url} alt={description} preview={false} />}
+      cover={
+        <Link href={'/articles/' + articleSlug}>
+          <Image src={url} alt={description} preview={false} />
+        </Link>
+      }
       actions={[
         <Button
           type="text"
