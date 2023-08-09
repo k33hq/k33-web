@@ -36,6 +36,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
       <Col xs={24} md={12} lg={11}>
         <ArticleCard
           title={mainArticle.title}
+          subtitle={mainArticle.subtitle}
           tagsCollection={{items: []}}
           horizontalThumbnail={mainArticle.coverPicture}
           publishedDate={mainArticle.publishedDate}
@@ -50,6 +51,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           <Col span={24}>
             <ArticleCard
               title={coverArticle1.title}
+              subtitle={coverArticle1.subtitle}
               tagsCollection={{items: []}}
               horizontalThumbnail={coverArticle1.coverPicture}
               publishedDate={coverArticle1.publishedDate}
