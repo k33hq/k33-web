@@ -17,7 +17,11 @@ const News: React.FC<NewsProps> = ({
 }) => {
   const { xl } = useBreakpoint();
   return (
-    <Card bordered title="Top News Stories" className="override-list">
+    <Card
+      bordered
+      title="Headlines from Weekly Newsletter"
+      className="override-list"
+    >
       <DefaultRichTextRenderer document={topNews} />
       <>
         {!hideOtherStores && (
