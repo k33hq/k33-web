@@ -36,11 +36,10 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'May 2023',
+    date: 'June 2023',
     subtitle: '',
     description: [
-      'The long-term trend continues to look strong. Bitcoin on-chain activity is booming due to Ordinals, relieving some concerns around its long-term security budget. Ethereum has completed its staking roadmap by enabling withdrawals from staking, and is experiencing a quite significant drop in supply as on-chain activity leads to burning of ETH.',
-      "Near-term, speculators eye the US government's impending sale of Bitcoins originating from Silk Road. Genesis bankruptcy is back on topic with a large debt from DCG to Genesis due in May. While these events can add to the volatility of their particular month, they appear as noise when zooming out.",
+      "The charges against Coinbase and Binance by the SEC may have affected the market, but the Bitcoin ETF application from Blackrock, Deutsche Bank's license application to do crypto custody, and the operational launch of EDX Markets backed by Fidelity, Citadel, and Schwab, sends a clear and positive signal. While we maintain the expectation of a sideways market in the short term, the long term view is bullish, driven by underlying adoption.",
     ],
   },
   summary: {
