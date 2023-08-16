@@ -23,6 +23,11 @@ const SearchText: React.FC = () => {
     operator: 'and',
   });
 
+  useRefinementList({
+    attribute: 'authors',
+    operator: 'and',
+  });
+
   const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     refine(event.target.value);
   };

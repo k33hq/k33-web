@@ -77,11 +77,11 @@ const Articles: NextPageWithLayout = () => {
   useAsyncEffect(async () => {
     const authors = router.query["authors"]
     if (authors) {
-      if (authors && typeof authors == 'string') {
-        console.log("authors as string", authors);
-        setAuthor(await getAuthorByName(authors));
+      if (typeof authors == 'string') {
+        if (!authors.includes(',')) {
+          setAuthor(await getAuthorByName(authors));
+        }
       } else if (typeof authors == 'object') {
-        console.log("authors as array", authors);
         if (authors.length == 1) {
           setAuthor(await getAuthorByName(authors[0]));
         }

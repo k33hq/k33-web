@@ -26,7 +26,9 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ authors, tags }) => {
       >
         <Text type="secondary">Written by</Text>
         {authors.map((author) => (
-          <ArticleAuthor key={author.name} {...author} />
+          <Link key={`${author.name}-link`} href={`/articles?authors=${author.name}`}>
+            <ArticleAuthor key={author.name} {...author} />
+          </Link>
         ))}
       </div>
       <div id="article-tags">
