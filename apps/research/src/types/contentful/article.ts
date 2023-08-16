@@ -4,7 +4,7 @@ import {
   ISectionFields,
   ITagFields,
 } from '../generated/contentful';
-import { AuthorCollection, AuthorCompact } from './author';
+import { AuthorCompact, AuthorsCollection } from './author';
 import { Asset, RichTextDocument } from './global';
 import { SeoData } from './Seo';
 import { RelatedArticleSummaryLinked } from './indexes';
@@ -15,7 +15,7 @@ export interface ArticleSlug extends Pick<IArticleFields, 'articleSlug'> {}
 
 export interface Article
   extends Pick<IArticleFields, 'title' | 'subtitle' | 'keyPoints' | 'publishedDate' | 'articleSlug'>,
-    AuthorCollection<AuthorCompact>,
+    AuthorsCollection<AuthorCompact>,
     TagCollection<ITagFields>,
     RecommendedArticle<RelatedArticleSummaryLinked>,
     RelatedArticles<RelatedArticleSummaryLinked> {

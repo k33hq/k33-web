@@ -21,10 +21,6 @@ interface SearchHit extends BaseHit {
 
 const SearchHits: React.FC = () => {
   const { results } = useHits<SearchHit>();
-  const { indexUiState, setIndexUiState } = useInstantSearch();
-
-  console.log(indexUiState);
-
   if (results!.__isArtificial && results!.nbHits === 0) {
     return (
       <div>

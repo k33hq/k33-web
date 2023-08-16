@@ -1,8 +1,14 @@
 import type { IAuthorFields } from '../generated/contentful';
 import { Asset } from './global';
 
-export interface AuthorCollection<T extends object> {
+export interface AuthorsCollection<T extends object> {
   authorsCollection: {
+    items: ReadonlyArray<T>;
+  };
+}
+
+export interface AuthorCollection<T extends object> {
+  authorCollection: {
     items: ReadonlyArray<T>;
   };
 }

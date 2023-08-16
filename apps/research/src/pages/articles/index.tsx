@@ -1,14 +1,19 @@
-import { Col, Row, Layout, theme } from 'antd';
+import { Col, Layout, Row, theme } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import algoliasearch from 'algoliasearch/lite';
 import { history } from 'instantsearch.js/es/lib/routers';
-import { InstantSearch, Configure } from 'react-instantsearch-hooks-web';
-import { SearchHits, SearchText } from '@/components';
+import { InstantSearch } from 'react-instantsearch-hooks-web';
+import { AuthorCard, SearchHits, SearchText } from '@/components';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 import styles from './styles.module.scss';
 import { UiState } from 'instantsearch.js';
 import { RouterProps } from 'instantsearch.js/es/middlewares';
+import { Author } from '@/types';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { getAuthorByName } from '@/api';
+import { useAsyncEffect } from 'ahooks';
 
 const { useToken } = theme;
 
@@ -67,6 +72,22 @@ const Articles: NextPageWithLayout = () => {
       },
     },
   };
+  const [author, setAuthor] = useState<Author | null>(null)
+  const router = useRouter()
+  useAsyncEffect(async () => {
+    const authors = router.query["authors"]
+    if (authors) {
+      if (authors && typeof authors == 'string') {
+        console.log("authors as string", authors);
+        setAuthor(await getAuthorByName(authors));
+      } else if (typeof authors == 'object') {
+        console.log("authors as array", authors);
+        if (authors.length == 1) {
+          setAuthor(await getAuthorByName(authors[0]));
+        }
+      }
+    }
+  }, [router]);
   return (
     <>
       <NextSeo
@@ -142,6 +163,12 @@ const Articles: NextPageWithLayout = () => {
               paddingTop: 40,
             }}
           >
+            {author && <Row>
+              <Col span={22} offset={1} className="default-body">
+                <AuthorCard {...author} />
+              </Col>
+            </Row>
+            }
             <Row>
               <Col span={22} offset={1} className="default-body">
                 <SearchHits />
