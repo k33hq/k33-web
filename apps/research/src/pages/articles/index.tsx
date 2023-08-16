@@ -7,8 +7,8 @@ import { SearchHits, SearchText } from '@/components';
 import { NextSeo } from 'next-seo';
 import { siteUsername } from '@/utils';
 import styles from './styles.module.scss';
-import {UiState} from "instantsearch.js";
-import {RouterProps} from "instantsearch.js/es/middlewares";
+import { UiState } from 'instantsearch.js';
+import { RouterProps } from 'instantsearch.js/es/middlewares';
 
 const { useToken } = theme;
 
@@ -19,11 +19,11 @@ const searchClient = algoliasearch(
 
 // query params
 type RouteState = {
-  query?: string,
-  tags?: string,
-  authors?: string,
-  page?: number
-}
+  query?: string;
+  tags?: string;
+  authors?: string;
+  page?: number;
+};
 
 const Articles: NextPageWithLayout = () => {
   const {
@@ -33,24 +33,29 @@ const Articles: NextPageWithLayout = () => {
     router: history(),
     stateMapping: {
       stateToRoute(uiState: UiState): RouteState {
-        const indexUiState = uiState["articles"];
+        const indexUiState = uiState['articles'];
         const routeState: RouteState = {
           query: indexUiState.query,
           page: indexUiState.page,
         };
-        const tags = indexUiState.refinementList?.tags?.filter((tag) => tag.length > 0)
-        const authors = indexUiState.refinementList?.authors?.filter((author) => author.length > 0)
+        const tags = indexUiState.refinementList?.tags?.filter(
+          (tag) => tag.length > 0
+        );
+        const authors = indexUiState.refinementList?.authors?.filter(
+          (author) => author.length > 0
+        );
         if (tags && tags.length) {
           routeState.tags = tags.length == 1 ? tags[0] : tags?.join(',');
         }
         if (authors && authors.length) {
-          routeState.authors = authors.length == 1 ? authors[0] : authors?.join(',');
+          routeState.authors =
+            authors.length == 1 ? authors[0] : authors?.join(',');
         }
         return routeState;
       },
-      routeToState(routeState: RouteState): UiState  {
+      routeToState(routeState: RouteState): UiState {
         return {
-          ["articles"]: {
+          ['articles']: {
             query: routeState.query,
             refinementList: {
               tags: (routeState.tags || '').split(','),
@@ -60,8 +65,8 @@ const Articles: NextPageWithLayout = () => {
           },
         };
       },
-    }
-  }
+    },
+  };
   return (
     <>
       <NextSeo

@@ -64,7 +64,7 @@ const DashboardList: React.FC<DashboardListProps> = ({
             ))
           : articles.slice(0, smallScreen).map((article, index) => (
               <>
-                <Col span={24} key={article.articleSlug! + index}>
+                <Col span={24} key={article.articleSlug! + index + '-slice'}>
                   <ArticleCard {...article} />
                 </Col>
                 {!isLastDivider(articles.slice(0, smallScreen), index) && (

@@ -19,16 +19,12 @@ const ArticleRecommendation: React.FC<ArticleRecommendationProps> = ({
   if (mergedArticles.length <= 0) return;
 
   const uniqueArticles = [...new Set(mergedArticles)]
-    .map(
-      ({
-        ...rest
-      }) => {
-        return {
-          ...rest,
-          tagsCollection: { items: [] },
-        };
-      }
-    )
+    .map(({ ...rest }) => {
+      return {
+        ...rest,
+        tagsCollection: { items: [] },
+      };
+    })
     .splice(0, 3);
 
   return (

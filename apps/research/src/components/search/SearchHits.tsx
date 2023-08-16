@@ -1,39 +1,29 @@
 import * as React from 'react';
 import { Asset } from '@/types';
-import { useHits } from 'react-instantsearch-hooks-web';
+import { useHits, useInstantSearch } from 'react-instantsearch-hooks-web';
 import { ArticleCard } from '@/components';
 import { Col, Row } from 'antd';
+import { BaseHit } from 'instantsearch.js';
 
-interface ResultBoxProps {
-  hit: {
-    authors: ReadonlyArray<string>;
-    image: Omit<Asset, 'description'>;
-    objectID: string;
-    publishedAt: string;
-    publishedDate: string;
-    section: string;
-    slug: string;
-    subtitle: string;
-    summary: string;
-    tags: ReadonlyArray<string>;
-    title: string;
-  };
+interface SearchHit extends BaseHit {
+  authors: ReadonlyArray<string>;
+  image: Omit<Asset, 'description'>;
+  publishedAt: string;
+  horizontalThumbnail: Asset;
+  publishedDate: string;
+  section: string;
+  slug: string;
+  subtitle: string;
+  summary: string;
+  tags: ReadonlyArray<string>;
+  title: string;
 }
 
 const SearchHits: React.FC = () => {
-  const { results } = useHits<{
-    authors: ReadonlyArray<string>;
-    horizontalThumbnail: Omit<Asset, 'description'>;
-    objectID: string;
-    publishedAt: string;
-    publishedDate: string;
-    section: string;
-    slug: string;
-    subtitle: string;
-    summary: string;
-    tags: ReadonlyArray<string>;
-    title: string;
-  }>();
+  const { results } = useHits<SearchHit>();
+  const { indexUiState, setIndexUiState } = useInstantSearch();
+
+  console.log(indexUiState);
 
   if (results!.__isArtificial && results!.nbHits === 0) {
     return (
@@ -65,7 +55,10 @@ const SearchHits: React.FC = () => {
               <ArticleCard
                 title={hit.title}
                 subtitle={hit.subtitle}
-                horizontalThumbnail={{ url: imageUrl, description: imageDescription }}
+                horizontalThumbnail={{
+                  url: imageUrl,
+                  description: imageDescription,
+                }}
                 publishedDate={hit.publishedDate}
                 tagsCollection={{
                   items: hit.tags.map((tag) => ({ title: tag })),
