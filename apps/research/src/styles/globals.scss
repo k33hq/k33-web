@@ -41,6 +41,8 @@ ul li {
 
 .article-sidebar {
   margin-top: 44px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 @include large() {

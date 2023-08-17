@@ -187,6 +187,34 @@ const GetArticleSummaryWithCover = gql`
   ${AssetFragment}
 `;
 
+const GetArticleWidgetByAuthors = gql`
+  query GetArticleWidgetByAuthors($names: [String!]!, $limit: Int!) {
+    articleCollection(
+      where: { authors: { name_in: $names } }
+      order: [publishedDate_DESC]
+      limit: $limit
+    ) {
+      items {
+        horizontalThumbnail {
+          ...asset
+        }
+        verticalThumbnail {
+          ...asset
+        }
+        title
+        publishedDate
+        tagsCollection {
+          items {
+            title
+          }
+        }
+        articleSlug
+      }
+    }
+  }
+  ${AssetFragment}
+`;
+
 export const getArticleSlugs = async () => {
   const { articleCollection } =
     await contentful.request<GetArticleSlugsResponse>(GetArticleSlugs);
@@ -207,13 +235,10 @@ export const getArticleWidgets = async (
   limit: number = 100
 ) => {
   const { articleCollection } =
-    await contentful.request<GetArticleWidgetsResponse>(
-      GetArticleWidgets,
-      {
-        section,
-        limit,
-      }
-    );
+    await contentful.request<GetArticleWidgetsResponse>(GetArticleWidgets, {
+      section,
+      limit,
+    });
   return articleCollection.items;
 };
 
@@ -241,6 +266,21 @@ export const getArticleSummaryWithCoverWidgets = async (
       GetArticleSummaryWithCover,
       {
         section,
+        limit,
+      }
+    );
+  return articleCollection.items;
+};
+
+export const getArticleWidgetsByAuthors = async (
+  names: Array<string>,
+  limit: number = 5
+) => {
+  const { articleCollection } =
+    await contentful.request<GetArticleWidgetsResponse>(
+      GetArticleWidgetByAuthors,
+      {
+        names,
         limit,
       }
     );

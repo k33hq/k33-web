@@ -4,30 +4,26 @@ import { AssetFragment } from './fragments';
 import { Author, AuthorCollection } from '@/types';
 
 const GetAuthorByName = gql`
-    query GetAuthorByName($name: String!) {
-        authorCollection(where: { name: $name}, limit: 1) {
-            items {
-                name
-                title
-                description
-                profilePicture {
-                    ...asset
-                }
-            }
+  query GetAuthorByName($name: String!) {
+    authorCollection(where: { name: $name }, limit: 1) {
+      items {
+        name
+        title
+        description
+        profilePicture {
+          ...asset
         }
+      }
     }
-    ${AssetFragment}
+  }
+  ${AssetFragment}
 `;
 
-export const getAuthorByName = async (
-  name: string,
-) => {
-  const { authorCollection } =
-    await contentful.request<AuthorCollection<Author>>(
-      GetAuthorByName,
-      {
-        name,
-      },
-    );
+export const getAuthorByName = async (name: string) => {
+  const { authorCollection } = await contentful.request<
+    AuthorCollection<Author>
+  >(GetAuthorByName, {
+    name,
+  });
   return authorCollection.items[0];
 };

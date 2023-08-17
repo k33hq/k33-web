@@ -1,9 +1,14 @@
 import {
   getArticlePage,
   getArticleSlugs,
+  getArticleWidgetsByAuthors,
   getProducts,
 } from '@/api';
-import type {ArticlePage, SubscriptionProduct} from '@/types';
+import type {
+  ArticlePage,
+  ArticleWebWidget,
+  SubscriptionProduct,
+} from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
@@ -25,11 +30,13 @@ const { useToken } = theme;
 interface ArticlePageProps {
   page: ArticlePage;
   product: SubscriptionProduct;
+  authorArticles: readonly ArticleWebWidget[];
 }
 
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
   page,
   product,
+  authorArticles,
 }) => {
   const { lg } = useBreakpoint();
   const {
@@ -57,10 +64,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           name="twitter:description"
           content={seo ? seo.description : subtitle}
         />
-        <meta
-          name="twitter:image"
-          content={seo ? seo.image.url : image.url}
-        />
+        <meta name="twitter:image" content={seo ? seo.image.url : image.url} />
       </Head>
       <NextSeo
         themeColor="#000000"
@@ -87,9 +91,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           images: [
             {
               url: seo ? seo.image.url : image.url,
-              alt: seo
-                ? seo.image.description
-                : image.description,
+              alt: seo ? seo.image.description : image.description,
             },
           ],
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
@@ -120,6 +122,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           <ArticleSidebar
             authors={authorsCollection.items}
             tags={tagsCollection.items}
+            authorArticles={authorArticles}
           />
         </Col>
         <Col id="article" xs={24} lg={14} className="article">
@@ -131,7 +134,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
             publishedDate={publishedDate}
             {...articleContent}
             productId={productId}
-            priceId={pricesCollection.items[0].stripeProductId}          />
+            priceId={pricesCollection.items[0].stripeProductId}
+          />
           <ShareArticle title={title} />
         </Col>
         <Col xs={0} lg={2}></Col>
@@ -179,7 +183,7 @@ ArticlePage.getLayout = function getLayout(
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await getArticleSlugs();
   const paths = slugs
-    .filter(({articleSlug}) => articleSlug)
+    .filter(({ articleSlug }) => articleSlug)
     .map(({ articleSlug }) => ({
       params: { slug: articleSlug },
     }));
@@ -197,10 +201,14 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   const slug = context.params!.slug as string;
   const page = await getArticlePage(slug);
   const product = await getProducts();
+  const authorArticles = await getArticleWidgetsByAuthors(
+    page.authorsCollection.items.map((author) => author.name)
+  );
   return {
     props: {
       page,
       product,
+      authorArticles,
     },
   };
 };
