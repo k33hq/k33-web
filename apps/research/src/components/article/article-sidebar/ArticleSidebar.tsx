@@ -75,44 +75,48 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
           </Space>
         </div>
       )}
-      <div
-        id="author-articles"
-        style={{
-          minWidth: screens.md ? 240 : '100%',
-        }}
-      >
-        <Text
-          type="secondary"
+      {authorArticles.length > 0 && (
+        <div
+          id="author-articles"
           style={{
-            fontSize: fontSizeSM,
-            color: colorTextTertiary,
+            minWidth: screens.md ? 240 : '100%',
           }}
         >
-          {authors.length > 1 ? 'More from Authors' : authors[0].name}
-        </Text>
-        <List
-          style={{
-            width: '100%',
-          }}
-          dataSource={authorArticles.slice()}
-          itemLayout="horizontal"
-          renderItem={(feat) => (
-            <>
-              <List.Item key={feat.articleSlug} style={{ marginLeft: 0 }}>
-                <Link
-                  key={`${feat.articleSlug}-author`}
-                  href={`/articles/` + feat.articleSlug}
-                  style={{
-                    width: '100%',
-                  }}
-                >
-                  <List.Item.Meta description={feat.title} />
-                </Link>
-              </List.Item>
-            </>
-          )}
-        />
-      </div>
+          <Text
+            type="secondary"
+            style={{
+              fontSize: fontSizeSM,
+              color: colorTextTertiary,
+            }}
+          >
+            {authors.length > 1
+              ? 'More from Authors'
+              : `More from ${authors[0].name}`}
+          </Text>
+          <List
+            style={{
+              width: '100%',
+            }}
+            dataSource={authorArticles.slice()}
+            itemLayout="horizontal"
+            renderItem={(feat) => (
+              <>
+                <List.Item key={feat.articleSlug} style={{ marginLeft: 0 }}>
+                  <Link
+                    key={`${feat.articleSlug}-author`}
+                    href={`/articles/` + feat.articleSlug}
+                    style={{
+                      width: '100%',
+                    }}
+                  >
+                    <List.Item.Meta description={feat.title} />
+                  </Link>
+                </List.Item>
+              </>
+            )}
+          />
+        </div>
+      )}
     </aside>
   );
 };

@@ -202,7 +202,8 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   const page = await getArticlePage(slug);
   const product = await getProducts();
   const authorArticles = await getArticleWidgetsByAuthors(
-    page.authorsCollection.items.map((author) => author.name)
+    page.authorsCollection.items.map((author) => author.name),
+    slug
   );
   return {
     props: {

@@ -188,9 +188,13 @@ const GetArticleSummaryWithCover = gql`
 `;
 
 const GetArticleWidgetByAuthors = gql`
-  query GetArticleWidgetByAuthors($names: [String!]!, $limit: Int!) {
+  query GetArticleWidgetByAuthors(
+    $names: [String!]!
+    $exclude: String!
+    $limit: Int!
+  ) {
     articleCollection(
-      where: { authors: { name_in: $names } }
+      where: { authors: { name_in: $names }, articleSlug_not: $exclude }
       order: [publishedDate_DESC]
       limit: $limit
     ) {
@@ -274,6 +278,7 @@ export const getArticleSummaryWithCoverWidgets = async (
 
 export const getArticleWidgetsByAuthors = async (
   names: Array<string>,
+  exclude: string,
   limit: number = 5
 ) => {
   const { articleCollection } =
@@ -281,6 +286,7 @@ export const getArticleWidgetsByAuthors = async (
       GetArticleWidgetByAuthors,
       {
         names,
+        exclude,
         limit,
       }
     );
