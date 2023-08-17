@@ -88,7 +88,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
             color: colorTextTertiary,
           }}
         >
-          More from Author
+          {authors.length > 1 ? 'More from Authors' : authors[0].name}
         </Text>
         <List
           style={{
