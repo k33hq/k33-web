@@ -15,7 +15,7 @@ export const useCustomerDashboard = () => {
   const customerDashboard = async () => {
     try {
       const response = await dashboard({
-        return_url: window.location.href,
+        returnUrl: window.location.href,
       }).unwrap();
 
       let a = document.createElement('a');
@@ -36,9 +36,9 @@ export const useCustomerCheckout = (priceId: string) => {
   const doCheckOut = async () => {
     try {
       const response = await checkout({
-        price_id: priceId,
-        success_url: window.location.href,
-        cancel_url: window.location.href,
+        priceId: priceId,
+        successUrl: window.location.href,
+        cancelUrl: window.location.href,
       }).unwrap();
       window.location.href = response.url;
     } catch (err) {}

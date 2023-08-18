@@ -26,23 +26,23 @@ export type GetSubscriptionProductResponse =
 // payments
 
 export interface CheckOutSessionRequest {
-  price_id: string;
-  success_url: string;
-  cancel_url: string;
+  priceId: string;
+  successUrl: string;
+  cancelUrl: string;
 }
 
 export interface CheckoutSessionResponse {
   url: string;
-  expires_at: string;
+  expiresAt: string;
 }
 
 export interface CustomerPortalSessionRequest {
-  return_url: string;
+  returnUrl: string;
 }
 
 export interface CustomerPortalSessionResponse {
   url: string;
-  return_url: string;
+  returnUrl: string;
 }
 
 export interface GetProductsResponse {
@@ -50,7 +50,7 @@ export interface GetProductsResponse {
 }
 
 export interface GetProductInfoResponse {
-  product_id: string;
+  productId: string;
   status: ProductStatus;
 }
 
