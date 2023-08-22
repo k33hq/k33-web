@@ -42,8 +42,6 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
           NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
           NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT: op://k33-web-env/prod/contentful/GRAPHQL_ENDPOINT
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/ARCHIVE_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ARCHIVE_ACCESS_TOKEN
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
@@ -107,8 +105,6 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
           NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
           NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT: op://k33-web-env/prod/contentful/GRAPHQL_ENDPOINT
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/ARCHIVE_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ARCHIVE_ACCESS_TOKEN
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
@@ -175,8 +171,6 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
           NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
           NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT: op://k33-web-env/prod/contentful/GRAPHQL_ENDPOINT
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/ARCHIVE_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ARCHIVE_ACCESS_TOKEN
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
