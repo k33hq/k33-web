@@ -10,7 +10,6 @@
     "export": "pnpm build && next export -o out/research/archive",
     "postexport": "mv out/research/archive/404.html out/",
     "lint": "next lint",
-    "codegen": "contentful-typescript-codegen --output src/types/generated/contentful.d.ts",
     "predev": "ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
     "prebuild": "cross-env NODE_ENV=production ts-node --project ./tsconfig.node.json src/scripts/genAntdCss.tsx",
     "postbuild": "next-sitemap"
