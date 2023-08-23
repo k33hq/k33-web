@@ -38,7 +38,6 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/PREVIEW_ACCESS_TOKEN
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
           NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
-          NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT: op://k33-web-env/prod/contentful/GRAPHQL_ENDPOINT
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN

@@ -38,7 +38,6 @@ jobs:
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/PREVIEW_ACCESS_TOKEN
           NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
           NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
-          NEXT_PUBLIC_CONTENTFUL_GRAPHQL_ENDPOINT: op://k33-web-env/prod/contentful/GRAPHQL_ENDPOINT
           NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/ARCHIVE_SPACE_ID
           NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ARCHIVE_ACCESS_TOKEN
           # firebase app settings
