@@ -39,12 +39,6 @@ jobs:
           FIREBASE_PROJECT_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/PROJECT_ID
           FIREBASE_SERVICE_ACCOUNT: op://k33-web-env/${{ inputs.target_env }}/firebase/SERVICE_ACCOUNT
           FIREBASE_PLATFORM_TARGET: op://k33-web-env/${{ inputs.target_env }}/firebase/PLATFORM_TARGET
-          # google
-          NEXT_PUBLIC_GOOGLE_ID: op://k33-web-env/${{ inputs.target_env }}/google/ID
-          NEXT_PUBLIC_GOOGLE_SECRET: op://k33-web-env/${{ inputs.target_env }}/google/SECRET
-          # domains
-          NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/WEB
-          NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/API
       - name: deploy apps/platform
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
