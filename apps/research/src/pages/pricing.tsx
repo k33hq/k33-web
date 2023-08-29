@@ -1,5 +1,9 @@
 import { siteUsername } from '@/utils';
-import { UserOutlined } from '@ant-design/icons';
+import {
+  CheckCircleFilled,
+  UserOutlined,
+  CheckCircleOutlined,
+} from '@ant-design/icons';
 import {
   Col,
   Layout,
@@ -10,6 +14,8 @@ import {
   Radio,
   Card,
   Divider,
+  List,
+  Button,
 } from 'antd';
 import { NextSeo } from 'next-seo';
 import * as React from 'react';
@@ -19,9 +25,18 @@ const { Title, Text } = Typography;
 
 type Plan = 'monthly' | 'year';
 
+const proPlanFeatures = [
+  'The latest detailed insights into the markets',
+  'The most important weekly crypto news distilled and explained',
+  'Deep insight with our regular in-depth reports',
+  'Fundamental token analysis',
+  "DeFi narratives - what's the next big thing?",
+  'And more!',
+];
+
 const Pricing = () => {
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, colorPrimary },
   } = useToken();
 
   const [plan, setPlan] = React.useState<Plan>('monthly');
@@ -141,12 +156,32 @@ const Pricing = () => {
                   access to all research content.
                 </Text>
               </Space.Compact>
-              <Radio.Group defaultValue="a" buttonStyle="solid">
-                <Radio.Button value="yearly">Yearly Plan</Radio.Button>
-                <Radio.Button value="monthly">Montly Plan</Radio.Button>
+              <Radio.Group defaultValue={plan} buttonStyle="solid">
+                <Radio.Button
+                  checked={plan === 'year'}
+                  onChange={(e) => setPlan(e.target.value)}
+                  value="year"
+                >
+                  Yearly Plan
+                </Radio.Button>
+                <Radio.Button
+                  checked={plan === 'monthly'}
+                  defaultChecked
+                  value="monthly"
+                  onChange={(e) => setPlan(e.target.value)}
+                >
+                  Montly Plan
+                </Radio.Button>
               </Radio.Group>
               <div className="pricingTable">
-                <Card>
+                <Card
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
                   <Space direction="vertical" align="center">
                     <Space align="center">
                       <UserOutlined />
@@ -163,7 +198,8 @@ const Pricing = () => {
                       direction="horizontal"
                       style={{
                         gap: 4,
-                        alignItems: 'center',
+                        alignItems: 'end',
+                        justifyContent: 'center',
                       }}
                     >
                       <Text type="secondary">$</Text>
@@ -171,15 +207,151 @@ const Pricing = () => {
                         style={{
                           margin: 0,
                           padding: 0,
-                          alignSelf: 'flex-start',
                         }}
                       >
                         0
                       </Title>
-                      <Text>/year</Text>
+                      <Text>/ year</Text>
                     </Space.Compact>
+                    <List
+                      split={false}
+                      style={{
+                        width: '100%',
+                        padding: 0,
+                      }}
+                      dataSource={['Our weekly newletter']}
+                      renderItem={(feat) => (
+                        <List.Item
+                          style={{
+                            margin: 0,
+                            paddingBottom: 8,
+                          }}
+                        >
+                          <Space align="start">
+                            <CheckCircleOutlined />
+                            <Text>{feat}</Text>
+                          </Space>
+                        </List.Item>
+                      )}
+                    />
+                    <Button>Sign up </Button>
                   </Space>
                 </Card>
+                {plan === 'monthly' ? (
+                  <Card style={{ minWidth: 332 }}>
+                    <Space direction="vertical" align="center">
+                      <Space align="center">
+                        <UserOutlined />
+                        <Title
+                          style={{
+                            margin: 0,
+                          }}
+                          level={5}
+                        >
+                          Pro Plan
+                        </Title>
+                      </Space>
+                      <Space.Compact
+                        direction="horizontal"
+                        style={{
+                          gap: 4,
+                          alignItems: 'end',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Text type="secondary">$</Text>
+                        <Title
+                          style={{
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        >
+                          0
+                        </Title>
+                        <Text>/ year</Text>
+                      </Space.Compact>
+                      <List
+                        split={false}
+                        style={{
+                          width: '100%',
+                          padding: 0,
+                        }}
+                        dataSource={['Our weekly newletter']}
+                        renderItem={(feat) => (
+                          <List.Item
+                            style={{
+                              margin: 0,
+                              paddingBottom: 8,
+                            }}
+                          >
+                            <Space align="start">
+                              <CheckCircleOutlined />
+                              <Text>{feat}</Text>
+                            </Space>
+                          </List.Item>
+                        )}
+                      />
+                      <Button>Sign up </Button>
+                    </Space>
+                  </Card>
+                ) : (
+                  <Card>
+                    <Space direction="vertical" align="center">
+                      <Space align="center">
+                        <UserOutlined />
+                        <Title
+                          style={{
+                            margin: 0,
+                          }}
+                          level={5}
+                        >
+                          Pro Plan
+                        </Title>
+                      </Space>
+                      <Space.Compact
+                        direction="horizontal"
+                        style={{
+                          gap: 4,
+                          alignItems: 'end',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Text type="secondary">$</Text>
+                        <Title
+                          style={{
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        >
+                          500
+                        </Title>
+                        <Text>/ year</Text>
+                      </Space.Compact>
+                      <List
+                        split={false}
+                        style={{
+                          width: '100%',
+                          padding: 0,
+                        }}
+                        dataSource={proPlanFeatures}
+                        renderItem={(feat) => (
+                          <List.Item
+                            style={{
+                              margin: 0,
+                              paddingBottom: 8,
+                            }}
+                          >
+                            <Space align="start">
+                              <CheckCircleOutlined />
+                              <Text>{feat}</Text>
+                            </Space>
+                          </List.Item>
+                        )}
+                      />
+                      <Button>Sign up </Button>
+                    </Space>
+                  </Card>
+                )}
               </div>
             </Col>
           </Row>
