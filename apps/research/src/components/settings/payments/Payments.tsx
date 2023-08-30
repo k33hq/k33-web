@@ -30,7 +30,7 @@ const mask = (email: string) =>
   );
 const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   const router = useRouter();
-  const [status, state] = useProductInfo(productId);
+  const { productStatus, appState } = useProductInfo(productId);
   const { doCheckOut: checkout, isLoading } = useCustomerCheckout(priceId);
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
@@ -43,7 +43,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
     });
   }, []);
 
-  const getPaymentCard = (productStatus: typeof status) => {
+  const getPaymentCard = (productStatus: string) => {
     switch (productStatus) {
       case 'blocked':
         return (
@@ -180,7 +180,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
       default:
         return (
           <Card
-            loading={status === 'loading'}
+            loading={productStatus === 'loading'}
             style={{
               width: '100%',
             }}
@@ -225,7 +225,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   return (
     <>
       <SettingsPaymentTitle />
-      {state === 'SIGNED_OUT' ? (
+      {appState === 'SIGNED_OUT' ? (
         <div
           style={{
             display: 'flex',
@@ -239,7 +239,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
         </div>
       ) : (
         <>
-          {status === 'blocked' && (
+          {productStatus.state === 'blocked' && (
             <Alert
               message="Failed Payment Attempt:"
               description="We were unable to complete the payment of your subscription."
@@ -247,7 +247,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
               showIcon
             />
           )}
-          {getPaymentCard(status)}
+          {getPaymentCard(productStatus.state ?? appState)}
         </>
       )}
     </>

@@ -10,6 +10,8 @@ import {
   theme,
 } from 'antd';
 import { UserOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { useCustomerCheckout, useCustomerDashboard } from '@/hooks';
+import { appStructure } from '@/config';
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -31,6 +33,16 @@ const PricingTable = () => {
   } = useToken();
 
   const [plan, setPlan] = React.useState<Plan>('monthly');
+
+  const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
+    useCustomerCheckout(appStructure.payments.annualPriceId);
+
+  const { doCheckOut: monthlyCheckOut, isLoading: montlyIsLoading } =
+    useCustomerCheckout(appStructure.payments.monthlyPriceId);
+
+  const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
+    useCustomerDashboard();
+
   return (
     <>
       <Space.Compact

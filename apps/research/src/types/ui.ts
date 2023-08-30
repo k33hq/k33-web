@@ -7,7 +7,8 @@ export interface Navigation {
 
 export interface Payments {
   productId: string;
-  prices: Array<string>;
+  annualPriceId: string;
+  monthlyPriceId: string;
 }
 
 export interface AppStructure {
