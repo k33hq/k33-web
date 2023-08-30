@@ -5,8 +5,14 @@ export interface Navigation {
   children?: Array<Navigation>;
 }
 
+export interface Payments {
+  productId: string;
+  prices: Array<string>;
+}
+
 export interface AppStructure {
   navigation: Array<Navigation>;
+  payments: Payments;
 }
 
 // export interface PageTab {
