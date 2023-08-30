@@ -50,9 +50,13 @@ jobs:
           # domains
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
-          #algolia
+          # algolia
           NEXT_PUBLIC_ALGOLIA_APP_ID: op://k33-web-env/prod/algolia/APP_ID
           NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: op://k33-web-env/prod/algolia/SEARCH_API_KEY
+          # stripe
+          NEXT_PUBLIC_STRIPE_PRODUCT_ID: op://k33-web-env/prod/stripe/PRODUCT_ID
+          NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID
+          NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies
