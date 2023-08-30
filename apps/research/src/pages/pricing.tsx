@@ -177,6 +177,7 @@ const Pricing = () => {
                 <Card
                   style={{
                     width: '100%',
+                    maxWidth: 325,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -238,7 +239,7 @@ const Pricing = () => {
                   </Space>
                 </Card>
                 {plan === 'monthly' ? (
-                  <Card style={{ minWidth: 332 }}>
+                  <Card style={{ maxWidth: 325 }}>
                     <Space direction="vertical" align="center">
                       <Space align="center">
                         <UserOutlined />
@@ -266,7 +267,7 @@ const Pricing = () => {
                             padding: 0,
                           }}
                         >
-                          0
+                          50
                         </Title>
                         <Text>/ year</Text>
                       </Space.Compact>
@@ -276,7 +277,7 @@ const Pricing = () => {
                           width: '100%',
                           padding: 0,
                         }}
-                        dataSource={['Our weekly newletter']}
+                        dataSource={proPlanFeatures}
                         renderItem={(feat) => (
                           <List.Item
                             style={{
@@ -295,7 +296,7 @@ const Pricing = () => {
                     </Space>
                   </Card>
                 ) : (
-                  <Card>
+                  <Card style={{ maxWidth: 325 }}>
                     <Space direction="vertical" align="center">
                       <Space align="center">
                         <UserOutlined />
