@@ -48,6 +48,7 @@ const PricingTable = () => {
     useCustomerDashboard();
 
   console.log(appState);
+  console.log(productStatus);
 
   return (
     <>

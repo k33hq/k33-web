@@ -24,7 +24,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   reportDocument,
   ...metadata
 }) => {
-  const [status, state] = useProductInfo(productId);
+  const { productStatus, appState } = useProductInfo(productId);
   const {
     token: { fontSizeSM },
   } = useToken();
@@ -46,7 +46,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       </div>
       {reportDocument && (
         <>
-          {status === 'active' && (
+          {productStatus.state === 'active' && (
             <Button
               type="primary"
               onClick={() => downloadResource(reportDocument.url)}

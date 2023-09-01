@@ -40,8 +40,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   isReport = false,
 }) => {
   const { doCheckOut, isLoading } = useCustomerCheckout(priceId);
-  const [status, state] = useProductInfo(productId);
-  const getCallToAction = (state: typeof status) => {
+  const { productStatus, appState } = useProductInfo(productId);
+
+  const getCallToAction = (state: typeof productStatus.state) => {
     switch (state) {
       case 'loading':
         return (
@@ -90,7 +91,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     }
   };
 
-  if (state === 'SIGNED_OUT')
+  if (appState === 'SIGNED_OUT')
     return (
       <ActionLayout publicSnippet={publicSnippet}>
         <SignUpCall
@@ -103,11 +104,11 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       </ActionLayout>
     );
 
-  if (status === 'active') return children;
+  if (productStatus.state === 'active') return children;
 
   return (
     <motion.div
-      key={status}
+      key={productStatus.state}
       variants={variants}
       animate={'show'}
       initial="hide"
@@ -116,7 +117,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       }}
     >
       <ActionLayout publicSnippet={publicSnippet}>
-        {getCallToAction(status)}
+        {getCallToAction(productStatus.state)}
       </ActionLayout>
     </motion.div>
   );
