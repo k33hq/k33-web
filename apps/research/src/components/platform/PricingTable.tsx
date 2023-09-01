@@ -8,10 +8,17 @@ import {
   List,
   Button,
   theme,
+  Tag,
 } from 'antd';
 import { UserOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { useCustomerCheckout, useCustomerDashboard } from '@/hooks';
+import {
+  useCustomerCheckout,
+  useCustomerDashboard,
+  useProductInfo,
+} from '@/hooks';
 import { appStructure } from '@/config';
+import Link from 'next/link';
+import PricingCard from './PricingCard';
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -29,10 +36,14 @@ const proPlanFeatures = [
 
 const PricingTable = () => {
   const {
-    token: { colorBgContainer, colorPrimary },
+    token: { colorTextTertiary },
   } = useToken();
 
   const [plan, setPlan] = React.useState<Plan>('monthly');
+
+  const { productStatus, appState } = useProductInfo(
+    appStructure.payments.productId
+  );
 
   const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
     useCustomerCheckout(appStructure.payments.annualPriceId);
@@ -42,6 +53,8 @@ const PricingTable = () => {
 
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
+
+  console.log(appState);
 
   return (
     <>
@@ -85,184 +98,36 @@ const PricingTable = () => {
         </Radio.Button>
       </Radio.Group>
       <div className="pricingTable">
-        <Card
-          style={{
-            width: '100%',
-            maxWidth: 325,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Space direction="vertical" align="center">
-            <Space align="center">
-              <UserOutlined />
-              <Title
-                style={{
-                  margin: 0,
-                }}
-                level={5}
+        <PricingCard
+          plan="Free Plan"
+          features={['Our weekly newsletter']}
+          price="0"
+          action={
+            appState === 'SIGNED_OUT' && (
+              <Link
+                href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                role="grid"
               >
-                Free Plan
-              </Title>
-            </Space>
-            <Space.Compact
-              direction="horizontal"
-              style={{
-                gap: 4,
-                alignItems: 'end',
-                justifyContent: 'center',
-              }}
-            >
-              <Text type="secondary">$</Text>
-              <Title
-                style={{
-                  margin: 0,
-                  padding: 0,
-                }}
-              >
-                0
-              </Title>
-              <Text>/ year</Text>
-            </Space.Compact>
-            <List
-              split={false}
-              style={{
-                width: '100%',
-                padding: 0,
-              }}
-              dataSource={['Our weekly newletter']}
-              renderItem={(feat) => (
-                <List.Item
-                  style={{
-                    margin: 0,
-                    paddingBottom: 8,
-                  }}
-                >
-                  <Space align="start">
-                    <CheckCircleOutlined />
-                    <Text>{feat}</Text>
-                  </Space>
-                </List.Item>
-              )}
-            />
-            <Button>Sign up </Button>
-          </Space>
-        </Card>
+                <Button>Sign In</Button>
+              </Link>
+            )
+          }
+        />
         {plan === 'monthly' ? (
-          <Card style={{ maxWidth: 325 }}>
-            <Space direction="vertical" align="center">
-              <Space align="center">
-                <UserOutlined />
-                <Title
-                  style={{
-                    margin: 0,
-                  }}
-                  level={5}
-                >
-                  Pro Plan
-                </Title>
-              </Space>
-              <Space.Compact
-                direction="horizontal"
-                style={{
-                  gap: 4,
-                  alignItems: 'end',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text type="secondary">$</Text>
-                <Title
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                  }}
-                >
-                  50
-                </Title>
-                <Text>/ year</Text>
-              </Space.Compact>
-              <List
-                split={false}
-                style={{
-                  width: '100%',
-                  padding: 0,
-                }}
-                dataSource={proPlanFeatures}
-                renderItem={(feat) => (
-                  <List.Item
-                    style={{
-                      margin: 0,
-                      paddingBottom: 8,
-                    }}
-                  >
-                    <Space align="start">
-                      <CheckCircleOutlined />
-                      <Text>{feat}</Text>
-                    </Space>
-                  </List.Item>
-                )}
-              />
-              <Button>Sign up </Button>
-            </Space>
-          </Card>
+          <PricingCard
+            plan="Pro Plan"
+            features={proPlanFeatures}
+            price="50"
+            action={appState === 'SIGNED_OUT' && <LogoutActionButton />}
+          />
         ) : (
-          <Card style={{ maxWidth: 325 }}>
-            <Space direction="vertical" align="center">
-              <Space align="center">
-                <UserOutlined />
-                <Title
-                  style={{
-                    margin: 0,
-                  }}
-                  level={5}
-                >
-                  Pro Plan
-                </Title>
-              </Space>
-              <Space.Compact
-                direction="horizontal"
-                style={{
-                  gap: 4,
-                  alignItems: 'end',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text type="secondary">$</Text>
-                <Title
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                  }}
-                >
-                  500
-                </Title>
-                <Text>/ year</Text>
-              </Space.Compact>
-              <List
-                split={false}
-                style={{
-                  width: '100%',
-                  padding: 0,
-                }}
-                dataSource={proPlanFeatures}
-                renderItem={(feat) => (
-                  <List.Item
-                    style={{
-                      margin: 0,
-                      paddingBottom: 8,
-                    }}
-                  >
-                    <Space align="start">
-                      <CheckCircleOutlined />
-                      <Text>{feat}</Text>
-                    </Space>
-                  </List.Item>
-                )}
-              />
-              <Button>Sign up </Button>
-            </Space>
-          </Card>
+          <PricingCard
+            plan="Pro Plan"
+            features={proPlanFeatures}
+            price="500"
+            promotions={<Tag color="blue">Save $100</Tag>}
+            action={appState === 'SIGNED_OUT' && <LogoutActionButton />}
+          />
         )}
       </div>
     </>
@@ -270,3 +135,26 @@ const PricingTable = () => {
 };
 
 export default PricingTable;
+
+const LogoutActionButton = () => {
+  const {
+    token: { colorTextTertiary },
+  } = useToken();
+  return (
+    <Space direction="vertical" size={8} align="center">
+      <Link
+        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+        role="grid"
+      >
+        <Button type="primary">Start 30-Day Free Trial</Button>
+      </Link>
+      <Text
+        style={{
+          color: colorTextTertiary,
+        }}
+      >
+        No credit card required
+      </Text>
+    </Space>
+  );
+};

@@ -188,6 +188,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                       {state === 'SIGNED_OUT' ? (
                         <Link
                           href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                          role="grid"
                         >
                           <Button
                             style={{
