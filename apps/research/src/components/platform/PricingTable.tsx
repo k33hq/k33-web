@@ -1,16 +1,6 @@
 import * as React from 'react';
-import {
-  Space,
-  Typography,
-  Radio,
-  Badge,
-  Card,
-  List,
-  Button,
-  theme,
-  Tag,
-} from 'antd';
-import { UserOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { Space, Typography, Radio, Badge, Button, theme, Tag } from 'antd';
+import { UserOutlined, UnlockTwoTone } from '@ant-design/icons';
 import {
   useCustomerCheckout,
   useCustomerDashboard,
@@ -19,6 +9,9 @@ import {
 import { appStructure } from '@/config';
 import Link from 'next/link';
 import PricingCard from './PricingCard';
+import { setTwoToneColor } from '@ant-design/icons';
+
+setTwoToneColor('#777777');
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -100,6 +93,7 @@ const PricingTable = () => {
       <div className="pricingTable">
         <PricingCard
           plan="Free Plan"
+          icon={<UserOutlined style={{ fontSize: 48 }} />}
           features={['Our weekly newsletter']}
           price="0"
           action={
@@ -115,14 +109,28 @@ const PricingTable = () => {
         />
         {plan === 'monthly' ? (
           <PricingCard
-            plan="Pro Plan"
+            icon={
+              <UnlockTwoTone
+                style={{
+                  fontSize: 48,
+                }}
+              />
+            }
+            plan="PRO Plan"
             features={proPlanFeatures}
             price="50"
             action={appState === 'SIGNED_OUT' && <LogoutActionButton />}
           />
         ) : (
           <PricingCard
-            plan="Pro Plan"
+            plan="PRO Plan"
+            icon={
+              <UnlockTwoTone
+                style={{
+                  fontSize: 48,
+                }}
+              />
+            }
             features={proPlanFeatures}
             price="500"
             promotions={<Tag color="blue">Save $100</Tag>}

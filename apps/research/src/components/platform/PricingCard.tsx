@@ -13,6 +13,7 @@ interface PricingCardProps {
   price: string;
   plan: string;
   promotions?: React.ReactNode;
+  icon: React.ReactNode;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -21,6 +22,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   price,
   plan,
   promotions,
+  icon,
 }) => {
   return (
     <Card
@@ -34,12 +36,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
     >
       <Space direction="vertical" align="center" size={24}>
         <Space align="center" direction="vertical" size={8}>
-          {promotions}
-          <UserOutlined
-            style={{
-              fontSize: 48,
-            }}
-          />
+          {promotions && (
+            <div
+              style={{
+                marginBottom: 8,
+              }}
+            >
+              {promotions}
+            </div>
+          )}
+          {icon}
           <Title
             style={{
               margin: 0,
