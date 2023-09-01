@@ -29,13 +29,11 @@ const { useToken } = theme;
 
 interface ArticlePageProps {
   page: ArticlePage;
-  product: SubscriptionProduct;
   authorArticles: readonly ArticleWebWidget[];
 }
 
 const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
   page,
-  product,
   authorArticles,
 }) => {
   const { lg } = useBreakpoint();
@@ -52,7 +50,6 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
     image,
     ...articleContent
   } = page;
-  const { productId, pricesCollection } = product;
 
   return (
     <>
@@ -133,8 +130,6 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
             image={image}
             publishedDate={publishedDate}
             {...articleContent}
-            productId={productId}
-            priceId={pricesCollection.items[0].stripeProductId}
           />
           <ShareArticle title={title} />
         </Col>
@@ -200,7 +195,6 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
 ) => {
   const slug = context.params!.slug as string;
   const page = await getArticlePage(slug);
-  const product = await getProducts();
   const authorArticles = await getArticleWidgetsByAuthors(
     page.authorsCollection.items.map((author) => author.name),
     slug
@@ -208,7 +202,7 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   return {
     props: {
       page,
-      product,
+
       authorArticles,
     },
   };

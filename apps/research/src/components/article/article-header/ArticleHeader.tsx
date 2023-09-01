@@ -6,25 +6,25 @@ import styles from './styles.module.scss';
 import ArticleMetaData from '../ArticleMetaData';
 import { downloadResource } from '@/utils';
 import { useProductInfo } from '@/hooks';
+import { appStructure } from '@/config';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
 
 interface ArticleHeaderProps
   extends Pick<Article, 'title' | 'subtitle' | 'image' | 'reportDocument'>,
-    Pick<ArticlePage, 'sections' | 'publishedDate'> {
-  productId: string;
-}
+    Pick<ArticlePage, 'sections' | 'publishedDate'> {}
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   title,
   subtitle,
   image,
-  productId,
   reportDocument,
   ...metadata
 }) => {
-  const { productStatus, appState } = useProductInfo(productId);
+  const { productStatus, appState } = useProductInfo(
+    appStructure.payments.productId
+  );
   const {
     token: { fontSizeSM },
   } = useToken();

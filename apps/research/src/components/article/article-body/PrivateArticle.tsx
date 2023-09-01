@@ -10,12 +10,11 @@ import {
 } from '../article-actions';
 import { useCustomerCheckout, useProductInfo } from '@/hooks';
 import { motion } from 'framer-motion';
+import { appStructure } from '@/config';
 
 interface PrivateArticleProps
   extends React.PropsWithChildren,
     Pick<Article, 'publicSnippet'> {
-  productId: string;
-  priceId: string;
   isReport?: boolean;
 }
 
@@ -35,12 +34,15 @@ export const variants = {
 const PrivateArticle: React.FC<PrivateArticleProps> = ({
   publicSnippet,
   children,
-  productId,
-  priceId,
   isReport = false,
 }) => {
-  const { doCheckOut, isLoading } = useCustomerCheckout(priceId);
-  const { productStatus, appState } = useProductInfo(productId);
+  const { doCheckOut, isLoading } = useCustomerCheckout(
+    appStructure.payments.monthlyPriceId
+  );
+
+  const { productStatus, appState } = useProductInfo(
+    appStructure.payments.productId
+  );
 
   const getCallToAction = (state: typeof productStatus.state) => {
     switch (state) {

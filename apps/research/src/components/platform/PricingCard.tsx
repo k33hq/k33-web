@@ -14,6 +14,8 @@ interface PricingCardProps {
   plan: string;
   promotions?: React.ReactNode;
   icon: React.ReactNode;
+  date?: 'year' | 'mo';
+  state?: 'blocked' | 'active';
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -23,6 +25,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
   plan,
   promotions,
   icon,
+  state,
+  date = 'mo',
 }) => {
   return (
     <Card
@@ -32,6 +36,17 @@ const PricingCard: React.FC<PricingCardProps> = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+      }}
+      {...(state === 'active' && { title: 'ACTIVE PLAN' })}
+      {...(state === 'blocked' && { title: 'BLOCKED PLAN' })}
+      headStyle={{
+        width: '100%',
+        color: 'white',
+        alignItems: 'center',
+        flexDirection: 'column',
+        textAlign: 'center',
+        ...(state === 'active' && { background: 'black' }),
+        ...(state === 'blocked' && { background: 'var(--red-6, #F5222D)' }),
       }}
     >
       <Space direction="vertical" align="center" size={24}>
@@ -72,7 +87,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
           >
             {price}
           </Title>
-          <Text type="secondary">/ year</Text>
+          <Text type="secondary">{`/${date}`}</Text>
         </Space.Compact>
         <List
           split={false}
