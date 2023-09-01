@@ -52,12 +52,12 @@ export interface GetProductsResponse {
 export interface GetProductInfoResponse {
   productId: string;
   status: ProductStatus;
+  priceId: string;
 }
 
 //market insight
 
-export type GetArticleWidgetsResponse =
-  ArticleCollection<ArticleWebWidget>;
+export type GetArticleWidgetsResponse = ArticleCollection<ArticleWebWidget>;
 
 export type GetArticleSummaryWidgetResponse =
   ArticleCollection<ArticleSummaryWidget>;

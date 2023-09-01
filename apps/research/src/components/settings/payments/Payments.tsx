@@ -14,24 +14,24 @@ import stripe from '../../../assets/stripe.svg';
 import Image from 'next/image';
 import { getUserInformation } from 'core';
 import { SignUpCall } from '@/components';
+import { appStructure } from '@/config';
 
 const { Text, Link } = Typography;
 const { Ribbon } = Badge;
-
-interface PaymentsProps {
-  productId: string;
-  priceId: string;
-}
 
 const mask = (email: string) =>
   email.replace(
     /^(.)(.*)(.@.*)$/,
     (_, a, b, c) => a + b.replace(/./g, '*') + c
   );
-const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
+const Payments: React.FC = () => {
   const router = useRouter();
-  const [status, state] = useProductInfo(productId);
-  const { doCheckOut: checkout, isLoading } = useCustomerCheckout(priceId);
+  const { productStatus, appState } = useProductInfo(
+    appStructure.payments.productId
+  );
+  const { doCheckOut: checkout, isLoading } = useCustomerCheckout(
+    appStructure.payments.monthlyPriceId
+  );
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
 
@@ -43,13 +43,13 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
     });
   }, []);
 
-  const getPaymentCard = (productStatus: typeof status) => {
-    switch (productStatus) {
+  const getPaymentCard = (status: typeof productStatus.state) => {
+    switch (status) {
       case 'blocked':
         return (
           <Ribbon text={'Pro'} color={'red'}>
             <Card
-              loading={status === 'loading'}
+              loading={productStatus.state === 'loading'}
               id="payments-card"
               style={{
                 width: '100%',
@@ -95,7 +95,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
         return (
           <Ribbon text={'Pro'} color={'#000000'}>
             <Card
-              loading={status === 'loading'}
+              loading={productStatus.state === 'loading'}
               id="payments-card"
               style={{
                 width: '100%',
@@ -140,7 +140,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
       case 'ended':
         return (
           <Card
-            loading={status === 'loading'}
+            loading={productStatus.state === 'loading'}
             id="payments-card"
             style={{
               width: '100%',
@@ -180,7 +180,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
       default:
         return (
           <Card
-            loading={status === 'loading'}
+            loading={productStatus.state === 'loading'}
             style={{
               width: '100%',
             }}
@@ -225,7 +225,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
   return (
     <>
       <SettingsPaymentTitle />
-      {state === 'SIGNED_OUT' ? (
+      {appState === 'SIGNED_OUT' ? (
         <div
           style={{
             display: 'flex',
@@ -239,7 +239,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
         </div>
       ) : (
         <>
-          {status === 'blocked' && (
+          {productStatus.state === 'blocked' && (
             <Alert
               message="Failed Payment Attempt:"
               description="We were unable to complete the payment of your subscription."
@@ -247,7 +247,7 @@ const Payments: React.FC<PaymentsProps> = ({ productId, priceId }) => {
               showIcon
             />
           )}
-          {getPaymentCard(status)}
+          {getPaymentCard(productStatus.state)}
         </>
       )}
     </>

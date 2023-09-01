@@ -10,12 +10,11 @@ import {
 } from '../article-actions';
 import { useCustomerCheckout, useProductInfo } from '@/hooks';
 import { motion } from 'framer-motion';
+import { appStructure } from '@/config';
 
 interface PrivateArticleProps
   extends React.PropsWithChildren,
     Pick<Article, 'publicSnippet'> {
-  productId: string;
-  priceId: string;
   isReport?: boolean;
 }
 
@@ -35,13 +34,17 @@ export const variants = {
 const PrivateArticle: React.FC<PrivateArticleProps> = ({
   publicSnippet,
   children,
-  productId,
-  priceId,
   isReport = false,
 }) => {
-  const { doCheckOut, isLoading } = useCustomerCheckout(priceId);
-  const [status, state] = useProductInfo(productId);
-  const getCallToAction = (state: typeof status) => {
+  const { doCheckOut, isLoading } = useCustomerCheckout(
+    appStructure.payments.monthlyPriceId
+  );
+
+  const { productStatus, appState } = useProductInfo(
+    appStructure.payments.productId
+  );
+
+  const getCallToAction = (state: typeof productStatus.state) => {
     switch (state) {
       case 'loading':
         return (
@@ -90,7 +93,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     }
   };
 
-  if (state === 'SIGNED_OUT')
+  if (appState === 'SIGNED_OUT')
     return (
       <ActionLayout publicSnippet={publicSnippet}>
         <SignUpCall
@@ -103,11 +106,11 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       </ActionLayout>
     );
 
-  if (status === 'active') return children;
+  if (productStatus.state === 'active') return children;
 
   return (
     <motion.div
-      key={status}
+      key={productStatus.state}
       variants={variants}
       animate={'show'}
       initial="hide"
@@ -116,7 +119,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       }}
     >
       <ActionLayout publicSnippet={publicSnippet}>
-        {getCallToAction(status)}
+        {getCallToAction(productStatus.state)}
       </ActionLayout>
     </motion.div>
   );

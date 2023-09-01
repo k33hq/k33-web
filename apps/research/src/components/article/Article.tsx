@@ -20,10 +20,7 @@ interface ArticleProps
       | 'recommendedArticlesCollection'
       | 'relatedArticlesCollection'
     >,
-    Pick<ArticlePage, 'sections' | 'publishedDate'> {
-  productId: string;
-  priceId: string;
-}
+    Pick<ArticlePage, 'sections' | 'publishedDate'> {}
 
 // TODO: extract the subscription product call to rtk toolkit soo we have the productID and price in the store when we need them
 const Article: React.FC<ArticleProps> = ({
@@ -34,8 +31,6 @@ const Article: React.FC<ArticleProps> = ({
   summary,
   body,
   publicSnippet,
-  productId,
-  priceId,
   reportDocument,
   ...metadata
 }) => {
@@ -46,7 +41,6 @@ const Article: React.FC<ArticleProps> = ({
         reportDocument={reportDocument}
         subtitle={subtitle}
         image={image}
-        productId={productId}
         {...metadata}
       />
       {keyPoints || summary ? (
@@ -60,12 +54,7 @@ const Article: React.FC<ArticleProps> = ({
           />
         </div>
       ) : null}
-      <PrivateArticle
-        isReport={!!reportDocument}
-        publicSnippet={publicSnippet}
-        priceId={priceId}
-        productId={productId}
-      >
+      <PrivateArticle isReport={!!reportDocument} publicSnippet={publicSnippet}>
         <ArticleBody body={body} />
       </PrivateArticle>
     </>

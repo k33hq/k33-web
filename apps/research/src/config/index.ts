@@ -74,4 +74,9 @@ export const appStructure: AppStructure = {
       ],
     },
   ],
+  payments: {
+    productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID! as string,
+    annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID!,
+    monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID!,
+  },
 };

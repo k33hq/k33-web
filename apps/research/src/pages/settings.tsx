@@ -18,10 +18,7 @@ const Settings: NextPageWithLayout<SettingsProps> = ({ product }) => {
   return (
     <>
       <NextSeo title="K33 - Settings" />
-      <Payments
-        priceId={product.pricesCollection.items[0].stripeProductId}
-        productId={product.productId}
-      />
+      <Payments />
     </>
   );
 };
@@ -36,16 +33,6 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
       {page}
     </TabLayout>
   );
-};
-
-// TODO: error fallback
-export const getStaticProps: GetStaticProps<SettingsProps> = async () => {
-  const product = await getProducts();
-  return {
-    props: {
-      product,
-    },
-  };
 };
 
 export default Settings;

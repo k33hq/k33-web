@@ -50,23 +50,30 @@ export const useCustomerCheckout = (priceId: string) => {
 export const useProductInfo = (productId: string) => {
   const state = useAppState(config);
   const [getProductsInfoTrigger] = useLazyGetProductInfoQuery();
-  const [productInfoStatus, setProductInfoStatus] = React.useState<
-    ProductStatus | null | 'loading'
-  >('loading');
+  const [productInfoStatus, setProductInfoStatus] = React.useState<{
+    state: ProductStatus | null | 'loading';
+    priceId: null | string;
+  }>({
+    state: 'loading',
+    priceId: null,
+  });
 
   React.useEffect(() => {
     const getProductsInfo = async () => {
       try {
         const data = await getProductsInfoTrigger(productId).unwrap();
-        setProductInfoStatus(data.status);
+        setProductInfoStatus({
+          state: data.status,
+          priceId: data.priceId,
+        });
       } catch (err) {
-        setProductInfoStatus(null);
+        setProductInfoStatus({ state: null, priceId: null });
       }
     };
     getProductsInfo();
   }, [state, getProductsInfoTrigger, productId]);
 
-  return [productInfoStatus, state];
+  return { productStatus: productInfoStatus, appState: state };
 };
 
 export const useTraverse = <T>(elements: Array<T>) => {

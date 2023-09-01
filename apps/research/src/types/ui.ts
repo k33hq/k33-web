@@ -5,8 +5,15 @@ export interface Navigation {
   children?: Array<Navigation>;
 }
 
+export interface Payments {
+  productId: string;
+  annualPriceId: string;
+  monthlyPriceId: string;
+}
+
 export interface AppStructure {
   navigation: Array<Navigation>;
+  payments: Payments;
 }
 
 // export interface PageTab {
