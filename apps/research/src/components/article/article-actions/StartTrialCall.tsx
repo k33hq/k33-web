@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 
 interface EndedCallProps {
   checkout: () => void;
+  yearlyCheckout: () => void;
   isLoading?: boolean;
   isReport?: boolean;
 }
@@ -15,6 +16,7 @@ const { useToken } = theme;
 
 const StartTrialCall: React.FC<EndedCallProps> = ({
   checkout,
+  yearlyCheckout,
   isLoading = false,
   isReport = false,
 }) => {
@@ -40,6 +42,7 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           </Text> */}
         </Space>
         <ProCheckoutCard
+          handleYearlyCheckout={yearlyCheckout}
           isLoading={isLoading}
           handleCheckout={checkout}
           label="Start 30-Day Free Trial"

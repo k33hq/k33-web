@@ -40,6 +40,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     appStructure.payments.monthlyPriceId
   );
 
+  const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.annualPriceId);
+
   const { productStatus, appState } = useProductInfo(
     appStructure.payments.productId
   );
@@ -85,7 +88,8 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       default:
         return (
           <StartTrialCall
-            isLoading={isLoading}
+            yearlyCheckout={doYearlyCheckOut}
+            isLoading={isLoading || isYearlyLoading}
             checkout={doCheckOut}
             isReport={isReport}
           />
@@ -96,18 +100,12 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   if (appState === 'SIGNED_OUT')
     return (
       <ActionLayout publicSnippet={publicSnippet}>
-        {/* <SignUpCall
+        <SignUpCall
           title={
             isReport
               ? 'Try K33 Research Pro for free to download the report'
               : 'Try K33 Research Pro for free to read the article'
           }
-        /> */}
-
-        <StartTrialCall
-          isLoading={isLoading}
-          checkout={doCheckOut}
-          isReport={isReport}
         />
       </ActionLayout>
     );

@@ -24,6 +24,7 @@ const features = [
 
 interface ProCheckoutCardProps {
   handleCheckout: () => void;
+  handleYearlyCheckout: () => void;
   label: string;
   isFreeTrial?: boolean;
   isLoading?: boolean;
@@ -31,6 +32,7 @@ interface ProCheckoutCardProps {
 
 const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   handleCheckout,
+  handleYearlyCheckout,
   label,
   isFreeTrial = false,
   isLoading = false,
@@ -144,15 +146,27 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           </List.Item>
         )}
       />
-      <Button
-        loading={isLoading}
-        size="large"
-        type="primary"
-        block
-        onClick={handleCheckout}
-      >
-        {label}
-      </Button>
+      {plan === 'monthly' ? (
+        <Button
+          loading={isLoading}
+          size="large"
+          type="primary"
+          block
+          onClick={handleCheckout}
+        >
+          {label}
+        </Button>
+      ) : (
+        <Button
+          loading={isLoading}
+          size="large"
+          type="primary"
+          block
+          onClick={handleYearlyCheckout}
+        >
+          {label}
+        </Button>
+      )}
     </Space>
   );
 };
