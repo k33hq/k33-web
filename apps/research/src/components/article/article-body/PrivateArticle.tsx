@@ -80,6 +80,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'ended':
         return (
           <EndedCall
+            yearlyCheckout={doYearlyCheckOut}
             isLoading={isLoading}
             checkout={doCheckOut}
             isReport={isReport}

@@ -5,6 +5,7 @@ import { ProCheckoutCard } from '../article-payments';
 
 interface EndedCallProps {
   checkout: () => void;
+  yearlyCheckout: () => void;
   isLoading?: boolean;
   isReport?: boolean;
 }
@@ -14,6 +15,7 @@ const { useToken } = theme;
 
 const EndedCall: React.FC<EndedCallProps> = ({
   checkout,
+  yearlyCheckout,
   isLoading = false,
   isReport = false,
 }) => {
@@ -38,6 +40,7 @@ const EndedCall: React.FC<EndedCallProps> = ({
           </Text>
         </Space>
         <ProCheckoutCard
+          handleYearlyCheckout={yearlyCheckout}
           isLoading={isLoading}
           handleCheckout={checkout}
           label="Renew Your Subscription"
