@@ -1,6 +1,16 @@
 import * as React from 'react';
-import { Space, Divider, List, theme, Typography, Button } from 'antd';
+import {
+  Space,
+  Divider,
+  List,
+  theme,
+  Typography,
+  Button,
+  Switch,
+  Tag,
+} from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
+import { usePlan } from '@/hooks';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
@@ -28,6 +38,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   const {
     token: { colorBgContainer, borderRadius, colorPrimary },
   } = useToken();
+  const { plan, setPlan } = usePlan();
   return (
     <Space
       id="ended-body"
@@ -36,31 +47,69 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
         borderRadius: borderRadius,
         textAlign: 'start',
         padding: '20px 28px',
+        width: '100%',
       }}
       direction="vertical"
       size={20}
     >
-      <Space direction="vertical">
-        <Title level={5} style={{ margin: 0 }}>
-          K33 Research Pro
-        </Title>
+      <Space
+        direction="vertical"
+        align="center"
+        style={{
+          width: '100%',
+        }}
+        size={16}
+      >
+        <Space direction="horizontal" align="end" size="large">
+          <Text disabled={plan === 'year'}>Monthly</Text>
+          <Switch
+            defaultChecked
+            onChange={(isYear) => {
+              setPlan(isYear ? 'year' : 'monthly');
+            }}
+          />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Tag color="blue">Save $100</Tag>
+            <Text disabled={plan === 'monthly'}>Yearly</Text>
+          </div>
+        </Space>
         <Space
           size="small"
           align="center"
           split={isFreeTrial ? <Divider type="vertical" /> : null}
         >
           <Space>
-            <Title level={2} style={{ margin: 0 }}>
-              $50
-            </Title>
-            <Text>month</Text>
+            {plan === 'monthly' ? (
+              <>
+                <Title level={2} style={{ margin: 0 }}>
+                  $50
+                </Title>
+                <Text>month</Text>
+              </>
+            ) : (
+              <>
+                <Title level={2} style={{ margin: 0 }}>
+                  $500
+                </Title>
+                <Text>year</Text>
+              </>
+            )}
           </Space>
-          {isFreeTrial && (
+          {/* {isFreeTrial && (
             <Space>
               <Text>After Free Trial</Text>
             </Space>
-          )}
+          )} */}
         </Space>
+        <Title level={5} style={{ margin: 0 }}>
+          K33 Research Pro
+        </Title>
       </Space>
       <Divider style={{ margin: 0 }} />
       <List
@@ -74,16 +123,23 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           <List.Item
             style={{
               margin: 0,
-              paddingBottom: 8,
+              paddingBottom: 0,
             }}
           >
             <Space align="start">
               <CheckCircleFilled
                 style={{
                   color: colorPrimary,
+                  fontSize: 24,
                 }}
               />
-              <Text>{feat}</Text>
+              <Text
+                style={{
+                  fontWeight: 400,
+                }}
+              >
+                {feat}
+              </Text>
             </Space>
           </List.Item>
         )}

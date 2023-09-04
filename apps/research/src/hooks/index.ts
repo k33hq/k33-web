@@ -4,7 +4,7 @@ import {
   useCustomerMutation,
   useLazyGetProductInfoQuery,
 } from '@/services';
-import { ProductStatus } from '@/types';
+import { Plan, ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import * as React from 'react';
 import { useHistoryTravel } from 'ahooks';
@@ -109,4 +109,9 @@ export const useBrowser = () => {
   }, []);
 
   return state;
+};
+
+export const usePlan = (initialPlan: Plan = 'monthly') => {
+  const [plan, setPlan] = React.useState<Plan>(initialPlan);
+  return { plan, setPlan };
 };
