@@ -40,7 +40,12 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   isEx = false,
 }) => {
   const {
-    token: { colorBgContainer, borderRadius, colorPrimary },
+    token: {
+      colorBgContainer,
+      borderRadius,
+      colorPrimary,
+      colorTextQuaternary,
+    },
   } = useToken();
   const { plan, setPlan } = usePlan();
   return (
@@ -66,11 +71,20 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
       >
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2 }}>
           <Button onClick={() => setPlan('monthly')} type="text">
-            <Text disabled={plan === 'year'}>Monthly</Text>
+            <Text
+              {...(plan === 'year' && {
+                style: {
+                  color: colorTextQuaternary,
+                },
+              })}
+            >
+              Monthly
+            </Text>
           </Button>
           <div style={{ paddingBottom: 5 }}>
             <Switch
               defaultChecked={plan === 'year'}
+              checked={plan === 'year'}
               onChange={(isYear) => {
                 setPlan(isYear ? 'year' : 'monthly');
               }}
@@ -84,7 +98,15 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           >
             <Tag color="blue">Save $100</Tag>
             <Button onClick={() => setPlan('year')} type="text">
-              <Text disabled={plan === 'monthly'}>Yearly</Text>
+              <Text
+                {...(plan === 'monthly' && {
+                  style: {
+                    color: colorTextQuaternary,
+                  },
+                })}
+              >
+                Yearly
+              </Text>
             </Button>
           </div>
         </div>
