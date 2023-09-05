@@ -132,12 +132,13 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
 
       {!isEx && (
         <>
-          <Divider style={{ margin: 0 }} />
+          <Divider />
           <List
             split={false}
             style={{
               width: '100%',
               padding: 0,
+              paddingBottom: 16,
             }}
             dataSource={features}
             renderItem={(feat) => (
