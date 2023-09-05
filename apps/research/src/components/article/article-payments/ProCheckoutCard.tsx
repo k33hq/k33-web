@@ -28,6 +28,7 @@ interface ProCheckoutCardProps {
   label: string;
   isFreeTrial?: boolean;
   isLoading?: boolean;
+  isEx?: boolean;
 }
 
 const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
@@ -36,13 +37,14 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   label,
   isFreeTrial = false,
   isLoading = false,
+  isEx = false,
 }) => {
   const {
     token: { colorBgContainer, borderRadius, colorPrimary },
   } = useToken();
   const { plan, setPlan } = usePlan();
   return (
-    <Space
+    <div
       id="ended-body"
       style={{
         backgroundColor: colorBgContainer,
@@ -50,9 +52,9 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
         textAlign: 'start',
         padding: '20px 28px',
         width: '100%',
+        flexDirection: 'column',
+        gap: 20,
       }}
-      direction="vertical"
-      size={20}
     >
       <Space
         direction="vertical"
@@ -62,90 +64,110 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
         }}
         size={16}
       >
-        <Space direction="horizontal" align="end" size="large">
-          <Text disabled={plan === 'year'}>Monthly</Text>
-          <Switch
-            defaultChecked
-            onChange={(isYear) => {
-              setPlan(isYear ? 'year' : 'monthly');
-            }}
-          />
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2 }}>
+          <Button onClick={() => setPlan('monthly')} type="text">
+            <Text disabled={plan === 'year'}>Monthly</Text>
+          </Button>
+          <div style={{ paddingBottom: 5 }}>
+            <Switch
+              defaultChecked={plan === 'year'}
+              onChange={(isYear) => {
+                setPlan(isYear ? 'year' : 'monthly');
+              }}
+            />
+          </div>
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
             }}
           >
             <Tag color="blue">Save $100</Tag>
-            <Text disabled={plan === 'monthly'}>Yearly</Text>
+            <Button onClick={() => setPlan('year')} type="text">
+              <Text disabled={plan === 'monthly'}>Yearly</Text>
+            </Button>
           </div>
-        </Space>
-        <Space
-          size="small"
-          align="center"
-          split={isFreeTrial ? <Divider type="vertical" /> : null}
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginBottom: isEx ? 24 : 0,
+          }}
         >
-          <Space>
-            {plan === 'monthly' ? (
-              <>
-                <Title level={2} style={{ margin: 0 }}>
-                  $50
-                </Title>
-                <Text>month</Text>
-              </>
-            ) : (
-              <>
-                <Title level={2} style={{ margin: 0 }}>
-                  $500
-                </Title>
-                <Text>year</Text>
-              </>
-            )}
-          </Space>
-          {/* {isFreeTrial && (
+          <Space
+            size="small"
+            align="center"
+            split={isFreeTrial ? <Divider type="vertical" /> : null}
+          >
+            <Space>
+              {plan === 'monthly' ? (
+                <>
+                  <Title level={2} style={{ margin: 0 }}>
+                    $50
+                  </Title>
+                  <Text>month</Text>
+                </>
+              ) : (
+                <>
+                  <Title level={2} style={{ margin: 0 }}>
+                    $500
+                  </Title>
+                  <Text>year</Text>
+                </>
+              )}
+            </Space>
+            {/* {isFreeTrial && (
             <Space>
               <Text>After Free Trial</Text>
             </Space>
           )} */}
-        </Space>
-        <Title level={5} style={{ margin: 0 }}>
-          K33 Research Pro
-        </Title>
+          </Space>
+          <Title level={5} style={{ margin: 0 }}>
+            K33 Research Pro
+          </Title>
+        </div>
       </Space>
-      <Divider style={{ margin: 0 }} />
-      <List
-        split={false}
-        style={{
-          width: '100%',
-          padding: 0,
-        }}
-        dataSource={features}
-        renderItem={(feat) => (
-          <List.Item
+
+      {!isEx && (
+        <>
+          <Divider style={{ margin: 0 }} />
+          <List
+            split={false}
             style={{
-              margin: 0,
-              paddingBottom: 0,
+              width: '100%',
+              padding: 0,
             }}
-          >
-            <Space align="start">
-              <CheckCircleFilled
+            dataSource={features}
+            renderItem={(feat) => (
+              <List.Item
                 style={{
-                  color: colorPrimary,
-                  fontSize: 24,
-                }}
-              />
-              <Text
-                style={{
-                  fontWeight: 400,
+                  margin: 0,
+                  paddingBottom: 0,
                 }}
               >
-                {feat}
-              </Text>
-            </Space>
-          </List.Item>
-        )}
-      />
+                <Space align="start">
+                  <CheckCircleFilled
+                    style={{
+                      color: colorPrimary,
+                      fontSize: 24,
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontWeight: 400,
+                    }}
+                  >
+                    {feat}
+                  </Text>
+                </Space>
+              </List.Item>
+            )}
+          />
+        </>
+      )}
+
       {plan === 'monthly' ? (
         <Button
           loading={isLoading}
@@ -167,7 +189,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           {label}
         </Button>
       )}
-    </Space>
+    </div>
   );
 };
 
