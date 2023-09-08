@@ -26,3 +26,5 @@ export interface AppStructure {
 export type Navigations = Array<Navigation>;
 
 export type DividerConfig = boolean | { hideLast: boolean; hideFirst: boolean };
+
+export type Plan = 'monthly' | 'year';

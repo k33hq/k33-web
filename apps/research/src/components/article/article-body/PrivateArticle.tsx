@@ -40,6 +40,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     appStructure.payments.monthlyPriceId
   );
 
+  const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.annualPriceId);
+
   const { productStatus, appState } = useProductInfo(
     appStructure.payments.productId
   );
@@ -77,6 +80,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'ended':
         return (
           <EndedCall
+            yearlyCheckout={doYearlyCheckOut}
             isLoading={isLoading}
             checkout={doCheckOut}
             isReport={isReport}
@@ -85,7 +89,8 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       default:
         return (
           <StartTrialCall
-            isLoading={isLoading}
+            yearlyCheckout={doYearlyCheckOut}
+            isLoading={isLoading || isYearlyLoading}
             checkout={doCheckOut}
             isReport={isReport}
           />

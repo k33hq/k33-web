@@ -4,6 +4,7 @@ import { UserOutlined, UnlockTwoTone, EditOutlined } from '@ant-design/icons';
 import {
   useCustomerCheckout,
   useCustomerDashboard,
+  usePlan,
   useProductInfo,
 } from '@/hooks';
 import { appStructure } from '@/config';
@@ -16,8 +17,6 @@ setTwoToneColor('#777777');
 const { useToken } = theme;
 const { Title, Text } = Typography;
 
-type Plan = 'monthly' | 'year';
-
 const proPlanFeatures = [
   'The latest detailed insights into the markets',
   'The most important weekly crypto news distilled and explained',
@@ -28,8 +27,7 @@ const proPlanFeatures = [
 ];
 
 const PricingTable = () => {
-  const [plan, setPlan] = React.useState<Plan>('monthly');
-
+  const { plan, setPlan } = usePlan();
   const productId = appStructure.payments.productId;
   const monthlyPriceId = appStructure.payments.monthlyPriceId;
   const annualPriceId = appStructure.payments.annualPriceId;

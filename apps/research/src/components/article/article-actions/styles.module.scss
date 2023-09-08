@@ -74,6 +74,13 @@
   }
 }
 
+.paymentCard {
+  width: 100% !important;
+  > div {
+    width: 100% !important;
+  }
+}
+
 .signupHeader {
   padding: 0px 8px;
   gap: 8px;

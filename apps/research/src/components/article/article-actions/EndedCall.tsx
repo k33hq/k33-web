@@ -5,6 +5,7 @@ import { ProCheckoutCard } from '../article-payments';
 
 interface EndedCallProps {
   checkout: () => void;
+  yearlyCheckout: () => void;
   isLoading?: boolean;
   isReport?: boolean;
 }
@@ -14,6 +15,7 @@ const { useToken } = theme;
 
 const EndedCall: React.FC<EndedCallProps> = ({
   checkout,
+  yearlyCheckout,
   isLoading = false,
   isReport = false,
 }) => {
@@ -29,15 +31,10 @@ const EndedCall: React.FC<EndedCallProps> = ({
               ? 'Renew your K33 Research Pro subscription to download the report'
               : 'Renew your K33 Research Pro subscription to keep reading the article'}
           </Title>
-          <Text
-            style={{
-              fontSize: fontSizeSM,
-            }}
-          >
-            Subscribe again and regain full access to all research.
-          </Text>
         </Space>
         <ProCheckoutCard
+          isEx={true}
+          handleYearlyCheckout={yearlyCheckout}
           isLoading={isLoading}
           handleCheckout={checkout}
           label="Renew Your Subscription"
