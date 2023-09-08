@@ -8,3 +8,4 @@ export { default as SectionHeader } from './SectionHeader';
 export * from './SectionHeader';
 export { default as SectionDescriptionHeader } from './SectionDescriptionHeader';
 export { default as PricingTable } from './PricingTable';
+export { default as PrivateLayout } from './PrivateLayout';

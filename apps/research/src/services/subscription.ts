@@ -7,7 +7,9 @@ import {
   CustomerPortalSessionRequest,
   CustomerPortalSessionResponse,
   GetProductInfoResponse,
+  SupressionGroupResponse,
 } from '@/types';
+import { appStructure } from '@/config';
 
 export const researchApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -52,6 +54,13 @@ export const researchApi = createApi({
     getProductInfo: builder.query<GetProductInfoResponse, string>({
       query: (productId) => `payment/subscribed-products/${productId}`,
     }),
+    getSupressionGroups: builder.query<SupressionGroupResponse, void>({
+      query: () => `suppression-groups`,
+      transformResponse: (response: SupressionGroupResponse) => {
+        const groupsFilter = Object.keys(appStructure.notifications);
+        return response.filter(({ id }) => groupsFilter.includes(String(id)));
+      },
+    }),
   }),
 });
 
@@ -60,6 +69,7 @@ export const {
   useCheckoutMutation,
   useCustomerMutation,
   useLazyGetProductInfoQuery,
+  useGetSupressionGroupsQuery,
   util: { getRunningQueriesThunk },
 } = researchApi;
 

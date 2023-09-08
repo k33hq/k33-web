@@ -77,3 +77,11 @@ export interface NewsResponse {
 
 export type GetIndexesResponse = IndexWebCollection<IndexHome>;
 export type GetIndexesSummaryResponse = IndexWebCollection<TokenValuationIndex>;
+
+// supression group
+
+export type SupressionGroupResponse = Array<{
+  id: number;
+  name: string;
+  supressed: boolean;
+}>;
