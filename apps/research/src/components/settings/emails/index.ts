@@ -1,1 +1,1 @@
-export { default as EmailSettings } from './EmailSettings';
+export { default as EmailSetting } from './EmailSetting';

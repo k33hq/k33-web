@@ -2,13 +2,15 @@ import * as React from 'react';
 import { Divider, Layout, Skeleton, Switch, Typography, theme } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import { NextSeo } from 'next-seo';
-import { PrivateLayout } from '@/components';
+import { EmailSetting, PrivateLayout } from '@/components';
 import { SubscriptionProduct } from '@/types';
 import { useGetSupressionGroupsQuery } from '@/services';
 import { appStructure } from '@/config';
 import { useProductInfo } from '@/hooks';
 
-// TODO: get products
+// TODO: show dialog box when productStatus is ex user and not active
+// TODO: update subscription group by using the toggle
+// TODO: check if user is active or blocked before switching email newsletter and show dialog accordingly.
 const EmailSettings: NextPageWithLayout = () => {
   const { data, isLoading } = useGetSupressionGroupsQuery();
   const { productStatus } = useProductInfo(appStructure.payments.productId);
@@ -59,36 +61,27 @@ const EmailSettings: NextPageWithLayout = () => {
           Opt in or out for the newsletters you receive in your mailbox.
         </Typography.Text>
       </div>
-      {Object.keys(appStructure.notifications).map((idKey) => {
-        const notificationId = Number(idKey);
-        const group = data.find((group) => group.id === notificationId);
-        return (
-          <>
-            <div
-              key={notificationId}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: 16,
-              }}
-            >
-              <div>
-                <Typography.Title level={5}>{group?.name}</Typography.Title>
-                <Typography.Text
-                  style={{
-                    fontSize: fontSizeSM,
-                  }}
-                >
-                  {appStructure.notifications[notificationId].description}
-                </Typography.Text>
-              </div>
-              <Switch />
-            </div>
-            <Divider style={{ margin: 0 }} />
-          </>
-        );
-      })}
+      {Object.keys(appStructure.notifications)
+        .sort((a, b) => {
+          const idA = Number(a);
+          const idB = Number(b);
+          if (idA > idB) return -1;
+          else if (idA === idB) return 0;
+          else return 1;
+        })
+        .map((idKey) => {
+          const notificationId = Number(idKey);
+          const group = data.find((group) => group.id === notificationId);
+          return (
+            <EmailSetting
+              {...group!}
+              productStatus={productStatus.state}
+              description={
+                appStructure.notifications[notificationId].description!
+              }
+            />
+          );
+        })}
     </div>
   );
 };
