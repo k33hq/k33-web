@@ -7,6 +7,7 @@ import {
   CustomerPortalSessionRequest,
   CustomerPortalSessionResponse,
   GetProductInfoResponse,
+  PutSupressionGroupRequest,
   SupressionGroupResponse,
 } from '@/types';
 import { appStructure } from '@/config';
@@ -30,7 +31,7 @@ export const researchApi = createApi({
     }
   },
 
-  tagTypes: ['Products'],
+  tagTypes: ['Products', 'Group'],
   endpoints: (builder) => ({
     checkout: builder.mutation<CheckoutSessionResponse, CheckOutSessionRequest>(
       {
@@ -60,6 +61,24 @@ export const researchApi = createApi({
         const groupsFilter = Object.keys(appStructure.notifications);
         return response.filter(({ id }) => groupsFilter.includes(String(id)));
       },
+      providesTags: ['Group'],
+    }),
+    putSupressionGroup: builder.mutation<any, PutSupressionGroupRequest>({
+      query: ({ groupId }) => ({
+        url: `suppression-groups/${groupId}`,
+        method: 'PUT',
+        body: {},
+      }),
+      invalidatesTags: ['Group'],
+    }),
+
+    deleteSupressionGroup: builder.mutation<any, PutSupressionGroupRequest>({
+      query: ({ groupId }) => ({
+        url: `suppression-groups/${groupId}`,
+        method: 'DELETE',
+        body: {},
+      }),
+      invalidatesTags: ['Group'],
     }),
   }),
 });
@@ -70,6 +89,8 @@ export const {
   useCustomerMutation,
   useLazyGetProductInfoQuery,
   useGetSupressionGroupsQuery,
+  usePutSupressionGroupMutation,
+  useDeleteSupressionGroupMutation,
   util: { getRunningQueriesThunk },
 } = researchApi;
 

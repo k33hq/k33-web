@@ -21,7 +21,7 @@ import { ProductStatus } from './payments';
 export interface SupressedGroup {
   id: number;
   name: string;
-  supressed: boolean;
+  suppressed: boolean;
 }
 
 export type GetArticleSlugsResponse = ArticleCollection<ArticleSlug>;
@@ -87,3 +87,6 @@ export type GetIndexesSummaryResponse = IndexWebCollection<TokenValuationIndex>;
 // supression group
 
 export type SupressionGroupResponse = Array<SupressedGroup>;
+export interface PutSupressionGroupRequest {
+  groupId: string;
+}

@@ -1,6 +1,8 @@
 import { ProductStatus, SupressedGroup } from '@/types';
-import { Button, Divider, Switch, Tag, Typography, theme } from 'antd';
+import { Button, Divider, Switch, Tag, Typography, theme, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import * as React from 'react';
+import { useSupressionGroupActions } from '@/hooks';
 
 interface EmailSettingProps extends SupressedGroup {
   description: string;
@@ -9,10 +11,12 @@ interface EmailSettingProps extends SupressedGroup {
   openProductModal: () => void;
 }
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 const EmailSetting: React.FC<EmailSettingProps> = ({
   id,
   name,
-  supressed,
+  suppressed,
   description,
   productStatus,
   openProductModal,
@@ -22,9 +26,15 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
     token: { fontSizeSM },
   } = theme.useToken();
 
+  const { putGroupInSupression, deleteGroupInSupression, isLoading } =
+    useSupressionGroupActions(String(id));
+
   const switchHandler = (checked: boolean) => {
-    // TODO: check whether product status is ex sub or not a sub then on click show dialog
-    console.log(checked);
+    if (!checked) {
+      putGroupInSupression();
+    } else {
+      deleteGroupInSupression();
+    }
   };
 
   return (
@@ -67,11 +77,14 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
           </Typography.Text>
         </div>
         {(productStatus === 'active' || !isPro) && (
-          <Switch
-            defaultChecked={!supressed}
-            checked={!supressed}
-            onChange={switchHandler}
-          />
+          <div style={{ display: 'flex', gap: 2 }}>
+            <Switch
+              defaultChecked={!suppressed}
+              checked={!suppressed}
+              onChange={switchHandler}
+            />
+            {isLoading && <Spin indicator={antIcon} />}
+          </div>
         )}
         {productStatus === 'ended' && isPro && (
           <Button onClick={openProductModal}>Renew Subscription</Button>

@@ -1,22 +1,8 @@
 import * as React from 'react';
-import {
-  Divider,
-  Layout,
-  Skeleton,
-  Switch,
-  Typography,
-  theme,
-  Modal,
-} from 'antd';
+import { Skeleton, Typography, theme, Modal } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
-import { NextSeo } from 'next-seo';
-import {
-  EmailSetting,
-  PrivateLayout,
-  StartTrialCall,
-  ProCheckoutCard,
-} from '@/components';
-import { SubscriptionProduct } from '@/types';
+
+import { EmailSetting, PrivateLayout, ProCheckoutCard } from '@/components';
 import { useGetSupressionGroupsQuery } from '@/services';
 import { appStructure } from '@/config';
 import {
@@ -110,10 +96,13 @@ const EmailSettings: NextPageWithLayout = () => {
         .map((idKey) => {
           const notificationId = Number(idKey);
           const group = data.find((group) => group.id === notificationId);
+
           return (
             <EmailSetting
               openProductModal={handleOpenModal}
-              {...group!}
+              id={group?.id!}
+              suppressed={group?.suppressed!}
+              name={group?.name!}
               isPro={appStructure.notifications[notificationId].isPro}
               productStatus={productStatus.state}
               description={

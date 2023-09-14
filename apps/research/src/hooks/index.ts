@@ -2,7 +2,9 @@ import config from '@/firebase/config';
 import {
   useCheckoutMutation,
   useCustomerMutation,
+  useDeleteSupressionGroupMutation,
   useLazyGetProductInfoQuery,
+  usePutSupressionGroupMutation,
 } from '@/services';
 import { Plan, ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
@@ -45,6 +47,30 @@ export const useCustomerCheckout = (priceId: string) => {
   };
 
   return { doCheckOut, isLoading };
+};
+
+export const useSupressionGroupActions = (groupId: string) => {
+  const [putSupressionGroup, { isLoading }] = usePutSupressionGroupMutation();
+  const [deleteSupressionGroup, { isLoading: deleteLoading }] =
+    useDeleteSupressionGroupMutation();
+
+  const putGroupInSupression = async () => {
+    try {
+      const response = await putSupressionGroup({ groupId }).unwrap();
+    } catch (err) {}
+  };
+
+  const deleteGroupInSupression = async () => {
+    try {
+      const response = await deleteSupressionGroup({ groupId }).unwrap();
+    } catch (err) {}
+  };
+
+  return {
+    putGroupInSupression,
+    deleteGroupInSupression,
+    isLoading: isLoading || deleteLoading,
+  };
 };
 
 export const useProductInfo = (productId: string) => {
