@@ -3,6 +3,7 @@ import { Button, Divider, Switch, Tag, Typography, theme, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import * as React from 'react';
 import { useSupressionGroupActions } from '@/hooks';
+import styles from './styles.module.scss';
 
 interface EmailSettingProps extends SupressedGroup {
   description: string;
@@ -39,14 +40,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
 
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: 16,
-        }}
-      >
+      <div className={styles.emailSettings}>
         <div
           style={{
             display: 'flex',
@@ -63,8 +57,8 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
               alignSelf: 'stretch',
             }}
           >
-            {isPro && <Tag color="black">Pro</Tag>}
-            <Typography.Title level={5} style={{ margin: 0 }}>
+            {isPro && <Tag color="black">PRO</Tag>}
+            <Typography.Title level={5} style={{ margin: 0, padding: 0 }}>
               {name}
             </Typography.Title>
           </div>
@@ -77,14 +71,12 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
           </Typography.Text>
         </div>
         {(productStatus === 'active' || !isPro) && (
-          <div style={{ display: 'flex', gap: 2 }}>
-            <Switch
-              defaultChecked={!suppressed}
-              checked={!suppressed}
-              onChange={switchHandler}
-            />
-            {isLoading && <Spin indicator={antIcon} />}
-          </div>
+          <Switch
+            defaultChecked={!suppressed}
+            checked={!suppressed}
+            onChange={switchHandler}
+            loading={isLoading}
+          />
         )}
         {productStatus === 'ended' && isPro && (
           <Button onClick={openProductModal}>Renew Subscription</Button>

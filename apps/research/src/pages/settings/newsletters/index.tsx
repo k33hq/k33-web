@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Skeleton, Typography, theme, Modal } from 'antd';
+import { Skeleton, Typography, theme, Modal, Button } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 
 import { EmailSetting, PrivateLayout, ProCheckoutCard } from '@/components';
@@ -49,7 +49,7 @@ const EmailSettings: NextPageWithLayout = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 4,
+          gap: 16,
           width: '100%',
         }}
       >
@@ -76,13 +76,15 @@ const EmailSettings: NextPageWithLayout = () => {
           alignItems: 'flex-start',
         }}
       >
-        <Typography.Title level={5}>Newsletters</Typography.Title>
+        <Typography.Title level={5}>Newsletters Access</Typography.Title>
         <Typography.Text
           style={{
             fontSize: fontSizeSM,
           }}
         >
-          Opt in or out for the newsletters you receive in your mailbox.
+          {productStatus.state === 'active'
+            ? "You are a PRO subscriber, which means you have access to all our newsletters. Still, you shall only get the ones you want. Manage your newsletters subscriptions below to avoid the emails you don't want."
+            : 'You are not a PRO subscriber, which means you only have access to the newsletter This Week in Crypto. If you don’t want to receive This Week in Crypto, toggle the subscription off below. To gain access to Navigating Narratives and Ahead of the Curve, become a PRO subscriber.'}
         </Typography.Text>
       </div>
       {Object.keys(appStructure.notifications)
@@ -116,6 +118,7 @@ const EmailSettings: NextPageWithLayout = () => {
         title="Register to K33 Research Pro"
         open={showModal}
         onCancel={handleCloseModal}
+        footer={null}
       >
         <ProCheckoutCard
           handleYearlyCheckout={doYearlyCheckOut}
@@ -124,6 +127,19 @@ const EmailSettings: NextPageWithLayout = () => {
           label="Start 30-Day Free Trial"
           isFreeTrial
         />
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Button type="text" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+        </div>
       </Modal>
     </div>
   );
@@ -133,14 +149,14 @@ EmailSettings.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <PrivateLayout
       seoTitle='"K33 - Settings | Emails"'
-      activeKey="/settings/email-settings"
+      activeKey="/settings/newsletters"
       title="Settings"
       tabs={[
         { key: 'payments', label: 'Payments', url: '/settings' },
         {
-          key: 'email-settings',
-          label: 'Email Settings',
-          url: '/settings/email-settings',
+          key: 'newsletters',
+          label: 'Newsletters',
+          url: '/settings/newsletters',
         },
       ]}
     >

@@ -25,9 +25,9 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
       tabs={[
         { key: 'payments', label: 'Payments', url: '/settings' },
         {
-          key: 'email-settings',
-          label: 'Email Settings',
-          url: '/settings/email-settings',
+          key: 'newsletters',
+          label: 'Newsletters',
+          url: '/settings/newsletters',
         },
       ]}
     >
