@@ -78,13 +78,19 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
           />
         )}
         {productStatus === 'ended' && isPro && (
-          <Button onClick={openProductModal}>Renew Subscription</Button>
+          <Button size="small" onClick={openProductModal}>
+            Renew Subscription
+          </Button>
         )}
         {productStatus === 'blocked' && isPro && (
-          <Button onClick={openProductModal}>Update payment details</Button>
+          <Button size="small" onClick={openProductModal}>
+            Update payment details
+          </Button>
         )}
         {productStatus === null && isPro && (
-          <Button onClick={openProductModal}>Start 30 day trial</Button>
+          <Button size="small" onClick={openProductModal}>
+            Start 30 day trial
+          </Button>
         )}
       </div>
       <Divider style={{ margin: 0 }} />
