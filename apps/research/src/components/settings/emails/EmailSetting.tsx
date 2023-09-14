@@ -6,6 +6,7 @@ interface EmailSettingProps extends SupressedGroup {
   description: string;
   productStatus: ProductStatus | null | 'loading';
   isPro?: boolean;
+  openProductModal: () => void;
 }
 
 const EmailSetting: React.FC<EmailSettingProps> = ({
@@ -14,10 +15,9 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
   supressed,
   description,
   productStatus,
+  openProductModal,
   isPro = false,
 }) => {
-  const [showProduct, setProduct] = React.useState(false);
-
   const {
     token: { fontSizeSM },
   } = theme.useToken();
@@ -53,7 +53,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
               alignSelf: 'stretch',
             }}
           >
-            {isPro && <Tag>Pro</Tag>}
+            {isPro && <Tag color="black">Pro</Tag>}
             <Typography.Title level={5} style={{ margin: 0 }}>
               {name}
             </Typography.Title>
@@ -66,16 +66,22 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             {description}
           </Typography.Text>
         </div>
-        {productStatus === 'active' && (
+        {(productStatus === 'active' || !isPro) && (
           <Switch
             defaultChecked={!supressed}
             checked={!supressed}
             onChange={switchHandler}
           />
         )}
-        {productStatus === 'ended' && <Button>Renew Subscription</Button>}
-        {productStatus === 'blocked' && <Button>Update payment details</Button>}
-        {productStatus === null && <Button>Start 30 day trial</Button>}
+        {productStatus === 'ended' && isPro && (
+          <Button onClick={openProductModal}>Renew Subscription</Button>
+        )}
+        {productStatus === 'blocked' && isPro && (
+          <Button onClick={openProductModal}>Update payment details</Button>
+        )}
+        {productStatus === null && isPro && (
+          <Button onClick={openProductModal}>Start 30 day trial</Button>
+        )}
       </div>
       <Divider style={{ margin: 0 }} />
     </>

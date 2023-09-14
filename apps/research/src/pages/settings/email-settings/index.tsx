@@ -36,12 +36,6 @@ const EmailSettings: NextPageWithLayout = () => {
 
   const [showModal, setShowModal] = React.useState(false);
 
-  React.useEffect(() => {
-    if (productStatus.state === 'ended' || productStatus.state === null) {
-      setShowModal(true);
-    }
-  }, [productStatus]);
-
   const handleCloseModal = () => setShowModal(false);
 
   const handleOpenModal = () => setShowModal(true);
@@ -105,6 +99,7 @@ const EmailSettings: NextPageWithLayout = () => {
           const group = data.find((group) => group.id === notificationId);
           return (
             <EmailSetting
+              openProductModal={handleOpenModal}
               {...group!}
               isPro={appStructure.notifications[notificationId].isPro}
               productStatus={productStatus.state}
