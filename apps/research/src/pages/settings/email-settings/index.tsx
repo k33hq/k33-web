@@ -1,12 +1,25 @@
 import * as React from 'react';
-import { Divider, Layout, Skeleton, Switch, Typography, theme } from 'antd';
+import {
+  Divider,
+  Layout,
+  Skeleton,
+  Switch,
+  Typography,
+  theme,
+  Modal,
+} from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import { NextSeo } from 'next-seo';
-import { EmailSetting, PrivateLayout } from '@/components';
+import {
+  EmailSetting,
+  PrivateLayout,
+  StartTrialCall,
+  ProCheckoutCard,
+} from '@/components';
 import { SubscriptionProduct } from '@/types';
 import { useGetSupressionGroupsQuery } from '@/services';
 import { appStructure } from '@/config';
-import { useProductInfo } from '@/hooks';
+import { useCustomerCheckout, useProductInfo } from '@/hooks';
 
 // TODO: show dialog box when productStatus is ex user and not active
 // TODO: update subscription group by using the toggle
@@ -14,6 +27,24 @@ import { useProductInfo } from '@/hooks';
 const EmailSettings: NextPageWithLayout = () => {
   const { data, isLoading } = useGetSupressionGroupsQuery();
   const { productStatus } = useProductInfo(appStructure.payments.productId);
+  const { doCheckOut, isLoading: isCheckOutLoading } = useCustomerCheckout(
+    appStructure.payments.monthlyPriceId
+  );
+
+  const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.annualPriceId);
+
+  const [showModal, setShowModal] = React.useState(false);
+
+  React.useEffect(() => {
+    if (productStatus.state === 'ended' || productStatus.state === null) {
+      setShowModal(true);
+    }
+  }, [productStatus]);
+
+  const handleCloseModal = () => setShowModal(false);
+
+  const handleOpenModal = () => setShowModal(true);
 
   const {
     token: { fontSizeSM },
@@ -75,6 +106,7 @@ const EmailSettings: NextPageWithLayout = () => {
           return (
             <EmailSetting
               {...group!}
+              isPro={appStructure.notifications[notificationId].isPro}
               productStatus={productStatus.state}
               description={
                 appStructure.notifications[notificationId].description!
@@ -82,6 +114,20 @@ const EmailSettings: NextPageWithLayout = () => {
             />
           );
         })}
+
+      <Modal
+        title="Register to K33 Research Pro"
+        open={showModal}
+        onCancel={handleCloseModal}
+      >
+        <ProCheckoutCard
+          handleYearlyCheckout={doYearlyCheckOut}
+          isLoading={isLoading || isYearlyLoading}
+          handleCheckout={doCheckOut}
+          label="Start 30-Day Free Trial"
+          isFreeTrial
+        />
+      </Modal>
     </div>
   );
 };

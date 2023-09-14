@@ -1,10 +1,11 @@
 import { ProductStatus, SupressedGroup } from '@/types';
-import { Divider, Switch, Typography, theme } from 'antd';
+import { Button, Divider, Switch, Tag, Typography, theme } from 'antd';
 import * as React from 'react';
 
 interface EmailSettingProps extends SupressedGroup {
   description: string;
   productStatus: ProductStatus | null | 'loading';
+  isPro?: boolean;
 }
 
 const EmailSetting: React.FC<EmailSettingProps> = ({
@@ -13,6 +14,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
   supressed,
   description,
   productStatus,
+  isPro = false,
 }) => {
   const [showProduct, setProduct] = React.useState(false);
 
@@ -35,8 +37,27 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
           gap: 16,
         }}
       >
-        <div>
-          <Typography.Title level={5}>{name}</Typography.Title>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 4,
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 8,
+              alignSelf: 'stretch',
+            }}
+          >
+            {isPro && <Tag>Pro</Tag>}
+            <Typography.Title level={5} style={{ margin: 0 }}>
+              {name}
+            </Typography.Title>
+          </div>
           <Typography.Text
             style={{
               fontSize: fontSizeSM,
@@ -45,11 +66,16 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             {description}
           </Typography.Text>
         </div>
-        <Switch
-          defaultChecked={supressed}
-          checked={supressed}
-          onChange={switchHandler}
-        />
+        {productStatus === 'active' && (
+          <Switch
+            defaultChecked={!supressed}
+            checked={!supressed}
+            onChange={switchHandler}
+          />
+        )}
+        {productStatus === 'ended' && <Button>Renew Subscription</Button>}
+        {productStatus === 'blocked' && <Button>Update payment details</Button>}
+        {productStatus === null && <Button>Start 30 day trial</Button>}
       </div>
       <Divider style={{ margin: 0 }} />
     </>

@@ -14,7 +14,7 @@ export interface Payments {
 export interface AppStructure {
   navigation: Array<Navigation>;
   payments: Payments;
-  notifications: Record<number, { description: string }>;
+  notifications: Record<number, { description: string; isPro: boolean }>;
 }
 
 // export interface PageTab {
