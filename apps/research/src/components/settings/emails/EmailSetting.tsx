@@ -58,11 +58,10 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             }}
           >
             {isPro && <Tag color="black">PRO</Tag>}
-            <Typography.Title level={5} style={{ margin: 0, padding: 0 }}>
-              {name}
-            </Typography.Title>
+            <Typography.Text strong>{name}</Typography.Text>
           </div>
           <Typography.Text
+            type="secondary"
             style={{
               fontSize: fontSizeSM,
             }}

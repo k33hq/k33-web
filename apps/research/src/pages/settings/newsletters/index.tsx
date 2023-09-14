@@ -76,8 +76,9 @@ const EmailSettings: NextPageWithLayout = () => {
           alignItems: 'flex-start',
         }}
       >
-        <Typography.Title level={5}>Newsletters Access</Typography.Title>
+        <Typography.Title level={4}>Newsletters Access</Typography.Title>
         <Typography.Text
+          type="secondary"
           style={{
             fontSize: fontSizeSM,
           }}
