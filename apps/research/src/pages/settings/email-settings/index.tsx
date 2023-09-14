@@ -19,7 +19,11 @@ import {
 import { SubscriptionProduct } from '@/types';
 import { useGetSupressionGroupsQuery } from '@/services';
 import { appStructure } from '@/config';
-import { useCustomerCheckout, useProductInfo } from '@/hooks';
+import {
+  useCustomerCheckout,
+  useCustomerDashboard,
+  useProductInfo,
+} from '@/hooks';
 
 // TODO: show dialog box when productStatus is ex user and not active
 // TODO: update subscription group by using the toggle
@@ -31,6 +35,9 @@ const EmailSettings: NextPageWithLayout = () => {
     appStructure.payments.monthlyPriceId
   );
 
+  const { customerDashboard, isLoading: dashboardLoading } =
+    useCustomerDashboard();
+
   const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
     useCustomerCheckout(appStructure.payments.annualPriceId);
 
@@ -38,7 +45,13 @@ const EmailSettings: NextPageWithLayout = () => {
 
   const handleCloseModal = () => setShowModal(false);
 
-  const handleOpenModal = () => setShowModal(true);
+  const handleOpenModal = () => {
+    if (productStatus.state === 'blocked') {
+      customerDashboard();
+    } else {
+      setShowModal(true);
+    }
+  };
 
   const {
     token: { fontSizeSM },
