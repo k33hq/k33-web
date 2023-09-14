@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Skeleton, Typography, theme, Modal, Button } from 'antd';
+import { Skeleton, Typography, theme, Modal, Button, Divider } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 
 import { EmailSetting, PrivateLayout, ProCheckoutCard } from '@/components';
@@ -87,6 +87,7 @@ const EmailSettings: NextPageWithLayout = () => {
             : 'You are not a PRO subscriber, which means you only have access to the newsletter This Week in Crypto. If you don’t want to receive This Week in Crypto, toggle the subscription off below. To gain access to Navigating Narratives and Ahead of the Curve, become a PRO subscriber.'}
         </Typography.Text>
       </div>
+      <Divider style={{ margin: 0 }} />
       {Object.keys(appStructure.notifications)
         .sort((a, b) => {
           const idA = Number(a);
