@@ -26,9 +26,7 @@ const mask = (email: string) =>
   );
 const Payments: React.FC = () => {
   const router = useRouter();
-  const { productStatus, appState } = useProductInfo(
-    appStructure.payments.productId
-  );
+  const { productStatus } = useProductInfo(appStructure.payments.productId);
   const { doCheckOut: checkout, isLoading } = useCustomerCheckout(
     appStructure.payments.monthlyPriceId
   );
@@ -224,32 +222,15 @@ const Payments: React.FC = () => {
 
   return (
     <>
-      <SettingsPaymentTitle />
-      {appState === 'SIGNED_OUT' ? (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <SignUpCall />
-        </div>
-      ) : (
-        <>
-          {productStatus.state === 'blocked' && (
-            <Alert
-              message="Failed Payment Attempt:"
-              description="We were unable to complete the payment of your subscription."
-              type="error"
-              showIcon
-            />
-          )}
-          {getPaymentCard(productStatus.state)}
-        </>
+      {productStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your subscription."
+          type="error"
+          showIcon
+        />
       )}
+      {getPaymentCard(productStatus.state)}
     </>
   );
 };

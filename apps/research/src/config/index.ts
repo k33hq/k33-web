@@ -79,4 +79,22 @@ export const appStructure: AppStructure = {
     annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID!,
     monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID!,
   },
+
+  notifications: {
+    69882: {
+      description:
+        'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analyzing the potential implications.',
+      isPro: false,
+    },
+    69881: {
+      description:
+        'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
+      isPro: true,
+    },
+    69879: {
+      description:
+        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
+      isPro: true,
+    },
+  },
 };

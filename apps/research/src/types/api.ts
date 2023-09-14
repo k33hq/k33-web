@@ -18,6 +18,12 @@ import {
 } from './contentful/indexes';
 import { ProductStatus } from './payments';
 
+export interface SupressedGroup {
+  id: number;
+  name: string;
+  suppressed: boolean;
+}
+
 export type GetArticleSlugsResponse = ArticleCollection<ArticleSlug>;
 export type GetArticlePageResponse = ArticleCollection<ArticlePage>;
 export type GetSubscriptionProductResponse =
@@ -77,3 +83,10 @@ export interface NewsResponse {
 
 export type GetIndexesResponse = IndexWebCollection<IndexHome>;
 export type GetIndexesSummaryResponse = IndexWebCollection<TokenValuationIndex>;
+
+// supression group
+
+export type SupressionGroupResponse = Array<SupressedGroup>;
+export interface PutSupressionGroupRequest {
+  groupId: string;
+}
