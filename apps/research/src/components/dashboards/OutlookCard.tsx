@@ -44,11 +44,12 @@ const OutlookCard: React.FC = () => {
               margin: 0,
             }}
           >
-            The anemic summer revives the attractiveness of options straddles as
-            we approach months filled with known knowns and unknown unknowns.
-            Further, the slow and steady market represents a continued appealing
-            environment to build exposure as we head towards a robust cyclical
-            period for BTC.
+            The market dramatically underestimates the impact of U.S. BTC ETFs
+            and, in extension, futures-based ETH ETFs. In September, few
+            catalysts await, offering a solid opportunity for strategic
+            positioning ahead of an October packed with market-moving events. I
+            favor a mix of increased ETH exposure and conservatively leveraged
+            long exposure in BTC.
           </Paragraph>
           <Text
             type="secondary"
