@@ -198,6 +198,8 @@ export const acceptCookie = () => {
   //@ts-ignore
   localStorage.setItem('showCookies', 'NO');
   //@ts-ignore
+  localStorage.setItem('cookies-product', 'YES');
+  //@ts-ignore
   window.gtag('consent', 'update', {
     ad_storage: 'denied',
     analytics_storage: 'granted',
@@ -207,6 +209,8 @@ export const acceptCookie = () => {
 export const denyCookie = () => {
   //@ts-ignore
   localStorage.setItem('showCookies', 'NO');
+  //@ts-ignore
+  localStorage.setItem('cookies-product', 'NO');
 };
 
 // returns a boolean
@@ -223,6 +227,9 @@ interface AppConfig {
 
 export const getAppState = async (config?: AppConfig) => {
   try {
+
+
+    
     const data = await fetcher(
       `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`
     );
@@ -236,6 +243,7 @@ export const getAppState = async (config?: AppConfig) => {
       return REGISTRED;
     }
   } catch (err) {
+    console.log(err);
     return SIGNED_OUT;
   }
 };
@@ -248,12 +256,15 @@ export const register = async (config?: AppConfig) => {
       {}
     );
     const user = await data.json();
+
+    console.log(user);
     // register analytics
     if (config) {
       registerAnalytics(user.analyticsId, config.tagId);
     }
     return REGISTRED;
   } catch (err) {
+    console.log(err);
     return SIGNED_OUT;
   }
 };
@@ -261,15 +272,38 @@ export const register = async (config?: AppConfig) => {
 // auth fetcher for api calls
 export const fetcher = async (url: string) => {
   const token = await getIdToken();
+
+  //@ts-ignore
+
   if (token) {
+    //@ts-ignore
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    //@ts-ignore
+    window.gtag(
+      'get',
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+      'client_id',
+      (clientId: string) => {
+        //@ts-ignore
+        const check = localStorage.getItem('cookies-product');
+        //@ts-ignore
+        if (check === 'YES') {
+          console.log(clientId);
+          headers.set('x-client-id', `${clientId}`);
+        }
+      }
+    );
+
+    console.log(headers.entries());
+
     //@ts-ignore
     return fetch(url, {
       method: 'GET',
-      //@ts-ignore
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }),
+      headers,
     });
   } else {
     return Promise.reject(new Error('user not authenticated'));
@@ -284,14 +318,32 @@ export const mutator = async <T extends object>(
   const token = await getIdToken();
   if (token) {
     //@ts-ignore
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    //@ts-ignore
+    window.gtag(
+      'get',
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+      'client_id',
+      (clientId: string) => {
+        //@ts-ignore
+        const check = localStorage.getItem('cookies-product');
+
+        if (check === 'YES') {
+          console.log(clientId);
+          headers.set('x-client-id', `${clientId}`);
+        }
+      }
+    );
+
+    //@ts-ignore
     return fetch(url, {
       method,
       body: JSON.stringify(body),
       //@ts-ignore
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }),
+      headers: headers,
     });
   } else {
     return Promise.reject(new Error('user not authenticated'));

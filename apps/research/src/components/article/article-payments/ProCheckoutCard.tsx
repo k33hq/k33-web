@@ -16,7 +16,7 @@ const { Title, Text } = Typography;
 const { useToken } = theme;
 
 const features = [
-  'The weekly market report keeping you up to speed',
+  'Ahead of the Curve – The Weekly Market Report',
   'The monthly outlook helping you plan ahead',
   'Token assessments based on data and economic theory',
   'Industry insights from our in-depth reports',
