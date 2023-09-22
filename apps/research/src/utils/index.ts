@@ -63,3 +63,9 @@ export function isBrowser() {
 
 export * from './share';
 export * from './markdown';
+
+export const proFeatures = [
+  'Ahead of the Curve – The Weekly Market Report',
+  'Navigating Narratives – The Weekly DeFi Research Note',
+  'This Week in Crypto – The Weekly Crypto Industry Newsletter',
+];

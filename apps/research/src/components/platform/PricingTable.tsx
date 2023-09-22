@@ -11,6 +11,7 @@ import { appStructure } from '@/config';
 import Link from 'next/link';
 import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
+import { proFeatures } from '@/utils';
 
 setTwoToneColor('#777777');
 
@@ -199,7 +200,7 @@ const PricingTable = () => {
                 state: 'active',
               })}
             plan="PRO Plan"
-            features={proPlanFeatures}
+            features={proFeatures}
             price="50"
             action={
               <>
@@ -230,7 +231,7 @@ const PricingTable = () => {
               productStatus.state === 'active' && {
                 state: 'active',
               })}
-            features={proPlanFeatures}
+            features={proFeatures}
             price="500"
             promotions={<Tag color="blue">Save $100</Tag>}
             action={

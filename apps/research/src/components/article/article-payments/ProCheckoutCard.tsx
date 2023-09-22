@@ -11,16 +11,10 @@ import {
 } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { usePlan } from '@/hooks';
+import { proFeatures } from '@/utils';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
-
-const features = [
-  'The weekly market report keeping you up to speed',
-  'The monthly outlook helping you plan ahead',
-  'Token assessments based on data and economic theory',
-  'Industry insights from our in-depth reports',
-];
 
 interface ProCheckoutCardProps {
   handleCheckout: () => void;
@@ -162,7 +156,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
               padding: 0,
               paddingBottom: 16,
             }}
-            dataSource={features}
+            dataSource={proFeatures}
             renderItem={(feat) => (
               <List.Item
                 style={{
