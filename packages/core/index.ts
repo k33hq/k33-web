@@ -30,6 +30,11 @@ import {
   Auth,
   signOut,
   OAuthProvider,
+  sendSignInLinkToEmail,
+  ActionCodeInfo,
+  ActionCodeSettings,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
 } from 'firebase/auth';
 import type {
   LoginSuccessCallback,
@@ -95,6 +100,42 @@ export const appleLogin = (success: LinkSuccess, error: LinkFailure) => {
       signInWithPopup(auth, provider).then(success).catch(error);
     })
     .catch((error) => {});
+};
+
+export const emailLinkLogin = (
+  error: LinkFailure,
+  email: string,
+  actionCode: ActionCodeSettings
+) => {
+  const auth = getAuth(getApp(APP_NAME));
+  sendSignInLinkToEmail(auth, email, actionCode)
+    .then(() => {
+      //@ts-ignore
+      window.localStorage.setItem('emailForSignIn', email);
+    })
+    .catch(error);
+};
+
+export const emailLinkCheck = (
+  success: LinkSuccess,
+  error: LinkFailure,
+  url: string
+) => {
+  const auth = getAuth(getApp(APP_NAME));
+  setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+      if (isSignInWithEmailLink(auth, url)) {
+        //@ts-ignore
+        let email = window.localStorage.getItem('emailForSignIn');
+
+        if (!email) {
+          throw new Error('no email');
+        }
+
+        signInWithEmailLink(auth, email, url).then(success).catch(error);
+      }
+    })
+    .catch((err) => {});
 };
 
 export const microsoftLogin = (success: LinkSuccess, error: LinkFailure) => {
@@ -227,11 +268,25 @@ interface AppConfig {
 
 export const getAppState = async (config?: AppConfig) => {
   try {
+    let clientId = undefined;
+    //@ts-ignore
+    window.gtag(
+      'get',
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+      'client_id',
+      (clientId: string) => {
+        //@ts-ignore
+        const check = localStorage.getItem('cookies-product');
+        //@ts-ignore
+        if (check === 'YES') {
+          clientId = clientId;
+        }
+      }
+    );
 
-
-    
     const data = await fetcher(
-      `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`
+      `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`,
+      clientId
     );
     if (data.status === 404) {
       return UNREGISTERED;
@@ -250,14 +305,31 @@ export const getAppState = async (config?: AppConfig) => {
 
 export const register = async (config?: AppConfig) => {
   try {
+    let clientId = undefined;
+    //@ts-ignore
+    window.gtag(
+      'get',
+      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+      'client_id',
+      (clientId: string) => {
+        //@ts-ignore
+        const check = localStorage.getItem('cookies-product');
+        //@ts-ignore
+        if (check === 'YES') {
+          clientId = clientId;
+        } else {
+        }
+      }
+    );
+
     const data = await mutator(
       `https://${process.env.NEXT_PUBLIC_API_DOMAIN}/user`,
       'POST',
-      {}
+      {},
+      clientId
     );
     const user = await data.json();
 
-    console.log(user);
     // register analytics
     if (config) {
       registerAnalytics(user.analyticsId, config.tagId);
@@ -270,40 +342,20 @@ export const register = async (config?: AppConfig) => {
 };
 
 // auth fetcher for api calls
-export const fetcher = async (url: string) => {
+export const fetcher = async (url: string, clientId?: string) => {
   const token = await getIdToken();
 
   //@ts-ignore
-
   if (token) {
-    //@ts-ignore
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    });
-
-    //@ts-ignore
-    window.gtag(
-      'get',
-      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
-      'client_id',
-      (clientId: string) => {
-        //@ts-ignore
-        const check = localStorage.getItem('cookies-product');
-        //@ts-ignore
-        if (check === 'YES') {
-          console.log(clientId);
-          headers.set('x-client-id', `${clientId}`);
-        }
-      }
-    );
-
-    console.log(headers.entries());
-
     //@ts-ignore
     return fetch(url, {
       method: 'GET',
-      headers,
+      //@ts-ignore
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        'x-client-id': clientId,
+      }),
     });
   } else {
     return Promise.reject(new Error('user not authenticated'));
@@ -313,7 +365,8 @@ export const fetcher = async (url: string) => {
 export const mutator = async <T extends object>(
   url: string,
   method: 'POST' | 'PUT',
-  body: T
+  body: T,
+  clientId?: string
 ) => {
   const token = await getIdToken();
   if (token) {
@@ -321,23 +374,8 @@ export const mutator = async <T extends object>(
     const headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
+      'x-client-id': clientId,
     });
-    //@ts-ignore
-    window.gtag(
-      'get',
-      process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
-      'client_id',
-      (clientId: string) => {
-        //@ts-ignore
-        const check = localStorage.getItem('cookies-product');
-
-        if (check === 'YES') {
-          console.log(clientId);
-          headers.set('x-client-id', `${clientId}`);
-        }
-      }
-    );
-
     //@ts-ignore
     return fetch(url, {
       method,

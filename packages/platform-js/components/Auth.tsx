@@ -2,7 +2,14 @@ import { FirebaseError, FirebaseOptions } from 'firebase/app';
 import * as React from 'react';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
-import { appleLogin, googleLogin, microsoftLogin, register } from 'core';
+import {
+  appleLogin,
+  emailLinkCheck,
+  emailLinkLogin,
+  googleLogin,
+  microsoftLogin,
+  register,
+} from 'core';
 import { UserCredential } from 'firebase/auth';
 
 interface DiffCredData {
@@ -34,6 +41,7 @@ export interface LoginOptions {
   google: () => void;
   apple: () => void;
   microsoft: () => void;
+  emailLink: (email: string) => void;
 }
 
 export interface AuthFunctionalities {
@@ -57,6 +65,21 @@ const Auth: React.FC<AuthProps> = ({
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    try {
+      emailLinkCheck(
+        (r) => {
+          window.localStorage.removeItem('emailForSignIn');
+          onSuccessLogin(r);
+        },
+        (err) => setError(err),
+        window.location.href
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, [onSuccessLogin]);
+
+  React.useEffect(() => {
     if (state === 'REGISTRED') {
       router.back();
     } else if (state === 'UNREGISTRED') {
@@ -76,6 +99,14 @@ const Auth: React.FC<AuthProps> = ({
     });
   };
 
+  const emailLink = (email: string) => {
+    emailLinkLogin((err: FirebaseError) => setError(err.message), email, {
+      url: window.location.href,
+      // This must be true.
+      handleCodeInApp: true,
+    });
+  };
+
   const microsoft = () => {
     microsoftLogin(onSuccessLogin, (err: FirebaseError) => {
       if (err.code == 'auth/account-exists-with-different-credential') {
@@ -88,7 +119,9 @@ const Auth: React.FC<AuthProps> = ({
     });
   };
 
-  return <>{children({ login: { google, apple, microsoft }, error })}</>;
+  return (
+    <>{children({ login: { google, apple, microsoft, emailLink }, error })}</>
+  );
 };
 
 export default Auth;
