@@ -123,6 +123,18 @@
       "cleanUrls": true,
       "public": "./apps/auth/out",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-dev",
+      "cleanUrls": true,
+      "public": "./empty",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-prod",
+      "cleanUrls": true,
+      "public": "./empty",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
 }
