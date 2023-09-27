@@ -36,10 +36,10 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'June 2023',
+    date: 'September 2023',
     subtitle: '',
     description: [
-      "The charges against Coinbase and Binance by the SEC may have affected the market, but the Bitcoin ETF application from Blackrock, Deutsche Bank's license application to do crypto custody, and the operational launch of EDX Markets backed by Fidelity, Citadel, and Schwab, sends a clear and positive signal. While we maintain the expectation of a sideways market in the short term, the long term view is bullish, driven by underlying adoption.",
+      'Our outlook for the next 6-12 months remains positive, with several important dates lined up. There is a high probability that BTC gets its first spot ETF in the coming 6 months and one could argue that the Grayscale victory made the probability go up further. Ethereum also has upcoming deadlines for futures ETFs and a spot ETH ETF application has been filed. Ethereum is gearing up for an upgrade that will have a positive impact on rollups that use Ethereum as their L1. A spot ETF for Bitcoin is a very positive development and so far the market has not fully internalised the magnitude of the development.',
     ],
   },
   summary: {
@@ -213,7 +213,47 @@ const Home: NextPageWithLayout = () => {
               date="Monthly Performance of K33 vs. Bitcoin"
             >
               <Image src={content} alt="" />
-              <div></div>
+              <table className="bg-white border-separate max-w-[300px] self-center">
+                <thead className="text-caption text-label-light-primary">
+                  <tr>
+                    <th className="text-left px-2 py-1"></th>
+                    <th className="text-left px-2 py-1">K33</th>
+                    <th className="text-left px-2 py-1">BTC</th>
+                  </tr>
+                </thead>
+                <tbody className="text-label-light-secondary text-body3">
+                  <tr>
+                    <td className="px-2 py-1">Year to Date</td>
+                    <td className="px-2 py-1">48.84%</td>
+                    <td className="px-2 py-1">56.75%</td>
+                  </tr>
+                  <tr>
+                    <td className="px-2 py-1">1 Month</td>
+                    <td className="px-2 py-1">-9.97%</td>
+                    <td className="px-2 py-1">-11.31%</td>
+                  </tr>
+                  <tr>
+                    <td className="px-2 py-1">3 Months</td>
+                    <td className="px-2 py-1">-7.84%</td>
+                    <td className="px-2 py-1">-4.84%</td>
+                  </tr>
+                  <tr>
+                    <td className="px-2 py-1">6 Months</td>
+                    <td className="px-2 py-1">6.38%</td>
+                    <td className="px-2 py-1">11.97%</td>
+                  </tr>
+                  <tr>
+                    <td className="px-2 py-1">1 Year</td>
+                    <td className="px-2 py-1">23.31%</td>
+                    <td className="px-2 py-1">29.48%</td>
+                  </tr>
+                  <tr>
+                    <td className="px-2 py-1">Launch to Date</td>
+                    <td className="px-2 py-1">324.40%</td>
+                    <td className="px-2 py-1">232.59%</td>
+                  </tr>
+                </tbody>
+              </table>
             </FundCard>
             <div className="flex flex-col md:gap-4 gap-8">
               <FundCard title={fundCards.summary.title} date={''}>
