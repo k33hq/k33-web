@@ -19,6 +19,9 @@
         ],
         "k33-auth-dev": [
           "k33-auth-dev"
+        ],
+        "k33-dev": [
+          "k33-dev"
         ]
       }
     },
@@ -38,6 +41,9 @@
         ],
         "k33-auth": [
           "k33-auth"
+        ],
+        "k33-prod": [
+          "k33-prod"
         ]
       }
     }

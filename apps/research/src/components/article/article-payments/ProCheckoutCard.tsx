@@ -11,6 +11,7 @@ import {
 } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { usePlan } from '@/hooks';
+import { proFeatures } from '@/utils';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
@@ -162,7 +163,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
               padding: 0,
               paddingBottom: 16,
             }}
-            dataSource={features}
+            dataSource={proFeatures}
             renderItem={(feat) => (
               <List.Item
                 style={{

@@ -21,6 +21,7 @@ firebase deploy --only hosting:k33-research-dev
 firebase deploy --only hosting:k33-research-archive-dev
 firebase deploy --only hosting:k33-invest-dev
 firebase deploy --only hosting:k33-auth-dev
+firebase deploy --only hosting:k33-dev
 ```
 
 ## k33-prod
@@ -31,4 +32,5 @@ firebase deploy --only hosting:k33-research
 firebase deploy --only hosting:k33-research-archive
 firebase deploy --only hosting:k33-invest
 firebase deploy --only hosting:k33-auth
+firebase deploy --only hosting:k33-prod
 ```
