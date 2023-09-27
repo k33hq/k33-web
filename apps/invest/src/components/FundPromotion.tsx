@@ -24,9 +24,7 @@ const FundPromotion: React.FC = () => {
           id="analyst-information"
           className="flex-col gap-2 text-label-light-primary self-center py-10"
         >
-          <h5 className="md:text-heading5 text-heading7">
-            Talk to our analysts
-          </h5>
+          <h5 className="md:text-heading5 text-heading7">fund managers</h5>
           <p className="text-body2">
             Book a call 1-1 with us. Let us help you understand the digital
             assets industry.
