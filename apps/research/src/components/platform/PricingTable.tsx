@@ -262,13 +262,13 @@ const LogoutActionButton = () => {
       >
         <Button type="primary">Start 30-Day Free Trial</Button>
       </Link>
-      <Text
+      {/* <Text
         style={{
           color: colorTextTertiary,
         }}
       >
         No credit card required
-      </Text>
+      </Text> */}
     </Space>
   );
 };
@@ -290,13 +290,13 @@ export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
       <Button loading={isLoading} onClick={checkOut} type="primary">
         Start 30-Day Free Trial
       </Button>
-      <Text
+      {/* <Text
         style={{
           color: colorTextTertiary,
         }}
       >
         No credit card required
-      </Text>
+      </Text> */}
     </Space>
   );
 };
