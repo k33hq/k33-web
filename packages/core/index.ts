@@ -125,8 +125,11 @@ export const emailLinkCheck = (
   setPersistence(auth, browserLocalPersistence)
     .then(() => {
       if (isSignInWithEmailLink(auth, url)) {
+        console.log('is sign in with email link');
         //@ts-ignore
         let email = window.localStorage.getItem('emailForSignIn');
+
+        console.log(email + ' : email from localstorage');
 
         if (!email) {
           throw new Error('no email');

@@ -93,7 +93,7 @@ const LoginOptions: React.FC<LoginOptionsProps> = ({
       >
         {microsoftText}
       </Button>
-      <Space direction="horizontal">
+      {/* <Space direction="horizontal">
         <Input
           placeholder="enter your email to get the link"
           onChange={(e) => setEmail(e.target.value)}
@@ -103,7 +103,7 @@ const LoginOptions: React.FC<LoginOptionsProps> = ({
         <Button type="text" onClick={() => emailLink(email)}>
           Send
         </Button>
-      </Space>
+      </Space> */}
       {error && <Typography.Text type="danger">{error}</Typography.Text>}
     </>
   );

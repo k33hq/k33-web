@@ -4,7 +4,7 @@ import {
   LoginOptions,
   NextPageWithLayout,
 } from 'platform-js';
-import { Button, Typography } from 'antd';
+import { Button, Input, Typography } from 'antd';
 import config from '@/firebase/config';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -13,7 +13,7 @@ import { DefaultLayout } from '@/components';
 import styles from './styles.module.scss';
 
 // TODO: take on success and on failure
-const Auth: NextPageWithLayout = () => {
+const EmailLinkSignIn: NextPageWithLayout = () => {
   const router = useRouter();
   return (
     <>
@@ -22,7 +22,7 @@ const Auth: NextPageWithLayout = () => {
       </Head>
       <div id="sign-in-section" className={styles.signin}>
         <div id="title" className={styles.header}>
-          <Typography.Title level={2}>Welcome back!</Typography.Title>
+          <Typography.Title level={2}>Email Link Sign In</Typography.Title>
           <div id="info">
             <Typography.Text>Don’t have an account yet?</Typography.Text>
             <Link href={'/signup'}>
@@ -36,28 +36,27 @@ const Auth: NextPageWithLayout = () => {
             firebaseConfig={config}
           >
             {(props) => (
-              <LoginOptions
-                {...props}
-                appleText="Sign In with Apple"
-                googleText="Sign In with Google"
-                microsoftText="Sign In with Microsoft"
-              />
+              <div
+                id=""
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 24,
+                }}
+              >
+                <Input placeholder="Enter your email here" />
+                <Button>Send Email Link</Button>
+              </div>
             )}
           </AuthComponent>
-          <div>
-            <Typography.Text>You can also</Typography.Text>
-            <Link href={'/email_link_signin'}>
-              <Typography.Link>continue with a Email Link.</Typography.Link>
-            </Link>
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-Auth.getLayout = function (page) {
+EmailLinkSignIn.getLayout = function (page) {
   return <DefaultLayout footer="signing in">{page}</DefaultLayout>;
 };
 
-export default Auth;
+export default EmailLinkSignIn;

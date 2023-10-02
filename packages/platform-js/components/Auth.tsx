@@ -80,6 +80,8 @@ const Auth: React.FC<AuthProps> = ({
   }, [onSuccessLogin]);
 
   React.useEffect(() => {
+    console.log(state);
+    console.log(router);
     if (state === 'REGISTRED') {
       router.back();
     } else if (state === 'UNREGISTRED') {
@@ -102,8 +104,6 @@ const Auth: React.FC<AuthProps> = ({
   const emailLink = (email: string) => {
     emailLinkLogin((err: FirebaseError) => setError(err.message), email, {
       url: window.location.href,
-      // This must be true.
-      handleCodeInApp: true,
     });
   };
 
