@@ -2,7 +2,14 @@ import { FirebaseError, FirebaseOptions } from 'firebase/app';
 import * as React from 'react';
 import { useAppState } from '../hooks';
 import { useRouter } from 'next/router';
-import { appleLogin, googleLogin, microsoftLogin, register } from 'core';
+import {
+  appleLogin,
+  emailLinkCheck,
+  emailLinkLogin,
+  googleLogin,
+  microsoftLogin,
+  register,
+} from 'core';
 import { UserCredential } from 'firebase/auth';
 
 interface DiffCredData {
@@ -34,6 +41,7 @@ export interface LoginOptions {
   google: () => void;
   apple: () => void;
   microsoft: () => void;
+  emailLink: (email: string) => void;
 }
 
 export interface AuthFunctionalities {
@@ -45,11 +53,13 @@ interface AuthProps {
   firebaseConfig: FirebaseOptions;
   onSuccessLogin: (user: UserCredential) => void;
   children: (props: AuthFunctionalities) => React.ReactElement;
+  redirectUrl?: string;
 }
 
 const Auth: React.FC<AuthProps> = ({
   firebaseConfig,
   onSuccessLogin,
+  redirectUrl = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/`,
   children,
 }) => {
   const state = useAppState(firebaseConfig);
@@ -57,12 +67,34 @@ const Auth: React.FC<AuthProps> = ({
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (state === 'REGISTRED') {
-      router.back();
-    } else if (state === 'UNREGISTRED') {
-      register().then((state) => router.reload());
+    try {
+      if (state === 'SIGNED_OUT') {
+        emailLinkCheck(
+          (r) => {
+            window.localStorage.removeItem('emailForSignIn');
+            onSuccessLogin(r);
+          },
+          (err) => setError(err),
+          window.location.href
+        );
+      }
+    } catch (err) {
+      console.log(err);
     }
-  }, [state, router]);
+  }, [onSuccessLogin, state, redirectUrl]);
+
+  React.useEffect(() => {
+    const query = router.query;
+    if (state === 'REGISTRED') {
+      if (query.redirect) {
+        window.location.replace(query.redirect as string);
+      } else {
+        window.location.replace(redirectUrl + '/research');
+      }
+    } else if (state === 'UNREGISTRED') {
+      register().then((state) => router.back());
+    }
+  }, [state, router, redirectUrl]);
 
   const google = () => {
     googleLogin(onSuccessLogin, (err: FirebaseError) => {
@@ -73,6 +105,13 @@ const Auth: React.FC<AuthProps> = ({
   const apple = () => {
     appleLogin(onSuccessLogin, (err: FirebaseError) => {
       setError(err.message);
+    });
+  };
+
+  const emailLink = (email: string) => {
+    emailLinkLogin((err: FirebaseError) => setError(err.message), email, {
+      url: window.location.href,
+      handleCodeInApp: true,
     });
   };
 
@@ -88,7 +127,9 @@ const Auth: React.FC<AuthProps> = ({
     });
   };
 
-  return <>{children({ login: { google, apple, microsoft }, error })}</>;
+  return (
+    <>{children({ login: { google, apple, microsoft, emailLink }, error })}</>
+  );
 };
 
 export default Auth;

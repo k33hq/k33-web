@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { AppleFilled } from '@ant-design/icons';
-import { Button, Typography } from 'antd';
+import { Button, Input, Space, Typography } from 'antd';
 import { AuthFunctionalities } from './Auth';
 
 interface LoginOptionsProps extends AuthFunctionalities {
@@ -10,12 +10,13 @@ interface LoginOptionsProps extends AuthFunctionalities {
 }
 
 const LoginOptions: React.FC<LoginOptionsProps> = ({
-  login: { google, apple, microsoft },
+  login: { google, apple, microsoft, emailLink },
   error,
   appleText = 'Sign Up with Apple',
   microsoftText = 'Sign Up with Microsoft',
   googleText = 'Sign Up with Google',
 }) => {
+  const [email, setEmail] = React.useState<string>('');
   return (
     <>
       {/* <Button block icon={<AppleFilled />}>
@@ -92,6 +93,17 @@ const LoginOptions: React.FC<LoginOptionsProps> = ({
       >
         {microsoftText}
       </Button>
+      {/* <Space direction="horizontal">
+        <Input
+          placeholder="enter your email to get the link"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          type="email"
+        />
+        <Button type="text" onClick={() => emailLink(email)}>
+          Send
+        </Button>
+      </Space> */}
       {error && <Typography.Text type="danger">{error}</Typography.Text>}
     </>
   );

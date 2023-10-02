@@ -37,6 +37,18 @@ const SignUp: NextPageWithLayout = () => {
           >
             {(props) => <LoginOptions {...props} />}
           </AuthComponent>
+          <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
+            <Typography.Text>You can also</Typography.Text>
+            <Link
+              href={{
+                pathname: '/email_link_signup',
+              }}
+            >
+              <Typography.Link underline color="black">
+                Sign Up with a Email Link.
+              </Typography.Link>
+            </Link>
+          </div>
         </div>
       </div>
     </>

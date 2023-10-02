@@ -44,6 +44,18 @@ const Auth: NextPageWithLayout = () => {
               />
             )}
           </AuthComponent>
+          <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
+            <Typography.Text>You can also</Typography.Text>
+            <Link
+              href={{
+                pathname: '/email_link_signin',
+              }}
+            >
+              <Typography.Link underline color="black">
+                continue with a Email Link.
+              </Typography.Link>
+            </Link>
+          </div>
         </div>
       </div>
     </>

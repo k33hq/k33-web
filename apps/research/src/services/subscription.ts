@@ -16,6 +16,19 @@ export const researchApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `https://${process.env.NEXT_PUBLIC_API_DOMAIN}`,
     prepareHeaders: async (headers) => {
+      //@ts-ignore
+      window.gtag(
+        'get',
+        process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+        'client_id',
+        (clientId: string) => {
+          // TODO: check if localstorage says cookie-product yes
+          const check = localStorage.getItem('cookies-product');
+          if (check === 'YES') {
+            headers.set('x-client-id', `${clientId}`);
+          }
+        }
+      );
       const token = await getIdToken();
       headers.set('Content-Type', 'application/json');
       if (token) {

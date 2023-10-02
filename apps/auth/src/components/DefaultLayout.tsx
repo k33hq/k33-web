@@ -14,6 +14,17 @@ interface DefaultLayoutProps extends React.PropsWithChildren {
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, footer }) => {
   const { md } = useBreakpoint();
+
+  React.useEffect(() => {
+    (function () {
+      window.onpageshow = function (event) {
+        if (event.persisted) {
+          window.location.reload();
+        }
+      };
+    })();
+  }, []);
+
   return (
     <Layout
       style={{
