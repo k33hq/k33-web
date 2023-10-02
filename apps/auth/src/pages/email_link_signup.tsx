@@ -1,8 +1,8 @@
 import {
   Auth as AuthComponent,
   getTitle,
+  LoginOptions,
   NextPageWithLayout,
-  useAppState,
 } from 'platform-js';
 import { Button, Input, Typography } from 'antd';
 import config from '@/firebase/config';
@@ -20,7 +20,6 @@ const validRegex =
 const EmailLinkSignIn: NextPageWithLayout = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
-
   const [error, setError] = useState<null | string>(null);
 
   return (
@@ -30,7 +29,7 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
       </Head>
       <div id="sign-in-section" className={styles.signin}>
         <div id="title" className={styles.header}>
-          <Typography.Title level={2}>Email Link Sign In</Typography.Title>
+          <Typography.Title level={2}>Email Link Sign Up</Typography.Title>
           <div id="info">
             <Typography.Text>Don’t have an account yet?</Typography.Text>
             <Link href={'/signup'}>
@@ -44,7 +43,7 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
             onSuccessLogin={() => router.reload()}
             firebaseConfig={config}
           >
-            {({ error: authError, login: { emailLink } }) => (
+            {({ error, login: { emailLink } }) => (
               <div
                 id=""
                 style={{
@@ -77,9 +76,6 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
                 >
                   Send Email Link
                 </Button>
-                {authError && (
-                  <Typography.Text type="danger">{authError}</Typography.Text>
-                )}
               </div>
             )}
           </AuthComponent>

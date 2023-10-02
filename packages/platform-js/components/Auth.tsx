@@ -53,11 +53,13 @@ interface AuthProps {
   firebaseConfig: FirebaseOptions;
   onSuccessLogin: (user: UserCredential) => void;
   children: (props: AuthFunctionalities) => React.ReactElement;
+  redirectUrl?: string;
 }
 
 const Auth: React.FC<AuthProps> = ({
   firebaseConfig,
   onSuccessLogin,
+  redirectUrl = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/`,
   children,
 }) => {
   const state = useAppState(firebaseConfig);
@@ -66,28 +68,33 @@ const Auth: React.FC<AuthProps> = ({
 
   React.useEffect(() => {
     try {
-      emailLinkCheck(
-        (r) => {
-          window.localStorage.removeItem('emailForSignIn');
-          onSuccessLogin(r);
-        },
-        (err) => setError(err),
-        window.location.href
-      );
+      if (state === 'SIGNED_OUT') {
+        emailLinkCheck(
+          (r) => {
+            window.localStorage.removeItem('emailForSignIn');
+            onSuccessLogin(r);
+          },
+          (err) => setError(err),
+          window.location.href
+        );
+      }
     } catch (err) {
       console.log(err);
     }
-  }, [onSuccessLogin]);
+  }, [onSuccessLogin, state, redirectUrl]);
 
   React.useEffect(() => {
-    console.log(state);
-    console.log(router);
+    const query = router.query;
     if (state === 'REGISTRED') {
-      router.back();
+      if (query.redirect) {
+        window.location.replace(query.redirect as string);
+      } else {
+        window.location.replace(redirectUrl + '/research');
+      }
     } else if (state === 'UNREGISTRED') {
-      register().then((state) => router.reload());
+      register().then((state) => router.back());
     }
-  }, [state, router]);
+  }, [state, router, redirectUrl]);
 
   const google = () => {
     googleLogin(onSuccessLogin, (err: FirebaseError) => {
@@ -104,6 +111,7 @@ const Auth: React.FC<AuthProps> = ({
   const emailLink = (email: string) => {
     emailLinkLogin((err: FirebaseError) => setError(err.message), email, {
       url: window.location.href,
+      handleCodeInApp: true,
     });
   };
 

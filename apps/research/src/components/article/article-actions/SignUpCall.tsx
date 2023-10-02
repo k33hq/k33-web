@@ -32,8 +32,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
             fontSize: fontSizeSM,
           }}
         >
-          Subscribe and get full access to all research. No credit card needed
-          for free trial.
+          Subscribe and get full access to all research.
         </Text>
       </div>
       <div id="sign-up-login-options" className={styles.loginOptions}>
@@ -54,6 +53,23 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
         </Auth>
       </div>
       <div id="sign-up-footer" className={styles.signupFooter}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 4,
+            alignSelf: 'center',
+            marginTop: 16,
+          }}
+        >
+          <Typography.Text>You can also</Typography.Text>
+          <Link
+            href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/email_link_signin?redirect=${window.location.href}`}
+          >
+            <Typography.Link underline color="black">
+              Sign Up with an Email Link.
+            </Typography.Link>
+          </Link>
+        </div>
         <div>
           <Text>Already subscribed? </Text>
           <Link
@@ -62,6 +78,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
             <AntLink underline>Sign In Here</AntLink>
           </Link>
         </div>
+
         <div
           style={{
             fontSize: fontSizeSM,

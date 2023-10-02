@@ -108,12 +108,19 @@ export const emailLinkLogin = (
   actionCode: ActionCodeSettings
 ) => {
   const auth = getAuth(getApp(APP_NAME));
-  sendSignInLinkToEmail(auth, email, actionCode)
+  setPersistence(auth, browserLocalPersistence)
     .then(() => {
-      //@ts-ignore
-      window.localStorage.setItem('emailForSignIn', email);
+      sendSignInLinkToEmail(auth, email, actionCode)
+        .then(() => {
+          console.log('hello');
+          //@ts-ignore
+          window.localStorage.setItem('emailForSignIn', email);
+        })
+        .catch(error);
     })
-    .catch(error);
+    .catch((err: any) => {
+      console.log(err);
+    });
 };
 
 export const emailLinkCheck = (
