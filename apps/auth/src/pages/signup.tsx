@@ -37,7 +37,7 @@ const SignUp: NextPageWithLayout = () => {
           >
             {(props) => <LoginOptions {...props} />}
           </AuthComponent>
-          <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
+          {/* <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
             <Typography.Text>You can also</Typography.Text>
             <Link
               href={{
@@ -48,7 +48,7 @@ const SignUp: NextPageWithLayout = () => {
                 Sign Up with a Email Link.
               </Typography.Link>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
