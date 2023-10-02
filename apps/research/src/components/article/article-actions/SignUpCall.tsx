@@ -53,7 +53,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
         </Auth>
       </div>
       <div id="sign-up-footer" className={styles.signupFooter}>
-        <div
+        {/* <div
           style={{
             display: 'flex',
             gap: 4,
@@ -69,7 +69,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
               Sign Up with an Email Link.
             </Typography.Link>
           </Link>
-        </div>
+        </div> */}
         <div>
           <Text>Already subscribed? </Text>
           <Link
