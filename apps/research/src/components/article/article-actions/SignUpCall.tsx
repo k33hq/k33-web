@@ -32,8 +32,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
             fontSize: fontSizeSM,
           }}
         >
-          Subscribe and get full access to all research. No credit card needed
-          for free trial.
+          Subscribe and get full access to all research.
         </Text>
       </div>
       <div id="sign-up-login-options" className={styles.loginOptions}>
