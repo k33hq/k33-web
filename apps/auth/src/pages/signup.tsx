@@ -45,7 +45,7 @@ const SignUp: NextPageWithLayout = () => {
               }}
             >
               <Typography.Link underline color="black">
-                Sign Up with a Email Link.
+                Sign Up with an Email Link.
               </Typography.Link>
             </Link>
           </div>

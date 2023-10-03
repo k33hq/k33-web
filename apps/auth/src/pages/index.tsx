@@ -52,7 +52,7 @@ const Auth: NextPageWithLayout = () => {
               }}
             >
               <Typography.Link underline color="black">
-                continue with a Email Link.
+                continue with an Email Link.
               </Typography.Link>
             </Link>
           </div>
