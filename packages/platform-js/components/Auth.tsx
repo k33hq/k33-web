@@ -66,35 +66,54 @@ const Auth: React.FC<AuthProps> = ({
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    try {
-      if (state === 'SIGNED_OUT') {
-        emailLinkCheck(
-          (r) => {
-            window.localStorage.removeItem('emailForSignIn');
-            onSuccessLogin(r);
-          },
-          (err) => setError(err),
-          window.location.href
-        );
-      }
-    } catch (err) {
-      console.log(err);
+  const redirectCallback = React.useCallback(() => {
+    const query = router.query;
+    if (query.redirect) {
+      window.location.replace(query.redirect as string);
+    } else {
+      window.location.replace(redirectUrl + 'research');
     }
-  }, [onSuccessLogin, state, redirectUrl, router]);
+  }, [router, redirectUrl]);
 
   React.useEffect(() => {
-    const query = router.query;
-    if (state === 'REGISTRED') {
-      if (query.redirect) {
-        window.location.replace(query.redirect as string);
-      } else {
-        window.location.replace(redirectUrl + '/research');
+    try {
+      switch (state) {
+        case 'SIGNED_OUT':
+          emailLinkCheck(
+            (r) => {
+              window.localStorage.removeItem('emailForSignIn');
+              onSuccessLogin(r);
+            },
+            (err) => setError(err),
+            window.location.href
+          );
+          break;
+        case 'REGISTRED':
+          redirectCallback();
+          break;
+        case 'UNREGISTRED':
+          register().then((state) => redirectCallback());
+          break;
+        default:
+          break;
       }
-    } else if (state === 'UNREGISTRED') {
-      register().then((state) => router.back());
+    } catch (err: any) {
+      console.log(err.message);
     }
-  }, [state, router, redirectUrl]);
+  }, [onSuccessLogin, state, redirectCallback]);
+
+  // React.useEffect(() => {
+  //   const query = router.query;
+  //   if (state === 'REGISTRED') {
+  //     if (query.redirect) {
+  //       window.location.replace(query.redirect as string);
+  //     } else {
+  //       window.location.replace(redirectUrl + '/research');
+  //     }
+  //   } else if (state === 'UNREGISTRED') {
+  //     register().then((state) => router.back());
+  //   }
+  // }, [state, router, redirectUrl]);
 
   const google = () => {
     googleLogin(onSuccessLogin, (err: FirebaseError) => {
