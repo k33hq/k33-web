@@ -81,7 +81,7 @@ const Auth: React.FC<AuthProps> = ({
     } catch (err) {
       console.log(err);
     }
-  }, [onSuccessLogin, state, redirectUrl]);
+  }, [onSuccessLogin, state, redirectUrl, router]);
 
   React.useEffect(() => {
     const query = router.query;
