@@ -28,7 +28,7 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
             Email Link
           </Typography.Title>
           <Typography.Title style={{ marginBottom: 8, marginTop: 0 }} level={1}>
-            sent to your email!
+            sent to your inbox!
           </Typography.Title>
           <Typography.Text
             type="secondary"
@@ -37,8 +37,8 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
               textAlign: 'center',
             }}
           >
-            Please check your email account and use the link to access our
-            platfom.
+            Please check your inbox and use the link to access our platform.
+            Remember to check your spam folder.
           </Typography.Text>
         </div>
       </div>
