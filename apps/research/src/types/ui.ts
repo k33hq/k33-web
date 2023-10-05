@@ -13,7 +13,7 @@ export interface Payments {
 
 export interface AppStructure {
   navigation: Array<Navigation>;
-  payments: Payments;
+  payments: Record<'default' | 'aoc' | 'nn' | 'twic' | 'pro', Payments>;
   notifications: Record<number, { description: string; isPro: boolean }>;
 }
 

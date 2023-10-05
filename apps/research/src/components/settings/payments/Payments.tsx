@@ -26,10 +26,35 @@ const mask = (email: string) =>
   );
 const Payments: React.FC = () => {
   const router = useRouter();
-  const { productStatus } = useProductInfo(appStructure.payments.productId);
+
+  // pro check out
+  const { productStatus } = useProductInfo(appStructure.payments.pro.productId);
   const { doCheckOut: checkout, isLoading } = useCustomerCheckout(
-    appStructure.payments.monthlyPriceId
+    appStructure.payments.pro.monthlyPriceId
   );
+
+  // navigating naratives
+  const { productStatus: nnProductStatus } = useProductInfo(
+    appStructure.payments.nn.productId
+  );
+  const { doCheckOut: nnMonthlyCheckout, isLoading: nnMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.nn.monthlyPriceId);
+
+  // ahead of the curve
+  const { productStatus: aocProductStatus } = useProductInfo(
+    appStructure.payments.aoc.productId
+  );
+  const { doCheckOut: aocMonthlyCheckout, isLoading: aocMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.aoc.monthlyPriceId);
+
+  // this week in crypto
+  const { productStatus: twicProductStatus } = useProductInfo(
+    appStructure.payments.twic.productId
+  );
+  const { doCheckOut: twicMonthlyCheckout, isLoading: twicMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.twic.monthlyPriceId);
+
+  // customer dashboard
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
 
@@ -225,7 +250,34 @@ const Payments: React.FC = () => {
       {productStatus.state === 'blocked' && (
         <Alert
           message="Failed Payment Attempt:"
-          description="We were unable to complete the payment of your subscription."
+          description="We were unable to complete the payment of your PRO Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      {aocProductStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your Ahead of The Curve Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      {nnProductStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your Navigating Narratives Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      {twicProductStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your This Week in Crypto Subscription."
           type="error"
           showIcon
         />
