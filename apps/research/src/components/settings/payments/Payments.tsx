@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { getUserInformation } from 'core';
 import { SignUpCall } from '@/components';
 import { appStructure } from '@/config';
+import { ProductPlans } from '@/types';
 
 const { Text, Link } = Typography;
 const { Ribbon } = Badge;
@@ -66,7 +67,25 @@ const Payments: React.FC = () => {
     });
   }, []);
 
-  const getPaymentCard = (status: typeof productStatus.state) => {
+  const getPaymentCard = (plan: ProductPlans) => {
+    let status: string | null = 'loading';
+
+    if (plan === 'aoc') {
+      status = aocProductStatus.state;
+    }
+
+    if (plan === 'nn') {
+      status = nnProductStatus.state;
+    }
+
+    if (plan === 'twic') {
+      status = twicProductStatus.state;
+    }
+
+    if (plan === 'pro') {
+      status = productStatus.state;
+    }
+
     switch (status) {
       case 'blocked':
         return (
@@ -282,7 +301,9 @@ const Payments: React.FC = () => {
           showIcon
         />
       )}
-      {getPaymentCard(productStatus.state)}
+      {Object.keys(appStructure.payments).map((plan) =>
+        getPaymentCard(plan as ProductPlans)
+      )}
     </>
   );
 };

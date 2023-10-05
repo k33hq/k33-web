@@ -11,9 +11,10 @@ export interface Payments {
   monthlyPriceId: string;
 }
 
+export type ProductPlans = 'aoc' | 'nn' | 'twic' | 'pro';
 export interface AppStructure {
   navigation: Array<Navigation>;
-  payments: Record<'default' | 'aoc' | 'nn' | 'twic' | 'pro', Payments>;
+  payments: Record<'aoc' | 'nn' | 'twic' | 'pro', Payments>;
   notifications: Record<number, { description: string; isPro: boolean }>;
 }
 
