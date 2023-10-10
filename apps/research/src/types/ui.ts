@@ -9,6 +9,8 @@ export interface Payments {
   productId: string;
   annualPriceId: string;
   monthlyPriceId: string;
+  image: string;
+  name: string;
 }
 
 export type ProductPlans = 'aoc' | 'nn' | 'twic' | 'pro';

@@ -23,7 +23,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   ...metadata
 }) => {
   const { productStatus, appState } = useProductInfo(
-    appStructure.payments.productId
+    appStructure.payments.pro.productId
   );
   const {
     token: { fontSizeSM },

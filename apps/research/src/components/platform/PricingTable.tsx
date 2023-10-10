@@ -29,9 +29,9 @@ const proPlanFeatures = [
 
 const PricingTable = () => {
   const { plan, setPlan } = usePlan();
-  const productId = appStructure.payments.productId;
-  const monthlyPriceId = appStructure.payments.monthlyPriceId;
-  const annualPriceId = appStructure.payments.annualPriceId;
+  const productId = appStructure.payments.pro.productId;
+  const monthlyPriceId = appStructure.payments.pro.monthlyPriceId;
+  const annualPriceId = appStructure.payments.pro.annualPriceId;
 
   const { productStatus, appState } = useProductInfo(productId);
   const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =

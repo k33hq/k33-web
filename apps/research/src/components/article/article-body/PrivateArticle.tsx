@@ -37,14 +37,14 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   isReport = false,
 }) => {
   const { doCheckOut, isLoading } = useCustomerCheckout(
-    appStructure.payments.monthlyPriceId
+    appStructure.payments.pro.monthlyPriceId
   );
 
   const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
-    useCustomerCheckout(appStructure.payments.annualPriceId);
+    useCustomerCheckout(appStructure.payments.pro.annualPriceId);
 
   const { productStatus, appState } = useProductInfo(
-    appStructure.payments.productId
+    appStructure.payments.pro.productId
   );
 
   const getCallToAction = (state: typeof productStatus.state) => {

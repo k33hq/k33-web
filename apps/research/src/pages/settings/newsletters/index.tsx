@@ -16,16 +16,16 @@ import {
 // TODO: check if user is active or blocked before switching email newsletter and show dialog accordingly.
 const EmailSettings: NextPageWithLayout = () => {
   const { data, isLoading } = useGetSupressionGroupsQuery();
-  const { productStatus } = useProductInfo(appStructure.payments.productId);
+  const { productStatus } = useProductInfo(appStructure.payments.pro.productId);
   const { doCheckOut, isLoading: isCheckOutLoading } = useCustomerCheckout(
-    appStructure.payments.monthlyPriceId
+    appStructure.payments.pro.monthlyPriceId
   );
 
   const { customerDashboard, isLoading: dashboardLoading } =
     useCustomerDashboard();
 
   const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
-    useCustomerCheckout(appStructure.payments.annualPriceId);
+    useCustomerCheckout(appStructure.payments.pro.annualPriceId);
 
   const [showModal, setShowModal] = React.useState(false);
 
