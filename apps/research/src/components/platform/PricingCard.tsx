@@ -12,7 +12,6 @@ interface PricingCardProps {
   description: string;
   price: string;
   plan: string;
-
   state?: 'blocked' | 'active';
   image: string;
 }
@@ -36,13 +35,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
         ...(state === 'active' && { background: 'black' }),
         ...(state === 'blocked' && { background: 'var(--red-6, #F5222D)' }),
       }}
-      cover={<Image src={image} alt="product-image" />}
+      cover={<Image preview={false} src={image} alt="product-image" />}
     >
       <Space
         direction="vertical"
         align="center"
         size={16}
-        style={{ paddingBottom: 16 }}
+        style={{ paddingBottom: 16, height: 200 }}
       >
         <Space direction="vertical" size={4}>
           <Typography.Text strong>{plan}</Typography.Text>

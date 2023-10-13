@@ -80,7 +80,7 @@ const Pricing = () => {
                       margin: 0,
                     }}
                   >
-                    Pricing
+                    Newsletters Pricing
                   </Title>
                 </Space>
               </div>

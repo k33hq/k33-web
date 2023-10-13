@@ -22,7 +22,7 @@ import Link from 'next/link';
 import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
 import { proFeatures } from '@/utils';
-import { Payments, ProductPlans } from '@/types';
+import { Payments, ProductPlans, ProductStatus } from '@/types';
 
 setTwoToneColor('#777777');
 
@@ -57,9 +57,7 @@ const PricingTable = () => {
   const aocProductId = appStructure.payments.aoc.productId;
   const aocMonthlyPriceId = appStructure.payments.aoc.monthlyPriceId;
   const aocYearlyPriceId = appStructure.payments.aoc.annualPriceId;
-  const { productStatus: aocProductStatus } = useProductInfo(
-    appStructure.payments.aoc.productId
-  );
+  const { productStatus: aocProductStatus } = useProductInfo(aocProductId);
   const { doCheckOut: aocMonthlyCheckout, isLoading: aocMonthlyLoading } =
     useCustomerCheckout(appStructure.payments.aoc.monthlyPriceId);
   const { doCheckOut: aocYearlyCheckout, isLoading: aocYearlyLoading } =
@@ -69,9 +67,7 @@ const PricingTable = () => {
   const nnProductId = appStructure.payments.nn.productId;
   const nnMonthlyPriceId = appStructure.payments.nn.monthlyPriceId;
   const nnYearlyPriceId = appStructure.payments.nn.annualPriceId;
-  const { productStatus: nnProductStatus } = useProductInfo(
-    appStructure.payments.aoc.productId
-  );
+  const { productStatus: nnProductStatus } = useProductInfo(nnProductId);
   const { doCheckOut: nnMonthlyCheckout, isLoading: nnMonthlyLoading } =
     useCustomerCheckout(appStructure.payments.nn.monthlyPriceId);
   const { doCheckOut: nnYearlyCheckout, isLoading: nnYearlyLoading } =
@@ -81,28 +77,34 @@ const PricingTable = () => {
   const twicProductId = appStructure.payments.twic.productId;
   const twicMonthlyPriceId = appStructure.payments.twic.monthlyPriceId;
   const twiceYearlyPriceId = appStructure.payments.twic.annualPriceId;
-  const { productStatus: twicProductStatus } = useProductInfo(
-    appStructure.payments.twic.productId
-  );
+  const { productStatus: twicProductStatus } = useProductInfo(twicProductId);
   const { doCheckOut: twicMonthlyCheckout, isLoading: twicMonthlyLoading } =
     useCustomerCheckout(appStructure.payments.twic.monthlyPriceId);
   const { doCheckOut: twicYearlyCheckout, isLoading: twicYearlyLoading } =
     useCustomerCheckout(appStructure.payments.twic.annualPriceId);
 
-  const getMonthlyActions = () => {
-    switch (productStatus.state) {
+  const getMonthlyActions = (
+    state: {
+      state: ProductStatus | 'loading' | null;
+      priceId: string | null;
+    },
+
+    label: string = 'Renew PRO Subscription',
+    priceId: string = monthlyPriceId,
+    checkOut: () => Promise<void> = monthlyCheckOut,
+    isLoading: boolean = montlyIsLoading
+  ) => {
+    switch (state.state) {
       case 'ended':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
-              ? 'Get Monthly Plan'
-              : 'Renew PRO Subscription'}
+            {state.priceId === priceId ? 'Get Monthly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
+            {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Update Payment Details'}
           </DashboardButton>
@@ -110,18 +112,13 @@ const PricingTable = () => {
       case 'active':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
+            {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
         );
       default:
-        return (
-          <CheckOutButton
-            checkOut={monthlyCheckOut}
-            isLoading={montlyIsLoading}
-          />
-        );
+        return <CheckOutButton checkOut={checkOut} isLoading={isLoading} />;
     }
   };
 
@@ -131,12 +128,12 @@ const PricingTable = () => {
         return (
           <PricingCard
             image={payments.image}
-            {...(productStatus.priceId === aocMonthlyPriceId &&
+            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
               productStatus.state === 'blocked' && {
                 state: 'blocked',
               })}
-            {...(productStatus.priceId === aocMonthlyPriceId &&
-              productStatus.state === 'active' && {
+            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
+              aocProductStatus.state === 'active' && {
                 state: 'active',
               })}
             plan={payments.name}
@@ -147,7 +144,13 @@ const PricingTable = () => {
                 {appState === 'SIGNED_OUT' ? (
                   <LogoutActionButton />
                 ) : (
-                  getMonthlyActions()
+                  getMonthlyActions(
+                    aocProductStatus,
+                    payments.name,
+                    aocMonthlyPriceId,
+                    aocMonthlyCheckout,
+                    aocMonthlyLoading
+                  )
                 )}
               </>
             }
@@ -158,12 +161,12 @@ const PricingTable = () => {
           <PricingCard
             description={payments.description}
             image={payments.image}
-            {...(productStatus.priceId === nnMonthlyPriceId &&
-              productStatus.state === 'blocked' && {
+            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
+              nnProductStatus.state === 'blocked' && {
                 state: 'blocked',
               })}
-            {...(productStatus.priceId === nnMonthlyPriceId &&
-              productStatus.state === 'active' && {
+            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
+              nnProductStatus.state === 'active' && {
                 state: 'active',
               })}
             plan={payments.name}
@@ -173,7 +176,13 @@ const PricingTable = () => {
                 {appState === 'SIGNED_OUT' ? (
                   <LogoutActionButton />
                 ) : (
-                  getMonthlyActions()
+                  getMonthlyActions(
+                    nnProductStatus,
+                    payments.name,
+                    nnMonthlyPriceId,
+                    nnMonthlyCheckout,
+                    nnMonthlyLoading
+                  )
                 )}
               </>
             }
@@ -184,12 +193,12 @@ const PricingTable = () => {
           <PricingCard
             description={payments.description}
             image={payments.image}
-            {...(productStatus.priceId === twicMonthlyPriceId &&
-              productStatus.state === 'blocked' && {
+            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
+              twicProductStatus.state === 'blocked' && {
                 state: 'blocked',
               })}
-            {...(productStatus.priceId === twicMonthlyPriceId &&
-              productStatus.state === 'active' && {
+            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
+              twicProductStatus.state === 'active' && {
                 state: 'active',
               })}
             plan={payments.name}
@@ -199,7 +208,13 @@ const PricingTable = () => {
                 {appState === 'SIGNED_OUT' ? (
                   <LogoutActionButton />
                 ) : (
-                  getMonthlyActions()
+                  getMonthlyActions(
+                    twicProductStatus,
+                    payments.name,
+                    twicMonthlyPriceId,
+                    twicMonthlyCheckout,
+                    twicMonthlyLoading
+                  )
                 )}
               </>
             }
@@ -225,7 +240,7 @@ const PricingTable = () => {
                 {appState === 'SIGNED_OUT' ? (
                   <LogoutActionButton />
                 ) : (
-                  getMonthlyActions()
+                  getMonthlyActions(productStatus)
                 )}
               </>
             }
@@ -251,7 +266,7 @@ const PricingTable = () => {
                 {appState === 'SIGNED_OUT' ? (
                   <LogoutActionButton />
                 ) : (
-                  getMonthlyActions()
+                  getMonthlyActions(productStatus)
                 )}
               </>
             }
@@ -260,20 +275,180 @@ const PricingTable = () => {
     }
   };
 
-  const getAnnualActions = () => {
-    switch (productStatus.state) {
+  const getYearlyPaymentCard = (plan: ProductPlans, payments: Payments) => {
+    switch (plan) {
+      case 'aoc':
+        return (
+          <PricingCard
+            image={payments.image}
+            {...(aocProductStatus.priceId === aocYearlyPriceId &&
+              aocProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(aocProductStatus.priceId === aocYearlyPriceId &&
+              aocProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            description={payments.description}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getAnnualActions(
+                    aocProductStatus,
+                    payments.name,
+                    aocYearlyPriceId,
+                    aocYearlyCheckout,
+                    aocYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'nn':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(nnProductStatus.priceId === nnYearlyPriceId &&
+              nnProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(nnProductStatus.priceId === nnYearlyPriceId &&
+              nnProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getAnnualActions(
+                    nnProductStatus,
+                    payments.name,
+                    nnYearlyPriceId,
+                    nnYearlyCheckout,
+                    nnYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'twic':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
+              twicProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
+              twicProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getAnnualActions(
+                    twicProductStatus,
+                    payments.name,
+                    twiceYearlyPriceId,
+                    twicYearlyCheckout,
+                    twicYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'pro':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getAnnualActions(productStatus)
+                )}
+              </>
+            }
+          />
+        );
+      default:
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getAnnualActions(productStatus)
+                )}
+              </>
+            }
+          />
+        );
+    }
+  };
+
+  const getAnnualActions = (
+    state: {
+      state: ProductStatus | 'loading' | null;
+      priceId: string | null;
+    },
+    label: string = 'Renew PRO Subscription',
+    priceId: string = annualPriceId,
+    checkOut: () => Promise<void> = annualCheckOut,
+    isLoading: boolean = annualIsLoading
+  ) => {
+    switch (state.state) {
       case 'ended':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
-              ? 'Get Yearly Plan'
-              : 'Renew PRO Subscription'}
+            {state.priceId === priceId ? 'Get Yearly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
+            {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Update Payment Details'}
           </DashboardButton>
@@ -281,18 +456,13 @@ const PricingTable = () => {
       case 'active':
         return (
           <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
+            {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
         );
       default:
-        return (
-          <CheckOutButton
-            checkOut={annualCheckOut}
-            isLoading={annualIsLoading}
-          />
-        );
+        return <CheckOutButton checkOut={checkOut} isLoading={isLoading} />;
     }
   };
 
@@ -327,7 +497,7 @@ const PricingTable = () => {
           value="year"
         >
           <Badge
-            count={'Save $100'}
+            count={'Save up to $140'}
             style={{
               fontSize: 8,
             }}
@@ -342,7 +512,7 @@ const PricingTable = () => {
 
       <div>
         {plan === 'monthly' ? (
-          <Row wrap gutter={[40, 40]}>
+          <Row wrap gutter={[16, 16]}>
             {Object.keys(appStructure.payments).map((plan) => (
               <Col xs={24} sm={24} lg={6} key={plan}>
                 {getMonthlyPaymentCard(
@@ -352,7 +522,18 @@ const PricingTable = () => {
               </Col>
             ))}
           </Row>
-        ) : null}
+        ) : (
+          <Row wrap gutter={[16, 16]}>
+            {Object.keys(appStructure.payments).map((plan) => (
+              <Col xs={24} sm={24} lg={6} key={plan}>
+                {getYearlyPaymentCard(
+                  plan as ProductPlans,
+                  appStructure.payments[plan as ProductPlans]
+                )}
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </>
   );
@@ -372,9 +553,7 @@ const LogoutActionButton = () => {
         width: '100%',
       }}
     >
-      <Button block type="primary">
-        Start 30-Day Free Trial
-      </Button>
+      <Button block>Start Free Trial</Button>
     </Link>
   );
 };
@@ -413,7 +592,6 @@ export const DashboardButton: React.FC<DashboardButtonProps> = ({
       onClick={dashboard}
       loading={isLoading}
       icon={<EditOutlined />}
-      type="primary"
       block
     >
       {children}

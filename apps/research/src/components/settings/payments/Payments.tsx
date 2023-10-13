@@ -324,7 +324,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       id="payments-card"
     >
       <div className={styles.paymentCardBody}>
-        <AntImage src={payments.image} width={'100%'} />
+        <AntImage preview={false} src={payments.image} width={'100%'} />
         <div className={styles.paymentCard}>
           <div id="payment-information" className={styles.paymentInformation}>
             {sm ? (
