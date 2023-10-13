@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { Space, Typography, Radio, Badge, Button, theme, Tag } from 'antd';
+import {
+  Space,
+  Typography,
+  Radio,
+  Badge,
+  Button,
+  theme,
+  Tag,
+  Row,
+  Col,
+} from 'antd';
 import { UserOutlined, UnlockTwoTone, EditOutlined } from '@ant-design/icons';
 import {
   useCustomerCheckout,
@@ -12,6 +22,7 @@ import Link from 'next/link';
 import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
 import { proFeatures } from '@/utils';
+import { Payments, ProductPlans } from '@/types';
 
 setTwoToneColor('#777777');
 
@@ -29,19 +40,54 @@ const proPlanFeatures = [
 
 const PricingTable = () => {
   const { plan, setPlan } = usePlan();
-  const productId = appStructure.payments.pro.productId;
-  const monthlyPriceId = appStructure.payments.pro.monthlyPriceId;
-  const annualPriceId = appStructure.payments.pro.annualPriceId;
-
-  const { productStatus, appState } = useProductInfo(productId);
-  const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
-    useCustomerCheckout(annualPriceId);
-
-  const { doCheckOut: monthlyCheckOut, isLoading: montlyIsLoading } =
-    useCustomerCheckout(monthlyPriceId);
 
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
+
+  const productId = appStructure.payments.pro.productId;
+  const monthlyPriceId = appStructure.payments.pro.monthlyPriceId;
+  const annualPriceId = appStructure.payments.pro.annualPriceId;
+  const { productStatus, appState } = useProductInfo(productId);
+  const { doCheckOut: monthlyCheckOut, isLoading: montlyIsLoading } =
+    useCustomerCheckout(monthlyPriceId);
+  const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
+    useCustomerCheckout(annualPriceId);
+
+  // aoc
+  const aocProductId = appStructure.payments.aoc.productId;
+  const aocMonthlyPriceId = appStructure.payments.aoc.monthlyPriceId;
+  const aocYearlyPriceId = appStructure.payments.aoc.annualPriceId;
+  const { productStatus: aocProductStatus } = useProductInfo(
+    appStructure.payments.aoc.productId
+  );
+  const { doCheckOut: aocMonthlyCheckout, isLoading: aocMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.aoc.monthlyPriceId);
+  const { doCheckOut: aocYearlyCheckout, isLoading: aocYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.aoc.annualPriceId);
+
+  // nn
+  const nnProductId = appStructure.payments.nn.productId;
+  const nnMonthlyPriceId = appStructure.payments.nn.monthlyPriceId;
+  const nnYearlyPriceId = appStructure.payments.nn.annualPriceId;
+  const { productStatus: nnProductStatus } = useProductInfo(
+    appStructure.payments.aoc.productId
+  );
+  const { doCheckOut: nnMonthlyCheckout, isLoading: nnMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.nn.monthlyPriceId);
+  const { doCheckOut: nnYearlyCheckout, isLoading: nnYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.nn.annualPriceId);
+
+  //twic
+  const twicProductId = appStructure.payments.twic.productId;
+  const twicMonthlyPriceId = appStructure.payments.twic.monthlyPriceId;
+  const twiceYearlyPriceId = appStructure.payments.twic.annualPriceId;
+  const { productStatus: twicProductStatus } = useProductInfo(
+    appStructure.payments.twic.productId
+  );
+  const { doCheckOut: twicMonthlyCheckout, isLoading: twicMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.twic.monthlyPriceId);
+  const { doCheckOut: twicYearlyCheckout, isLoading: twicYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.twic.annualPriceId);
 
   const getMonthlyActions = () => {
     switch (productStatus.state) {
@@ -74,6 +120,141 @@ const PricingTable = () => {
           <CheckOutButton
             checkOut={monthlyCheckOut}
             isLoading={montlyIsLoading}
+          />
+        );
+    }
+  };
+
+  const getMonthlyPaymentCard = (plan: ProductPlans, payments: Payments) => {
+    switch (plan) {
+      case 'aoc':
+        return (
+          <PricingCard
+            image={payments.image}
+            {...(productStatus.priceId === aocMonthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === aocMonthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            description={payments.description}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getMonthlyActions()
+                )}
+              </>
+            }
+          />
+        );
+      case 'nn':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === nnMonthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === nnMonthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getMonthlyActions()
+                )}
+              </>
+            }
+          />
+        );
+      case 'twic':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === twicMonthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === twicMonthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getMonthlyActions()
+                )}
+              </>
+            }
+          />
+        );
+      case 'pro':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getMonthlyActions()
+                )}
+              </>
+            }
+          />
+        );
+      default:
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton />
+                ) : (
+                  getMonthlyActions()
+                )}
+              </>
+            }
           />
         );
     }
@@ -123,11 +304,11 @@ const PricingTable = () => {
           textAlign: 'center',
         }}
       >
-        <Title level={3}>Compare and Get Your Plan!</Title>
-        <Text>
+        <Title level={3}>Select Your Plans!</Title>
+        {/* <Text>
           The right plan is waiting for you. Subscribe and get full access to
           all research content.
-        </Text>
+        </Text> */}
       </Space.Compact>
 
       <Radio.Group defaultValue={plan} optionType="button" buttonStyle="solid">
@@ -159,90 +340,19 @@ const PricingTable = () => {
         </Radio.Button>
       </Radio.Group>
 
-      <div className="pricingTable">
-        <PricingCard
-          state={
-            appState !== 'SIGNED_OUT' &&
-            (productStatus.state === null || productStatus.state === 'ended')
-              ? 'active'
-              : undefined
-          }
-          plan="Free Plan"
-          icon={<UserOutlined style={{ fontSize: 48 }} />}
-          features={['Our weekly newsletter']}
-          price="0"
-          action={
-            appState === 'SIGNED_OUT' && (
-              <Link
-                href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
-                role="grid"
-              >
-                <Button>Sign In</Button>
-              </Link>
-            )
-          }
-        />
+      <div>
         {plan === 'monthly' ? (
-          <PricingCard
-            icon={
-              <UnlockTwoTone
-                style={{
-                  fontSize: 48,
-                }}
-              />
-            }
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            plan="PRO Plan"
-            features={proFeatures}
-            price="50"
-            action={
-              <>
-                {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
-                ) : (
-                  getMonthlyActions()
+          <Row wrap gutter={[40, 40]}>
+            {Object.keys(appStructure.payments).map((plan) => (
+              <Col xs={24} sm={24} lg={6} key={plan}>
+                {getMonthlyPaymentCard(
+                  plan as ProductPlans,
+                  appStructure.payments[plan as ProductPlans]
                 )}
-              </>
-            }
-          />
-        ) : (
-          <PricingCard
-            plan="PRO Plan"
-            date="year"
-            icon={
-              <UnlockTwoTone
-                style={{
-                  fontSize: 48,
-                }}
-              />
-            }
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            features={proFeatures}
-            price="500"
-            promotions={<Tag color="blue">Save $100</Tag>}
-            action={
-              appState === 'SIGNED_OUT' ? (
-                <LogoutActionButton />
-              ) : (
-                getAnnualActions()
-              )
-            }
-          />
-        )}
+              </Col>
+            ))}
+          </Row>
+        ) : null}
       </div>
     </>
   );
@@ -255,21 +365,17 @@ const LogoutActionButton = () => {
     token: { colorTextTertiary },
   } = useToken();
   return (
-    <Space direction="vertical" size={8} align="center">
-      <Link
-        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
-        role="grid"
-      >
-        <Button type="primary">Start 30-Day Free Trial</Button>
-      </Link>
-      {/* <Text
-        style={{
-          color: colorTextTertiary,
-        }}
-      >
-        No credit card required
-      </Text> */}
-    </Space>
+    <Link
+      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+      role="grid"
+      style={{
+        width: '100%',
+      }}
+    >
+      <Button block type="primary">
+        Start 30-Day Free Trial
+      </Button>
+    </Link>
   );
 };
 
@@ -286,18 +392,9 @@ export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
     token: { colorTextTertiary },
   } = useToken();
   return (
-    <Space direction="vertical" size={8} align="center">
-      <Button loading={isLoading} onClick={checkOut} type="primary">
-        Start 30-Day Free Trial
-      </Button>
-      {/* <Text
-        style={{
-          color: colorTextTertiary,
-        }}
-      >
-        No credit card required
-      </Text> */}
-    </Space>
+    <Button loading={isLoading} onClick={checkOut} type="primary" block>
+      Start 30-Day Free Trial
+    </Button>
   );
 };
 
@@ -317,6 +414,7 @@ export const DashboardButton: React.FC<DashboardButtonProps> = ({
       loading={isLoading}
       icon={<EditOutlined />}
       type="primary"
+      block
     >
       {children}
     </Button>

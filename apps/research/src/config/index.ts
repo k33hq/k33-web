@@ -86,6 +86,10 @@ export const appStructure: AppStructure = {
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO!,
       image: './pro_product.svg',
       name: 'Complete Package',
+      description:
+        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
+      monthlyPrice: '$70.00',
+      yearlyPrice: '$700.00',
     },
     nn: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_NN! as string,
@@ -93,6 +97,10 @@ export const appStructure: AppStructure = {
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_NN!,
       image: './nn_product.svg',
       name: 'Navigating Narratives',
+      description:
+        'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
+      monthlyPrice: '$70.00',
+      yearlyPrice: '$700.00',
     },
     twic: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_TWIC! as string,
@@ -100,6 +108,10 @@ export const appStructure: AppStructure = {
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_TWIC!,
       image: './twic_product.svg',
       name: 'This Week in Crypto',
+      description:
+        'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
+      monthlyPrice: '$70.00',
+      yearlyPrice: '$700.00',
     },
     aoc: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC! as string,
@@ -107,6 +119,10 @@ export const appStructure: AppStructure = {
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC!,
       image: './aoc_product.svg',
       name: 'Ahead of The Curve',
+      description:
+        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
+      monthlyPrice: '$70.00',
+      yearlyPrice: '$700.00',
     },
   },
 
