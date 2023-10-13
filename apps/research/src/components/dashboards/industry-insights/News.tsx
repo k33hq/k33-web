@@ -22,7 +22,17 @@ const News: React.FC<NewsProps> = ({
       title="Headlines from Weekly Newsletter"
       className="override-list"
     >
-      <DefaultRichTextRenderer document={topNews} />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          padding: 8,
+          gap: 8,
+        }}
+      >
+        <DefaultRichTextRenderer document={topNews} />
+      </div>
       <>
         {!hideOtherStores && (
           <>

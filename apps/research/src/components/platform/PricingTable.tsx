@@ -553,7 +553,7 @@ const LogoutActionButton = () => {
         width: '100%',
       }}
     >
-      <Button block>Start Free Trial</Button>
+      <Button block>Start 30-Day Free Trial</Button>
     </Link>
   );
 };
@@ -571,7 +571,7 @@ export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
     token: { colorTextTertiary },
   } = useToken();
   return (
-    <Button loading={isLoading} onClick={checkOut} type="primary" block>
+    <Button loading={isLoading} onClick={checkOut} block>
       Start 30-Day Free Trial
     </Button>
   );

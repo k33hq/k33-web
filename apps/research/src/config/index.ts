@@ -80,16 +80,16 @@ export const appStructure: AppStructure = {
     //   annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID!,
     //   monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID!,
     // },
-    aoc: {
-      productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC! as string,
-      annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_AOC!,
-      monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC!,
-      image: './aoc_product.svg',
-      name: 'Ahead of The Curve',
+    twic: {
+      productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_TWIC! as string,
+      annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_TWIC!,
+      monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_TWIC!,
+      image: './twic_product.svg',
+      name: 'This Week in Crypto',
       description:
-        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
-      monthlyPrice: '$50.00',
-      yearlyPrice: '$500.00',
+        'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
+      monthlyPrice: '$10.00',
+      yearlyPrice: '$100.00',
     },
     nn: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_NN! as string,
@@ -102,16 +102,16 @@ export const appStructure: AppStructure = {
       monthlyPrice: '$25.00',
       yearlyPrice: '$250.00',
     },
-    twic: {
-      productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_TWIC! as string,
-      annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_TWIC!,
-      monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_TWIC!,
-      image: './twic_product.svg',
-      name: 'This Week in Crypto',
+    aoc: {
+      productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC! as string,
+      annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_AOC!,
+      monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC!,
+      image: './aoc_product.svg',
+      name: 'Ahead of The Curve',
       description:
-        'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
-      monthlyPrice: '$10.00',
-      yearlyPrice: '$100.00',
+        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
+      monthlyPrice: '$50.00',
+      yearlyPrice: '$500.00',
     },
     pro: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO! as string,

@@ -154,7 +154,7 @@ EmailSettings.getLayout = function getLayout(page: React.ReactElement) {
       activeKey="/settings/newsletters"
       title="Settings"
       tabs={[
-        { key: 'payments', label: 'Payments', url: '/settings' },
+        { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {
           key: 'newsletters',
           label: 'Newsletters',

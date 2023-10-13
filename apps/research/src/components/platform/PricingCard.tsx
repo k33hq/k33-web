@@ -29,12 +29,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
       style={{
         width: '100%',
       }}
-      {...(state === 'active' && { title: 'ACTIVE PLAN' })}
-      {...(state === 'blocked' && { title: 'BLOCKED PLAN' })}
-      headStyle={{
-        ...(state === 'active' && { background: 'black' }),
-        ...(state === 'blocked' && { background: 'var(--red-6, #F5222D)' }),
-      }}
       cover={<Image preview={false} src={image} alt="product-image" />}
     >
       <Space
