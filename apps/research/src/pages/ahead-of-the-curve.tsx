@@ -62,9 +62,11 @@ AheadOfTheCurve.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
+      type="secondary"
       description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
       title="Ahead of the Curve"
       tabs={[]}
+      image="./aoc_header.svg"
     >
       {page}
     </TabLayout>

@@ -1,5 +1,5 @@
 import { Navigations } from '@/types';
-import { theme, Layout, Row, Col, Tabs, Typography, Space } from 'antd';
+import { theme, Layout, Row, Col, Tabs, Typography, Space, Grid } from 'antd';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
@@ -12,6 +12,8 @@ export interface TabLayoutProps extends React.PropsWithChildren {
   description?: string;
   tabs: Navigations;
   activeKey: string;
+  image?: string;
+  type?: 'primary' | 'secondary';
 }
 
 const TabLayout: React.FC<TabLayoutProps> = ({
@@ -20,10 +22,14 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   tabs,
   activeKey,
   description,
+  image,
+  type = 'primary',
 }) => {
   const {
     token: { colorBgContainer },
   } = useToken();
+
+  const { xl } = Grid.useBreakpoint();
 
   const router = useRouter();
   return (
@@ -33,6 +39,12 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           display: 'flex',
           flexDirection: 'column',
           boxSizing: 'border-box',
+          ...(image && {
+            backgroundImage: `url(${image})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }),
         }}
       >
         <section
@@ -48,27 +60,44 @@ const TabLayout: React.FC<TabLayoutProps> = ({
               <div id="page-title" className={styles.pageTitle}>
                 <Space direction="vertical" size="small">
                   <Title
-                    level={3}
+                    level={xl ? 2 : 3}
                     style={{
                       margin: 0,
+                      ...(type === 'secondary' && {
+                        color: 'white',
+                        opacity: 0.85,
+                      }),
                     }}
                   >
                     {title}
                   </Title>
-                  {description && <Text>{description}</Text>}
+                  {description && (
+                    <Text
+                      style={{
+                        ...(type === 'secondary' && {
+                          color: 'white',
+                          opacity: 0.85,
+                        }),
+                      }}
+                    >
+                      {description}
+                    </Text>
+                  )}
                 </Space>
               </div>
-              <Tabs
-                tabBarStyle={{
-                  margin: 0,
-                }}
-                type="card"
-                onTabClick={(key, event) => {
-                  router.push(key);
-                }}
-                activeKey={activeKey}
-                items={tabs.map(({ label, url }) => ({ key: url, label }))}
-              />
+              {tabs.length > 0 && (
+                <Tabs
+                  tabBarStyle={{
+                    margin: 0,
+                  }}
+                  type="card"
+                  onTabClick={(key, event) => {
+                    router.push(key);
+                  }}
+                  activeKey={activeKey}
+                  items={tabs.map(({ label, url }) => ({ key: url, label }))}
+                />
+              )}
             </Col>
           </Row>
         </section>

@@ -10,7 +10,6 @@ import {
   TokenValuationCover,
 } from '@/components';
 import { NextSeo } from 'next-seo';
-import { BuilderComponent, builder } from '@builder.io/react';
 import { GetStaticProps } from 'next';
 import {
   ArticleSummaryWidget,
@@ -27,14 +26,13 @@ import {
   getIndexSummary,
 } from '@/api';
 import { siteUsername } from '@/utils';
-
-builder.init(process.env.BUILDER_API_KEY!);
+import { Button, Grid, Typography } from 'antd';
+import styles from './styles.module.scss';
 
 interface HomePageProps {
   industryReports: ReadonlyArray<ArticleWebWidget>;
   analysis: ReadonlyArray<ArticleSummaryWidget>;
-  quickTakes: ReadonlyArray<ArticleSummaryWidget>;
-  reports: ReadonlyArray<ArticleSummaryWithCover>;
+
   indexSummary: ReadonlyArray<TokenValuationIndex>;
   homePage: HomePage;
 }
@@ -43,8 +41,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   industryReports,
   analysis,
   indexSummary,
-  quickTakes,
-  reports,
+
   homePage: {
     seo: {
       title,
@@ -55,6 +52,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   },
 }) => {
   const indexTableProps = indexSummary[0];
+  const { lg } = Grid.useBreakpoint();
 
   return (
     <>
@@ -86,26 +84,113 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         }}
       />
       <main id="research-home" className="research-home">
-        <HomeDashboard {...articles} />
-        <div id="market-dashboard-summary" className="home-section-summary">
-          <NamedDivider label="Market Insights" />
-          <MarketDashboard quickTakes={quickTakes} reports={reports} />
+        <div
+          style={{
+            backgroundImage: `url(/research/top_promotion.svg)`,
+            backgroundPosition: 'center',
+            width: '100%',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+          className={styles.topPromotion}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
+            <Typography.Title
+              style={{
+                color: 'white',
+                opacity: 0.85,
+                textAlign: 'center',
+                margin: 0,
+              }}
+            >
+              Get 25% off during our one-time sale
+            </Typography.Title>
+            <Typography.Text
+              style={{ color: 'white', opacity: 0.85, textAlign: 'center' }}
+            >
+              Nice text Nice text Nice text Nice text Nice text Nice text Nice
+              text Nice text Nice text Nice text Nice text Nice text Nice text
+              Nice text Nice text Nice text Nice text Nice text Nice text
+            </Typography.Text>
+            <Button size="large">Know More</Button>
+          </div>
         </div>
+        <HomeDashboard {...articles} />
+        <IndustryDashboard reports={industryReports} />
         <div id="token-dashboard-summary" className="home-section-summary">
-          <NamedDivider label="Token Valuation" />
+          <NamedDivider label="KVQ" />
           <TokenValuationCover {...indexTableProps}>
             <DashboardList
               articles={analysis}
               title="Analysis"
               column={12}
-              href="/token-valuation/analysis"
+              href="/navigating-narratives"
             />
           </TokenValuationCover>
         </div>
-        <IndustryDashboard reports={industryReports} />
-      </main>
 
-      {/* <BuilderComponent model="homepage" content={homepage} /> */}
+        <div
+          style={{
+            width: '100%',
+
+            ...(lg
+              ? {
+                  backgroundImage: `url(/research/bottom_promotion.svg)`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  position: 'relative',
+                }
+              : {
+                  backgroundImage: `linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/research/bottom_promotion.svg)`,
+                  backgroundSize: 'cover',
+                }),
+          }}
+          className={styles.bottomPromotion}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 16,
+              ...(lg && {
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                right: 100,
+                margin: 'auto 0',
+                width: 467,
+                gap: 32,
+              }),
+            }}
+          >
+            <Typography.Title
+              style={{
+                opacity: 0.85,
+                textAlign: 'center',
+                margin: 0,
+              }}
+            >
+              Explore Our Newest Products!
+            </Typography.Title>
+            <Typography.Text style={{ opacity: 0.85, textAlign: 'center' }}>
+              Nice text Nice text Nice text Nice text Nice text Nice text Nice
+              text Nice text Nice text Nice text Nice text Nice text Nice text
+              Nice text Nice text Nice text Nice text Nice text Nice text
+            </Typography.Text>
+            <Button size="large">Know More</Button>
+          </div>
+        </div>
+      </main>
     </>
   );
 };
@@ -121,15 +206,15 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     4
   );
 
-  const quickTakes = await getArticleSummaryWidgets(
-    'market-insights/quick-takes',
-    3
-  );
+  // const quickTakes = await getArticleSummaryWidgets(
+  //   'market-insights/quick-takes',
+  //   3
+  // );
 
-  const reports = await getArticleSummaryWithCoverWidgets(
-    'market-insights/weekly-reports',
-    5
-  );
+  // const reports = await getArticleSummaryWithCoverWidgets(
+  //   'market-insights/weekly-reports',
+  //   5
+  // );
 
   const indexSummary = await getIndexSummary();
 
@@ -140,8 +225,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     props: {
       industryReports,
       analysis,
-      quickTakes,
-      reports,
+
       indexSummary,
       homePage,
     },

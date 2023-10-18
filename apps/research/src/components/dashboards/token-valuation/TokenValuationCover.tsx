@@ -23,7 +23,7 @@ const TokenValuationCover: React.FC<TokenValuationCoverProps> = ({
           name={name}
           description={description}
           {...(isNavigable && {
-            href: '/token-valuation/indexes',
+            href: '/kvq',
           })}
         />
         <KVQTable tokens={selectedTokensCollection.items} {...tableResource} />

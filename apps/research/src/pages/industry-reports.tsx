@@ -64,6 +64,7 @@ IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
       description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
       title="Industry Reports"
       tabs={[]}
+      image="./ir_header.svg"
     >
       {page}
     </TabLayout>

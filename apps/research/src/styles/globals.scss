@@ -108,12 +108,6 @@ ul li {
   }
 }
 
-@include medium() {
-  .research-home {
-    gap: 124px;
-  }
-}
-
 .next-error-h1 {
   border-right: 1px solid rgba(0, 0, 0, 0.3) !important;
   color: #000 !important;

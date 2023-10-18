@@ -1,0 +1,22 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
+.topPromotion {
+  padding: 16px 24px;
+}
+
+@include medium() {
+  .topPromotion {
+    padding: 16px 48px;
+  }
+}
+
+.bottomPromotion {
+  padding: 16px 32px;
+}
+
+@include large() {
+  .bottomPromotion {
+    height: 593px;
+  }
+}

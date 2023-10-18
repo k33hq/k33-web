@@ -32,7 +32,7 @@ export const appStructure: AppStructure = {
     },
     {
       key: 'kvq',
-      label: 'kvq',
+      label: 'KVQ',
       url: '/kvq',
     },
     // {

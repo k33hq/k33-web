@@ -36,7 +36,7 @@ const IndustryDashboard: React.FC<IndustryDashboardProps> = ({ reports }) => {
           }}
         >
           <Title level={4}>Industry Reports</Title>
-          <Link href={'/industry-insights/industry-reports'}>
+          <Link href={'/industry-reports'}>
             <AntLink underline>See More</AntLink>
           </Link>
         </div>
