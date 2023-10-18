@@ -1,5 +1,5 @@
 import { getArticleSummaryWidgets } from '@/api';
-import { ArticleCard, TabLayout, TokenValuationLayout } from '@/components';
+import { ArticleCard, TabLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
 import { siteUsername } from '@/utils';
 import { Col, Row } from 'antd';
@@ -7,11 +7,14 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
-interface AnalysisProps {
+interface NavigatingNarrativesProps {
   articles: ReadonlyArray<ArticleSummaryWidget>;
 }
 
-const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
+// TODO: change SEO data
+const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
+  articles,
+}) => {
   return (
     <>
       <NextSeo
@@ -19,7 +22,7 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
         robotsProps={{
           maxImagePreview: 'large',
         }}
-        title={'Research - Token Valuation Analysis'}
+        title={'Research - Navigating Narratives'}
         description={
           'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
         }
@@ -29,10 +32,10 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
           cardType: 'summary_large_image',
         }}
         openGraph={{
-          title: 'Research - Token Valuation Analysis',
+          title: 'Research - Navigating Narratives',
           description:
-            'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.',
-          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/token-valuation/analysis`,
+            "Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains.",
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
           type: 'article:section',
           images: [
             {
@@ -43,7 +46,7 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
         }}
       />
-      <Row wrap gutter={[32, 48]} align="stretch">
+      <Row wrap gutter={[32, 40]} align="stretch">
         {articles.map((article) => (
           <Col xs={24} sm={24} md={6} key={article.publishedDate}>
             <ArticleCard {...article} />
@@ -54,16 +57,23 @@ const Analysis: NextPageWithLayout<AnalysisProps> = ({ articles }) => {
   );
 };
 
-Analysis.getLayout = function getLayout(page: React.ReactElement) {
+NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
-    <TokenValuationLayout activeKey="/token-valuation/analysis">
+    <TabLayout
+      activeKey={'/'}
+      description="please give me some good description to put here"
+      title="Navigating Narratives"
+      tabs={[]}
+    >
       {page}
-    </TokenValuationLayout>
+    </TabLayout>
   );
 };
 
-export const getStaticProps: GetStaticProps<AnalysisProps> = async () => {
-  const articles = await getArticleSummaryWidgets('token-valuation/analysis');
+export const getStaticProps: GetStaticProps<
+  NavigatingNarrativesProps
+> = async () => {
+  const articles = await getArticleSummaryWidgets('navigating-narratives');
   return {
     props: {
       articles,
@@ -71,4 +81,4 @@ export const getStaticProps: GetStaticProps<AnalysisProps> = async () => {
   };
 };
 
-export default Analysis;
+export default NavigatingNarratives;

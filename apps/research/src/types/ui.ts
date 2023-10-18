@@ -2,6 +2,7 @@ export interface Navigation {
   key: string;
   label: string;
   url: string;
+  image?: string;
   children?: Array<Navigation>;
 }
 
