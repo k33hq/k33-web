@@ -474,7 +474,9 @@ const PricingTable = () => {
           textAlign: 'center',
         }}
       >
-        <Title level={3}>Select Your Plans!</Title>
+        <Title level={3} style={{ margin: 0 }}>
+          Select Your Subscriptions!
+        </Title>
         {/* <Text>
           The right plan is waiting for you. Subscribe and get full access to
           all research content.

@@ -165,7 +165,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                         }
                       </Col>
                     )}
-                    <Col
+                    {/* <Col
                       style={{
                         paddingRight: 24,
                       }}
@@ -179,7 +179,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                           icon={<SearchOutlined />}
                         ></Button>
                       </Link>
-                    </Col>
+                    </Col> */}
                     <Col
                       style={{
                         paddingRight: 0,

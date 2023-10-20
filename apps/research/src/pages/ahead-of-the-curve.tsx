@@ -25,7 +25,7 @@ const AheadOfTheCurve: NextPageWithLayout<AheadOfTheCurveProps> = ({
         }}
         title={'Research - Ahead Of The Curve'}
         description={
-          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+          'The weekly market report with signals from the derivatives market, market structure and expert opinion.'
         }
         twitter={{
           handle: siteUsername,
@@ -33,9 +33,9 @@ const AheadOfTheCurve: NextPageWithLayout<AheadOfTheCurveProps> = ({
           cardType: 'summary_large_image',
         }}
         openGraph={{
-          title: 'Research - Market Insights Monthly Outlooks',
+          title: 'Research - Ahead Of The Curve',
           description:
-            "Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains.",
+            'The weekly market report with signals from the derivatives market, market structure and expert opinion.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
           type: 'article:section',
           images: [
@@ -63,7 +63,7 @@ AheadOfTheCurve.getLayout = function getLayout(page: React.ReactElement) {
     <TabLayout
       activeKey={'/'}
       type="secondary"
-      description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
+      description="The weekly market report with signals from the derivatives market, market structure and expert opinion."
       title="Ahead of the Curve"
       tabs={[]}
       image="./aoc_header.svg"

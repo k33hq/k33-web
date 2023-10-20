@@ -24,7 +24,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
         }}
         title={'Research - Industry Insights Reports'}
         description={
-          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+          'Our collection of in-depth reports on various crypto topics from the last five years.'
         }
         twitter={{
           handle: siteUsername,
@@ -34,7 +34,7 @@ const IndustryReports: NextPageWithLayout<IndustryReportsProps> = ({
         openGraph={{
           title: 'Research - Industry Insights Reports',
           description:
-            'Gain a competitive edge in the dynamic digital assets industry. Stay informed about the latest trends and news shaping the future landscape while navigating its intricate landscape with our expert industry insights.',
+            'Our collection of in-depth reports on various crypto topics from the last five years.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/industry-insights/industry-reports`,
           type: 'article:section',
           images: [
@@ -61,7 +61,7 @@ IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
+      description="Our collection of in-depth reports on various crypto topics from the last five years."
       title="Industry Reports"
       tabs={[]}
       image="./ir_header.svg"

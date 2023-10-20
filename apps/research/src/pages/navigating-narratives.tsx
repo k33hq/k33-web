@@ -24,7 +24,7 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
         }}
         title={'Research - Navigating Narratives'}
         description={
-          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+          'Weekly research note looking at what’s brewing in the dynamic low-mid cap altcoin markets from an altcoin trader’s perspective.'
         }
         twitter={{
           handle: siteUsername,
@@ -34,7 +34,7 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
         openGraph={{
           title: 'Research - Navigating Narratives',
           description:
-            "Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains.",
+            'Weekly research note looking at what’s brewing in the dynamic low-mid cap altcoin markets from an altcoin trader’s perspective.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
           type: 'article:section',
           images: [
@@ -61,7 +61,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="please give me some good description to put here"
+      description="Weekly research note looking at what’s brewing in the dynamic low-mid cap altcoin markets from an altcoin trader’s perspective."
       title="Navigating Narratives"
       tabs={[]}
       image="./nn_header.svg"

@@ -29,7 +29,7 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
         }}
         title={'Research - Token Valuation'}
         description={
-          'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.'
+          'The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets.'
         }
         twitter={{
           handle: siteUsername,
@@ -39,7 +39,7 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
         openGraph={{
           title: 'Research - Token Valuation',
           description:
-            'Unlock the secrets to successful digital asset valuation. Leverage data and economic theory to accurately assess the worth of diverse tokens and maximize your investment potential.',
+            'The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/token-valuation`,
           type: 'article:section',
           images: [
@@ -69,7 +69,7 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
         articles={summaries}
         title="Support Assessments"
         column={6}
-        href="/token-valuation/analysis"
+        href="/articles?query=kvq"
       />
     </>
   );
@@ -79,7 +79,7 @@ Kvq.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="Stay ahead of the curve in the digital assets market with our comprehensive market insights. Discover the latest trends and factors influencing prices for tomorrow's gains."
+      description="The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets."
       title="K33 Vinter Quality Index"
       tabs={[]}
       image="./kvq_header.svg"

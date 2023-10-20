@@ -6,6 +6,7 @@ import {
   IndustryDashboard,
   MarketDashboard,
   NamedDivider,
+  PricingTable,
   SimpleLayout,
   TokenValuationCover,
 } from '@/components';
@@ -26,8 +27,9 @@ import {
   getIndexSummary,
 } from '@/api';
 import { siteUsername } from '@/utils';
-import { Button, Grid, Typography } from 'antd';
+import { Button, Divider, Grid, Typography } from 'antd';
 import styles from './styles.module.scss';
+import Link from 'next/link';
 
 interface HomePageProps {
   industryReports: ReadonlyArray<ArticleWebWidget>;
@@ -94,7 +96,8 @@ const Home: NextPageWithLayout<HomePageProps> = ({
           }}
           className={styles.topPromotion}
         >
-          <div
+          <Link
+            href={'/pricing'}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -111,17 +114,19 @@ const Home: NextPageWithLayout<HomePageProps> = ({
                 margin: 0,
               }}
             >
-              Get 25% off during our one-time sale
+              Discover our new research subscriptions
             </Typography.Title>
             <Typography.Text
               style={{ color: 'white', opacity: 0.85, textAlign: 'center' }}
             >
-              Nice text Nice text Nice text Nice text Nice text Nice text Nice
-              text Nice text Nice text Nice text Nice text Nice text Nice text
-              Nice text Nice text Nice text Nice text Nice text Nice text
+              {`Whether you seek insights from the crypto derivatives market, want
+              to explore the diverse world of DeFi narratives, or simply stay
+              updated with the latest news, we've got you covered!`}
             </Typography.Text>
-            <Button size="large">Know More</Button>
-          </div>
+            <Link href={'/pricing'}>
+              <Button size="large">Get Started</Button>
+            </Link>
+          </Link>
         </div>
         <HomeDashboard {...articles} />
         <IndustryDashboard reports={industryReports} />
@@ -132,12 +137,22 @@ const Home: NextPageWithLayout<HomePageProps> = ({
               articles={analysis}
               title="Analysis"
               column={12}
-              href="/navigating-narratives"
+              href="/articles?query=kvq"
             />
           </TokenValuationCover>
         </div>
-
         <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 32,
+          }}
+        >
+          <Divider />
+          <PricingTable />
+        </div>
+        {/* <div
           style={{
             width: '100%',
 
@@ -189,7 +204,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
             </Typography.Text>
             <Button size="large">Know More</Button>
           </div>
-        </div>
+        </div> */}
       </main>
     </>
   );
@@ -202,7 +217,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     6
   );
   const analysis = await getArticleSummaryWidgets(
-    'token-valuation/analysis',
+    'token-valuation/indices/kvq',
     4
   );
 
