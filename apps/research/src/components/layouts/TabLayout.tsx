@@ -1,8 +1,19 @@
 import { Navigations } from '@/types';
-import { theme, Layout, Row, Col, Tabs, Typography, Space, Grid } from 'antd';
+import {
+  theme,
+  Layout,
+  Row,
+  Col,
+  Tabs,
+  Typography,
+  Space,
+  Grid,
+  Button,
+} from 'antd';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -29,7 +40,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
     token: { colorBgContainer },
   } = useToken();
 
-  const { xl } = Grid.useBreakpoint();
+  const { md, xl } = Grid.useBreakpoint();
 
   const router = useRouter();
   return (
@@ -84,6 +95,16 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                     </Text>
                   )}
                 </Space>
+                <Link
+                  href={'/pricing'}
+                  style={{
+                    ...(md && {
+                      alignSelf: 'end',
+                    }),
+                  }}
+                >
+                  <Button>Subscribe</Button>
+                </Link>
               </div>
               {tabs.length > 0 && (
                 <Tabs
