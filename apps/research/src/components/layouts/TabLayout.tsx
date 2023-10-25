@@ -25,6 +25,8 @@ export interface TabLayoutProps extends React.PropsWithChildren {
   activeKey: string;
   image?: string;
   type?: 'primary' | 'secondary';
+  isButtonPrimary?: boolean;
+  showSubscribeButton?: boolean;
 }
 
 const TabLayout: React.FC<TabLayoutProps> = ({
@@ -35,6 +37,8 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   description,
   image,
   type = 'primary',
+  isButtonPrimary = false,
+  showSubscribeButton = false,
 }) => {
   const {
     token: { colorBgContainer },
@@ -95,16 +99,20 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                     </Text>
                   )}
                 </Space>
-                <Link
-                  href={'/pricing'}
-                  style={{
-                    ...(md && {
-                      alignSelf: 'end',
-                    }),
-                  }}
-                >
-                  <Button>Subscribe</Button>
-                </Link>
+                {showSubscribeButton && (
+                  <Link
+                    href={'/pricing'}
+                    style={{
+                      ...(md && {
+                        alignSelf: 'end',
+                      }),
+                    }}
+                  >
+                    <Button type={isButtonPrimary ? 'primary' : 'default'}>
+                      Subscribe
+                    </Button>
+                  </Link>
+                )}
               </div>
               {tabs.length > 0 && (
                 <Tabs

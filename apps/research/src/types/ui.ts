@@ -15,6 +15,7 @@ export interface Payments {
   description: string;
   monthlyPrice: string;
   yearlyPrice: string;
+  features: Array<string>;
 }
 
 export type ProductPlans = 'aoc' | 'nn' | 'twic' | 'pro';

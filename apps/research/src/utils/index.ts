@@ -1,5 +1,5 @@
 import { appStructure } from '@/config';
-import { Navigations } from '@/types';
+import { ISectionFields, Navigations, ProductPlans } from '@/types';
 
 export const getUrl = (...slugs: Array<string>) => `/${slugs.join('/')}`;
 
@@ -69,3 +69,12 @@ export const proFeatures = [
   'Navigating Narratives – The Weekly DeFi Research Note',
   'This Week in Crypto – The Weekly Crypto Industry Newsletter',
 ];
+
+export const sectionKeys: Record<string, ProductPlans> = {
+  'ahead-of-the-curve': 'aoc',
+  'this-week-in-crypto': 'twic',
+  'navigating-narratives': 'nn',
+};
+
+export const getProductSection = (sections: { items: ISectionFields[] }) =>
+  sections.items.find((s) => Object.keys(sectionKeys).includes(s.name));

@@ -66,6 +66,7 @@ AheadOfTheCurve.getLayout = function getLayout(page: React.ReactElement) {
       description="The weekly market report with signals from the derivatives market, market structure and expert opinion."
       title="Ahead of the Curve"
       tabs={[]}
+      showSubscribeButton
       image="./aoc_header.svg"
     >
       {page}

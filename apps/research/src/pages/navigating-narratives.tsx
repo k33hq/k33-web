@@ -65,6 +65,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       title="Navigating Narratives"
       tabs={[]}
       image="./nn_header.svg"
+      showSubscribeButton
     >
       {page}
     </TabLayout>

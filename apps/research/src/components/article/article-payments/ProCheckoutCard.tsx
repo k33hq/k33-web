@@ -12,16 +12,10 @@ import {
 import { CheckCircleFilled } from '@ant-design/icons';
 import { usePlan } from '@/hooks';
 import { proFeatures } from '@/utils';
+import { appStructure } from '@/config';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
-
-const features = [
-  'Ahead of the Curve – The Weekly Market Report',
-  'The monthly outlook helping you plan ahead',
-  'Token assessments based on data and economic theory',
-  'Industry insights from our in-depth reports',
-];
 
 interface ProCheckoutCardProps {
   handleCheckout: () => void;
@@ -30,6 +24,10 @@ interface ProCheckoutCardProps {
   isFreeTrial?: boolean;
   isLoading?: boolean;
   isEx?: boolean;
+  features?: string[];
+  yearlyPrice?: string;
+  monthlyPrice?: string;
+  name?: string;
 }
 
 const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
@@ -39,6 +37,10 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
   isFreeTrial = false,
   isLoading = false,
   isEx = false,
+  features = proFeatures,
+  yearlyPrice = appStructure.payments.pro.yearlyPrice,
+  monthlyPrice = appStructure.payments.pro.monthlyPrice,
+  name = appStructure.payments.pro.name,
 }) => {
   const {
     token: {
@@ -128,14 +130,14 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
               {plan === 'monthly' ? (
                 <>
                   <Title level={2} style={{ margin: 0 }}>
-                    $50
+                    {monthlyPrice}
                   </Title>
                   <Text>month</Text>
                 </>
               ) : (
                 <>
                   <Title level={2} style={{ margin: 0 }}>
-                    $500
+                    {yearlyPrice}
                   </Title>
                   <Text>year</Text>
                 </>
@@ -148,7 +150,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
           )} */}
           </Space>
           <Title level={5} style={{ margin: 0 }}>
-            K33 Research Pro
+            {name}
           </Title>
         </div>
       </Space>
@@ -163,7 +165,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
               padding: 0,
               paddingBottom: 16,
             }}
-            dataSource={proFeatures}
+            dataSource={features}
             renderItem={(feat) => (
               <List.Item
                 style={{

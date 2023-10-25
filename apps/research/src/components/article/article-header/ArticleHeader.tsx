@@ -13,7 +13,7 @@ const { useToken } = theme;
 
 interface ArticleHeaderProps
   extends Pick<Article, 'title' | 'subtitle' | 'image' | 'reportDocument'>,
-    Pick<ArticlePage, 'sections' | 'publishedDate'> {}
+    Pick<ArticlePage, 'sectionsCollection' | 'publishedDate'> {}
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   title,

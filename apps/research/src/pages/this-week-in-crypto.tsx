@@ -65,6 +65,8 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       title="This Week in Crypto"
       tabs={[]}
       image="./twic_header.svg"
+      isButtonPrimary
+      showSubscribeButton
     >
       {page}
     </TabLayout>

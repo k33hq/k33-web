@@ -119,6 +119,11 @@ export const appStructure: AppStructure = {
         'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
       monthlyPrice: '$10.00',
       yearlyPrice: '$100.00',
+      features: [
+        'Our carefully distilled weekly newsletter – your one-stop-shop for crypto news',
+        'The most important news only and explanations of the implications',
+        'Delivered to your inbox every Friday',
+      ],
     },
     nn: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_NN! as string,
@@ -130,6 +135,11 @@ export const appStructure: AppStructure = {
         'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
       monthlyPrice: '$25.00',
       yearlyPrice: '$250.00',
+      features: [
+        'A weekly research note looking at what’s brewing in crypto and DeFi',
+        'Which projects to look at and how to manage DeFi trading',
+        'Delivered directly to your inbox every Wednesday',
+      ],
     },
     aoc: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC! as string,
@@ -141,6 +151,11 @@ export const appStructure: AppStructure = {
         'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
       monthlyPrice: '$50.00',
       yearlyPrice: '$500.00',
+      features: [
+        'The weekly market report',
+        'Signals from the derivatives market, market structure and expert opinion',
+        'Delivered directly to your inbox every Tuesday',
+      ],
     },
     pro: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO! as string,
@@ -152,6 +167,11 @@ export const appStructure: AppStructure = {
         'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
       monthlyPrice: '$70.00',
       yearlyPrice: '$700.00',
+      features: [
+        'Ahead of the Curve – The Weekly Market Report',
+        'Navigating Narratives – The Weekly DeFi Research Note',
+        'This Week in Crypto – The Weekly Crypto Industry Newsletter',
+      ],
     },
   },
 
