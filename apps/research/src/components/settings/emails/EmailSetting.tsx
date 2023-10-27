@@ -57,7 +57,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
               alignSelf: 'stretch',
             }}
           >
-            {isPro && <Tag color="black">PRO</Tag>}
+            {/* {isPro && <Tag color="black">PRO</Tag>} */}
             <Typography.Text strong>{name}</Typography.Text>
           </div>
           <Typography.Text

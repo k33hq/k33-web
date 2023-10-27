@@ -223,6 +223,7 @@ const PricingTable = () => {
       case 'pro':
         return (
           <PricingCard
+            badge={'SAVE $15! Combine all Subscriptions'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === monthlyPriceId &&
@@ -249,6 +250,7 @@ const PricingTable = () => {
       default:
         return (
           <PricingCard
+            badge={'SAVE $15! Combine all Subscriptions'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === monthlyPriceId &&
@@ -280,6 +282,7 @@ const PricingTable = () => {
       case 'aoc':
         return (
           <PricingCard
+            isYear
             image={payments.image}
             {...(aocProductStatus.priceId === aocYearlyPriceId &&
               aocProductStatus.state === 'blocked' && {
@@ -312,6 +315,7 @@ const PricingTable = () => {
       case 'nn':
         return (
           <PricingCard
+            isYear
             description={payments.description}
             image={payments.image}
             {...(nnProductStatus.priceId === nnYearlyPriceId &&
@@ -344,6 +348,7 @@ const PricingTable = () => {
       case 'twic':
         return (
           <PricingCard
+            isYear
             description={payments.description}
             image={payments.image}
             {...(twicProductStatus.priceId === twiceYearlyPriceId &&
@@ -376,8 +381,10 @@ const PricingTable = () => {
       case 'pro':
         return (
           <PricingCard
+            isYear
             description={payments.description}
             image={payments.image}
+            badge={'SAVE $140 on yearly Subscription!'}
             {...(productStatus.priceId === annualPriceId &&
               productStatus.state === 'blocked' && {
                 state: 'blocked',
@@ -402,6 +409,8 @@ const PricingTable = () => {
       default:
         return (
           <PricingCard
+            isYear
+            badge={'SAVE $140 on yearly Subscription!'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === annualPriceId &&

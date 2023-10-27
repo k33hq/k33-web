@@ -115,6 +115,8 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     }
   };
 
+  if (productStatus.state === 'active' || productKey === 'pro') return children;
+
   if (appState === 'SIGNED_OUT')
     return (
       <ActionLayout publicSnippet={publicSnippet}>
@@ -128,8 +130,6 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
         />
       </ActionLayout>
     );
-
-  if (productStatus.state === 'active') return children;
 
   return (
     <motion.div

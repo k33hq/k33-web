@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Space, Typography, List, Image } from 'antd';
+import { Card, Space, Typography, List, Image, Badge } from 'antd';
 import {
   UserOutlined,
   CheckCircleFilled,
@@ -14,6 +14,8 @@ interface PricingCardProps {
   plan: string;
   state?: 'blocked' | 'active';
   image: string;
+  badge?: string;
+  isYear?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -23,28 +25,44 @@ const PricingCard: React.FC<PricingCardProps> = ({
   description,
   plan,
   state,
+  badge,
+  isYear = false,
 }) => {
   return (
-    <Card
-      style={{
-        width: '100%',
-      }}
-      cover={<Image preview={false} src={image} alt="product-image" />}
-    >
-      <Space
-        direction="vertical"
-        align="center"
-        size={16}
-        style={{ paddingBottom: 16, height: 200 }}
+    <Badge count={badge} offset={[-150, 0]} color="blue">
+      <Card
+        style={{
+          width: '100%',
+        }}
+        cover={<Image preview={false} src={image} alt="product-image" />}
       >
-        <Space direction="vertical" size={4}>
-          <Typography.Text strong>{plan}</Typography.Text>
-          <Typography.Text type="secondary">{description}</Typography.Text>
-          <Typography.Text strong>{price}</Typography.Text>
+        <Space
+          direction="vertical"
+          align="center"
+          size={16}
+          style={{ paddingBottom: 16, height: 200 }}
+        >
+          <Space direction="vertical" size={4}>
+            <Typography.Text strong>{plan}</Typography.Text>
+            <Typography.Text
+              type="secondary"
+              style={{
+                fontSize: 12,
+              }}
+            >
+              {description}
+            </Typography.Text>
+            <Space dir="horizontal" size={2}>
+              <Typography.Text strong>{price}</Typography.Text>
+              <Typography.Text type="secondary">
+                {isYear ? '/year' : '/month'}
+              </Typography.Text>
+            </Space>
+          </Space>
         </Space>
-      </Space>
-      {action}
-    </Card>
+        {action}
+      </Card>
+    </Badge>
   );
 };
 

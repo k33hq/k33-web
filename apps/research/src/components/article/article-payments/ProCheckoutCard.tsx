@@ -99,7 +99,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
               flexDirection: 'column',
             }}
           >
-            <Tag color="blue">Save $100</Tag>
+            <Tag color="blue">Save ${Number(monthlyPrice.slice(1)) * 2}</Tag>
             <Button onClick={() => setPlan('year')} type="text">
               <Text
                 {...(plan === 'monthly' && {

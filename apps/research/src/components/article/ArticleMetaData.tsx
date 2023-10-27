@@ -23,9 +23,16 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
 
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      {productSection && productSection.name && (
+      {productSection && productSection.name ? (
         <Link href={'/' + productSection.name}>
           {productSection.name
+            .split('-')
+            .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
+            .join(' ')}
+        </Link>
+      ) : (
+        <Link href={'/' + sectionsCollection.items[0].name}>
+          {sectionsCollection.items[0].name
             .split('-')
             .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
             .join(' ')}

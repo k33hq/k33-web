@@ -54,7 +54,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   },
 }) => {
   const indexTableProps = indexSummary[0];
-  const { lg } = Grid.useBreakpoint();
+  const { lg, md } = Grid.useBreakpoint();
 
   return (
     <>
@@ -92,6 +92,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
             backgroundPosition: 'center',
             width: '100%',
             backgroundSize: 'cover',
+            padding: '48px 64px',
             backgroundRepeat: 'no-repeat',
           }}
           className={styles.topPromotion}
@@ -99,33 +100,35 @@ const Home: NextPageWithLayout<HomePageProps> = ({
           <Link
             href={'/pricing'}
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 8,
+              width: '100%',
             }}
           >
-            <Typography.Title
+            <div
               style={{
-                color: 'white',
-                opacity: 0.85,
-                textAlign: 'center',
-                margin: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                maxWidth: '50%',
+                float: 'left',
+                gap: 24,
               }}
             >
-              Discover our new research subscriptions
-            </Typography.Title>
-            <Typography.Text
-              style={{ color: 'white', opacity: 0.85, textAlign: 'center' }}
-            >
-              {`Whether you seek insights from the crypto derivatives market, want
-              to explore the diverse world of DeFi narratives, or simply stay
-              updated with the latest news, we've got you covered!`}
-            </Typography.Text>
-            <Link href={'/pricing'}>
-              <Button size="large">Get Started</Button>
-            </Link>
+              <Typography.Title
+                style={{
+                  color: 'white',
+                  ...(md && { textAlign: 'center' }),
+                  opacity: 0.85,
+                  margin: 0,
+                }}
+              >
+                Digital Assets Research
+              </Typography.Title>
+              <Typography.Text style={{ color: 'white', opacity: 0.85 }}>
+                For Professional and Institutional Investors
+              </Typography.Text>
+              <Link href={'/pricing'}>
+                <Button size="large">Sign Up Now</Button>
+              </Link>
+            </div>
           </Link>
         </div>
         <HomeDashboard {...articles} />

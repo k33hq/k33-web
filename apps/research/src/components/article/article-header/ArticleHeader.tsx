@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Image } from 'antd';
 import styles from './styles.module.scss';
 import ArticleMetaData from '../ArticleMetaData';
-import { downloadResource } from '@/utils';
+import { downloadResource, getProductSection, sectionKeys } from '@/utils';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
 
@@ -29,6 +29,9 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
     token: { fontSizeSM },
   } = useToken();
 
+  const productSection = getProductSection(metadata.sectionsCollection);
+  const productKey = sectionKeys[productSection?.name!] ?? 'pro';
+
   return (
     <div id="article-header" className={styles.header}>
       <ArticleMetaData {...metadata} title={title} />
@@ -46,7 +49,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       </div>
       {reportDocument && (
         <>
-          {productStatus.state === 'active' && (
+          {(productStatus.state === 'active' || productKey === 'pro') && (
             <Button
               type="primary"
               onClick={() => downloadResource(reportDocument.url)}
