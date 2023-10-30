@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Space, Typography, List, Image, Badge } from 'antd';
+import { Card, Space, Typography, List, Image, Badge, theme } from 'antd';
 import {
   UserOutlined,
   CheckCircleFilled,
@@ -28,13 +28,33 @@ const PricingCard: React.FC<PricingCardProps> = ({
   badge,
   isYear = false,
 }) => {
+  const {
+    token: { colorInfo },
+  } = theme.useToken();
   return (
     <Badge count={badge} offset={[-150, 0]} color="blue">
       <Card
         style={{
           width: '100%',
+          ...(badge && {
+            border: `3px solid ${colorInfo}`,
+          }),
         }}
-        cover={<Image preview={false} src={image} alt="product-image" />}
+        bordered
+        cover={
+          <Image
+            preview={false}
+            src={image}
+            alt="product-image"
+            style={{
+              ...(!badge && {
+                borderTop: '1px solid #f0f0f0',
+                borderRight: '1px solid #f0f0f0',
+                borderLeft: '1px solid #f0f0f0',
+              }),
+            }}
+          />
+        }
       >
         <Space
           direction="vertical"

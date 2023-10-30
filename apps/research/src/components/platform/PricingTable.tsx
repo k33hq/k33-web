@@ -92,18 +92,27 @@ const PricingTable = () => {
     label: string = 'Renew PRO Subscription',
     priceId: string = monthlyPriceId,
     checkOut: () => Promise<void> = monthlyCheckOut,
-    isLoading: boolean = montlyIsLoading
+    isLoading: boolean = montlyIsLoading,
+    badge: boolean = false
   ) => {
     switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId ? 'Get Monthly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Update Payment Details'}
@@ -111,14 +120,24 @@ const PricingTable = () => {
         );
       case 'active':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
         );
       default:
-        return <CheckOutButton checkOut={checkOut} isLoading={isLoading} />;
+        return (
+          <CheckOutButton
+            checkOut={checkOut}
+            isLoading={isLoading}
+            badge={badge}
+          />
+        );
     }
   };
 
@@ -239,9 +258,16 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton badge />
                 ) : (
-                  getMonthlyActions(productStatus)
+                  getMonthlyActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true
+                  )
                 )}
               </>
             }
@@ -266,9 +292,16 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton badge />
                 ) : (
-                  getMonthlyActions(productStatus)
+                  getMonthlyActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true
+                  )
                 )}
               </>
             }
@@ -398,9 +431,16 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton badge />
                 ) : (
-                  getAnnualActions(productStatus)
+                  getAnnualActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true
+                  )
                 )}
               </>
             }
@@ -426,9 +466,16 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton badge />
                 ) : (
-                  getAnnualActions(productStatus)
+                  getAnnualActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true
+                  )
                 )}
               </>
             }
@@ -445,18 +492,27 @@ const PricingTable = () => {
     label: string = 'Renew PRO Subscription',
     priceId: string = annualPriceId,
     checkOut: () => Promise<void> = annualCheckOut,
-    isLoading: boolean = annualIsLoading
+    isLoading: boolean = annualIsLoading,
+    badge: boolean = false
   ) => {
     switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId ? 'Get Yearly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Update Payment Details'}
@@ -464,14 +520,24 @@ const PricingTable = () => {
         );
       case 'active':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
             {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
         );
       default:
-        return <CheckOutButton checkOut={checkOut} isLoading={isLoading} />;
+        return (
+          <CheckOutButton
+            checkOut={checkOut}
+            isLoading={isLoading}
+            badge={badge}
+          />
+        );
     }
   };
 
@@ -552,19 +618,28 @@ const PricingTable = () => {
 
 export default PricingTable;
 
-const LogoutActionButton = () => {
+const LogoutActionButton = ({ badge = false }) => {
   const {
-    token: { colorTextTertiary },
+    token: { colorInfo },
   } = useToken();
   return (
     <Link
-      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`}
       role="grid"
       style={{
         width: '100%',
       }}
     >
-      <Button block>Start 30-Day Free Trial</Button>
+      <Button
+        block
+        style={{
+          ...(badge && {
+            border: `1px solid ${colorInfo}`,
+          }),
+        }}
+      >
+        Start 30-Day Free Trial
+      </Button>
     </Link>
   );
 };
@@ -572,17 +647,28 @@ const LogoutActionButton = () => {
 interface CheckOutButtonProps {
   checkOut: () => void;
   isLoading: boolean;
+  badge?: boolean;
 }
 
 export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
   checkOut,
   isLoading,
+  badge = false,
 }) => {
   const {
-    token: { colorTextTertiary },
+    token: { colorInfo },
   } = useToken();
   return (
-    <Button loading={isLoading} onClick={checkOut} block>
+    <Button
+      loading={isLoading}
+      onClick={checkOut}
+      block
+      style={{
+        ...(badge && {
+          border: `1px solid ${colorInfo}`,
+        }),
+      }}
+    >
       Start 30-Day Free Trial
     </Button>
   );
@@ -591,18 +677,28 @@ export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
 interface DashboardButtonProps extends React.PropsWithChildren {
   dashboard: () => void;
   isLoading: boolean;
+  badge?: boolean;
 }
 
 export const DashboardButton: React.FC<DashboardButtonProps> = ({
   dashboard,
   isLoading,
   children,
+  badge = false,
 }) => {
+  const {
+    token: { colorInfo },
+  } = useToken();
   return (
     <Button
       onClick={dashboard}
       loading={isLoading}
       icon={<EditOutlined />}
+      style={{
+        ...(badge && {
+          border: `1px solid ${colorInfo}`,
+        }),
+      }}
       block
     >
       {children}

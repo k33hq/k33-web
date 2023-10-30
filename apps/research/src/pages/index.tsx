@@ -27,7 +27,7 @@ import {
   getIndexSummary,
 } from '@/api';
 import { siteUsername } from '@/utils';
-import { Button, Divider, Grid, Typography } from 'antd';
+import { Button, Divider, Grid, Image, Typography } from 'antd';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
@@ -54,7 +54,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
   },
 }) => {
   const indexTableProps = indexSummary[0];
-  const { lg, md } = Grid.useBreakpoint();
+  const { lg, xl } = Grid.useBreakpoint();
 
   return (
     <>
@@ -86,51 +86,41 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         }}
       />
       <main id="research-home" className="research-home">
-        <div
-          style={{
-            backgroundImage: `url(/research/top_promotion.svg)`,
-            backgroundPosition: 'center',
-            width: '100%',
-            backgroundSize: 'cover',
-            padding: '48px 64px',
-            backgroundRepeat: 'no-repeat',
-          }}
-          className={styles.topPromotion}
-        >
-          <Link
-            href={'/pricing'}
+        <Link href={'/pricing'} className={styles.topPromotion}>
+          <div
+            id="top-promotion-info"
             style={{
-              width: '100%',
+              backgroundColor: '#202328',
             }}
           >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                maxWidth: '50%',
-                float: 'left',
-                gap: 24,
-              }}
-            >
+            <div>
               <Typography.Title
                 style={{
                   color: 'white',
-                  ...(md && { textAlign: 'center' }),
                   opacity: 0.85,
                   margin: 0,
                 }}
+                level={lg ? (xl ? 1 : 2) : 3}
               >
                 Digital Assets Research
               </Typography.Title>
-              <Typography.Text style={{ color: 'white', opacity: 0.85 }}>
+              <Typography.Text
+                style={{
+                  color: 'white',
+                  opacity: 0.85,
+                  fontSize: lg ? (xl ? 24 : 18) : 16,
+                }}
+              >
                 For Professional and Institutional Investors
               </Typography.Text>
-              <Link href={'/pricing'}>
-                <Button size="large">Sign Up Now</Button>
-              </Link>
             </div>
-          </Link>
-        </div>
+            <Link href={'/pricing'}>
+              <Button size="large">Sign Up Now</Button>
+            </Link>
+          </div>
+
+          <div />
+        </Link>
         <HomeDashboard {...articles} />
         <IndustryDashboard reports={industryReports} />
         <div id="token-dashboard-summary" className="home-section-summary">
