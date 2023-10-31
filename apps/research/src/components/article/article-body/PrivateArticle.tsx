@@ -43,7 +43,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
 }) => {
   const productSection = getProductSection(sections);
 
-  const productKey = sectionKeys[productSection?.name!] ?? 'pro';
+  const productKey = sectionKeys[productSection?.name!];
 
   // TODO: get ahead of the curve checkout
   // TODO: get twic checkout
@@ -59,6 +59,12 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   const { productStatus, appState } = useProductInfo(
     appStructure.payments[productKey].productId
   );
+
+  const {
+    productStatus: completePackageStatus,
+    appState: completePackageAppState,
+  } = useProductInfo(appStructure.payments.pro.productId);
+  n;
 
   const getCallToAction = (state: typeof productStatus.state) => {
     switch (state) {
@@ -115,7 +121,12 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     }
   };
 
-  if (productStatus.state === 'active' || productKey === 'pro') return children;
+  if (
+    productStatus.state === 'active' ||
+    completePackageStatus.state === 'active' ||
+    !productKey
+  )
+    return children;
 
   if (appState === 'SIGNED_OUT')
     return (
