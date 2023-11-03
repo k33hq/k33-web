@@ -23,6 +23,7 @@ import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
 import { proFeatures } from '@/utils';
 import { Payments, ProductPlans, ProductStatus } from '@/types';
+import { useRouter } from 'next/router';
 
 setTwoToneColor('#777777');
 
@@ -40,6 +41,7 @@ const proPlanFeatures = [
 
 const PricingTable = () => {
   const { plan, setPlan } = usePlan();
+  const router = useRouter();
 
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
@@ -82,6 +84,43 @@ const PricingTable = () => {
     useCustomerCheckout(appStructure.payments.twic.monthlyPriceId);
   const { doCheckOut: twicYearlyCheckout, isLoading: twicYearlyLoading } =
     useCustomerCheckout(appStructure.payments.twic.annualPriceId);
+
+  React.useEffect(() => {
+    const { plan, redirectUrl, type } = router.query;
+    if (productStatus.state == 'active') {
+      router.push((redirectUrl as string) ?? '/home');
+    } else if (aocProductStatus.state === 'active' && plan === 'aoc') {
+      router.push((redirectUrl as string) ?? '/home');
+    } else if (nnProductStatus.state === 'active' && plan === 'nn') {
+      router.push((redirectUrl as string) ?? '/home');
+    } else if (twicProductStatus.state === 'active' && plan === 'twic') {
+      router.push((redirectUrl as string) ?? '/home');
+    } else if (plan === 'pro') {
+      if (type === 'monthly') {
+        monthlyCheckOut();
+      } else {
+        annualCheckOut();
+      }
+    } else if (plan === 'aoc') {
+      if (type === 'monthly') {
+        aocMonthlyCheckout();
+      } else {
+        aocYearlyCheckout();
+      }
+    } else if (plan === 'nn') {
+      if (type === 'monthly') {
+        nnMonthlyCheckout();
+      } else {
+        nnYearlyCheckout();
+      }
+    } else if (plan === 'twic') {
+      if (type === 'monthly') {
+        twicMonthlyCheckout();
+      } else {
+        twicYearlyCheckout();
+      }
+    }
+  }, [productStatus, aocProductStatus, nnProductStatus, twicProductStatus]);
 
   const getMonthlyActions = (
     state: {
@@ -161,7 +200,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="aoc"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
                 ) : (
                   getMonthlyActions(
                     aocProductStatus,
@@ -193,7 +236,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="nn"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
                 ) : (
                   getMonthlyActions(
                     nnProductStatus,
@@ -225,7 +272,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="twic"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
                 ) : (
                   getMonthlyActions(
                     twicProductStatus,
@@ -258,7 +309,12 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton badge />
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
                 ) : (
                   getMonthlyActions(
                     productStatus,
@@ -292,7 +348,12 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton badge />
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
                 ) : (
                   getMonthlyActions(
                     productStatus,
@@ -331,7 +392,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="aoc"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
                 ) : (
                   getAnnualActions(
                     aocProductStatus,
@@ -364,7 +429,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="nn"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
                 ) : (
                   getAnnualActions(
                     nnProductStatus,
@@ -397,7 +466,11 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
+                  <LogoutActionButton
+                    plan="twic"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
                 ) : (
                   getAnnualActions(
                     twicProductStatus,
@@ -431,7 +504,12 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton badge />
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
                 ) : (
                   getAnnualActions(
                     productStatus,
@@ -466,7 +544,12 @@ const PricingTable = () => {
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton badge />
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
                 ) : (
                   getAnnualActions(
                     productStatus,
@@ -494,6 +577,7 @@ const PricingTable = () => {
     checkOut: () => Promise<void> = annualCheckOut,
     isLoading: boolean = annualIsLoading,
     badge: boolean = false
+    trial: boolean = false
   ) => {
     switch (state.state) {
       case 'ended':
@@ -536,6 +620,7 @@ const PricingTable = () => {
             checkOut={checkOut}
             isLoading={isLoading}
             badge={badge}
+            trial={trial}
           />
         );
     }
@@ -618,13 +703,32 @@ const PricingTable = () => {
 
 export default PricingTable;
 
-const LogoutActionButton = ({ badge = false }) => {
+interface LogoutActionButtonProps {
+  badge?: boolean;
+  plan?: ProductPlans;
+  url?: string;
+  type: 'monthly' | 'year';
+  trial?: boolean
+}
+
+const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
+  url,
+  badge = false,
+  plan = 'pro',
+  type = 'year',
+  trial = false
+}) => {
   const {
     token: { colorInfo },
   } = useToken();
   return (
     <Link
-      href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`}
+      href={{
+        pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
+        ...(url && {
+          query: { plan, url, redirect: window.location.href, type },
+        }),
+      }}
       role="grid"
       style={{
         width: '100%',
@@ -638,7 +742,7 @@ const LogoutActionButton = ({ badge = false }) => {
           }),
         }}
       >
-        Start 30-Day Free Trial
+        {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
       </Button>
     </Link>
   );
@@ -648,12 +752,14 @@ interface CheckOutButtonProps {
   checkOut: () => void;
   isLoading: boolean;
   badge?: boolean;
+  trial?: boolean;
 }
 
 export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
   checkOut,
   isLoading,
   badge = false,
+  trial = false,
 }) => {
   const {
     token: { colorInfo },
@@ -669,7 +775,7 @@ export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
         }),
       }}
     >
-      Start 30-Day Free Trial
+      {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
     </Button>
   );
 };

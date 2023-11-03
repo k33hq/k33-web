@@ -107,8 +107,9 @@ const EmailSettings: NextPageWithLayout = () => {
               id={group?.id!}
               suppressed={group?.suppressed!}
               name={group?.name!}
-              isPro={appStructure.notifications[notificationId].isPro}
+              isPro={productStatus.state === 'active'}
               productStatus={productStatus.state}
+              productPlan={appStructure.notifications[notificationId].plan!}
               description={
                 appStructure.notifications[notificationId].description!
               }

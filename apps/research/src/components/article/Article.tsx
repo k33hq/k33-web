@@ -34,7 +34,6 @@ const Article: React.FC<ArticleProps> = ({
   reportDocument,
   ...metadata
 }) => {
-  console.log(metadata.sectionsCollection);
   return (
     <>
       <ArticleHeader

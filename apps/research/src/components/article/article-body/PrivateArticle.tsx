@@ -41,9 +41,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   sections,
   isReport = false,
 }) => {
-  const productSection = getProductSection(sections);
+  const productSection = getProductSection(sections)?.name ?? '';
 
-  const productKey = sectionKeys[productSection?.name!];
+  const productKey = sectionKeys[productSection] ?? 'pro';
 
   // TODO: get ahead of the curve checkout
   // TODO: get twic checkout
@@ -64,7 +64,12 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     productStatus: completePackageStatus,
     appState: completePackageAppState,
   } = useProductInfo(appStructure.payments.pro.productId);
-  n;
+
+  const { doCheckOut: doProyearlyCheckout, isLoading: isProYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.pro.annualPriceId);
+
+  const { doCheckOut: doProMonthlyCheckout, isLoading: isProMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.pro.monthlyPriceId);
 
   const getCallToAction = (state: typeof productStatus.state) => {
     switch (state) {
@@ -99,9 +104,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'ended':
         return (
           <EndedCall
-            yearlyCheckout={doYearlyCheckOut}
-            isLoading={isLoading}
-            checkout={doCheckOut}
+            yearlyCheckout={doProyearlyCheckout}
+            isLoading={isProMonthlyLoading || isProYearlyLoading}
+            checkout={doProMonthlyCheckout}
             isReport={isReport}
           />
         );
@@ -124,7 +129,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   if (
     productStatus.state === 'active' ||
     completePackageStatus.state === 'active' ||
-    !productKey
+    productKey === 'pro'
   )
     return children;
 

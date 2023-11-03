@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 import { ProductPlans } from '@/types';
 import { useRouter } from 'next/router';
 import { appStructure } from '@/config';
+import Link from 'next/link';
 
 interface EndedCallProps {
   checkout: () => void;
@@ -36,7 +37,10 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
   // TODO: pass appropriate yearly or monthly checkout depending on productKeys.
 
   const signIn = () => {
-    router.push('/pricing');
+    router.push({
+      pathname: '/pricing',
+      query: { redirectUrl: window.location.href },
+    });
   };
 
   return (
@@ -68,15 +72,17 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           monthlyPrice={appStructure.payments[productKeys].monthlyPrice}
           name={appStructure.payments[productKeys].name}
         />
-        {/* <Space>
-          <Text
-            style={{
-              fontSize: fontSizeSM,
+        <Space direction="horizontal" size={2}>
+          Already subscribed?{' '}
+          <Link
+            href={{
+              pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
+              query: { redirect: window.location.href },
             }}
           >
-            No charge until the trial is complete. Cancel anytime.
-          </Text>
-        </Space> */}
+            Sign in here
+          </Link>
+        </Space>
       </div>
     </CallToActionCard>
   );

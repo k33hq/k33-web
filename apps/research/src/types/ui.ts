@@ -22,7 +22,7 @@ export type ProductPlans = 'aoc' | 'nn' | 'twic' | 'pro';
 export interface AppStructure {
   navigation: Array<Navigation>;
   payments: Record<'aoc' | 'nn' | 'twic' | 'pro', Payments>;
-  notifications: Record<number, { description: string; isPro: boolean }>;
+  notifications: Record<number, { description: string; plan: ProductPlans }>;
 }
 
 // export interface PageTab {

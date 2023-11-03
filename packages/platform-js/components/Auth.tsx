@@ -69,7 +69,15 @@ const Auth: React.FC<AuthProps> = ({
   const redirectCallback = React.useCallback(() => {
     const query = router.query;
     if (query.redirect) {
-      window.location.replace(query.redirect as string);
+      let researchRedirectUrl = query.redirect as string;
+      if (query.plan) {
+        researchRedirectUrl += `&plan=${query.plan}`;
+      }
+
+      if (query.type) {
+        researchRedirectUrl += `&type=${query.type}`;
+      }
+      window.location.replace(researchRedirectUrl as string);
     } else {
       window.location.replace(redirectUrl + 'research');
     }

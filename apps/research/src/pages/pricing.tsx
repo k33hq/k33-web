@@ -2,6 +2,7 @@ import { PricingTable } from '@/components';
 import { siteUsername } from '@/utils';
 import { Col, Layout, Row, Space, theme, Typography } from 'antd';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 const { useToken } = theme;

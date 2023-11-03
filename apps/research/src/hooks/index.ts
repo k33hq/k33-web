@@ -11,6 +11,7 @@ import { useAppState } from 'platform-js';
 import * as React from 'react';
 import { useHistoryTravel } from 'ahooks';
 import { isBrowser } from '@/utils';
+import { useRouter } from 'next/router';
 
 export const useCustomerDashboard = () => {
   const [dashboard, { data, isLoading }] = useCustomerMutation();
@@ -35,11 +36,13 @@ export const useCustomerDashboard = () => {
 
 export const useCustomerCheckout = (priceId: string) => {
   const [checkout, { isLoading }] = useCheckoutMutation();
+  const router = useRouter();
   const doCheckOut = async () => {
     try {
       const response = await checkout({
         priceId: priceId,
-        successUrl: window.location.href,
+        successUrl:
+          (router.query.redirectUrl as string) ?? window.location.href,
         cancelUrl: window.location.href,
       }).unwrap();
       window.location.href = response.url;
