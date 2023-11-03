@@ -132,7 +132,8 @@ const PricingTable = () => {
     priceId: string = monthlyPriceId,
     checkOut: () => Promise<void> = monthlyCheckOut,
     isLoading: boolean = montlyIsLoading,
-    badge: boolean = false
+    badge: boolean = false,
+    trial: boolean = false
   ) => {
     switch (state.state) {
       case 'ended':
@@ -172,6 +173,7 @@ const PricingTable = () => {
       default:
         return (
           <CheckOutButton
+            trial={trial}
             checkOut={checkOut}
             isLoading={isLoading}
             badge={badge}
@@ -576,7 +578,7 @@ const PricingTable = () => {
     priceId: string = annualPriceId,
     checkOut: () => Promise<void> = annualCheckOut,
     isLoading: boolean = annualIsLoading,
-    badge: boolean = false
+    badge: boolean = false,
     trial: boolean = false
   ) => {
     switch (state.state) {
@@ -708,7 +710,7 @@ interface LogoutActionButtonProps {
   plan?: ProductPlans;
   url?: string;
   type: 'monthly' | 'year';
-  trial?: boolean
+  trial?: boolean;
 }
 
 const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
@@ -716,7 +718,7 @@ const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
   badge = false,
   plan = 'pro',
   type = 'year',
-  trial = false
+  trial = false,
 }) => {
   const {
     token: { colorInfo },
