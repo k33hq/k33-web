@@ -12,6 +12,7 @@ import { useCustomerCheckout, useProductInfo } from '@/hooks';
 import { motion } from 'framer-motion';
 import { appStructure } from '@/config';
 import { getProductSection, sectionKeys } from '@/utils';
+import { TopPromotion } from '@/components';
 
 interface PrivateArticleProps
   extends React.PropsWithChildren,
@@ -102,11 +103,14 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       case 'blocked':
         return <BlockedCall />;
       case 'ended':
+        if (completePackageStatus.state === 'ended') {
+          return null;
+        }
         return (
           <EndedCall
-            yearlyCheckout={doProyearlyCheckout}
-            isLoading={isProMonthlyLoading || isProYearlyLoading}
-            checkout={doProMonthlyCheckout}
+            yearlyCheckout={doYearlyCheckOut}
+            isLoading={isLoading || isYearlyLoading}
+            checkout={doCheckOut}
             isReport={isReport}
           />
         );
@@ -148,19 +152,29 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
     );
 
   return (
-    <motion.div
-      key={productStatus.state}
-      variants={variants}
-      animate={'show'}
-      initial="hide"
-      style={{
-        width: '100%',
-      }}
-    >
-      <ActionLayout publicSnippet={publicSnippet}>
-        {getCallToAction(productStatus.state)}
-      </ActionLayout>
-    </motion.div>
+    <>
+      <motion.div
+        key={productStatus.state}
+        variants={variants}
+        animate={'show'}
+        initial="hide"
+        style={{
+          width: '100%',
+        }}
+      >
+        <ActionLayout publicSnippet={publicSnippet}>
+          {completePackageStatus.state === 'ended' && (
+            <EndedCall
+              yearlyCheckout={doProyearlyCheckout}
+              isLoading={isProMonthlyLoading || isProYearlyLoading}
+              checkout={doProMonthlyCheckout}
+              isReport={isReport}
+            />
+          )}
+          {getCallToAction(productStatus.state)}
+        </ActionLayout>
+      </motion.div>
+    </>
   );
 };
 

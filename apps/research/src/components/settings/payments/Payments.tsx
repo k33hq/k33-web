@@ -133,6 +133,7 @@ const Payments: React.FC = () => {
             dashboardProps={customerDashboard}
             checkoutProps={proMonthlyCheckout}
             payment={appStructure.payments.pro}
+            isTrial
           />
         );
       default:
@@ -147,6 +148,7 @@ const Payments: React.FC = () => {
             dashboardProps={customerDashboard}
             checkoutProps={proMonthlyCheckout}
             payment={appStructure.payments.pro}
+            isTrial
           />
         );
     }
@@ -219,6 +221,7 @@ interface PlanProductProps {
   };
   payment: Payments;
   isLoading: boolean;
+  isTrial?: boolean;
 }
 
 const PlanProduct: React.FC<PlanProductProps> = ({
@@ -228,6 +231,7 @@ const PlanProduct: React.FC<PlanProductProps> = ({
   checkoutProps: { doCheckOut, isLoading: checkoutLoading },
   dashboardProps: { customerDashboard, isLoading: isDashboardLoading },
   payment,
+  isTrial = false,
 }) => {
   const { sm, xl } = Grid.useBreakpoint();
   switch (productStatus) {
@@ -273,7 +277,7 @@ const PlanProduct: React.FC<PlanProductProps> = ({
               width: !xl ? '100%' : 'null',
             }}
           >
-            Renew PRO Subscription
+            Renew Subscription
           </Button>
         </PaymentCard>
       );
@@ -287,7 +291,7 @@ const PlanProduct: React.FC<PlanProductProps> = ({
               width: !xl ? '100%' : 'null',
             }}
           >
-            Start 30-Day Free Trial
+            {isTrial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
           </Button>
         </PaymentCard>
       );
@@ -324,7 +328,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
       id="payments-card"
     >
       <div className={styles.paymentCardBody}>
-        <AntImage preview={false} src={payments.image} width={'100%'} />
+        <AntImage preview={false} src={payments.settingsImage} width={'100%'} />
         <div className={styles.paymentCard}>
           <div id="payment-information" className={styles.paymentInformation}>
             {sm ? (

@@ -10,6 +10,7 @@ import {
   ArticleRecommendations,
 } from './article-body';
 import { Divider } from 'antd';
+import { TopPromotion } from '../platform';
 
 interface ArticleProps
   extends Omit<

@@ -7,6 +7,7 @@ import ArticleMetaData from '../ArticleMetaData';
 import { downloadResource, getProductSection, sectionKeys } from '@/utils';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
+import { TopPromotion } from '@/components';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
@@ -22,47 +23,77 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   reportDocument,
   ...metadata
 }) => {
-  const { productStatus, appState } = useProductInfo(
+  const { productStatus: proProductStatus, appState } = useProductInfo(
     appStructure.payments.pro.productId
   );
   const {
     token: { fontSizeSM },
   } = useToken();
 
-  const productSection = getProductSection(metadata.sectionsCollection);
-  const productKey = sectionKeys[productSection?.name!] ?? 'pro';
+  const productSection =
+    getProductSection(metadata.sectionsCollection)?.name ?? '';
+  const productKey = sectionKeys[productSection] ?? 'pro';
+
+  const { productStatus } = useProductInfo(
+    appStructure.payments[productKey].productId
+  );
+
+  React.useEffect(() => {
+    console.log(
+      !['active', 'ended', 'blocked'].includes(productStatus.state ?? 'loading')
+    );
+    console.log(
+      !['active', 'ended', 'blocked'].includes(
+        proProductStatus.state ?? 'loading'
+      )
+    );
+  }, [proProductStatus, productStatus]);
 
   return (
-    <div id="article-header" className={styles.header}>
-      <ArticleMetaData {...metadata} title={title} />
-      <Title level={2} style={{ margin: 0, padding: 0 }}>
-        {title}
-      </Title>
-      <Text type="secondary">{subtitle}</Text>
-      <div className={styles.headerImage}>
-        <Image src={image.url} style={{ margin: 0 }} alt={image.title ?? ''} />
-        {image.description && (
-          <Typography.Text style={{ fontSize: fontSizeSM }} type="secondary">
-            {image.description}
-          </Typography.Text>
-        )}
-      </div>
-      {reportDocument && (
-        <>
-          {(productStatus.state === 'active' || productKey === 'pro') && (
-            <Button
-              type="primary"
-              onClick={() => downloadResource(reportDocument.url)}
-              block
-              size="large"
-            >
-              Download Report
-            </Button>
+    <>
+      {!['active', 'ended', 'blocked'].includes(
+        productStatus.state ?? 'loading'
+      ) &&
+        !['active', 'ended', 'blocked'].includes(
+          proProductStatus.state ?? 'loading'
+        ) && <TopPromotion />}
+      <div id="article-header" className={styles.header}>
+        <ArticleMetaData {...metadata} title={title} />
+        <Title level={2} style={{ margin: 0, padding: 0 }}>
+          {title}
+        </Title>
+        <Text type="secondary">{subtitle}</Text>
+        <div className={styles.headerImage}>
+          <Image
+            src={image.url}
+            style={{ margin: 0 }}
+            alt={image.title ?? ''}
+          />
+          {image.description && (
+            <Typography.Text style={{ fontSize: fontSizeSM }} type="secondary">
+              {image.description}
+            </Typography.Text>
           )}
-        </>
-      )}
-      <Divider style={{ margin: 0 }} />
-    </div>
+        </div>
+        {reportDocument && (
+          <>
+            {(productStatus.state === 'active' ||
+              proProductStatus.state === 'active' ||
+              productKey === 'pro') && (
+              <Button
+                type="primary"
+                onClick={() => downloadResource(reportDocument.url)}
+                block
+                size="large"
+              >
+                Download Report
+              </Button>
+            )}
+          </>
+        )}
+        <Divider style={{ margin: 0 }} />
+      </div>
+    </>
   );
 };
 

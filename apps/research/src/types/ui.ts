@@ -11,6 +11,7 @@ export interface Payments {
   annualPriceId: string;
   monthlyPriceId: string;
   image: string;
+  settingsImage: string;
   name: string;
   description: string;
   monthlyPrice: string;

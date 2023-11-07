@@ -86,15 +86,18 @@ const PricingTable = () => {
     useCustomerCheckout(appStructure.payments.twic.annualPriceId);
 
   React.useEffect(() => {
+    if (!router.query.redirectUrl || !router.query.plan || !router.query.type)
+      return;
+
     const { plan, redirectUrl, type } = router.query;
     if (productStatus.state == 'active') {
-      router.push((redirectUrl as string) ?? '/home');
+      router.push(redirectUrl as string);
     } else if (aocProductStatus.state === 'active' && plan === 'aoc') {
-      router.push((redirectUrl as string) ?? '/home');
+      router.push(redirectUrl as string);
     } else if (nnProductStatus.state === 'active' && plan === 'nn') {
-      router.push((redirectUrl as string) ?? '/home');
+      router.push(redirectUrl as string);
     } else if (twicProductStatus.state === 'active' && plan === 'twic') {
-      router.push((redirectUrl as string) ?? '/home');
+      router.push(redirectUrl as string);
     } else if (plan === 'pro') {
       if (type === 'monthly') {
         monthlyCheckOut();
@@ -295,7 +298,7 @@ const PricingTable = () => {
       case 'pro':
         return (
           <PricingCard
-            badge={'SAVE $15! Combine all Subscriptions'}
+            badge={'SAVE $15 by combining all subscriptions!'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === monthlyPriceId &&
@@ -316,6 +319,7 @@ const PricingTable = () => {
                     plan="pro"
                     url={router.query.redirectUrl as string}
                     type="monthly"
+                    trial
                   />
                 ) : (
                   getMonthlyActions(
@@ -324,6 +328,7 @@ const PricingTable = () => {
                     undefined,
                     undefined,
                     undefined,
+                    true,
                     true
                   )
                 )}
@@ -334,7 +339,7 @@ const PricingTable = () => {
       default:
         return (
           <PricingCard
-            badge={'SAVE $15! Combine all Subscriptions'}
+            badge={'SAVE $15 by combining all subscriptions!'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === monthlyPriceId &&
@@ -355,6 +360,7 @@ const PricingTable = () => {
                     plan="pro"
                     url={router.query.redirectUrl as string}
                     type="monthly"
+                    trial
                   />
                 ) : (
                   getMonthlyActions(
@@ -363,6 +369,7 @@ const PricingTable = () => {
                     undefined,
                     undefined,
                     undefined,
+                    true,
                     true
                   )
                 )}
@@ -492,7 +499,7 @@ const PricingTable = () => {
             isYear
             description={payments.description}
             image={payments.image}
-            badge={'SAVE $140 on yearly Subscription!'}
+            badge={'SAVE $140 by combining all subscriptions!'}
             {...(productStatus.priceId === annualPriceId &&
               productStatus.state === 'blocked' && {
                 state: 'blocked',
@@ -511,6 +518,7 @@ const PricingTable = () => {
                     plan="pro"
                     url={router.query.redirectUrl as string}
                     type="year"
+                    trial
                   />
                 ) : (
                   getAnnualActions(
@@ -519,6 +527,7 @@ const PricingTable = () => {
                     undefined,
                     undefined,
                     undefined,
+                    true,
                     true
                   )
                 )}
@@ -530,7 +539,7 @@ const PricingTable = () => {
         return (
           <PricingCard
             isYear
-            badge={'SAVE $140 on yearly Subscription!'}
+            badge={'SAVE $140 by combining all subscriptions!'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === annualPriceId &&
@@ -551,6 +560,7 @@ const PricingTable = () => {
                     plan="pro"
                     url={router.query.redirectUrl as string}
                     type="year"
+                    trial
                   />
                 ) : (
                   getAnnualActions(
@@ -559,6 +569,7 @@ const PricingTable = () => {
                     undefined,
                     undefined,
                     undefined,
+                    true,
                     true
                   )
                 )}
@@ -714,7 +725,7 @@ interface LogoutActionButtonProps {
 }
 
 const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
-  url,
+  url = window.location.href,
   badge = false,
   plan = 'pro',
   type = 'year',
@@ -723,13 +734,26 @@ const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
   const {
     token: { colorInfo },
   } = useToken();
+
+  const router = useRouter();
+
+  const getUrl = () => {
+    if (router.query.redirectUrl) {
+      return window.location.href;
+    } else {
+      return (
+        window.location.href +
+        '/pricing' +
+        '?redirectUrl=' +
+        window.location.href
+      );
+    }
+  };
   return (
     <Link
       href={{
         pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
-        ...(url && {
-          query: { plan, url, redirect: window.location.href, type },
-        }),
+        query: { plan, redirect: getUrl(), type },
       }}
       role="grid"
       style={{

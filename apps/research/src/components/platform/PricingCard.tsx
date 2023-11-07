@@ -32,7 +32,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
     token: { colorInfo },
   } = theme.useToken();
   return (
-    <Badge count={badge} offset={[-150, 0]} color="blue">
+    <Badge count={badge} offset={[-158, 0]} color="blue">
       <Card
         style={{
           width: '100%',

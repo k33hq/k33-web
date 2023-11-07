@@ -114,6 +114,7 @@ export const appStructure: AppStructure = {
       annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_TWIC!,
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_TWIC!,
       image: '/research/twic_product.svg',
+      settingsImage: '/research/twic_settings.svg',
       name: 'This Week in Crypto',
       description:
         'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
@@ -130,6 +131,7 @@ export const appStructure: AppStructure = {
       annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_NN!,
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_NN!,
       image: '/research/nn_product.svg',
+      settingsImage: '/research/nn_settings.svg',
       name: 'Navigating Narratives',
       description:
         'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
@@ -146,6 +148,7 @@ export const appStructure: AppStructure = {
       annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_AOC!,
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC!,
       image: '/research/aoc_product.svg',
+      settingsImage: '/research/aoc_settings.svg',
       name: 'Ahead of The Curve',
       description:
         'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
@@ -162,9 +165,10 @@ export const appStructure: AppStructure = {
       annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_PRO!,
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO!,
       image: '/research/pro_product.svg',
-      name: 'Complete Package',
+      settingsImage: '/research/pro_settings.svg',
+      name: 'PRO - The Complete Package',
       description:
-        'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
+        'Full access to all research content, including This Week in Crypto, Navigating Narratives and Ahead of the Curve.',
       monthlyPrice: '$70.00',
       yearlyPrice: '$700.00',
       features: [

@@ -43,7 +43,7 @@ export const useCustomerCheckout = (priceId: string) => {
         priceId: priceId,
         successUrl:
           (router.query.redirectUrl as string) ?? window.location.href,
-        cancelUrl: window.location.href,
+        cancelUrl: (router.query.redirectUrl as string) ?? window.location.href,
       }).unwrap();
       window.location.href = response.url;
     } catch (err) {}

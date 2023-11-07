@@ -65,7 +65,7 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           handleYearlyCheckout={isLoggedOut ? signIn : yearlyCheckout}
           isLoading={isLoading}
           handleCheckout={isLoggedOut ? signIn : checkout}
-          label="Start 30-Day Free Trial"
+          label="Subscribe Now"
           isFreeTrial
           features={appStructure.payments[productKeys].features}
           yearlyPrice={appStructure.payments[productKeys].yearlyPrice}
@@ -76,7 +76,7 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           Already subscribed?{' '}
           <Link
             href={{
-              pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
+              pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`,
               query: { redirect: window.location.href },
             }}
           >

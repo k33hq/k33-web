@@ -98,7 +98,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
         )}
         {productStatus === null && !isPro && (
           <Button size="small" onClick={() => route.push('/pricing')}>
-            Start 30 day trial
+            Subscribe Now
           </Button>
         )}
       </div>
