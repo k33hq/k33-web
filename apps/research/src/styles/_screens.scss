@@ -1,5 +1,11 @@
 @import 'variables';
 
+@mixin small() {
+  @media only screen and (min-width: $sm) {
+    @content;
+  }
+}
+
 @mixin medium() {
   @media only screen and (min-width: $md) {
     @content;

@@ -1,5 +1,5 @@
 import { ArticlePage } from '@/types';
-import { copyText, getReadingTime } from '@/utils';
+import { copyText, getProductSection, getReadingTime } from '@/utils';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Divider, Space, Typography } from 'antd';
 import Link from 'next/link';
@@ -8,21 +8,31 @@ import * as React from 'react';
 import { SocialSharing } from '../platform';
 
 interface ArticleMetaDataProps
-  extends Pick<ArticlePage, 'sections' | 'publishedDate' | 'title'> {}
+  extends Pick<ArticlePage, 'sectionsCollection' | 'publishedDate' | 'title'> {}
 
 const { Text } = Typography;
 
+// TODO: extract this out
+
 const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
-  sections,
+  sectionsCollection,
   title,
   publishedDate,
 }) => {
+  const productSection = getProductSection(sectionsCollection);
+
   return (
     <Space size={4} split={<Divider type="vertical" />}>
-      {sections && sections[0] && (
-        <Link href={'/' + sections[0].name}>
-          {sections[0].name
-            .split('/')[1]
+      {productSection && productSection.name ? (
+        <Link href={'/' + productSection.name}>
+          {productSection.name
+            .split('-')
+            .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
+            .join(' ')}
+        </Link>
+      ) : (
+        <Link href={'/' + sectionsCollection.items[0].name}>
+          {sectionsCollection.items[0].name
             .split('-')
             .map((v) => v.charAt(0).toUpperCase() + v.slice(1))
             .join(' ')}

@@ -16,16 +16,16 @@ import {
 // TODO: check if user is active or blocked before switching email newsletter and show dialog accordingly.
 const EmailSettings: NextPageWithLayout = () => {
   const { data, isLoading } = useGetSupressionGroupsQuery();
-  const { productStatus } = useProductInfo(appStructure.payments.productId);
+  const { productStatus } = useProductInfo(appStructure.payments.pro.productId);
   const { doCheckOut, isLoading: isCheckOutLoading } = useCustomerCheckout(
-    appStructure.payments.monthlyPriceId
+    appStructure.payments.pro.monthlyPriceId
   );
 
   const { customerDashboard, isLoading: dashboardLoading } =
     useCustomerDashboard();
 
   const { doCheckOut: doYearlyCheckOut, isLoading: isYearlyLoading } =
-    useCustomerCheckout(appStructure.payments.annualPriceId);
+    useCustomerCheckout(appStructure.payments.pro.annualPriceId);
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -84,8 +84,8 @@ const EmailSettings: NextPageWithLayout = () => {
           }}
         >
           {productStatus.state === 'active'
-            ? "You are a PRO subscriber, which means you have access to all our newsletters. Still, you shall only get the ones you want. Manage your newsletters subscriptions below to avoid the emails you don't want."
-            : 'You are not a PRO subscriber, which means you only have access to the newsletter This Week in Crypto. If you don’t want to receive This Week in Crypto, toggle the subscription off below. To gain access to Navigating Narratives and Ahead of the Curve, become a PRO subscriber.'}
+            ? 'The Pro package includes three weekly newsletters delivered directly to your inbox. Manage which newsletters you want to receive below.'
+            : ''}
         </Typography.Text>
       </div>
       <Divider style={{ margin: 0 }} />
@@ -107,8 +107,9 @@ const EmailSettings: NextPageWithLayout = () => {
               id={group?.id!}
               suppressed={group?.suppressed!}
               name={group?.name!}
-              isPro={appStructure.notifications[notificationId].isPro}
+              isPro={productStatus.state === 'active'}
               productStatus={productStatus.state}
+              productPlan={appStructure.notifications[notificationId].plan!}
               description={
                 appStructure.notifications[notificationId].description!
               }
@@ -154,7 +155,7 @@ EmailSettings.getLayout = function getLayout(page: React.ReactElement) {
       activeKey="/settings/newsletters"
       title="Settings"
       tabs={[
-        { key: 'payments', label: 'Payments', url: '/settings' },
+        { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {
           key: 'newsletters',
           label: 'Newsletters',

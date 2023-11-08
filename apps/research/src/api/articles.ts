@@ -35,7 +35,7 @@ const GetArticlePage = gql`
         seo {
           ...seo
         }
-        sectionsCollection(limit: 1) {
+        sectionsCollection(limit: 5) {
           items {
             name
           }

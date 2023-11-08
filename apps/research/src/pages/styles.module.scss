@@ -1,0 +1,80 @@
+@import 'src/styles/screens';
+@import 'src/styles/variables';
+
+.topPromotion {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  transition: all;
+  transition-duration: 75ms;
+  transition-timing-function: ease-in;
+  > div {
+    width: 100%;
+  }
+  > div:first-child {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+  > div:last-child {
+    background-image: url(/research/top_mobile_promotion.svg);
+    background-repeat: no-repeat;
+    height: 120px;
+    background-size: cover;
+  }
+}
+
+@include medium() {
+  .topPromotion {
+    > div:last-child {
+      height: 210px;
+    }
+  }
+}
+
+@include large() {
+  .topPromotion {
+    flex-direction: row;
+    position: relative;
+    > div:first-child {
+      padding: 32px;
+      align-items: start;
+      > div {
+        align-items: start;
+      }
+    }
+    > div:last-child {
+      height: auto;
+      background-image: url(/research/top_banner.png);
+    }
+  }
+}
+
+@include xlarge() {
+  .topPromotion {
+    flex-direction: row;
+    > div:first-child {
+      padding: 56px;
+    }
+  }
+}
+
+.bottomPromotion {
+  padding: 16px 32px;
+}
+
+@include large() {
+  .bottomPromotion {
+    height: 593px;
+  }
+}

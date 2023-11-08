@@ -41,6 +41,11 @@ const ResearchFooter: React.FC = () => {
                     </Button>
                   </Link>
                 ))}
+                <Link href={'/pricing'} key={'pricing'}>
+                  <Button key={'pricing'} type="link" size="small">
+                    Pricing
+                  </Button>
+                </Link>
               </div>
               <div id="social-links">
                 <Space wrap>

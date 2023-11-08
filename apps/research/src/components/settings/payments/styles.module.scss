@@ -1,3 +1,6 @@
+@import 'src/styles/variables';
+@import 'src/styles/screens';
+
 .settingsPaymentTitle {
   display: flex;
   flex-direction: column;
@@ -5,27 +8,76 @@
   gap: 8px;
 }
 
+.paymentCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 16px;
+}
+
 .paymentCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   justify-content: center;
-  align-items: flex-start;
-  gap: 32px;
+  gap: 16px;
+}
+
+@include small() {
+  .paymentCardBody {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 16px;
+  }
 }
 
 .paymentInformation {
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 16px;
+  gap: 8px;
+}
+
+@include small() {
+  .paymentInformation {
+    align-items: flex-start;
+  }
 }
 
 .paymentAction {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
+  flex-direction: column;
+
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+@include small() {
+  .paymentAction {
+    width: 100%;
+    align-items: flex-end;
+  }
+}
+
+@include large() {
+  .paymentAction {
+    align-items: flex-start;
+  }
+}
+
+@include xlarge() {
+  .paymentAction {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

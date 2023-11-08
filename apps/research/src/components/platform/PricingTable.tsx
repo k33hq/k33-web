@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { Space, Typography, Radio, Badge, Button, theme, Tag } from 'antd';
+import {
+  Space,
+  Typography,
+  Radio,
+  Badge,
+  Button,
+  theme,
+  Tag,
+  Row,
+  Col,
+} from 'antd';
 import { UserOutlined, UnlockTwoTone, EditOutlined } from '@ant-design/icons';
 import {
   useCustomerCheckout,
@@ -12,6 +22,8 @@ import Link from 'next/link';
 import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
 import { proFeatures } from '@/utils';
+import { Payments, ProductPlans, ProductStatus } from '@/types';
+import { useRouter } from 'next/router';
 
 setTwoToneColor('#777777');
 
@@ -29,42 +41,134 @@ const proPlanFeatures = [
 
 const PricingTable = () => {
   const { plan, setPlan } = usePlan();
-  const productId = appStructure.payments.productId;
-  const monthlyPriceId = appStructure.payments.monthlyPriceId;
-  const annualPriceId = appStructure.payments.annualPriceId;
-
-  const { productStatus, appState } = useProductInfo(productId);
-  const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
-    useCustomerCheckout(annualPriceId);
-
-  const { doCheckOut: monthlyCheckOut, isLoading: montlyIsLoading } =
-    useCustomerCheckout(monthlyPriceId);
+  const router = useRouter();
 
   const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
     useCustomerDashboard();
 
-  const getMonthlyActions = () => {
-    switch (productStatus.state) {
+  const productId = appStructure.payments.pro.productId;
+  const monthlyPriceId = appStructure.payments.pro.monthlyPriceId;
+  const annualPriceId = appStructure.payments.pro.annualPriceId;
+  const { productStatus, appState } = useProductInfo(productId);
+  const { doCheckOut: monthlyCheckOut, isLoading: montlyIsLoading } =
+    useCustomerCheckout(monthlyPriceId);
+  const { doCheckOut: annualCheckOut, isLoading: annualIsLoading } =
+    useCustomerCheckout(annualPriceId);
+
+  // aoc
+  const aocProductId = appStructure.payments.aoc.productId;
+  const aocMonthlyPriceId = appStructure.payments.aoc.monthlyPriceId;
+  const aocYearlyPriceId = appStructure.payments.aoc.annualPriceId;
+  const { productStatus: aocProductStatus } = useProductInfo(aocProductId);
+  const { doCheckOut: aocMonthlyCheckout, isLoading: aocMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.aoc.monthlyPriceId);
+  const { doCheckOut: aocYearlyCheckout, isLoading: aocYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.aoc.annualPriceId);
+
+  // nn
+  const nnProductId = appStructure.payments.nn.productId;
+  const nnMonthlyPriceId = appStructure.payments.nn.monthlyPriceId;
+  const nnYearlyPriceId = appStructure.payments.nn.annualPriceId;
+  const { productStatus: nnProductStatus } = useProductInfo(nnProductId);
+  const { doCheckOut: nnMonthlyCheckout, isLoading: nnMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.nn.monthlyPriceId);
+  const { doCheckOut: nnYearlyCheckout, isLoading: nnYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.nn.annualPriceId);
+
+  //twic
+  const twicProductId = appStructure.payments.twic.productId;
+  const twicMonthlyPriceId = appStructure.payments.twic.monthlyPriceId;
+  const twiceYearlyPriceId = appStructure.payments.twic.annualPriceId;
+  const { productStatus: twicProductStatus } = useProductInfo(twicProductId);
+  const { doCheckOut: twicMonthlyCheckout, isLoading: twicMonthlyLoading } =
+    useCustomerCheckout(appStructure.payments.twic.monthlyPriceId);
+  const { doCheckOut: twicYearlyCheckout, isLoading: twicYearlyLoading } =
+    useCustomerCheckout(appStructure.payments.twic.annualPriceId);
+
+  React.useEffect(() => {
+    if (!router.query.redirectUrl || !router.query.plan || !router.query.type)
+      return;
+
+    const { plan, redirectUrl, type } = router.query;
+    if (productStatus.state == 'active') {
+      router.push(redirectUrl as string);
+    } else if (aocProductStatus.state === 'active' && plan === 'aoc') {
+      router.push(redirectUrl as string);
+    } else if (nnProductStatus.state === 'active' && plan === 'nn') {
+      router.push(redirectUrl as string);
+    } else if (twicProductStatus.state === 'active' && plan === 'twic') {
+      router.push(redirectUrl as string);
+    } else if (plan === 'pro') {
+      if (type === 'monthly') {
+        monthlyCheckOut();
+      } else {
+        annualCheckOut();
+      }
+    } else if (plan === 'aoc') {
+      if (type === 'monthly') {
+        aocMonthlyCheckout();
+      } else {
+        aocYearlyCheckout();
+      }
+    } else if (plan === 'nn') {
+      if (type === 'monthly') {
+        nnMonthlyCheckout();
+      } else {
+        nnYearlyCheckout();
+      }
+    } else if (plan === 'twic') {
+      if (type === 'monthly') {
+        twicMonthlyCheckout();
+      } else {
+        twicYearlyCheckout();
+      }
+    }
+  }, [productStatus, aocProductStatus, nnProductStatus, twicProductStatus]);
+
+  const getMonthlyActions = (
+    state: {
+      state: ProductStatus | 'loading' | null;
+      priceId: string | null;
+    },
+
+    label: string = 'Renew PRO Subscription',
+    priceId: string = monthlyPriceId,
+    checkOut: () => Promise<void> = monthlyCheckOut,
+    isLoading: boolean = montlyIsLoading,
+    badge: boolean = false,
+    trial: boolean = false
+  ) => {
+    switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
-              ? 'Get Monthly Plan'
-              : 'Renew PRO Subscription'}
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId ? 'Get Monthly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Update Payment Details'}
           </DashboardButton>
         );
       case 'active':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === annualPriceId
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId
               ? 'Get Monthly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
@@ -72,35 +176,453 @@ const PricingTable = () => {
       default:
         return (
           <CheckOutButton
-            checkOut={monthlyCheckOut}
-            isLoading={montlyIsLoading}
+            trial={trial}
+            checkOut={checkOut}
+            isLoading={isLoading}
+            badge={badge}
           />
         );
     }
   };
 
-  const getAnnualActions = () => {
-    switch (productStatus.state) {
+  const getMonthlyPaymentCard = (plan: ProductPlans, payments: Payments) => {
+    switch (plan) {
+      case 'aoc':
+        return (
+          <PricingCard
+            image={payments.image}
+            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
+              aocProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            description={payments.description}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="aoc"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
+                ) : (
+                  getMonthlyActions(
+                    aocProductStatus,
+                    payments.name,
+                    aocMonthlyPriceId,
+                    aocMonthlyCheckout,
+                    aocMonthlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'nn':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
+              nnProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
+              nnProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="nn"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
+                ) : (
+                  getMonthlyActions(
+                    nnProductStatus,
+                    payments.name,
+                    nnMonthlyPriceId,
+                    nnMonthlyCheckout,
+                    nnMonthlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'twic':
+        return (
+          <PricingCard
+            description={payments.description}
+            image={payments.image}
+            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
+              twicProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
+              twicProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="twic"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                  />
+                ) : (
+                  getMonthlyActions(
+                    twicProductStatus,
+                    payments.name,
+                    twicMonthlyPriceId,
+                    twicMonthlyCheckout,
+                    twicMonthlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'pro':
+        return (
+          <PricingCard
+            badge={'SAVE $15 by combining all subscriptions!'}
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                    trial
+                  />
+                ) : (
+                  getMonthlyActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true,
+                    true
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      default:
+        return (
+          <PricingCard
+            badge={'SAVE $15 by combining all subscriptions!'}
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === monthlyPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.monthlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="monthly"
+                    trial
+                  />
+                ) : (
+                  getMonthlyActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true,
+                    true
+                  )
+                )}
+              </>
+            }
+          />
+        );
+    }
+  };
+
+  const getYearlyPaymentCard = (plan: ProductPlans, payments: Payments) => {
+    switch (plan) {
+      case 'aoc':
+        return (
+          <PricingCard
+            isYear
+            image={payments.image}
+            {...(aocProductStatus.priceId === aocYearlyPriceId &&
+              aocProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(aocProductStatus.priceId === aocYearlyPriceId &&
+              aocProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            description={payments.description}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="aoc"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
+                ) : (
+                  getAnnualActions(
+                    aocProductStatus,
+                    payments.name,
+                    aocYearlyPriceId,
+                    aocYearlyCheckout,
+                    aocYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'nn':
+        return (
+          <PricingCard
+            isYear
+            description={payments.description}
+            image={payments.image}
+            {...(nnProductStatus.priceId === nnYearlyPriceId &&
+              nnProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(nnProductStatus.priceId === nnYearlyPriceId &&
+              nnProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="nn"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
+                ) : (
+                  getAnnualActions(
+                    nnProductStatus,
+                    payments.name,
+                    nnYearlyPriceId,
+                    nnYearlyCheckout,
+                    nnYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'twic':
+        return (
+          <PricingCard
+            isYear
+            description={payments.description}
+            image={payments.image}
+            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
+              twicProductStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
+              twicProductStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    plan="twic"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                  />
+                ) : (
+                  getAnnualActions(
+                    twicProductStatus,
+                    payments.name,
+                    twiceYearlyPriceId,
+                    twicYearlyCheckout,
+                    twicYearlyLoading
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      case 'pro':
+        return (
+          <PricingCard
+            isYear
+            description={payments.description}
+            image={payments.image}
+            badge={'SAVE $140 by combining all subscriptions!'}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                    trial
+                  />
+                ) : (
+                  getAnnualActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true,
+                    true
+                  )
+                )}
+              </>
+            }
+          />
+        );
+      default:
+        return (
+          <PricingCard
+            isYear
+            badge={'SAVE $140 by combining all subscriptions!'}
+            description={payments.description}
+            image={payments.image}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'blocked' && {
+                state: 'blocked',
+              })}
+            {...(productStatus.priceId === annualPriceId &&
+              productStatus.state === 'active' && {
+                state: 'active',
+              })}
+            plan={payments.name}
+            price={payments.yearlyPrice}
+            action={
+              <>
+                {appState === 'SIGNED_OUT' ? (
+                  <LogoutActionButton
+                    badge
+                    plan="pro"
+                    url={router.query.redirectUrl as string}
+                    type="year"
+                    trial
+                  />
+                ) : (
+                  getAnnualActions(
+                    productStatus,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    true,
+                    true
+                  )
+                )}
+              </>
+            }
+          />
+        );
+    }
+  };
+
+  const getAnnualActions = (
+    state: {
+      state: ProductStatus | 'loading' | null;
+      priceId: string | null;
+    },
+    label: string = 'Renew PRO Subscription',
+    priceId: string = annualPriceId,
+    checkOut: () => Promise<void> = annualCheckOut,
+    isLoading: boolean = annualIsLoading,
+    badge: boolean = false,
+    trial: boolean = false
+  ) => {
+    switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
-              ? 'Get Yearly Plan'
-              : 'Renew PRO Subscription'}
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId ? 'Get Yearly Plan' : label}
           </DashboardButton>
         );
       case 'blocked':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Update Payment Details'}
           </DashboardButton>
         );
       case 'active':
         return (
-          <DashboardButton dashboard={dashboard} isLoading={isDashboardLoading}>
-            {productStatus.priceId === monthlyPriceId
+          <DashboardButton
+            dashboard={dashboard}
+            isLoading={isDashboardLoading}
+            badge={badge}
+          >
+            {state.priceId === priceId
               ? 'Get Yearly Plan'
               : 'Manage Subscription'}
           </DashboardButton>
@@ -108,8 +630,10 @@ const PricingTable = () => {
       default:
         return (
           <CheckOutButton
-            checkOut={annualCheckOut}
-            isLoading={annualIsLoading}
+            checkOut={checkOut}
+            isLoading={isLoading}
+            badge={badge}
+            trial={trial}
           />
         );
     }
@@ -123,11 +647,13 @@ const PricingTable = () => {
           textAlign: 'center',
         }}
       >
-        <Title level={3}>Compare and Get Your Plan!</Title>
-        <Text>
+        <Title level={3} style={{ margin: 0 }}>
+          Select Your Subscriptions!
+        </Title>
+        {/* <Text>
           The right plan is waiting for you. Subscribe and get full access to
           all research content.
-        </Text>
+        </Text> */}
       </Space.Compact>
 
       <Radio.Group defaultValue={plan} optionType="button" buttonStyle="solid">
@@ -146,7 +672,7 @@ const PricingTable = () => {
           value="year"
         >
           <Badge
-            count={'Save $100'}
+            count={'Save up to $140'}
             style={{
               fontSize: 8,
             }}
@@ -159,89 +685,29 @@ const PricingTable = () => {
         </Radio.Button>
       </Radio.Group>
 
-      <div className="pricingTable">
-        <PricingCard
-          state={
-            appState !== 'SIGNED_OUT' &&
-            (productStatus.state === null || productStatus.state === 'ended')
-              ? 'active'
-              : undefined
-          }
-          plan="Free Plan"
-          icon={<UserOutlined style={{ fontSize: 48 }} />}
-          features={['Our weekly newsletter']}
-          price="0"
-          action={
-            appState === 'SIGNED_OUT' && (
-              <Link
-                href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
-                role="grid"
-              >
-                <Button>Sign In</Button>
-              </Link>
-            )
-          }
-        />
+      <div>
         {plan === 'monthly' ? (
-          <PricingCard
-            icon={
-              <UnlockTwoTone
-                style={{
-                  fontSize: 48,
-                }}
-              />
-            }
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            plan="PRO Plan"
-            features={proFeatures}
-            price="50"
-            action={
-              <>
-                {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton />
-                ) : (
-                  getMonthlyActions()
+          <Row wrap gutter={[16, 16]}>
+            {Object.keys(appStructure.payments).map((plan) => (
+              <Col xs={24} sm={24} lg={6} key={plan}>
+                {getMonthlyPaymentCard(
+                  plan as ProductPlans,
+                  appStructure.payments[plan as ProductPlans]
                 )}
-              </>
-            }
-          />
+              </Col>
+            ))}
+          </Row>
         ) : (
-          <PricingCard
-            plan="PRO Plan"
-            date="year"
-            icon={
-              <UnlockTwoTone
-                style={{
-                  fontSize: 48,
-                }}
-              />
-            }
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            features={proFeatures}
-            price="500"
-            promotions={<Tag color="blue">Save $100</Tag>}
-            action={
-              appState === 'SIGNED_OUT' ? (
-                <LogoutActionButton />
-              ) : (
-                getAnnualActions()
-              )
-            }
-          />
+          <Row wrap gutter={[16, 16]}>
+            {Object.keys(appStructure.payments).map((plan) => (
+              <Col xs={24} sm={24} lg={6} key={plan}>
+                {getYearlyPaymentCard(
+                  plan as ProductPlans,
+                  appStructure.payments[plan as ProductPlans]
+                )}
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </>
@@ -250,73 +716,122 @@ const PricingTable = () => {
 
 export default PricingTable;
 
-const LogoutActionButton = () => {
+interface LogoutActionButtonProps {
+  badge?: boolean;
+  plan?: ProductPlans;
+  url?: string;
+  type: 'monthly' | 'year';
+  trial?: boolean;
+}
+
+const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
+  url = window.location.href,
+  badge = false,
+  plan = 'pro',
+  type = 'year',
+  trial = false,
+}) => {
   const {
-    token: { colorTextTertiary },
+    token: { colorInfo },
   } = useToken();
+
+  const router = useRouter();
+
+  const getUrl = () => {
+    if (router.query.redirectUrl) {
+      return window.location.href;
+    } else {
+      return (
+        window.location.href +
+        '/pricing' +
+        '?redirectUrl=' +
+        window.location.href
+      );
+    }
+  };
   return (
-    <Space direction="vertical" size={8} align="center">
-      <Link
-        href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
-        role="grid"
-      >
-        <Button type="primary">Start 30-Day Free Trial</Button>
-      </Link>
-      {/* <Text
+    <Link
+      href={{
+        pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
+        query: { plan, redirect: getUrl(), type },
+      }}
+      role="grid"
+      style={{
+        width: '100%',
+      }}
+    >
+      <Button
+        block
         style={{
-          color: colorTextTertiary,
+          ...(badge && {
+            border: `1px solid ${colorInfo}`,
+          }),
         }}
       >
-        No credit card required
-      </Text> */}
-    </Space>
+        {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
+      </Button>
+    </Link>
   );
 };
 
 interface CheckOutButtonProps {
   checkOut: () => void;
   isLoading: boolean;
+  badge?: boolean;
+  trial?: boolean;
 }
 
 export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
   checkOut,
   isLoading,
+  badge = false,
+  trial = false,
 }) => {
   const {
-    token: { colorTextTertiary },
+    token: { colorInfo },
   } = useToken();
   return (
-    <Space direction="vertical" size={8} align="center">
-      <Button loading={isLoading} onClick={checkOut} type="primary">
-        Start 30-Day Free Trial
-      </Button>
-      {/* <Text
-        style={{
-          color: colorTextTertiary,
-        }}
-      >
-        No credit card required
-      </Text> */}
-    </Space>
+    <Button
+      loading={isLoading}
+      onClick={checkOut}
+      block
+      style={{
+        ...(badge && {
+          border: `1px solid ${colorInfo}`,
+        }),
+      }}
+    >
+      {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
+    </Button>
   );
 };
 
 interface DashboardButtonProps extends React.PropsWithChildren {
   dashboard: () => void;
   isLoading: boolean;
+  badge?: boolean;
 }
 
 export const DashboardButton: React.FC<DashboardButtonProps> = ({
   dashboard,
   isLoading,
   children,
+  badge = false,
 }) => {
+  const {
+    token: { colorInfo },
+  } = useToken();
   return (
     <Button
       onClick={dashboard}
       loading={isLoading}
       icon={<EditOutlined />}
-      type="primary"
+      style={{
+        ...(badge && {
+          border: `1px solid ${colorInfo}`,
+        }),
+      }}
+      block
     >
       {children}
     </Button>

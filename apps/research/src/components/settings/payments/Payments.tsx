@@ -1,7 +1,19 @@
 import * as React from 'react';
 import SettingsPaymentTitle from './SettingsPaymentTitle';
-import PaymentCard from './PaymentCard';
-import { Card, Avatar, Space, Typography, Button, Badge, Alert } from 'antd';
+// import PaymentCard from './PaymentCard';
+import {
+  Card,
+  Avatar,
+  Space,
+  Typography,
+  Button,
+  Badge,
+  Alert,
+  Image as AntImage,
+  Grid,
+  Row,
+  Col,
+} from 'antd';
 import {
   useCustomerCheckout,
   useCustomerDashboard,
@@ -15,6 +27,7 @@ import Image from 'next/image';
 import { getUserInformation } from 'core';
 import { SignUpCall } from '@/components';
 import { appStructure } from '@/config';
+import { Payments, ProductPlans, ProductStatus } from '@/types';
 
 const { Text, Link } = Typography;
 const { Ribbon } = Badge;
@@ -26,12 +39,35 @@ const mask = (email: string) =>
   );
 const Payments: React.FC = () => {
   const router = useRouter();
-  const { productStatus } = useProductInfo(appStructure.payments.productId);
-  const { doCheckOut: checkout, isLoading } = useCustomerCheckout(
-    appStructure.payments.monthlyPriceId
+  const { sm, xl } = Grid.useBreakpoint();
+
+  // pro check out
+  const proProductInfo = useProductInfo(appStructure.payments.pro.productId);
+  const proMonthlyCheckout = useCustomerCheckout(
+    appStructure.payments.pro.monthlyPriceId
   );
-  const { customerDashboard: dashboard, isLoading: isDashboardLoading } =
-    useCustomerDashboard();
+
+  // navigating naratives
+  const nnProductInfo = useProductInfo(appStructure.payments.nn.productId);
+  const nnMonthlyCheckout = useCustomerCheckout(
+    appStructure.payments.nn.monthlyPriceId
+  );
+
+  // ahead of the curve
+  const aocProductInfo = useProductInfo(appStructure.payments.aoc.productId);
+  const aocMonthlyCheckout = useCustomerCheckout(
+    appStructure.payments.aoc.monthlyPriceId
+  );
+
+  // this week in crypto
+  const twicProductInfo = useProductInfo(appStructure.payments.twic.productId);
+  const twicMonthlyCheckout = useCustomerCheckout(
+    appStructure.payments.twic.monthlyPriceId
+  );
+
+  // customer dashboard
+  const customerDashboard = useCustomerDashboard();
+  const [email, setEmail] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     getUserInformation((user) => {
@@ -41,198 +77,282 @@ const Payments: React.FC = () => {
     });
   }, []);
 
-  const getPaymentCard = (status: typeof productStatus.state) => {
-    switch (status) {
-      case 'blocked':
+  const getPaymentCard = (plan: ProductPlans, payments: Payments) => {
+    switch (plan) {
+      case 'aoc':
         return (
-          <Ribbon text={'Pro'} color={'red'}>
-            <Card
-              loading={productStatus.state === 'loading'}
-              id="payments-card"
-              style={{
-                width: '100%',
-              }}
-            >
-              <div className={styles.paymentCard}>
-                <div
-                  id="payment-information"
-                  className={styles.paymentInformation}
-                >
-                  <Avatar icon={<WalletOutlined />} />
-                  <Space.Compact direction="vertical">
-                    <Text strong>K33 Research</Text>
-                    {email && (
-                      <Text type="secondary">{`Email: ${mask(email)}`}</Text>
-                    )}
-                  </Space.Compact>
-                </div>
-
-                <div id="payment-action" className={styles.paymentAction}>
-                  <Button
-                    loading={isDashboardLoading}
-                    onClick={dashboard}
-                    icon={<EditOutlined />}
-                  >
-                    Update Payment Details
-                  </Button>
-                  <Image
-                    priority
-                    width={73}
-                    style={{
-                      minWidth: 50,
-                    }}
-                    src={stripe}
-                    alt="stripe"
-                  />
-                </div>
-              </div>
-            </Card>
-          </Ribbon>
+          <PlanProduct
+            email={email}
+            isLoading={
+              aocProductInfo.appState === 'LOADING' ||
+              aocProductInfo.productStatus.state === 'loading'
+            }
+            productStatus={aocProductInfo.productStatus.state ?? 'loading'}
+            dashboardProps={customerDashboard}
+            checkoutProps={aocMonthlyCheckout}
+            payment={appStructure.payments.aoc}
+          />
         );
-      case 'active':
+      case 'nn':
         return (
-          <Ribbon text={'Pro'} color={'#000000'}>
-            <Card
-              loading={productStatus.state === 'loading'}
-              id="payments-card"
-              style={{
-                width: '100%',
-              }}
-            >
-              <div className={styles.paymentCard}>
-                <div
-                  id="payment-information"
-                  className={styles.paymentInformation}
-                >
-                  <Avatar icon={<WalletOutlined />} />
-                  <Space.Compact direction="vertical">
-                    <Text strong>K33 Research</Text>
-                    {email && (
-                      <Text type="secondary">{`Email: ${mask(email)}`}</Text>
-                    )}
-                  </Space.Compact>
-                </div>
-
-                <div id="payment-action" className={styles.paymentAction}>
-                  <Button
-                    loading={isDashboardLoading}
-                    onClick={dashboard}
-                    icon={<EditOutlined />}
-                  >
-                    Manage Subscription
-                  </Button>
-                  <Image
-                    priority
-                    width={73}
-                    style={{
-                      minWidth: 50,
-                    }}
-                    src={stripe}
-                    alt="stripe"
-                  />
-                </div>
-              </div>
-            </Card>
-          </Ribbon>
+          <PlanProduct
+            email={email}
+            isLoading={
+              nnProductInfo.appState === 'LOADING' ||
+              nnProductInfo.productStatus.state === 'loading'
+            }
+            productStatus={nnProductInfo.productStatus.state ?? 'loading'}
+            dashboardProps={customerDashboard}
+            checkoutProps={nnMonthlyCheckout}
+            payment={appStructure.payments.nn}
+          />
         );
-      case 'ended':
+      case 'twic':
         return (
-          <Card
-            loading={productStatus.state === 'loading'}
-            id="payments-card"
-            style={{
-              width: '100%',
-            }}
-          >
-            <div className={styles.paymentCard}>
-              <div
-                id="payment-information"
-                className={styles.paymentInformation}
-              >
-                <Avatar icon={<WalletOutlined />} />
-                <Space.Compact direction="vertical">
-                  <Text strong>K33 Research</Text>
-                  {email && (
-                    <Text type="secondary">{`Email: ${mask(email)}`}</Text>
-                  )}
-                </Space.Compact>
-              </div>
-
-              <div id="payment-action" className={styles.paymentAction}>
-                <Button loading={isLoading} onClick={checkout}>
-                  Renew PRO Subscription
-                </Button>
-                <Image
-                  priority
-                  width={73}
-                  style={{
-                    minWidth: 50,
-                  }}
-                  src={stripe}
-                  alt="stripe"
-                />
-              </div>
-            </div>
-          </Card>
+          <PlanProduct
+            email={email}
+            isLoading={
+              twicProductInfo.appState === 'LOADING' ||
+              twicProductInfo.productStatus.state === 'loading'
+            }
+            productStatus={twicProductInfo.productStatus.state ?? 'loading'}
+            dashboardProps={customerDashboard}
+            checkoutProps={twicMonthlyCheckout}
+            payment={appStructure.payments.twic}
+          />
+        );
+      case 'pro':
+        return (
+          <PlanProduct
+            email={email}
+            isLoading={
+              proProductInfo.appState === 'LOADING' ||
+              proProductInfo.productStatus.state === 'loading'
+            }
+            productStatus={proProductInfo.productStatus.state ?? 'loading'}
+            dashboardProps={customerDashboard}
+            checkoutProps={proMonthlyCheckout}
+            payment={appStructure.payments.pro}
+            isTrial
+          />
         );
       default:
         return (
-          <Card
-            loading={productStatus.state === 'loading'}
-            style={{
-              width: '100%',
-            }}
-            id="payments-card"
-          >
-            <div className={styles.paymentCard}>
-              <div
-                id="payment-information"
-                className={styles.paymentInformation}
-              >
-                <Avatar icon={<WalletOutlined />} />
-                <Space.Compact direction="vertical">
-                  <Text strong>K33 Research</Text>
-                  {email && (
-                    <Text type="secondary">{`Email: ${mask(email)}`}</Text>
-                  )}
-                </Space.Compact>
-              </div>
-
-              <div id="payment-action" className={styles.paymentAction}>
-                <Button loading={isLoading} onClick={checkout}>
-                  Start 30-Day Free Trial
-                </Button>
-                <Image
-                  priority
-                  width={73}
-                  style={{
-                    minWidth: 50,
-                  }}
-                  src={stripe}
-                  alt="stripe"
-                />
-              </div>
-            </div>
-          </Card>
+          <PlanProduct
+            email={email}
+            isLoading={
+              proProductInfo.appState === 'LOADING' ||
+              proProductInfo.productStatus.state === 'loading'
+            }
+            productStatus={proProductInfo.productStatus.state ?? 'loading'}
+            dashboardProps={customerDashboard}
+            checkoutProps={proMonthlyCheckout}
+            payment={appStructure.payments.pro}
+            isTrial
+          />
         );
     }
   };
 
-  const [email, setEmail] = React.useState<string | null>(null);
-
   return (
     <>
-      {productStatus.state === 'blocked' && (
+      {proProductInfo.productStatus.state === 'blocked' && (
         <Alert
           message="Failed Payment Attempt:"
-          description="We were unable to complete the payment of your subscription."
+          description="We were unable to complete the payment of your PRO Subscription."
           type="error"
           showIcon
         />
       )}
-      {getPaymentCard(productStatus.state)}
+
+      {aocProductInfo.productStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your Ahead of The Curve Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      {nnProductInfo.productStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your Navigating Narratives Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      {twicProductInfo.productStatus.state === 'blocked' && (
+        <Alert
+          message="Failed Payment Attempt:"
+          description="We were unable to complete the payment of your This Week in Crypto Subscription."
+          type="error"
+          showIcon
+        />
+      )}
+
+      <Row wrap gutter={[40, 40]}>
+        {Object.keys(appStructure.payments).map((plan) => (
+          <Col xs={24} sm={24} lg={12} key={plan}>
+            {getPaymentCard(
+              plan as ProductPlans,
+              appStructure.payments[plan as ProductPlans]
+            )}
+          </Col>
+        ))}
+      </Row>
     </>
   );
 };
 
 export default Payments;
+
+interface PlanProductProps {
+  email: string | null;
+  productStatus: ProductStatus | 'loading';
+  checkoutProps: {
+    doCheckOut: () => Promise<void>;
+    isLoading: boolean;
+  };
+  dashboardProps: {
+    customerDashboard: () => Promise<void>;
+    isLoading: boolean;
+  };
+  payment: Payments;
+  isLoading: boolean;
+  isTrial?: boolean;
+}
+
+const PlanProduct: React.FC<PlanProductProps> = ({
+  productStatus,
+  email,
+  isLoading,
+  checkoutProps: { doCheckOut, isLoading: checkoutLoading },
+  dashboardProps: { customerDashboard, isLoading: isDashboardLoading },
+  payment,
+  isTrial = false,
+}) => {
+  const { sm, xl } = Grid.useBreakpoint();
+  switch (productStatus) {
+    case 'blocked':
+      return (
+        <Ribbon text={'Pro'} color={'red'}>
+          <PaymentCard payments={payment} email={email} isLoading={isLoading}>
+            <Button
+              loading={isDashboardLoading}
+              onClick={customerDashboard}
+              icon={<EditOutlined />}
+              style={{
+                width: !xl ? '100%' : 'null',
+              }}
+            >
+              Update Payment Details
+            </Button>
+          </PaymentCard>
+        </Ribbon>
+      );
+    case 'active':
+      return (
+        <PaymentCard payments={payment} email={email} isLoading={isLoading}>
+          <Button
+            loading={isDashboardLoading}
+            onClick={customerDashboard}
+            style={{
+              width: !xl ? '100%' : 'null',
+            }}
+            icon={<EditOutlined />}
+          >
+            Manage Subscription
+          </Button>
+        </PaymentCard>
+      );
+    case 'ended':
+      return (
+        <PaymentCard payments={payment} email={email} isLoading={isLoading}>
+          <Button
+            loading={checkoutLoading}
+            onClick={doCheckOut}
+            style={{
+              width: !xl ? '100%' : 'null',
+            }}
+          >
+            Renew Subscription
+          </Button>
+        </PaymentCard>
+      );
+    default:
+      return (
+        <PaymentCard payments={payment} email={email} isLoading={isLoading}>
+          <Button
+            loading={checkoutLoading}
+            onClick={doCheckOut}
+            style={{
+              width: !xl ? '100%' : 'null',
+            }}
+          >
+            {isTrial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
+          </Button>
+        </PaymentCard>
+      );
+  }
+};
+
+interface PaymentCardProps {
+  payments: Payments;
+  children: React.ReactNode;
+  isLoading: boolean;
+  email: string | null;
+}
+
+const PaymentCard: React.FC<PaymentCardProps> = ({
+  payments,
+  children,
+  isLoading,
+  email,
+}) => {
+  const { sm, xl } = Grid.useBreakpoint();
+
+  if (isLoading) return null;
+
+  return (
+    <Card
+      loading={isLoading}
+      style={{
+        width: '100%',
+      }}
+      bodyStyle={{
+        width: '100%',
+        padding: 8,
+      }}
+      id="payments-card"
+    >
+      <div className={styles.paymentCardBody}>
+        <AntImage preview={false} src={payments.settingsImage} width={'100%'} />
+        <div className={styles.paymentCard}>
+          <div id="payment-information" className={styles.paymentInformation}>
+            {sm ? (
+              <Text strong>{payments.name}</Text>
+            ) : (
+              <Typography.Title level={3}>{payments.name}</Typography.Title>
+            )}
+            {email && <Text type="secondary">{`Email: ${mask(email)}`}</Text>}
+          </div>
+
+          <div id="payment-action" className={styles.paymentAction}>
+            {children}
+            <Image
+              priority
+              width={73}
+              style={{
+                minWidth: 50,
+              }}
+              src={stripe}
+              alt="stripe"
+            />
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+};

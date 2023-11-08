@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Layout } from 'antd';
+import { Layout, Typography } from 'antd';
 import { NextPageWithLayout } from 'platform-js';
 import { NextSeo } from 'next-seo';
 import { Payments, PrivateLayout } from '@/components';
@@ -23,7 +23,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
       activeKey="/settings"
       title="Settings"
       tabs={[
-        { key: 'payments', label: 'Payments', url: '/settings' },
+        { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {
           key: 'newsletters',
           label: 'Newsletters',
@@ -31,6 +31,19 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
         },
       ]}
     >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 8,
+        }}
+      >
+        <Typography.Text type="secondary">
+          Here you can have an overview of you current plan and your payment
+          methods.
+        </Typography.Text>
+      </div>
+
       {page}
     </PrivateLayout>
   );

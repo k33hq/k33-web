@@ -165,7 +165,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                         }
                       </Col>
                     )}
-                    <Col
+                    {/* <Col
                       style={{
                         paddingRight: 24,
                       }}
@@ -179,7 +179,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                           icon={<SearchOutlined />}
                         ></Button>
                       </Link>
-                    </Col>
+                    </Col> */}
                     <Col
                       style={{
                         paddingRight: 0,
@@ -187,7 +187,10 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                     >
                       {state === 'SIGNED_OUT' ? (
                         <Link
-                          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                          href={{
+                            pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`,
+                            query: { redirect: window.location.href },
+                          }}
                           role="grid"
                         >
                           <Button

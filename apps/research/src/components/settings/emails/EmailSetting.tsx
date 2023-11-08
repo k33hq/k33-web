@@ -1,15 +1,18 @@
-import { ProductStatus, SupressedGroup } from '@/types';
+import { ProductPlans, ProductStatus, SupressedGroup } from '@/types';
 import { Button, Divider, Switch, Tag, Typography, theme, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import * as React from 'react';
-import { useSupressionGroupActions } from '@/hooks';
+import { useProductInfo, useSupressionGroupActions } from '@/hooks';
 import styles from './styles.module.scss';
+import { appStructure } from '@/config';
+import { useRouter } from 'next/router';
 
 interface EmailSettingProps extends SupressedGroup {
   description: string;
   productStatus: ProductStatus | null | 'loading';
   isPro?: boolean;
   openProductModal: () => void;
+  productPlan: ProductPlans;
 }
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -19,13 +22,19 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
   name,
   suppressed,
   description,
-  productStatus,
   openProductModal,
+  productPlan,
   isPro = false,
 }) => {
   const {
     token: { fontSizeSM },
   } = theme.useToken();
+
+  const route = useRouter();
+
+  const { productStatus } = useProductInfo(
+    appStructure.payments[productPlan].productId
+  );
 
   const { putGroupInSupression, deleteGroupInSupression, isLoading } =
     useSupressionGroupActions(String(id));
@@ -57,7 +66,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
               alignSelf: 'stretch',
             }}
           >
-            {isPro && <Tag color="black">PRO</Tag>}
+            {/* {isPro && <Tag color="black">PRO</Tag>} */}
             <Typography.Text strong>{name}</Typography.Text>
           </div>
           <Typography.Text
@@ -69,7 +78,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             {description}
           </Typography.Text>
         </div>
-        {(productStatus === 'active' || !isPro) && (
+        {(productStatus.state === 'active' || isPro) && (
           <Switch
             defaultChecked={!suppressed}
             checked={!suppressed}
@@ -77,19 +86,19 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             loading={isLoading}
           />
         )}
-        {productStatus === 'ended' && isPro && (
-          <Button size="small" onClick={openProductModal}>
+        {productStatus.state === 'ended' && !isPro && (
+          <Button size="small" onClick={() => route.push('/settings')}>
             Renew Subscription
           </Button>
         )}
-        {productStatus === 'blocked' && isPro && (
-          <Button size="small" onClick={openProductModal}>
+        {productStatus.state === 'blocked' && !isPro && (
+          <Button size="small" onClick={() => route.push('/settings')}>
             Update payment details
           </Button>
         )}
-        {productStatus === null && isPro && (
-          <Button size="small" onClick={openProductModal}>
-            Start 30 day trial
+        {productStatus === null && !isPro && (
+          <Button size="small" onClick={() => route.push('/pricing')}>
+            Subscribe Now
           </Button>
         )}
       </div>

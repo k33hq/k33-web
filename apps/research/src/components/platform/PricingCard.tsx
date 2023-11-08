@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Space, Typography, List } from 'antd';
+import { Card, Space, Typography, List, Image, Badge, theme } from 'antd';
 import {
   UserOutlined,
   CheckCircleFilled,
@@ -9,111 +9,80 @@ const { Title, Text } = Typography;
 
 interface PricingCardProps {
   action: React.ReactNode;
-  features: Array<string>;
+  description: string;
   price: string;
   plan: string;
-  promotions?: React.ReactNode;
-  icon: React.ReactNode;
-  date?: 'year' | 'mo';
   state?: 'blocked' | 'active';
+  image: string;
+  badge?: string;
+  isYear?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
+  image,
   action,
-  features,
   price,
+  description,
   plan,
-  promotions,
-  icon,
   state,
-  date = 'mo',
+  badge,
+  isYear = false,
 }) => {
+  const {
+    token: { colorInfo },
+  } = theme.useToken();
   return (
-    <Card
-      style={{
-        width: '100%',
-        maxWidth: 325,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-      {...(state === 'active' && { title: 'ACTIVE PLAN' })}
-      {...(state === 'blocked' && { title: 'BLOCKED PLAN' })}
-      headStyle={{
-        width: '100%',
-        color: 'white',
-        alignItems: 'center',
-        flexDirection: 'column',
-        textAlign: 'center',
-        ...(state === 'active' && { background: 'black' }),
-        ...(state === 'blocked' && { background: 'var(--red-6, #F5222D)' }),
-      }}
-    >
-      <Space direction="vertical" align="center" size={24}>
-        <Space align="center" direction="vertical" size={8}>
-          {promotions && (
-            <div
-              style={{
-                marginBottom: 8,
-              }}
-            >
-              {promotions}
-            </div>
-          )}
-          {icon}
-          <Title
+    <Badge count={badge} offset={[-158, 0]} color="blue">
+      <Card
+        style={{
+          width: '100%',
+          ...(badge && {
+            border: `3px solid ${colorInfo}`,
+          }),
+        }}
+        bordered
+        cover={
+          <Image
+            preview={false}
+            src={image}
+            alt="product-image"
             style={{
-              margin: 0,
+              ...(!badge && {
+                borderTop: '1px solid #f0f0f0',
+                borderRight: '1px solid #f0f0f0',
+                borderLeft: '1px solid #f0f0f0',
+              }),
             }}
-            level={5}
-          >
-            {plan}
-          </Title>
-        </Space>
-        <Space.Compact
-          direction="horizontal"
-          style={{
-            gap: 4,
-            alignItems: 'end',
-            justifyContent: 'center',
-          }}
+          />
+        }
+      >
+        <Space
+          direction="vertical"
+          align="center"
+          size={16}
+          style={{ paddingBottom: 16, height: 200 }}
         >
-          <Text type="secondary">$</Text>
-          <Title
-            style={{
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            {price}
-          </Title>
-          <Text type="secondary">{`/${date}`}</Text>
-        </Space.Compact>
-        <List
-          split={false}
-          style={{
-            width: '100%',
-            padding: 0,
-          }}
-          dataSource={features}
-          renderItem={(feat) => (
-            <List.Item
+          <Space direction="vertical" size={4}>
+            <Typography.Text strong>{plan}</Typography.Text>
+            <Typography.Text
+              type="secondary"
               style={{
-                margin: 0,
-                paddingBottom: 8,
+                fontSize: 12,
               }}
             >
-              <Space align="start">
-                <CheckCircleOutlined />
-                <Text type="secondary">{feat}</Text>
-              </Space>
-            </List.Item>
-          )}
-        />
-
+              {description}
+            </Typography.Text>
+            <Space dir="horizontal" size={2}>
+              <Typography.Text strong>{price}</Typography.Text>
+              <Typography.Text type="secondary">
+                {isYear ? '/year' : '/month'}
+              </Typography.Text>
+            </Space>
+          </Space>
+        </Space>
         {action}
-      </Space>
-    </Card>
+      </Card>
+    </Badge>
   );
 };
 

@@ -1,7 +1,7 @@
 import { getArticleSummaryWidgets } from '@/api';
 import { ArticleCard, TabLayout, TokenValuationLayout } from '@/components';
 import { ArticleSummaryWidget } from '@/types';
-import { getLevelTwos, siteUsername } from '@/utils';
+import { siteUsername } from '@/utils';
 import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';

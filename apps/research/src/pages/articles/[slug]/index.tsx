@@ -12,16 +12,19 @@ import type {
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
-import { NextPageWithLayout } from 'platform-js';
+import { NextPageWithLayout, useAppState } from 'platform-js';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
 import {
   Article,
   ArticleSidebar,
   ShareArticle,
   ArticleRecommendations,
+  TopPromotion,
+  BottomPromotion,
 } from '@/components';
 import Head from 'next/head';
 import { siteUsername } from '@/utils';
+import config from '@/firebase/config';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -50,6 +53,8 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
     image,
     ...articleContent
   } = page;
+
+  const state = useAppState(config);
 
   return (
     <>
