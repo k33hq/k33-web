@@ -96,7 +96,7 @@ const EmailSetting: React.FC<EmailSettingProps> = ({
             Update payment details
           </Button>
         )}
-        {productStatus === null && !isPro && (
+        {productStatus.state === null && !isPro && (
           <Button size="small" onClick={() => route.push('/pricing')}>
             Subscribe Now
           </Button>
