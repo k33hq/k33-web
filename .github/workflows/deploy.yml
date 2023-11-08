@@ -125,13 +125,13 @@ jobs:
           NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_NN: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID_NN
           NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_NN: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID_NN
           ## ahead of the curve
-          NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC: op://k33-web-env/$APP_ENV/stripe/MONTHLY_PRICE_ID_AOC
-          NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_AOC: op://k33-web-env/$APP_ENV/stripe/YEARLY_PRICE_ID_AOC
-          NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC: op://k33-web-env/$APP_ENV/stripe/PRODUCT_ID_AOC
+          NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_AOC: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID_AOC
+          NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_AOC: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID_AOC
+          NEXT_PUBLIC_STRIPE_PRODUCT_ID_AOC: op://k33-web-env/prod/stripe/PRODUCT_ID_AOC
           ## research pro
-          NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO: op://k33-web-env/$APP_ENV/stripe/MONTHLY_PRICE_ID_PRO
-          NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_PRO: op://k33-web-env/$APP_ENV/stripe/YEARLY_PRICE_ID_PRO
-          NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO: op://k33-web-env/$APP_ENV/stripe/PRODUCT_ID_PRO
+          NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID_PRO
+          NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID_PRO
+          NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO: op://k33-web-env/prod/stripe/PRODUCT_ID_PRO
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies
