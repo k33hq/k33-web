@@ -91,10 +91,7 @@ Kvq.getLayout = function getLayout(page: React.ReactElement) {
 export const getStaticProps: GetStaticProps<KvQProps> = async () => {
   const indexes = await getIndexes();
 
-  const summaries = await getArticleSummaryWidgets(
-    'token-valuation/indices/kvq',
-    4
-  );
+  const summaries = await getArticleSummaryWidgets('kvq', 4);
   return {
     props: {
       indexes,

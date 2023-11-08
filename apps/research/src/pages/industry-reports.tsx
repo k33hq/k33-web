@@ -74,7 +74,7 @@ IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
 export const getStaticProps: GetStaticProps<
   IndustryReportsProps
 > = async () => {
-  const articles = await getArticleWidgets('industry-insights/reports');
+  const articles = await getArticleWidgets('industry-reports');
   return {
     props: {
       articles,
