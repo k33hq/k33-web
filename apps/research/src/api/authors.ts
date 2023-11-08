@@ -5,7 +5,11 @@ import { Author, AuthorCollection } from '@/types';
 
 const GetAuthorByName = gql`
   query GetAuthorByName($name: String!) {
-    authorCollection(where: { name: $name }, limit: 1) {
+    authorCollection(
+      where: { name: $name }
+      order: [publishedDate_DESC]
+      limit: 1
+    ) {
       items {
         name
         title

@@ -72,10 +72,10 @@ const Articles: NextPageWithLayout = () => {
       },
     },
   };
-  const [author, setAuthor] = useState<Author | null>(null)
-  const router = useRouter()
+  const [author, setAuthor] = useState<Author | null>(null);
+  const router = useRouter();
   useAsyncEffect(async () => {
-    const authors = router.query["authors"]
+    const authors = router.query['authors'];
     if (authors) {
       if (typeof authors == 'string') {
         if (!authors.includes(',')) {
@@ -163,12 +163,13 @@ const Articles: NextPageWithLayout = () => {
               paddingTop: 40,
             }}
           >
-            {author && <Row>
-              <Col span={22} offset={1} className="default-body">
-                <AuthorCard {...author} />
-              </Col>
-            </Row>
-            }
+            {author && (
+              <Row>
+                <Col span={22} offset={1} className="default-body">
+                  <AuthorCard {...author} />
+                </Col>
+              </Row>
+            )}
             <Row>
               <Col span={22} offset={1} className="default-body">
                 <SearchHits />
