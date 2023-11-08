@@ -173,14 +173,8 @@ const Home: NextPageWithLayout<HomePageProps> = ({
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   // const homepage = await builder.get('homepage').toPromise();
-  const industryReports = await getArticleWidgets(
-    'industry-insights/reports',
-    6
-  );
-  const analysis = await getArticleSummaryWidgets(
-    'token-valuation/indices/kvq',
-    4
-  );
+  const industryReports = await getArticleWidgets('industry-reports', 6);
+  const analysis = await getArticleSummaryWidgets('kvq', 4);
 
   // const quickTakes = await getArticleSummaryWidgets(
   //   'market-insights/quick-takes',
