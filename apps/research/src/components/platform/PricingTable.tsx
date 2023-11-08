@@ -499,7 +499,7 @@ const PricingTable = () => {
             isYear
             description={payments.description}
             image={payments.image}
-            badge={'SAVE $140 by combining all subscriptions!'}
+            badge={'SAVE $150 by combining all subscriptions!'}
             {...(productStatus.priceId === annualPriceId &&
               productStatus.state === 'blocked' && {
                 state: 'blocked',
@@ -539,7 +539,7 @@ const PricingTable = () => {
         return (
           <PricingCard
             isYear
-            badge={'SAVE $140 by combining all subscriptions!'}
+            badge={'SAVE $150 by combining all subscriptions!'}
             description={payments.description}
             image={payments.image}
             {...(productStatus.priceId === annualPriceId &&
