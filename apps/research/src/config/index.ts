@@ -104,11 +104,6 @@ export const appStructure: AppStructure = {
     // },
   ],
   payments: {
-    // default: {
-    //   productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID! as string,
-    //   annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID!,
-    //   monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID!,
-    // },
     twic: {
       productId: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_ID_TWIC! as string,
       annualPriceId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_TWIC!,
