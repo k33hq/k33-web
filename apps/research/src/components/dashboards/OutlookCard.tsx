@@ -44,12 +44,10 @@ const OutlookCard: React.FC = () => {
               margin: 0,
             }}
           >
-            The market dramatically underestimates the impact of U.S. BTC ETFs
-            and, in extension, futures-based ETH ETFs. In September, few
-            catalysts await, offering a solid opportunity for strategic
-            positioning ahead of an October packed with market-moving events. I
-            favor a mix of increased ETH exposure and conservatively leveraged
-            long exposure in BTC.
+            A lackluster futures-based ETH ETF launch and a dearth of compelling
+            narratives in Ethereum favor reduced ETH exposure. I anticipate
+            ongoing October consolidation, extending the BTC accumulation window
+            as medium-term fundamentals remain solid.
           </Paragraph>
           <Text
             type="secondary"
