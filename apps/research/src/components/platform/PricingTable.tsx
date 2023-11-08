@@ -672,7 +672,7 @@ const PricingTable = () => {
           value="year"
         >
           <Badge
-            count={'Save up to $140'}
+            count={'Save up to $150'}
             style={{
               fontSize: 8,
             }}
