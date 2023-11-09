@@ -62,9 +62,9 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           </Text> */}
         </Space>
         <ProCheckoutCard
-          handleYearlyCheckout={isLoggedOut ? signIn : yearlyCheckout}
+          handleYearlyCheckout={signIn}
           isLoading={isLoading}
-          handleCheckout={isLoggedOut ? signIn : checkout}
+          handleCheckout={signIn}
           label="Subscribe Now"
           isFreeTrial
           features={appStructure.payments[productKeys].features}

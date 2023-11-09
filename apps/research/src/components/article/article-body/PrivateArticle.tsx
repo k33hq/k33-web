@@ -101,6 +101,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
           </div>
         );
       case 'blocked':
+        if (completePackageStatus.state === 'ended') {
+          return null;
+        }
         return <BlockedCall />;
       case 'ended':
         if (completePackageStatus.state === 'ended') {
@@ -115,6 +118,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
           />
         );
       default:
+        if (completePackageStatus.state === 'ended') {
+          return null;
+        }
         return (
           <StartTrialCall
             productKeys={productKey}
