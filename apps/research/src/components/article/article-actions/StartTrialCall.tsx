@@ -72,17 +72,19 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           monthlyPrice={appStructure.payments[productKeys].monthlyPrice}
           name={appStructure.payments[productKeys].name}
         />
-        <Space direction="horizontal" size={2}>
-          Already subscribed?{' '}
-          <Link
-            href={{
-              pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`,
-              query: { redirect: window.location.href },
-            }}
-          >
-            Sign in here
-          </Link>
-        </Space>
+        {isLoggedOut && (
+          <Space direction="horizontal" size={2}>
+            Already subscribed?{' '}
+            <Link
+              href={{
+                pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`,
+                query: { redirect: window.location.href },
+              }}
+            >
+              Sign in here
+            </Link>
+          </Space>
+        )}
       </div>
     </CallToActionCard>
   );
