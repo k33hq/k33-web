@@ -1,25 +1,17 @@
-import { getArticleSummaryWidgets, getIndexes } from '@/api';
-import {
-  DashboardList,
-  HighlightArticle,
-  SpotlightChart,
-  TokenValuationCover,
-  TabLayout,
-  TokenValuationLayout,
-} from '@/components';
-import { ArticleSummaryWidget, IndexHome } from '@/types';
+import { getArticleSummaryWidgets } from '@/api';
+import { ArticleCard, TabLayout } from '@/components';
+import { ArticleSummaryWidget } from '@/types';
 import { siteUsername } from '@/utils';
+import { Col, Row } from 'antd';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
 
 interface KvQProps {
-  indexes: ReadonlyArray<IndexHome>;
-  summaries: ReadonlyArray<ArticleSummaryWidget>;
+  articles: ReadonlyArray<ArticleSummaryWidget>;
 }
 
-const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
-  const { highlightArticle, chartBody, chart, ...indexProps } = indexes[0];
+const Kvq: NextPageWithLayout<KvQProps> = ({ articles }) => {
   return (
     <>
       <NextSeo
@@ -51,26 +43,13 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
           siteName: process.env.NEXT_PUBLIC_WEB_DOMAIN + '/research',
         }}
       />
-      <TokenValuationCover {...indexProps} isNavigable={false}>
-        <div
-          id="charts-and-hightlighted-articles"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: 32,
-          }}
-        >
-          <SpotlightChart chart={chart} chartBody={chartBody} />
-          <HighlightArticle {...highlightArticle} />
-        </div>
-      </TokenValuationCover>
-      <DashboardList
-        articles={summaries}
-        title="Support Assessments"
-        column={6}
-        href="/articles?query=kvq"
-      />
+      <Row wrap gutter={[32, 40]} align="stretch">
+        {articles.map((article) => (
+          <Col xs={24} sm={24} md={6} key={article.publishedDate}>
+            <ArticleCard {...article} />
+          </Col>
+        ))}
+      </Row>
     </>
   );
 };
@@ -89,13 +68,10 @@ Kvq.getLayout = function getLayout(page: React.ReactElement) {
   );
 };
 export const getStaticProps: GetStaticProps<KvQProps> = async () => {
-  const indexes = await getIndexes();
-
-  const summaries = await getArticleSummaryWidgets('kvq', 4);
+  const articles = await getArticleSummaryWidgets('kvq');
   return {
     props: {
-      indexes,
-      summaries,
+      articles,
     },
   };
 };
