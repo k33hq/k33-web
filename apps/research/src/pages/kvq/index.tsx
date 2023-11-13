@@ -18,6 +18,7 @@ interface KvQProps {
   summaries: ReadonlyArray<ArticleSummaryWidget>;
 }
 
+const title = 'Research - KVQ';
 const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
   const { highlightArticle, chartBody, chart, ...indexProps } = indexes[0];
   return (
@@ -27,7 +28,7 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
         robotsProps={{
           maxImagePreview: 'large',
         }}
-        title={'Research - Token Valuation'}
+        title={title}
         description={
           'The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets.'
         }
@@ -37,7 +38,7 @@ const Kvq: NextPageWithLayout<KvQProps> = ({ indexes, summaries }) => {
           cardType: 'summary_large_image',
         }}
         openGraph={{
-          title: 'Research - Token Valuation',
+          title,
           description:
             'The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/token-valuation`,

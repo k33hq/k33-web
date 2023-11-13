@@ -25,7 +25,7 @@ const AheadOfTheCurve: NextPageWithLayout<AheadOfTheCurveProps> = ({
         }}
         title={'Research - Ahead Of The Curve'}
         description={
-          'The weekly market report with signals from the derivatives market, market structure and expert opinion.'
+          'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.'
         }
         twitter={{
           handle: siteUsername,
@@ -35,7 +35,7 @@ const AheadOfTheCurve: NextPageWithLayout<AheadOfTheCurveProps> = ({
         openGraph={{
           title: 'Research - Ahead Of The Curve',
           description:
-            'The weekly market report with signals from the derivatives market, market structure and expert opinion.',
+            'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
           type: 'article:section',
           images: [

@@ -12,6 +12,7 @@ interface NavigatingNarrativesProps {
 }
 
 // TODO: change SEO data
+const title = 'This Week in Crypto';
 const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
   articles,
 }) => {
@@ -22,9 +23,9 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
         robotsProps={{
           maxImagePreview: 'large',
         }}
-        title={'Research - Navigating Narratives'}
+        title={title}
         description={
-          'Our weekly newsletter on the most important happenings in crypto, explanations and implications of significant happenings.'
+          'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.'
         }
         twitter={{
           handle: siteUsername,
@@ -32,9 +33,9 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
           cardType: 'summary_large_image',
         }}
         openGraph={{
-          title: 'Research - Navigating Narratives',
+          title,
           description:
-            'Our weekly newsletter on the most important happenings in crypto, explanations and implications of significant happenings.',
+            'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
           url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
           type: 'article:section',
           images: [
