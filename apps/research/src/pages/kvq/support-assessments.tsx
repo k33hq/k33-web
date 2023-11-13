@@ -61,7 +61,7 @@ Kvq.getLayout = function getLayout(page: React.ReactElement) {
       description="The K33 Vinter Quality Index is a smart beta index for crypto assets, consisting of an equally weighted mix of selected tokens from the top 30 crypto assets."
       title="K33 Vinter Quality Index"
       tabs={[]}
-      image="./kvq_header.svg"
+      image={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/kvq_header.svg`}
     >
       {page}
     </TabLayout>
