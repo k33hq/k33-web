@@ -22,6 +22,11 @@ import Link from 'next/link';
 import PricingCard from './PricingCard';
 import { setTwoToneColor } from '@ant-design/icons';
 import { proFeatures } from '@/utils';
+import {
+  LogoutActionButton,
+  DashboardButton,
+  CheckOutButton,
+} from './pricing/PricingButtons';
 import { Payments, ProductPlans, ProductStatus } from '@/types';
 import { useRouter } from 'next/router';
 
@@ -647,8 +652,8 @@ const PricingTable = () => {
           textAlign: 'center',
         }}
       >
-        <Title level={3} style={{ margin: 0 }}>
-          Select Your Subscriptions!
+        <Title level={3} style={{ margin: 0, maxWidth: 360 }}>
+          Three Weekly Reports That Cover All You Need To Know
         </Title>
         {/* <Text>
           The right plan is waiting for you. Subscribe and get full access to
@@ -687,26 +692,30 @@ const PricingTable = () => {
 
       <div>
         {plan === 'monthly' ? (
-          <Row wrap gutter={[16, 16]}>
-            {Object.keys(appStructure.payments).map((plan) => (
-              <Col xs={24} sm={24} lg={6} key={plan}>
-                {getMonthlyPaymentCard(
-                  plan as ProductPlans,
-                  appStructure.payments[plan as ProductPlans]
-                )}
-              </Col>
-            ))}
+          <Row wrap gutter={[96, 16]}>
+            {Object.keys(appStructure.payments)
+              .filter((payment) => payment != 'pro')
+              .map((plan) => (
+                <Col xs={24} sm={24} lg={8} key={plan}>
+                  {getMonthlyPaymentCard(
+                    plan as ProductPlans,
+                    appStructure.payments[plan as ProductPlans]
+                  )}
+                </Col>
+              ))}
           </Row>
         ) : (
-          <Row wrap gutter={[16, 16]}>
-            {Object.keys(appStructure.payments).map((plan) => (
-              <Col xs={24} sm={24} lg={6} key={plan}>
-                {getYearlyPaymentCard(
-                  plan as ProductPlans,
-                  appStructure.payments[plan as ProductPlans]
-                )}
-              </Col>
-            ))}
+          <Row wrap gutter={[96, 16]}>
+            {Object.keys(appStructure.payments)
+              .filter((payment) => payment != 'pro')
+              .map((plan) => (
+                <Col xs={24} sm={24} lg={8} key={plan}>
+                  {getYearlyPaymentCard(
+                    plan as ProductPlans,
+                    appStructure.payments[plan as ProductPlans]
+                  )}
+                </Col>
+              ))}
           </Row>
         )}
       </div>
@@ -715,125 +724,3 @@ const PricingTable = () => {
 };
 
 export default PricingTable;
-
-interface LogoutActionButtonProps {
-  badge?: boolean;
-  plan?: ProductPlans;
-  url?: string;
-  type: 'monthly' | 'year';
-  trial?: boolean;
-}
-
-const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
-  url = window.location.href,
-  badge = false,
-  plan = 'pro',
-  type = 'year',
-  trial = false,
-}) => {
-  const {
-    token: { colorInfo },
-  } = useToken();
-
-  const router = useRouter();
-
-  const getUrl = () => {
-    if (router.query.redirectUrl) {
-      return window.location.href;
-    } else {
-      return (
-        window.location.href +
-        '/pricing' +
-        '?redirectUrl=' +
-        window.location.href
-      );
-    }
-  };
-  return (
-    <Link
-      href={{
-        pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/signup`,
-        query: { plan, redirect: getUrl(), type },
-      }}
-      role="grid"
-      style={{
-        width: '100%',
-      }}
-    >
-      <Button
-        block
-        style={{
-          ...(badge && {
-            border: `1px solid ${colorInfo}`,
-          }),
-        }}
-      >
-        {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
-      </Button>
-    </Link>
-  );
-};
-
-interface CheckOutButtonProps {
-  checkOut: () => void;
-  isLoading: boolean;
-  badge?: boolean;
-  trial?: boolean;
-}
-
-export const CheckOutButton: React.FC<CheckOutButtonProps> = ({
-  checkOut,
-  isLoading,
-  badge = false,
-  trial = false,
-}) => {
-  const {
-    token: { colorInfo },
-  } = useToken();
-  return (
-    <Button
-      loading={isLoading}
-      onClick={checkOut}
-      block
-      style={{
-        ...(badge && {
-          border: `1px solid ${colorInfo}`,
-        }),
-      }}
-    >
-      {trial ? 'Start 30-Day Free Trial' : 'Subscribe Now'}
-    </Button>
-  );
-};
-
-interface DashboardButtonProps extends React.PropsWithChildren {
-  dashboard: () => void;
-  isLoading: boolean;
-  badge?: boolean;
-}
-
-export const DashboardButton: React.FC<DashboardButtonProps> = ({
-  dashboard,
-  isLoading,
-  children,
-  badge = false,
-}) => {
-  const {
-    token: { colorInfo },
-  } = useToken();
-  return (
-    <Button
-      onClick={dashboard}
-      loading={isLoading}
-      icon={<EditOutlined />}
-      style={{
-        ...(badge && {
-          border: `1px solid ${colorInfo}`,
-        }),
-      }}
-      block
-    >
-      {children}
-    </Button>
-  );
-};

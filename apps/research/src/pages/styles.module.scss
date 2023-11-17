@@ -78,3 +78,23 @@
     height: 593px;
   }
 }
+
+.pricingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0px 64px 0px;
+}
+
+@include medium() {
+  .pricingPage {
+    padding: 40px 32px 64px 32px;
+  }
+}
+
+@include xlarge() {
+  .pricingPage {
+    padding: 40px 96px 64px 96px;
+  }
+}

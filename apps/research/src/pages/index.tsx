@@ -8,6 +8,7 @@ import {
   MarketDashboard,
   NamedDivider,
   PricingTable,
+  ProPricingTable,
   SimpleLayout,
   TokenValuationCover,
   TopPromotion,
@@ -111,7 +112,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
           }}
         >
           <Divider />
-          <PricingTable />
+          <ProPricingTable />
         </div>
         {/* <div
           style={{

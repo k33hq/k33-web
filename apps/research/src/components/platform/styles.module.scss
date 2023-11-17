@@ -142,3 +142,17 @@
   .bottomPromotion {
   }
 }
+
+.proPricing {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@include medium() {
+  .proPricing {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+}

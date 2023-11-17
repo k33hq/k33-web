@@ -1,9 +1,10 @@
-import { PricingTable } from '@/components';
+import { PricingTable, ProPricingTable } from '@/components';
 import { siteUsername } from '@/utils';
 import { Col, Layout, Row, Space, theme, Typography } from 'antd';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import styles from './styles.module.scss';
 
 const { useToken } = theme;
 const { Title } = Typography;
@@ -104,18 +105,8 @@ const Pricing = () => {
           }}
         >
           <Row>
-            <Col
-              span={22}
-              offset={1}
-              style={{
-                display: 'flex',
-                padding: '40px 0px 64px 0px',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '40px',
-                alignSelf: 'stretch',
-              }}
-            >
+            <Col span={22} offset={1} className={styles.pricingPage}>
+              <ProPricingTable />
               <PricingTable />
             </Col>
           </Row>
