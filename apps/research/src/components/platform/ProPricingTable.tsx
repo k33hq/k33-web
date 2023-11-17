@@ -307,12 +307,32 @@ const ProPrincingTable: React.FC = () => {
             gap: 32,
           }}
         >
-          <Image
-            src="./pro_background.svg"
-            alt="pro-background"
-            style={{ maxHeight: 600, borderRadius: 10 }}
-            preview={false}
-          />
+          <div
+            style={{
+              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
+              borderRadius: 10,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              position: 'relative',
+              width: '100%',
+            }}
+          >
+            <Space
+              direction="horizontal"
+              style={{
+                margin: '0 auto',
+                marginTop: 120,
+                marginBottom: 120,
+              }}
+            >
+              <Typography.Title style={{ color: 'white' }}>
+                K33 Research
+              </Typography.Title>
+              <Typography.Title style={{ color: '#1155CC' }}>
+                Pro
+              </Typography.Title>
+            </Space>
+          </div>
           <div
             style={{
               display: 'flex',
