@@ -298,15 +298,7 @@ const ProPrincingTable: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div
-          id="pro-pricing-monthly"
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            marginTop: 32,
-            gap: 32,
-          }}
-        >
+        <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
               backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
