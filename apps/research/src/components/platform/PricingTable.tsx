@@ -547,17 +547,7 @@ const PricingTable = () => {
           onChange={(e) => setPlan(e.target.value)}
           value="year"
         >
-          <Badge
-            count={'Save up to $150'}
-            style={{
-              fontSize: 8,
-            }}
-            offset={[-35, -10]}
-            size="small"
-            color="blue"
-          >
-            Yearly Plan
-          </Badge>
+          Yearly Plan
         </Radio.Button>
       </Radio.Group>
 
