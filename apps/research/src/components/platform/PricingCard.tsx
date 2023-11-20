@@ -1,88 +1,85 @@
 import * as React from 'react';
-import { Card, Space, Typography, List, Image, Badge, theme } from 'antd';
-import {
-  UserOutlined,
-  CheckCircleFilled,
-  CheckCircleOutlined,
-} from '@ant-design/icons';
-const { Title, Text } = Typography;
+import { Card, Space, Typography, List, Grid } from 'antd';
 
 interface PricingCardProps {
   action: React.ReactNode;
-  description: string;
+
   price: string;
   plan: string;
-  state?: 'blocked' | 'active';
-  image: string;
-  badge?: string;
+
+  image: React.ReactNode;
+
   isYear?: boolean;
+  pricingCardDescription: Array<string>;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
   image,
   action,
   price,
-  description,
   plan,
-  state,
-  badge,
+  pricingCardDescription,
   isYear = false,
 }) => {
-  const {
-    token: { colorInfo },
-  } = theme.useToken();
+  const { lg, sm, md } = Grid.useBreakpoint();
   return (
-    <Badge count={badge} offset={[-158, 0]} color="blue">
-      <Card
-        style={{
-          width: '100%',
-          ...(badge && {
-            border: `3px solid ${colorInfo}`,
-          }),
-        }}
-        bordered
-        cover={
-          <Image
-            preview={false}
-            src={image}
-            alt="product-image"
-            style={{
-              ...(!badge && {
-                borderTop: '1px solid #f0f0f0',
-                borderRight: '1px solid #f0f0f0',
-                borderLeft: '1px solid #f0f0f0',
-              }),
-            }}
-          />
-        }
+    <Card
+      style={{
+        width: '100%',
+        padding: 24,
+        boxShadow: '0 2px 45px rgba(0, 0, 0, .08)',
+      }}
+      bordered={false}
+    >
+      {image}
+      <Space
+        direction="vertical"
+        align="center"
+        size={16}
+        style={{ paddingBottom: 16, width: '100%' }}
       >
         <Space
           direction="vertical"
-          align="center"
-          size={16}
-          style={{ paddingBottom: 16, height: 200 }}
+          size={4}
+          style={{
+            height: lg ? 420 : md ? 220 : sm ? 260 : 360,
+          }}
         >
-          <Space direction="vertical" size={4}>
-            <Typography.Text strong>{plan}</Typography.Text>
-            <Typography.Text
-              type="secondary"
-              style={{
-                fontSize: 12,
-              }}
-            >
-              {description}
-            </Typography.Text>
-            <Space dir="horizontal" size={2}>
-              <Typography.Text strong>{price}</Typography.Text>
-              <Typography.Text type="secondary">
-                {isYear ? '/year' : '/month'}
-              </Typography.Text>
-            </Space>
-          </Space>
+          <Typography.Title level={2}>{plan}</Typography.Title>
+          <List
+            dataSource={pricingCardDescription}
+            size="small"
+            renderItem={(item) => (
+              <List.Item
+                key={item}
+                style={{ border: 'none', paddingLeft: 0, marginLeft: 0 }}
+              >
+                <span style={{ color: '#15c', paddingRight: 8 }}>→</span>
+                {item}
+              </List.Item>
+            )}
+          />
         </Space>
-        {action}
-      </Card>
-    </Badge>
+      </Space>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          paddingBottom: 20,
+        }}
+      >
+        <Typography.Title level={4} style={{ fontWeight: 800, margin: 0 }}>
+          {price.split('.')[0]}
+        </Typography.Title>
+        <Typography.Title level={4} style={{ margin: 0 }}>
+          {isYear ? '/year' : '/month'}
+        </Typography.Title>
+      </div>
+      {action}
+    </Card>
   );
 };
 

@@ -16,6 +16,7 @@ export interface Payments {
   description: string;
   monthlyPrice: string;
   yearlyPrice: string;
+  pricingDescription: Array<string>;
   features: Array<string>;
 }
 

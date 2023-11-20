@@ -29,6 +29,10 @@ import {
 } from './pricing/PricingButtons';
 import { Payments, ProductPlans, ProductStatus } from '@/types';
 import { useRouter } from 'next/router';
+import aoc from '../../assets/aoc.svg';
+import nn from '../../assets/nn.svg';
+import twic from '../../assets/twic.svg';
+import Image from 'next/image';
 
 setTwoToneColor('#777777');
 
@@ -195,18 +199,12 @@ const PricingTable = () => {
       case 'aoc':
         return (
           <PricingCard
-            image={payments.image}
-            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(aocProductStatus.priceId === aocMonthlyPriceId &&
-              aocProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={aoc} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
-            description={payments.description}
             price={payments.monthlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -231,18 +229,12 @@ const PricingTable = () => {
       case 'nn':
         return (
           <PricingCard
-            description={payments.description}
-            image={payments.image}
-            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
-              nnProductStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(nnProductStatus.priceId === nnMonthlyPriceId &&
-              nnProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={nn} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.monthlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -267,18 +259,12 @@ const PricingTable = () => {
       case 'twic':
         return (
           <PricingCard
-            description={payments.description}
-            image={payments.image}
-            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
-              twicProductStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(twicProductStatus.priceId === twicMonthlyPriceId &&
-              twicProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={twic} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.monthlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -300,63 +286,15 @@ const PricingTable = () => {
             }
           />
         );
-      case 'pro':
-        return (
-          <PricingCard
-            badge={'SAVE $15 by combining all subscriptions!'}
-            description={payments.description}
-            image={payments.image}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            plan={payments.name}
-            price={payments.monthlyPrice}
-            action={
-              <>
-                {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton
-                    badge
-                    plan="pro"
-                    url={router.query.redirectUrl as string}
-                    type="monthly"
-                    trial
-                  />
-                ) : (
-                  getMonthlyActions(
-                    productStatus,
-                    undefined,
-                    undefined,
-                    undefined,
-                    undefined,
-                    true,
-                    true
-                  )
-                )}
-              </>
-            }
-          />
-        );
       default:
         return (
           <PricingCard
-            badge={'SAVE $15 by combining all subscriptions!'}
-            description={payments.description}
-            image={payments.image}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === monthlyPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={aoc} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.monthlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -391,18 +329,12 @@ const PricingTable = () => {
         return (
           <PricingCard
             isYear
-            image={payments.image}
-            {...(aocProductStatus.priceId === aocYearlyPriceId &&
-              aocProductStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(aocProductStatus.priceId === aocYearlyPriceId &&
-              aocProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={aoc} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
-            description={payments.description}
             price={payments.yearlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -428,18 +360,12 @@ const PricingTable = () => {
         return (
           <PricingCard
             isYear
-            description={payments.description}
-            image={payments.image}
-            {...(nnProductStatus.priceId === nnYearlyPriceId &&
-              nnProductStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(nnProductStatus.priceId === nnYearlyPriceId &&
-              nnProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={nn} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.yearlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -465,18 +391,12 @@ const PricingTable = () => {
         return (
           <PricingCard
             isYear
-            description={payments.description}
-            image={payments.image}
-            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
-              twicProductStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(twicProductStatus.priceId === twiceYearlyPriceId &&
-              twicProductStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={twic} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.yearlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -498,65 +418,16 @@ const PricingTable = () => {
             }
           />
         );
-      case 'pro':
-        return (
-          <PricingCard
-            isYear
-            description={payments.description}
-            image={payments.image}
-            badge={'SAVE $150 by combining all subscriptions!'}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
-            plan={payments.name}
-            price={payments.yearlyPrice}
-            action={
-              <>
-                {appState === 'SIGNED_OUT' ? (
-                  <LogoutActionButton
-                    badge
-                    plan="pro"
-                    url={router.query.redirectUrl as string}
-                    type="year"
-                    trial
-                  />
-                ) : (
-                  getAnnualActions(
-                    productStatus,
-                    undefined,
-                    undefined,
-                    undefined,
-                    undefined,
-                    true,
-                    true
-                  )
-                )}
-              </>
-            }
-          />
-        );
       default:
         return (
           <PricingCard
             isYear
-            badge={'SAVE $150 by combining all subscriptions!'}
-            description={payments.description}
-            image={payments.image}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'blocked' && {
-                state: 'blocked',
-              })}
-            {...(productStatus.priceId === annualPriceId &&
-              productStatus.state === 'active' && {
-                state: 'active',
-              })}
+            image={
+              <Image priority width={40} src={aoc} alt="this-week-in-crypto" />
+            }
             plan={payments.name}
             price={payments.yearlyPrice}
+            pricingCardDescription={payments.pricingDescription}
             action={
               <>
                 {appState === 'SIGNED_OUT' ? (
@@ -653,7 +524,7 @@ const PricingTable = () => {
         }}
       >
         <Title level={3} style={{ margin: 0, maxWidth: 360 }}>
-          Three Weekly Reports That Cover All You Need To Know
+          Subscribe to the reports separately
         </Title>
         {/* <Text>
           The right plan is waiting for you. Subscribe and get full access to

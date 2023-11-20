@@ -36,72 +36,6 @@ export const appStructure: AppStructure = {
       url: '/kvq',
     },
     { key: 'archive', label: 'Archive', url: '/articles' },
-    // {
-    //   key: 'market-insights',
-    //   label: 'Market Insights',
-    //   url: '/market-insights',
-    //   children: [
-    //     {
-    //       key: 'quick-takes',
-    //       label: 'Quick Takes',
-    //       url: '/market-insights/quick-takes',
-    //     },
-    //     {
-    //       key: 'weekly-reports',
-    //       label: 'Weekly Reports',
-    //       url: '/market-insights/weekly-reports',
-    //     },
-    //     {
-    //       key: 'monthly-outlooks',
-    //       label: 'Monthly Outlooks',
-    //       url: '/market-insights/monthly-outlooks',
-    //     },
-    //   ],
-    // },
-    // {
-    //   key: 'token-valuation',
-    //   label: 'Token Valuation',
-    //   url: '/token-valuation',
-    //   children: [
-    //     {
-    //       key: 'indexes',
-    //       label: 'Indexes',
-    //       url: '/token-valuation/indexes',
-    //     },
-    //     {
-    //       key: 'analysis',
-    //       label: 'Analysis',
-    //       url: '/token-valuation/analysis',
-    //     },
-    //     {
-    //       key: 'valuation-principles',
-    //       label: 'Valuation Principles',
-    //       url: '/token-valuation/valuation-principles',
-    //     },
-    //   ],
-    // },
-    // {
-    //   key: 'industry-insights',
-    //   label: 'Industry Insights',
-    //   url: '/industry-insights',
-    //   children: [
-    //     {
-    //       key: 'industry-reports',
-    //       label: 'Industry Reports',
-    //       url: '/industry-insights/industry-reports',
-    //     },
-    //     {
-    //       key: 'industry-coverage',
-    //       label: 'Industry Coverage',
-    //       url: '/industry-insights/industry-coverage',
-    //     },
-    //     {
-    //       key: 'news',
-    //       label: 'News',
-    //       url: '/industry-insights/news',
-    //     },
-    //   ],
-    // },
   ],
   payments: {
     twic: {
@@ -114,6 +48,11 @@ export const appStructure: AppStructure = {
       description:
         'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
       monthlyPrice: '$10.00',
+      pricingDescription: [
+        'Stay up-to-date with a curated news summary.',
+        'Gain in-depth insights into crucial trends and the implications of key events.',
+        "Get a comprehensive understanding of the crypto market's weekly highlights.",
+      ],
       yearlyPrice: '$100.00',
       features: [
         'Our carefully distilled weekly newsletter – your one-stop-shop for crypto news',
@@ -132,6 +71,11 @@ export const appStructure: AppStructure = {
         'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
       monthlyPrice: '$25.00',
       yearlyPrice: '$250.00',
+      pricingDescription: [
+        "Gain unique insights from an altcoin trader's perspective.",
+        'Focus on the dynamic low-to-mid cap altcoin markets.',
+        'Discover emerging trends and opportunities within the altcoin landscape',
+      ],
       features: [
         'A weekly research note looking at what’s brewing in crypto and DeFi',
         'Which projects to look at and how to manage DeFi trading',
@@ -145,6 +89,11 @@ export const appStructure: AppStructure = {
       image: '/research/aoc_product.svg',
       settingsImage: '/research/aoc_settings.svg',
       name: 'Ahead of The Curve',
+      pricingDescription: [
+        'Dive into market reports that provide signals from the derivatives market.',
+        'Benefit from expert market structure analysis and opinions.',
+        "Receive actionable insights into what's currently driving the digital assets market and how these movements may impact prices tomorrow.",
+      ],
       description:
         'The weekly market report with signals from the derivatives market, market structure and expert opinion. Delivered directly to your inbox.',
       monthlyPrice: '$50.00',
@@ -166,6 +115,7 @@ export const appStructure: AppStructure = {
         'Full access to all research content, including This Week in Crypto, Navigating Narratives and Ahead of the Curve.',
       monthlyPrice: '$70.00',
       yearlyPrice: '$700.00',
+      pricingDescription: [],
       features: [
         'Ahead of the Curve – The Weekly Market Report',
         'Navigating Narratives – The Weekly DeFi Research Note',

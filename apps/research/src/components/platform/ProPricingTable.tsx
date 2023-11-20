@@ -254,25 +254,32 @@ const ProPrincingTable: React.FC = () => {
                 gap: 16,
               }}
             >
-              <Typography.Title level={3} style={{ margin: 0 }}>
+              <Typography.Title level={2} style={{ margin: 0 }}>
                 {appStructure.payments.pro.name}
               </Typography.Title>
-              <Typography.Title
-                level={5}
-                type="secondary"
-                style={{ margin: 0 }}
-              >
+              <Typography.Text type="secondary">
                 {appStructure.payments.pro.description}
-              </Typography.Title>
+              </Typography.Text>
 
-              <Space dir="horizontal" size={2}>
-                <Typography.Title level={4}>
-                  {appStructure.payments.pro.monthlyPrice}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: '100%',
+                  paddingBottom: 20,
+                }}
+              >
+                <Typography.Title
+                  level={4}
+                  style={{ fontWeight: 800, margin: 0 }}
+                >
+                  {appStructure.payments.pro.monthlyPrice.split('.')[0]}
                 </Typography.Title>
-                <Typography.Title level={4} type="secondary">
+                <Typography.Title level={4} style={{ margin: 0 }}>
                   /month
                 </Typography.Title>
-              </Space>
+              </div>
             </div>
             <>
               {appState === 'SIGNED_OUT' ? (
@@ -340,25 +347,31 @@ const ProPrincingTable: React.FC = () => {
                 gap: 16,
               }}
             >
-              <Typography.Title level={3} style={{ margin: 0 }}>
+              <Typography.Title level={2} style={{ margin: 0 }}>
                 {appStructure.payments.pro.name}
               </Typography.Title>
-              <Typography.Title
-                level={5}
-                type="secondary"
-                style={{ margin: 0 }}
-              >
+              <Typography.Text type="secondary">
                 {appStructure.payments.pro.description}
-              </Typography.Title>
-
-              <Space dir="horizontal" size={2}>
-                <Typography.Title level={4}>
-                  {appStructure.payments.pro.yearlyPrice}
+              </Typography.Text>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: '100%',
+                  paddingBottom: 20,
+                }}
+              >
+                <Typography.Title
+                  level={4}
+                  style={{ fontWeight: 800, margin: 0 }}
+                >
+                  {appStructure.payments.pro.yearlyPrice.split('.')[0]}
                 </Typography.Title>
-                <Typography.Title level={4} type="secondary">
+                <Typography.Title level={4} style={{ margin: 0 }}>
                   /year
                 </Typography.Title>
-              </Space>
+              </div>
             </div>
             <>
               {appState === 'SIGNED_OUT' ? (
