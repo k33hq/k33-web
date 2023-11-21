@@ -124,9 +124,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
         return (
           <StartTrialCall
             productKeys={productKey}
-            yearlyCheckout={doYearlyCheckOut}
+            yearlyCheckout={doProyearlyCheckout}
             isLoading={isLoading || isYearlyLoading}
-            checkout={doCheckOut}
+            checkout={doProMonthlyCheckout}
             isLoggedOut={
               appState === 'SIGNED_OUT' || appState === 'UNREGISTRED'
             }
@@ -148,9 +148,9 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
       <ActionLayout publicSnippet={publicSnippet}>
         <StartTrialCall
           productKeys={productKey}
-          yearlyCheckout={doYearlyCheckOut}
+          yearlyCheckout={doProyearlyCheckout}
           isLoading={isLoading || isYearlyLoading}
-          checkout={doCheckOut}
+          checkout={doProMonthlyCheckout}
           isReport={isReport}
           isLoggedOut={appState === 'SIGNED_OUT' || appState === 'UNREGISTRED'}
         />

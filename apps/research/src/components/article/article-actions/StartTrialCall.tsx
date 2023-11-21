@@ -49,25 +49,17 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
         <Space id="ended-header" direction="vertical" size={8}>
           <Title level={5} style={{ margin: 0 }}>
             {isReport
-              ? `Subscribe to ${appStructure.payments[productKeys].name} to download this report`
-              : `Subscribe to ${appStructure.payments[productKeys].name} to keep reading this article`}
+              ? `Subscribe to K33 Research Pro to download this report`
+              : `Subscribe to K33 Research Pro to keep reading this article`}
           </Title>
-          {/* <Text
-            style={{
-              fontSize: fontSizeSM,
-            }}
-          >
-            Subscribe and get full access to all research. No credit card needed
-            for free trial.
-          </Text> */}
         </Space>
         <ProCheckoutCard
-          handleYearlyCheckout={signIn}
+          handleYearlyCheckout={isLoggedOut ? signIn : yearlyCheckout}
           isLoading={isLoading}
-          handleCheckout={signIn}
-          label="Subscribe Now"
+          handleCheckout={isLoggedOut ? signIn : checkout}
+          label="Start 30-Day Free Trail"
           isFreeTrial
-          features={appStructure.payments[productKeys].features}
+          features={appStructure.payments.pro.features}
           yearlyPrice={appStructure.payments[productKeys].yearlyPrice}
           monthlyPrice={appStructure.payments[productKeys].monthlyPrice}
           name={appStructure.payments[productKeys].name}

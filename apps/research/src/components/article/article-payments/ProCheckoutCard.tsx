@@ -64,7 +64,7 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
         gap: 20,
       }}
     >
-      <Space
+      {/* <Space
         direction="vertical"
         align="center"
         style={{
@@ -143,21 +143,15 @@ const ProCheckoutCard: React.FC<ProCheckoutCardProps> = ({
                 </>
               )}
             </Space>
-            {/* {isFreeTrial && (
-            <Space>
-              <Text>After Free Trial</Text>
-            </Space>
-          )} */}
           </Space>
           <Title level={5} style={{ margin: 0 }}>
             {name}
           </Title>
         </div>
-      </Space>
+      </Space> */}
 
       {!isEx && (
         <>
-          <Divider />
           <List
             split={false}
             style={{

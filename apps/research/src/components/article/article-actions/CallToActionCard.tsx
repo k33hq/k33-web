@@ -14,7 +14,6 @@ const CallToActionCard: React.FC<React.PropsWithChildren> = ({ children }) => {
         backgroundColor: colorBgLayout,
         width: '100%',
       }}
-      hoverable
     >
       <div id="article-call-to-action" className={styles.callToAction}>
         {children}
