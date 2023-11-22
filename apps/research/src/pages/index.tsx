@@ -108,6 +108,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            width: '100%',
             gap: 32,
           }}
         >
