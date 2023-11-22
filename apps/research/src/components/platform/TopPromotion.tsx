@@ -11,7 +11,7 @@ const TopPromotion: React.FC = () => {
       <div
         id="top-promotion-info"
         style={{
-          backgroundColor: '#202328',
+          backgroundColor: '#03090B',
         }}
       >
         <div>
@@ -23,7 +23,7 @@ const TopPromotion: React.FC = () => {
             }}
             level={lg ? (xl ? 3 : 4) : 5}
           >
-            Digital Assets Research
+            K33 Research <span style={{ color: '#1155CC' }}>Pro</span>
           </Typography.Title>
           <Typography.Text
             style={{
@@ -36,7 +36,12 @@ const TopPromotion: React.FC = () => {
           </Typography.Text>
         </div>
         <Link href={'/pricing'}>
-          <Button size="large">Sign Up Now</Button>
+          <Button
+            size="large"
+            style={{ backgroundColor: '#CCB911', border: 'none' }}
+          >
+            Sign Up Now
+          </Button>
         </Link>
       </div>
       <div />
