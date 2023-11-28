@@ -31,10 +31,9 @@ export const LogoutActionButton: React.FC<LogoutActionButtonProps> = ({
       return window.location.href;
     } else {
       return (
-        window.location.href +
-        '/pricing' +
+        `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pricing` +
         '?redirectUrl=' +
-        window.location.href
+        `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/`
       );
     }
   };
