@@ -38,23 +38,21 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
     appStructure.payments[productKey].productId
   );
 
-  React.useEffect(() => {
-    console.log(
-      !['active', 'ended', 'blocked'].includes(productStatus.state ?? 'loading')
-    );
-    console.log(
-      !['active', 'ended', 'blocked'].includes(
-        proProductStatus.state ?? 'loading'
-      )
-    );
-  }, [proProductStatus, productStatus]);
+  // React.useEffect(() => {
+  //   console.log(
+  //     !['active', 'ended', 'blocked'].includes(productStatus.state ?? 'loading')
+  //   );
+  //   console.log(
+  //     !['active', 'ended', 'blocked'].includes(
+  //       proProductStatus.state ?? 'loading'
+  //     )
+  //   );
+  // }, [proProductStatus, productStatus]);
 
   return (
     <>
-      {!['active', 'ended', 'blocked'].includes(
-        productStatus.state ?? 'loading'
-      ) &&
-        !['active', 'ended', 'blocked'].includes(
+      {!['active', 'blocked'].includes(productStatus.state ?? 'loading') &&
+        !['active', 'blocked'].includes(
           proProductStatus.state ?? 'loading'
         ) && <TopPromotion />}
       <div id="article-header" className={styles.header}>
