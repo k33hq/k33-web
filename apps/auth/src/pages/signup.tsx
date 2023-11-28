@@ -42,6 +42,7 @@ const SignUp: NextPageWithLayout = () => {
             <Link
               href={{
                 pathname: '/email_link_signup',
+                query: router.query,
               }}
             >
               <Typography.Link underline color="black">

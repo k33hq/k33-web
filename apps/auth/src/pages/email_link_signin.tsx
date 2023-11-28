@@ -40,7 +40,7 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
         </div>
         <div id="sign-in-options" className={styles.signinOptions}>
           <AuthComponent
-            redirectUrl={(router.query.redirect as string) ?? undefined}
+            // redirectUrl={(router.query.redirect as string) ?? undefined}
             onSuccessLogin={() => router.reload()}
             firebaseConfig={config}
           >
