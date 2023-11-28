@@ -57,7 +57,7 @@ const StartTrialCall: React.FC<EndedCallProps> = ({
           handleYearlyCheckout={isLoggedOut ? signIn : yearlyCheckout}
           isLoading={isLoading}
           handleCheckout={isLoggedOut ? signIn : checkout}
-          label="Start 30-Day Free Trail"
+          label="Start 30-Day Free Trial"
           isFreeTrial
           features={appStructure.payments.pro.features}
           yearlyPrice={appStructure.payments[productKeys].yearlyPrice}
