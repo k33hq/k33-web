@@ -13,6 +13,7 @@ import {
   Grid,
   Row,
   Col,
+  Divider,
 } from 'antd';
 import {
   useCustomerCheckout,
@@ -192,13 +193,33 @@ const Payments: React.FC = () => {
         />
       )}
 
-      <Row wrap gutter={[40, 40]}>
+      <Row wrap gutter={[0, 16]}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}
+        >
+          {email && <Text type="secondary">{`Email: ${mask(email)}`}</Text>}
+          <Image
+            priority
+            width={73}
+            style={{
+              minWidth: 50,
+            }}
+            src={stripe}
+            alt="stripe"
+          />
+        </div>
         {Object.keys(appStructure.payments).map((plan) => (
-          <Col xs={24} sm={24} lg={12} key={plan}>
+          <Col xs={24} key={plan}>
             {getPaymentCard(
               plan as ProductPlans,
               appStructure.payments[plan as ProductPlans]
             )}
+            <Divider />
           </Col>
         ))}
       </Row>
@@ -254,7 +275,12 @@ const PlanProduct: React.FC<PlanProductProps> = ({
       );
     case 'active':
       return (
-        <PaymentCard payments={payment} email={email} isLoading={isLoading}>
+        <PaymentCard
+          payments={payment}
+          email={email}
+          isLoading={isLoading}
+          active
+        >
           <Button
             loading={isDashboardLoading}
             onClick={customerDashboard}
@@ -303,6 +329,7 @@ interface PaymentCardProps {
   children: React.ReactNode;
   isLoading: boolean;
   email: string | null;
+  active?: boolean;
 }
 
 const PaymentCard: React.FC<PaymentCardProps> = ({
@@ -310,49 +337,39 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
   children,
   isLoading,
   email,
+  active = false,
 }) => {
   const { sm, xl } = Grid.useBreakpoint();
 
   if (isLoading) return null;
 
   return (
-    <Card
-      loading={isLoading}
+    <div
       style={{
+        display: 'flex',
+        flexDirection: 'row',
         width: '100%',
+        gap: 16,
+        opacity: active ? 1 : 0.5,
       }}
-      bodyStyle={{
-        width: '100%',
-        padding: 8,
-      }}
-      id="payments-card"
     >
-      <div className={styles.paymentCardBody}>
-        <AntImage preview={false} src={payments.settingsImage} width={'100%'} />
-        <div className={styles.paymentCard}>
-          <div id="payment-information" className={styles.paymentInformation}>
-            {sm ? (
-              <Text strong>{payments.name}</Text>
-            ) : (
-              <Typography.Title level={3}>{payments.name}</Typography.Title>
-            )}
-            {email && <Text type="secondary">{`Email: ${mask(email)}`}</Text>}
-          </div>
-
-          <div id="payment-action" className={styles.paymentAction}>
-            {children}
-            <Image
-              priority
-              width={73}
-              style={{
-                minWidth: 50,
-              }}
-              src={stripe}
-              alt="stripe"
-            />
-          </div>
-        </div>
+      <Image src={payments.settingsImage} width={40} height={40} alt="logo" />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: 8,
+          flex: 1,
+        }}
+      >
+        {sm ? (
+          <Text strong>{payments.name}</Text>
+        ) : (
+          <Typography.Title level={3}>{payments.name}</Typography.Title>
+        )}
       </div>
-    </Card>
+      {children}
+    </div>
   );
 };
