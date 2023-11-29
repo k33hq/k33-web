@@ -78,6 +78,21 @@ const Payments: React.FC = () => {
     });
   }, []);
 
+  const getPaymentStatus = (plan: ProductPlans) => {
+    switch (plan) {
+      case 'pro':
+        return proProductInfo.productStatus.state;
+      case 'twic':
+        return twicProductInfo.productStatus.state;
+      case 'aoc':
+        return aocProductInfo.productStatus.state;
+      case 'nn':
+        return nnProductInfo.productStatus.state;
+      default:
+        return proProductInfo.productStatus.state;
+    }
+  };
+
   const getPaymentCard = (plan: ProductPlans, payments: PaymentTypes) => {
     switch (plan) {
       case 'aoc':
@@ -222,6 +237,19 @@ const Payments: React.FC = () => {
             <Divider />
           </Col>
         ))}
+        {/* {Object.keys(appStructure.payments)
+          .map((payment) => ({
+            key: payment,
+            value: appStructure.payments[payment as ProductPlans],
+            status: getPaymentStatus(payment as ProductPlans),
+          }))
+
+          .map(({ key, value, status }) => (
+            <Col xs={24} key={key}>
+              {getPaymentCard(key as ProductPlans, value)}
+              <Divider />
+            </Col>
+          ))} */}
       </Row>
     </>
   );
@@ -339,7 +367,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
   email,
   active = false,
 }) => {
-  const { sm, xl } = Grid.useBreakpoint();
+  const { sm, md } = Grid.useBreakpoint();
 
   if (isLoading) return null;
 
@@ -347,27 +375,34 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
     <div
       style={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: md ? 'row' : 'column',
+        justifyContent: 'space-between',
         width: '100%',
-        gap: 16,
         opacity: active ? 1 : 0.5,
       }}
     >
-      <Image src={payments.settingsImage} width={40} height={40} alt="logo" />
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          gap: 8,
-          flex: 1,
+          flex: 'row',
+          gap: 16,
         }}
       >
-        {sm ? (
-          <Text strong>{payments.name}</Text>
-        ) : (
-          <Typography.Title level={3}>{payments.name}</Typography.Title>
-        )}
+        <Image src={payments.settingsImage} width={40} height={40} alt="logo" />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 8,
+          }}
+        >
+          {sm ? (
+            <Text strong>{payments.name}</Text>
+          ) : (
+            <Typography.Title level={3}>{payments.name}</Typography.Title>
+          )}
+        </div>
       </div>
       {children}
     </div>
