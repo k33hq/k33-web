@@ -27,7 +27,7 @@ import Image from 'next/image';
 import { getUserInformation } from 'core';
 import { SignUpCall } from '@/components';
 import { appStructure } from '@/config';
-import { Payments, ProductPlans, ProductStatus } from '@/types';
+import { Payments as PaymentTypes, ProductPlans, ProductStatus } from '@/types';
 
 const { Text, Link } = Typography;
 const { Ribbon } = Badge;
@@ -77,7 +77,7 @@ const Payments: React.FC = () => {
     });
   }, []);
 
-  const getPaymentCard = (plan: ProductPlans, payments: Payments) => {
+  const getPaymentCard = (plan: ProductPlans, payments: PaymentTypes) => {
     switch (plan) {
       case 'aoc':
         return (
@@ -219,7 +219,7 @@ interface PlanProductProps {
     customerDashboard: () => Promise<void>;
     isLoading: boolean;
   };
-  payment: Payments;
+  payment: PaymentTypes;
   isLoading: boolean;
   isTrial?: boolean;
 }
@@ -299,7 +299,7 @@ const PlanProduct: React.FC<PlanProductProps> = ({
 };
 
 interface PaymentCardProps {
-  payments: Payments;
+  payments: PaymentTypes;
   children: React.ReactNode;
   isLoading: boolean;
   email: string | null;

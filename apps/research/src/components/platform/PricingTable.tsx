@@ -150,13 +150,12 @@ const PricingTable = () => {
     switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton
-            dashboard={dashboard}
-            isLoading={isDashboardLoading}
+          <CheckOutButton
+            trial={trial}
+            checkOut={checkOut}
+            isLoading={isLoading}
             badge={badge}
-          >
-            {state.priceId === priceId ? 'Get Monthly Plan' : label}
-          </DashboardButton>
+          />
         );
       case 'blocked':
         return (
@@ -471,13 +470,12 @@ const PricingTable = () => {
     switch (state.state) {
       case 'ended':
         return (
-          <DashboardButton
-            dashboard={dashboard}
-            isLoading={isDashboardLoading}
+          <CheckOutButton
+            checkOut={checkOut}
+            isLoading={isLoading}
             badge={badge}
-          >
-            {state.priceId === priceId ? 'Get Yearly Plan' : label}
-          </DashboardButton>
+            trial={trial}
+          />
         );
       case 'blocked':
         return (
