@@ -137,11 +137,23 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
   };
 
   if (
+    sections.items.find((s) => s.name === 'industry-reports') &&
+    appState === 'SIGNED_OUT'
+  ) {
+    return (
+      <ActionLayout publicSnippet={publicSnippet}>
+        <SignUpCall />
+      </ActionLayout>
+    );
+  }
+
+  if (
     productStatus.state === 'active' ||
     completePackageStatus.state === 'active' ||
     productKey === 'pro'
-  )
+  ) {
     return children;
+  }
 
   if (appState === 'SIGNED_OUT')
     return (

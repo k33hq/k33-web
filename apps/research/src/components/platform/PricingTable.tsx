@@ -165,8 +165,8 @@ const PricingTable = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Monthly Plan'
-              : 'Update Payment Details'}
+              ? 'Update Payment Details'
+              : 'Get Monthly Plan'}
           </DashboardButton>
         );
       case 'active':
@@ -177,8 +177,8 @@ const PricingTable = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Monthly Plan'
-              : 'Manage Subscription'}
+              ? 'Manage Subscription'
+              : 'Get Monthly Plan '}
           </DashboardButton>
         );
       default:
@@ -485,8 +485,8 @@ const PricingTable = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Yearly Plan'
-              : 'Update Payment Details'}
+              ? 'Update Payment Details'
+              : 'Get Yearly Plan'}
           </DashboardButton>
         );
       case 'active':
@@ -497,8 +497,8 @@ const PricingTable = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Yearly Plan'
-              : 'Manage Subscription'}
+              ? 'Manage Subscription'
+              : 'Get Yearly Plan'}
           </DashboardButton>
         );
       default:

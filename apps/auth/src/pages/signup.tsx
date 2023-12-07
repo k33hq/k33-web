@@ -4,7 +4,8 @@ import {
   LoginOptions,
   NextPageWithLayout,
 } from 'platform-js';
-import { Typography } from 'antd';
+import { Button, Typography } from 'antd';
+import { MailFilled } from '@ant-design/icons';
 import config from '@/firebase/config';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -37,19 +38,33 @@ const SignUp: NextPageWithLayout = () => {
           >
             {(props) => <LoginOptions {...props} />}
           </AuthComponent>
-          <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
+          <Link
+            href={{
+              pathname: '/email_link_signup',
+              query: router.query,
+            }}
+            style={{
+              width: '100%',
+            }}
+          >
+            <Button block icon={<MailFilled />}>
+              Sign Up with Email Link
+            </Button>
+          </Link>
+          {/* <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
             <Typography.Text>You can also</Typography.Text>
+
             <Link
               href={{
                 pathname: '/email_link_signup',
                 query: router.query,
               }}
             >
-              <Typography.Link underline color="black">
+              <Button block icon={<MailFilled />}>
                 Sign Up with an Email Link.
-              </Typography.Link>
+              </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { Typography, theme } from 'antd';
+import { Button, Typography, theme } from 'antd';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { Auth, LoginOptions } from 'platform-js';
@@ -6,6 +6,7 @@ import config from '@/firebase/config';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import CallToActionCard from './CallToActionCard';
+import { MailFilled } from '@ant-design/icons';
 
 const { useToken } = theme;
 const { Text, Title, Link: AntLink } = Typography;
@@ -15,7 +16,7 @@ interface SignUpCallProps {
 }
 
 const SignUpCall: React.FC<SignUpCallProps> = ({
-  title = 'Sign up for K33 Research',
+  title = 'Sign up for K33 Research to download the report',
 }) => {
   const {
     token: { fontSizeSM },
@@ -27,13 +28,13 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
         <Title level={5} editable={false}>
           {title}
         </Title>
-        <Text
+        {/* <Text
           style={{
             fontSize: fontSizeSM,
           }}
         >
           Subscribe and get full access to all research.
-        </Text>
+        </Text> */}
       </div>
       <div id="sign-up-login-options" className={styles.loginOptions}>
         <Auth
@@ -51,9 +52,22 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
             />
           )}
         </Auth>
+        <Link
+          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth/email_link_signin?redirect=${window.location.href}`}
+          style={{
+            width: '100%',
+          }}
+        >
+          {/* <Typography.Link underline color="black">
+              Sign Up with an Email Link.
+            </Typography.Link> */}
+          <Button block icon={<MailFilled />}>
+            Sign Up with Email Link
+          </Button>
+        </Link>
       </div>
       <div id="sign-up-footer" className={styles.signupFooter}>
-        <div
+        {/* <div
           style={{
             display: 'flex',
             gap: 4,
@@ -69,7 +83,7 @@ const SignUpCall: React.FC<SignUpCallProps> = ({
               Sign Up with an Email Link.
             </Typography.Link>
           </Link>
-        </div>
+        </div> */}
         <div>
           <Text>Already subscribed? </Text>
           <Link

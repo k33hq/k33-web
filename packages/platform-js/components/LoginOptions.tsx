@@ -93,6 +93,7 @@ const LoginOptions: React.FC<LoginOptionsProps> = ({
       >
         {microsoftText}
       </Button>
+
       {/* <Space direction="horizontal">
         <Input
           placeholder="enter your email to get the link"

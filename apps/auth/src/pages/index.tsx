@@ -11,6 +11,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { DefaultLayout } from '@/components';
 import styles from './styles.module.scss';
+import { MailFilled } from '@ant-design/icons';
 
 // TODO: take on success and on failure
 const Auth: NextPageWithLayout = () => {
@@ -44,7 +45,20 @@ const Auth: NextPageWithLayout = () => {
               />
             )}
           </AuthComponent>
-          <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
+          <Link
+            href={{
+              pathname: '/email_link_signin',
+              query: router.query,
+            }}
+            style={{
+              width: '100%',
+            }}
+          >
+            <Button block icon={<MailFilled />}>
+              Sign In with Email Link
+            </Button>
+          </Link>
+          {/* <div style={{ display: 'flex', gap: 4, alignSelf: 'center' }}>
             <Typography.Text>You can also</Typography.Text>
             <Link
               href={{
@@ -52,11 +66,11 @@ const Auth: NextPageWithLayout = () => {
                 query: router.query,
               }}
             >
-              <Typography.Link underline color="black">
+              <Button block icon={<MailFilled />}>
                 continue with an Email Link.
-              </Typography.Link>
+              </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

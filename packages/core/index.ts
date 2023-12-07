@@ -257,6 +257,7 @@ export const acceptCookie = () => {
   });
 };
 
+// sets the cookies
 export const denyCookie = () => {
   //@ts-ignore
   localStorage.setItem('showCookies', 'NO');
@@ -264,7 +265,7 @@ export const denyCookie = () => {
   localStorage.setItem('cookies-product', 'NO');
 };
 
-// returns a boolean
+// checks whether the google cookie is set or not
 export const isCookie = () => {
   //@ts-ignore
   return localStorage.getItem('showCookies') === 'NO';

@@ -2,6 +2,7 @@ import * as React from 'react';
 import CallToActionCard from './CallToActionCard';
 import { Space, Typography, theme } from 'antd';
 import { ProCheckoutCard } from '../article-payments';
+import { appStructure } from '@/config';
 
 interface EndedCallProps {
   checkout: () => void;

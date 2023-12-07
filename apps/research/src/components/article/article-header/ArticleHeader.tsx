@@ -49,6 +49,37 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   //   );
   // }, [proProductStatus, productStatus]);
 
+  const getReportDocument = () => {
+    if (
+      metadata.sectionsCollection.items.find(
+        (item) => item.name === 'industry-reports'
+      ) &&
+      appState === 'SIGNED_OUT'
+    ) {
+      return null;
+    }
+
+    if (
+      reportDocument &&
+      (productStatus.state === 'active' ||
+        proProductStatus.state === 'active' ||
+        productKey === 'pro')
+    ) {
+      return (
+        <Button
+          type="primary"
+          onClick={() => downloadResource(reportDocument.url)}
+          block
+          size="large"
+        >
+          Download Report
+        </Button>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <>
       {!['active', 'blocked'].includes(productStatus.state ?? 'loading') &&
@@ -73,7 +104,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
             </Typography.Text>
           )}
         </div>
-        {reportDocument && (
+        {/* {reportDocument && (
           <>
             {(productStatus.state === 'active' ||
               proProductStatus.state === 'active' ||
@@ -88,7 +119,8 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
               </Button>
             )}
           </>
-        )}
+        )} */}
+        {getReportDocument()}
         <Divider style={{ margin: 0 }} />
       </div>
     </>
