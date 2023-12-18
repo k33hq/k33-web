@@ -72,6 +72,8 @@ jobs:
           NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO: op://k33-web-env/prod/stripe/PRODUCT_ID_PRO
           NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID_PRO
           NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID_PRO
+          # analytics
+          NEXT_PUBLIC_ANALYTICS_API_KEY: op://k33-web-env/prod/analytics/API_SECRET
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies
