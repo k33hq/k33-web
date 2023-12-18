@@ -2,13 +2,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { researchApi } from '@/services';
+import { analyticsAPI } from '@/services/analytics';
 
 export const makeStore = () =>
   configureStore({
     reducer: {
       [researchApi.reducerPath]: researchApi.reducer,
+      [analyticsAPI.reducerPath]: analyticsAPI.reducer,
     },
-    middleware: (gDM) => gDM().concat(researchApi.middleware),
+    middleware: (gDM) =>
+      gDM().concat(researchApi.middleware, analyticsAPI.middleware),
   });
 
 export type AppStore = ReturnType<typeof makeStore>;

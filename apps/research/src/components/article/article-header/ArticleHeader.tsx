@@ -8,6 +8,7 @@ import { downloadResource, getProductSection, sectionKeys } from '@/utils';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
 import { TopPromotion } from '@/components';
+import { useAnalyticsMutation } from '@/services/analytics';
 
 const { Title, Text } = Typography;
 const { useToken } = theme;
@@ -37,6 +38,8 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   const { productStatus } = useProductInfo(
     appStructure.payments[productKey].productId
   );
+
+  const [logAnalytics] = useAnalyticsMutation();
 
   // React.useEffect(() => {
   //   console.log(
@@ -68,7 +71,33 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       return (
         <Button
           type="primary"
-          onClick={() => downloadResource(reportDocument.url)}
+          onClick={() => {
+            downloadResource(reportDocument.url);
+            //@ts-ignore
+            window.gtag(
+              'get',
+              process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+              'client_id',
+              (clientId: string) => {
+                // TODO: check if localstorage says cookie-product yes
+                const check = localStorage.getItem('cookies-product');
+                if (check === 'YES') {
+                  logAnalytics({
+                    client_id: clientId,
+                    events: [
+                      {
+                        name: 'download_report',
+                        params: {
+                          report_name: title,
+                          section: productSection,
+                        },
+                      },
+                    ],
+                  });
+                }
+              }
+            );
+          }}
           block
           size="large"
         >
