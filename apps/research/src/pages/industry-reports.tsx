@@ -61,7 +61,7 @@ IndustryReports.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="Our collection of in-depth reports on various crypto topics from the last five years."
+      description="Our collection of in-depth reports on various crypto topics"
       title="Industry Reports"
       tabs={[]}
       image="./ir_header.svg"

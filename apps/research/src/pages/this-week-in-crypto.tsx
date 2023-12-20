@@ -62,7 +62,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="Our weekly newsletter on the most important happenings in crypto, explanations and implications of significant happenings."
+      description="Follow the trends and understand the implications of key events"
       title="This Week in Crypto"
       tabs={[]}
       image="./twic_header.svg"

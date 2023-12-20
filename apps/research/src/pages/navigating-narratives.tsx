@@ -61,7 +61,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
-      description="Weekly research note looking at what’s brewing in the dynamic low-mid cap altcoin markets from an altcoin trader’s perspective."
+      description="Understand what’s brewing in the dynamic altcoin and DeFi markets"
       title="Navigating Narratives"
       tabs={[]}
       image="./nn_header.svg"

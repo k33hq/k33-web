@@ -63,7 +63,7 @@ AheadOfTheCurve.getLayout = function getLayout(page: React.ReactElement) {
     <TabLayout
       activeKey={'/'}
       type="secondary"
-      description="The weekly market report with signals from the derivatives market, market structure and expert opinion."
+      description="Signals from the derivatives market, market structure and expert opinion."
       title="Ahead of the Curve"
       tabs={[]}
       showSubscribeButton

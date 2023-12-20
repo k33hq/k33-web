@@ -55,10 +55,11 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           flexDirection: 'column',
           boxSizing: 'border-box',
           ...(image && {
-            backgroundImage: `url(${image})`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${image})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
+            brightness: 0.3,
           }),
         }}
       >
@@ -73,42 +74,45 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           <Row>
             <Col span={22} offset={1}>
               <div id="page-title" className={styles.pageTitle}>
-                <Space direction="vertical" size="small">
-                  <Title
-                    level={xl ? 2 : 3}
-                    style={{
-                      margin: 0,
-                      ...(type === 'secondary' && {
-                        color: 'white',
-                        opacity: 0.85,
-                      }),
-                    }}
-                  >
-                    {title}
-                  </Title>
-                  {description && (
-                    <Text
+                <Space direction={xl ? "horizontal" : "vertical"} size={'large'}>
+                  <div style={{ maxWidth: 210 }}>
+                    <Title
+                      level={xl ? 1 : 3}
                       style={{
-                        ...(type === 'secondary' && {
-                          color: 'white',
-                          opacity: 0.85,
-                        }),
+                        margin: 0,
+                        color: 'white',
+                        fontWeight: 800,
                       }}
                     >
-                      {description}
-                    </Text>
-                  )}
+                      {title}
+                    </Title>
+                  </div>
+                  <div style={{ maxWidth: 300 }}>
+                    {description && (
+                      <Text
+                        style={{
+                          color: 'white',
+                          fontSize: xl ? 18: 16,
+                        }}
+                      >
+                        {description}
+                      </Text>
+                    )}
+                  </div>
                 </Space>
                 {showSubscribeButton && (
-                  <Link
-                    href={'/pricing'}
-                    style={{
-                      ...(md && {
-                        alignSelf: 'end',
-                      }),
-                    }}
-                  >
-                    <Button type={isButtonPrimary ? 'primary' : 'default'}>
+                  <Link href={'/pricing'}>
+                    <Button
+                      size="large"
+                      style={{
+                        background: '#FFE70F',
+                        ...(xl && {
+                          width: 240 ,
+                        height: 50,
+                        }),
+                        border: 'none',
+                      }}
+                    >
                       Subscribe
                     </Button>
                   </Link>
