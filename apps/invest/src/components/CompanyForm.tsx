@@ -334,6 +334,113 @@ const CompanyForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
           </div>
         </div>
 
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-1 flex-col">
+            <div className="flex gap-2">
+              <input
+                type="checkbox"
+                id="own_initiative"
+                {...register('own_initiative', {
+                  required: true,
+                })}
+                className="
+    relative peer shrink-0
+    appearance-none w-4 h-4 border-2 border-blue-500 rounded-sm bg-white
+    mt-1
+    checked:bg-blue-800 checked:border-0"
+              />
+              <label htmlFor="own_initiative">
+                By ticking the following box you confirm that your request for
+                fund information was made at your own initiative.
+              </label>
+              <svg
+                className="
+    absolute 
+    w-4 h-4 mt-1
+    hidden peer-checked:block
+    pointer-events-none"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            {errors['own_initiative'] && (
+              <p
+                className="error-message"
+                style={{
+                  color: 'red',
+                }}
+              >
+                Please tick this box
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <div className="flex  gap-2">
+              <input
+                type="checkbox"
+                id="terms_and_condition"
+                {...register('terms_and_condition', {
+                  required: true,
+                })}
+                className="
+    relative peer shrink-0
+    appearance-none w-4 h-4 border-2 border-blue-500 rounded-sm bg-white
+    mt-1
+    checked:bg-blue-800 checked:border-0"
+              />
+              <label htmlFor="terms-and-condition">
+                By ticking this box I/we confirm having read and understood the
+                above notice; consent to be treated as an investor as defined by
+                the selected box above; confirm that I/we are authorized to sign
+                this document; and confirm having read and agreed to AKJ’s data
+                protection notice:{' '}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  href="https://www.akj.com/legal"
+                >
+                  https://www.akj.com/legal
+                </a>{' '}
+                .
+              </label>
+              <svg
+                className="
+    absolute 
+    w-4 h-4 mt-1
+    hidden peer-checked:block
+    pointer-events-none"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            {errors['terms_and_condition'] && (
+              <p
+                className="error-message"
+                style={{
+                  color: 'red',
+                }}
+              >
+                Please tick this box
+              </p>
+            )}
+          </div>
+        </div>
+
         <div>
           <BasicButton variant="secondary" size="medium" type="submit">
             {isLoading ? 'Registering' : 'Submit'}
