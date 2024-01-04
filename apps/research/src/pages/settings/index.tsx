@@ -22,6 +22,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
       seoTitle='"K33 - Settings | Payments"'
       activeKey="/settings"
       title="Settings"
+      type="secondary"
       tabs={[
         { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {

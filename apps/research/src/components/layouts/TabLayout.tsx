@@ -14,6 +14,9 @@ import * as React from 'react';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { sectionKeys } from '@/utils';
+import { appStructure } from '@/config';
+import { useProductInfo } from '@/hooks';
 
 const { useToken } = theme;
 const { Title, Text } = Typography;
@@ -27,6 +30,7 @@ export interface TabLayoutProps extends React.PropsWithChildren {
   type?: 'primary' | 'secondary';
   isButtonPrimary?: boolean;
   showSubscribeButton?: boolean;
+  sectionName?: string;
 }
 
 const TabLayout: React.FC<TabLayoutProps> = ({
@@ -39,12 +43,50 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   type = 'primary',
   isButtonPrimary = false,
   showSubscribeButton = false,
+  sectionName = 'pro',
 }) => {
   const {
     token: { colorBgContainer },
   } = useToken();
 
   const { md, xl } = Grid.useBreakpoint();
+  const productKey = sectionKeys[sectionName] ?? 'pro';
+
+  const { productStatus } = useProductInfo(
+    appStructure.payments[productKey].productId
+  );
+
+  const { productStatus: proProductStatus, appState } = useProductInfo(
+    appStructure.payments.pro.productId
+  );
+
+  const getSubscribeButton = () => {
+    if (
+      showSubscribeButton &&
+      productStatus.state !== 'active' &&
+      proProductStatus.state !== 'active'
+    ) {
+      return (
+        <Link href={'/pricing'}>
+          <Button
+            size="large"
+            style={{
+              background: '#FFE70F',
+              ...(xl && {
+                width: 240,
+                height: 50,
+              }),
+              border: 'none',
+            }}
+          >
+            Subscribe
+          </Button>
+        </Link>
+      );
+    }
+
+    return null;
+  };
 
   const router = useRouter();
   return (
@@ -74,13 +116,16 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           <Row>
             <Col span={22} offset={1}>
               <div id="page-title" className={styles.pageTitle}>
-                <Space direction={xl ? "horizontal" : "vertical"} size={'large'}>
+                <Space
+                  direction={xl ? 'horizontal' : 'vertical'}
+                  size={'large'}
+                >
                   <div style={{ maxWidth: 210 }}>
                     <Title
                       level={xl ? 1 : 3}
                       style={{
                         margin: 0,
-                        color: 'white',
+                        color: type === 'primary' ? 'white' : 'black',
                         fontWeight: 800,
                       }}
                     >
@@ -92,7 +137,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                       <Text
                         style={{
                           color: 'white',
-                          fontSize: xl ? 18: 16,
+                          fontSize: xl ? 18 : 16,
                         }}
                       >
                         {description}
@@ -100,23 +145,8 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                     )}
                   </div>
                 </Space>
-                {showSubscribeButton && (
-                  <Link href={'/pricing'}>
-                    <Button
-                      size="large"
-                      style={{
-                        background: '#FFE70F',
-                        ...(xl && {
-                          width: 240 ,
-                        height: 50,
-                        }),
-                        border: 'none',
-                      }}
-                    >
-                      Subscribe
-                    </Button>
-                  </Link>
-                )}
+
+                {getSubscribeButton()}
               </div>
               {tabs.length > 0 && (
                 <Tabs

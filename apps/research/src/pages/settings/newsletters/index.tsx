@@ -154,6 +154,7 @@ EmailSettings.getLayout = function getLayout(page: React.ReactElement) {
       seoTitle='"K33 - Settings | Emails"'
       activeKey="/settings/newsletters"
       title="Settings"
+      type="secondary"
       tabs={[
         { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {

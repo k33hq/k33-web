@@ -36,7 +36,7 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
           title,
           description:
             'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analysing the potential implications.',
-          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/this-week-in-crypto`,
           type: 'article:section',
           images: [
             {
@@ -62,6 +62,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
       activeKey={'/'}
+      sectionName="this-week-in-crypto"
       description="Follow the trends and understand the implications of key events"
       title="This Week in Crypto"
       tabs={[]}

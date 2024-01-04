@@ -35,7 +35,7 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
           title: 'Research - Navigating Narratives',
           description:
             'Weekly research note looking at what’s brewing in the dynamic low-mid cap altcoin markets from an altcoin trader’s perspective.',
-          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/ahead-of-the-curve`,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/navigating-narratives`,
           type: 'article:section',
           images: [
             {
@@ -60,7 +60,8 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
 NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
   return (
     <TabLayout
-      activeKey={'/'}
+      sectionName={'navigating-narratives'}
+      activeKey="/"
       description="Understand what’s brewing in the dynamic altcoin and DeFi markets"
       title="Navigating Narratives"
       tabs={[]}

@@ -33,6 +33,8 @@ import { siteUsername } from '@/utils';
 import { Button, Divider, Grid, Image, Typography } from 'antd';
 import styles from './styles.module.scss';
 import Link from 'next/link';
+import { useProductInfo } from '@/hooks';
+import { appStructure } from '@/config';
 
 interface HomePageProps {
   industryReports: ReadonlyArray<ArticleWebWidget>;
@@ -58,6 +60,9 @@ const Home: NextPageWithLayout<HomePageProps> = ({
 }) => {
   const indexTableProps = indexSummary[0];
   const { lg, xl } = Grid.useBreakpoint();
+  const { productStatus: proProductStatus, appState } = useProductInfo(
+    appStructure.payments.pro.productId
+  );
 
   return (
     <>
@@ -89,7 +94,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         }}
       />
       <main id="research-home" className="research-home">
-        <BottomPromotion />
+        {proProductStatus.state !== 'active' && <BottomPromotion />}
         <HomeDashboard {...articles} />
         <IndustryDashboard reports={industryReports} />
         <div id="token-dashboard-summary" className="home-section-summary">
