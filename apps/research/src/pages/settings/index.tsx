@@ -27,7 +27,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
         { key: 'payments', label: 'Subscriptions', url: '/settings' },
         {
           key: 'newsletters',
-          label: 'Newsletters',
+          label: 'Email Settings',
           url: '/settings/newsletters',
         },
       ]}

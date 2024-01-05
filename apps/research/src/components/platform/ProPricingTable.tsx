@@ -47,12 +47,9 @@ const ProPrincingTable: React.FC = () => {
     switch (state.state) {
       case 'ended':
         return (
-          <CheckOutButton
-            trial={trial}
-            checkOut={checkOut}
-            isLoading={isLoading}
-            badge={badge}
-          />
+          <Button loading={isLoading} onClick={checkOut} block>
+            Renew Subscription
+          </Button>
         );
       case 'blocked':
         return (
@@ -62,8 +59,8 @@ const ProPrincingTable: React.FC = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Monthly Plan'
-              : 'Update Payment Details'}
+              ? 'Update Payment Details'
+              : 'Get Monthly Plan'}
           </DashboardButton>
         );
       case 'active':
@@ -74,8 +71,8 @@ const ProPrincingTable: React.FC = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Monthly Plan'
-              : 'Manage Subscription'}
+              ? 'Manage Subscription'
+              : 'Get Monthly Plan'}
           </DashboardButton>
         );
       default:
@@ -105,12 +102,9 @@ const ProPrincingTable: React.FC = () => {
     switch (state.state) {
       case 'ended':
         return (
-          <CheckOutButton
-            trial={trial}
-            checkOut={checkOut}
-            isLoading={isLoading}
-            badge={badge}
-          />
+          <Button loading={isLoading} onClick={checkOut} block>
+            Renew Subscription
+          </Button>
         );
       case 'blocked':
         return (
@@ -120,8 +114,8 @@ const ProPrincingTable: React.FC = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Yearly Plan'
-              : 'Update Payment Details'}
+              ? 'Update Payment Details'
+              : 'Get Yearly Plan'}
           </DashboardButton>
         );
       case 'active':
@@ -132,8 +126,8 @@ const ProPrincingTable: React.FC = () => {
             badge={badge}
           >
             {state.priceId === priceId
-              ? 'Get Yearly Plan'
-              : 'Manage Subscription'}
+              ? 'Manage Subscription'
+              : 'Get Yearly Plan'}
           </DashboardButton>
         );
       default:
