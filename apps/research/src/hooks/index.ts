@@ -42,7 +42,7 @@ export const useCustomerCheckout = (priceId: string) => {
       const response = await checkout({
         priceId: priceId,
         successUrl:
-          (router.query.redirectUrl as string) ?? window.location.href,
+          (router.query.redirectUrl as string) ?? window.location.href + "?payment=success",
         cancelUrl: (router.query.redirectUrl as string) ?? window.location.href,
       }).unwrap();
       window.location.href = response.url;
