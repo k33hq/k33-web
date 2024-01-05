@@ -12,6 +12,7 @@ import * as React from 'react';
 import { useHistoryTravel } from 'ahooks';
 import { isBrowser } from '@/utils';
 import { useRouter } from 'next/router';
+import { appStructure } from '@/config';
 
 export const useCustomerDashboard = () => {
   const [dashboard, { data, isLoading }] = useCustomerMutation();
@@ -37,12 +38,38 @@ export const useCustomerDashboard = () => {
 export const useCustomerCheckout = (priceId: string) => {
   const [checkout, { isLoading }] = useCheckoutMutation();
   const router = useRouter();
+
+  const getRedirectUrl = () => {
+    switch (priceId) {
+      case appStructure.payments.pro.annualPriceId:
+      case appStructure.payments.pro.monthlyPriceId:
+        return `${
+          router.query.redirectUrl ?? window.location.href
+        }?product=pro`;
+
+      case appStructure.payments.aoc.annualPriceId:
+      case appStructure.payments.aoc.monthlyPriceId:
+        return `${
+          router.query.redirectUrl ?? window.location.href
+        }?product=aoc`;
+      case appStructure.payments.twic.annualPriceId:
+      case appStructure.payments.twic.monthlyPriceId:
+        return `${
+          router.query.redirectUrl ?? window.location.href
+        }?product=twic`;
+      case appStructure.payments.nn.annualPriceId:
+      case appStructure.payments.nn.monthlyPriceId:
+        return `${router.query.redirectUrl ?? window.location.href}?product=nn`;
+      default:
+        router.query.redirectUrl ?? window.location.href;
+    }
+  };
+
   const doCheckOut = async () => {
     try {
       const response = await checkout({
         priceId: priceId,
-        successUrl:
-          (router.query.redirectUrl as string) ?? window.location.href + "?payment=success",
+        successUrl: getRedirectUrl() + '&checkout=success',
         cancelUrl: (router.query.redirectUrl as string) ?? window.location.href,
       }).unwrap();
       window.location.href = response.url;
