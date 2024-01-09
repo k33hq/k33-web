@@ -63,7 +63,6 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       title="Monthly Outlook"
       tabs={[]}
       image="./aoc_header.svg"
-      showSubscribeButton
     >
       {page}
     </TabLayout>
