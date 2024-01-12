@@ -19,7 +19,6 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
         { "source": "/research/home",                                                         "destination": "/research", "type": 301 },
-        { "source": "/research/analysis",                                                     "destination": "/research", "type": 301 },
         { "source": "/research/reports",                                                      "destination": "/research", "type": 301 },
         { "source": "/research/token-evaluations",                                            "destination": "/research/token-valuation", "type": 301 },
         { "source": "/research/opinion",                                                      "destination": "/research", "type": 301 },
@@ -57,7 +56,6 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
         { "source": "/research/home",                                                         "destination": "/research", "type": 301 },
-        { "source": "/research/analysis",                                                     "destination": "/research", "type": 301 },
         { "source": "/research/reports",                                                      "destination": "/research", "type": 301 },
         { "source": "/research/token-evaluations",                                            "destination": "/research/token-valuation", "type": 301 },
         { "source": "/research/opinion",                                                      "destination": "/research", "type": 301 },
