@@ -10,7 +10,7 @@ module.exports = {
   transpilePackages: ['core', 'platform-js', 'antd'],
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
