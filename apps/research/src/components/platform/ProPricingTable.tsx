@@ -44,6 +44,7 @@ const ProPrincingTable: React.FC = () => {
     badge: boolean = false,
     trial: boolean = false
   ) => {
+    console.log(state.priceId === priceId ? 'is subscribed' : 'not subscribed');
     switch (state.state) {
       case 'ended':
         return (
@@ -99,6 +100,7 @@ const ProPrincingTable: React.FC = () => {
     badge: boolean = false,
     trial: boolean = false
   ) => {
+    console.log(state.priceId === priceId ? 'is subscribed' : 'not subscribed');
     switch (state.state) {
       case 'ended':
         return (
