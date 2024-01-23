@@ -5,7 +5,6 @@ import {
   SpotlightChart,
   TokenValuationCover,
   TabLayout,
-  TokenValuationLayout,
 } from '@/components';
 import { ArticleSummaryWidget, IndexHome } from '@/types';
 import { siteUsername } from '@/utils';

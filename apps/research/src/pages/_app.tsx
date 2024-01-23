@@ -9,8 +9,6 @@ import withTheme from '../theme';
 import { MainLayout } from '@/components';
 import '../../public/antd.min.css';
 import '../styles/globals.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Script from 'next/script';
 
 export const poppins = Poppins({
@@ -29,33 +27,17 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   const { store, props } = wrapper.useWrappedStore(rest);
 
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
-
-  if (typeof window !== 'undefined') {
-    window.onload = () => {
-      document.getElementById('holderStyle')!.remove();
-    };
-  }
-
   return withTheme(
     <Provider store={store}>
-      <style
-        id="holderStyle"
-        dangerouslySetInnerHTML={{
-          __html: `
-                    *, *::before, *::after {
-                        transition: none!important;
-                    }
-                    `,
-        }}
-      />
       <Script
+        rel="preconnect"
         strategy="afterInteractive"
+        defer
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
       />
       <Script
         id="gtag-script"
+        defer
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -71,9 +53,7 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
         }}
       />
 
-      <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
-        <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
-      </div>
+      <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
     </Provider>
   );
 };

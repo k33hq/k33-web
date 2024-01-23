@@ -1,13 +1,26 @@
-import { PricingTable, ProPricingTable } from '@/components';
 import { siteUsername } from '@/utils';
 import { Col, Layout, Row, Space, theme, Typography } from 'antd';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import * as React from 'react';
 import styles from './styles.module.scss';
+import dynamic from 'next/dynamic';
 
 const { useToken } = theme;
 const { Title } = Typography;
+
+const ProPricingTable = dynamic(
+  () => import('../components/platform/ProPricingTable'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
+
+const PricingTable = dynamic(
+  () => import('../components/platform/PricingTable'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 const Pricing = () => {
   const {

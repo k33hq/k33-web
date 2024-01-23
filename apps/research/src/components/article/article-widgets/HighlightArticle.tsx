@@ -73,6 +73,7 @@ const HighlightArticle: React.FC<HighlightArticleProps> = ({
           href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${articleSlug}`}
         >
           <Image
+            loading="lazy"
             src={horizontalThumbnail.url}
             alt={horizontalThumbnail.description}
             preview={false}

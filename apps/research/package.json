@@ -42,8 +42,6 @@
     "react-instantsearch-hooks-router-nextjs": "^6.46.0",
     "react-instantsearch-hooks-web": "^6.46.0",
     "react-redux": "^8.0.5",
-    "slick-carousel": "^1.8.1",
-    "swiper": "^9.4.1",
     "ui": "workspace:*"
   },
   "devDependencies": {

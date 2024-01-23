@@ -56,6 +56,7 @@ const DefaultRichTextRender: React.FC<DefaultRichTextRenderProps> = ({
             }}
           >
             <Image
+              loading="lazy"
               src={asset?.url}
               alt={asset.title ?? ''}
               style={{

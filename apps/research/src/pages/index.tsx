@@ -2,39 +2,62 @@ import * as React from 'react';
 import { NextPageWithLayout } from 'platform-js';
 import {
   BottomPromotion,
-  DashboardList,
-  HomeDashboard,
-  IndustryDashboard,
-  MarketDashboard,
+  //DashboardList,
+  //HomeDashboard,
+  //IndustryDashboard,
+  //MarketDashboard,
   NamedDivider,
-  PricingTable,
-  ProPricingTable,
+  // ProPricingTable,
   SimpleLayout,
   TokenValuationCover,
-  TopPromotion,
 } from '@/components';
 import { NextSeo } from 'next-seo';
 import { GetStaticProps } from 'next';
 import {
   ArticleSummaryWidget,
-  ArticleSummaryWithCover,
   ArticleWebWidget,
   HomePage,
   TokenValuationIndex,
 } from '@/types';
 import {
   getArticleSummaryWidgets,
-  getArticleSummaryWithCoverWidgets,
   getArticleWidgets,
   getHomePage,
   getIndexSummary,
 } from '@/api';
 import { siteUsername } from '@/utils';
-import { Button, Divider, Grid, Image, Typography } from 'antd';
-import styles from './styles.module.scss';
-import Link from 'next/link';
+import { Divider, Grid } from 'antd';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
+import dynamic from 'next/dynamic';
+
+const HomeDashboard = dynamic(
+  () => import('../components/dashboards/HomeDashboard'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
+
+const IndustryDashboard = dynamic(
+  () => import('../components/dashboards/industry-insights/IndustryDashboard'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
+
+const ProPricingTable = dynamic(
+  () => import('../components/platform/ProPricingTable'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
+
+const DashboardList = dynamic(
+  () => import('../components/article/article-widgets/DashboardList'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 interface HomePageProps {
   industryReports: ReadonlyArray<ArticleWebWidget>;
@@ -120,79 +143,14 @@ const Home: NextPageWithLayout<HomePageProps> = ({
           <Divider />
           <ProPricingTable />
         </div>
-        {/* <div
-          style={{
-            width: '100%',
-
-            ...(lg
-              ? {
-                  backgroundImage: `url(/research/bottom_promotion.svg)`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  position: 'relative',
-                }
-              : {
-                  backgroundImage: `linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/research/bottom_promotion.svg)`,
-                  backgroundSize: 'cover',
-                }),
-          }}
-          className={styles.bottomPromotion}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 16,
-              ...(lg && {
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                right: 100,
-                margin: 'auto 0',
-                width: 467,
-                gap: 32,
-              }),
-            }}
-          >
-            <Typography.Title
-              style={{
-                opacity: 0.85,
-                textAlign: 'center',
-                margin: 0,
-              }}
-            >
-              Explore Our Newest Products!
-            </Typography.Title>
-            <Typography.Text style={{ opacity: 0.85, textAlign: 'center' }}>
-              Nice text Nice text Nice text Nice text Nice text Nice text Nice
-              text Nice text Nice text Nice text Nice text Nice text Nice text
-              Nice text Nice text Nice text Nice text Nice text Nice text
-            </Typography.Text>
-            <Button size="large">Know More</Button>
-          </div>
-        </div> */}
       </main>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  // const homepage = await builder.get('homepage').toPromise();
   const industryReports = await getArticleWidgets('industry-reports', 6);
   const analysis = await getArticleSummaryWidgets('kvq', 4);
-
-  // const quickTakes = await getArticleSummaryWidgets(
-  //   'market-insights/quick-takes',
-  //   3
-  // );
-
-  // const reports = await getArticleSummaryWithCoverWidgets(
-  //   'market-insights/weekly-reports',
-  //   5
-  // );
-
   const indexSummary = await getIndexSummary();
 
   const homePage = await getHomePage();

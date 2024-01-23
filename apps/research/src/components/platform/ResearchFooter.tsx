@@ -8,6 +8,7 @@ import {
 import { appStructure } from '@/config';
 import Link from 'next/link';
 import Script from 'next/script';
+import Image from 'next/image';
 
 const { Footer, Content } = Layout;
 const { useToken } = theme;
@@ -27,6 +28,7 @@ const ResearchFooter: React.FC = () => {
         type="text/javascript"
         strategy="afterInteractive"
         id="linked_k33_id"
+        defer
         dangerouslySetInnerHTML={{
           __html: `_linkedin_partner_id = "2684138"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(_linkedin_partner_id);`,
         }}
@@ -36,21 +38,24 @@ const ResearchFooter: React.FC = () => {
         type="text/javascript"
         strategy="afterInteractive"
         id="linked_k33_script"
+        defer
         dangerouslySetInnerHTML={{
           __html: `(function(l) { if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]} var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(window.lintrk); `,
         }}
       />
       <noscript>
-        <img
+        <Image
           height="1"
           width="1"
           style={{ display: 'none' }}
           alt=""
           src="https://px.ads.linkedin.com/collect/?pid=2684138&fmt=gif"
+          loading="lazy"
         />
       </noscript>
 
       <Script
+        defer
         type="text/javascript"
         strategy="afterInteractive"
         id="twitter_k33_script"

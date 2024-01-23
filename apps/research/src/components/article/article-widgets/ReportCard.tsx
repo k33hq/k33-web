@@ -35,6 +35,7 @@ const ReportCard: React.FC<ArticleWidgetType> = ({
         cover={
           <Image
             style={{}}
+            loading="lazy"
             src={verticalThumbnail.url}
             preview={false}
             alt={verticalThumbnail.description}

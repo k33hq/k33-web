@@ -40,6 +40,7 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({
           <Row wrap gutter={[24, 16]} align="middle">
             <Col xs={24} sm={12} order={sm ? 2 : 0}>
               <Image
+                loading="lazy"
                 style={{
                   width: '100%',
                 }}

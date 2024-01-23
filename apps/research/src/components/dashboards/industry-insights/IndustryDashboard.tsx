@@ -1,16 +1,8 @@
 import * as React from 'react';
-import NamedDivider from '../../platform/NamedDivider';
 import { ArticleWebWidget } from '@/types';
-import dynamic from 'next/dynamic';
-import { ErrorBoundary } from 'react-error-boundary';
 import { Divider, Result, Typography } from 'antd';
 import LatestIndustryReports from './LatestIndustryReports';
 import Link from 'next/link';
-
-const ClientCarousel = dynamic(
-  () => import('../../article/article-widgets/ReportCarousel'),
-  { ssr: false, loading: () => <h1>loading</h1> }
-);
 
 // TODO: 4 industry report section reports
 
@@ -43,17 +35,6 @@ const IndustryDashboard: React.FC<IndustryDashboardProps> = ({ reports }) => {
         <Divider style={{ margin: 0 }} />
       </div>
 
-      {/* <ErrorBoundary
-        fallback={
-          <Result
-            status="404"
-            title="Industry Report Did not load"
-            subTitle="Sorry, something went wrong."
-          />
-        }
-      >
-        <ClientCarousel reports={reports} />
-      </ErrorBoundary> */}
       <LatestIndustryReports reports={reports} />
     </div>
   );

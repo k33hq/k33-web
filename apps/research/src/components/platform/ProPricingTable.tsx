@@ -5,7 +5,7 @@ import {
   usePlan,
   useProductInfo,
 } from '@/hooks';
-import { Button, Card, Image, Typography, Radio, Badge, Space } from 'antd';
+import { Button, Typography, Radio, Badge, Space } from 'antd';
 import * as React from 'react';
 import {
   CheckOutButton,
@@ -15,6 +15,7 @@ import {
 import { useRouter } from 'next/router';
 import { ProductStatus } from '@/types';
 import styles from './styles.module.scss';
+import Image from 'next/image';
 
 const ProPrincingTable: React.FC = () => {
   const { plan, setPlan } = usePlan();
@@ -44,7 +45,6 @@ const ProPrincingTable: React.FC = () => {
     badge: boolean = false,
     trial: boolean = false
   ) => {
-    console.log(state.priceId === priceId ? 'is subscribed' : 'not subscribed');
     switch (state.state) {
       case 'ended':
         return (
@@ -191,22 +191,7 @@ const ProPrincingTable: React.FC = () => {
         </Radio.Button>
       </Radio.Group>
       {plan === 'monthly' ? (
-        <div
-          id="pro-pricing-monthly"
-          // style={{
-          //   display: 'flex',
-          //   flexDirection: 'row',
-          //   marginTop: 32,
-          //   gap: 32,
-          // }}
-          className={styles.proPricing}
-        >
-          {/* <Image
-            src={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg`}
-            alt="pro-background"
-            style={{ maxHeight: 600, borderRadius: 10 }}
-            preview={false}
-          /> */}
+        <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
               backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
@@ -302,14 +287,17 @@ const ProPrincingTable: React.FC = () => {
         <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
-              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
-              borderRadius: 10,
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
               position: 'relative',
               width: '100%',
             }}
           >
+            <Image
+              layout="fill"
+              loading="lazy"
+              className="object-center object-cover pointer-events-none"
+              src={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg`}
+              alt={''}
+            />
             <Space
               direction="horizontal"
               style={{

@@ -32,7 +32,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
   horizontalThumbnail,
   subtitle,
-  tagsCollection ,
+  tagsCollection,
   publishedDate,
   isNew = false,
   showTags = false,
@@ -55,6 +55,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             style={{
               width: '100%',
             }}
+            loading="lazy"
             preview={false}
             alt={horizontalThumbnail.description ?? ''}
             src={horizontalThumbnail.url}
