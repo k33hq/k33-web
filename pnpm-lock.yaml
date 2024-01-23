@@ -12,7 +12,7 @@ importers:
         version: link:packages/eslint-config-custom
       prettier:
         specifier: latest
-        version: 3.0.3
+        version: 3.2.4
       turbo:
         specifier: latest
         version: 1.10.12
@@ -243,9 +243,6 @@ importers:
       next:
         specifier: ^13.1.1
         version: 13.1.6(@babel/core@7.20.12)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
-      next-bg-image:
-        specifier: ^0.1.4
-        version: 0.1.4(next@13.1.6)(react-dom@18.2.0)(react@18.2.0)
       next-redux-wrapper:
         specifier: ^8.1.0
         version: 8.1.0(next@13.1.6)(react-redux@8.0.5)(react@18.2.0)
@@ -4991,18 +4988,6 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  /next-bg-image@0.1.4(next@13.1.6)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-9U/NYZmyxWR4vAWfcDIqCVanq/6TyewRyEYsjpdOjB1mg6uxTFKc7n/71CBo4LL/H+mUXHpwmieBaUpb1uUqfw==}
-    peerDependencies:
-      next: '>=13.0.0'
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
-    dependencies:
-      next: 13.1.6(@babel/core@7.20.12)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /next-redux-wrapper@8.1.0(next@13.1.6)(react-redux@8.0.5)(react@18.2.0):
     resolution: {integrity: sha512-2hIau0hcI6uQszOtrvAFqgc0NkZegKYhBB7ZAKiG3jk7zfuQb4E7OV9jfxViqqojh3SEHdnFfPkN9KErttUKuw==}
     peerDependencies:
@@ -5400,12 +5385,6 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-
-  /prettier@3.0.3:
-    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
 
   /prettier@3.2.4:
     resolution: {integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ==}
