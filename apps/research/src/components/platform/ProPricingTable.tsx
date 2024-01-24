@@ -287,17 +287,14 @@ const ProPrincingTable: React.FC = () => {
         <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
+              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
+              borderRadius: 10,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
               position: 'relative',
               width: '100%',
             }}
           >
-            <Image
-              layout="fill"
-              loading="lazy"
-              className="object-center object-cover pointer-events-none"
-              src={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg`}
-              alt={''}
-            />
             <Space
               direction="horizontal"
               style={{
