@@ -48,7 +48,7 @@ export const ArticleBodyFragment = gql`
 
 export const AssetFragment = gql`
   fragment asset on Asset {
-    url
+    url(transform: { format: AVIF })
     title
     description
   }
