@@ -11,19 +11,19 @@ export const appStructure: AppStructure = {
       key: 'ahead-of-the-curve',
       label: 'Ahead of the Curve',
       url: '/ahead-of-the-curve',
-      image: './aoc_header.svg',
+      image: './aoc_header.avif',
     },
     {
       key: 'navigating-narratives',
       label: 'Navigating Narratives',
       url: '/navigating-narratives',
-      image: './nn_header.svg',
+      image: './nn_header.avif',
     },
     {
       key: 'this-week-in-crypto',
       label: 'This Week in Crypto',
       url: '/this-week-in-crypto',
-      image: './twic_header.svg',
+      image: './twic_header.avif',
     },
     {
       key: 'industry-reports',

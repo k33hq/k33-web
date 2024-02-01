@@ -2,13 +2,8 @@ import {
   getArticlePage,
   getArticleSlugs,
   getArticleWidgetsByAuthors,
-  getProducts,
 } from '@/api';
-import type {
-  ArticlePage,
-  ArticleWebWidget,
-  SubscriptionProduct,
-} from '@/types';
+import type { ArticlePage, ArticleWebWidget } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { Layout, Row, Col, Grid, theme } from 'antd';
 import { ReactElement } from 'react';
@@ -19,8 +14,6 @@ import {
   ArticleSidebar,
   ShareArticle,
   ArticleRecommendations,
-  TopPromotion,
-  BottomPromotion,
 } from '@/components';
 import Head from 'next/head';
 import { siteUsername } from '@/utils';
@@ -28,7 +21,6 @@ import config from '@/firebase/config';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
-const { useToken } = theme;
 
 interface ArticlePageProps {
   page: ArticlePage;

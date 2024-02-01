@@ -27,8 +27,28 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
   const getLayout = Component.getLayout ?? ((page) => page);
   const { store, props } = wrapper.useWrappedStore(rest);
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+
+  if (typeof window !== 'undefined') {
+    window.onload = () => {
+      document.getElementById('holderStyle')!.remove();
+    };
+  }
+
   return withTheme(
     <Provider store={store}>
+      <style
+        id="holderStyle"
+        dangerouslySetInnerHTML={{
+          __html: `
+                    *, *::before, *::after {
+                        transition: none!important;
+                    }
+                    `,
+        }}
+      />
+
       <Script
         rel="preconnect"
         strategy="afterInteractive"
@@ -53,7 +73,9 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
         }}
       />
 
-      <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
+      <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
+        <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
+      </div>
     </Provider>
   );
 };

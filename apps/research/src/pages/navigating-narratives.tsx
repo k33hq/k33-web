@@ -65,7 +65,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       description="Understand what’s brewing in the dynamic altcoin and DeFi markets"
       title="Navigating Narratives"
       tabs={[]}
-      image="./nn_header.svg"
+      image="./nn_header.avif"
       showSubscribeButton
     >
       {page}

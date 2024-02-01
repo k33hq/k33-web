@@ -66,7 +66,7 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       description="Follow the trends and understand the implications of key events"
       title="This Week in Crypto"
       tabs={[]}
-      image="./twic_header.svg"
+      image="./twic_header.avif"
       isButtonPrimary
       showSubscribeButton
     >

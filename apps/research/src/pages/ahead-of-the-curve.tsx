@@ -67,7 +67,7 @@ AheadOfTheCurve.getLayout = function getLayout(page: React.ReactElement) {
       title="Ahead of the Curve"
       tabs={[]}
       showSubscribeButton
-      image="./aoc_header.svg"
+      image="./aoc_header.avif"
     >
       {page}
     </TabLayout>

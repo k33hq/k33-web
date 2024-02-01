@@ -3,7 +3,7 @@ import { NextPageWithLayout } from 'platform-js';
 import {
   BottomPromotion,
   //DashboardList,
-  //HomeDashboard,
+  HomeDashboard,
   //IndustryDashboard,
   //MarketDashboard,
   NamedDivider,
@@ -30,13 +30,6 @@ import { Divider, Grid } from 'antd';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
 import dynamic from 'next/dynamic';
-
-const HomeDashboard = dynamic(
-  () => import('../components/dashboards/HomeDashboard'),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
 
 const IndustryDashboard = dynamic(
   () => import('../components/dashboards/industry-insights/IndustryDashboard'),
