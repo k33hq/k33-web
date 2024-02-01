@@ -16,7 +16,7 @@ export const PublicSnippetFragment = gql`
     links {
       assets {
         block {
-          url
+          url(transform: { format: AVIF })
           description
           title
           sys {
@@ -34,7 +34,7 @@ export const ArticleBodyFragment = gql`
     links {
       assets {
         block {
-          url
+          url(transform: { format: AVIF })
           description
           title
           sys {
