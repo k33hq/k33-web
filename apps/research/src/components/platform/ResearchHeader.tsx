@@ -272,7 +272,7 @@ const AppLogo: React.FC = () => {
           cursor: 'pointer',
         }}
       >
-        <Image width={51} priority src={companyLogo} alt="company-logo" />
+        <Image loading="lazy" width={51} src={companyLogo} alt="company-logo" />
       </Link>
       <Link
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}
@@ -281,8 +281,8 @@ const AppLogo: React.FC = () => {
         }}
       >
         <Image
-          priority
           width={98}
+          loading="lazy"
           style={{
             minWidth: 50,
           }}
