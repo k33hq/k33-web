@@ -29,7 +29,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({
               justifyContent: 'center',
             }}
           >
-            <SignUpCall />
+            <SignUpCall title="" />
           </div>
         ) : (
           children

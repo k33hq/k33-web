@@ -32,7 +32,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
         },
       ]}
     >
-      <div
+      {/* <div
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -43,7 +43,7 @@ Settings.getLayout = function getLayout(page: React.ReactElement) {
           Here you can have an overview of you current plan and your payment
           methods.
         </Typography.Text>
-      </div>
+      </div> */}
 
       {page}
     </PrivateLayout>
