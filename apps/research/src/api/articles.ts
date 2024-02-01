@@ -79,7 +79,7 @@ const GetArticlePage = gql`
             title
             subtitle
             horizontalThumbnail {
-              url
+              url(transform: { format: AVIF })
               description
             }
             publishedDate
@@ -91,7 +91,7 @@ const GetArticlePage = gql`
             title
             subtitle
             horizontalThumbnail {
-              url
+              url(transform: { format: AVIF })
               description
             }
             publishedDate
