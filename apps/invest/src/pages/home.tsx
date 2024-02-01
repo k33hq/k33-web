@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
-import content from '../assets/Content.svg';
+import content from '../assets/Content.png';
 import serviceProviders from '../assets/service_providers.png';
 import fundFact from '../assets/fund_fact.png';
 import Image from 'next/image';
@@ -36,12 +36,11 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'November 2023',
+    date: 'January 2024',
     subtitle: '',
     description: [
-      'Given recent trends across a multitude of metrics, we believe October marks the start of the next bull market. The pace is higher, the momentum is building, capital rotations are faster and there is brewing excitement and optimism.',
-      'The outlook continues to be bullish, and we stand by our prediction that activity in the market continues increasing as we inch closer to the important decision point of the ETF deadline on Jan 10.',
-      'The fund is positioned strongly in Bitcoin but has entered a few new positions, notably Celestia (TIA).',
+      'Our outlook for 2024 is bullish, and we believe that the brunt of the impact from the new spot ETFs will be felt over the year as opposed to immediately after approval. The ETFs are widely available, scale very well and the regulatory risk of crypto has been drastically reduced compared to the start of 2023. In an increasingly disconnected world, BTC has a clear long term value proposition of being a maximally independent asset.',
+      'Bitcoin’s improved availability will have a positive impact on the market as a whole and we maintain altcoin exposure based on allocations made to categories alt L1s, DeFi and non-L1 scaling & infrastructure.',
     ],
   },
   summary: {
@@ -226,33 +225,33 @@ const Home: NextPageWithLayout = () => {
                 <tbody className="text-label-light-secondary text-body3">
                   <tr>
                     <td className="px-2 py-1">Year to Date</td>
-                    <td className="px-2 py-1">87.70%</td>
-                    <td className="px-2 py-1">109.62%</td>
+                    <td className="px-2 py-1">150.63%</td>
+                    <td className="px-2 py-1">155.18%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Month</td>
-                    <td className="px-2 py-1">19.48%</td>
-                    <td className="px-2 py-1">28.52%</td>
+                    <td className="px-2 py-1">18.53%</td>
+                    <td className="px-2 py-1">11.92%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">3 Months</td>
-                    <td className="px-2 py-1">13.53%</td>
-                    <td className="px-2 py-1">18.61%</td>
+                    <td className="px-2 py-1">59.53%</td>
+                    <td className="px-2 py-1">56.45%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">6 Months</td>
-                    <td className="px-2 py-1">10.31%</td>
-                    <td className="px-2 py-1">18.09%</td>
+                    <td className="px-2 py-1">45.10%</td>
+                    <td className="px-2 py-1">38.47%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Year</td>
-                    <td className="px-2 py-1">53.45%</td>
-                    <td className="px-2 py-1">69.18%</td>
+                    <td className="px-2 py-1">150.63%</td>
+                    <td className="px-2 py-1">155.18%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">Launch to Date</td>
-                    <td className="px-2 py-1">435.21%</td>
-                    <td className="px-2 py-1">344.77%</td>
+                    <td className="px-2 py-1">614.64%</td>
+                    <td className="px-2 py-1">441.44%</td>
                   </tr>
                 </tbody>
               </table>
