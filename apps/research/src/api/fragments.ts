@@ -5,7 +5,9 @@ export const SeoFragment = gql`
     title
     description
     image {
-      ...asset
+      url
+      title
+      description
     }
   }
 `;
