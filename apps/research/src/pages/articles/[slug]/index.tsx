@@ -5,19 +5,37 @@ import {
 } from '@/api';
 import type { ArticlePage, ArticleWebWidget } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { Layout, Row, Col, Grid, theme } from 'antd';
+import { Layout, Row, Col, Grid } from 'antd';
 import { ReactElement } from 'react';
-import { NextPageWithLayout, useAppState } from 'platform-js';
+import { NextPageWithLayout } from 'platform-js';
 import { NextSeo, ArticleJsonLd } from 'next-seo';
-import {
-  Article,
-  ArticleSidebar,
-  ShareArticle,
-  ArticleRecommendations,
-} from '@/components';
+import { Article } from '@/components';
 import Head from 'next/head';
 import { siteUsername } from '@/utils';
-import config from '@/firebase/config';
+
+import dynamic from 'next/dynamic';
+
+const ArticleRecommendations = dynamic(
+  () =>
+    import('../../../components/article/article-body/ArticleRecommendation'),
+  {
+    loading: () => <div style={{ width: '100%', height: 150 }}></div>,
+  }
+);
+
+const ArticleSidebar = dynamic(
+  () => import('../../../components/article/article-sidebar/ArticleSidebar'),
+  {
+    loading: () => <div style={{ width: '100%', height: 200 }}></div>,
+  }
+);
+
+const ShareArticle = dynamic(
+  () => import('../../../components/article/ShareArticle'),
+  {
+    loading: () => <div style={{ width: '100%', height: 200 }}></div>,
+  }
+);
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -45,8 +63,6 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
     image,
     ...articleContent
   } = page;
-
-  const state = useAppState(config);
 
   return (
     <>

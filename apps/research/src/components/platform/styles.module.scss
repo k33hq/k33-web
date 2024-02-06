@@ -76,7 +76,6 @@
   background-image: url(/research/background.avif);
   background-repeat: no-repeat;
   background-size: cover;
-
   > div {
     width: 100%;
   }
@@ -96,13 +95,6 @@
     }
   }
 }
-
-// @include medium() {
-//   .topPromotion {
-//     > div:last-child {
-//     }
-//   }
-// }
 
 @include large() {
   .topPromotion {
@@ -134,11 +126,6 @@
 .bottomPromotion {
   padding: 16px 32px;
 }
-‸
-// @include large() {
-//   .bottomPromotion {
-//   }
-// }
 
 .proPricing {
   display: flex;
