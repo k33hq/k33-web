@@ -1,5 +1,5 @@
 import { ArticlePage } from '@/types';
-import { copyText, getProductSection, getReadingTime } from '@/utils';
+import { copyText, getProductSection } from '@/utils';
 import { formatDateAndTime } from '@contentful/f36-datetime';
 import { Divider, Space, Typography } from 'antd';
 import Link from 'next/link';
@@ -45,14 +45,3 @@ const ArticleMetaData: React.FC<ArticleMetaDataProps> = ({
 };
 
 export default ArticleMetaData;
-
-const ReadTime = () => {
-  const [time, setTime] = React.useState(0);
-
-  React.useEffect(() => {
-    setTime(getReadingTime());
-  }, []);
-
-  if (time === 0) return null;
-  return <Text type="secondary">{time} min read</Text>;
-};

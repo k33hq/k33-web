@@ -9,7 +9,6 @@ import {
 import { Plan, ProductStatus } from '@/types';
 import { useAppState } from 'platform-js';
 import * as React from 'react';
-import { useHistoryTravel } from 'ahooks';
 import { isBrowser } from '@/utils';
 import { useRouter } from 'next/router';
 import { appStructure } from '@/config';

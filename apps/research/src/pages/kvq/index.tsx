@@ -1,6 +1,6 @@
 import { getArticleSummaryWidgets, getIndexes } from '@/api';
 import {
-  DashboardList,
+  //DashboardList,
   HighlightArticle,
   SpotlightChart,
   TokenValuationCover,
@@ -11,6 +11,14 @@ import { siteUsername } from '@/utils';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { NextPageWithLayout } from 'platform-js';
+import dynamic from 'next/dynamic';
+
+const DashboardList = dynamic(
+  () => import('../../components/article/article-widgets/DashboardList'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 interface KvQProps {
   indexes: ReadonlyArray<IndexHome>;

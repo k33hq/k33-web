@@ -16,7 +16,6 @@ import {
   Input,
   InputRef,
   Avatar,
-  Tooltip,
 } from 'antd';
 import type { ColumnType, ColumnsType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
@@ -232,7 +231,7 @@ const KVQTable: React.FC<IndexesProps> = ({
       }}
     >
       <Table
-        columns={columns}
+        columns={columns as any}
         dataSource={tokens}
         {...(!sm && {
           expandable: {
@@ -255,12 +254,7 @@ const KVQTable: React.FC<IndexesProps> = ({
               alignItems: 'center',
             }}
           >
-            <Link
-              href={
-                '/articles/' +
-                frameworkArticle.articleSlug
-              }
-            >
+            <Link href={'/articles/' + frameworkArticle.articleSlug}>
               <Button
                 size={md ? 'middle' : 'small'}
                 type="text"
@@ -272,12 +266,7 @@ const KVQTable: React.FC<IndexesProps> = ({
                 {md ? 'Understanding KVQ Framework' : 'KVQ Framework'}
               </Button>
             </Link>
-            <Link
-              href={
-                '/articles/' +
-                assessmentArticle.articleSlug
-              }
-            >
+            <Link href={'/articles/' + assessmentArticle.articleSlug}>
               <Button
                 type="text"
                 icon={<DownloadOutlined />}

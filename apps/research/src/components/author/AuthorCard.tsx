@@ -3,7 +3,7 @@ import { Card, theme, Typography, Space, Image, Grid } from 'antd';
 import { EllipsisConfig } from 'antd/es/typography/Base';
 
 const { useToken } = theme;
-const { Link: AntLink, Text, Paragraph } = Typography;
+const { Paragraph } = Typography;
 const { useBreakpoint } = Grid;
 
 interface AuthorCardProps extends Author {}
@@ -15,7 +15,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
   name,
 }) => {
   const {
-    token: { fontSizeSM, fontSizeLG, colorBgLayout, fontSize },
+    token: { fontSizeLG, colorBgLayout, fontSize },
   } = useToken();
   const { sm } = useBreakpoint();
   return (

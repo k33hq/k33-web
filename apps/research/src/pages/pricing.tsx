@@ -118,9 +118,11 @@ const Pricing = () => {
           }}
         >
           <Row>
-            <Col span={22} offset={1} className={styles.pricingPage}>
-              <ProPricingTable />
-              <PricingTable />
+            <Col span={22} offset={1}>
+              <div className={styles.pricingPage}>
+                <ProPricingTable />
+                <PricingTable />
+              </div>
             </Col>
           </Row>
         </section>

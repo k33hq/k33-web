@@ -74,6 +74,7 @@ const Articles: NextPageWithLayout = () => {
   };
   const [author, setAuthor] = useState<Author | null>(null);
   const router = useRouter();
+
   useAsyncEffect(async () => {
     const authors = router.query['authors'];
     if (authors) {
@@ -88,6 +89,7 @@ const Articles: NextPageWithLayout = () => {
       }
     }
   }, [router]);
+
   return (
     <>
       <NextSeo

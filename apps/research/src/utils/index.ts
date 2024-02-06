@@ -34,16 +34,6 @@ export function downloadResource(url: string, filename?: string) {
 
 export const siteUsername = '@K33Research';
 
-export const getReadingTime = () => {
-  const articleBody = document.getElementById('article-body');
-  if (!articleBody) return 0;
-  const text = document.getElementById('article-body')!.innerText;
-  const wpm = 225;
-  const words = text.trim().split(/\s+/).length;
-  const time = Math.ceil(words / wpm);
-  return time;
-};
-
 export const getLevelTwos = (levelOne: string) => {
   return appStructure.navigation
     .filter((nav) => nav.key === levelOne && nav.children !== undefined)
@@ -62,7 +52,6 @@ export function isBrowser() {
 }
 
 export * from './share';
-export * from './markdown';
 
 export const proFeatures = [
   'Ahead of the Curve – The Weekly Market Report',

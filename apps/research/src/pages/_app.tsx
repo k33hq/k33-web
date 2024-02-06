@@ -1,22 +1,12 @@
 import { AppProps } from 'next/app';
-import { Poppins } from '@next/font/google';
 import * as React from 'react';
 import { NextPageWithLayout } from 'platform-js';
-import K33App from 'platform-js';
 import { Provider } from 'react-redux';
 import { wrapper } from '@/store';
 import withTheme from '../theme';
 import { MainLayout } from '@/components';
-import '../../public/antd.min.css';
 import '../styles/globals.scss';
 import Script from 'next/script';
-
-export const poppins = Poppins({
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
 
 interface ResearchAppProps extends AppProps {
   Component: NextPageWithLayout;
@@ -48,13 +38,13 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
                     `,
         }}
       />
-
       <Script
         rel="preconnect"
         strategy="afterInteractive"
         defer
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}`}
       />
+      <link rel="dns-prefetch" href="https://snap.licdn.com" />
       <Script
         id="gtag-script"
         defer
@@ -72,7 +62,6 @@ const ResearchApp = ({ Component, ...rest }: ResearchAppProps) => {
           `,
         }}
       />
-
       <div style={{ visibility: !mounted ? 'hidden' : 'visible' }}>
         <MainLayout>{getLayout(<Component {...props.pageProps} />)}</MainLayout>
       </div>
