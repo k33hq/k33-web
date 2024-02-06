@@ -8,12 +8,7 @@ const TopPromotion: React.FC = () => {
   const { lg, xl } = Grid.useBreakpoint();
   return (
     <Link href={'/pricing'} className={styles.topPromotion}>
-      <div
-        id="top-promotion-info"
-        style={{
-          backgroundColor: '#03090B',
-        }}
-      >
+      <div id="top-promotion-info">
         <div>
           <Typography.Title
             style={{
@@ -44,7 +39,6 @@ const TopPromotion: React.FC = () => {
           </Button>
         </Link>
       </div>
-      <div />
     </Link>
   );
 };

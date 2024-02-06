@@ -194,7 +194,7 @@ const ProPrincingTable: React.FC = () => {
         <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
-              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
+              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/background.avif)`,
               borderRadius: 10,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
@@ -287,7 +287,7 @@ const ProPrincingTable: React.FC = () => {
         <div id="pro-pricing-monthly" className={styles.proPricing}>
           <div
             style={{
-              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/pro_background.svg)`,
+              backgroundImage: `url(https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/background.avif)`,
               borderRadius: 10,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',

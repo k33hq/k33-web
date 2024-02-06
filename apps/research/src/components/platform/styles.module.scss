@@ -73,6 +73,10 @@
   transition: all;
   transition-duration: 75ms;
   transition-timing-function: ease-in;
+  background-image: url(/research/background.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+
   > div {
     width: 100%;
   }
@@ -91,26 +95,20 @@
       gap: 4px;
     }
   }
-  > div:last-child {
-    background-image: url(/research/top_banner.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100px;
-  }
 }
 
-@include medium() {
-  .topPromotion {
-    > div:last-child {
-      height: 140px;
-    }
-  }
-}
+// @include medium() {
+//   .topPromotion {
+//     > div:last-child {
+//     }
+//   }
+// }
 
 @include large() {
   .topPromotion {
     flex-direction: row;
     position: relative;
+    background-image: url(/research/background.avif);
     > div:first-child {
       padding: 18px;
       align-items: start;
@@ -120,7 +118,6 @@
     }
     > div:last-child {
       height: auto;
-      background-image: url(/research/top_banner.svg);
     }
   }
 }
@@ -137,11 +134,11 @@
 .bottomPromotion {
   padding: 16px 32px;
 }
-
-@include large() {
-  .bottomPromotion {
-  }
-}
+‸
+// @include large() {
+//   .bottomPromotion {
+//   }
+// }
 
 .proPricing {
   display: flex;
