@@ -42,12 +42,12 @@ const BottomPromotion: React.FC = () => {
               backgroundColor: '#CCB911',
               border: 'none',
               ...(xl && {
-                width: 240,
+                width: 180,
                 height: 50,
               }),
             }}
           >
-            Sign Up Now
+            <b>Sign Up Now</b>
           </Button>
         </Link>
       </div>
