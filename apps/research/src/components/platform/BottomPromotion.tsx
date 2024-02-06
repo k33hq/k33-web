@@ -30,10 +30,22 @@ const BottomPromotion: React.FC = () => {
             For Professional and Institutional Investors
           </Typography.Text>
         </div>
-        <Link href={'/pricing'}>
+        <Link
+          href={'/pricing'}
+          style={{
+            paddingBottom: lg ? 2 : 0,
+          }}
+        >
           <Button
             size="large"
-            style={{ backgroundColor: '#CCB911', border: 'none' }}
+            style={{
+              backgroundColor: '#CCB911',
+              border: 'none',
+              ...(xl && {
+                width: 240,
+                height: 50,
+              }),
+            }}
           >
             Sign Up Now
           </Button>
