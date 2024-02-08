@@ -35,7 +35,7 @@ const TopPromotion: React.FC = () => {
             size="large"
             style={{ backgroundColor: '#CCB911', border: 'none' }}
           >
-            Sign Up Now
+            Start Free Trial
           </Button>
         </Link>
       </div>

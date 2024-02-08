@@ -122,6 +122,7 @@ export const appStructure: AppStructure = {
         "DeFi insights from an altcoin trader's perspective",
         'Token assessments based on data and economic theory',
         'Industry insight from our curated news summary and in-depth reports',
+        'Private Telegram Chat Group',
       ],
     },
   },

@@ -47,7 +47,7 @@ const BottomPromotion: React.FC = () => {
               }),
             }}
           >
-            <b>Sign Up Now</b>
+            <b>Start Free Trial</b>
           </Button>
         </Link>
       </div>
