@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3003",
+    "dev": "next dev",
     "test": "",
     "build": "next build",
     "start": "next start",
@@ -12,6 +12,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@builder.io/dev-tools": "^0.2.15",
+    "@builder.io/react": "^3.0.3",
+    "@builder.io/sdk": "^2.2.2",
     "@headlessui/react": "^1.7.11",
     "@next/font": "^13.1.6",
     "@reduxjs/toolkit": "^1.9.3",

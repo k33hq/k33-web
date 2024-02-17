@@ -5,6 +5,5 @@ export { default as Terms } from './Terms';
 export { default as PersonalForm } from './PersonalForm';
 export { default as CompanyForm } from './CompanyForm';
 export { default as Survey } from './Survey';
-export { default as FundPromotion } from './FundPromotion';
 export { default as InvestHeader } from './InvestHeader';
 export { default as InvestFooter } from './InvestFooter';

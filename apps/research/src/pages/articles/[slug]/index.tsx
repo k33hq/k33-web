@@ -215,7 +215,6 @@ export const getStaticProps: GetStaticProps<ArticlePageProps> = async (
   return {
     props: {
       page,
-
       authorArticles,
     },
   };
