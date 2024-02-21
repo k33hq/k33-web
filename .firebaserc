@@ -17,6 +17,9 @@
         "k33-invest-dev": [
           "k33-invest-dev"
         ],
+        "k33-vault-dev": [
+          "k33-vault-dev"
+        ],
         "k33-auth-dev": [
           "k33-auth-dev"
         ],
@@ -38,6 +41,9 @@
         ],
         "k33-invest": [
           "k33-invest"
+        ],
+        "k33-vault": [
+          "k33-vault"
         ],
         "k33-auth": [
           "k33-auth"

@@ -11,6 +11,7 @@ pnpm --dir packages/ui build
 pnpm --dir apps/research export
 pnpm --dir apps/research-archive export
 pnpm --dir apps/invest export
+pnpm --dir apps/vault export
 pnpm --dir apps/auth export
 ```
 ## k33-dev
@@ -20,6 +21,7 @@ firebase deploy --only hosting:k33-platform-dev
 firebase deploy --only hosting:k33-research-dev
 firebase deploy --only hosting:k33-research-archive-dev
 firebase deploy --only hosting:k33-invest-dev
+firebase deploy --only hosting:k33-vault-dev
 firebase deploy --only hosting:k33-auth-dev
 firebase deploy --only hosting:k33-dev
 ```
@@ -31,6 +33,7 @@ firebase deploy --only hosting:k33-platform
 firebase deploy --only hosting:k33-research
 firebase deploy --only hosting:k33-research-archive
 firebase deploy --only hosting:k33-invest
+firebase deploy --only hosting:k33-vault
 firebase deploy --only hosting:k33-auth
 firebase deploy --only hosting:k33-prod
 ```

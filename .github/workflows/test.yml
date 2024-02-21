@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 2
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.26.3
+          version: 8.15.4
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
@@ -84,3 +84,5 @@ jobs:
         run: pnpm --dir apps/research export
       - name: export invest
         run: pnpm --dir apps/invest export
+      - name: export vault
+        run: pnpm --dir apps/vault export

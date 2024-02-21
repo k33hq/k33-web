@@ -111,6 +111,18 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
+      "target": "k33-vault-dev",
+      "cleanUrls": true,
+      "public": "./apps/vault/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "k33-vault",
+      "cleanUrls": true,
+      "public": "./apps/vault/out",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
       "target": "k33-auth-dev",
       "cleanUrls": true,
       "public": "./apps/auth/out",
