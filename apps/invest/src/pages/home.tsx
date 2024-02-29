@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
-import content from '../assets/Content.png';
+import content from '../assets/Content.svg';
 import serviceProviders from '../assets/service_providers.png';
 import fundFact from '../assets/fund_fact.png';
 import Image from 'next/image';
@@ -10,10 +10,7 @@ import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
 import { getTitle, useAppState, NextPageWithLayout } from 'platform-js';
-import {
-  useGetFundRegistrationQuery,
-  useLazyGetFundRegistrationQuery,
-} from '@/services';
+import { useLazyGetFundRegistrationQuery } from '@/services';
 import { useRouter } from 'next/router';
 import config from '@/firebase/config';
 
@@ -36,11 +33,11 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'January 2024',
+    date: 'February 2024',
     subtitle: '',
     description: [
-      'Our outlook for 2024 is bullish, and we believe that the brunt of the impact from the new spot ETFs will be felt over the year as opposed to immediately after approval. The ETFs are widely available, scale very well and the regulatory risk of crypto has been drastically reduced compared to the start of 2023. In an increasingly disconnected world, BTC has a clear long term value proposition of being a maximally independent asset.',
-      'Bitcoin’s improved availability will have a positive impact on the market as a whole and we maintain altcoin exposure based on allocations made to categories alt L1s, DeFi and non-L1 scaling & infrastructure.',
+      'With the ETFs approved and subsided initial GBTC outflows, we believe BTC has cleared the turbulence from the ETF listing. In the time after the approval, consistent high inflows have led the new ETFs to draw in a great number of Bitcoins, driving new yearly highs for the price of Bitcoin.',
+      'We are firmly in the first half of a bull market, nearing ATHs, and there are a number of catalysts to look forward to in the short and medium term, like the Ethereum Dencun upgrade in March, Bitcoin halving in April, and a potential ETH spot ETF approval in May.',
     ],
   },
   summary: {
@@ -74,7 +71,7 @@ const Home: NextPageWithLayout = () => {
   const [trigger] = useLazyGetFundRegistrationQuery();
 
   useEffect(() => {
-    const getFundRegisteration = async () => {
+    const getFundRegistration = async () => {
       try {
         const data = await trigger('k33-assets-i-fund-limited').unwrap();
       } catch (error) {
@@ -83,7 +80,7 @@ const Home: NextPageWithLayout = () => {
       }
     };
 
-    getFundRegisteration();
+    getFundRegistration();
   }, [state, trigger, router]);
 
   // useEffect(() => {
@@ -225,33 +222,33 @@ const Home: NextPageWithLayout = () => {
                 <tbody className="text-label-light-secondary text-body3">
                   <tr>
                     <td className="px-2 py-1">Year to Date</td>
-                    <td className="px-2 py-1">150.63%</td>
-                    <td className="px-2 py-1">155.18%</td>
+                    <td className="px-2 py-1">3.42%</td>
+                    <td className="px-2 py-1">0.89%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Month</td>
-                    <td className="px-2 py-1">18.53%</td>
-                    <td className="px-2 py-1">11.92%</td>
+                    <td className="px-2 py-1">3.42%</td>
+                    <td className="px-2 py-1">0.89%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">3 Months</td>
-                    <td className="px-2 py-1">59.53%</td>
-                    <td className="px-2 py-1">56.45%</td>
+                    <td className="px-2 py-1">39.09%</td>
+                    <td className="px-2 py-1">22.82%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">6 Months</td>
-                    <td className="px-2 py-1">45.10%</td>
-                    <td className="px-2 py-1">38.47%</td>
+                    <td className="px-2 py-1">56.78%</td>
+                    <td className="px-2 py-1">45.67%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Year</td>
-                    <td className="px-2 py-1">150.63%</td>
-                    <td className="px-2 py-1">155.18%</td>
+                    <td className="px-2 py-1">87.92%</td>
+                    <td className="px-2 py-1">84.05%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">Launch to Date</td>
-                    <td className="px-2 py-1">614.64%</td>
-                    <td className="px-2 py-1">441.44%</td>
+                    <td className="px-2 py-1">639.08%</td>
+                    <td className="px-2 py-1">446.25%</td>
                   </tr>
                 </tbody>
               </table>
