@@ -1,7 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker } from 'ui';
 import content from '../assets/Content.svg';
-import serviceProviders from '../assets/service_providers.png';
 import fundFact from '../assets/fund_fact.png';
 import Image from 'next/image';
 import { Size } from 'ui';
@@ -415,7 +414,26 @@ const Home: NextPageWithLayout = () => {
                 </table>
               </FundCardContent>
               <FundCardContent title="Service Providers" date="">
-                <Image src={serviceProviders} alt="service providers" />
+                <table className="table-auto block">
+                  <tbody>
+                  <tr>
+                    <td className="text-label-light-secondary">Platform</td>
+                    <td className="text-label-light-primary text-right">AK Jensen Investment Mgmt Ltd</td>
+                  </tr>
+                  <tr>
+                    <td className="text-label-light-secondary">Storage Provider</td>
+                    <td className="text-label-light-primary text-right">Coinbase Custody Intern. Ltd</td>
+                  </tr>
+                  <tr>
+                    <td className="text-label-light-secondary">Auditor</td>
+                    <td className="text-label-light-primary text-right">RSM Cayman Ltd.</td>
+                  </tr>
+                  <tr>
+                    <td className="text-label-light-secondary">Legal</td>
+                    <td className="text-label-light-primary text-right">Appleby / AKJ</td>
+                  </tr>
+                  </tbody>
+                </table>
               </FundCardContent>
             </div>
           </FundCardBody>
