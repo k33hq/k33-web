@@ -20,5 +20,5 @@ export const formatPercent = (value: number) => {
     minimumFractionDigits: 1,
     maximumFractionDigits: 2,
   });
-  return numberFormatter.format(value);
+  return numberFormatter.format(value / 100.0);
 };
