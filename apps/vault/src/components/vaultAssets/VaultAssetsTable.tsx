@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { Amount, VaultAsset } from '@/types';
 import { formatCurrency, formatNumber, formatPercent } from './formatters';
-import { BasicButton } from 'ui';
 import Image from 'next/image';
 import QrCodeIcon from '../../assets/qrcode-icon.png';
 
@@ -41,7 +40,7 @@ const VaultAssetsBalanceTable: React.FC<VaultAssetsProps> = ({
           <br />
           (A × B)
         </div>
-        <div className={'basis-1/5 text-right text-nowrap'}>Daily % change</div>
+        <div className={'basis-1/5 text-right text-nowrap'}>24h % change</div>
         <div className={'basis-1/5 text-center pe-2 text-nowrap'}>
           Addresses
         </div>
@@ -94,7 +93,7 @@ const VaultAssetsBalanceTable: React.FC<VaultAssetsProps> = ({
               {dailyPercentChange ? (
                 <>
                   <span className={'md:hidden text-label-light-secondary'}>
-                    Daily % change:{' '}
+                    24h % change:{' '}
                   </span>
                   {formatPercent(dailyPercentChange)}
                 </>

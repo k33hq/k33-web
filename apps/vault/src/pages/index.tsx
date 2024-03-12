@@ -9,9 +9,13 @@ import { useRouter } from 'next/router';
 import { PrivateMainLayout } from '@/layouts';
 import config from '@/firebase/config';
 import { Amount, VaultAsset, VaultAssetAddress } from '@/types';
-import { CurrencyDropdown, DonutChart, VaultAssetsTable } from '@/components';
-import BalanceCard from '../components/vaultAssets/BalanceCard';
-import AddressModal from '../components/vaultAssetAddress/AddressModal';
+import {
+  AddressModal,
+  BalanceCard,
+  CurrencyDropdown,
+  DonutChart,
+  VaultAssetsTable,
+} from '@/components';
 
 /**
  *  user-state: [vaultAccounts]
