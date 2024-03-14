@@ -59,10 +59,6 @@ export const PlatformLogo: React.FC<LogoProps> = ({ active }) => {
   );
 };
 
-interface LogoProps {
-  active?: boolean;
-}
-
 export const ResearchLogo: React.FC<LogoProps> = ({ active }) => {
   return (
     <svg
@@ -87,10 +83,6 @@ export const ResearchLogo: React.FC<LogoProps> = ({ active }) => {
     </svg>
   );
 };
-
-interface LogoProps {
-  active?: boolean;
-}
 
 export const InvestLogo: React.FC<LogoProps> = ({ active }) => {
   return (
@@ -129,10 +121,6 @@ export const InvestLogo: React.FC<LogoProps> = ({ active }) => {
   );
 };
 
-interface LogoProps {
-  active?: boolean;
-}
-
 export const MarketsLogo: React.FC<LogoProps> = ({ active = false }) => {
   return (
     <svg
@@ -168,6 +156,59 @@ export const MarketsLogo: React.FC<LogoProps> = ({ active = false }) => {
   );
 };
 
+export const VaultLogo: React.FC<LogoProps> = ({ active = false }) => {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        opacity={active ? '' : '0.2'}
+        d="M10.6662 7.55528C10.6662 10.0108 8.67734 11.9997 6.22179 11.9997C3.76623 11.9997 1.77734 10.0108 1.77734 7.55528C1.77734 5.09973 3.76623 3.11084 6.22179 3.11084C8.67734 3.11084 10.6662 5.09973 10.6662 7.55528ZM6.22179 5.33306C4.99401 5.33306 3.99957 6.32751 3.99957 7.55528C3.99957 8.78306 4.99401 9.77751 6.22179 9.77751C7.44957 9.77751 8.44401 8.78306 8.44401 7.55528C8.44401 6.32751 7.44957 5.33306 6.22179 5.33306ZM14.2218 5.77751C14.2218 6.35806 13.8496 6.85251 13.3329 7.03584V10.222C13.3329 10.4664 13.1329 10.6664 12.8885 10.6664C12.644 10.6664 12.444 10.4664 12.444 10.222V7.03584C11.9273 6.85251 11.5551 6.35806 11.5551 5.77751C11.5551 5.0414 12.1523 4.44417 12.8885 4.44417C13.6246 4.44417 14.2218 5.0414 14.2218 5.77751Z"
+        fill="#090A0B"
+      />
+      <path
+        opacity={active ? '0.4' : '0.1'}
+        d="M14.2222 0.888672C15.2028 0.888672 16 1.68451 16 2.66645V12.4442C16 13.4248 15.2028 14.222 14.2222 14.222H13.7778L13.3333 15.1109H11.5556L11.1111 14.222H4.88889L4.44444 15.1109H2.66667L2.22222 14.222H1.77778C0.795833 14.222 0 13.4248 0 12.4442V2.66645C0 1.68451 0.795833 0.888672 1.77778 0.888672H14.2222ZM6.22222 3.11089C3.76667 3.11089 1.77778 5.09978 1.77778 7.55534C1.77778 10.0109 3.76667 11.9998 6.22222 11.9998C8.67778 11.9998 10.6667 10.0109 10.6667 7.55534C10.6667 5.09978 8.67778 3.11089 6.22222 3.11089ZM13.3333 7.03589C13.85 6.85256 14.2222 6.35812 14.2222 5.77756C14.2222 5.04145 13.625 4.44423 12.8889 4.44423C12.1528 4.44423 11.5556 5.04145 11.5556 5.77756C11.5556 6.35812 11.9278 6.85256 12.4444 7.03589V10.222C12.4444 10.4664 12.6444 10.6664 12.8889 10.6664C13.1333 10.6664 13.3333 10.4664 13.3333 10.222V7.03589Z"
+        fill="#090A0B"
+      />
+    </svg>
+  );
+};
+
+export const LoansLogo: React.FC<LogoProps> = ({ active = false }) => {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_413_1195)">
+        <path
+          opacity={active ? '' : '0.2'}
+          d="M7.76025 5.74951C7.5491 5.71895 7.27127 5.61893 7.02678 5.53003L6.89064 5.4828C6.54335 5.33554 6.16272 5.54114 6.04047 5.86343C5.91823 6.18571 6.0994 6.59135 6.44583 6.7147L6.57516 6.76071C6.81093 6.84576 7.07192 6.93005 7.33614 6.99165V7.33316C7.33614 7.70129 7.63426 7.99996 8.00238 7.99996C8.37051 7.99996 8.66918 7.70129 8.66918 7.33316V7.04421C9.37126 6.88521 9.86052 6.43715 9.94999 5.77396C10.1914 4.38341 8.8695 4.00528 8.16019 3.80274L8.01308 3.7519C7.28238 3.54464 7.32406 3.45518 7.3435 3.34099C7.37562 3.15301 7.76859 3.06149 8.2384 3.13564C8.3756 3.15735 8.5543 3.20641 8.78434 3.28628C9.13247 3.40522 9.51254 3.22205 9.63229 2.87398C9.75203 2.52591 9.56813 2.14634 9.21998 2.02576C9.00877 1.95277 8.83324 1.90468 8.66932 1.86681V1.55425C8.66932 1.18612 8.37065 0.887451 8.00252 0.887451C7.63439 0.887451 7.33628 1.18612 7.33628 1.55425V1.84653C6.63503 2.00517 6.14327 2.45026 6.00435 3.11372C5.79042 4.48816 7.13235 4.88268 7.63801 5.03271L7.81854 5.0848C8.69816 5.33657 8.68399 5.41514 8.66148 5.54711C8.62987 5.73562 8.23812 5.82731 7.76025 5.74951Z"
+          fill="#090A0B"
+        />
+        <path
+          opacity={active ? '0.4' : '0.1'}
+          d="M15.7864 10.2309C15.4219 9.73607 14.7268 9.62911 14.2325 9.9956L10.9069 12.4452H7.5562C7.31315 12.4452 7.13668 12.2438 7.13668 12.001C7.13668 11.7579 7.3381 11.5565 7.5562 11.5565H9.73024C10.1498 11.5565 10.5846 11.2542 10.6574 10.8169C10.7477 10.2612 10.3206 9.77833 9.77886 9.77833H5.30937C4.58423 9.77833 3.83353 10.0353 3.25008 10.5076L1.95816 11.5562L0.419527 11.5311C0.201456 11.5311 0 11.759 0 12.0007V14.6673C0 14.9124 0.201456 15.1124 0.419527 15.1124H10.0353C10.6474 15.1124 11.2555 14.9127 11.7495 14.5492L15.503 11.7843C16.0448 11.42 16.1504 10.7254 15.7864 10.2309Z"
+          fill="#090A0B"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_413_1195">
+          <rect width="16" height="16" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
 export const apps = [
   {
     name: 'Research',
@@ -186,6 +227,18 @@ export const apps = [
     url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/markets`,
     Logo: MarketsLogo,
     key: 'markets',
+  },
+  {
+    name: 'Vault',
+    url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/vault`,
+    Logo: VaultLogo,
+    key: 'vault',
+  },
+  {
+    name: 'Loans',
+    url: `https://loans.k33.com/`,
+    Logo: LoansLogo,
+    key: 'loans',
   },
 ];
 
@@ -232,8 +285,8 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
 
   const isHome =
     !router.basePath.includes('research') &&
-    !router.basePath.includes('markets') &&
-    !router.basePath.includes('invest');
+    !router.basePath.includes('apps/invest') &&
+    !router.basePath.includes('apps/vault');
 
   React.useEffect(() => {
     if (state === 'UNREGISTRED') {
@@ -281,7 +334,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
                 if (authUrl.includes('https://')) {
                   window.location.href = authUrl;
                 } else {
-                  router.push('/auth');
+                  router.push('/services/auth');
                 }
                 break;
               case 'UNREGISTRED':
@@ -296,7 +349,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
                 );
                 break;
               default:
-                router.push('/auth');
+                router.push('/services/auth');
                 break;
             }
           }}

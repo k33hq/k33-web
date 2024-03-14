@@ -27,7 +27,7 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({ children }) => {
             leaveFrom="ui-transform ui-opacity-100 ui-scale-100"
             leaveTo="ui-transform ui-opacity-0 ui-scale-95"
           >
-            <Menu.Items className="ui-absolute -ui-top-32 ui-translate-y-full -ui-translate-x-40 ui-w-[203px] ui-h-[192px] ui-bg-bg-light-primary ui-z-20 ui-rounded-lg ui-shadow-2xl md:ui-px-4 md:ui-py-4 ui-origin-bottom-left ui-flex ui-flex-row ui-flex-wrap ui-ring-1 ui-ring-brand-light-tertiary/10">
+            <Menu.Items className="ui-absolute -ui-top-56 ui-translate-y-full -ui-translate-x-40 ui-w-[203px] ui-h-[288px] ui-bg-bg-light-primary ui-z-20 ui-rounded-lg ui-shadow-2xl md:ui-px-4 md:ui-py-4 ui-origin-bottom-left ui-flex ui-flex-row ui-flex-wrap ui-ring-1 ui-ring-brand-light-tertiary/10">
               {children}
             </Menu.Items>
           </Transition>
@@ -45,7 +45,7 @@ export const AppMenuItem: React.FC<AppMenuItemProps> = ({ children }) => {
   return (
     <Menu.Item
       as="div"
-      className="ui-w-1/2 ui-h-1/2 ui-flex ui-flex-col ui-items-center ui-content-center ui-justify-center"
+      className="ui-w-1/2 ui-h-1/3 ui-flex ui-flex-col ui-items-center ui-content-center ui-justify-center"
     >
       {({ active }) => <>{children(active)}</>}
     </Menu.Item>
