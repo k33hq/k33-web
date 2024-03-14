@@ -6,6 +6,7 @@ import config from '@/firebase/config';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
+import vaultLogo from '../assets/vault-logo.png';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -44,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <SecondaryHeader
           branding={
             <Link href={`/`}>
-              <label>VAULT</label>
+              <Image src={vaultLogo} alt="research-logo" height={16} />
             </Link>
           }
         >

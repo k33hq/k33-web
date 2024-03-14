@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import config from '@/firebase/config';
 import { Header } from 'ui';
+import vaultLogo from '../assets/vault-logo.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -20,7 +21,6 @@ const AuthHeader = dynamic(
           <Image
             src={logo}
             height={24}
-            width={94}
             alt="company logo"
             style={{
               filter: 'invert(100%)',
@@ -64,9 +64,12 @@ const VaultHeader: React.FC<VaultHeaderProps> = ({}) => {
       <nav className={`navbar w-full bg-bg-dark-primary`}>
         <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
           <Link href={`/`}>
-            <label className={'text-label-dark-secondary font-mono font-bold'}>
-              VAULT
-            </label>
+            <Image
+              src={vaultLogo}
+              alt="research-logo"
+              width={109}
+              height={12}
+            />
           </Link>
 
           <div className="flex-1" />
