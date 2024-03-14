@@ -18,97 +18,91 @@ const VaultAssetsBalanceTable: React.FC<VaultAssetsProps> = ({
   showAssetAddress,
 }) => {
   return (
-    <div className={'border-collapse'}>
+    <div
+      className={
+        'border-collapse grid grid-cols-auto sm:grid-cols-[auto_auto] md:grid-cols-[repeat(6,auto)] gap-2'
+      }
+    >
       <div
         className={
-          'bg-bg-dark-tertiary text-label-dark-secondary hidden md:flex flex-row'
+          'bg-bg-dark-tertiary text-label-dark-secondary hidden md:grid grid-cols-subgrid col-span-6'
         }
       >
-        <div className={'basis-1/5 ps-2'}>Cryptocurrency</div>
-        <div className={'basis-1/5 text-right text-nowrap'}>
+        <div className={'ps-2'}>Cryptocurrency</div>
+        <div className={'text-right text-nowrap'}>
           Units (balance available)
           <br />
           (A)
         </div>
-        <div className={'basis-1/5 text-right text-nowrap'}>
+        <div className={'text-right text-nowrap'}>
           Rate per unit
           <br />
           (B)
         </div>
-        <div className={'basis-1/5 text-right text-nowrap'}>
+        <div className={'text-right text-nowrap'}>
           Net Asset Value
           <br />
           (A × B)
         </div>
-        <div className={'basis-1/5 text-right text-nowrap'}>24h % change</div>
-        <div className={'basis-1/5 text-center pe-2 text-nowrap'}>
-          Addresses
-        </div>
+        <div className={'text-right text-nowrap'}>24hr % change</div>
+        <div className={'text-center pe-2 text-nowrap'}>Addresses</div>
       </div>
       {vaultAssets.map(
         ({ id, available, rate, fiatValue, dailyPercentChange }, index) => (
           <div
             key={id}
-            className={`${index % 2 ? 'bg-bg-light-primary' : 'bg-bg-light-secondary'} flex flex-col md:flex-row p-2`}
+            className={`${index % 2 ? 'bg-bg-light-primary' : 'bg-bg-light-secondary'} grid grid-cols-subgrid sm:col-span-2 md:col-span-6 p-2`}
           >
-            <div className={'font-medium md:basis-1/6'}>
-              <span className={'md:hidden text-label-light-secondary'}>
-                Cryptocurrency:{' '}
-              </span>
+            <div className={'sm:col-span-2 md:col-span-1 font-medium'}>
               {id}
             </div>
-            <div className={'font-mono text-right md:basis-1/6 text-nowrap'}>
-              <span
-                className={'md:hidden text-label-light-secondary text-left'}
-              >
-                Units (balance available) (A):{' '}
-              </span>
+            <div className={'md:hidden text-label-light-secondary'}>
+              Units (balance available) (A):
+            </div>
+            <div className={'font-mono text-right text-nowrap'}>
               {formatNumber(available)}
             </div>
-            <div className={'font-mono text-right md:basis-1/6'}>
-              {rate ? (
-                <>
-                  <span className={'md:hidden text-label-light-secondary'}>
-                    Rate per unit (B):{' '}
-                  </span>
+
+            {rate ? (
+              <>
+                <div className={'md:hidden text-label-light-secondary'}>
+                  Rate per unit (B):
+                </div>
+                <div className={'font-mono text-right'}>
                   {formatCurrency(rate)}
-                </>
-              ) : (
-                ''
-              )}
-            </div>
-            <div className={'font-mono text-right md:basis-1/6'}>
-              {fiatValue ? (
-                <>
-                  <span className={'md:hidden text-label-light-secondary'}>
-                    Net Asset Value (A × B):{' '}
-                  </span>
+                </div>
+              </>
+            ) : (
+              <div className={'col-span-2 md:col-span-1'} />
+            )}
+            {fiatValue ? (
+              <>
+                <div className={'md:hidden text-label-light-secondary'}>
+                  Net Asset Value (A × B):
+                </div>
+                <div className={'font-mono text-right'}>
                   {formatCurrency(fiatValue)}
-                </>
-              ) : (
-                ''
-              )}
-            </div>
-            <div className={'font-mono text-right md:basis-1/6'}>
-              {dailyPercentChange ? (
-                <>
-                  <span className={'md:hidden text-label-light-secondary'}>
-                    24h % change:{' '}
-                  </span>
+                </div>
+              </>
+            ) : (
+              <div className={'col-span-2 md:col-span-1'} />
+            )}
+            {dailyPercentChange ? (
+              <>
+                <div className={'md:hidden text-label-light-secondary'}>
+                  24hr % change:
+                </div>
+                <div className={'font-mono text-right'}>
                   {formatPercent(dailyPercentChange)}
-                </>
-              ) : (
-                ''
-              )}
+                </div>
+              </>
+            ) : (
+              <div className={'col-span-2 md:col-span-1'} />
+            )}
+            <div className={'md:hidden text-label-light-secondary'}>
+              Address:
             </div>
-            <div
-              className={
-                'flex flex-row justify-center pe-2 text-right md:basis-1/6'
-              }
-            >
-              <span className={'md:hidden text-label-light-secondary'}>
-                Address:{' '}
-              </span>
+            <div className={'flex flex-row justify-center pe-2 text-right'}>
               <Image
                 className={'w-7'}
                 src={QrCodeIcon}
@@ -121,11 +115,11 @@ const VaultAssetsBalanceTable: React.FC<VaultAssetsProps> = ({
       )}
       <div
         key={'total'}
-        className={`hidden md:flex flex-row px-2 font-mono font-semibold ${vaultAssets.length % 2 ? 'bg-bg-light-primary' : 'bg-bg-light-secondary'}`}
+        className={`grid grid-cols-subgrid sm:col-span-2 md:col-span-6 px-2 font-mono font-semibold ${vaultAssets.length % 2 ? 'bg-bg-light-primary' : 'bg-bg-light-secondary'}`}
       >
-        <div className={'basis-2/6'}></div>
-        <div className={'basis-1/6 text-center'}>Total</div>
-        <div className={'basis-1/6 border right-2 text-right'}>
+        <div className={'hidden sm:col-span-2 md:grid'} />
+        <div className={'text-center'}>Total</div>
+        <div className={'border right-2 text-right'}>
           {formatCurrency(total)}
         </div>
       </div>
