@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BasicButton, Modal } from 'ui';
 import { VaultAssetAddress } from '@/types';
 import Image from 'next/image';
 import CopyIcon from '../../assets/copy-icon.png';
+import { InfoAlert } from '@/components';
 
 interface AddressModalProps {
   vaultAssetAddresses: VaultAssetAddress[];
   visible: boolean;
-  setVisible: (visible: boolean) => void;
+  hide: () => void;
   className?: string;
 }
 
 const AddressModal: React.FC<AddressModalProps> = ({
   vaultAssetAddresses,
   visible,
-  setVisible,
+  hide,
   className,
 }) => {
+  const [alertText, setAlertText] = useState<string | null>(null);
   const addressRows = vaultAssetAddresses.map((vaultAssetAddress, index) => (
     <div
       className={`grid grid-cols-subgrid md:col-span-2 gap-2 p-2 ${index % 2 == 0 ? 'bg-bg-light-primary' : 'bg-bg-light-secondary'}`}
@@ -48,7 +50,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
             onClick={() =>
               navigator.clipboard
                 .writeText(vaultAssetAddress.address)
-                .then(() => alert('Address copied'))
+                .then(() => setAlertText('Address copied'))
             }
           />
         </div>
@@ -67,7 +69,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
                 onClick={() =>
                   navigator.clipboard
                     .writeText(vaultAssetAddress.tag || '')
-                    .then(() => alert('Tag copied'))
+                    .then(() => setAlertText('Tag copied'))
                 }
               />
             </div>
@@ -82,7 +84,13 @@ const AddressModal: React.FC<AddressModalProps> = ({
     <div className={className}>
       <Modal backdrop={true} open={visible} onClose={() => {}} size={'small'}>
         <div className={'font-bold text-center'}>Addresses</div>
-        <div className={'grid grid-cols-1 gap-2 md:grid-cols-[auto_auto] pt-8'}>
+        <InfoAlert
+          show={alertText != null}
+          hide={() => setAlertText(null)}
+          alertText={alertText || ''}
+          className={'mt-4'}
+        />
+        <div className={'grid grid-cols-1 gap-2 md:grid-cols-[auto_auto] pt-4'}>
           {addressRows}
         </div>
         <div className={'text-center pt-8'}>
@@ -90,7 +98,10 @@ const AddressModal: React.FC<AddressModalProps> = ({
             className={''}
             variant={'secondary'}
             size={'medium'}
-            onClick={() => setVisible(false)}
+            onClick={() => {
+              setAlertText(null);
+              hide();
+            }}
           >
             Close
           </BasicButton>

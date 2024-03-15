@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { createContext, ReactElement, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { getTitle, NextPageWithLayout, useAppState } from 'platform-js';
 import {
@@ -15,6 +15,7 @@ import {
   CurrencyDropdown,
   DonutChart,
   VaultAssetsTable,
+  InfoAlert,
 } from '@/components';
 
 /**
@@ -48,12 +49,27 @@ const Home: NextPageWithLayout = () => {
     getVaultAssets();
   }, [state, getVaultAssetsQuery, router, currency]);
 
-  let content: any = '';
-
+  let content: ReactElement;
   if (isLoading) {
-    content = 'Loading';
+    content = (
+      <h1
+        className={
+          'block text-label-light-secondary text-[48px] text-center p-32'
+        }
+      >
+        Loading...
+      </h1>
+    );
   } else if (vaultAssets.length == 0) {
-    content = 'No assets found';
+    content = (
+      <h1
+        className={
+          'block text-label-light-secondary text-[48px] text-center p-32'
+        }
+      >
+        No assets found
+      </h1>
+    );
   } else {
     // amounts: Amount[] = [{currency: cryptocurrency, value: fiatValue}]
     const amounts = vaultAssets
@@ -109,7 +125,7 @@ const Home: NextPageWithLayout = () => {
         <AddressModal
           vaultAssetAddresses={vaultAssetAddresses || []}
           visible={vaultAssetAddresses !== null}
-          setVisible={() => setVaultAssetAddresses(null)}
+          hide={() => setVaultAssetAddresses(null)}
         />
       </>
     );

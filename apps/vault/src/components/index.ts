@@ -5,3 +5,4 @@ export { default as DonutChart } from './vaultAssets/DonutChart';
 export { default as CurrencyDropdown } from './vaultAssets/CurrencyDropdown';
 export { default as VaultAssetsTable } from './vaultAssets/VaultAssetsTable';
 export { default as AddressModal } from './vaultAssetAddress/AddressModal';
+export { default as InfoAlert } from './alerts/InfoAlert';
