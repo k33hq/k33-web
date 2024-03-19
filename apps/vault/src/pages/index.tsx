@@ -42,11 +42,13 @@ const Home: NextPageWithLayout = () => {
       } catch (error) {
         console.log(error);
         window.location.assign(
-          `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/custody`
+          `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/custody/not-registered`
         );
       }
     };
-    getVaultAssets();
+    if (state === 'REGISTERED') {
+      getVaultAssets();
+    }
   }, [state, getVaultAssetsQuery, router, currency]);
 
   let content: ReactElement;
