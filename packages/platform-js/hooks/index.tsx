@@ -31,9 +31,9 @@ export const useAuth = (
   const router = useRouter();
 
   React.useEffect(() => {
-    if (state === 'REGISTRED') {
+    if (state === 'REGISTERED') {
       router.push(options.home);
-    } else if (state === 'UNREGISTRED') {
+    } else if (state === 'UNREGISTERED') {
       register().then((state) => router.reload());
     }
   }, [state, router, options]);

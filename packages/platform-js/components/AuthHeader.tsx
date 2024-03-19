@@ -23,8 +23,8 @@ interface AuthHeaderProps {
 const loginText: Record<AppStates, string> = {
   LOADING: 'Sign In',
   SIGNED_OUT: 'Sign In',
-  UNREGISTRED: 'Register Now',
-  REGISTRED: 'Sign Out',
+  UNREGISTERED: 'Register Now',
+  REGISTERED: 'Sign Out',
 };
 
 interface LogoProps {
@@ -289,7 +289,7 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
     !router.basePath.includes('apps/vault');
 
   React.useEffect(() => {
-    if (state === 'UNREGISTRED') {
+    if (state === 'UNREGISTERED') {
       register().then((state) => router.reload());
     }
   }, [router, state]);
@@ -337,10 +337,10 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({
                   router.push('/services/auth');
                 }
                 break;
-              case 'UNREGISTRED':
+              case 'UNREGISTERED':
                 register().then((state) => router.reload());
                 break;
-              case 'REGISTRED':
+              case 'REGISTERED':
                 logout(
                   () => {
                     router.reload();

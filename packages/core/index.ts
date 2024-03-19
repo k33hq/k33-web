@@ -51,13 +51,13 @@ import type {
 export const LOADING = 'LOADING';
 export const SIGNED_OUT = 'SIGNED_OUT';
 export const SIGNED_IN = 'SIGNED_IN';
-export const UNREGISTERED = 'UNREGISTRED';
-export const REGISTRED = 'REGISTRED';
+export const UNREGISTERED = 'UNREGISTERED';
+export const REGISTERED = 'REGISTERED';
 
 export type AppStates =
   | typeof SIGNED_OUT
   | typeof UNREGISTERED
-  | typeof REGISTRED
+  | typeof REGISTERED
   | typeof LOADING;
 
 const APP_NAME = 'k33-application';
@@ -306,7 +306,7 @@ export const getAppState = async (config?: AppConfig) => {
       if (config) {
         registerAnalytics(user.analyticsId, config.tagId);
       }
-      return REGISTRED;
+      return REGISTERED;
     }
   } catch (err) {
     console.log(err);
@@ -345,7 +345,7 @@ export const register = async (config?: AppConfig) => {
     if (config) {
       registerAnalytics(user.analyticsId, config.tagId);
     }
-    return REGISTRED;
+    return REGISTERED;
   } catch (err) {
     console.log(err);
     return SIGNED_OUT;

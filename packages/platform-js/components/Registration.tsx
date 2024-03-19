@@ -14,7 +14,7 @@ const Registration: React.FC<RegistrationProps> = ({ firebaseConfig }) => {
   const router = useRouter();
 
   React.useEffect(() => {
-    if (state === 'REGISTRED') {
+    if (state === 'REGISTERED') {
       router.push('/');
     }
   }, [state, router]);

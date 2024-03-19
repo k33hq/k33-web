@@ -96,10 +96,10 @@ const Auth: React.FC<AuthProps> = ({
             window.location.href
           );
           break;
-        case 'REGISTRED':
+        case 'REGISTERED':
           redirectCallback();
           break;
-        case 'UNREGISTRED':
+        case 'UNREGISTERED':
           register().then((state) => redirectCallback());
           break;
         default:
@@ -112,13 +112,13 @@ const Auth: React.FC<AuthProps> = ({
 
   // React.useEffect(() => {
   //   const query = router.query;
-  //   if (state === 'REGISTRED') {
+  //   if (state === 'REGISTERED') {
   //     if (query.redirect) {
   //       window.location.replace(query.redirect as string);
   //     } else {
   //       window.location.replace(redirectUrl + '/research');
   //     }
-  //   } else if (state === 'UNREGISTRED') {
+  //   } else if (state === 'UNREGISTERED') {
   //     register().then((state) => router.back());
   //   }
   // }, [state, router, redirectUrl]);

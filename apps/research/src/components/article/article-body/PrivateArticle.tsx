@@ -128,7 +128,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
             isLoading={isLoading || isYearlyLoading}
             checkout={doProMonthlyCheckout}
             isLoggedOut={
-              appState === 'SIGNED_OUT' || appState === 'UNREGISTRED'
+              appState === 'SIGNED_OUT' || appState === 'UNREGISTERED'
             }
             isReport={isReport}
           />
@@ -164,7 +164,7 @@ const PrivateArticle: React.FC<PrivateArticleProps> = ({
           isLoading={isLoading || isYearlyLoading}
           checkout={doProMonthlyCheckout}
           isReport={isReport}
-          isLoggedOut={appState === 'SIGNED_OUT' || appState === 'UNREGISTRED'}
+          isLoggedOut={appState === 'SIGNED_OUT' || appState === 'UNREGISTERED'}
         />
       </ActionLayout>
     );
