@@ -61,7 +61,7 @@ const DonutChart: React.FC<DonutChartProps> = ({
                 return `${formatCurrency({
                   value: tooltipItem.parsed,
                   currency: currency,
-                })} : ${formatPercent(tooltipItem.parsed / sum)}`;
+                })} : ${formatPercent((tooltipItem.parsed * 100.0) / sum)}`;
               },
             },
           },

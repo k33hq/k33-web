@@ -21,7 +21,7 @@ class MyDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="64x64"
-            href="/research/favicon-64x64.png"
+            href="/services/auth/favicon-64x64.png"
           />
         </Head>
         <body>
