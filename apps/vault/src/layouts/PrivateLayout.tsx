@@ -16,7 +16,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
     // TODO: redirect to login
     if (state === 'SIGNED_OUT') {
       window.location.assign(
-        `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth?redirect=https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/vault`
+        `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/custody`
       );
     }
   }, [state, router]);
