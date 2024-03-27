@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: fetch webflow exported zip file
@@ -29,7 +29,7 @@ jobs:
       - name: add public files excluding hidden files
         run: cp apps/platform/public/* apps/platform/out/
       - name: Load secrets
-        uses: 1password/load-secrets-action@v1
+        uses: 1password/load-secrets-action@v2
         with:
           # Export loaded secrets as environment variables
           export-env: true
