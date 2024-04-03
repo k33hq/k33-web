@@ -15,7 +15,7 @@ assert(NEXT_PUBLIC_CONTENTFUL_SPACE_ID);
 assert(NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT);
 assert(CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN);
 
-const getContentfulEnvironment: EnvironmentGetter = () => {
+const getContentfulEnvironment: EnvironmentGetter = async () => {
   const contentfulClient = createClient({
     accessToken: CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
   });

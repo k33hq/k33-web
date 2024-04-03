@@ -8,10 +8,6 @@ jobs:
     name: Deploy research
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-      TURBO_REMOTE_ONLY: true
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -32,12 +28,10 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          # contentful
-          NEXT_PUBLIC_CONTENTFUL_SPACE_ID: op://k33-web-env/prod/contentful/SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/PREVIEW_ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
-          NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
+          # turbo
+          TURBO_TEAM: op://k33-web-env/prod/turbo/TEAM
+          TURBO_TOKEN: op://k33-web-env/prod/turbo/TOKEN
+          TURBO_REMOTE_ONLY: true
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
@@ -50,6 +44,14 @@ jobs:
           # domains
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          # analytics
+          NEXT_PUBLIC_ANALYTICS_API_KEY: op://k33-web-env/prod/analytics/API_SECRET
+          # contentful
+          NEXT_PUBLIC_CONTENTFUL_SPACE_ID: op://k33-web-env/prod/contentful/SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/PREVIEW_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_PREVIEW_SECRET: op://k33-web-env/prod/contentful/PREVIEW_SECRET
+          NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
           # algolia
           NEXT_PUBLIC_ALGOLIA_APP_ID: op://k33-web-env/prod/algolia/APP_ID
           NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: op://k33-web-env/prod/algolia/SEARCH_API_KEY
@@ -70,8 +72,6 @@ jobs:
           NEXT_PUBLIC_STRIPE_PRODUCT_ID_PRO: op://k33-web-env/prod/stripe/PRODUCT_ID_PRO
           NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/MONTHLY_PRICE_ID_PRO
           NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID_PRO: op://k33-web-env/prod/stripe/YEARLY_PRICE_ID_PRO
-          # analytics
-          NEXT_PUBLIC_ANALYTICS_API_KEY: op://k33-web-env/prod/analytics/API_SECRET
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies

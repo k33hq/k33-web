@@ -22,7 +22,6 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
   "resolutions": {
     "@types/react": "^18.2.8"
   },

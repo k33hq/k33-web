@@ -5,6 +5,7 @@
 ```shell
 pnpm install
 pnpm --dir packages/ui build
+pnpm --dir apps/vault export
 ```
 
 ## Run locally

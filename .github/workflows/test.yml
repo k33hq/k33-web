@@ -11,10 +11,6 @@ jobs:
     name: Build and Test
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-      TURBO_REMOTE_ONLY: true
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -35,6 +31,10 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          # turbo
+          TURBO_TEAM: op://k33-web-env/prod/turbo/TEAM
+          TURBO_TOKEN: op://k33-web-env/prod/turbo/TOKEN
+          TURBO_REMOTE_ONLY: true
           # contentful
           NEXT_PUBLIC_CONTENTFUL_SPACE_ID: op://k33-web-env/prod/contentful/SPACE_ID
           NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ACCESS_TOKEN
