@@ -22,10 +22,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: fetch webflow exported zip file
-        run: wget https://storage.googleapis.com/k33-${{ inputs.target_env }}_webflow_export/k33-web.webflow.zip
-      - name: unzip
-        run: unzip k33-web.webflow.zip -d apps/platform/out/
       - name: add public files excluding hidden files
         run: cp apps/platform/public/* apps/platform/out/
       - name: Load secrets
