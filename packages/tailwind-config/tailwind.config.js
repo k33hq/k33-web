@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['var(--poppins-font)', ...fontFamily.sans],
+        primary: ['var(--manrope-font)', ...fontFamily.sans],
       },
       backgroundImage: {
         'category-products': "url('../assets/product.svg')",

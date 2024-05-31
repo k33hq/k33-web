@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { Poppins } from '@next/font/google';
+import { Manrope } from '@next/font/google';
 import * as React from 'react';
 import { NextPageWithLayout } from 'platform-js';
 import withTheme from '../theme';
@@ -7,11 +7,11 @@ import { MainLayout } from '@/components';
 import '../../public/antd.min.css';
 import '../styles/globals.scss';
 
-export const poppins = Poppins({
+export const manrope = Manrope({
   weight: ['300', '400', '500', '600'],
   display: 'swap',
   subsets: ['latin'],
-  variable: '--font-poppins',
+  variable: '--font-manrope',
 });
 
 interface ResearchAppProps extends AppProps {

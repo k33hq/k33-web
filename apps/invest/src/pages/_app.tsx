@@ -1,16 +1,16 @@
 import { AppProps } from 'next/app';
-import { Poppins } from '@next/font/google';
+import { Manrope } from '@next/font/google';
 import '../styles/globals.css';
 import 'ui/styles.css';
 import K33App, { NextPageWithLayout } from 'platform-js';
 import { Provider } from 'react-redux';
 import { wrapper } from '@/store';
 
-export const poppins = Poppins({
+export const manrope = Manrope({
   weight: ['300', '400', '500', '600'],
   display: 'swap',
   subsets: ['latin'],
-  variable: '--font-poppins',
+  variable: '--font-manrope',
 });
 
 interface PlatformAppProps extends AppProps {
