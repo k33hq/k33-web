@@ -45,7 +45,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, footer }) => {
             window.location.href = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`;
           }}
         >
-          <Image width={51} priority src={K33Logo} alt="" />
+          <Image width={58} priority src={K33Logo} alt="" />
         </Header>
       </Affix>
       <Layout

@@ -17,16 +17,7 @@ const AuthHeader = dynamic(
     loading: (props) => (
       <Header
         transparent
-        logo={
-          <Image
-            src={logo}
-            height={24}
-            alt="company logo"
-            style={{
-              filter: 'invert(100%)',
-            }}
-          />
-        }
+        logo={<Image src={logo} height={40} width={97} alt="company logo" />}
       >
         {null}
       </Header>
@@ -44,15 +35,7 @@ const VaultHeader: React.FC<VaultHeaderProps> = ({}) => {
       <AuthHeader
         logo={
           <a href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
-            <Image
-              src={logo}
-              height={24}
-              width={94}
-              alt="company logo"
-              style={{
-                filter: 'invert(100%)',
-              }}
-            />
+            <Image src={logo} height={40} width={97} alt="company logo" />
           </a>
         }
         authUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth?redirect=https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/vault`}
@@ -64,12 +47,7 @@ const VaultHeader: React.FC<VaultHeaderProps> = ({}) => {
       <nav className={`navbar w-full bg-bg-dark-primary`}>
         <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
           <Link href={`/`}>
-            <Image
-              src={vaultLogo}
-              alt="research-logo"
-              width={109}
-              height={12}
-            />
+            <Image src={vaultLogo} alt="k33-vault" width={109} height={12} />
           </Link>
 
           <div className="flex-1" />

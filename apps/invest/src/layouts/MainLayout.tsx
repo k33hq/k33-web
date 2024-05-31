@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
 import investmentLogo from '../assets/investments-logo.png';
-import { useFundRedirection } from '@/hooks';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -15,7 +14,7 @@ const AuthHeader = dynamic(
     loading: (props) => {
       return (
         <Header
-          logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          logo={<Image src={logo} width={97} height={40} alt="k33-logo" />}
         >
           {null}
         </Header>
@@ -37,7 +36,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           firebaseConfig={config}
           logo={
             <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
-              <Image src={logo} width={133} height={40} alt="k33-logo" />
+              <Image src={logo} width={97} height={40} alt="k33-logo" />
             </Link>
           }
           authUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
@@ -45,7 +44,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         />
         <SecondaryHeader
           branding={
-            <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}>
+            <Link
+              href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}
+            >
               <Image
                 src={investmentLogo}
                 alt="k33-investments"
@@ -61,7 +62,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </div>
       <div>
         <PlatformFooter
-          logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          logo={<Image src={logo} width={97} height={40} alt="k33-logo" />}
         />
       </div>
     </>

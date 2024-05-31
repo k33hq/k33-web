@@ -3,12 +3,12 @@ import logo from '../assets/logo.svg';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import config from '@/firebase/config';
-import { Header, SecondaryHeader } from 'ui';
+import { Header } from 'ui';
 import investmentLogo from '../assets/investments-logo.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-interface ResearchHeaderProps {}
+interface InvestHeaderProps {}
 
 // TODO: upgrade the secondary header here with the ui one
 const AuthHeader = dynamic(
@@ -17,17 +17,7 @@ const AuthHeader = dynamic(
     loading: (props) => (
       <Header
         transparent
-        logo={
-          <Image
-            src={logo}
-            height={24}
-            width={94}
-            alt="company logo"
-            style={{
-              filter: 'invert(100%)',
-            }}
-          />
-        }
+        logo={<Image src={logo} height={40} width={97} alt="company logo" />}
       >
         {null}
       </Header>
@@ -36,7 +26,7 @@ const AuthHeader = dynamic(
   }
 );
 
-const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
+const InvestHeader: React.FC<InvestHeaderProps> = ({}) => {
   const router = useRouter();
   const isLanding =
     router.pathname.startsWith('/products/') || router.pathname === '/';
@@ -45,15 +35,7 @@ const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
       <AuthHeader
         logo={
           <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
-            <Image
-              src={logo}
-              height={24}
-              width={94}
-              alt="company logo"
-              style={{
-                filter: 'invert(100%)',
-              }}
-            />
+            <Image src={logo} height={40} width={97} alt="company logo" />
           </Link>
         }
         authUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
@@ -64,10 +46,12 @@ const InvestHeader: React.FC<ResearchHeaderProps> = ({}) => {
 
       <nav className={`navbar w-full bg-bg-dark-primary`}>
         <div className="md:container flex flex-row md:gap-12 gap-6 items-center md:justify-center h-10 md:px-0 px-6 overflow-auto">
-          <Link href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}>
+          <Link
+            href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/invest`}
+          >
             <Image
               src={investmentLogo}
-              alt="research-logo"
+              alt="k33-investments"
               width={109}
               height={12}
             />

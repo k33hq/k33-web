@@ -10,7 +10,7 @@ const VaultFooter: React.FC<VaultFooterProps> = () => {
   return (
     <div>
       <PlatformFooter
-        logo={<Image src={logo} width={90} height={24} alt="logo" />}
+        logo={<Image src={logo} width={97} height={40} alt="logo" />}
       />
     </div>
   );

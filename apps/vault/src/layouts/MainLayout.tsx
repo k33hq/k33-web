@@ -14,7 +14,7 @@ const AuthHeader = dynamic(
     loading: (props) => {
       return (
         <Header
-          logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          logo={<Image src={logo} width={97} height={40} alt="k33-logo" />}
         >
           {null}
         </Header>
@@ -36,7 +36,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           firebaseConfig={config}
           logo={
             <a href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`}>
-              <Image src={logo} width={133} height={40} alt="k33-logo" />
+              <Image src={logo} width={97} height={40} alt="k33-logo" />
             </a>
           }
           authUrl={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth?redirect=https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/apps/vault`}
@@ -45,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <SecondaryHeader
           branding={
             <Link href={`/`}>
-              <Image src={vaultLogo} alt="research-logo" height={16} />
+              <Image src={vaultLogo} alt="vault-logo" height={16} />
             </Link>
           }
         >
@@ -55,7 +55,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </div>
       <div>
         <PlatformFooter
-          logo={<Image src={logo} width={133} height={40} alt="k33-logo" />}
+          logo={<Image src={logo} width={97} height={40} alt="k33-logo" />}
         />
       </div>
     </>

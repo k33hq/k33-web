@@ -24,7 +24,7 @@ import {
 } from '@ant-design/icons';
 import * as React from 'react';
 import Image from 'next/image';
-import companyLogo from '../../assets/k33.svg';
+import companyLogo from '../../assets/logo.svg';
 import researchLogo from '../../assets/research.svg';
 import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
@@ -272,7 +272,7 @@ const AppLogo: React.FC = () => {
           cursor: 'pointer',
         }}
       >
-        <Image loading="lazy" width={51} src={companyLogo} alt="company-logo" />
+        <Image loading="lazy" width={58} src={companyLogo} alt="company-logo" />
       </Link>
       <Link
         href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research`}

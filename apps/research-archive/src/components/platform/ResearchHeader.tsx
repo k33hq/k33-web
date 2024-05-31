@@ -23,7 +23,7 @@ import {
 } from '@ant-design/icons';
 import * as React from 'react';
 import Image from 'next/image';
-import companyLogo from '../../assets/k33.svg';
+import companyLogo from '../../assets/logo.svg';
 import researchLogo from '../../assets/research.svg';
 import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
@@ -231,7 +231,7 @@ export default ResearchHeader;
 const AppLogo: React.FC = () => {
   return (
     <>
-      <Image width={51} priority src={companyLogo} alt="company-logo" />
+      <Image width={58} priority src={companyLogo} alt="company-logo" />
       <Image
         priority
         width={98}
