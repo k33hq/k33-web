@@ -20,8 +20,8 @@ class MyDocument extends Document {
           <link
             rel="icon"
             type="image/png"
-            sizes="64x64"
-            href="/services/auth/favicon-64x64.png"
+            sizes="256x256"
+            href="/services/auth/favicon-256x256.png"
           />
         </Head>
         <body>

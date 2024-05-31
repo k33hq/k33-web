@@ -21,7 +21,7 @@ class MyDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="64x64"
-            href="/apps/vault/favicon-64x64.png"
+            href="/apps/vault/favicon-256x256.png"
           />
         </Head>
         <body className={`${manrope.className} flex min-h-screen flex-col`}>

@@ -10,7 +10,7 @@ const MyDocument = () => (
         rel="icon"
         type="image/png"
         sizes="64x64"
-        href="/research/favicon-64x64.png"
+        href="/research/favicon-256x256.png"
       />
       <link rel="preconnect" href="https://snap.licdn.com" />
       <link rel="preconnect" href="https://apis.google.com" />

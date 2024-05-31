@@ -119,7 +119,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({
           title: author.title,
         }))}
         publisherName="K33 Research"
-        publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-64x64.png`}
+        publisherLogo={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/favicon-256x256.png`}
         description={seo ? seo.description : subtitle!}
         isAccessibleForFree={false}
       />
