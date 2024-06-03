@@ -6,7 +6,7 @@ import config from '@/firebase/config';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
-import investmentLogo from '../assets/investments-logo.png';
+import investmentLogo from '../assets/investments-logo.svg';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -50,8 +50,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <Image
                 src={investmentLogo}
                 alt="k33-investments"
-                width={109}
-                height={12}
+                width={111}
+                height={10}
               />
             </Link>
           }

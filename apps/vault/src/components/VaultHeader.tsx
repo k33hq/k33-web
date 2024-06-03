@@ -4,7 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import config from '@/firebase/config';
 import { Header } from 'ui';
-import vaultLogo from '../assets/vault-logo.png';
+import vaultLogo from '../assets/vault-logo.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 

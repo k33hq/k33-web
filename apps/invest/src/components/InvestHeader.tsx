@@ -4,7 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import config from '@/firebase/config';
 import { Header } from 'ui';
-import investmentLogo from '../assets/investments-logo.png';
+import investmentLogo from '../assets/investments-logo.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -52,8 +52,8 @@ const InvestHeader: React.FC<InvestHeaderProps> = ({}) => {
             <Image
               src={investmentLogo}
               alt="k33-investments"
-              width={109}
-              height={12}
+              width={111}
+              height={10}
             />
           </Link>
 

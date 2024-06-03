@@ -6,7 +6,7 @@ import config from '@/firebase/config';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
-import vaultLogo from '../assets/vault-logo.png';
+import vaultLogo from '../assets/vault-logo.svg';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
