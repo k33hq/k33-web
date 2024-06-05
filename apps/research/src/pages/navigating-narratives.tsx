@@ -39,7 +39,7 @@ const NavigatingNarratives: NextPageWithLayout<NavigatingNarrativesProps> = ({
           type: 'article:section',
           images: [
             {
-              url: 'https://images.ctfassets.net/i0qyt2j9snzb/3bw9VhMe8k8aI66rUAsGuR/8885288dd10032e9c5bbd287c69b3dd8/Cover_image_research__5_.png?h=250',
+              url: 'https://images.ctfassets.net/i0qyt2j9snzb/6JyAj2lOiLECBkMbdcd7R0/b5cf2d56571af27c3e8b882169c59764/socialPreview.svg?fm=png&w=1200&h=621',
               alt: 'k33-logo',
             },
           ],
