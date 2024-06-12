@@ -46,7 +46,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   sectionName = 'pro',
 }) => {
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, colorPrimary, colorPrimaryBg },
   } = useToken();
 
   const { md, xl } = Grid.useBreakpoint();
@@ -71,12 +71,13 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           <Button
             size="large"
             style={{
-              background: '#FFE70F',
+              background: colorPrimary,
               ...(xl && {
                 width: 240,
                 height: 50,
               }),
               border: 'none',
+              color: colorPrimaryBg,
             }}
           >
             Subscribe

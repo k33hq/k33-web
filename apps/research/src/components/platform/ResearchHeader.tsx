@@ -48,7 +48,7 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
   }>({ url: null, email: null });
   const router = useRouter();
   const {
-    token: { colorPrimary },
+    token: { colorPrimary, colorPrimaryBg },
   } = useToken();
 
   const openDrawer = () => setOpen(true);
@@ -96,9 +96,9 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           <ConfigProvider
             theme={{
               token: {
-                colorPrimary: '#999999',
+                colorPrimary,
                 colorBgBase: '#141414',
-                colorText: '#FFFFFF',
+                colorText: colorPrimaryBg,
               },
             }}
           >

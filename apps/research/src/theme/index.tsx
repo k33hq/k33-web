@@ -5,14 +5,15 @@ const withTheme = (node: JSX.Element) => (
   <ConfigProvider
     theme={{
       token: {
-        colorPrimary: '#999999',
+        colorPrimary: '#a54242',
+        colorPrimaryBg: '#f5f6fc',
         colorTextDescription: '#000000a6',
         colorLink: '#777777',
       },
       components: {
         Layout: {
           colorBgContainer: '#ffffff',
-          colorBgHeader: '#141414',
+          headerBg: '#141414',
         },
       },
     }}
