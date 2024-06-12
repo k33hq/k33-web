@@ -32,11 +32,11 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'March 2024',
+    date: 'May 2024',
     subtitle: '',
     description: [
-      'We are firmly in the first half of a bull market, and there are a number of catalysts to look forward to in the short and medium term, like the Bitcoin halving in April and a decision on ETH spot ETFs in May.',
-      'While BTC has shown continued strength since the start of the year and recently broke its ATH, it is in this environment that altcoins show most promise. To complement our major BTC and ETH positions, we maintain tailored exposure in categories alt L1s, DeFi and non-L1 scaling & infrastructure.',
+      'While momentum from BTC ETF inflows tapered in April and May, suggesting a low-activity summer, the approval of Ethereum spot ETFs has revitalised the markets, prompting a reassessment of our expectations for the coming months. The upcoming Ethereum ETFs and the anticipated BTC MtGox repayments, which may lead to BTC sell pressure, make us bullish on ETHBTC. Consequently, the fund has increased its ETH exposure.',
+      'The outlook for crypto in the second half of the year has improved significantly. Crypto, previously unmentioned in such contexts, now looks to have become a topic in the US election. This, along with the BTC and ETH ETFs, indicates continued adoption.',
     ],
   },
   summary: {
@@ -221,33 +221,33 @@ const Home: NextPageWithLayout = () => {
                 <tbody className="text-label-light-secondary text-body3">
                   <tr>
                     <td className="px-2 py-1">Year to Date</td>
-                    <td className="px-2 py-1">41.91%</td>
-                    <td className="px-2 py-1">45.23%</td>
+                    <td className="px-2 py-1">35.99%</td>
+                    <td className="px-2 py-1">43.93%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Month</td>
-                    <td className="px-2 py-1">37.22%</td>
-                    <td className="px-2 py-1">43.95%</td>
+                    <td className="px-2 py-1">-20.44%</td>
+                    <td className="px-2 py-1">-14.73%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">3 Months</td>
-                    <td className="px-2 py-1">68.21%</td>
-                    <td className="px-2 py-1">62.54%</td>
+                    <td className="px-2 py-1">31.49%</td>
+                    <td className="px-2 py-1">42.66%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">6 Months</td>
-                    <td className="px-2 py-1">138.96%</td>
-                    <td className="px-2 py-1">136.42%</td>
+                    <td className="px-2 py-1">81.58%</td>
+                    <td className="px-2 py-1">75.21%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">1 Year</td>
-                    <td className="px-2 py-1">154.20%</td>
-                    <td className="px-2 py-1">164.72%</td>
+                    <td className="px-2 py-1">100.30%</td>
+                    <td className="px-2 py-1">106.90%</td>
                   </tr>
                   <tr>
                     <td className="px-2 py-1">Launch to Date</td>
-                    <td className="px-2 py-1">914.15%</td>
-                    <td className="px-2 py-1">686.32%</td>
+                    <td className="px-2 py-1">871.83%</td>
+                    <td className="px-2 py-1">679.28%</td>
                   </tr>
                 </tbody>
               </table>
