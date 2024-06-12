@@ -111,7 +111,9 @@ const Home: NextPageWithLayout = () => {
             title={fundCards.position.title}
             date={fundCards.position.date}
           >
-            <FundBody>{fundCards.position.description}</FundBody>
+            {fundCards.position.description.map((desc) => (
+              <FundBody>{desc}</FundBody>
+            ))}
           </FundCard>
         </div>
       </section>
@@ -416,22 +418,32 @@ const Home: NextPageWithLayout = () => {
               <FundCardContent title="Service Providers" date="">
                 <table className="table-auto block">
                   <tbody>
-                  <tr>
-                    <td className="text-label-light-secondary">Platform</td>
-                    <td className="text-label-light-primary text-right">AK Jensen Investment Mgmt Ltd</td>
-                  </tr>
-                  <tr>
-                    <td className="text-label-light-secondary">Storage Provider</td>
-                    <td className="text-label-light-primary text-right">Coinbase Custody Intern. Ltd</td>
-                  </tr>
-                  <tr>
-                    <td className="text-label-light-secondary">Auditor</td>
-                    <td className="text-label-light-primary text-right">RSM Cayman Ltd.</td>
-                  </tr>
-                  <tr>
-                    <td className="text-label-light-secondary">Legal</td>
-                    <td className="text-label-light-primary text-right">Appleby / AKJ</td>
-                  </tr>
+                    <tr>
+                      <td className="text-label-light-secondary">Platform</td>
+                      <td className="text-label-light-primary text-right">
+                        AK Jensen Investment Mgmt Ltd
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-label-light-secondary">
+                        Storage Provider
+                      </td>
+                      <td className="text-label-light-primary text-right">
+                        Coinbase Custody Intern. Ltd
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-label-light-secondary">Auditor</td>
+                      <td className="text-label-light-primary text-right">
+                        RSM Cayman Ltd.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-label-light-secondary">Legal</td>
+                      <td className="text-label-light-primary text-right">
+                        Appleby / AKJ
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </FundCardContent>
