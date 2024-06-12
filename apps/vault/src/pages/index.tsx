@@ -95,15 +95,18 @@ const Home: NextPageWithLayout = () => {
         (previousValue, currentValue): Amount => ({
           value: previousValue.value + currentValue.value,
           currency: previousValue.currency,
-        })
+        }),
+        { value: 0, currency }
       );
     content = (
       <>
-        <DonutChart
-          amounts={amounts}
-          currency={currency}
-          className={'max-w-96 max-h-96 my-8 self-center'}
-        />
+        {total.value > 0 && (
+          <DonutChart
+            amounts={amounts}
+            currency={currency}
+            className={'max-w-96 max-h-96 my-8 self-center'}
+          />
+        )}
         <BalanceCard
           amount={total}
           className={
