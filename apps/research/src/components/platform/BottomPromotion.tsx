@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-import { Button, Divider, Grid, Image, Typography } from 'antd';
+import { Button, Divider, Grid, Image, theme, Typography } from 'antd';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
+const { useToken } = theme;
+
 const BottomPromotion: React.FC = () => {
   const { lg, xl } = Grid.useBreakpoint();
+  const {
+    token: { colorPrimary, colorPrimaryBg },
+  } = useToken();
   return (
     <Link href={'/pricing'} className={styles.topPromotion}>
       <div>
@@ -39,7 +44,8 @@ const BottomPromotion: React.FC = () => {
           <Button
             size="large"
             style={{
-              backgroundColor: '#CCB911',
+              backgroundColor: colorPrimary,
+              color: colorPrimaryBg,
               border: 'none',
               ...(xl && {
                 width: 180,

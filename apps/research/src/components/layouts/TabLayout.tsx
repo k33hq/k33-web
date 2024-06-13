@@ -27,9 +27,10 @@ export interface TabLayoutProps extends React.PropsWithChildren {
   tabs: Navigations;
   activeKey: string;
   image?: string;
+  imageAlpha?: number;
   type?: 'primary' | 'secondary';
-  isButtonPrimary?: boolean;
   showSubscribeButton?: boolean;
+  subscribeButtonType?: 'primary' | 'secondary';
   sectionName?: string;
 }
 
@@ -40,9 +41,10 @@ const TabLayout: React.FC<TabLayoutProps> = ({
   activeKey,
   description,
   image,
+  imageAlpha = 0.7,
   type = 'primary',
-  isButtonPrimary = false,
   showSubscribeButton = false,
+  subscribeButtonType = 'primary',
   sectionName = 'pro',
 }) => {
   const {
@@ -71,13 +73,17 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           <Button
             size="large"
             style={{
-              background: colorPrimary,
+              background:
+                subscribeButtonType == 'primary'
+                  ? colorPrimary
+                  : colorPrimaryBg,
+              color:
+                subscribeButtonType == 'primary' ? colorPrimaryBg : 'black',
               ...(xl && {
                 width: 240,
                 height: 50,
               }),
               border: 'none',
-              color: colorPrimaryBg,
             }}
           >
             Subscribe
@@ -98,7 +104,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
           flexDirection: 'column',
           boxSizing: 'border-box',
           ...(image && {
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${image})`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, ${imageAlpha}), rgba(0, 0, 0, ${imageAlpha})), url(${image})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -126,7 +132,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                       level={xl ? 1 : 3}
                       style={{
                         margin: 0,
-                        color: type === 'primary' ? 'white' : 'black',
+                        color: type === 'primary' ? colorPrimaryBg : 'black',
                         fontWeight: 800,
                       }}
                     >
@@ -137,7 +143,7 @@ const TabLayout: React.FC<TabLayoutProps> = ({
                     {description && (
                       <Text
                         style={{
-                          color: 'white',
+                          color: type === 'primary' ? colorPrimaryBg : 'black',
                           fontSize: xl ? 18 : 16,
                         }}
                       >

@@ -66,7 +66,9 @@ NavigatingNarratives.getLayout = function getLayout(page: React.ReactElement) {
       title="Navigating Narratives"
       tabs={[]}
       image="./nn_header.avif"
+      imageAlpha={0}
       showSubscribeButton
+      subscribeButtonType="secondary"
     >
       {page}
     </TabLayout>
