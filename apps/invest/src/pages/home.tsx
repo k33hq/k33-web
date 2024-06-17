@@ -1,14 +1,12 @@
 import { ReactElement, useEffect } from 'react';
-import { BasicButton, Marker } from 'ui';
-import content from '../assets/Content.svg';
-import fundFact from '../assets/fund_fact.png';
+import { BasicButton, Marker, Size } from 'ui';
+import performanceImage from '../assets/performance.svg';
 import Image from 'next/image';
-import { Size } from 'ui';
 import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
 import PrivateMainLayout from '@/layouts/PrivateMainLayout';
 import Head from 'next/head';
-import { getTitle, useAppState, NextPageWithLayout } from 'platform-js';
+import { getTitle, NextPageWithLayout, useAppState } from 'platform-js';
 import { useLazyGetFundRegistrationQuery } from '@/services';
 import { useRouter } from 'next/router';
 import config from '@/firebase/config';
@@ -32,17 +30,158 @@ const fundCards = {
   },
   position: {
     title: 'position and Near Term Outlook',
-    date: 'May 2024',
+    date: 'June 2024',
     subtitle: '',
     description: [
-      'While momentum from BTC ETF inflows tapered in April and May, suggesting a low-activity summer, the approval of Ethereum spot ETFs has revitalised the markets, prompting a reassessment of our expectations for the coming months. The upcoming Ethereum ETFs and the anticipated BTC MtGox repayments, which may lead to BTC sell pressure, make us bullish on ETHBTC. Consequently, the fund has increased its ETH exposure.',
-      'The outlook for crypto in the second half of the year has improved significantly. Crypto, previously unmentioned in such contexts, now looks to have become a topic in the US election. This, along with the BTC and ETH ETFs, indicates continued adoption.',
+      'While momentum from BTC ETF inflows tapered in April and May, suggesting a low-activity summer, the approval of Ethereum spot ETFs has revitalised the markets, prompting a reassessment of our expectations for the coming months. While we still think summer will be relatively calm, the upcoming Ethereum ETFs  combined with anticipated BTC MtGox repayments make us bullish on ETHBTC. Consequently, the fund has increased its ETH exposure.',
+      'Looking past the summer, the outlook for crypto in the second half of the year has improved significantly. Crypto, previously unmentioned in such contexts, now looks to have become a topic in the US election. This, along with the BTC and ETH ETFs, indicates continued adoption.',
+    ],
+  },
+  performance: {
+    title: 'fund performance',
+    subtitle: 'Monthly Performance of K33 vs. Bitcoin',
+    data: [
+      {
+        duration: 'Year to Date',
+        k33: '55.71',
+        btc: '59.86',
+      },
+      {
+        duration: '1 Month',
+        k33: '14.50',
+        btc: '11.07',
+      },
+      {
+        duration: '3 Months',
+        k33: '9.72',
+        btc: '10.08',
+      },
+      {
+        duration: '6 Months',
+        k33: '85.56',
+        btc: '78.92',
+      },
+      {
+        duration: '1 Year',
+        k33: '141.64',
+        btc: '147.66',
+      },
+      {
+        duration: 'Launch to Date',
+        k33: '1012.74',
+        btc: '765.55',
+      },
     ],
   },
   summary: {
     title: 'trading summary',
     description: [
       'The objective of the Fund is to provide diversified exposure to the cryptocurrency market, independently of the performance of individual assets. The Fund has a long-term fundamental approach to the majority of its investments but also acts on short-term opportunities in the market.',
+    ],
+  },
+  facts: {
+    title: 'key fund facts',
+    data: [
+      {
+        key: 'Fund Type',
+        value: 'Limited',
+      },
+      {
+        key: 'Pricing (NAV)',
+        value: 'Monthly',
+      },
+      {
+        key: 'Investment Manager',
+        value: 'AK Jensen Limited',
+      },
+      {
+        key: 'Fund Manager',
+        value: 'Torbjørn Bull Jenssen',
+      },
+      {
+        key: 'Fund Manager',
+        value: 'Oskar Janson',
+      },
+      {
+        key: 'Subscription Notice',
+        value: '5 business days preceding the Subscription day',
+      },
+      {
+        key: 'Redemption Notice',
+        value: '30 days preceding the Redemption day',
+      },
+      {
+        key: 'Currency Class',
+        value: 'US Dollar $',
+      },
+    ],
+  },
+  terms: {
+    title: 'fund terms',
+    label: {
+      key: 'Minimum Investment',
+      value: 'Share Class F $100,000',
+      value2: 'Share Class G $100,000',
+    },
+    data: [
+      {
+        key: 'Investors',
+        value: 'Professional (MiFID II)',
+      },
+      {
+        key: 'Subscriptions',
+        value: 'Monthly',
+      },
+      {
+        key: 'Redemptions',
+        value: '30 days notice period',
+      },
+      {
+        key: 'Base Currency',
+        value: 'USD',
+      },
+      {
+        key: 'Management Fee',
+        value: '2%',
+      },
+      {
+        key: 'Performance Fee',
+        value: '20%',
+        value2: '20% (btc benchmark)',
+      },
+      {
+        key: 'High Watermark',
+        value: 'Yes',
+      },
+      {
+        key: 'Redemption Fee',
+        value: '1% (2% first 3 years)',
+      },
+      {
+        key: 'Recommended Investment Term',
+        value: 'Long-term',
+      },
+    ],
+  },
+  providers: {
+    title: 'service providers',
+    data: [
+      {
+        key: 'Platform',
+        value: 'AK Jensen Investment Mgmt Ltd',
+      },
+      {
+        key: 'Storage Provider',
+        value: 'Coinbase Custody Intern. Ltd',
+      },
+      {
+        key: 'Auditor',
+        value: 'RSM Cayman Ltd.',
+      },
+      {
+        key: 'Legal',
+        value: 'Appleby / AKJ',
+      },
     ],
   },
 };
@@ -208,10 +347,10 @@ const Home: NextPageWithLayout = () => {
           <div className="flex md:flex-row flex-col gap-8">
             <FundCard
               size="medium"
-              title="Fund Performance"
-              date="Monthly Performance of K33 vs. Bitcoin"
+              title={fundCards.performance.title}
+              date={fundCards.performance.subtitle}
             >
-              <Image src={content} alt="" />
+              <Image src={performanceImage} alt="" />
               <table className="bg-white border-separate max-w-[300px] self-center">
                 <thead className="text-caption text-label-light-primary">
                   <tr>
@@ -221,36 +360,13 @@ const Home: NextPageWithLayout = () => {
                   </tr>
                 </thead>
                 <tbody className="text-label-light-secondary text-body3">
-                  <tr>
-                    <td className="px-2 py-1">Year to Date</td>
-                    <td className="px-2 py-1">35.99%</td>
-                    <td className="px-2 py-1">43.93%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-1">1 Month</td>
-                    <td className="px-2 py-1">-20.44%</td>
-                    <td className="px-2 py-1">-14.73%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-1">3 Months</td>
-                    <td className="px-2 py-1">31.49%</td>
-                    <td className="px-2 py-1">42.66%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-1">6 Months</td>
-                    <td className="px-2 py-1">81.58%</td>
-                    <td className="px-2 py-1">75.21%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-1">1 Year</td>
-                    <td className="px-2 py-1">100.30%</td>
-                    <td className="px-2 py-1">106.90%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-1">Launch to Date</td>
-                    <td className="px-2 py-1">871.83%</td>
-                    <td className="px-2 py-1">679.28%</td>
-                  </tr>
+                  {fundCards.performance.data.map(({ duration, k33, btc }) => (
+                    <tr>
+                      <td className="px-2 py-1">{duration}</td>
+                      <td className="px-2 py-1">{k33}%</td>
+                      <td className="px-2 py-1">{btc}%</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </FundCard>
@@ -258,192 +374,87 @@ const Home: NextPageWithLayout = () => {
               <FundCard title={fundCards.summary.title} date={''}>
                 <FundBold>{fundCards.summary.description}</FundBold>
               </FundCard>
-              <FundCard title="key fund facts" date={''}>
-                <Image src={fundFact} alt="" />
+              <FundCard title={fundCards.facts.title} date={''}>
+                <table>
+                  <tbody>
+                    {fundCards.facts.data.map(({ key, value }) => (
+                      <tr>
+                        <td className="text-label-light-secondary">{key}</td>
+                        <td className="text-label-light-primary text-right">
+                          {value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </FundCard>
             </div>
           </div>
           <FundCardBody size="large">
             <div className="flex md:flex-row md:justify-between flex-col gap-6">
-              <FundCardContent title="Fund Terms" date="">
+              <FundCardContent title={fundCards.terms.title} date="">
                 <table className="table-auto hidden md:block text-left border-separate border-spacing-2">
                   <thead className="text-caption text-label-light-primary">
                     <tr>
-                      <th>Minimum Investment</th>
-                      <th>Share Class F $100,000</th>
-                      <th>Share Class G $100,000</th>
+                      <th>{fundCards.terms.label.key}</th>
+                      <th>{fundCards.terms.label.value}</th>
+                      <th>{fundCards.terms.label.value2}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-body3">
-                    <tr>
-                      <td>Investors</td>
-                      <td>Professional (MiFID II)</td>
-                      <td>Professional (MiFID II)</td>
-                    </tr>
-                    <tr>
-                      <td>Subscriptions</td>
-                      <td>Monthly</td>
-                      <td>Monthly</td>
-                    </tr>
-                    <tr>
-                      <td>Redemptions</td>
-                      <td className="pr-10">30 days notice period</td>
-                      <td>30 days notice period</td>
-                    </tr>
-                    <tr>
-                      <td>Base Currency</td>
-                      <td>USD</td>
-                      <td>USD</td>
-                    </tr>
-                    <tr>
-                      <td>Management Fee</td>
-                      <td>2%</td>
-                      <td>2%</td>
-                    </tr>
-                    <tr>
-                      <td>Performance Fee</td>
-                      <td>20%</td>
-                      <td>20% (btc benchmark)</td>
-                    </tr>
-                    <tr>
-                      <td>High Watermark</td>
-                      <td>Yes</td>
-                      <td>Yes</td>
-                    </tr>
-                    <tr>
-                      <td>Redemption Fee</td>
-                      <td>1% (2% first 3 years)</td>
-                      <td>1% (2% first 3 years)</td>
-                    </tr>
-                    <tr>
-                      <td className="pr-10">Recommended Investment Term</td>
-                      <td>Long-term</td>
-                      <td>Long-term</td>
-                    </tr>
+                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                      <tr>
+                        <td className="pr-10">{key}</td>
+                        <td className="pr-10">{value}</td>
+                        <td>{value2 ?? value}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
                 <table className="table-auto block md:hidden text-left">
                   <thead className="text-small text-label-light-primary">
                     <tr>
-                      <th>Minimum Investment</th>
-                      <th>Share Class F $100,000</th>
+                      <th>{fundCards.terms.label.key}</th>
+                      <th>{fundCards.terms.label.value}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
-                    <tr>
-                      <td>Investors</td>
-                      <td>Professional (MiFID II)</td>
-                    </tr>
-                    <tr>
-                      <td>Subscriptions</td>
-                      <td>Monthly</td>
-                    </tr>
-                    <tr>
-                      <td>Redemptions</td>
-                      <td className="pr-10">30 days notice period</td>
-                    </tr>
-                    <tr>
-                      <td>Base Currency</td>
-                      <td>USD</td>
-                    </tr>
-                    <tr>
-                      <td>Management Fee</td>
-                      <td>2%</td>
-                    </tr>
-                    <tr>
-                      <td>Performance Fee</td>
-                      <td>20%</td>
-                    </tr>
-                    <tr>
-                      <td>High Watermark</td>
-                      <td>Yes</td>
-                    </tr>
-                    <tr>
-                      <td>Redemption Fee</td>
-                      <td>1% (2% first 3 years)</td>
-                    </tr>
-                    <tr>
-                      <td className="pr-10">Recommended Investment Term</td>
-                      <td>Long-term</td>
-                    </tr>
+                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                      <tr>
+                        <td className="pr-10">{key}</td>
+                        <td>{value}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
                 <table className="table-auto block md:hidden text-left">
                   <thead className="text-small text-label-light-primary">
                     <tr>
-                      <th>Minimum Investment</th>
-                      <th>Share Class G $100,000</th>
+                      <th>{fundCards.terms.label.key}</th>
+                      <th>{fundCards.terms.label.value2}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
-                    <tr>
-                      <td>Investors</td>
-                      <td>Professional (MiFID II)</td>
-                    </tr>
-                    <tr>
-                      <td>Subscriptions</td>
-                      <td>Monthly</td>
-                    </tr>
-                    <tr>
-                      <td>Redemptions</td>
-                      <td>30 days notice period</td>
-                    </tr>
-                    <tr>
-                      <td>Base Currency</td>
-                      <td>USD</td>
-                    </tr>
-                    <tr>
-                      <td>Management Fee</td>
-                      <td>2%</td>
-                    </tr>
-                    <tr>
-                      <td>Performance Fee</td>
-                      <td>20% (btc benchmark)</td>
-                    </tr>
-                    <tr>
-                      <td>High watermark</td>
-                      <td>Yes</td>
-                    </tr>
-                    <tr>
-                      <td>Redemption Fee</td>
-                      <td>1% (2% first 3 years)</td>
-                    </tr>
-                    <tr>
-                      <td className="pr-10">Recommended Investment Term</td>
-                      <td>Long-term</td>
-                    </tr>
+                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                      <tr>
+                        <td className="pr-10">{key}</td>
+                        <td>{value2 ?? value}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </FundCardContent>
-              <FundCardContent title="Service Providers" date="">
+              <FundCardContent title={fundCards.providers.title} date="">
                 <table className="table-auto block">
                   <tbody>
-                    <tr>
-                      <td className="text-label-light-secondary">Platform</td>
-                      <td className="text-label-light-primary text-right">
-                        AK Jensen Investment Mgmt Ltd
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-label-light-secondary">
-                        Storage Provider
-                      </td>
-                      <td className="text-label-light-primary text-right">
-                        Coinbase Custody Intern. Ltd
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-label-light-secondary">Auditor</td>
-                      <td className="text-label-light-primary text-right">
-                        RSM Cayman Ltd.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-label-light-secondary">Legal</td>
-                      <td className="text-label-light-primary text-right">
-                        Appleby / AKJ
-                      </td>
-                    </tr>
+                    {fundCards.providers.data.map(({ key, value }) => (
+                      <tr>
+                        <td className="text-label-light-secondary">{key}</td>
+                        <td className="text-label-light-primary text-right">
+                          {value}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </FundCardContent>
