@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-import { Button, Divider, Grid, Image, Typography } from 'antd';
+import { Button, Grid, theme, Typography } from 'antd';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
+const { useToken } = theme;
+
 const TopPromotion: React.FC = () => {
   const { lg, xl } = Grid.useBreakpoint();
+  const {
+    token: { colorPrimary, colorPrimaryBg },
+  } = useToken();
   return (
     <Link href={'/pricing'} className={styles.topPromotion}>
       <div id="top-promotion-info">
@@ -33,7 +38,11 @@ const TopPromotion: React.FC = () => {
         <Link href={'/pricing'}>
           <Button
             size="large"
-            style={{ backgroundColor: '#CCB911', border: 'none' }}
+            style={{
+              backgroundColor: colorPrimary,
+              color: colorPrimaryBg,
+              border: 'none',
+            }}
           >
             Start Free Trial
           </Button>
