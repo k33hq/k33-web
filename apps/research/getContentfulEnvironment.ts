@@ -7,13 +7,13 @@ dotenv.config({ path: '.env.local' });
 
 const {
   CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN,
-  NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
+  NEXT_PUBLIC_CONTENTFUL_RESEARCH_SPACE_ID,
+  NEXT_PUBLIC_CONTENTFUL_RESEARCH_ENVIRONMENT,
 } = process.env;
 
-assert(NEXT_PUBLIC_CONTENTFUL_SPACE_ID);
-assert(NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT);
 assert(CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN);
+assert(NEXT_PUBLIC_CONTENTFUL_RESEARCH_SPACE_ID);
+assert(NEXT_PUBLIC_CONTENTFUL_RESEARCH_ENVIRONMENT);
 
 const getContentfulEnvironment: EnvironmentGetter = async () => {
   const contentfulClient = createClient({
@@ -21,8 +21,10 @@ const getContentfulEnvironment: EnvironmentGetter = async () => {
   });
 
   return contentfulClient
-    .getSpace(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
-    .then((space) => space.getEnvironment(NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT));
+    .getSpace(NEXT_PUBLIC_CONTENTFUL_RESEARCH_SPACE_ID)
+    .then((space) =>
+      space.getEnvironment(NEXT_PUBLIC_CONTENTFUL_RESEARCH_ENVIRONMENT)
+    );
 };
 
 module.exports = getContentfulEnvironment;

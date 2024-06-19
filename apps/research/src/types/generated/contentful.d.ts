@@ -84,30 +84,6 @@ export interface IArticle extends Entry<IArticleFields> {
   };
 }
 
-export interface IArticleWebFields {
-  /** Title */
-  title: string;
-}
-
-/** Assembly - how an Article should be constructed to be presented on the web */
-
-export interface IArticleWeb extends Entry<IArticleWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'articleWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IAuthorFields {
   /** Name */
   name: string;
@@ -347,108 +323,6 @@ export interface ISeoMetadata extends Entry<ISeoMetadataFields> {
   };
 }
 
-export interface ISubscriptionFields {
-  /** Stripe Product ID */
-  stripeProductId: string;
-
-  /** Name */
-  name: string;
-
-  /** Image */
-  image: Asset;
-
-  /** Description */
-  description: string;
-
-  /** Features */
-  features: string[];
-
-  /** Importance */
-  importance: number;
-}
-
-export interface ISubscription extends Entry<ISubscriptionFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'subscription';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ISubscriptionProductFields {
-  /** Title */
-  title: string;
-
-  /** Product ID */
-  productId: string;
-
-  /** Prices */
-  prices: ISubscription[];
-}
-
-/** Stripe Product, remember it is not about price_id of a particular product */
-
-export interface ISubscriptionProduct
-  extends Entry<ISubscriptionProductFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'subscriptionProduct';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface ISubscriptionWebFields {
-  /** Title */
-  title: string;
-
-  /** Subscription */
-  subscription: ISubscription;
-
-  /** Subscription Slug */
-  subscriptionSlug: string;
-
-  /** Label */
-  label: string;
-
-  /** SEO */
-  seo: ISeoMetadata;
-}
-
-export interface ISubscriptionWeb extends Entry<ISubscriptionWebFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'subscriptionWeb';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface ITagFields {
   /** Title */
   title: string;
@@ -503,7 +377,6 @@ export interface IToken extends Entry<ITokenFields> {
 
 export type CONTENT_TYPE =
   | 'article'
-  | 'articleWeb'
   | 'author'
   | 'homePage'
   | 'index'
@@ -511,15 +384,11 @@ export type CONTENT_TYPE =
   | 'news'
   | 'section'
   | 'seoMetadata'
-  | 'subscription'
-  | 'subscriptionProduct'
-  | 'subscriptionWeb'
   | 'tag'
   | 'token';
 
 export type IEntry =
   | IArticle
-  | IArticleWeb
   | IAuthor
   | IHomePage
   | IIndex
@@ -527,9 +396,6 @@ export type IEntry =
   | INews
   | ISection
   | ISeoMetadata
-  | ISubscription
-  | ISubscriptionProduct
-  | ISubscriptionWeb
   | ITag
   | IToken;
 

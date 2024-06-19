@@ -45,10 +45,9 @@ jobs:
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
           # contentful
-          NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: op://k33-web-env/prod/contentful/ENVIRONMENT
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/ARCHIVE_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/ARCHIVE_ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_ARCHIVE_ENVIRONMENT: op://k33-web-env/prod/contentful/ARCHIVE_ENVIRONMENT
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ARCHIVE_SPACE_ID: op://k33-web-env/prod/contentful/RESEARCH_ARCHIVE_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ARCHIVE_ACCESS_TOKEN: op://k33-web-env/prod/contentful/RESEARCH_ARCHIVE_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ARCHIVE_ENVIRONMENT: op://k33-web-env/prod/contentful/RESEARCH_ARCHIVE_ENVIRONMENT
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies
