@@ -7,6 +7,9 @@ const GetFundInfo = gql`
   query GetFundInfo($id: String!) {
     fundInfoCollection(where: { id: $id }, limit: 1) {
       items {
+        pdf {
+          url
+        }
         strategy {
           title
           subtitle
@@ -22,6 +25,11 @@ const GetFundInfo = gql`
         performance {
           title
           subtitle
+          image {
+            url
+            width
+            height
+          }
           dataCollection {
             items {
               duration
@@ -78,6 +86,7 @@ export const getFundInfo = async (id: string): Promise<FundInfo> => {
   });
   const fundInfo = response.fundInfoCollection.items[0];
   return {
+    pdf: fundInfo.pdf.url,
     strategy: {
       title: fundInfo.strategy.title,
       subtitle: fundInfo.strategy.subtitle,
@@ -97,6 +106,11 @@ export const getFundInfo = async (id: string): Promise<FundInfo> => {
     performance: {
       title: fundInfo.performance.title,
       subtitle: fundInfo.performance.subtitle,
+      image: {
+        url: fundInfo.performance.image.url,
+        height: fundInfo.performance.image.height,
+        width: fundInfo.performance.image.width,
+      },
       data: fundInfo.performance.dataCollection.items,
     },
     summary: {

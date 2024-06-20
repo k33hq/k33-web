@@ -1,6 +1,5 @@
 import { ReactElement, useEffect } from 'react';
 import { BasicButton, Marker, Size } from 'ui';
-import performanceImage from '../assets/performance.svg';
 import Image from 'next/image';
 import { FundPromotion } from '@/components';
 import { ImDownload2 } from 'react-icons/im';
@@ -103,7 +102,7 @@ const Home: NextPageWithLayout<FundInfoProps> = ({ pageProps }) => {
                 </BasicButton>
               </a>
               <a
-                href="/apps/invest/home/fund-doc.pdf"
+                href={fundInfo.pdf}
                 target="_blank"
                 rel="noopener noreferrer"
                 download
@@ -171,7 +170,12 @@ const Home: NextPageWithLayout<FundInfoProps> = ({ pageProps }) => {
               title={fundInfo.performance.title}
               subtitle={fundInfo.performance.subtitle}
             >
-              <Image src={performanceImage} alt="" />
+              <Image
+                src={fundInfo.performance.image.url}
+                width={fundInfo.performance.image.width}
+                height={fundInfo.performance.image.height}
+                alt="Performance Graph"
+              />
               <table className="bg-white border-separate max-w-[300px] self-center">
                 <thead className="text-caption text-label-light-primary">
                   <tr>

@@ -9,6 +9,7 @@ export interface GetFundInfoResponse {
 }
 
 export interface FundInfo {
+  pdf: File;
   strategy: FundCardInfo;
   position: FundCardInfo;
   summary: Summary;
@@ -33,6 +34,7 @@ export interface Summary {
 export interface PerformanceInfo {
   title: string;
   subtitle: string;
+  image: ImageFile;
   dataCollection: PerformanceStatsCollection;
 }
 
@@ -57,4 +59,14 @@ export interface Terms {
 
 export interface TermCollection {
   items: Term[];
+}
+
+export interface File {
+  url: string;
+}
+
+export interface ImageFile {
+  url: string;
+  width: number;
+  height: number;
 }

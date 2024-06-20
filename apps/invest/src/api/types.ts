@@ -1,4 +1,5 @@
 export interface FundInfo {
+  pdf: string;
   strategy: FundCardInfo;
   position: FundCardInfo;
   performance: PerformanceInfo;
@@ -17,6 +18,7 @@ export interface FundCardInfo {
 export interface PerformanceInfo {
   title: string;
   subtitle: string;
+  image: ImageFile;
   data: PerformanceStats[];
 }
 
@@ -46,4 +48,10 @@ export interface Term {
   key: string;
   value: string;
   value2?: string;
+}
+
+export interface ImageFile {
+  url: string;
+  width: number;
+  height: number;
 }
