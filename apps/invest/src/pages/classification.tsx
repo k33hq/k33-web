@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { getTitle } from 'platform-js';
 import { ReactElement, useEffect } from 'react';
-import { BasicButton, NextPageWithLayout } from 'ui';
+import { NextPageWithLayout } from 'ui';
 
 /**
  * user-state: [registered]

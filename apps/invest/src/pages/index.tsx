@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Image from 'next/image';
 import { BasicButton, ListIcon } from 'ui';
 import promotion from '../assets/promotion.png';

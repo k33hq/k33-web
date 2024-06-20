@@ -35,12 +35,6 @@ jobs:
           TURBO_TEAM: op://k33-web-env/prod/turbo/TEAM
           TURBO_TOKEN: op://k33-web-env/prod/turbo/TOKEN
           TURBO_REMOTE_ONLY: true
-          # contentful
-          NEXT_PUBLIC_CONTENTFUL_RESEARCH_SPACE_ID: op://k33-web-env/prod/contentful/RESEARCH_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ACCESS_TOKEN: op://k33-web-env/prod/contentful/RESEARCH_ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_RESEARCH_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/RESEARCH_PREVIEW_ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_RESEARCH_PREVIEW_SECRET: op://k33-web-env/prod/contentful/RESEARCH_PREVIEW_SECRET
-          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ENVIRONMENT: op://k33-web-env/prod/contentful/RESEARCH_ENVIRONMENT
           # firebase app settings
           NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
@@ -52,6 +46,17 @@ jobs:
           # domains
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          # contentful
+          ## research
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_SPACE_ID: op://k33-web-env/prod/contentful/RESEARCH_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ACCESS_TOKEN: op://k33-web-env/prod/contentful/RESEARCH_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_ENVIRONMENT: op://k33-web-env/prod/contentful/RESEARCH_ENVIRONMENT
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_PREVIEW_ACCESS_TOKEN: op://k33-web-env/prod/contentful/RESEARCH_PREVIEW_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_RESEARCH_PREVIEW_SECRET: op://k33-web-env/prod/contentful/RESEARCH_PREVIEW_SECRET
+          ## invest
+          NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID: op://k33-web-env/prod/contentful/INVEST_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN: op://k33-web-env/prod/contentful/INVEST_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT: op://k33-web-env/prod/contentful/INVEST_ENVIRONMENT
           # algolia
           NEXT_PUBLIC_ALGOLIA_APP_ID: op://k33-web-env/prod/algolia/APP_ID
           NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: op://k33-web-env/prod/algolia/SEARCH_API_KEY

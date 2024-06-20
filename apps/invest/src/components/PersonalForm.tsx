@@ -1,8 +1,8 @@
 import { useFundRegistrationMutation } from '@/services';
-import { FundInfo, PersonalRegistration } from '@/types';
+import { InvestorInfo, PersonalRegistration } from '@/types';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { BasicButton, Input } from 'ui';
+import { BasicButton } from 'ui';
 import { Listbox, Transition } from '@headlessui/react';
 import countryList from '../assets/countries.json';
 
@@ -38,7 +38,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
     useFundRegistrationMutation();
 
   const handleRegistration = async (data: PersonalRegistration) => {
-    const body: FundInfo = {
+    const body: InvestorInfo = {
       investorType: 'PROFESSIONAL',
       name: data.name,
       phoneNumber: {
@@ -353,7 +353,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
               </label>
               <svg
                 className="
-    absolute 
+    absolute
     w-4 h-4 mt-1
     hidden peer-checked:block
     pointer-events-none"
@@ -411,7 +411,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
               </label>
               <svg
                 className="
-    absolute 
+    absolute
     w-4 h-4 mt-1
     hidden peer-checked:block
     pointer-events-none"

@@ -1,0 +1,66 @@
+name: Deploy Invest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-invest-app:
+    name: Deploy invest
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8.15.4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Load secrets
+        uses: 1password/load-secrets-action@v2
+        with:
+          # Export loaded secrets as environment variables
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          # turbo
+          TURBO_TEAM: op://k33-web-env/prod/turbo/TEAM
+          TURBO_TOKEN: op://k33-web-env/prod/turbo/TOKEN
+          TURBO_REMOTE_ONLY: true
+          # firebase app settings
+          NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: op://k33-web-env/prod/firebase/PROJECT_ID
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: op://k33-web-env/prod/firebase/STORAGE_BUCKET
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: op://k33-web-env/prod/firebase/MESSAGING_SENDER_ID
+          NEXT_PUBLIC_FIREBASE_APP_ID: op://k33-web-env/prod/firebase/APP_ID
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: op://k33-web-env/prod/firebase/MEASUREMENT_ID
+          FIREBASE_SERVICE_ACCOUNT: op://k33-web-env/prod/firebase/SERVICE_ACCOUNT
+          # domains
+          NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
+          NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          # contentful
+          NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID: op://k33-web-env/prod/contentful/INVEST_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN: op://k33-web-env/prod/contentful/INVEST_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT: op://k33-web-env/prod/contentful/INVEST_ENVIRONMENT
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build local dependencies
+        run: pnpm --dir packages/ui build
+      - name: export invest
+        run: pnpm --dir apps/invest export
+      - name: deploy invest
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ env.FIREBASE_SERVICE_ACCOUNT }}'
+          expires: 30d
+          projectId: '${{ env.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}'
+          channelId: live
+          # removing target will deploy all targets defined in .firebaserc
+          target: 'k33-invest'

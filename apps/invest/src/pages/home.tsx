@@ -10,182 +10,13 @@ import { getTitle, NextPageWithLayout, useAppState } from 'platform-js';
 import { useLazyGetFundRegistrationQuery } from '@/services';
 import { useRouter } from 'next/router';
 import config from '@/firebase/config';
+import { FundInfo, getFundInfo } from '@/api';
+import { GetStaticProps } from 'next';
 
 /**
  *  user-state: [registered, fund-registered]
  * @returns
  */
-
-const fundCards = {
-  strategy: {
-    title: 'Fund Strategy',
-    date: '',
-    subtitle:
-      'K33 Assets is an actively managed fund with the goal to maximize long-term investor returns by capturing the value accrual of cryptocurrencies as an asset class. We do this by offering long exposure to sound projects with strong fundamentals in the crypto space.',
-
-    description: [
-      'Furthermore, the fund makes tactical adjustments to its allocations across the crypto asset risk spectrum depending on expected macroeconomic conditions.',
-      'Finally, we allocate a small part of our assets under management to discretionary trading, a mix of opportunistic event-driven strategies, employing derivatives strategies, short selling, arbitrage, staking and various investments in the decentralized finance ecosystem. The carefully selected and diversified cryptocurrency exposure ensures that the fund can excel regardless of whether it is Bitcoin or other cryptocurrencies that succeed.',
-    ],
-  },
-  position: {
-    title: 'position and Near Term Outlook',
-    date: 'June 2024',
-    subtitle: '',
-    description: [
-      'While momentum from BTC ETF inflows tapered in April and May, suggesting a low-activity summer, the approval of Ethereum spot ETFs has revitalised the markets, prompting a reassessment of our expectations for the coming months. While we still think summer will be relatively calm, the upcoming Ethereum ETFs  combined with anticipated BTC MtGox repayments make us bullish on ETHBTC. Consequently, the fund has increased its ETH exposure.',
-      'Looking past the summer, the outlook for crypto in the second half of the year has improved significantly. Crypto, previously unmentioned in such contexts, now looks to have become a topic in the US election. This, along with the BTC and ETH ETFs, indicates continued adoption.',
-    ],
-  },
-  performance: {
-    title: 'fund performance',
-    subtitle: 'Monthly Performance of K33 vs. Bitcoin',
-    data: [
-      {
-        duration: 'Year to Date',
-        k33: '55.71',
-        btc: '59.86',
-      },
-      {
-        duration: '1 Month',
-        k33: '14.50',
-        btc: '11.07',
-      },
-      {
-        duration: '3 Months',
-        k33: '9.72',
-        btc: '10.08',
-      },
-      {
-        duration: '6 Months',
-        k33: '85.56',
-        btc: '78.92',
-      },
-      {
-        duration: '1 Year',
-        k33: '141.64',
-        btc: '147.66',
-      },
-      {
-        duration: 'Launch to Date',
-        k33: '1012.74',
-        btc: '765.55',
-      },
-    ],
-  },
-  summary: {
-    title: 'trading summary',
-    description: [
-      'The objective of the Fund is to provide diversified exposure to the cryptocurrency market, independently of the performance of individual assets. The Fund has a long-term fundamental approach to the majority of its investments but also acts on short-term opportunities in the market.',
-    ],
-  },
-  facts: {
-    title: 'key fund facts',
-    data: [
-      {
-        key: 'Fund Type',
-        value: 'Limited',
-      },
-      {
-        key: 'Pricing (NAV)',
-        value: 'Monthly',
-      },
-      {
-        key: 'Investment Manager',
-        value: 'AK Jensen Limited',
-      },
-      {
-        key: 'Fund Manager',
-        value: 'Torbjørn Bull Jenssen',
-      },
-      {
-        key: 'Fund Manager',
-        value: 'Oskar Janson',
-      },
-      {
-        key: 'Subscription Notice',
-        value: '5 business days preceding the Subscription day',
-      },
-      {
-        key: 'Redemption Notice',
-        value: '30 days preceding the Redemption day',
-      },
-      {
-        key: 'Currency Class',
-        value: 'US Dollar $',
-      },
-    ],
-  },
-  terms: {
-    title: 'fund terms',
-    label: {
-      key: 'Minimum Investment',
-      value: 'Share Class F $100,000',
-      value2: 'Share Class G $100,000',
-    },
-    data: [
-      {
-        key: 'Investors',
-        value: 'Professional (MiFID II)',
-      },
-      {
-        key: 'Subscriptions',
-        value: 'Monthly',
-      },
-      {
-        key: 'Redemptions',
-        value: '30 days notice period',
-      },
-      {
-        key: 'Base Currency',
-        value: 'USD',
-      },
-      {
-        key: 'Management Fee',
-        value: '2%',
-      },
-      {
-        key: 'Performance Fee',
-        value: '20%',
-        value2: '20% (btc benchmark)',
-      },
-      {
-        key: 'High Watermark',
-        value: 'Yes',
-      },
-      {
-        key: 'Redemption Fee',
-        value: '1% (2% first 3 years)',
-      },
-      {
-        key: 'Recommended Investment Term',
-        value: 'Long-term',
-      },
-    ],
-  },
-  providers: {
-    title: 'service providers',
-    data: [
-      {
-        key: 'Platform',
-        value: 'AK Jensen Investment Mgmt Ltd',
-      },
-      {
-        key: 'Storage Provider',
-        value: 'Coinbase Custody Intern. Ltd',
-      },
-      {
-        key: 'Auditor',
-        value: 'RSM Cayman Ltd.',
-      },
-      {
-        key: 'Legal',
-        value: 'Appleby / AKJ',
-      },
-    ],
-  },
-};
-
 const promotion = {
   features: [
     'Actively managed',
@@ -197,14 +28,15 @@ const promotion = {
   ],
 };
 
+interface FundInfoProps {
+  pageProps: FundInfo;
+}
+
 // TODO: extract the promotion box
-const Home: NextPageWithLayout = () => {
+const Home: NextPageWithLayout<FundInfoProps> = ({ pageProps }) => {
+  const fundInfo = pageProps;
   const router = useRouter();
   const state = useAppState(config);
-
-  // const { error, data, isError, isSuccess } = useGetFundRegistrationQuery(
-  //   'k33-assets-i-fund-limited'
-  // );
 
   const [trigger] = useLazyGetFundRegistrationQuery();
 
@@ -221,13 +53,6 @@ const Home: NextPageWithLayout = () => {
     getFundRegistration();
   }, [state, trigger, router]);
 
-  // useEffect(() => {
-  //   console.log(isError);
-  //   if (isError) {
-  //     router.push('/');
-  //   }
-  // }, [router, isError]);
-
   return (
     <>
       <Head>
@@ -235,22 +60,18 @@ const Home: NextPageWithLayout = () => {
       </Head>
       <section className="bg-bg-light-secondary md:py-16 py-12 px-6 md:px-0">
         <div className="md:container flex md:flex-row flex-col md:gap-16 gap-8">
-          <FundCard
-            size="medium"
-            title={fundCards.strategy.title}
-            date={fundCards.strategy.date}
-          >
-            <FundBold>{fundCards.strategy.subtitle}</FundBold>
-            {fundCards.strategy.description.map((d) => (
+          <FundCard size="medium" title={fundInfo.strategy.title} subtitle="">
+            <FundBold>{fundInfo.strategy.subtitle}</FundBold>
+            {fundInfo.strategy.description.map((d) => (
               <FundRegular key={d}>{d}</FundRegular>
             ))}
           </FundCard>
           <FundCard
             size="medium"
-            title={fundCards.position.title}
-            date={fundCards.position.date}
+            title={fundInfo.position.title}
+            subtitle={fundInfo.position.subtitle}
           >
-            {fundCards.position.description.map((desc) => (
+            {fundInfo.position.description.map((desc) => (
               <FundBody>{desc}</FundBody>
             ))}
           </FundCard>
@@ -347,8 +168,8 @@ const Home: NextPageWithLayout = () => {
           <div className="flex md:flex-row flex-col gap-8">
             <FundCard
               size="medium"
-              title={fundCards.performance.title}
-              date={fundCards.performance.subtitle}
+              title={fundInfo.performance.title}
+              subtitle={fundInfo.performance.subtitle}
             >
               <Image src={performanceImage} alt="" />
               <table className="bg-white border-separate max-w-[300px] self-center">
@@ -360,7 +181,7 @@ const Home: NextPageWithLayout = () => {
                   </tr>
                 </thead>
                 <tbody className="text-label-light-secondary text-body3">
-                  {fundCards.performance.data.map(({ duration, k33, btc }) => (
+                  {fundInfo.performance.data.map(({ duration, k33, btc }) => (
                     <tr>
                       <td className="px-2 py-1">{duration}</td>
                       <td className="px-2 py-1">{k33}%</td>
@@ -371,13 +192,13 @@ const Home: NextPageWithLayout = () => {
               </table>
             </FundCard>
             <div className="flex flex-col md:gap-4 gap-8">
-              <FundCard title={fundCards.summary.title} date={''}>
-                <FundBold>{fundCards.summary.description}</FundBold>
+              <FundCard title={fundInfo.summary.title} subtitle="">
+                <FundBold>{fundInfo.summary.description}</FundBold>
               </FundCard>
-              <FundCard title={fundCards.facts.title} date={''}>
+              <FundCard title={fundInfo.facts.title} subtitle="">
                 <table>
                   <tbody>
-                    {fundCards.facts.data.map(({ key, value }) => (
+                    {fundInfo.facts.data.map(({ key, value }) => (
                       <tr>
                         <td className="text-label-light-secondary">{key}</td>
                         <td className="text-label-light-primary text-right">
@@ -392,17 +213,17 @@ const Home: NextPageWithLayout = () => {
           </div>
           <FundCardBody size="large">
             <div className="flex md:flex-row md:justify-between flex-col gap-6">
-              <FundCardContent title={fundCards.terms.title} date="">
+              <FundCardContent title={fundInfo.terms.title} subtitle="">
                 <table className="table-auto hidden md:block text-left border-separate border-spacing-2">
                   <thead className="text-caption text-label-light-primary">
                     <tr>
-                      <th>{fundCards.terms.label.key}</th>
-                      <th>{fundCards.terms.label.value}</th>
-                      <th>{fundCards.terms.label.value2}</th>
+                      <th>{fundInfo.terms.label.key}</th>
+                      <th>{fundInfo.terms.label.value}</th>
+                      <th>{fundInfo.terms.label.value2}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-body3">
-                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                    {fundInfo.terms.data.map(({ key, value, value2 }) => (
                       <tr>
                         <td className="pr-10">{key}</td>
                         <td className="pr-10">{value}</td>
@@ -414,12 +235,12 @@ const Home: NextPageWithLayout = () => {
                 <table className="table-auto block md:hidden text-left">
                   <thead className="text-small text-label-light-primary">
                     <tr>
-                      <th>{fundCards.terms.label.key}</th>
-                      <th>{fundCards.terms.label.value}</th>
+                      <th>{fundInfo.terms.label.key}</th>
+                      <th>{fundInfo.terms.label.value}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
-                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                    {fundInfo.terms.data.map(({ key, value, value2 }) => (
                       <tr>
                         <td className="pr-10">{key}</td>
                         <td>{value}</td>
@@ -430,12 +251,12 @@ const Home: NextPageWithLayout = () => {
                 <table className="table-auto block md:hidden text-left">
                   <thead className="text-small text-label-light-primary">
                     <tr>
-                      <th>{fundCards.terms.label.key}</th>
-                      <th>{fundCards.terms.label.value2}</th>
+                      <th>{fundInfo.terms.label.key}</th>
+                      <th>{fundInfo.terms.label.value2}</th>
                     </tr>
                   </thead>
                   <tbody className="text-label-light-secondary text-xsmall">
-                    {fundCards.terms.data.map(({ key, value, value2 }) => (
+                    {fundInfo.terms.data.map(({ key, value, value2 }) => (
                       <tr>
                         <td className="pr-10">{key}</td>
                         <td>{value2 ?? value}</td>
@@ -444,10 +265,10 @@ const Home: NextPageWithLayout = () => {
                   </tbody>
                 </table>
               </FundCardContent>
-              <FundCardContent title={fundCards.providers.title} date="">
+              <FundCardContent title={fundInfo.providers.title} subtitle="">
                 <table className="table-auto block">
                   <tbody>
-                    {fundCards.providers.data.map(({ key, value }) => (
+                    {fundInfo.providers.data.map(({ key, value }) => (
                       <tr>
                         <td className="text-label-light-secondary">{key}</td>
                         <td className="text-label-light-primary text-right">
@@ -475,13 +296,13 @@ export default Home;
 
 interface FundCardContentProps {
   title: string;
-  date: string;
+  subtitle: string;
   children: React.ReactNode;
 }
 
 const FundCardContent: React.FC<FundCardContentProps> = ({
   title,
-  date,
+  subtitle = '',
   children,
 }) => {
   return (
@@ -494,7 +315,7 @@ const FundCardContent: React.FC<FundCardContentProps> = ({
           </p>
         </div>
         <p className="md:text-body4 text-xsmall text-label-light-secondary/60">
-          {date}
+          {subtitle}
         </p>
       </div>
       <div className="flex flex-col md:gap-4 gap-2">{children}</div>
@@ -562,15 +383,22 @@ interface FundCardProps
 
 const FundCard: React.FC<FundCardProps> = ({
   title,
-  date,
+  subtitle = '',
   children,
   size = 'small',
 }) => {
   return (
     <FundCardBody size={size}>
-      <FundCardContent title={title} date={date}>
+      <FundCardContent title={title} subtitle={subtitle}>
         {children}
       </FundCardContent>
     </FundCardBody>
   );
+};
+
+export const getStaticProps: GetStaticProps<FundInfo> = async (context) => {
+  const fundInfo = await getFundInfo('k33-assets-i-fund-limited');
+  return {
+    props: fundInfo,
+  };
 };

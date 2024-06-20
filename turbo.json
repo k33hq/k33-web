@@ -51,6 +51,15 @@
         "NEXT_PUBLIC_CONTENTFUL_RESEARCH_ARCHIVE_ACCESS_TOKEN",
         "NEXT_PUBLIC_CONTENTFUL_RESEARCH_ARCHIVE_ENVIRONMENT"
       ]
+    },
+    "invest#export": {
+      "outputs": ["out/**", "dist/**", ".next/**"],
+      "env": [
+        "CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN",
+        "NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID",
+        "NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN",
+        "NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT"
+      ]
     }
   },
   "globalEnv": [

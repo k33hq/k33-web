@@ -187,6 +187,10 @@ jobs:
           # domains
           NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
           NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          # contentful
+          NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID: op://k33-web-env/prod/contentful/INVEST_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN: op://k33-web-env/prod/contentful/INVEST_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT: op://k33-web-env/prod/contentful/INVEST_ENVIRONMENT
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies

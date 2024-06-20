@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { getIdToken } from 'core';
-import { Fund, FundInfo } from '@/types';
+import { Fund, InvestorInfo } from '@/types';
 
 export const investApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -29,7 +29,7 @@ export const investApi = createApi({
       providesTags: ['Register'],
     }),
 
-    fundRegistration: builder.mutation<any, FundInfo & Fund>({
+    fundRegistration: builder.mutation<any, InvestorInfo & Fund>({
       query: ({ id, ...body }) => ({
         url: `funds/${id}`,
         method: 'PUT',

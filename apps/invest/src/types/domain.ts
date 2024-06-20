@@ -8,7 +8,7 @@ export interface PhoneNumber {
   nationalNumber: string;
 }
 
-export interface FundInfoOptional {
+export interface InvestorInfoOptional {
   company: string;
   name: string;
   phoneNumber: PhoneNumber;
@@ -17,7 +17,7 @@ export interface FundInfoOptional {
   fundName: string;
 }
 
-export interface FundInfo extends Partial<FundInfoOptional> {
+export interface InvestorInfo extends Partial<InvestorInfoOptional> {
   investorType: InvestorType;
 }
 

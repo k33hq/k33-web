@@ -1,5 +1,5 @@
 import { useFundRegistrationMutation } from '@/services';
-import { FundInfo, PersonalRegistration } from '@/types';
+import { InvestorInfo, PersonalRegistration } from '@/types';
 import * as React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { BasicButton, Input } from 'ui';
@@ -38,7 +38,7 @@ const CompanyForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
     useFundRegistrationMutation();
 
   const handleRegistration = async (data: PersonalRegistration) => {
-    const body: FundInfo = {
+    const body: InvestorInfo = {
       investorType: 'PROFESSIONAL',
       name: data.name,
       phoneNumber: {
@@ -355,7 +355,7 @@ const CompanyForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
               </label>
               <svg
                 className="
-    absolute 
+    absolute
     w-4 h-4 mt-1
     hidden peer-checked:block
     pointer-events-none"
@@ -413,7 +413,7 @@ const CompanyForm: React.FC<PersonalFormProps> = ({ onPositive }) => {
               </label>
               <svg
                 className="
-    absolute 
+    absolute
     w-4 h-4 mt-1
     hidden peer-checked:block
     pointer-events-none"
