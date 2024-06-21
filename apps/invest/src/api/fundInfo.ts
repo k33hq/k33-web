@@ -4,8 +4,8 @@ import { GetFundInfoResponse } from '@/types';
 import { FundInfo } from './types';
 
 const GetFundInfo = gql`
-  query GetFundInfo($id: String!) {
-    fundInfoCollection(where: { id: $id }, limit: 1) {
+  query GetFundInfo($id: String!, $preview: Boolean! = true) {
+    fundInfoCollection(where: { id: $id }, limit: 1, preview: $preview) {
       items {
         pdf {
           url
@@ -81,8 +81,11 @@ const GetFundInfo = gql`
 `;
 
 export const getFundInfo = async (id: string): Promise<FundInfo> => {
+  const preview: boolean =
+    `${process.env.NEXT_PUBLIC_WEB_DOMAIN}` === 'dev.k33.com';
   const response = await contentful.request<GetFundInfoResponse>(GetFundInfo, {
     id,
+    preview,
   });
   const fundInfo = response.fundInfoCollection.items[0];
   return {
