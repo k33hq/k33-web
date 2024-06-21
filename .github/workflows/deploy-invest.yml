@@ -2,6 +2,15 @@ name: Deploy Invest
 
 on:
   workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - 'dev'
+          - 'prod'
 
 jobs:
   deploy-invest-app:
@@ -29,25 +38,26 @@ jobs:
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           # turbo
-          TURBO_TEAM: op://k33-web-env/prod/turbo/TEAM
-          TURBO_TOKEN: op://k33-web-env/prod/turbo/TOKEN
+          TURBO_TEAM: op://k33-web-env/${{ inputs.target_env }}/turbo/TEAM
+          TURBO_TOKEN: op://k33-web-env/${{ inputs.target_env }}/turbo/TOKEN
           TURBO_REMOTE_ONLY: true
           # firebase app settings
-          NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/prod/firebase/API_KEY
-          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/prod/firebase/AUTH_DOMAIN
-          NEXT_PUBLIC_FIREBASE_PROJECT_ID: op://k33-web-env/prod/firebase/PROJECT_ID
-          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: op://k33-web-env/prod/firebase/STORAGE_BUCKET
-          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: op://k33-web-env/prod/firebase/MESSAGING_SENDER_ID
-          NEXT_PUBLIC_FIREBASE_APP_ID: op://k33-web-env/prod/firebase/APP_ID
-          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: op://k33-web-env/prod/firebase/MEASUREMENT_ID
-          FIREBASE_SERVICE_ACCOUNT: op://k33-web-env/prod/firebase/SERVICE_ACCOUNT
+          NEXT_PUBLIC_FIREBASE_API_KEY: op://k33-web-env/${{ inputs.target_env }}/firebase/API_KEY
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/firebase/AUTH_DOMAIN
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/PROJECT_ID
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: op://k33-web-env/${{ inputs.target_env }}/firebase/STORAGE_BUCKET
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/MESSAGING_SENDER_ID
+          NEXT_PUBLIC_FIREBASE_APP_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/APP_ID
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: op://k33-web-env/${{ inputs.target_env }}/firebase/MEASUREMENT_ID
+          FIREBASE_SERVICE_ACCOUNT: op://k33-web-env/${{ inputs.target_env }}/firebase/SERVICE_ACCOUNT
+          FIREBASE_INVEST_TARGET: op://k33-web-env/${{ inputs.target_env }}/firebase/INVEST_TARGET
           # domains
-          NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/prod/domain/WEB
-          NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/prod/domain/API
+          NEXT_PUBLIC_WEB_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/WEB
+          NEXT_PUBLIC_API_DOMAIN: op://k33-web-env/${{ inputs.target_env }}/domain/API
           # contentful
-          NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID: op://k33-web-env/prod/contentful/INVEST_SPACE_ID
-          NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN: op://k33-web-env/prod/contentful/INVEST_ACCESS_TOKEN
-          NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT: op://k33-web-env/prod/contentful/INVEST_ENVIRONMENT
+          NEXT_PUBLIC_CONTENTFUL_INVEST_SPACE_ID: op://k33-web-env/${{ inputs.target_env }}/contentful/INVEST_SPACE_ID
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ACCESS_TOKEN: op://k33-web-env/${{ inputs.target_env }}/contentful/INVEST_ACCESS_TOKEN
+          NEXT_PUBLIC_CONTENTFUL_INVEST_ENVIRONMENT: op://k33-web-env/${{ inputs.target_env }}/contentful/INVEST_ENVIRONMENT
       - name: Install dependencies
         run: pnpm install
       - name: Build local dependencies
@@ -63,4 +73,4 @@ jobs:
           projectId: '${{ env.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}'
           channelId: live
           # removing target will deploy all targets defined in .firebaserc
-          target: 'k33-invest'
+          target: '${{ env.FIREBASE_INVEST_TARGET }}'
