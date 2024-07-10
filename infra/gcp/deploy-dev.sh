@@ -11,15 +11,6 @@ if [ -z "${BASH_VERSINFO}" ] || [ -z "${BASH_VERSINFO[0]}" ] || [ ${BASH_VERSINF
   exit 1
 fi
 
-# remove old files
-rm -rf apps/platform/out
-
-# unzip
-unzip k33-web.webflow.zip -d apps/platform/out/
-
-# add public files including hidden files
-cp -r apps/platform/public/ apps/platform/out
-
 # select k33-prod project
 firebase use k33-dev
 
