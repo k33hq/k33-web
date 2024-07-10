@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://k33.com/</loc>
+        <loc>https://k33.com</loc>
     </url>
     <url>
         <loc>https://k33.com/research</loc>
     </url>
     <url>
-        <loc>https://k33.com/pro-research</loc>
+        <loc>https://k33.com/info-research</loc>
     </url>
     <url>
         <loc>https://k33.com/markets</loc>
     </url>
     <url>
-        <loc>https://k33.com/invest</loc>
+        <loc>https://k33.com/fund</loc>
     </url>
     <url>
         <loc>https://k33.com/custody</loc>
     </url>
     <url>
-        <loc>https://k33.com/about</loc>
+        <loc>https://k33.com/company</loc>
     </url>
     <url>
-        <loc>https://k33.com/news</loc>
+        <loc>https://k33.com/company-news</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-signs-investment-agreement-with-liquid-mercury</loc>
+        <loc>https://k33.com/blog</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-explores-strategic-investment-from-chicago-based-liquid-mercury</loc>
+        <loc>https://k33.com/ahead-of-the-curve</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-expands-platform-with-k33-markets-invites-for-beta-testing</loc>
+        <loc>https://k33.com/navigating-narratives</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-markets-officially-live-professional-clients-can-now-apply-for-access</loc>
+        <loc>https://k33.com/this-week-in-crypto</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/new-role-client-success-associate</loc>
+        <loc>https://k33.com/markets/open-account</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-markets-expands-with-sek-and-dkk-trading</loc>
+        <loc>https://k33.com/markets/api-documentation</loc>
     </url>
     <url>
-        <loc>https://k33.com/news/k33-markets-adds-7-new-tokens</loc>
+        <loc>https://k33.com/markets/faq</loc>
     </url>
     <url>
-        <loc>https://k33.com/features</loc>
+        <loc>https://k33.com/markets/contact-us</loc>
+    </url>
+    <url>
+        <loc>https://k33.com/markets/trading-pairs</loc>
     </url>
     <url>
         <loc>https://k33.com/privacy</loc>
     </url>
     <url>
         <loc>https://k33.com/terms-and-conditions</loc>
+    </url>
+    <url>
+        <loc>https://k33.com/terms-and-conditions-k33-markets</loc>
     </url>
 </urlset>
