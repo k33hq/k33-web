@@ -30,11 +30,6 @@ export const appStructure: AppStructure = {
       label: 'Industry Reports',
       url: '/industry-reports',
     },
-    {
-      key: 'kvq',
-      label: 'KVQ',
-      url: '/kvq',
-    },
     { key: 'archive', label: 'Archive', url: '/articles' },
   ],
   payments: {

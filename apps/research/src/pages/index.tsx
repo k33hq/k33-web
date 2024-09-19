@@ -1,32 +1,12 @@
 import * as React from 'react';
 import { NextPageWithLayout } from 'platform-js';
-import {
-  BottomPromotion,
-  //DashboardList,
-  HomeDashboard,
-  //IndustryDashboard,
-  //MarketDashboard,
-  NamedDivider,
-  // ProPricingTable,
-  SimpleLayout,
-  TokenValuationCover,
-} from '@/components';
+import { BottomPromotion, HomeDashboard, SimpleLayout } from '@/components';
 import { NextSeo } from 'next-seo';
 import { GetStaticProps } from 'next';
-import {
-  ArticleSummaryWidget,
-  ArticleWebWidget,
-  HomePage,
-  TokenValuationIndex,
-} from '@/types';
-import {
-  getArticleSummaryWidgets,
-  getArticleWidgets,
-  getHomePage,
-  getIndexSummary,
-} from '@/api';
+import { ArticleWebWidget, HomePage } from '@/types';
+import { getArticleWidgets, getHomePage } from '@/api';
 import { siteUsername } from '@/utils';
-import { Divider, Grid } from 'antd';
+import { Divider } from 'antd';
 import { useProductInfo } from '@/hooks';
 import { appStructure } from '@/config';
 import dynamic from 'next/dynamic';
@@ -54,17 +34,11 @@ const DashboardList = dynamic(
 
 interface HomePageProps {
   industryReports: ReadonlyArray<ArticleWebWidget>;
-  analysis: ReadonlyArray<ArticleSummaryWidget>;
-
-  indexSummary: ReadonlyArray<TokenValuationIndex>;
   homePage: HomePage;
 }
 
 const Home: NextPageWithLayout<HomePageProps> = ({
   industryReports,
-  analysis,
-  indexSummary,
-
   homePage: {
     seo: {
       title,
@@ -74,9 +48,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({
     ...articles
   },
 }) => {
-  const indexTableProps = indexSummary[0];
-  const { lg, xl } = Grid.useBreakpoint();
-  const { productStatus: proProductStatus, appState } = useProductInfo(
+  const { productStatus: proProductStatus } = useProductInfo(
     appStructure.payments.pro.productId
   );
 
@@ -113,17 +85,6 @@ const Home: NextPageWithLayout<HomePageProps> = ({
         {proProductStatus.state !== 'active' && <BottomPromotion />}
         <HomeDashboard {...articles} />
         <IndustryDashboard reports={industryReports} />
-        <div id="token-dashboard-summary" className="home-section-summary">
-          <NamedDivider label="KVQ" />
-          <TokenValuationCover {...indexTableProps}>
-            <DashboardList
-              articles={analysis}
-              title="Analysis"
-              column={12}
-              href="/articles?query=kvq"
-            />
-          </TokenValuationCover>
-        </div>
         <div
           style={{
             display: 'flex',
@@ -143,18 +104,12 @@ const Home: NextPageWithLayout<HomePageProps> = ({
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const industryReports = await getArticleWidgets('industry-reports', 6);
-  const analysis = await getArticleSummaryWidgets('kvq', 4);
-  const indexSummary = await getIndexSummary();
-
   const homePage = await getHomePage();
 
   // api call
   return {
     props: {
       industryReports,
-      analysis,
-
-      indexSummary,
       homePage,
     },
   };
