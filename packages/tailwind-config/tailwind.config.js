@@ -144,7 +144,7 @@ module.exports = {
     colors: {
       brand: {
         light: {
-          primary: '#090A0B',
+          primary: '#a54242',
           secondary: '#2D3339',
           tertiary: '#6C757D',
         },

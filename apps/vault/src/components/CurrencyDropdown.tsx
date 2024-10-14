@@ -12,14 +12,14 @@ const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({
   className,
 }) => {
   return (
-    <div className={'self-end my-4'}>
+    <div className="self-end my-4">
       <label className={className}>Fiat currency</label>
       <select
         name={'currencies'}
         id={'currencies'}
         onChange={(event) => setCurrency(event.target.value)}
         value={currency}
-        className={'px-4 py-3 self-end border rounded-lg font-mono'}
+        className="px-4 py-3 self-end border rounded-lg font-mono"
       >
         <option value={'USD'}> 🇺🇸 USD</option>
         <option value={'NOK'}> 🇳🇴 NOK</option>
