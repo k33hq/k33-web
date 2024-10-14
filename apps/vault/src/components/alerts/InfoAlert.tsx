@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
-import CircleCheckIcon from '../../assets/circle-check-icon.png';
-import XMarkIcon from '../../assets/x-mark-icon.png';
+import CircleCheckIcon from '../../assets/circle-check-icon.svg';
+import XMarkIcon from '../../assets/xmark-icon.svg';
 import Image from 'next/image';
 
 interface InfoAlertProps {
@@ -23,7 +25,7 @@ const InfoAlert: React.FC<InfoAlertProps> = ({
       <div className="flex">
         <div className="flex-shrink-0">
           <Image
-            className="h-5 w-5"
+            className="h-7 w-7"
             aria-hidden="true"
             src={CircleCheckIcon}
             alt={'check'}
@@ -34,22 +36,20 @@ const InfoAlert: React.FC<InfoAlertProps> = ({
             {alertText}
           </p>
         </div>
-        <div className="ml-auto pl-3">
-          <div className="-mx-1.5 -my-1.5">
-            <button
-              type="button"
-              className="inline-flex rounded-md p-1.5 hover:bg-bg-light-tertiary focus:outline-none focus:ring-2 focus:ring-brand-light-tertiary focus:ring-offset-2"
-              onClick={hide}
-            >
-              <span className="sr-only">Dismiss</span>
-              <Image
-                className="h-5 w-5"
-                aria-hidden="true"
-                src={XMarkIcon}
-                alt={'Dismiss'}
-              />
-            </button>
-          </div>
+        <div className="ml-auto">
+          <button
+            type="button"
+            className="inline-flex rounded-full p-1 mt-1 hover:bg-bg-light-tertiary focus:outline-none focus:ring-2 focus:ring-brand-light-tertiary focus:ring-offset-2"
+            onClick={hide}
+          >
+            <span className="sr-only">Dismiss</span>
+            <Image
+              className="h-5 w-5"
+              aria-hidden="true"
+              src={XMarkIcon}
+              alt={'Dismiss'}
+            />
+          </button>
         </div>
       </div>
     </div>

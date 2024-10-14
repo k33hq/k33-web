@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 // comment basePath, output and distDir for local dev run
-const nextConfig = {
+module.exports = {
   basePath: '/apps/vault',
   output: 'export',
   distDir: 'out/apps/vault',
@@ -10,5 +10,3 @@ const nextConfig = {
     unoptimized: true,
   },
 };
-
-module.exports = nextConfig;

@@ -1,12 +1,9 @@
-'use client';
 import * as React from 'react';
 import Image from 'next/image';
 import logo from '../assets/logo.svg';
 import { PlatformFooter } from 'platform-js';
 
-interface VaultFooterProps {}
-
-const VaultFooter: React.FC<VaultFooterProps> = () => {
+const VaultFooter: React.FC = () => {
   return (
     <div>
       <PlatformFooter

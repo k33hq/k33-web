@@ -22,3 +22,11 @@ export const formatPercent = (value: number) => {
   });
   return numberFormatter.format(value / 100.0);
 };
+export const formatDateTime = (date: Date) => {
+  // const dateTimeFormatter = new Intl.DateTimeFormat([], {
+  //   dateStyle: 'short',
+  //   timeStyle: 'medium',
+  // });
+  // return dateTimeFormatter.format(date);
+  return date.toISOString().replace(/T/, ' ').replace('Z', ' UTC');
+};
