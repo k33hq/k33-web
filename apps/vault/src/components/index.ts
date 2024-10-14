@@ -1,5 +1,11 @@
 export { default as VaultHeader } from './VaultHeader';
 export { default as VaultFooter } from './VaultFooter';
+export { default as NavigationBar } from './NavigationBar';
+export { default as Breadcrumbs } from './Breadcrumbs';
+export { default as CopyText } from './CopyText';
+export { default as VaultStakingPositionStatusLabel } from './staking/VaultStakingPositionStatusLabel';
+export { default as StakingAssetsTable } from './staking/VaultStakingAssetsTable';
+export { default as VaultStakingPositionsTable } from './staking/positions/VaultStakingPositionsTable';
 export { default as BalanceCard } from './vaultAssets/BalanceCard';
 export { default as DonutChart } from './vaultAssets/DonutChart';
 export { default as CurrencyDropdown } from './vaultAssets/CurrencyDropdown';

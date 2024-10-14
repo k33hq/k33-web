@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PlatformFooter } from 'platform-js';
 import vaultLogo from '../assets/vault-logo.svg';
+import { NavigationBar } from '@/components';
 
 const AuthHeader = dynamic(
   async () => await (await import('platform-js')).AuthHeader,
@@ -49,7 +50,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             </Link>
           }
         >
-          {null}
+          <NavigationBar />
         </SecondaryHeader>
         <main className="flex flex-col">{children}</main>
       </div>

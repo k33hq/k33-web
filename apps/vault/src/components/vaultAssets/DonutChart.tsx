@@ -13,7 +13,7 @@ import {
   TooltipItem,
 } from 'chart.js';
 import { Amount } from '@/types';
-import { formatCurrency, formatPercent } from './formatters';
+import { formatCurrency, formatPercent } from '@/utils/formatters';
 
 interface DonutChartProps {
   currency: string;

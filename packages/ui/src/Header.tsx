@@ -18,11 +18,11 @@ export const Header: React.FC<HeaderProps> = ({
         transparent ? '' : 'ui-bg-bg-light-primary'
       }`}
     >
-      <div className="xl:ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6 xl:ui-px-0">
+      <div className="ui-container ui-items-center ui-justify-between ui-h-20 ui-flex ui-px-6">
         {logo}
         <div
           id="header-action-section"
-          className="ui-flex ui-flex-row lg:ui-gap-8 ui-gap-2 ui-items-center ui-transition-all"
+          className="ui-flex ui-flex-row ui-gap-2 ui-items-center ui-transition-all"
         >
           {children}
         </div>
@@ -41,8 +41,8 @@ export const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({
   children,
 }) => {
   return (
-    <nav className={`ui-navbar ui-w-full ui-bg-bg-light-tertiary`}>
-      <div className="xl:ui-container ui-flex ui-flex-row lg:ui-gap-12 ui-gap-6 ui-items-center lg:ui-justify-center ui-h-10 xl:ui-px-0 ui-px-6 ui-overflow-auto">
+    <nav className="ui-navbar ui-w-full ui-bg-bg-dark-primary">
+      <div className="ui-container ui-flex ui-flex-row ui-gap-6 ui-items-center ui-h-10 ui-px-6 ui-overflow-auto">
         {branding}
         <div className="ui-flex-1" />
         {children}

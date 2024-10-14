@@ -6,9 +6,6 @@ import config from '@/firebase/config';
 import { Header } from 'ui';
 import vaultLogo from '../assets/vault-logo.svg';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
-interface VaultHeaderProps {}
 
 // TODO: upgrade the secondary header here with the ui one
 const AuthHeader = dynamic(
@@ -26,10 +23,7 @@ const AuthHeader = dynamic(
   }
 );
 
-const VaultHeader: React.FC<VaultHeaderProps> = ({}) => {
-  const router = useRouter();
-  const isLanding =
-    router.pathname.startsWith('/products/') || router.pathname === '/';
+const VaultHeader: React.FC = () => {
   return (
     <>
       <AuthHeader
