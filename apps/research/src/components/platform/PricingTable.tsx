@@ -515,40 +515,6 @@ const PricingTable = () => {
 
   return (
     <>
-      <Space.Compact
-        direction="vertical"
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        <Title level={3} style={{ margin: 0, maxWidth: 360 }}>
-          Subscribe to the reports separately
-        </Title>
-        {/* <Text>
-          The right plan is waiting for you. Subscribe and get full access to
-          all research content.
-        </Text> */}
-      </Space.Compact>
-
-      <Radio.Group defaultValue={plan} optionType="button" buttonStyle="solid">
-        <Radio.Button
-          checked={plan === 'monthly'}
-          defaultChecked
-          value="monthly"
-          onChange={(e) => setPlan(e.target.value)}
-        >
-          Monthly Plan
-        </Radio.Button>
-
-        <Radio.Button
-          checked={plan === 'year'}
-          onChange={(e) => setPlan(e.target.value)}
-          value="year"
-        >
-          Yearly Plan
-        </Radio.Button>
-      </Radio.Group>
-
       <div>
         {plan === 'monthly' ? (
           <Row wrap gutter={[96, 16]}>

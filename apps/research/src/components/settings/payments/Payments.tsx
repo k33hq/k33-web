@@ -228,28 +228,13 @@ const Payments: React.FC = () => {
             alt="stripe"
           />
         </div>
-        {Object.keys(appStructure.payments).map((plan) => (
-          <Col xs={24} key={plan}>
-            {getPaymentCard(
-              plan as ProductPlans,
-              appStructure.payments[plan as ProductPlans]
-            )}
-            <Divider />
-          </Col>
-        ))}
-        {/* {Object.keys(appStructure.payments)
-          .map((payment) => ({
-            key: payment,
-            value: appStructure.payments[payment as ProductPlans],
-            status: getPaymentStatus(payment as ProductPlans),
-          }))
-
-          .map(({ key, value, status }) => (
-            <Col xs={24} key={key}>
-              {getPaymentCard(key as ProductPlans, value)}
-              <Divider />
-            </Col>
-          ))} */}
+        <Col xs={24}>
+          {getPaymentCard(
+            'pro' as ProductPlans,
+            appStructure.payments['pro' as ProductPlans]
+          )}
+          <Divider />
+        </Col>
       </Row>
     </>
   );

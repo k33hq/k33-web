@@ -105,11 +105,11 @@ export const appStructure: AppStructure = {
       monthlyPriceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID_PRO!,
       image: '/research/pro_product.svg',
       settingsImage: '/research/pro_settings.svg',
-      name: 'PRO - The Complete Package',
+      name: 'Pro',
       description:
         'Full access to all research content, including This Week in Crypto, Navigating Narratives and Ahead of the Curve.',
-      monthlyPrice: '$70.00',
-      yearlyPrice: '$700.00',
+      monthlyPrice: '$300.00',
+      yearlyPrice: '$3000.00',
       pricingDescription: [],
       features: [
         'Weekly market reports keeping you up to speed',

@@ -61,24 +61,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
           />
         </Space>
       </Space>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          paddingBottom: 20,
-        }}
-      >
-        <Typography.Title level={4} style={{ fontWeight: 800, margin: 0 }}>
-          {price.split('.')[0]}
-        </Typography.Title>
-        <Typography.Title level={4} style={{ margin: 0 }}>
-          {isYear ? '/year' : '/month'}
-        </Typography.Title>
-      </div>
-      {action}
     </Card>
   );
 };

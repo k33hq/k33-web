@@ -178,7 +178,7 @@ const ProPrincingTable: React.FC = () => {
           value="year"
         >
           <Badge
-            count={'Save up to $150'}
+            count={'Save up to $600'}
             style={{
               fontSize: 8,
             }}
