@@ -29,7 +29,7 @@ import { useAppState } from 'platform-js';
 import firebaseConfig from '@/firebase/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { logout } from 'core';
+import { getUserInformation, logout, register } from 'core';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -40,9 +40,14 @@ interface ResearchHeaderProps {}
 const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
   const { md } = useBreakpoint();
   const [open, setOpen] = React.useState(false);
+  // TODO: extract this in global state
+  const [user, setUser] = React.useState<{
+    url: string | null;
+    email: string | null;
+  }>({ url: null, email: null });
   const router = useRouter();
   const {
-    token: { colorPrimary },
+    token: { colorPrimary, colorPrimaryBg },
   } = useToken();
 
   const openDrawer = () => setOpen(true);
@@ -72,6 +77,20 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
     },
   ];
 
+  React.useEffect(() => {
+    getUserInformation((user) => {
+      if (user) {
+        setUser({ url: user.photoURL, email: user.email });
+      }
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if (state === 'UNREGISTERED') {
+      register().then((state) => router.reload());
+    }
+  }, [state, router]);
+
   return (
     <>
       <Affix>
@@ -79,9 +98,9 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
           <ConfigProvider
             theme={{
               token: {
-                colorPrimary: '#999999',
+                colorPrimary,
                 colorBgBase: '#141414',
-                colorText: '#FFFFFF',
+                colorText: colorPrimaryBg,
               },
             }}
           >
@@ -155,7 +174,11 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                     >
                       {state === 'SIGNED_OUT' ? (
                         <Link
-                          href={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`}
+                          href={{
+                            pathname: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/services/auth`,
+                            query: { redirect: window.location.href },
+                          }}
+                          role="grid"
                         >
                           <Button
                             style={{
@@ -169,11 +192,14 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
                       ) : (
                         <Dropdown placement="bottomLeft" menu={{ items }}>
                           <Avatar
-                            style={{
-                              backgroundColor: colorPrimary,
-                            }}
+                            {...(!user.url && {
+                              style: {
+                                backgroundColor: colorPrimary,
+                              },
+                            })}
+                            src={user.url}
+                            icon={!user.url && <UserOutlined />}
                             onClick={(e) => e?.preventDefault()}
-                            icon={<UserOutlined />}
                           />
                         </Dropdown>
                       )}
@@ -236,7 +262,7 @@ const AppLogo: React.FC = () => {
     <>
       <Image width={58} priority src={companyLogo} alt="company-logo" />
       <Image
-        priority
+        loading="lazy"
         width={98}
         style={{
           minWidth: 50,
