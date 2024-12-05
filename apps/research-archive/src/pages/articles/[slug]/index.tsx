@@ -42,7 +42,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
         openGraph={{
           title: title,
           description: description ? description : page.content.subtitle,
-          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`,
+          url: `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/archive/articles/${slug}`,
           type: 'article',
           article: {
             publishedTime: publishDate,
@@ -60,7 +60,7 @@ const ArticlePage: NextPageWithLayout<ArticlePageProps> = ({ page }) => {
       />
       <ArticleJsonLd
         useAppDir={false}
-        url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/articles/${slug}`}
+        url={`https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/archive/articles/${slug}`}
         title={ArticleTitle}
         images={[imageUrl]}
         datePublished={publishDate}
