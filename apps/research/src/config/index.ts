@@ -30,7 +30,7 @@ export const appStructure: AppStructure = {
       label: 'Industry Reports',
       url: '/industry-reports',
     },
-    { key: 'archive', label: 'Archive', url: '/articles' },
+    { key: 'articles', label: 'Archive', url: '/articles' },
   ],
   payments: {
     twic: {
