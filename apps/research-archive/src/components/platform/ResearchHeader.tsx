@@ -55,7 +55,10 @@ const ResearchHeader: React.FC<ResearchHeaderProps> = () => {
       key: '1',
       label: 'Settings',
       icon: <SettingOutlined />,
-      onClick: () => router.push('/settings'),
+      onClick: () =>
+        router.push(
+          `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/research/settings`
+        ),
     },
     {
       key: '2',
