@@ -1,18 +1,9 @@
-import {
-  Auth as AuthComponent,
-  getTitle,
-  LoginOptions,
-  NextPageWithLayout,
-} from 'platform-js';
-import { Button, Input, Typography } from 'antd';
-import config from '@/firebase/config';
-import { useRouter } from 'next/router';
+import { getTitle, NextPageWithLayout } from 'platform-js';
+import { Typography } from 'antd';
 import Head from 'next/head';
-import Link from 'next/link';
 import { DefaultLayout } from '@/components';
 import styles from './styles.module.scss';
-import { LinkOutlined, MailOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { MailOutlined } from '@ant-design/icons';
 
 // TODO: take on success and on failure
 const EmailLinkSignIn: NextPageWithLayout = () => {

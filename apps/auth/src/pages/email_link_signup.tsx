@@ -1,7 +1,6 @@
 import {
   Auth as AuthComponent,
   getTitle,
-  LoginOptions,
   NextPageWithLayout,
 } from 'platform-js';
 import { Button, Input, Typography } from 'antd';
@@ -39,7 +38,6 @@ const EmailLinkSignIn: NextPageWithLayout = () => {
         </div>
         <div id="sign-in-options" className={styles.signinOptions}>
           <AuthComponent
-            // redirectUrl={(router.query.redirect as string) ?? undefined}
             onSuccessLogin={() => router.reload()}
             firebaseConfig={config}
           >

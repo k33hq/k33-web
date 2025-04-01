@@ -53,35 +53,34 @@ interface AuthProps {
   firebaseConfig: FirebaseOptions;
   onSuccessLogin: (user: UserCredential) => void;
   children: (props: AuthFunctionalities) => React.ReactElement;
-  redirectUrl?: string;
 }
 
 const Auth: React.FC<AuthProps> = ({
   firebaseConfig,
   onSuccessLogin,
-  redirectUrl = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}/`,
   children,
 }) => {
   const state = useAppState(firebaseConfig);
   const router = useRouter();
   const [error, setError] = React.useState<string | null>(null);
-
   const redirectCallback = React.useCallback(() => {
+    const defaultRedirectUrl = `https://${process.env.NEXT_PUBLIC_WEB_DOMAIN}`;
     const query = router.query;
     if (query.redirect) {
-      let researchRedirectUrl = query.redirect as string;
-      if (query.plan) {
-        researchRedirectUrl += `&plan=${query.plan}`;
+      let redirectUrl = query.redirect as string;
+      if (redirectUrl.startsWith(defaultRedirectUrl)) {
+        if (query.plan) {
+          redirectUrl += `&plan=${query.plan}`;
+        }
+        if (query.type) {
+          redirectUrl += `&type=${query.type}`;
+        }
+        window.location.replace(redirectUrl as string);
+        return;
       }
-
-      if (query.type) {
-        researchRedirectUrl += `&type=${query.type}`;
-      }
-      window.location.replace(researchRedirectUrl as string);
-    } else {
-      window.location.replace(redirectUrl + 'research');
     }
-  }, [router, redirectUrl]);
+    window.location.replace(defaultRedirectUrl + '/research');
+  }, [router]);
 
   React.useEffect(() => {
     try {
@@ -116,12 +115,12 @@ const Auth: React.FC<AuthProps> = ({
   //     if (query.redirect) {
   //       window.location.replace(query.redirect as string);
   //     } else {
-  //       window.location.replace(redirectUrl + '/research');
+  //       window.location.replace(defaultRedirectUrl + '/research');
   //     }
   //   } else if (state === 'UNREGISTERED') {
   //     register().then((state) => router.back());
   //   }
-  // }, [state, router, redirectUrl]);
+  // }, [state, router, defaultRedirectUrl]);
 
   const google = () => {
     googleLogin(onSuccessLogin, (err: FirebaseError) => {
