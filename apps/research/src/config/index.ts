@@ -107,7 +107,7 @@ export const appStructure: AppStructure = {
       settingsImage: '/research/pro_settings.svg',
       name: 'Pro',
       description:
-        'Full access to all research content, including This Week in Crypto, Navigating Narratives and Ahead of the Curve.',
+        'Full access to all research content, including This Week in Crypto and Ahead of the Curve.',
       monthlyPrice: '$300.00',
       yearlyPrice: '$3000.00',
       pricingDescription: [],
@@ -127,11 +127,6 @@ export const appStructure: AppStructure = {
       description:
         'Our carefully distilled newsletter delivered to your inbox every Friday. We take great pride in delivering you the most important news only, explaining them in plain English, and analyzing the potential implications.',
       plan: 'twic',
-    },
-    69881: {
-      description:
-        'A weekly research note looking at what’s brewing in crypto and DeFi. Delivered directly to your inbox.',
-      plan: 'nn',
     },
     69879: {
       description:

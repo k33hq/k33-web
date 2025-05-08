@@ -518,8 +518,9 @@ const PricingTable = () => {
       <div>
         {plan === 'monthly' ? (
           <Row wrap gutter={[96, 16]}>
+            <Col xs={24} sm={24} lg={4} />
             {Object.keys(appStructure.payments)
-              .filter((payment) => payment != 'pro')
+              .filter((payment) => payment != 'pro' && payment != 'nn')
               .map((plan) => (
                 <Col xs={24} sm={24} lg={8} key={plan}>
                   {getMonthlyPaymentCard(
@@ -528,11 +529,13 @@ const PricingTable = () => {
                   )}
                 </Col>
               ))}
+            <Col xs={24} sm={24} lg={4} />
           </Row>
         ) : (
           <Row wrap gutter={[96, 16]}>
+            <Col xs={24} sm={24} lg={4} />
             {Object.keys(appStructure.payments)
-              .filter((payment) => payment != 'pro')
+              .filter((payment) => payment != 'pro' && payment != 'nn')
               .map((plan) => (
                 <Col xs={24} sm={24} lg={8} key={plan}>
                   {getYearlyPaymentCard(
@@ -541,6 +544,7 @@ const PricingTable = () => {
                   )}
                 </Col>
               ))}
+            <Col xs={24} sm={24} lg={4} />
           </Row>
         )}
       </div>
