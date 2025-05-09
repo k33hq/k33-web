@@ -14,12 +14,6 @@ export const appStructure: AppStructure = {
       image: './aoc_header.avif',
     },
     {
-      key: 'navigating-narratives',
-      label: 'Navigating Narratives',
-      url: '/navigating-narratives',
-      image: './nn_header.avif',
-    },
-    {
       key: 'this-week-in-crypto',
       label: 'This Week in Crypto',
       url: '/this-week-in-crypto',
